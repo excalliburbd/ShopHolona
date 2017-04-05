@@ -1,8 +1,8 @@
-import objectAssign from 'object-assign'
-import initialState from './initialState'
 
-const rootReducer = (state = initialState, action) => {
+const rootReducer = (state = {
+
+}, action) => {
   return state;
 }
 
-export default rootReducer
+export default rootReducer;
