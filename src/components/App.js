@@ -1,15 +1,11 @@
 import React from 'react';
 
-import Navigation from './Navigation';
-
 import './App.css';
 
 const App = () => (
-  <Navigation>
-    <div className="App">
-
-    </div>
-  </Navigation>
+  <div className="App">
+    <h1>Default route</h1>
+  </div>
 );
 
 export default App;

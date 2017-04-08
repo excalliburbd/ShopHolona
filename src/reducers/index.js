@@ -1,8 +1,14 @@
 import { combineReducers } from 'redux';
-import rootReducer from './rootReducer';
+
+const UIReducer = (state = {
+  pinned: true,
+}, action ) => {
+
+  return state;
+}
 
 const RootReducer = combineReducers({
-  rootReducer,
+  ui: UIReducer
 });
 
 export default RootReducer;

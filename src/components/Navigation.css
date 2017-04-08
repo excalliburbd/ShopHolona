@@ -1,3 +1,52 @@
+.Navigation {
+
+}
+
+.Navigation ._1sAOY {
+  width: 4em;
+}
+
+@media screen and (min-width: 600px) {
+  .Navigation ._1sAOY {
+    width: 10em;
+  }
+}
+
+.Navigation ._2FBCh {
+  display: none;
+}
+
+@media screen and (min-width: 600px) {
+  .Navigation ._2FBCh {
+    display: block;
+  }
+}
+
+.Navigation ._2GtDw {
+  padding: 0;
+}
+
+@media screen and (min-width: 600px) {
+  .Navigation ._2GtDw {
+    padding: 0 1em;
+  }
+}
+
+._2eOy5._2eOy5 ._3aW3s._3aW3s {
+  left: 4em;
+}
+
+@media screen and (min-width: 600px) {
+  ._2eOy5._2eOy5 ._3aW3s._3aW3s {
+    left: 10em;
+  }
+}
+
+
+.Navigation-content {
+  padding-top: 4em;
+}
+
 .Navigation-filler--div {
   margin-top: 4em;
 }

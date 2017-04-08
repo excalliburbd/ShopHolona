@@ -1,0 +1,22 @@
+.FilterBar {
+  margin-bottom: .5em;
+}
+
+.FilterBar--none {
+  display: none;
+}
+
+.FilterBar-filters {
+  display: flex;
+  flex-direction: column;
+  padding: .5em;
+}
+
+.FilterBar > ._3Py1Z{
+  background: #fff;
+  color: rgb(33, 33, 33);
+}
+
+.FilterBar-icon {
+  color: rgb(33, 33, 33)
+}
