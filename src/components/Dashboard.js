@@ -8,6 +8,9 @@ import CardText from 'react-toolbox/lib/card/CardText';
 import CardActions from 'react-toolbox/lib/card/CardActions';
 
 import MdInsertChart from 'react-icons/lib/md/insert-chart';
+import MdAddShoppingCart from 'react-icons/lib/md/add-shopping-cart';
+import MdRateReview from 'react-icons/lib/md/rate-review';
+import FaCartArrowDown from 'react-icons/lib/fa/cart-arrow-down';
 
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
@@ -47,6 +50,36 @@ const Dashboard = ({ history }) => (
           </LineChart>
         </ResponsiveContainer>
       </div>
+    </Card>
+    <Card onClick={
+      () => {
+        history.push('/products');
+      }
+    }>
+      <CardTitle avatar={
+        <FaCartArrowDown height="1.5em" width="1.5em"  style={{marginRight: '.5em'}} /> }
+        title="Products" />
+
+    </Card>
+    <Card onClick={
+      () => {
+        history.push('/orders');
+      }
+    }>
+      <CardTitle avatar={
+        <MdAddShoppingCart height="1.5em" width="1.5em"  style={{marginRight: '.5em'}} /> }
+        title="Orders" />
+
+    </Card>
+    <Card onClick={
+      () => {
+        history.push('/reviews');
+      }
+    }>
+      <CardTitle avatar={
+        <MdRateReview height="1.5em" width="1.5em"  style={{marginRight: '.5em'}} /> }
+        title="Reviews" />
+
     </Card>
   </div>
 );
