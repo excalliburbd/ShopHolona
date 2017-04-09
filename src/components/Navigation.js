@@ -21,7 +21,7 @@ import FilterBar from './FilterBar';
 import './Navigation.css';
 
 
-const Navigation = ({ location, history, pinned, children }, context) => {
+const Navigation = ({ location, history, pinned, children }) => {
 
   if('/' === location.pathname) {
     pinned = false;
@@ -114,7 +114,10 @@ const Navigation = ({ location, history, pinned, children }, context) => {
               fixed>
       </AppBar>
       <div className="Navigation-content">
-        <FilterBar show={ ('/' === location.pathname) } />
+        <FilterBar
+          show={ ('/' !== location.pathname) }
+          flat={ ('/dashboard' !== location.pathname)}
+          route={ location.pathname } />
         { children }
       </div>
     </Panel>

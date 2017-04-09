@@ -11,7 +11,6 @@ import theme from '../public/react-toolbox/theme';
 import '../public/react-toolbox/theme.css';
 
 import App from './components/App';
-import FilterBar from './components/FilterBar';
 import Dashboard from './components/Dashboard';
 import Order from './components/Order';
 import Products from './components/Products';
