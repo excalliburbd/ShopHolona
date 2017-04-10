@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 
-import Navigation from '../components/Navigation';
+import Nav from '../components/Navigation';
 
 const mapStateToProps = state => {
   return {
@@ -15,6 +15,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const NavigationContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(Navigation));
+const NavigationContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav));
 
 export default NavigationContainer;
