@@ -71,24 +71,22 @@
 }
 
 @media screen and (min-width: 600px) {
+  .Navigation ._2FBCh {
+    display: block;
+  }
+
   .Navigation ._1sAOY {
     width: 10em;
   }
-}
 
-@media screen and (min-width: 600px) {
   .Navigation ._2GtDw {
     padding: 0 1em;
   }
-}
 
-@media screen and (min-width: 600px) {
   ._2eOy5._2eOy5 ._3aW3s._3aW3s {
     left: 10em;
   }
-}
 
-@media screen and (min-width: 600px) {
   ._2eOy5._2eOy5 ._3aW3s._3aW3s {
     left: 10em;
   }

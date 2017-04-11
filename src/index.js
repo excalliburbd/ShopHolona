@@ -12,10 +12,7 @@ import '../public/react-toolbox/theme.css';
 
 import App from './components/App';
 import Dashboard from './components/Dashboard';
-import Order from './components/Order';
-import Products from './components/Products';
-import Reports from './components/Reports';
-import Reviews from './components/Reviews';
+import BackOffice from './components/BackOffice';
 import Settings from './components/Settings';
 
 import NavigationContainer from './containers/NavigationContainer';
@@ -29,10 +26,7 @@ ReactDOM.render(
         <NavigationContainer>
           <Route exact path="/" component={ App }/>
           <Route exact path="/dashboard" component={ Dashboard }/>
-          <Route exact path="/order" component={ Order }/>
-          <Route exact path="/products" component={ Products }/>
-          <Route exact path="/reports" component={ Reports }/>
-          <Route exact path="/reviews" component={ Reviews }/>
+          <Route exact path="/:backOffice" component={ BackOffice }/>
           <Route exact path="/settings" component={ Settings }/>
         </NavigationContainer>
       </Router>

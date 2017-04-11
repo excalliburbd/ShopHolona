@@ -32,11 +32,13 @@ import MdDashboard from "react-icons/lib/fa/dashboard";
 import MdSearch from "react-icons/lib/md/search";
 
 
-import FilterBar from './FilterBar';
+import FilterBarContainer from '../containers/FilterBarContainer';
 
 import './Navigation.css';
 
-const Nav = ({ location, history, pinned, children }) => {
+const Nav = ({ location, history, setSidebar, children }) => {
+
+  let pinned = true;
 
   if('/' === location.pathname) {
     pinned = false;
@@ -81,8 +83,8 @@ const Nav = ({ location, history, pinned, children }) => {
                 icon: <MdSettings />
               },
             ].map(
-              ({ caption, path, icon }) => (
-                <ListItem caption={ caption }
+              ({ caption, path, icon }, key ) => (
+                <ListItem caption={ caption } key={ key }
                     className={
                     (path === location.pathname) ? 'Navigation--selected' : null
                     }
@@ -159,7 +161,7 @@ const Nav = ({ location, history, pinned, children }) => {
 
       </AppBar>
       <div className="Navigation-content">
-        <FilterBar
+        <FilterBarContainer
           show={ ('/' !== location.pathname) }
           flat={ ('/dashboard' !== location.pathname)}
           route={ location.pathname } />
