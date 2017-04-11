@@ -1,0 +1,13 @@
+.Datepicker-container {
+  position: relative;
+}
+
+.Datepicker-overlay {
+  display: none;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .15);
+}
+
+.Datepicker-overlay--show {
+  display: block;
+}
