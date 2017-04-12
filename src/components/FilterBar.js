@@ -8,12 +8,16 @@ import FaTelevision from 'react-icons/lib/fa/television';
 
 import DayPicker from 'react-day-picker';
 
+import MdRightArrow from 'react-icons/lib/md/arrow-forward';
+
+
 import 'react-day-picker/lib/style.css';
 
 import './FilterBar.css';
 import './Datepicker.css';
+import './Range.css';
 
-const FilterBar = ({ 
+const FilterBar = ({
   show,
   flat,
   route,
@@ -28,7 +32,7 @@ const FilterBar = ({
   handleSetToDate,
   handleDayClick,
   handleDayMouseEnter,
-  children 
+  children
 }) => {
 
   const filterBarClass = classNames({
@@ -106,6 +110,7 @@ const FilterBar = ({
               }
             }>
           <input
+            className="startDate"
             type="text"
             ref={ (el) => { status.fromInput = el; } }
             placeholder="DD/MM/YYYY"
@@ -131,7 +136,9 @@ const FilterBar = ({
               }
             }}
           />
+          <MdRightArrow className="rightArrow"/>
           <input
+            className="endDate"
             type="text"
             ref={ (el) => { status.toInput = el; } }
             placeholder="DD/MM/YYYY"
@@ -159,7 +166,7 @@ const FilterBar = ({
           />
           <div className="Datepicker-container">
             <div className={ overlayClass }>
-              <DayPicker                  
+              <DayPicker
                 numberOfMonths={ 2 }
                 fromMonth={ fromDate }
                 selectedDays={ [fromDate, { fromDate, to: enteredToDate }] }
@@ -178,7 +185,9 @@ const FilterBar = ({
             </div>
           </div>
         </div>
+
       </div>
+
     </Card>
   </div>
 }

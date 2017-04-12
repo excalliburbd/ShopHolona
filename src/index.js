@@ -15,6 +15,8 @@ import Dashboard from './components/Dashboard';
 import BackOffice from './components/BackOffice';
 import Settings from './components/Settings';
 
+import Calendar from './components/Calendar';
+
 import NavigationContainer from './containers/NavigationContainer';
 
 import './index.css';
@@ -28,6 +30,7 @@ ReactDOM.render(
           <Route exact path="/dashboard" component={ Dashboard }/>
           <Route exact path="/:backOffice" component={ BackOffice }/>
           <Route exact path="/settings" component={ Settings }/>
+          <Route exact path="/calendar" component={ Calendar }/>
         </NavigationContainer>
       </Router>
     </ThemeProvider>
