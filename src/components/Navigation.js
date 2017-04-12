@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import classNames from 'classnames';
 
 import AppBar from 'react-toolbox/lib/app_bar/AppBar';
 import Layout from 'react-toolbox/lib/layout/Layout';
@@ -11,6 +12,7 @@ import Avatar from 'react-toolbox/lib/avatar/Avatar';
 import Navigation from 'react-toolbox/lib/navigation/Navigation';
 import Link from 'react-toolbox/lib/link/Link';
 import IconMenu from 'react-toolbox/lib/menu/IconMenu';
+import Button from 'react-toolbox/lib/button/Button';
 import IconButton from 'react-toolbox/lib/button/IconButton';
 import MenuItem from 'react-toolbox/lib/menu/MenuItem';
 import MenuDivider from 'react-toolbox/lib/menu/MenuDivider';
@@ -28,21 +30,40 @@ import MdSettings from 'react-icons/lib/md/settings';
 import MdProfile from 'react-icons/lib/md/account-circle';
 import MdSignout from 'react-icons/lib/md/power-settings-new';
 import MdCart from 'react-icons/lib/md/shopping-cart';
-import MdDashboard from "react-icons/lib/fa/dashboard";
-import MdSearch from "react-icons/lib/md/search";
+import MdDashboard from 'react-icons/lib/fa/dashboard';
+import MdSearch from 'react-icons/lib/md/search';
+import MdClear from 'react-icons/lib/md/clear';
 
 
 import FilterBarContainer from '../containers/FilterBarContainer';
 
 import './Navigation.css';
 
-const Nav = ({ location, history, setSidebar, children }) => {
+import logo from '../assets/images/logo/logo.png';
+
+const Nav = ({
+  location,
+  history,
+  searchbar,
+  showSearchbar,
+  hideSearchbar,
+  children
+}) => {
 
   let pinned = true;
 
   if('/' === location.pathname) {
     pinned = false;
   }
+
+  const navTitleClass = classNames({
+    'Navigation-title--hidden': searchbar,
+  })
+
+  const searchbarClass = classNames({
+    'Searchbar': true,
+    'Searchbar--hide': !searchbar,
+  })
 
   return <Layout className="Navigation">
     {
@@ -112,53 +133,54 @@ const Nav = ({ location, history, setSidebar, children }) => {
     <Panel className="Navigation-panel">
       <AppBar className="Navbar"
               title={
-                  <span className="Shop-name">ShopName</span>
+                <div className={ navTitleClass }>
+                  <span>ShopName</span> <br />
+                  <span>Shop reference code</span>
+                </div>
               }
               leftIcon={
-                <Avatar title="Shop_logo" image={require("../assets/images/logo/logo.png")}/>
+                <Avatar title="Shop_logo" image={ logo } className="Navbar--icon"/>
               }
+              fixed >
+            <Autocomplete
+              className={
+                searchbarClass
+              }
+              placeholder="Search"
+              id="search"
+              value={''} >
+              <IconButton
+                icon={<MdClear />}
+                onClick={ () => hideSearchbar() }
+                className="Navigation-searchbar--close" />
+            </Autocomplete>
 
-              fixed>
-            <ul className="Right-comp">
-              <li className="Right-comp-search">
-                <label className="search-icon" htmlFor="search"><MdSearch /></label>
-              </li>
-              <li>
-                <Autocomplete
-                  className="Searchbar"
-                  placeholder="Search"
-                  id="search"
-
-
-                />
-
-              </li>
-              <li>
-                <IconButton icon={<MdCart />}/>
-              </li>
-
-              <li>
-                <IconMenu icon={
-                  <Avatar title="Shop_logo" image={require("../assets/images/logo/logo.png")}/>
-                } position='topRight' className="profile-menu" menuRipple >
-                  <MenuItem value='dashboard' icon={
-                    <MdDashboard/>
-                  } onClick={() => history.push('/dashboard')} caption='Dashboard' />
-                  <MenuItem value='profile' icon={
-                    <MdProfile/>
-                  } caption='Profile' />
-                  <MenuItem value='settings' icon={
-                    <MdSettings/>
-                  } caption='Settings' />
-                  <MenuDivider />
-                  <MenuItem value='signout' icon={
-                    <MdSignout/>
-                  } caption='Sign Out' disabled />
-                </IconMenu>
-              </li>
-
-            </ul>
-
+            <Navigation type="horizontal" className="Right-comp">
+              <IconButton
+                className="Navigation-search--button"
+                onClick={
+                  () => showSearchbar()
+                }
+                icon={ <MdSearch /> }/>
+              <IconButton icon={<MdCart />}/>
+              <IconMenu icon={
+                <Avatar title="Shop_logo" image={ logo }/>
+              } position='topRight' className="profile-menu" menuRipple >
+                <MenuItem value='dashboard' icon={
+                  <MdDashboard/>
+                } onClick={() => history.push('/dashboard')} caption='Dashboard' />
+                <MenuItem value='profile' icon={
+                  <MdProfile/>
+                } caption='Profile' />
+                <MenuItem value='settings' icon={
+                  <MdSettings/>
+                } caption='Settings' />
+                <MenuDivider />
+                <MenuItem value='signout' icon={
+                  <MdSignout/>
+                } caption='Sign Out' disabled />
+              </IconMenu>
+            </Navigation>
       </AppBar>
       <div className="Navigation-content">
         <FilterBarContainer
