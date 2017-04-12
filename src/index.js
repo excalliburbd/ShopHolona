@@ -26,7 +26,6 @@ ReactDOM.render(
         <NavigationContainer>
           <Route exact path="/" component={ App }/>
           <Route exact path="/dashboard" component={ Dashboard }/>
-          <Route exact path="/:backOffice" component={ BackOffice }/>
           <Route exact path="/settings" component={ Settings }/>
         </NavigationContainer>
       </Router>

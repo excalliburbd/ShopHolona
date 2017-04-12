@@ -23,6 +23,11 @@ const FilterBar = ({
     'FilterBar--none': !show,
   });
 
+  const reportsClass = classNames({
+    'FilterBar-card': true,
+    'FilterBar--flat': (show && flat)
+  })
+
   let routeName = 'Dashboard';
 
   switch (route) {
@@ -50,7 +55,7 @@ const FilterBar = ({
   }
 
   return <div className={ filterBarClass } >
-    <Card className={ (show && flat) ? 'FilterBar--flat' : null }>
+    <Card className={ reportsClass }>
       <div className="FilterBar--title">
         <FaTelevision
           height="1.5em"

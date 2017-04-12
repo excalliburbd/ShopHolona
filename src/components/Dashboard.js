@@ -27,10 +27,11 @@ const data = [
 const Dashboard = ({ history }) => (
   <div className="Dashboard" >
     <Card onClick={
-      () => {
-        history.push('/reports');
-      }
-    }>
+            () => {
+              history.push('/reports');
+            }
+          }
+          className="Dahsboard-report" >
       <CardTitle avatar={
         <MdInsertChart height="1.5em" width="1.5em"  style={{marginRight: '.5em'}} /> }
         title="Reports" />
