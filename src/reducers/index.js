@@ -9,7 +9,7 @@ const isSelectingFirstDay = (from, to, day) => {
   return firstDayIsNotSelected || selectedDayIsBeforeFirstDay || rangeIsSelected;
 }
 
-const FilterReducer = (state = {
+const FilterUIReducer = (state = {
   date: {
     from: null,
     fromValue: '',
@@ -63,7 +63,7 @@ const FilterReducer = (state = {
             enteredTo: action.day,
           },
         }
-      }      
+      }
       return state;
     case 'CHANGE_FILTER_DATE_CHANGE_OVERLAY':
       return {
@@ -98,9 +98,31 @@ const FilterReducer = (state = {
   return state;
 }
 
+const NavigationUIReducer = (
+  state = {
+    searchbar: false,
+  }, action
+) => {
+  switch (action.type) {
+    case 'SHOW_NAVIGATION_SEARCHBAR':
+     return {
+       ...state,
+       searchbar: true,
+     }
+    case 'HIDE_NAVIGATION_SEARCHBAR':
+     return {
+       ...state,
+       searchbar: false,
+     }
+    default:
+      return state;
+  }
+}
+
 const RootReducer = combineReducers({
   ui: combineReducers({
-    filter: FilterReducer,
+    filter: FilterUIReducer,
+    nav: NavigationUIReducer,
   })
 });
 

@@ -1,6 +1,6 @@
 .Navigation {
-
 }
+
 
 .Navigation ._1sAOY {
   width: 4em;
@@ -18,8 +18,8 @@
   left: 4em;
 }
 
-.Navigation-content {
-  padding-top: 4em;
+.Navigation-title--hidden {
+  visibility: hidden;
 }
 
 .Navigation-filler--div {
@@ -30,30 +30,46 @@
   background: #eee;
 }
 
-.Right-comp {
-  list-style: none;
+/*the div inside appbar header*/
+._3Py1Z .lGWLJ {
+
 }
 
-.lGWLJ > .Right-comp > li {
-  display: inline-block;
-  padding: 10px;
+/*button icon on the right side of the app bar*/
+.Navbar ._37vtt {
+  margin-left: 1em;
+}
+
+._07g5.Searchbar {
+  z-index: 1;
+  padding: 0;
+  position: absolute;
+  left: 2em;
+  width: calc(100% - 5em);
+}
+
+._07g5.Searchbar.Searchbar--hide {
+  display: none;
+}
+
+.Searchbar .lFVgC {
+  padding: 0;
+  position: relative;
 }
 
 .Searchbar ._4bZUj {
   background-color: white;
-  color: #212121;
-  display: block;
-  font-size: 16px;
-  outline: 0;
-  padding: 8px 0;
-  width: 100%;
-  padding-left: 5px;
+  padding-left: .5em;
 }
 
-.Searchbar ._3FySS::after,
-.Searchbar ._3FySS::before {
-  background-color: #08b7d6;
+.Searchbar ._14fVf {
+  padding: 0;
+}
 
+.Navigation-searchbar--close {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .profile-menu ._1gvr5 {
@@ -65,9 +81,21 @@
   margin-left: 18px;
 }
 
+.Right-comp {
+  margin-left: auto;
+}
+
 .Right-comp .Right-comp-search .search-icon{
   color: aquamarine;
   cursor: pointer;
+}
+
+.Navigation-panel ._37vtt {
+  width: 0;
+}
+
+.Navigation-content {
+  padding-top: 4em;
 }
 
 @media screen and (min-width: 600px) {
@@ -90,4 +118,25 @@
   ._2eOy5._2eOy5 ._3aW3s._3aW3s {
     left: 10em;
   }
+
+  ._07g5.Searchbar.Searchbar--hide {
+    display: block;
+  }
+
+  .hC5Z2._2Agdx._2CPs4.Navigation-search--button{
+    display: none;
+  }
+
+  .Navigation-searchbar--close {
+    display: none;
+  }
+
+  ._07g5.Searchbar {
+    left: 15em;
+    width: calc(100% - 21em);
+  }
+}
+
+@media screen and (min-width: 800px) {
+
 }
