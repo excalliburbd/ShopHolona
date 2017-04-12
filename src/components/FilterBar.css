@@ -45,10 +45,6 @@
   width: auto;
 }
 
-.FilterBar-filters > div {
-  padding: 1em;
-}
-
 .FilterBar > ._3Py1Z{
   background: #fff;
   color: rgb(33, 33, 33);
@@ -59,23 +55,8 @@
 }
 
 @media screen and (min-width: 600px) {
-  .startDate, .endDate {
-    border: white;
-    height: 2em;
-    width: 8em;
-
-  }
-  .rightArrow {
-    margin: 0em .6em;
-    height: 2em;
-    width: 3em;
-  }
-
   .FilterBar-filters {
-    box-shadow: 0.1em 0.5em 0.1em rgba(0,0,0,0.14), 0.1em 0.2em rgba(0,0,0,0.05);
     display: inline-block;
     margin: 1em;
-
   }
-
 }

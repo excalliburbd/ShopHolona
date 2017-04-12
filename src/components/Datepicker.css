@@ -1,14 +1,95 @@
-.Datepicker-container {
-  position: relative;
+.Datepicker {
+  padding: .5em;
 }
 
 .Datepicker-overlay {
   display: none;
   background: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, .15);
+  position: absolute;
+  overflow: hidden;
+  z-index: 10;
 }
 
 .Datepicker-overlay--show {
   display: block;
+}
+
+.startDate, .endDate {
+  border: white;
+  height: 2em;
+  width: 7em;
+  padding: 5px;
+
+}
+.portalDate .rightArrow {
+  color: cornflowerblue;
+  margin: 0em .6em;
+  height: 2em;
+  width: 2em;
+}
+
+.portalDate {
+  border: 1px solid lightskyblue;
+  border-radius: 4px;
+  display: flex;
+  height: 2em;
+  width: 17em;
+
+}
+
+/*.startDate, .endDate {
+    border: white;
+    height: 2em;
+    width: 8em;
+  }
+
+  .rightArrow {
+    margin: 0em .6em;
+    height: 2em;
+    width: 3em;
+  }*/
+
+  .Range .DayPicker-Day {
+  outline: none;
+}
+
+.Range .DayPicker-Day--disabled {
+  background-color: white;
+  color: lightgray;
+}
+
+.Range .DayPicker-Day:not(.DayPicker-Day--outside):not(.DayPicker-Day--selected):hover {
+  background-color: #EAEAEA;
+  color: #555;
+}
+
+.DayPicker-Day--start,
+.DayPicker-Day--end {
+  position: relative;
+}
+
+.DayPicker-Day--start:not(.DayPicker-Day--outside):before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -5px;
+  width: 5px;
+  content: '';
+  background-color: yellowgreen;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.DayPicker-Day--end:not(.DayPicker-Day--outside):after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -5px;
+  width: 5px;
+  content: '';
+  background-color: yellowgreen;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 

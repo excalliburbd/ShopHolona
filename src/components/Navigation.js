@@ -139,7 +139,13 @@ const Nav = ({
                 </div>
               }
               leftIcon={
-                <Avatar title="Shop_logo" image={ logo } className="Navbar--icon"/>
+                <Avatar
+                  title="Shop_logo"
+                  image={ logo }
+                  className="Navbar--icon" />
+              }
+              onLeftIconClick={
+                () => history.push('/')
               }
               fixed >
             <Autocomplete
