@@ -11,11 +11,11 @@ import theme from '../public/react-toolbox/theme';
 import '../public/react-toolbox/theme.css';
 
 import App from './components/App';
-import Dashboard from './components/Dashboard';
 import BackOffice from './components/BackOffice';
 import Settings from './components/Settings';
 
 import NavigationContainer from './containers/NavigationContainer';
+import DashboardContainer from './containers/DashboardContainer';
 
 import './index.css';
 
@@ -25,7 +25,7 @@ ReactDOM.render(
       <Router>
         <NavigationContainer>
           <Route exact path="/" component={ App }/>
-          <Route exact path="/dashboard" component={ Dashboard }/>
+          <Route exact path="/dashboard" component={ DashboardContainer }/>
           <Route exact path="/settings" component={ Settings }/>
         </NavigationContainer>
       </Router>

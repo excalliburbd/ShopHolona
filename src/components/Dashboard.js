@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import Card from 'react-toolbox/lib/card/Card';
@@ -8,6 +8,10 @@ import CardText from 'react-toolbox/lib/card/CardText';
 import CardActions from 'react-toolbox/lib/card/CardActions';
 
 import MdInsertChart from 'react-icons/lib/md/insert-chart';
+import MdAddShoppingCart from 'react-icons/lib/md/add-shopping-cart';
+import MdRateReview from 'react-icons/lib/md/rate-review';
+import FaCartArrowDown from 'react-icons/lib/fa/cart-arrow-down';
+import MdStar from 'react-icons/lib/md/star';
 
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
@@ -24,7 +28,12 @@ const data = [
 ];
 
 
-const Dashboard = ({ history }) => (
+const Dashboard = ({
+  procudctsStatus,
+  ordersStatus,
+  reviewsStatus,
+  history, //from react-router Route
+}) => (
   <div className="Dashboard" >
     <Card onClick={
             () => {
@@ -49,7 +58,86 @@ const Dashboard = ({ history }) => (
         </ResponsiveContainer>
       </div>
     </Card>
+    <Card >
+      <CardTitle avatar={
+        <MdStar height="1.5em" width="1.5em"  style={{marginRight: '.5em'}} /> }
+        title="Featured Product" />
+
+    </Card>
+    <Card onClick={
+      () => {
+        history.push('/products');
+      }
+    }>
+      <CardTitle avatar={
+        <FaCartArrowDown height="1.5em" width="1.5em"  style={{marginRight: '.5em'}} /> }
+        title="Products" />
+      <CardText>
+        <ul className="Dashboard-list">
+          {
+            procudctsStatus.map(
+              ({ lable, amount }, key) => (
+                <li key={ key }>
+                  <span>{ lable }</span>
+                  <span>{ amount }</span>
+                </li>
+              )
+            )
+          }
+        </ul>
+      </CardText>
+    </Card>
+    <Card onClick={
+      () => {
+        history.push('/orders');
+      }
+    }>
+      <CardTitle avatar={
+        <MdAddShoppingCart height="1.5em" width="1.5em"  style={{marginRight: '.5em'}} /> }
+        title="Orders" />
+        <CardText>
+          <ul className="Dashboard-list">
+            {
+              ordersStatus.map(
+                ({ lable, amount }, key) => (
+                  <li key={ key }>
+                    <span>{ lable }</span>
+                    <span>{ amount }</span>
+                  </li>
+                )
+              )
+            }
+          </ul>
+        </CardText>
+    </Card>
+    <Card onClick={
+      () => {
+        history.push('/reviews');
+      }
+    }>
+      <CardTitle avatar={
+        <MdRateReview height="1.5em" width="1.5em"  style={{marginRight: '.5em'}} /> }
+        title="Reviews" />
+      <CardText>
+        <ul className="Dashboard-list">
+          {
+            reviewsStatus.map(
+              ({ lable, amount }, key) => (
+                <li key={ key }>
+                  <span>{ lable }</span>
+                  <span>{ amount }</span>
+                </li>
+              )
+            )
+          }
+        </ul>
+      </CardText>
+    </Card>
   </div>
 );
+
+Dashboard.prototype = {
+  procudctsStatus: PropTypes.array,
+}
 
 export default Dashboard;

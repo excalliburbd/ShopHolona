@@ -5,6 +5,7 @@
 .Dashboard ._8pay8 {
   cursor: pointer;
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  margin-bottom: .5em;
 }
 
 .Dashboard ._8pay8:hover {
@@ -15,8 +16,51 @@
   height: 30vh;
 }
 
-media screen and (min-width: 600px) {
-  .Dashboard .Dahsboard-report {
-    max-width: 50vw;
+.Dashboard-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.Dashboard-list > li {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 600px) {
+  .Dashboard {
+    display: flex;
+    flex-flow: row wrap;
+
+  }
+
+  .Dashboard ._8pay8 {
+    width: calc(50% - .5em);
+    margin: .25em;
+  }
+
+  ._8pay8.Dahsboard-report {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .Dashboard ._8pay8 {
+    width: calc((100% / 3) - (1em / 3));
+    margin: 0;
+  }
+
+  .Dashboard ._8pay8:nth-child(1) {
+    width: calc(50% - .25em);
+    margin: 0 .5em .5em 0;
+  }
+
+  .Dashboard ._8pay8:nth-child(2) {
+    width: calc(50% - .25em);
+    margin: 0 0 .5em 0;
+  }
+
+  .Dashboard ._8pay8:nth-child(4) {
+    margin: 0 .5em;
   }
 }

@@ -18,8 +18,6 @@ import MenuItem from 'react-toolbox/lib/menu/MenuItem';
 import MenuDivider from 'react-toolbox/lib/menu/MenuDivider';
 import Autocomplete from 'react-toolbox/lib/autocomplete/Autocomplete';
 
-
-import MdStar from 'react-icons/lib/md/star';
 import MdKeyboardArrowLeft from 'react-icons/lib/md/keyboard-arrow-left';
 import FaTelevision from 'react-icons/lib/fa/television';
 import MdAddShoppingCart from 'react-icons/lib/md/add-shopping-cart';

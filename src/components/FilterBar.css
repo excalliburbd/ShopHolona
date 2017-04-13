@@ -17,6 +17,7 @@
 
 .FilterBar--title {
   padding: .5em;
+  width: 13em;
 }
 
 .FilterBar--title > span {
