@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 import AppBar from 'react-toolbox/lib/app_bar/AppBar';
 import Layout from 'react-toolbox/lib/layout/Layout';
+import Sidebar from 'react-toolbox/lib/layout/Sidebar';
 import NavDrawer from 'react-toolbox/lib/layout/NavDrawer';
 import Panel from 'react-toolbox/lib/layout/Panel';
 import List from 'react-toolbox/lib/list/List';
@@ -31,6 +32,7 @@ import MdCart from 'react-icons/lib/md/shopping-cart';
 import MdDashboard from 'react-icons/lib/fa/dashboard';
 import MdSearch from 'react-icons/lib/md/search';
 import MdClear from 'react-icons/lib/md/clear';
+import MdAdd from 'react-icons/lib/md/add';
 
 
 import FilterBarContainer from '../containers/FilterBarContainer';
@@ -64,70 +66,72 @@ const Nav = ({
   })
 
   return <Layout className="Navigation">
-    {
-      <NavDrawer pinned={ pinned } >
-        <List selectable >
-          <div className="Navigation-filler--div" />
-
-          {
-            [
-              {
-                caption: 'Dashboard',
-                path: '/dashboard',
-                icon: <FaTelevision />
-              },
-              {
-                caption: 'Order',
-                path: '/order',
-                icon: <MdAddShoppingCart />
-              },
-              {
-                caption: 'Products',
-                path: '/products',
-                icon: <FaCartArrowDown />
-              },
-              {
-                caption: 'Reports',
-                path: '/reports',
-                icon: <MdInsertChart />
-              },
-              {
-                caption: 'Reviews',
-                path: '/reviews',
-                icon: <MdRateReview />
-              },
-              {
-                caption: 'Settings',
-                path: '/settings',
-                icon: <MdSettings />
-              },
-            ].map(
-              ({ caption, path, icon }, key ) => (
-                <ListItem caption={ caption } key={ key }
-                    className={
-                    (path === location.pathname) ? 'Navigation--selected' : null
+    <Button icon={
+              <MdAdd />
+            }
+            floating
+            className="Navigation-addbutton" />
+    <NavDrawer pinned={ pinned } className="Navigation-sidebar">
+      <List selectable >
+        <div className="Navigation-filler--div" />
+        {
+          [
+            {
+              caption: 'Dashboard',
+              path: '/dashboard',
+              icon: <FaTelevision />
+            },
+            {
+              caption: 'Orders',
+              path: '/admin/orders',
+              icon: <MdAddShoppingCart />
+            },
+            {
+              caption: 'Products',
+              path: '/admin/products',
+              icon: <FaCartArrowDown />
+            },
+            {
+              caption: 'Reports',
+              path: '/admin/reports',
+              icon: <MdInsertChart />
+            },
+            {
+              caption: 'Reviews',
+              path: '/admin/reviews',
+              icon: <MdRateReview />
+            },
+            {
+              caption: 'Settings',
+              path: '/settings',
+              icon: <MdSettings />
+            },
+          ].map(
+            ({ caption, path, icon }, key ) => (
+              <ListItem caption={ caption } key={ key }
+                  className={
+                  (path === location.pathname) ? 'Navigation--selected' : null
+                  }
+                  rightIcon={
+                    (path === location.pathname) ?
+                      <div>
+                        {
+                          icon
+                        }
+                        <MdKeyboardArrowLeft />
+                      </div> :
+                      icon
+                  }
+                  onClick={
+                    () => {
+                      history.push(path)
                     }
-                    rightIcon={
-                      (path === location.pathname) ?
-                        <div>
-                          {
-                            icon
-                          }
-                          <MdKeyboardArrowLeft />
-                        </div> :
-                        icon
-                    }
-                    onClick={
-                      () => {
-                        history.push(path)
-                      }
-                    } />
-              )
+                  } />
             )
-          }
-        </List>
-      </NavDrawer>
-    }
+          )
+        }
+      </List>
+    </NavDrawer>
     <Panel className="Navigation-panel">
       <AppBar className="Navbar"
               title={
@@ -194,11 +198,16 @@ const Nav = ({
         { children }
       </div>
     </Panel>
+    <Sidebar pinned={ false } width={ 5 }>
+        <div><IconButton icon='close' /></div>
+        <div style={{ flex: 1 }}>
+            <p>Supplemental content goes here.</p>
+        </div>
+    </Sidebar>
   </Layout>
 };
 
-Nav.prototype = {
-  pinned: PropTypes.bool.isRequired
+Nav.propTypes = {
 }
 
 export default Nav;

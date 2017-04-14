@@ -6,3 +6,9 @@
   display: block;
   padding: 0 1em;
 }
+
+.caNNQ.BackOffice--menuelist {}
+
+.Backoffice-listitem span{
+  margin-left: 1em;
+}

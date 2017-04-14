@@ -119,10 +119,43 @@ const NavigationUIReducer = (
   }
 }
 
+const productsReducer = (
+  state = {
+    menu: [
+      {
+        lable: 'All',
+        amount: 12,
+      },
+      {
+        lable: 'Featured',
+        amount: 2,
+      },
+      {
+        lable: 'Live',
+        amount: 4,
+      },
+      {
+        lable: 'Out of Stock',
+        amount: 3,
+      },
+      {
+        lable: 'Pending Review',
+        amount: 0,
+      },
+    ]
+  }, action
+) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+
 const RootReducer = combineReducers({
   ui: combineReducers({
     filter: FilterUIReducer,
     nav: NavigationUIReducer,
+    products: productsReducer,
   })
 });
 

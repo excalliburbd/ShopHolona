@@ -16,6 +16,7 @@ import Settings from './components/Settings';
 
 import NavigationContainer from './containers/NavigationContainer';
 import DashboardContainer from './containers/DashboardContainer';
+import BackOfficeContainer from './containers/BackOfficeContainer';
 
 import './index.css';
 
@@ -26,6 +27,7 @@ ReactDOM.render(
         <NavigationContainer>
           <Route exact path="/" component={ App }/>
           <Route exact path="/dashboard" component={ DashboardContainer }/>
+          <Route path="/admin/:backOffice" component={ BackOfficeContainer } />
           <Route exact path="/settings" component={ Settings }/>
         </NavigationContainer>
       </Router>

@@ -14,7 +14,7 @@
   padding: 0;
 }
 
-._2eOy5._2eOy5 ._3aW3s._3aW3s {
+.Navigation .Navigation-panel {
   left: 4em;
 }
 
@@ -28,11 +28,6 @@
 
 .Navigation--selected {
   background: #eee;
-}
-
-/*the div inside appbar header*/
-._3Py1Z .lGWLJ {
-
 }
 
 /*button icon on the right side of the app bar*/
@@ -94,8 +89,22 @@
   width: 0;
 }
 
+.Navigation-panel {
+}
+
 .Navigation-content {
   padding-top: 4em;
+}
+
+.Navigation-addbutton {
+  position: fixed;
+  top: calc(90% - 1em);
+  right: 1em;
+  z-index: 900;
+}
+
+._2Agdx._3IRMZ._2Agdx._1ZxqC._2CPs4.Navigation-addbutton {
+  background-color: rgb(183, 28, 28);
 }
 
 @media screen and (min-width: 600px) {
@@ -111,11 +120,7 @@
     padding: 0 1em;
   }
 
-  ._2eOy5._2eOy5 ._3aW3s._3aW3s {
-    left: 10em;
-  }
-
-  ._2eOy5._2eOy5 ._3aW3s._3aW3s {
+  .Navigation .Navigation-panel {
     left: 10em;
   }
 

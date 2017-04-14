@@ -64,79 +64,58 @@ const Dashboard = ({
         title="Featured Product" />
 
     </Card>
-    <Card onClick={
-      () => {
-        history.push('/products');
-      }
-    }>
-      <CardTitle avatar={
-        <FaCartArrowDown height="1.5em" width="1.5em"  style={{marginRight: '.5em'}} /> }
-        title="Products" />
-      <CardText>
-        <ul className="Dashboard-list">
-          {
-            procudctsStatus.map(
-              ({ lable, amount }, key) => (
-                <li key={ key }>
-                  <span>{ lable }</span>
-                  <span>{ amount }</span>
-                </li>
-              )
-            )
-          }
-        </ul>
-      </CardText>
-    </Card>
-    <Card onClick={
-      () => {
-        history.push('/orders');
-      }
-    }>
-      <CardTitle avatar={
-        <MdAddShoppingCart height="1.5em" width="1.5em"  style={{marginRight: '.5em'}} /> }
-        title="Orders" />
-        <CardText>
-          <ul className="Dashboard-list">
-            {
-              ordersStatus.map(
-                ({ lable, amount }, key) => (
-                  <li key={ key }>
-                    <span>{ lable }</span>
-                    <span>{ amount }</span>
-                  </li>
-                )
-              )
+    {
+      [
+        {
+          caption: 'Products',
+          path: '/admin/products',
+          icon: FaCartArrowDown,
+          status: procudctsStatus
+        },
+        {
+          caption: 'Orders',
+          path: '/admin/order',
+          icon: MdAddShoppingCart,
+          status: ordersStatus
+        },
+        {
+          caption: 'Reviews',
+          path: '/admin/reviews',
+          icon: MdRateReview,
+          status: reviewsStatus
+        },
+      ].map(
+        ({ caption, path, icon, status }, key) => (
+          <Card onClick={
+            () => {
+              history.push(path);
             }
-          </ul>
-        </CardText>
-    </Card>
-    <Card onClick={
-      () => {
-        history.push('/reviews');
-      }
-    }>
-      <CardTitle avatar={
-        <MdRateReview height="1.5em" width="1.5em"  style={{marginRight: '.5em'}} /> }
-        title="Reviews" />
-      <CardText>
-        <ul className="Dashboard-list">
-          {
-            reviewsStatus.map(
-              ({ lable, amount }, key) => (
-                <li key={ key }>
-                  <span>{ lable }</span>
-                  <span>{ amount }</span>
-                </li>
-              )
-            )
-          }
-        </ul>
-      </CardText>
-    </Card>
+          } key={ key } >
+            <CardTitle avatar={
+              <icon height="1.5em" width="1.5em"  style={{marginRight: '.5em'}} /> }
+              title={ caption } />
+            <CardText>
+              <ul className="Dashboard-list">
+                {
+                  status.map(
+                    ({ lable, amount }, key) => (
+                      <li key={ key }>
+                        <span>{ lable }</span>
+                        <span>{ amount }</span>
+                      </li>
+                    )
+                  )
+                }
+              </ul>
+            </CardText>
+          </Card>
+        )
+      )
+    }
   </div>
 );
 
-Dashboard.prototype = {
+Dashboard.propTypes = {
   procudctsStatus: PropTypes.array,
 }
 

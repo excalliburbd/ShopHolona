@@ -4,28 +4,7 @@ import Dashboard from '../components/Dashboard';
 
 const mapStateToProps = state => {
   return {
-    procudctsStatus: [
-      {
-        lable: 'All',
-        amount: 12,
-      },
-      {
-        lable: 'Featured',
-        amount: 2,
-      },
-      {
-        lable: 'Live',
-        amount: 4,
-      },
-      {
-        lable: 'Out of Stock',
-        amount: 3,
-      },
-      {
-        lable: 'Pending Review',
-        amount: 0,
-      },
-    ],
+    procudctsStatus: state.ui.products.menu,
     reviewsStatus: [
       {
         lable: 'All',
