@@ -45,10 +45,6 @@
   color: rgb(33, 33, 33);
 }
 
-.FilterBar-icon {
-  color: rgb(33, 33, 33)
-}
-
 @media screen and (min-width: 600px) {
   .FilterBar-card {
     flex-direction: row;

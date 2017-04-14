@@ -34,16 +34,16 @@ const FilterBar = ({
     case '/dashboard':
      routeName = 'Dashboard';
      break;
-    case '/order':
+    case '/admin/order':
      routeName = 'Order';
      break;
-    case '/products':
+    case '/admin/products':
      routeName = 'Products';
      break;
-    case '/reports':
+    case '/admin/reports':
      routeName = 'Reports';
      break;
-    case '/reviews':
+    case '/admin/reviews':
      routeName = 'Reviews';
      break;
     case '/settings':

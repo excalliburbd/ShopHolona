@@ -4,7 +4,7 @@ import Dashboard from '../components/Dashboard';
 
 const mapStateToProps = state => {
   return {
-    procudctsStatus: state.ui.products.menu,
+    procudctsStatus: state.ui.backOffice.menu.products,
     reviewsStatus: [
       {
         lable: 'All',
