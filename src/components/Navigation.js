@@ -36,6 +36,7 @@ import MdAdd from 'react-icons/lib/md/add';
 
 
 import FilterBarContainer from '../containers/FilterBarContainer';
+import SignUpContainer from '../containers/SignUpContainer';
 
 import './Navigation.css';
 
@@ -47,6 +48,11 @@ const Nav = ({
   searchbar,
   showSearchbar,
   hideSearchbar,
+  sidebar,
+  showSidebar,
+  handleHideSidebar,
+  userLoggedIn,
+  handleSignIn,
   children
 }) => {
 
@@ -133,7 +139,7 @@ const Nav = ({
       </List>
     </NavDrawer>
     <Panel className="Navigation-panel">
-      <AppBar className="Navbar"
+      <AppBar className="Navigation-navbar"
               title={
                 <div className={ navTitleClass }>
                   <span>ShopName</span> <br />
@@ -174,19 +180,29 @@ const Nav = ({
               <IconMenu icon={
                 <Avatar title="Shop_logo" image={ logo }/>
               } position='topRight' className="profile-menu" menuRipple >
-                <MenuItem value='dashboard' icon={
-                  <MdDashboard/>
-                } onClick={() => history.push('/dashboard')} caption='Dashboard' />
-                <MenuItem value='profile' icon={
-                  <MdProfile/>
-                } caption='Profile' />
-                <MenuItem value='settings' icon={
-                  <MdSettings/>
-                } caption='Settings' />
-                <MenuDivider />
-                <MenuItem value='signout' icon={
-                  <MdSignout/>
-                } caption='Sign Out' disabled />
+                {
+                  (userLoggedIn) ?
+                    <div>
+                      <MenuItem value='dashboard' icon={
+                      <MdDashboard/>
+                      } onClick={() => history.push('/dashboard')} caption='Dashboard' />
+                      <MenuItem value='profile' icon={
+                        <MdProfile/>
+                      } caption='Profile' />
+                      <MenuItem value='settings' icon={
+                        <MdSettings/>
+                      } caption='Settings' />
+                      <MenuDivider />
+                      <MenuItem value='signout' icon={
+                        <MdSignout/>
+                      } onClick={ () => history.push('/') }
+                        caption='Sign Out' />
+                    </div> :
+                    <MenuItem value='signin'
+                              icon='account_circle'
+                              onClick={ handleSignIn }
+                              caption='Sign In/Sign Up' />
+                }
               </IconMenu>
             </Navigation>
       </AppBar>
@@ -198,11 +214,9 @@ const Nav = ({
         { children }
       </div>
     </Panel>
-    <Sidebar pinned={ false } width={ 5 }>
-        <div><IconButton icon='close' /></div>
-        <div style={{ flex: 1 }}>
-            <p>Supplemental content goes here.</p>
-        </div>
+    <Sidebar pinned={ showSidebar } scrollY className="Navigation-sidebar" >
+      <IconButton icon='close' onClick={ handleHideSidebar }/>
+      <SignUpContainer />
     </Sidebar>
   </Layout>
 };

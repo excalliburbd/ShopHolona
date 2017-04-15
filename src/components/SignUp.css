@@ -1,0 +1,13 @@
+.SignUp {
+  margin: 2em .5em;
+  text-align: center;
+}
+
+.SignUp-social button._2Agdx {
+  width: 100%;
+}
+
+.SignUp-input {
+  display: flex;
+  align-items: center;
+}

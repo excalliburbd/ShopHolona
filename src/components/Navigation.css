@@ -67,9 +67,12 @@
   right: 0;
 }
 
+._3Py1Z._2dwFx.Navigation-navbar {
+  z-index: 200;
+}
+
 .profile-menu ._1gvr5 {
   margin-top: 42px;
-  margin-right: 16px;
 }
 
 ._37vtt .Shop-name {
@@ -100,11 +103,15 @@
   position: fixed;
   top: calc(90% - 1em);
   right: 1em;
-  z-index: 900;
+  z-index: 200;
 }
 
 ._2Agdx._3IRMZ._2Agdx._1ZxqC._2CPs4.Navigation-addbutton {
   background-color: rgb(183, 28, 28);
+}
+
+._1sAOY._2kCN0._2-4-H.EWFXC.qf0ha.Navigation-sidebar {
+  width: 17em;
 }
 
 @media screen and (min-width: 600px) {

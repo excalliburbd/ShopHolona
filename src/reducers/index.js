@@ -164,11 +164,47 @@ const backOfficeReducer = (
   }
 }
 
+const UserReducer = (
+  state = {
+    isLoggedIn: false
+  }, action
+) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+
+const SidebarReducer = (
+  state = {
+    show: false,
+    type: null,
+  }, action
+) => {
+  switch (action.type) {
+    case 'SHOW_SIDEBAR_SIGNIN':
+      return {
+        ...state,
+        show: true,
+        type: 'SIGNIN'
+      }
+    case 'HIDE_SIDEBAR':
+      return {
+        ...state,
+        show: false,
+        type: null,
+      }
+    default:
+      return state;
+  }
+}
 const RootReducer = combineReducers({
+  user: UserReducer,
   ui: combineReducers({
     filter: FilterUIReducer,
     nav: NavigationUIReducer,
     backOffice: backOfficeReducer,
+    sidebar: SidebarReducer,
   })
 });
 

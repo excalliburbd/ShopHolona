@@ -6,6 +6,8 @@ import Nav from '../components/Navigation';
 const mapStateToProps = state => {
   return {
     searchbar: state.ui.nav.searchbar,
+    showSidebar: state.ui.sidebar.show,
+
   }
 }
 
@@ -19,6 +21,16 @@ const mapDispatchToProps = dispatch => {
    hideSearchbar: () => {
      dispatch({
        type: 'HIDE_NAVIGATION_SEARCHBAR',
+     })
+   },
+   handleSignIn: () => {
+     dispatch({
+       type: 'SHOW_SIDEBAR_SIGNIN'
+     })
+   },
+   handleHideSidebar: () => {
+     dispatch({
+       type: 'HIDE_SIDEBAR'
      })
    }
   }
