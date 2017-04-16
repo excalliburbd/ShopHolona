@@ -214,7 +214,7 @@ const Nav = ({
         { children }
       </div>
     </Panel>
-    <Sidebar pinned={ showSidebar } scrollY className="Navigation-sidebar" >
+    <Sidebar pinned={ showSidebar } scrollY className="Navigatioreviewsn-sidebar" >
       <IconButton icon='close' onClick={ handleHideSidebar }/>
       <SignUpContainer />
     </Sidebar>
