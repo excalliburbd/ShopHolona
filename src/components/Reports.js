@@ -9,7 +9,7 @@ import MdInsertChart from 'react-icons/lib/md/insert-chart';
 
 import './Reports.css';
 
-const data = [
+const ordersData = [
   {name: 'date1', Orders: 24},
   {name: 'date2', Orders: 13},
   {name: 'date3', Orders: 98},
@@ -19,11 +19,21 @@ const data = [
   {name: 'date7', Orders: 43},
 ];
 
+const revenueData = [
+  {name: 'date1', revenue: 2400},
+  {name: 'date2', revenue: 1300},
+  {name: 'date3', revenue: 800},
+  {name: 'date4', revenue: 3900},
+  {name: 'date5', revenue: 4800},
+  {name: 'date6', revenue: 3800},
+  {name: 'date7', revenue: 4300},
+];
+
 const CustomizedDot = React.createClass({
   render () {
     const {cx, cy, stroke, payload, value} = this.props;
 
-    if (value > 30) {
+    if (value > 3000) {
       return (
         <svg x={cx - 10} y={cy - 10} width={20} height={20} fill="red" viewBox="0 0 1024 1024">
           <path d="M512 1009.984c-274.912 0-497.76-222.848-497.76-497.76s222.848-497.76 497.76-497.76c274.912 0 497.76 222.848 497.76 497.76s-222.848 497.76-497.76 497.76zM340.768 295.936c-39.488 0-71.52 32.8-71.52 73.248s32.032 73.248 71.52 73.248c39.488 0 71.52-32.8 71.52-73.248s-32.032-73.248-71.52-73.248zM686.176 296.704c-39.488 0-71.52 32.8-71.52 73.248s32.032 73.248 71.52 73.248c39.488 0 71.52-32.8 71.52-73.248s-32.032-73.248-71.52-73.248zM772.928 555.392c-18.752-8.864-40.928-0.576-49.632 18.528-40.224 88.576-120.256 143.552-208.832 143.552-85.952 0-164.864-52.64-205.952-137.376-9.184-18.912-31.648-26.592-50.08-17.28-18.464 9.408-21.216 21.472-15.936 32.64 52.8 111.424 155.232 186.784 269.76 186.784 117.984 0 217.12-70.944 269.76-186.784 8.672-19.136 9.568-31.2-9.12-40.096z"/>
@@ -47,7 +57,7 @@ const Reports = () => (
                  title="Orders" />
       <div className="orders-chart">
         <ResponsiveContainer>
-          <BarChart width={600} height={300} data={data}
+          <BarChart width={600} height={300} data={ordersData}
                     margin={{top: 5, right: 30, left: 20, bottom: 5}}>
             <XAxis/>
             <YAxis/>
@@ -66,14 +76,14 @@ const Reports = () => (
                  title="Revenue" />
       <div className="revenue-chart">
         <ResponsiveContainer>
-          <LineChart width={600} height={300} data={data}
+          <LineChart width={600} height={300} data={revenueData}
                      margin={{top: 5, right: 30, left: 20, bottom: 5}}>
             <XAxis/>
             <YAxis/>
             <CartesianGrid strokeDasharray="1 1"/>
             <Tooltip/>
             <Legend />
-            <Line type="monotone" dataKey="Orders" stroke="#8884d8" dot={<CustomizedDot />}/>
+            <Line type="monotone" dataKey="revenue" stroke="#8884d8" dot={<CustomizedDot />}/>
 
           </LineChart>
 
