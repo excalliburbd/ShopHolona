@@ -35,15 +35,14 @@ const Dashboard = ({
   history, //from react-router Route
 }) => (
   <div className="Dashboard" >
-    <Card onClick={
-            () => {
-              history.push('/reports');
-            }
-          }
-          className="Dahsboard-report" >
+    <Card className="Dahsboard-report">
       <CardTitle avatar={
         <MdInsertChart height="1.5em" width="1.5em"  style={{marginRight: '.5em'}} /> }
-        title="Reports" />
+        title="Reports" onClick={
+          () => {
+            history.push('/admin/reports');
+          }
+        } />
       <div className="Dashboard-chart">
         <ResponsiveContainer height="100%">
           <BarChart width={600} height={300} data={data}
