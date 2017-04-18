@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import Button from 'react-toolbox/lib/button/Button';
 import FaFacebook from 'react-icons/lib/fa/facebook';
 
-class FbLogin extends React.Component {
+class FbLogin extends Component {
   constructor(props) {
     super(props);
 
@@ -32,12 +34,24 @@ class FbLogin extends React.Component {
   }
 
   responseHandler (response) {
-    if ( response ) {
-      console.log(response);
-      console.log(response.id);
-      console.log(response.email);
-      console.log(response.name);
-      console.log(response.picture.data.url);
+    const {
+      accessToken,
+      id,
+      email,
+      name,
+      picture,
+    } = response;
+
+    console.log('I"m in')
+
+    if (response) {
+      this.props.handleOnLogin({
+        accessToken,
+        id,
+        email,
+        name,
+        picture: picture.data.url,
+      });
     }
   }
 
@@ -72,6 +86,10 @@ class FbLogin extends React.Component {
       </div>
     );
   }
+}
+
+FbLogin.proptypes = {
+  handleOnLogin: PropTypes.func.isRequired,
 }
 
 export default FbLogin;

@@ -7,7 +7,7 @@ const mapStateToProps = state => {
   return {
     searchbar: state.ui.nav.searchbar,
     showSidebar: state.ui.sidebar.show,
-
+    userLoggedIn: state.user.isLoggedIn,
   }
 }
 
@@ -32,7 +32,12 @@ const mapDispatchToProps = dispatch => {
      dispatch({
        type: 'HIDE_SIDEBAR'
      })
-   }
+   },
+   handleSignOut: () => {
+      dispatch({
+        type: 'USER_MANUAL_SIGNOUT',
+      })
+    },
   }
 }
 

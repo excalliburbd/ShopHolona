@@ -30,7 +30,6 @@ import MdSettings from 'react-icons/lib/md/settings';
 import MdProfile from 'react-icons/lib/md/account-circle';
 import MdSignout from 'react-icons/lib/md/power-settings-new';
 import MdCart from 'react-icons/lib/md/shopping-cart';
-import MdDashboard from 'react-icons/lib/fa/dashboard';
 import MdSearch from 'react-icons/lib/md/search';
 import MdClear from 'react-icons/lib/md/clear';
 import MdAdd from 'react-icons/lib/md/add';
@@ -54,6 +53,7 @@ const Nav = ({
   handleHideSidebar,
   userLoggedIn,
   handleSignIn,
+  handleSignOut,
   children
 }) => {
 
@@ -184,9 +184,9 @@ const Nav = ({
                 {
                   (userLoggedIn) ?
                     <div>
-                      <MenuItem value='dashboard' icon={
-                      <MdDashboard/>
-                      } onClick={() => history.push('/dashboard')} caption='Dashboard' />
+                      <MenuItem value='dashboard'
+                        icon="dashboard"
+                        onClick={() => history.push('/dashboard')} caption='Dashboard' />
                       <MenuItem value='profile' icon={
                         <MdProfile/>
                       } caption='Profile' />
@@ -194,9 +194,14 @@ const Nav = ({
                         <MdSettings/>
                       } caption='Settings' />
                       <MenuDivider />
-                      <MenuItem value='signout' icon={
-                        <MdSignout/>
-                      } onClick={ () => history.push('/') }
+                      <MenuItem value='signout'
+                        icon={
+                          <MdSignout/>
+                        }
+                        onClick={ () => {
+                          handleSignOut();
+                          history.push('/');
+                        }}
                         caption='Sign Out' />
                     </div> :
                     <MenuItem value='signin'
@@ -215,7 +220,7 @@ const Nav = ({
         { children }
       </div>
     </Panel>
-    <Sidebar pinned={ showSidebar } scrollY className="Navigatioreviewsn-sidebar" >
+    <Sidebar pinned={ showSidebar } scrollY className="Navigation-sidebar" >
       <IconButton icon='close' onClick={ handleHideSidebar }/>
       <SignUpContainer />
     </Sidebar>

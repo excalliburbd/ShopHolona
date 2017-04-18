@@ -11,7 +11,6 @@ import theme from '../public/react-toolbox/theme';
 import '../public/react-toolbox/theme.css';
 
 import App from './components/App';
-import BackOffice from './components/BackOffice';
 import Settings from './components/Settings';
 
 import NavigationContainer from './containers/NavigationContainer';

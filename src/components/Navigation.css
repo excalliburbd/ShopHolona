@@ -90,9 +90,7 @@
 
 .Navigation-panel ._37vtt {
   width: 0;
-}
-
-.Navigation-panel {
+  margin-left: 1em;
 }
 
 .Navigation-content {
@@ -147,8 +145,4 @@
     left: 15em;
     width: calc(100% - 21em);
   }
-}
-
-@media screen and (min-width: 800px) {
-
 }
