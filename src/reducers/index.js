@@ -180,6 +180,7 @@ const UserReducer = (
       return {
         ...state,
         isLoggedIn: false,
+        token: null,
       }
     case 'USER_SET_TOKEN':
       return {

@@ -177,10 +177,29 @@ const Nav = ({
                   () => showSearchbar()
                 }
                 icon={ <MdSearch /> }/>
-              <IconButton icon={<MdCart />}/>
+
+              <IconMenu className="rewards"
+                        icon={
+                          <div>
+                            <h2>Money 0.00</h2>
+                            <h2>Rewards 0.00</h2>
+                          </div>
+                          } />
+
+              <IconMenu icon="card_giftcard" className="GiftPoint">
+                <MenuItem value='money' caption='Money' />
+                <MenuItem value='reward' caption='Reward' />
+              </IconMenu>
+
+              <IconButton className="cart" icon={<MdCart />}/>
+
               <IconMenu icon={
-                <Avatar title="Shop_logo" image={ logo }/>
-              } position='topRight' className="profile-menu" menuRipple >
+                          <Avatar title="Shop_logo" image={ logo }/>
+                        }
+                        position='topRight'
+                        lassName="profile-menu"
+                        iconRipple={ false }
+                        menuRipple={ false } >
                 {
                   (userLoggedIn) ?
                     <div>

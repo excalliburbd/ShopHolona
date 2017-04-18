@@ -95,6 +95,7 @@
 
 .Navigation-content {
   padding-top: 4em;
+  padding-bottom: 5.8em;
 }
 
 .Navigation-addbutton {
@@ -111,6 +112,18 @@
 ._1sAOY._2kCN0._2-4-H.EWFXC.qf0ha.Navigation-sidebar {
   width: 17em;
 }
+
+
+.GiftPoint ._1gvr5{
+  margin-top: 2em;
+  margin-right: 1em;
+}
+
+
+.rewards {
+  display: none;
+}
+
 
 @media screen and (min-width: 600px) {
   .Navigation ._2FBCh {
@@ -143,6 +156,24 @@
 
   ._07g5.Searchbar {
     left: 15em;
-    width: calc(100% - 21em);
+    width: calc(100% - 25em);
+  }
+
+  .GiftPoint {
+    display: none;
+  }
+
+  .rewards h2 {
+    font-size: .6em;
+    height: 1.2em;
+    width: 2em;
+    color: white;
+  }
+
+  .rewards {
+    display: inline;
+    top: -0.8em;
+    left: -0.8em;
+    width: 2em;
   }
 }
