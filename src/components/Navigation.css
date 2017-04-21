@@ -18,61 +18,15 @@
   left: 4em;
 }
 
-.Navigation-title--hidden {
-  visibility: hidden;
-}
-
-.Navigation-filler--div {
-  margin-top: 4em;
-}
-
-.Navigation--selected {
-  background: #eee;
-}
-
 /*button icon on the right side of the app bar*/
 .Navbar ._37vtt {
   margin-left: 1em;
-}
-
-._07g5.Searchbar {
-  z-index: 1;
-  padding: 0;
-  position: absolute;
-  left: 2em;
-  width: calc(100% - 5em);
-}
-
-._07g5.Searchbar.Searchbar--hide {
-  display: none;
-}
-
-.Searchbar .lFVgC {
-  padding: 0;
-  position: relative;
-}
-
-.Searchbar ._4bZUj {
-  background-color: white;
-  padding-left: .5em;
-}
-
-.Searchbar ._14fVf {
-  padding: 0;
 }
 
 .Navigation-searchbar--close {
   position: absolute;
   top: 0;
   right: 0;
-}
-
-._3Py1Z._2dwFx.Navigation-navbar {
-  z-index: 200;
-}
-
-.profile-menu ._1gvr5 {
-  margin-top: 42px;
 }
 
 ._37vtt .Shop-name {
@@ -109,22 +63,6 @@
   background-color: rgb(183, 28, 28);
 }
 
-._1sAOY._2kCN0._2-4-H.EWFXC.qf0ha.Navigation-sidebar {
-  width: 17em;
-}
-
-
-.GiftPoint ._1gvr5{
-  margin-top: 2em;
-  margin-right: 1em;
-}
-
-
-.rewards {
-  display: none;
-}
-
-
 @media screen and (min-width: 600px) {
   .Navigation ._2FBCh {
     display: block;
@@ -142,10 +80,6 @@
     left: 10em;
   }
 
-  ._07g5.Searchbar.Searchbar--hide {
-    display: block;
-  }
-
   .hC5Z2._2Agdx._2CPs4.Navigation-search--button{
     display: none;
   }
@@ -154,26 +88,4 @@
     display: none;
   }
 
-  ._07g5.Searchbar {
-    left: 15em;
-    width: calc(100% - 25em);
-  }
-
-  .GiftPoint {
-    display: none;
-  }
-
-  .rewards h2 {
-    font-size: .6em;
-    height: 1.2em;
-    width: 2em;
-    color: white;
-  }
-
-  .rewards {
-    display: inline;
-    top: -0.8em;
-    left: -0.8em;
-    width: 2em;
-  }
 }

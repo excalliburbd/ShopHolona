@@ -1,0 +1,76 @@
+
+.NavigationAppBar-title--hidden {
+  visibility: hidden;
+}
+
+._07g5.Searchbar {
+  z-index: 1;
+  padding: 0;
+  position: absolute;
+  left: 2em;
+  width: calc(100% - 5em);
+}
+
+._07g5.Searchbar.Searchbar--hide {
+  display: none;
+}
+
+.Searchbar .lFVgC {
+  padding: 0;
+  position: relative;
+}
+
+.Searchbar ._4bZUj {
+  background-color: white;
+  padding-left: .5em;
+}
+
+.Searchbar ._14fVf {
+  padding: 0;
+}
+
+._3Py1Z._2dwFx.NavigationAppBar {
+  z-index: 200;
+}
+
+.NavigationAppBar-rewards {
+  display: none;
+}
+
+.NavigationAppBar-GiftPoint ._1gvr5{
+  margin-top: 2em;
+  margin-right: 1em;
+}
+
+.profile-menu ._1gvr5 {
+  margin-top: 42px;
+}
+
+@media screen and (min-width: 600px) {
+  ._07g5.Searchbar.Searchbar--hide {
+    display: block;
+  }
+
+  ._07g5.Searchbar {
+    left: 15em;
+    width: calc(100% - 25em);
+  }
+
+  .NavigationAppBar-GiftPoint {
+    display: none;
+  }
+
+  .NavigationAppBar-rewards h2 {
+    font-size: .6em;
+    height: 1.2em;
+    width: 2em;
+    color: white;
+  }
+
+  .NavigationAppBar-rewards {
+    display: inline;
+    top: -0.8em;
+    left: -0.8em;
+    width: 2em;
+  }
+}
