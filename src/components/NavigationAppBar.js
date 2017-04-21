@@ -64,7 +64,7 @@ const NavigationAppBar = ({
                 className="NavigationAppBar-searchbar--close" />
             </Autocomplete>
 
-            <Navigation type="horizontal" className="Right-comp">
+            <Navigation type="horizontal" className="NavigationAppBar-right-comp">
               <IconButton
                 className="NavigationAppBar-search--button"
                 onClick={
@@ -85,7 +85,7 @@ const NavigationAppBar = ({
                 <MenuItem value='reward' caption='Reward' />
               </IconMenu>
 
-              <IconButton icon='cart' />
+              <IconButton icon='shopping_cart' />
 
               <IconMenu icon={
                           <Avatar title="Shop_logo" image={ logo }/>
