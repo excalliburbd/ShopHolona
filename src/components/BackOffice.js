@@ -10,6 +10,7 @@ import ListCheckbox from 'react-toolbox/lib/list/ListCheckbox';
 
 import Products from './Products';
 import Reports from './Reports';
+import Orders from './Orders';
 
 import './BackOffice.css';
 
@@ -21,6 +22,9 @@ const BackOffice = ({
   <div className="Backoffice">
    <Route exact path="/admin/products" render={
       () => <Products menu={ menu } index={ index } handleTabChange={ handleTabChange } />
+     } />
+  <Route exact path="/admin/orders" render={
+      () => <Orders menu={ menu } index={ index } handleTabChange={ handleTabChange } />
      } />
    <Route exact path="/admin/reports" component={ Reports } />
   </div>

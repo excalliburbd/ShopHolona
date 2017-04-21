@@ -143,6 +143,36 @@ const backOfficeReducer = (
           lable: 'Pending Review',
           amount: 0,
         },
+      ],
+      orders: [
+        {
+          lable: 'All',
+          amount: 12,
+        },
+        {
+          lable: 'Completed',
+          amount: 2,
+        },
+        {
+          lable: 'Pending',
+          amount: 4,
+        },
+        {
+          lable: 'Processing',
+          amount: 3,
+        },
+        {
+          lable: 'Cancelled',
+          amount: 0,
+        },
+        {
+          lable: 'Refund',
+          amount: 0,
+        },
+        {
+          lable: 'On Hold',
+          amount: 0,
+        },
       ]
     },
     selectedIndex: {
