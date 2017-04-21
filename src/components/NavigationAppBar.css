@@ -46,6 +46,22 @@
   margin-top: 42px;
 }
 
+.NavigationAppBar-searchbar--close {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.NavigationAppBar-right-comp {
+  margin-left: auto;
+}
+
+.NavigationAppBar-right-comp .NavigationAppBar-right-comp-search .NavigationAppBar-search-icon{
+  color: aquamarine;
+  cursor: pointer;
+}
+
+
 @media screen and (min-width: 600px) {
   ._07g5.Searchbar.Searchbar--hide {
     display: block;
@@ -72,5 +88,13 @@
     top: -0.8em;
     left: -0.8em;
     width: 2em;
+  }
+
+  .NavigationAppBar-searchbar--close {
+    display: none;
+  }
+
+  .hC5Z2._2Agdx._2CPs4.NavigationAppBar-search--button{
+    display: none;
   }
 }

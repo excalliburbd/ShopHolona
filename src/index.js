@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
+import maybeYouMeant from 'maybe-you-meant';
 
 import store from './store/configureStore';
 
@@ -18,6 +19,8 @@ import DashboardContainer from './containers/DashboardContainer';
 import BackOfficeContainer from './containers/BackOfficeContainer';
 
 import './index.css';
+
+maybeYouMeant();
 
 ReactDOM.render(
   <Provider store={store}>

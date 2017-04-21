@@ -1,7 +1,6 @@
 .Navigation {
 }
 
-
 .Navigation ._1sAOY {
   width: 4em;
 }
@@ -23,23 +22,8 @@
   margin-left: 1em;
 }
 
-.Navigation-searchbar--close {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
 ._37vtt .Shop-name {
   margin-left: 18px;
-}
-
-.Right-comp {
-  margin-left: auto;
-}
-
-.Right-comp .Right-comp-search .search-icon{
-  color: aquamarine;
-  cursor: pointer;
 }
 
 .Navigation-panel ._37vtt {
@@ -79,13 +63,4 @@
   .Navigation .Navigation-panel {
     left: 10em;
   }
-
-  .hC5Z2._2Agdx._2CPs4.Navigation-search--button{
-    display: none;
-  }
-
-  .Navigation-searchbar--close {
-    display: none;
-  }
-
 }
