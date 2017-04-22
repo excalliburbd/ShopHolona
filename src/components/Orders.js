@@ -22,6 +22,9 @@ import IconButton from 'react-toolbox/lib/button/IconButton';
 import MenuItem from 'react-toolbox/lib/menu/MenuItem';
 import MenuDivider from 'react-toolbox/lib/menu/MenuDivider';
 import Autocomplete from 'react-toolbox/lib/autocomplete/Autocomplete';
+import Dropdown from 'react-toolbox/lib/dropdown/Dropdown';
+
+import './Orders.css';
 
 const Orders = ({
   menu,
@@ -44,7 +47,9 @@ const Orders = ({
                         .map(
                           (field, key) => (
                             <span key={ key }
-                                  className="BackOffice-data--row BackOffice-data--row--title">
+                                  className="BackOffice-data--row BackOffice-data--row--title"
+                                  style={{ flex: 1 / 6}}
+                                  >
                               <span>{ field }</span>
                             </span>
                           )
@@ -59,24 +64,35 @@ const Orders = ({
                       [ 'Date', 'Order#', 'Amount', 'Revenue', 'Priority', 'Status']
                         .map(
                           (field, key) => (
-                            <span key={ key } className="BackOffice-data--row">
-                              <span>{ field }</span>
-                              <span>{ values[key] }</span>
-                            </span>
+                            (field !== 'Status')?
+                              <span key={ key } style={{ flex: 1 / 6}} className="BackOffice-data--row">
+                                <span>{ field }</span>
+                                <span>{ values[key] }</span>
+                              </span> :
+                              <span key={ key } style={{ flex: 1 / 6}} className="BackOffice-data--row">
+                                <span>{ field }</span>
+                                <span>
+                                  <Dropdown source={[
+                                                      {
+                                                        value: 1,
+                                                        label: 'Active'
+                                                      },
+                                                      {
+                                                        value: 2,
+                                                        label: 'Passive'
+                                                      },
+                                                      {
+                                                        value: 3,
+                                                        label: 'Default'
+                                                      }
+                                                    ]}
+                                            className="Orders-dropdown"
+                                            value={1} />
+                                </span>
+                              </span>
                           )
                         )
                     }
-                    <span className="BackOffice-data--row">
-                      <span>
-                        <Menu icon='more_vert' position='topLeft' menuRipple>
-                          <MenuItem value='download' icon='get_app' caption='Download' />
-                          <MenuItem value='help' icon='favorite' caption='Favorite' />
-                          <MenuItem value='settings' icon='open_in_browser' caption='Open in app' />
-                          <MenuDivider />
-                          <MenuItem value='signout' icon='delete' caption='Delete' disabled />
-                        </Menu>
-                      </span>
-                    </span>
                   </CardText>
                 </Card>
               </Tab>

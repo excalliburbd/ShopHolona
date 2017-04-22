@@ -22,7 +22,6 @@
 
 .BackOffice-data--row {
   display: flex;
-  flex: calc(1/8);
   overflow: hidden;
   justify-content: space-between;
 }
