@@ -5,7 +5,7 @@ export const trySignInAsyncAction = ({ email, password }) => dispatch => {
   const credentials = {};
 
   if(email && password) {
-    credentials.email_username = email;
+    credentials.email_username_phone = email;
     credentials.password = password;
   }
 
