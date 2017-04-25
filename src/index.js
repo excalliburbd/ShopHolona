@@ -20,7 +20,7 @@ import BackOfficeContainer from './containers/BackOfficeContainer';
 
 import './index.css';
 
-maybeYouMeant();
+// maybeYouMeant();
 
 ReactDOM.render(
   <Provider store={store}>
