@@ -1,3 +1,6 @@
+.NavigationAppBar-title {
+  margin-left: 1em;
+}
 
 .NavigationAppBar-title--hidden {
   visibility: hidden;
