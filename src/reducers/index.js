@@ -29,24 +29,24 @@ const backOfficeUIReducer = (
     menu: {
       products: [
         {
+          value: 0,
           label: 'All',
-          amount: 12,
         },
         {
+          value: 1,
           label: 'Featured',
-          amount: 2,
         },
         {
+          value: 2,
           label: 'Live',
-          amount: 4,
         },
         {
+          value: 3,
           label: 'Out of Stock',
-          amount: 3,
         },
         {
+          value: 4,
           label: 'Pending Review',
-          amount: 0,
         },
       ],
       orders: [
@@ -333,11 +333,162 @@ const OrdersEntityReducer = (
   }
 }
 
+const ProductsReducer = (
+  state = [1, 2, 3, 4] , action
+) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+
+const ProductsEntityReducer = (
+  state = {
+    1: [
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: '#',
+      },
+      {
+        value: 1,
+        field: 'Name',
+      },
+      {
+        value: 'Mr. X',
+        field: 'Price',
+      },
+      {
+        value: 123,
+        field: 'Views',
+      },
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: 'Tags',
+      },
+      {
+        value: 1,
+        field: 'Date Added',
+      },
+    ],
+    1: [
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: '#',
+      },
+      {
+        value: 1,
+        field: 'Name',
+      },
+      {
+        value: 'Mr. X',
+        field: 'Price',
+      },
+      {
+        value: 123,
+        field: 'Views',
+      },
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: 'Tags',
+      },
+      {
+        value: 1,
+        field: 'Date Added',
+      },
+    ],
+    2: [
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: '#',
+      },
+      {
+        value: 1,
+        field: 'Name',
+      },
+      {
+        value: 'Mr. X',
+        field: 'Price',
+      },
+      {
+        value: 123,
+        field: 'Views',
+      },
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: 'Tags',
+      },
+      {
+        value: 1,
+        field: 'Date Added',
+      },
+    ],
+    3: [
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: '#',
+      },
+      {
+        value: 1,
+        field: 'Name',
+      },
+      {
+        value: 'Mr. X',
+        field: 'Price',
+      },
+      {
+        value: 123,
+        field: 'Views',
+      },
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: 'Tags',
+      },
+      {
+        value: 1,
+        field: 'Date Added',
+      },
+    ],
+    4: [
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: '#',
+      },
+      {
+        value: 1,
+        field: 'Name',
+      },
+      {
+        value: 'Mr. X',
+        field: 'Price',
+      },
+      {
+        value: 123,
+        field: 'Views',
+      },
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: 'Tags',
+      },
+      {
+        value: 1,
+        field: 'Date Added',
+      },
+    ],
+  }, action
+) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+
 const RootReducer = combineReducers({
   user: UserReducer,
   orders: OrdersReducer,
+  products: ProductsReducer,
   entities: combineReducers({
     orders: OrdersEntityReducer,
+    products: ProductsEntityReducer,
   }),
   ui: combineReducers({
     filter: FilterUIReducer,

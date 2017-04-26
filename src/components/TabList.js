@@ -47,7 +47,7 @@ const TabList = ({
                     <Card  className="TabList-card TabList-card--titles" key={ key }>
                         <CardText  className="TabList-data">
                           {
-                              data[0][0].orderArr.map(
+                              data[0][0][`${route}Arr`].map(
                                 ({field, value}, key) => (
                                   <span key={ key } style={{ flex: 1 / 6}}
                                         className="TabList-data--row TabList-data--row--title">
@@ -62,11 +62,11 @@ const TabList = ({
                   {
 
                     data[key].map(
-                      ({orderID, orderArr}, key) => (
+                      (info, key) => (
                         <Card  className="TabList-card" key={ key }>
                           <CardText  className="TabList-data">
                             {
-                              orderArr.map(
+                              info[`${route}Arr`].map(
                                     ({field, value}, key) => (
                                       (field !== 'Status')?
                                         <span key={ key } style={{ flex: 1 / 6}} className="TabList-data--row">
@@ -78,7 +78,7 @@ const TabList = ({
                                           <span>
                                             <Dropdown source={ dropdownOptions }
                                                       onChange={
-                                                        value => handleDropdownChange(value, orderID)
+                                                        value => handleDropdownChange(value, info[`${route}ID`])
                                                       }
                                                       className="TabList-dropdown"
                                                       value={ value } />

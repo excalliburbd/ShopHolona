@@ -15,16 +15,9 @@ import MdSettings from 'react-icons/lib/md/settings';
 import './NavigationDrawer.css';
 
 const NavigationDrawer = ({
+  pinned,
   history,
-  location
 }) => {
-
-  let pinned = true;
-
-  if('/' === location.pathname) {
-    pinned = false;
-  }
-
   return (
   <NavDrawer pinned={ pinned } className="Navigation-sidebar">
       <List selectable >
