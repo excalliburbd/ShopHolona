@@ -4809,9 +4809,9 @@ react-toolbox-themr@^1.0.2:
     ramda "^0.23.0"
     yargs "^6.6.0"
 
-react-toolbox@2.0.0-beta.7:
-  version "2.0.0-beta.7"
-  resolved "https://registry.yarnpkg.com/react-toolbox/-/react-toolbox-2.0.0-beta.7.tgz#6697eee94b3bc9fb87f69580761fd73a49ec9ad0"
+react-toolbox@^2.0.0-beta.8:
+  version "2.0.0-beta.8"
+  resolved "https://registry.yarnpkg.com/react-toolbox/-/react-toolbox-2.0.0-beta.8.tgz#95a785e02f74c52ed5d1932b1ad1121d4a60f807"
   dependencies:
     classnames "^2.2.5"
     core-js "^2.4.0"
