@@ -1,0 +1,29 @@
+.ShopPage-banner {
+  height: 30vh;
+  background: url('https://unsplash.it/1200/700') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ShopPage-products .ShopPage-banner {
+  display: none;
+}
+
+.ShopPage-details-img {
+  height: 10em;
+  width: 10em;
+  border-radius: 50%;
+  background: url('https://unsplash.it/160/160');
+}
+
+.ShopPage-details-fold-area {
+  display: none;
+}
+
+@media screen and (min-width: 600px) {
+  .ShopPage-products .ShopPage-banner {
+    display: block;
+  }
+}

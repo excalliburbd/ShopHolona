@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import Layout from 'react-toolbox/lib/layout/Layout';
 import Sidebar from 'react-toolbox/lib/layout/Sidebar';
@@ -43,6 +44,16 @@ const Nav = ({
   children
 }) => {
 
+  let pinned = true;
+
+  if('/' === location.pathname) {
+    pinned = false;
+  }
+
+  const panelClass = classNames({
+    'Navigation-panel-left': pinned,
+  })
+
   return <Layout className="Navigation">
     <Button icon={
               <MdAdd />
@@ -50,17 +61,17 @@ const Nav = ({
             floating
             className="Navigation-addbutton" />
 
-    <NavigationDrawer history={ history } location={ location } />
+    <NavigationDrawer pinned={ pinned } history={ history } />
 
-    <Panel className="Navigation-panel">
+    <Panel className={ panelClass }>
 
       <NavigationAppBar searchbar={ searchbar }
-                       history={ history }
-                       hideSearchbar={ hideSearchbar }
-                       userLoggedIn={ userLoggedIn }
-                       handleSignOut={ handleSignOut }
-                       showSearchbar={ showSearchbar }
-                       handleSignIn={ handleSignIn } />
+                        history={ history }
+                        hideSearchbar={ hideSearchbar }
+                        userLoggedIn={ userLoggedIn }
+                        handleSignOut={ handleSignOut }
+                        showSearchbar={ showSearchbar }
+                        handleSignIn={ handleSignIn } />
 
       <div className="Navigation-content">
         <FilterBarContainer
