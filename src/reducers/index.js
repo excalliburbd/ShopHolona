@@ -1,102 +1,7 @@
 import { combineReducers } from 'redux';
 import moment from 'moment';
-import { DateUtils } from 'react-day-picker';
 
-const isSelectingFirstDay = (from, to, day) => {
-  const firstDayIsNotSelected = !from;
-  const selectedDayIsBeforeFirstDay = day < from;
-  const rangeIsSelected = from && to;
-  return firstDayIsNotSelected || selectedDayIsBeforeFirstDay || rangeIsSelected;
-}
-
-const FilterUIReducer = (state = {
-  date: {
-    from: null,
-    fromValue: '',
-    to: null,
-    toValue: '',
-    enteredTo: null,
-    overlay: false,
-  }
-}, action) => {
-  switch (action.type) {
-    case 'CHANGE_FILTER_DATE_DATE':
-      if (DateUtils.isSameDay(action.day, state.date.from)) {
-        return {
-          ...state,
-          date: {
-            from: null,
-            to: null,
-            enteredTo: null,
-          },
-        }
-      }
-
-      if (isSelectingFirstDay(state.date.from, state.date.to, action.day)) {
-        return {
-          ...state,
-          date: {
-            from: action.day,
-            fromValue: moment(action.day).format('L'),
-            to: null,
-            toValue: '',
-            enteredTo: null,
-          },
-        }
-      } else {
-        return {
-          ...state,
-          date: {
-            ...state.date,
-            to: action.day,
-            toValue: moment(action.day).format('L'),
-            enteredTo: action.day,
-          },
-        }
-      }
-    case 'CHANGE_FILTER_DATE_MOUSE_ENTER':
-      if (!isSelectingFirstDay(state.date.from, state.date.to, action.day)) {
-        return {
-          ...state,
-          date: {
-            ...state.date,
-            enteredTo: action.day,
-          },
-        }
-      }
-      return state;
-    case 'CHANGE_FILTER_DATE_CHANGE_OVERLAY':
-      return {
-        ...state,
-        date: {
-          ...state.date,
-          overlay: action.status,
-        },
-      }
-    case 'CHANGE_FILTER_DATE_SET_FROM':
-      return {
-        ...state,
-        date: {
-          ...state.date,
-          from: action.day,
-          fromValue: action.value,
-        },
-      }
-    case 'CHANGE_FILTER_DATE_SET_TO':
-      return {
-        ...state,
-        date: {
-          ...state.date,
-          to: action.day,
-          toValue: action.value,
-        },
-      }
-    default:
-      break;
-  }
-
-  return state;
-}
+import FilterUIReducer from './FilterUIReducer';
 
 const NavigationUIReducer = (
   state = {
@@ -119,34 +24,65 @@ const NavigationUIReducer = (
   }
 }
 
-const backOfficeReducer = (
+const backOfficeUIReducer = (
   state = {
     menu: {
       products: [
         {
-          lable: 'All',
-          amount: 12,
+          value: 0,
+          label: 'All',
         },
         {
-          lable: 'Featured',
-          amount: 2,
+          value: 1,
+          label: 'Featured',
         },
         {
-          lable: 'Live',
-          amount: 4,
+          value: 2,
+          label: 'Live',
         },
         {
-          lable: 'Out of Stock',
-          amount: 3,
+          value: 3,
+          label: 'Out of Stock',
         },
         {
-          lable: 'Pending Review',
-          amount: 0,
+          value: 4,
+          label: 'Pending Review',
+        },
+      ],
+      orders: [
+        {
+          value: 0,
+          label: 'All',
+        },
+        {
+          value: 1,
+          label: 'Completed',
+        },
+        {
+          value: 2,
+          label: 'Pending',
+        },
+        {
+          value: 3,
+          label: 'Processing',
+        },
+        {
+          value: 4,
+          label: 'Cancelled',
+        },
+        {
+          value: 5,
+          label: 'Refund',
+        },
+        {
+          value: 6,
+          label: 'On Hold',
         },
       ]
     },
-    selectedIndex: {
-      products: 0
+    selectedIndexs: {
+      products: 0,
+      orders: 0,
     },
   }, action
 ) => {
@@ -154,9 +90,9 @@ const backOfficeReducer = (
     case 'CHANGE_UI_TAB':
       return {
         ...state,
-        selectedIndex: {
-          ...state.selectedIndex,
-          products: action.index
+        selectedIndexs: {
+          ...state.selectedIndexs,
+          [action.route]: action.index
         }
       }
     default:
@@ -234,7 +170,7 @@ const UserUIReducer = (
   }
 }
 
-const SidebarReducer = (
+const SidebarUIReducer = (
   state = {
     show: false,
     type: null,
@@ -257,13 +193,308 @@ const SidebarReducer = (
       return state;
   }
 }
+
+const OrdersReducer = (
+  state = [1, 2, 3, 4] , action
+) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+
+const OrdersEntityReducer = (
+  state = {
+    1: [
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: 'Date',
+      },
+      {
+        value: 1,
+        field: 'Order#',
+      },
+      {
+        value: 'Mr. X',
+        field: 'Customer',
+      },
+      {
+        value: 123,
+        field: 'Amount',
+      },
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: 'Due',
+      },
+      {
+        value: 1,
+        field: 'Status',
+      },
+    ],
+    2: [
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: 'Date',
+      },
+      {
+        value: 1,
+        field: 'Order#',
+      },
+      {
+        value: 'Mr. X',
+        field: 'Customer',
+      },
+      {
+        value: 123,
+        field: 'Amount',
+      },
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: 'Due',
+      },
+      {
+        value: 3,
+        field: 'Status',
+      },
+    ],
+    3: [
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: 'Date',
+      },
+      {
+        value: 1,
+        field: 'Order#',
+      },
+      {
+        value: 'Mr. X',
+        field: 'Customer',
+      },
+      {
+        value: 123,
+        field: 'Amount',
+      },
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: 'Due',
+      },
+      {
+        value: 4,
+        field: 'Status',
+      },
+    ],
+    4: [
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: 'Date',
+      },
+      {
+        value: 1,
+        field: 'Order#',
+      },
+      {
+        value: 'Mr. X',
+        field: 'Customer',
+      },
+      {
+        value: 123,
+        field: 'Amount',
+      },
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: 'Due',
+      },
+      {
+        value: 4,
+        field: 'Status',
+      },
+    ],
+  }, action
+) => {
+  switch (action.type) {
+    case 'UPDATE_ORDERS_DATA_STATUS':
+      return {
+        ...state,
+        [action.id] : state[action.id].map(
+          (val, key) => {
+            if(key === (state[action.id].length - 1)) {
+              return {
+                ...val,
+                value: action.value
+              }
+            }
+
+            return val;
+          }
+        )
+      }
+    default:
+      return state;
+  }
+}
+
+const ProductsReducer = (
+  state = [1, 2, 3, 4] , action
+) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+
+const ProductsEntityReducer = (
+  state = {
+    1: [
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: '#',
+      },
+      {
+        value: 1,
+        field: 'Name',
+      },
+      {
+        value: 'Mr. X',
+        field: 'Price',
+      },
+      {
+        value: 123,
+        field: 'Views',
+      },
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: 'Tags',
+      },
+      {
+        value: 1,
+        field: 'Date Added',
+      },
+    ],
+    1: [
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: '#',
+      },
+      {
+        value: 1,
+        field: 'Name',
+      },
+      {
+        value: 'Mr. X',
+        field: 'Price',
+      },
+      {
+        value: 123,
+        field: 'Views',
+      },
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: 'Tags',
+      },
+      {
+        value: 1,
+        field: 'Date Added',
+      },
+    ],
+    2: [
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: '#',
+      },
+      {
+        value: 1,
+        field: 'Name',
+      },
+      {
+        value: 'Mr. X',
+        field: 'Price',
+      },
+      {
+        value: 123,
+        field: 'Views',
+      },
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: 'Tags',
+      },
+      {
+        value: 1,
+        field: 'Date Added',
+      },
+    ],
+    3: [
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: '#',
+      },
+      {
+        value: 1,
+        field: 'Name',
+      },
+      {
+        value: 'Mr. X',
+        field: 'Price',
+      },
+      {
+        value: 123,
+        field: 'Views',
+      },
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: 'Tags',
+      },
+      {
+        value: 1,
+        field: 'Date Added',
+      },
+    ],
+    4: [
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: '#',
+      },
+      {
+        value: 1,
+        field: 'Name',
+      },
+      {
+        value: 'Mr. X',
+        field: 'Price',
+      },
+      {
+        value: 123,
+        field: 'Views',
+      },
+      {
+        value: moment().format('DD-MM-YYYY'),
+        field: 'Tags',
+      },
+      {
+        value: 1,
+        field: 'Date Added',
+      },
+    ],
+  }, action
+) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+
 const RootReducer = combineReducers({
   user: UserReducer,
+  orders: OrdersReducer,
+  products: ProductsReducer,
+  entities: combineReducers({
+    orders: OrdersEntityReducer,
+    products: ProductsEntityReducer,
+  }),
   ui: combineReducers({
     filter: FilterUIReducer,
     nav: NavigationUIReducer,
-    backOffice: backOfficeReducer,
-    sidebar: SidebarReducer,
+    backOffice: backOfficeUIReducer,
+    sidebar: SidebarUIReducer,
     user: UserUIReducer,
   })
 });

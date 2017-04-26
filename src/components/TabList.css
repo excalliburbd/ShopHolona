@@ -1,0 +1,82 @@
+.TabList {
+
+}
+
+.ZzBNK.TabList-dropdown {
+  position: static;
+}
+
+.TabList-dropdown > .lFVgC._6c1D5,
+.TabList-dropdown input {
+  padding: 0;
+}
+
+.TabList-dropdown ._3FySS {
+  position: static;
+}
+
+.TabList-dropdown.TabList-dropdown ._2767w._2767w {
+  top: auto;
+}
+
+.TabList.TabList ._2FBCh._2FBCh {
+  display: block;
+  padding: 0 1em;
+}
+
+._8pay8.TabList-card {
+  margin-bottom: .5em;
+}
+
+.TabList-listitem span{
+  margin-left: 1em;
+}
+
+.K_kzH.TabList-data {
+  display: flex;
+  flex-direction: column;
+}
+
+.TabList-data--row {
+  display: flex;
+  overflow: hidden;
+  justify-content: space-between;
+}
+
+.TabList-card--titles {
+  display: none;
+}
+
+.TabList-data--row span:nth-child(1) {
+  display: block;
+}
+
+.TabList-card:not(.TabList-card--titles) {
+  cursor: pointer;
+}
+
+.TabList-card._8pay8:not(.TabList-card--titles):hover {
+  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+}
+
+.TabList-card ._2767w {
+  width: auto;
+}
+
+@media screen and (min-width: 600px) {
+  .K_kzH.TabList-data {
+    flex-direction: row;
+  }
+
+  .TabList-card--titles {
+    display: block;
+  }
+
+  .TabList-data--row span:nth-child(1) {
+    display: none;
+  }
+
+  .TabList-data--row--title span:nth-child(1) {
+    display: block;
+  }
+}

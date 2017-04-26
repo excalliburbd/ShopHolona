@@ -25,6 +25,7 @@ const NavigationAppBar = ({
 }) => {
 
   const navTitleClass = classNames({
+    'NavigationAppBar-title': true,
     'NavigationAppBar-title--hidden': searchbar,
   })
 

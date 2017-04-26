@@ -1,4 +1,5 @@
-.Navigation {
+.Navigation-content {
+  width: calc(100vw - 1em);
 }
 
 .Navigation ._1sAOY {
@@ -13,7 +14,7 @@
   padding: 0;
 }
 
-.Navigation .Navigation-panel {
+.Navigation-panel-left {
   left: 4em;
 }
 
@@ -48,6 +49,10 @@
 }
 
 @media screen and (min-width: 600px) {
+  .Navigation-content {
+    width: auto;
+  }
+
   .Navigation ._2FBCh {
     display: block;
   }
@@ -60,7 +65,7 @@
     padding: 0 1em;
   }
 
-  .Navigation .Navigation-panel {
+  .Navigation-panel-left {
     left: 10em;
   }
 }

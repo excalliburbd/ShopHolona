@@ -34,8 +34,8 @@ const FilterBar = ({
     case '/dashboard':
      routeName = 'Dashboard';
      break;
-    case '/admin/order':
-     routeName = 'Order';
+    case '/admin/orders':
+     routeName = 'Orders';
      break;
     case '/admin/products':
      routeName = 'Products';
