@@ -1,0 +1,10 @@
+.Addbutton {
+  position: fixed;
+  top: calc(90vh - 1em);
+  right: 1em;
+  z-index: 200;
+}
+
+._2Agdx._3IRMZ._2Agdx._1ZxqC._2CPs4.Addbutton {
+  background-color: rgb(183, 28, 28);
+}

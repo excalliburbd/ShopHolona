@@ -1,5 +1,9 @@
 .Navigation-content {
-  width: calc(100vw - 1em);
+  width: calc(100vw - 4em);
+}
+
+.Navigation-content-main {
+  width: 100%;
 }
 
 .Navigation ._1sAOY {
@@ -32,25 +36,21 @@
   margin-left: 1em;
 }
 
-.Navigation-content {
-  padding-top: 4em;
+.Navigation-content,
+.Navigation-content-main {
+  padding-top: 3.5em;
   padding-bottom: 5.8em;
 }
 
-.Navigation-addbutton {
-  position: fixed;
-  top: calc(90% - 1em);
-  right: 1em;
-  z-index: 200;
-}
-
-._2Agdx._3IRMZ._2Agdx._1ZxqC._2CPs4.Navigation-addbutton {
-  background-color: rgb(183, 28, 28);
-}
-
 @media screen and (min-width: 600px) {
-  .Navigation-content {
+  .Navigation-content,
+  .Navigation-content-main {
     width: auto;
+    padding-top: 4.5em;
+  }
+
+  .Navigation-content-main {
+    padding-bottom: 0;
   }
 
   .Navigation ._2FBCh {

@@ -17,6 +17,7 @@ import './NavigationAppBar.css';
 const NavigationAppBar = ({
   searchbar,
   history,
+  location,
   hideSearchbar,
   userLoggedIn,
   handleSignOut,
@@ -37,10 +38,10 @@ const NavigationAppBar = ({
   return (
     <AppBar className="NavigationAppBar"
               title={
-                <div className={ navTitleClass }>
+                <span className={ navTitleClass }>
                   <span>ShopName</span> <br />
                   <span>Shop reference code</span>
-                </div>
+                </span>
               }
               leftIcon={
                 <Avatar
@@ -86,13 +87,17 @@ const NavigationAppBar = ({
                 <MenuItem value='reward' caption='Reward' />
               </IconMenu>
 
-              <IconButton icon='shopping_cart' />
+              {
+                (location.pathname === '/') ?
+                  <IconButton icon='shopping_cart' /> :
+                  null
+              }
 
               <IconMenu icon={
                           <Avatar title="Shop_logo" image={ logo }/>
                         }
                         position='topRight'
-                        className="profile-menu"
+                        className="NavigationAppBar-profile-menu"
                         iconRipple={ false }
                         menuRipple={ false } >
                 {

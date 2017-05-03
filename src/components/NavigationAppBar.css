@@ -3,7 +3,7 @@
 }
 
 .NavigationAppBar-title--hidden {
-  visibility: hidden;
+  display: none;
 }
 
 ._07g5.Searchbar {
@@ -45,7 +45,7 @@
   margin-right: 1em;
 }
 
-.profile-menu ._1gvr5 {
+.NavigationAppBar-profile-menu ._1gvr5 {
   margin-top: 42px;
 }
 
@@ -62,6 +62,14 @@
 .NavigationAppBar-right-comp .NavigationAppBar-right-comp-search .NavigationAppBar-search-icon{
   color: aquamarine;
   cursor: pointer;
+}
+
+/*special appbar title logic*/
+
+@media screen and (max-width: 450px) {
+  .NavigationAppBar-title {
+    display: none;
+  }
 }
 
 
@@ -90,7 +98,6 @@
     display: inline;
     top: -0.8em;
     left: -0.8em;
-    width: 2em;
   }
 
   .NavigationAppBar-searchbar--close {

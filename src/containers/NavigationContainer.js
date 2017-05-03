@@ -8,6 +8,7 @@ const mapStateToProps = state => {
     searchbar: state.ui.nav.searchbar,
     showSidebar: state.ui.sidebar.show,
     userLoggedIn: state.user.isLoggedIn,
+    sidebarType: state.ui.sidebar.type,
   }
 }
 

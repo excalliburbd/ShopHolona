@@ -10,7 +10,6 @@ import List from 'react-toolbox/lib/list/List';
 import ListItem from 'react-toolbox/lib/list/ListItem';
 
 import Link from 'react-toolbox/lib/link/Link';
-import Button from 'react-toolbox/lib/button/Button';
 import IconButton from 'react-toolbox/lib/button/IconButton';
 
 import MdSettings from 'react-icons/lib/md/settings';
@@ -26,6 +25,8 @@ import NavigationAppBar from './NavigationAppBar';
 
 import FilterBarContainer from '../containers/FilterBarContainer';
 import SignUpContainer from '../containers/SignUpContainer';
+import AddButtonContainer from '../containers/AddButtonContainer';
+import ProductsSidebarContainer from '../containers/ProductsSidebarContainer';
 
 import './Navigation.css';
 
@@ -41,6 +42,7 @@ const Nav = ({
   userLoggedIn,
   handleSignIn,
   handleSignOut,
+  sidebarType,
   children
 }) => {
 
@@ -54,39 +56,56 @@ const Nav = ({
     'Navigation-panel-left': pinned,
   })
 
-  return <Layout className="Navigation">
-    <Button icon={
-              <MdAdd />
-            }
-            floating
-            className="Navigation-addbutton" />
+  const SidebarContent = () => {
+    switch(sidebarType){
+      case 'SIGNIN':
+        return <SignUpContainer />
+      case 'ADD_PRODUCT':
+        return <ProductsSidebarContainer />
+      default:
+        return null;
+    }
+  }
 
-    <NavigationDrawer pinned={ pinned } history={ history } />
+  return (
+    <Layout className="Navigation">
 
-    <Panel className={ panelClass }>
+      <AddButtonContainer history={ history }
+                          location={ location } />
 
-      <NavigationAppBar searchbar={ searchbar }
-                        history={ history }
-                        hideSearchbar={ hideSearchbar }
-                        userLoggedIn={ userLoggedIn }
-                        handleSignOut={ handleSignOut }
-                        showSearchbar={ showSearchbar }
-                        handleSignIn={ handleSignIn } />
+      <NavigationDrawer pinned={ pinned } history={ history } />
 
-      <div className="Navigation-content">
-        <FilterBarContainer
-          show={ ('/' !== location.pathname) }
-          flat={ ('/dashboard' !== location.pathname)}
-          route={ location.pathname } />
-        { children }
-      </div>
-    </Panel>
-    <Sidebar pinned={ showSidebar } scrollY className="Navigation-sidebar" >
-      <IconButton icon='close' onClick={ handleHideSidebar }/>
-      <SignUpContainer />
-    </Sidebar>
-  </Layout>
-};
+      <Panel className={ panelClass }>
+
+        <NavigationAppBar searchbar={ searchbar }
+                          history={ history }
+                          location={ location }
+                          hideSearchbar={ hideSearchbar }
+                          userLoggedIn={ userLoggedIn }
+                          handleSignOut={ handleSignOut }
+                          showSearchbar={ showSearchbar }
+                          handleSignIn={ handleSignIn } />
+
+        <div className={
+              (location.pathname === '/') ?
+                'Navigation-content-main' :
+                'Navigation-content'
+             }>
+          <FilterBarContainer
+            show={ ('/' !== location.pathname) }
+            flat={ ('/dashboard' !== location.pathname)}
+            route={ location.pathname } />
+          { children }
+        </div>
+      </Panel>
+
+      <Sidebar pinned={ showSidebar } scrollY className="Navigation-sidebar" >
+        <IconButton icon='close' onClick={ handleHideSidebar }/>
+        <SidebarContent />
+      </Sidebar>
+    </Layout>
+  );
+}
 
 Nav.propTypes = {
 }
