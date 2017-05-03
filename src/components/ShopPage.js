@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import Card from 'react-toolbox/lib/card/Card';
 import CardMedia from 'react-toolbox/lib/card/CardMedia';
@@ -16,60 +17,67 @@ import MenuItem from 'react-toolbox/lib/menu/MenuItem';
 import MenuDivider from 'react-toolbox/lib/menu/MenuDivider';
 import Autocomplete from 'react-toolbox/lib/autocomplete/Autocomplete';
 import Dropdown from 'react-toolbox/lib/dropdown/Dropdown';
+import Chip from 'react-toolbox/lib/chip';
+
+
+import ProductCard from './ProductCard';
+import Stars from './Stars';
+import FeaturedSlider from './FeaturedSlider';
 
 import './ShopPage.css'
 
 const ShopPage = ({
   catagories,
   categoryIndex,
-  handleCategorySelect
-}) => (
-  <div className="ShopPage">
-    <div className="ShopPage-details">
-      <div className="ShopPage-banner">
-        <div className="ShopPage-details-img" />
-      </div>
-      <Card className="ShopPage-details-name">
-        <CardText>
-          <div>Shop Name</div>
-          <div>Contact: +880xxxxxxxxxxx</div>
-        </CardText>
-        <CardActions>
-          <Button raised label="Follow" />
-          <Button raised label="Details" />
-        </CardActions>
-      </Card>
-      <div className="ShopPage-details-fold-area">
-        <Card className="ShopPage-details-stars">
-          <CardText>
-            stars
-          </CardText>
-        </Card>
-        <Card className="ShopPage-details-badges">
-          <CardText>
-            badges
-          </CardText>
-        </Card>
-        <Card className="ShopPage-details-description">
-          <CardText>
-            Description
-          </CardText>
-        </Card>
-        <Card className="ShopPage-details-mic">
-          <CardText>
-            Miscellaneous
-          </CardText>
-        </Card>
-      </div>
-    </div>
-    <div className="ShopPage-products">
+  handleCategorySelect,
+  toggleDetails,
+  details,
+}) => {
+
+  const detailsClass = classNames({
+    'ShopPage-details': true,
+    'ShopPage-details--show': details,
+  });
+
+  return (
+    <div className="ShopPage">
       <div className="ShopPage-banner" />
-
+      <div className={ detailsClass }>
+        <div className="ShopPage-banner">
+          <div className="ShopPage-details-img" />
+        </div>
+        <IconButton icon={ (details) ? 'close' :'keyboard_arrow_down'}
+                    className="ShopPage-details--toggle"
+                    onClick={ toggleDetails }/>
+        <div className="ShopPage-details-img" />
+        <div className="ShopPage-details-description">
+          <h2 className="ShopPage-details--text">Shop Page</h2>
+          <h3 className="ShopPage-details--text">Contact Info</h3>
+          <Stars rating="4" />
+          <Button raised primary label="Follow" />
+        </div>
+      </div>
+      <div className="ShopPage-products">
+        <div className="ShopPage-featured">
+          <FeaturedSlider />
+        </div>
+        <div className="ShopPage-products--container">
+          <div className="ShopPage-banner" />
+          <div className="ShopPage-products--categories">
+            <Chip>Fuck</Chip>
+          </div>
+          <div className="ShopPage-products--content">
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+          </div>
+        </div>
+      </div>
     </div>
-    <div className="ShopPage-featured">
-
-    </div>
-  </div>
-);
+  );
+}
 
 export default ShopPage;

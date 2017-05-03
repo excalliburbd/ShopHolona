@@ -1,29 +1,189 @@
-.ShopPage-banner {
-  height: 30vh;
-  background: url('https://unsplash.it/1200/700') no-repeat center center;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.ShopPage {
+  position: relative;
 }
 
-.ShopPage-products .ShopPage-banner {
+.ShopPage-banner {
+  background: url('https://unsplash.it/1200/700') no-repeat center center;
+  background-size: cover;
+  height: 12em;
+  width: 100%;
+}
+
+.ShopPage > .ShopPage-banner {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+
+.ShopPage-details > .ShopPage-banner {
   display: none;
+}
+
+.ShopPage-products--container > .ShopPage-banner {
+  display: none;
+}
+
+
+.ShopPage-details {
+  display: flex;
+  width: 100%;
+  text-align: center;
+  height: 12em;
+}
+
+.ShopPage-details--show {
+  flex-direction: column;
+  padding-top: 7em;
+  transition: all 0.5s cubic-bezier(.25,.8,.25,1);
+  height: auto;
+}
+
+.ShopPage-details .ShopPage-details-description {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+}
+
+.ShopPage-details-description * {
+  margin: .2em 0;
 }
 
 .ShopPage-details-img {
-  height: 10em;
-  width: 10em;
+  height: 6em;
+  width: 6em;
   border-radius: 50%;
-  background: url('https://unsplash.it/160/160');
+  background: url('https://unsplash.it/160/160') no-repeat center center;
+  margin: 1em;
+  margin-top: 1.2em;
 }
 
-.ShopPage-details-fold-area {
-  display: none;
+.ShopPage-details--show  .ShopPage-details-img {
+  height: 10em;
+  width: 10em;
+  transition: all 0.5s cubic-bezier(.25,.8,.25,1);
+}
+
+ .ShopPage-details .ShopPage-details--text {
+   background: rgba(0, 0, 0, 0.75);
+   color: #eee;
+   padding: .2em;
+ }
+
+ .ShopPage-details--show .ShopPage-details--text {
+   background: initial;
+   color: initial;
+ }
+
+ .ShopPage-details--toggle {
+   order: 1;
+   margin-left: auto;
+   position: fixed;
+   top: 4em;
+   right: .5em;
+ }
+
+.ShopPage-details--toggle .material-icons {
+  color: #eee;
+}
+
+.ShopPage-details--show * {
+  display: block;
+  margin: 0 auto;
 }
 
 @media screen and (min-width: 600px) {
-  .ShopPage-products .ShopPage-banner {
+  .ShopPage {
+    top: -.5em;
+    display: flex;
+  }
+
+  .ShopPage > .ShopPage-banner {
+    display: none;
+  }
+
+  .ShopPage-details > .ShopPage-banner {
+    display: flex;
+  }
+
+  .ShopPage-details {
+    background: #eee;
+    flex-direction: column;
+    height: calc(100vh - 3.5em);
+    width: 30vw;
+  }
+
+  .ShopPage-details--show {
+    padding-top: 0;
+  }
+
+  .ShopPage-details .ShopPage-details--text,
+  .ShopPage-details--show .ShopPage-details--text  {
+    background: initial;
+    color: initial;
+  }
+
+  .ShopPage-details--toggle {
+    display: none;
+  }
+
+  .ShopPage-featured {
+    width: 70vw;
+    height: 22em;
+  }
+
+  .ShopPage-details > .ShopPage-details-img {
+    display: none;
+  }
+
+  .ShopPage-details-img {
+    height: 10em;
+    width: 10em;
+    margin: auto;
+  }
+
+  .ShopPage-products {
+    height: calc(100vh - 3.5em);
+  }
+
+  .ShopPage-products--container {
+    height: calc(100vh - 25.5em);
+    overflow-y: auto;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .ShopPage-details {
+    width: 20vw;
+  }
+
+  .ShopPage-products {
+    width: 80vw;
+    height: calc(100vh - 4em);
+    position: relative;
+  }
+
+  .ShopPage-featured {
+    width: 20vw;
+    position: absolute;
+    right: 0;
+    height: 100%;
+  }
+
+  .ShopPage-products--container {
+    width: 60vw;
+    height: 100%;
+  }
+
+  .ShopPage-details > .ShopPage-banner {
+    display: none;
+  }
+
+  .ShopPage-details > .ShopPage-details-img {
+    display: block;
+    margin: 1em auto;
+  }
+
+  .ShopPage-products--container > .ShopPage-banner {
     display: block;
   }
 }

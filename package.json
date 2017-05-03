@@ -19,7 +19,7 @@
     "recharts": "^0.22.0",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
-    "reselect": "^3.0.0"
+    "reselect": "^3.0.0",
   },
   "devDependencies": {
     "maybe-you-meant": "^0.1.1",
