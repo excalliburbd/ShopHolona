@@ -11,12 +11,12 @@ import theme from '../public/react-toolbox/theme';
 
 import '../public/react-toolbox/theme.css';
 
-import ShopPage from './components/ShopPage';
 import Settings from './components/Settings';
 
 import NavigationContainer from './containers/NavigationContainer';
 import DashboardContainer from './containers/DashboardContainer';
 import BackOfficeContainer from './containers/BackOfficeContainer';
+import ShopPageContainer from './containers/ShopPageContainer';
 
 import './index.css';
 
@@ -27,7 +27,7 @@ ReactDOM.render(
     <ThemeProvider theme={theme}>
       <Router>
         <NavigationContainer>
-          <Route exact path="/" component={ ShopPage }/>
+          <Route exact path="/" component={ ShopPageContainer }/>
           <Route exact path="/dashboard" component={ DashboardContainer }/>
           <Route exact path="/admin/:backOffice" component={ BackOfficeContainer } />
           <Route exact path="/settings" component={ Settings }/>

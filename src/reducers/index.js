@@ -183,6 +183,12 @@ const SidebarUIReducer = (
         show: true,
         type: 'SIGNIN'
       }
+    case 'SHOW_SIDEBAR_ADD_PRODUCT':
+      return {
+        ...state,
+        show: true,
+        type: 'ADD_PRODUCT'
+      }
     case 'HIDE_SIDEBAR':
       return {
         ...state,
@@ -482,6 +488,22 @@ const ProductsEntityReducer = (
   }
 }
 
+const ShopPageUIReducer = (
+  state = {
+    details: false,
+  } , action
+) => {
+  switch (action.type) {
+    case 'TOGGLE_SHOPPAGE_UI_DETAILS':
+      return {
+        ...state,
+        details: !state.details,
+      }
+    default:
+      return state;
+  }
+}
+
 const RootReducer = combineReducers({
   user: UserReducer,
   orders: OrdersReducer,
@@ -496,6 +518,7 @@ const RootReducer = combineReducers({
     backOffice: backOfficeUIReducer,
     sidebar: SidebarUIReducer,
     user: UserUIReducer,
+    shopPage: ShopPageUIReducer,
   })
 });
 
