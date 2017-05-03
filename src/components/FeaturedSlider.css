@@ -1,0 +1,33 @@
+.FeaturedSlider {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 22em;
+}
+
+.FeaturedSlider-products {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.FeaturedSlider-products .ProductCard {
+  flex: 0 0 auto;
+  margin: .5em;
+}
+
+@media screen and (min-width: 800px) {
+  .FeaturedSlider {
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .FeaturedSlider-products {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .FeaturedSlider-products .ProductCard {
+    margin: .5em auto;
+  }
+}
