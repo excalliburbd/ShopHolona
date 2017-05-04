@@ -1,4 +1,8 @@
-.NavigationAppBar-title {
+.NavigationAppBar {
+  background-color: #512DA8;
+}
+
+.NavigationAppBar-title span {
   margin-left: 1em;
 }
 
@@ -64,6 +68,9 @@
   cursor: pointer;
 }
 
+._3Py1Z ::after {
+  display: none;
+}
 /*special appbar title logic*/
 
 @media screen and (max-width: 450px) {
@@ -97,7 +104,7 @@
   .NavigationAppBar-rewards {
     display: inline;
     top: -0.8em;
-    left: -0.8em;
+    left: -1.1em;
   }
 
   .NavigationAppBar-searchbar--close {

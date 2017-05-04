@@ -23,7 +23,6 @@
   display: none;
 }
 
-
 .ShopPage-details {
   display: flex;
   width: 100%;
@@ -63,24 +62,24 @@
   transition: all 0.5s cubic-bezier(.25,.8,.25,1);
 }
 
- .ShopPage-details .ShopPage-details--text {
-   background: rgba(0, 0, 0, 0.75);
-   color: #eee;
-   padding: .2em;
- }
+.ShopPage-details .ShopPage-details--text {
+ background: rgba(0, 0, 0, 0.75);
+ color: #eee;
+ padding: .2em;
+}
 
- .ShopPage-details--show .ShopPage-details--text {
-   background: initial;
-   color: initial;
- }
+.ShopPage-details--show .ShopPage-details--text {
+ background: initial;
+ color: initial;
+}
 
- .ShopPage-details--toggle {
-   order: 1;
-   margin-left: auto;
-   position: fixed;
-   top: 4em;
-   right: .5em;
- }
+.ShopPage-details--toggle {
+ order: 1;
+ margin-left: auto;
+ position: fixed;
+ top: 4em;
+ right: .5em;
+}
 
 .ShopPage-details--toggle .material-icons {
   color: #eee;
@@ -89,6 +88,11 @@
 .ShopPage-details--show * {
   display: block;
   margin: 0 auto;
+}
+
+.ShopPage-products--content {
+  text-align: center;
+  background-color: whitesmoke;
 }
 
 @media screen and (min-width: 600px) {
@@ -185,5 +189,11 @@
 
   .ShopPage-products--container > .ShopPage-banner {
     display: block;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .ShopPage-details {
+    width: 16.66vw;
   }
 }

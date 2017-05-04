@@ -24,21 +24,25 @@ import './ProductCard.css';
 
 const ProductCard = ({
   rating = 1,
-  productImg = 'https://unsplash.it/720/480',
+  productImg = 'https://unsplash.it/480/480',
   productThumb = 'https://unsplash.it/100',
 }) => {
   return (
-    <Card className="ProductCard">
-      <CardMedia aspectRatio="square"
-                 image={ productImg } />
-      <CardTitle title="Product Name"
-                 subtitle={
-                    <Stars rating={ rating } />
-                  } />
-      <CardActions>
-        <Button raised label="Add to Cart" />
-      </CardActions>
-    </Card>
+    <div className="product-card-list">
+      <Card className="product-card">
+        <CardMedia aspectRatio="square"
+                   image={ productImg } />
+        <CardTitle
+          className="card-title"
+          title="Product Name"
+          subtitle={
+            <Stars rating={ rating } />
+          } />
+        <CardActions className="card-action">
+          <Button className="cart-add-btn" raised label="Add to Cart" />
+        </CardActions>
+      </Card>
+    </div>
   )
 }
 

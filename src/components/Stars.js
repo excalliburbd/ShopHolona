@@ -2,6 +2,7 @@ import React from 'react';
 
 import FontIcon from 'react-toolbox/lib/font_icon/FontIcon';
 
+import './Stars.css';
 
 const Stars = ({
   rating
@@ -15,8 +16,10 @@ const Stars = ({
 
   return (
     <span style={{ color: 'orange' }}>
-      { iconsArray }
+      <div className="rating-stars">{ iconsArray }</div>
     </span>
+
+
   );
 }
 

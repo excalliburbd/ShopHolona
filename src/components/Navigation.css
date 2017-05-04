@@ -36,10 +36,26 @@
   margin-left: 1em;
 }
 
+<<<<<<< Updated upstream
 .Navigation-content,
 .Navigation-content-main {
   padding-top: 3.5em;
   padding-bottom: 5.8em;
+=======
+.Navigation-panel {
+}
+
+.Navigation-content {
+  padding-top: 4em;
+  padding-bottom: 5.8em;
+}
+
+.Navigation-addbutton {
+  position: fixed;
+  top: calc(90% - 1em);
+  right: 1em;
+  z-index: 200;
+>>>>>>> Stashed changes
 }
 
 @media screen and (min-width: 600px) {
@@ -53,6 +69,22 @@
     padding-bottom: 0;
   }
 
+<<<<<<< Updated upstream
+=======
+
+.GiftPoint ._1gvr5{
+  margin-top: 2em;
+  margin-right: 1em;
+}
+
+
+.rewards {
+  display: none;
+}
+
+
+@media screen and (min-width: 600px) {
+>>>>>>> Stashed changes
   .Navigation ._2FBCh {
     display: block;
   }
@@ -68,4 +100,43 @@
   .Navigation-panel-left {
     left: 10em;
   }
+<<<<<<< Updated upstream
+=======
+
+  ._07g5.Searchbar.Searchbar--hide {
+    display: block;
+  }
+
+  .hC5Z2._2Agdx._2CPs4.Navigation-search--button{
+    display: none;
+  }
+
+  .Navigation-searchbar--close {
+    display: none;
+  }
+
+  ._07g5.Searchbar {
+    left: 15em;
+    width: calc(100% - 25em);
+  }
+
+  .GiftPoint {
+    display: none;
+  }
+
+  .rewards h2 {
+    font-size: .6em;
+    height: 1.2em;
+    width: 2em;
+    color: white;
+  }
+
+  .rewards {
+    display: inline;
+    top: -0.8em;
+    left: -0.8em;
+    width: 2em;
+  }
+
+>>>>>>> Stashed changes
 }

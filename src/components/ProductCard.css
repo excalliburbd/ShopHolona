@@ -1,10 +1,40 @@
-.ProductCard {
-  width: 16em;
+.product-card-list {
+  display: inline-block;
 }
 
+.product-card {
+  width: 12em;
+  margin: 0.8em;
+  display: inline-block;
+}
+
+div._1dU3o._2iwOK.card-title {
+  padding-bottom: 0px;
+}
+
+.card-action {
+  padding-top: 0px;
+}
+
+.card-title._1dU3o._2iwOK ._3qCP3 {
+  font-size: 15px;
+
+}
+
+.product-card .card-action .cart-add-btn {
+  background-color: #FFC400;
+  color: white;
+  font-weight: bold;
+}
+
+
 @media screen and (min-width: 600px) {
-  .ProductCard {
-    width: 14em;
+  .product-card {
+    width: 12em;
+  }
+
+  .card-title._1dU3o._2iwOK ._3qCP3 {
+    font-size: 20px;
   }
 
 }

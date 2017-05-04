@@ -3,6 +3,8 @@
   justify-content: space-between;
   align-items: center;
   height: 22em;
+  background-color: #efefef;
+  border-left: 1px solid darkgrey;
 }
 
 .FeaturedSlider-products {
@@ -20,6 +22,7 @@
   .FeaturedSlider {
     flex-direction: column;
     height: 100%;
+    text-align: center;
   }
 
   .FeaturedSlider-products {
