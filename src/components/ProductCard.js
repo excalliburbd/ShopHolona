@@ -26,23 +26,16 @@ const ProductCard = ({
   rating = 1,
   productImg = 'https://unsplash.it/480/480',
   productThumb = 'https://unsplash.it/100',
+  name = 'Product Name',
 }) => {
   return (
-    <div className="product-card-list">
-      <Card className="product-card">
-        <CardMedia aspectRatio="square"
-                   image={ productImg } />
-        <CardTitle
-          className="card-title"
-          title="Product Name"
-          subtitle={
-            <Stars rating={ rating } />
-          } />
-        <CardActions className="card-action">
-          <Button className="cart-add-btn" raised label="Add to Cart" />
-        </CardActions>
-      </Card>
-    </div>
+    <Card className="ProductCard">
+      <CardMedia aspectRatio="square"
+                  image={ productImg } />
+      <h3>{ name }</h3>
+      <Stars rating={ rating } />
+      <Button className="ProductCard-button" raised label="Add to Cart" />
+    </Card>
   )
 }
 

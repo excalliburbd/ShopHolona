@@ -9,6 +9,7 @@ const mapStateToProps = state => {
     showSidebar: state.ui.sidebar.show,
     userLoggedIn: state.user.isLoggedIn,
     sidebarType: state.ui.sidebar.type,
+    shopName: state.shop.name,
   }
 }
 

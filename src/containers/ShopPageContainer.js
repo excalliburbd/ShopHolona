@@ -5,6 +5,7 @@ import ShopPage from '../components/ShopPage';
 const mapStateToProps = state => {
   return {
     details: state.ui.shopPage.details,
+    shopName: state.shop.name,
   }
 }
 

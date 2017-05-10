@@ -28,6 +28,7 @@
   width: 100%;
   text-align: center;
   height: 12em;
+  justify-content: center;
 }
 
 .ShopPage-details--show {
@@ -41,6 +42,8 @@
   display: flex;
   flex-direction: column;
   margin-top: 1em;
+  margin-left: 1em;
+  align-items: center;
 }
 
 .ShopPage-details-description * {
@@ -52,7 +55,6 @@
   width: 6em;
   border-radius: 50%;
   background: url('https://unsplash.it/160/160') no-repeat center center;
-  margin: 1em;
   margin-top: 1.2em;
 }
 
@@ -91,13 +93,23 @@
 }
 
 .ShopPage-products--content {
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
   background-color: whitesmoke;
+  padding: 1em;
+  justify-content: center;
+}
+
+.ShopPage-products--content .ProductCard {
+  margin: 1em;
+}
+
+.ShopPage-products--categories {
+  padding: 1em;
 }
 
 @media screen and (min-width: 600px) {
   .ShopPage {
-    top: -.5em;
     display: flex;
   }
 
@@ -112,8 +124,9 @@
   .ShopPage-details {
     background: #eee;
     flex-direction: column;
-    height: calc(100vh - 3.5em);
+    height: calc(100vh - 3em);
     width: 30vw;
+    justify-content: flex-start;
   }
 
   .ShopPage-details--show {
@@ -131,7 +144,6 @@
   }
 
   .ShopPage-featured {
-    width: 70vw;
     height: 22em;
   }
 
@@ -145,37 +157,39 @@
     margin: auto;
   }
 
-  .ShopPage-products {
-    height: calc(100vh - 3.5em);
+  .ShopPage-products--container {
+    height: calc(100vh - 25em);
+    overflow-y: auto;
   }
 
-  .ShopPage-products--container {
-    height: calc(100vh - 25.5em);
-    overflow-y: auto;
+  .ShopPage-details .ShopPage-details-description {
+    margin-left: 0;
   }
 }
 
 @media screen and (min-width: 800px) {
+  .ShopPage {
+    width: 100vw;
+  }
+
   .ShopPage-details {
-    width: 20vw;
+    width: 15vw;
+    height: calc(100vh - 4em);
   }
 
   .ShopPage-products {
-    width: 80vw;
-    height: calc(100vh - 4em);
-    position: relative;
+    display: flex;
   }
 
   .ShopPage-featured {
-    width: 20vw;
-    position: absolute;
-    right: 0;
-    height: 100%;
+    order: 1;
+    height: calc(100vh - 4em);
+    width: 15vw;
   }
 
   .ShopPage-products--container {
-    width: 60vw;
-    height: 100%;
+    height: calc(100vh - 4em);
+    width: 70vw;
   }
 
   .ShopPage-details > .ShopPage-banner {
@@ -189,11 +203,5 @@
 
   .ShopPage-products--container > .ShopPage-banner {
     display: block;
-  }
-}
-
-@media screen and (min-width: 1025px) {
-  .ShopPage-details {
-    width: 16.66vw;
   }
 }

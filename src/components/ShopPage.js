@@ -32,6 +32,7 @@ const ShopPage = ({
   handleCategorySelect,
   toggleDetails,
   details,
+  shopName,
 }) => {
 
   const detailsClass = classNames({
@@ -51,7 +52,7 @@ const ShopPage = ({
                     onClick={ toggleDetails }/>
         <div className="ShopPage-details-img" />
         <div className="ShopPage-details-description">
-          <h2 className="ShopPage-details--text">Shop Page</h2>
+          <h2 className="ShopPage-details--text">{ shopName }</h2>
           <h3 className="ShopPage-details--text">Contact Info</h3>
           <Stars rating="4" />
           <Button raised primary label="Follow" />
@@ -65,12 +66,16 @@ const ShopPage = ({
           <div className="ShopPage-banner" />
           <div className="ShopPage-products--categories">
             <Chip>Fuck</Chip>
+            <Chip>Fuck</Chip>
+            <Chip>Fuck</Chip>
+            <Chip>Fuck</Chip>
+            <Chip>Fuck</Chip>
+            <Chip>Fuck</Chip>
           </div>
           <div className="ShopPage-products--content">
             <ProductCard />
             <ProductCard />
-            <ProductCard />
-            <ProductCard />
+            <ProductCard /><ProductCard />
             <ProductCard />
             <ProductCard />
           </div>

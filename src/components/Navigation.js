@@ -43,6 +43,7 @@ const Nav = ({
   handleSignIn,
   handleSignOut,
   sidebarType,
+  shopName,
   children
 }) => {
 
@@ -52,7 +53,7 @@ const Nav = ({
     pinned = false;
   }
 
-  const panelClass = classNames({
+  const panelClass = classNames('Navigation-panel', {
     'Navigation-panel-left': pinned,
   })
 
@@ -80,6 +81,7 @@ const Nav = ({
         <NavigationAppBar searchbar={ searchbar }
                           history={ history }
                           location={ location }
+                          shopName={ shopName }
                           hideSearchbar={ hideSearchbar }
                           userLoggedIn={ userLoggedIn }
                           handleSignOut={ handleSignOut }

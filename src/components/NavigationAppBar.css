@@ -37,7 +37,8 @@
 }
 
 ._3Py1Z._2dwFx.NavigationAppBar {
-  z-index: 200;
+  z-index: 300;
+  height: 4rem;
 }
 
 .NavigationAppBar-rewards {

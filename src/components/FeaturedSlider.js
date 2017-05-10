@@ -15,11 +15,11 @@ const FeaturedSlider = ({
 }) => {
   return (
     <div className="FeaturedSlider">
-      <IconButton icon="keyboard_arrow_left" className="ShopPage-featured-nav" />
+      {/*<IconButton icon="keyboard_arrow_left" className="ShopPage-featured-nav" />*/}
       <div className="FeaturedSlider-products">
         { products }
       </div>
-      <IconButton icon="keyboard_arrow_right" className="ShopPage-featured-nav" />
+      {/*<IconButton icon="keyboard_arrow_right" className="ShopPage-featured-nav" />*/}
     </div>
   );
 }

@@ -22,7 +22,9 @@ const NavigationAppBar = ({
   userLoggedIn,
   handleSignOut,
   showSearchbar,
-  handleSignIn
+  handleSignIn,
+  shopName,
+  userImg,
 }) => {
 
   const navTitleClass = classNames({
@@ -39,7 +41,7 @@ const NavigationAppBar = ({
     <AppBar className="NavigationAppBar"
               title={
                 <span className={ navTitleClass }>
-                  <span>ShopName</span> <br />
+                  <span>{ shopName }</span> <br />
                   <span>Shop reference code</span>
                 </span>
               }
@@ -90,11 +92,13 @@ const NavigationAppBar = ({
               {
                 (location.pathname === '/') ?
                   <IconButton icon='shopping_cart' /> :
-                  null
+                  <IconButton disabled />
               }
 
               <IconMenu icon={
-                          <Avatar title="Shop_logo" image={ logo }/>
+                          (userImg) ?
+                            <Avatar title="user image" image={ userImg }/> :
+                            'account_circle'
                         }
                         position='topRight'
                         className="NavigationAppBar-profile-menu"

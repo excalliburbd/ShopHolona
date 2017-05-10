@@ -58,7 +58,7 @@ const SignUp = ({
              value={ emailPassword }
              onChange={ handleEmailPasswordValue }
              icon='vpn_key' />
-      <IconButton icon="forward" onClick={ () => handleTrySignIn({email, password: emailPassword}) } />
+      <IconButton icon="forward" onClick={ () => handleTrySignIn({ email, password: emailPassword}) } />
     </div>
     <div>
       <p>Or</p>

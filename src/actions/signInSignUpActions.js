@@ -5,7 +5,7 @@ export const trySignInAsyncAction = ({ email, password }) => dispatch => {
   const credentials = {};
 
   if(email && password) {
-    credentials.email_username_phone = email;
+    credentials.email = email;
     credentials.password = password;
   }
 
@@ -13,7 +13,7 @@ export const trySignInAsyncAction = ({ email, password }) => dispatch => {
     type: 'USER_TRY_SIGNIN'
   });
 
-  fetch('http://shophobe.herokuapp.com/api/users/login/', {
+  fetch('http://shophobe-development.herokuapp.com/api/auth/login/', {
             method: 'post',
             body: JSON.stringify(credentials),
             mode: 'cors',
@@ -26,10 +26,10 @@ export const trySignInAsyncAction = ({ email, password }) => dispatch => {
             res => res.json()
           ).then(
             res => {
-              if(res.user){
+              if(res.token){
                 dispatch({
                   type: 'USER_SET_TOKEN',
-                  token: res.user.token,
+                  token: res.token,
                 });
                 dispatch({
                   type: 'HIDE_SIDEBAR',
