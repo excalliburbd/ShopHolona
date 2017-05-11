@@ -33,6 +33,7 @@ const ShopPage = ({
   toggleDetails,
   details,
   shopName,
+  shortDesc
 }) => {
 
   const detailsClass = classNames({
@@ -56,6 +57,8 @@ const ShopPage = ({
           <h3 className="ShopPage-details--text">Contact Info</h3>
           <Stars rating="4" />
           <Button raised primary label="Follow" />
+          <p>{shortDesc}</p>
+
         </div>
       </div>
       <div className="ShopPage-products">

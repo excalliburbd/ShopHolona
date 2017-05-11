@@ -504,10 +504,25 @@ const ShopPageUIReducer = (
   }
 }
 
+const ShopPageReducer = (
+  state = {
+    id: 3,
+    name: 'Real Shop',
+    shortDescription: 'We are the real shop man. We are like, really real',
+    longDescription: 'We are like, really really really really really really really really really really really really really really really really really really really really really really really really really really really real',
+  }, action
+) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+
 const RootReducer = combineReducers({
   user: UserReducer,
-  orders: OrdersReducer,
+  shop: ShopPageReducer,
   products: ProductsReducer,
+  orders: OrdersReducer,
   entities: combineReducers({
     orders: OrdersEntityReducer,
     products: ProductsEntityReducer,
