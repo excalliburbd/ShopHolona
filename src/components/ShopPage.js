@@ -78,7 +78,16 @@ const ShopPage = ({
           <div className="ShopPage-products--content">
             <ProductCard />
             <ProductCard />
-            <ProductCard /><ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
             <ProductCard />
             <ProductCard />
           </div>

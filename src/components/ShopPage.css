@@ -91,7 +91,8 @@
 }
 
 .ShopPage-details--toggle .material-icons {
-  color: #eee;
+  color: #FFC400;
+  font-size: 3em;
 }
 
 .ShopPage-details--show * {
@@ -103,12 +104,8 @@
   display: flex;
   flex-wrap: wrap;
   background-color: whitesmoke;
-  padding: 1em;
+  padding: 0.5em;
   justify-content: center;
-}
-
-.ShopPage-products--content .ProductCard {
-  margin: 1em;
 }
 
 .ShopPage-products--categories {
@@ -214,6 +211,15 @@
   .ShopPage-products--container {
     height: calc(100vh - 4em);
     width: 70vw;
+  }
+
+  .ShopPage-products--container::-webkit-scrollbar {
+    width: 5px;
+    background-color: #F5F5F5;
+  }
+  .ShopPage-products--container::-webkit-scrollbar-thumb:hover {
+
+    background: linear-gradient(180deg, #F5F5F5, #F5F5F5, #666, #F5F5F5, #F5F5F5);
   }
 
   .ShopPage-details > .ShopPage-banner {

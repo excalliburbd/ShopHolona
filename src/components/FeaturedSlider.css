@@ -18,17 +18,38 @@
   margin: .5em;
 }
 
+.emptydiv-featured {
+  display: none;
+}
+
 @media screen and (min-width: 800px) {
   .FeaturedSlider {
     height: calc(100vh - 4em);
+    padding: 0.4em 0.6em;
   }
 
+  .FeaturedSlider-products::-webkit-scrollbar {
+    width: 8px;
+    background-color: #F5F5F5;
+  }
+
+  .FeaturedSlider-products::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #F5F5F5, #F5F5F5, #666, #F5F5F5, #F5F5F5);
+  }
   .FeaturedSlider-products {
     height: 100%;
     flex-wrap: wrap;
   }
 
   .FeaturedSlider-products .ProductCard {
-    margin: .5em auto;
+    margin: 1em auto;
+    flex: auto;
   }
+
+  .emptydiv-featured {
+    display: flex;
+    height: 10em;
+    width: 10em;
+  }
+
 }

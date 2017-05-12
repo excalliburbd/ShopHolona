@@ -64,6 +64,10 @@
   margin-left: auto;
 }
 
+.NavigationAppBar-right-comp .material-icons {
+  color: white;
+}
+
 .NavigationAppBar-right-comp .NavigationAppBar-right-comp-search .NavigationAppBar-search-icon{
   color: aquamarine;
   cursor: pointer;

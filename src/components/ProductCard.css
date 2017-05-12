@@ -1,10 +1,7 @@
 .ProductCard {
-  width: 12em;
+  width: 11em;
   display: flex;
-}
-
-.ShopPage-products--content .ProductCard {
-  margin-bottom: 1em;
+  margin: 1em 0.5em;
 }
 
 .card-title._1dU3o._2iwOK ._3qCP3 {
@@ -21,5 +18,13 @@
 @media screen and (min-width: 600px) {
   .card-title._1dU3o._2iwOK ._3qCP3 {
     font-size: 20px;
+  }
+}
+
+/*For Desktop*/
+@media screen and (min-width: 800px) {
+  .ProductCard {
+    width: 14em;
+    margin: 1em;
   }
 }

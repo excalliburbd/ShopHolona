@@ -11,6 +11,9 @@ const FeaturedSlider = ({
     <ProductCard rating="5" />,
     <ProductCard rating="4" />,
     <ProductCard rating="3" />,
+    <ProductCard rating="3" />,
+    <ProductCard rating="3" />,
+    <div className="emptydiv-featured"></div>
   ]
 }) => {
   return (
