@@ -106,7 +106,7 @@ const NavigationAppBar = ({
                         menuRipple={ false } >
                 {
                   (userLoggedIn) ?
-                    <div>
+                    <div className="NavigationAppBar-profile-menuitem">
                       <MenuItem value='dashboard'
                         icon="dashboard"
                         onClick={() => history.push('/dashboard')} caption='Dashboard' />
@@ -124,11 +124,14 @@ const NavigationAppBar = ({
                           history.push('/');
                         }}
                         caption='Sign Out' />
-                    </div> :
-                    <MenuItem value='signin'
-                              icon='account_circle'
-                              onClick={ handleSignIn }
-                              caption='Sign In/Sign Up' />
+                    </div > :
+                    <div className="NavigationAppBar-profile-menuitem">
+                      <MenuItem value='signin'
+                                icon='account_circle'
+                                onClick={ handleSignIn }
+                                caption='Sign In/Sign Up' />
+                    </div>
+
                 }
               </IconMenu>
             </Navigation>

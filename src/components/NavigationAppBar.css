@@ -68,6 +68,10 @@
   color: white;
 }
 
+.NavigationAppBar-profile-menuitem .material-icons {
+  color: #424242;
+}
+
 .NavigationAppBar-right-comp .NavigationAppBar-right-comp-search .NavigationAppBar-search-icon{
   color: aquamarine;
   cursor: pointer;

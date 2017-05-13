@@ -54,10 +54,10 @@ const ShopPage = ({
         <div className="ShopPage-details-img" />
         <div className="ShopPage-details-description">
           <h2 className="ShopPage-details--text">{ shopName }</h2>
-          <h3 className="ShopPage-details--text">Contact Info</h3>
+          <p className="ShopPage-details--text">Address</p>
           <Stars rating="4" />
           <Button raised primary label="Follow" />
-          <p>{shortDesc}</p>
+          <p className="ShopPage-details--text-desc">{shortDesc}</p>
 
         </div>
       </div>
@@ -90,6 +90,7 @@ const ShopPage = ({
             <ProductCard />
             <ProductCard />
             <ProductCard />
+            <div className="emptydiv-phone"></div>
           </div>
         </div>
       </div>
