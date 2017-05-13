@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
 
+import { getCategory } from '../actions/productsActions';
+
 import AddButton from '../components/AddButton';
 
 const mapStateToProps = state => {
@@ -12,7 +14,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleAddProduct: () => {
       dispatch({
         type: 'SHOW_SIDEBAR_ADD_PRODUCT'
-      })
+      });
+      dispatch(getCategory());
     }
   }
 }

@@ -11,7 +11,7 @@ const Stars = ({
   const iconsArray = [];
 
   for(let i=0; i<rating; i++) {
-    iconsArray.push(<FontIcon value="star" />);
+    iconsArray.push(<FontIcon value="star" key={ i }/>);
   }
 
   return (

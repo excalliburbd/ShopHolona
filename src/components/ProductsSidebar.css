@@ -1,0 +1,32 @@
+.ProductsSidebar-add {
+  padding: 1em;
+}
+
+.ProductsSidebar-add .hC5Z2._2Agdx._2CPs4 {
+  display: inline-block;
+  margin: .25em;
+}
+
+.hC5Z2.ProductsSidebar-add--color.ProductsSidebar-add--color {
+  color: white;
+}
+
+.ProductsSidebar-add--colors {
+  margin-bottom: 1em;
+}
+
+.ProductsSidebar-add-attributes--card {
+  margin-bottom: .5em;
+  padding: .5em;
+}
+
+.ProductsSidebar-add-attributes--card-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ProductsSidebar-add-attributes--card-heading h4{
+  margin: 0;
+}
+

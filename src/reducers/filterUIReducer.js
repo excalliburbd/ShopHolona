@@ -8,7 +8,7 @@ const isSelectingFirstDay = (from, to, day) => {
   return firstDayIsNotSelected || selectedDayIsBeforeFirstDay || rangeIsSelected;
 }
 
-export default (state = {
+export const FilterUIReducer = (state = {
   date: {
     from: null,
     fromValue: '',
