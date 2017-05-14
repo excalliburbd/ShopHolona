@@ -48,7 +48,7 @@ const SignUp = ({
              required
              value={ email }
              onChange={ handleEmailValue }
-             error={ error && "Fucking error" }
+             error={ error && "Error with Email" }
              icon='email' />
     </div>
     <div className="SignUp-input">

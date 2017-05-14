@@ -20,7 +20,7 @@ const FeaturedSlider = ({
     <div className="FeaturedSlider">
       {/*<div>Featured Products</div>*/}
       <div className="FeaturedSlider-products">
-        <h1>Featured Products</h1>
+        <div className="FeaturedSlider-text"><h1>Featured Products</h1></div>
         { products }
       </div>
     </div>

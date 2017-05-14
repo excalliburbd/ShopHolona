@@ -105,15 +105,12 @@
 
   .NavigationAppBar-rewards h2 {
     font-size: .6em;
-    height: 1.2em;
-    width: 2em;
     color: white;
   }
 
   .NavigationAppBar-rewards {
-    display: inline;
-    top: -0.8em;
-    left: -3em;
+    display: inline-block;
+    margin: 0px 1em;
   }
 
   .NavigationAppBar-searchbar--close {

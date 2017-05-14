@@ -80,7 +80,19 @@
     left: 0.4em;
   }
   .ShopPage-products--content .ProductCard {
-    width: 15vw;
+    width: calc(25% - 2em);
   }
+  .ShopPage-products--content {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+/*For FullHD Desktop*/
+@media screen and (min-width: 1800px) {
+  .ShopPage-products--content .ProductCard {
+    width: calc(20% - 2em);
+  }
+
 
 }

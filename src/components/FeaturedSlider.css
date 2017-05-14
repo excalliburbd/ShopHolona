@@ -22,6 +22,25 @@
   display: none;
 }
 
+.FeaturedSlider-text h1 {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2em;
+  color: dimgrey;
+  margin-bottom: 0.2em;
+}
+
+/*For Phones*/
+@media screen and (max-width: 600px) {
+  .FeaturedSlider {
+    position: relative;
+  }
+  .FeaturedSlider-text h1 {
+    position: absolute;
+    top: -0.5em;
+  }
+}
+
 @media screen and (min-width: 800px) {
   .FeaturedSlider {
     height: calc(100vh - 4em);
@@ -50,6 +69,11 @@
     display: flex;
     height: 10em;
     width: 10em;
+  }
+
+  .FeaturedSlider-text {
+    text-align: center;
+    width: 100%
   }
 
 }

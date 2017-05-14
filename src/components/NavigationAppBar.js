@@ -74,18 +74,15 @@ const NavigationAppBar = ({
                 onClick={
                   () => showSearchbar()
                 }
-                icon='search' />
+                icon='search'
+              />
 
-              <IconMenu className="NavigationAppBar-rewards"
-                        icon={
-                          <div>
-                            <h2>Money 0.00</h2>
-                          </div>
-                          } />
+              <div className="NavigationAppBar-rewards">
+                <h2>Money 0.00</h2>
+              </div>
 
               <IconMenu icon="card_giftcard" className="NavigationAppBar-GiftPoint">
-                <MenuItem value='money' caption='Money' />
-                <MenuItem value='reward' caption='Reward' />
+                <MenuItem value='money' caption='Money 0.00' />
               </IconMenu>
 
               {
