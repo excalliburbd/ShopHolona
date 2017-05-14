@@ -105,8 +105,11 @@
   /*display: inline-block;*/
   flex-wrap: wrap;
   background-color: whitesmoke;
-  padding: 0.5em;
   justify-content: center;
+}
+
+.ShopPage-products--list {
+  margin: 0.5em 0.5em auto;
 }
 
 .ShopPage-products--categories {
@@ -118,6 +121,10 @@
   height: 5em;
   width: 5em;
 
+}
+
+.ShopPage-details-description .rating-stars .material-icons {
+  font-size: 1.5em;
 }
 
 @media screen and (min-width: 600px) {
@@ -250,5 +257,10 @@
 
   .emptydiv-phone {
     display: none;
+  }
+
+  .ShopPage-products--content {
+    display: inline-block;
+    width: 100%;
   }
 }
