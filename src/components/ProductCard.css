@@ -1,9 +1,13 @@
 .ProductCard {
+  display: inline-flex;
   position: relative;
   width: 11em;
-  display: flex;
   margin: 1em 0.5em;
   border-radius: 4px;
+}
+
+.ShopPage-products--list .ProductCard {
+  width: calc((100% / 2) - 15px);
 }
 
 .ProductCard:hover {
@@ -79,5 +83,20 @@
     top: -0.2em;
     left: 0.4em;
   }
+  .ShopPage-products--content .ProductCard {
+    width: calc(25% - 2em);
+  }
+  .ShopPage-products--content {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+/*For FullHD Desktop*/
+@media screen and (min-width: 1800px) {
+  .ShopPage-products--content .ProductCard {
+    width: calc(20% - 2em);
+  }
+
 
 }

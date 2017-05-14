@@ -68,28 +68,29 @@ const ShopPage = ({
         <div className="ShopPage-products--container">
           <div className="ShopPage-banner" />
           <div className="ShopPage-products--categories">
-            <Chip>Fuck</Chip>
-            <Chip>Fuck</Chip>
-            <Chip>Fuck</Chip>
-            <Chip>Fuck</Chip>
-            <Chip>Fuck</Chip>
-            <Chip>Fuck</Chip>
+            <Chip>Chip</Chip>
+            <Chip>Chip</Chip>
+            <Chip>Chip</Chip>
+            <Chip>Chip</Chip>
+            <Chip>Chip</Chip>
+            <Chip>Chip</Chip>
           </div>
           <div className="ShopPage-products--content">
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
+            <div className="ShopPage-products--list">
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+            </div>
             <div className="emptydiv-phone"></div>
           </div>
         </div>
