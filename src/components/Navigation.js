@@ -11,6 +11,7 @@ import ListItem from 'react-toolbox/lib/list/ListItem';
 
 import Link from 'react-toolbox/lib/link/Link';
 import IconButton from 'react-toolbox/lib/button/IconButton';
+import Button from 'react-toolbox/lib/button/Button';
 
 import MdSettings from 'react-icons/lib/md/settings';
 import MdProfile from 'react-icons/lib/md/account-circle';
@@ -102,8 +103,13 @@ const Nav = ({
       </Panel>
 
       <Sidebar pinned={ showSidebar } scrollY className="Navigation-sidebar" >
-        <IconButton icon='close' onClick={ handleHideSidebar }/>
-        <SidebarContent />
+        <div className="Navigation-sidebar-action">
+          <IconButton icon='close' onClick={ handleHideSidebar }/>
+          <Button label="Done" icon="done" flat />
+        </div>
+        <div className="Navigation-sidebar-content">
+          <SidebarContent />
+        </div>
       </Sidebar>
     </Layout>
   );

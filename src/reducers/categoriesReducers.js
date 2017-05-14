@@ -204,6 +204,63 @@ export const CategoriesUIReducer = (
           secondary: [],
         }
       }
+    case 'UPDATE_UI_CATEGORY_STOCK':
+      return {
+        ...state,
+        attributes: {
+          ...state.attributes,
+          secondary: {
+            ...state.attributes.secondary,
+            [action.payload.id]: {
+              ...state.attributes.secondary[action.payload.id],
+              attributes: state.attributes.secondary[action.payload.id].attributes.map(
+                                (attribute, key) => ({
+                                  ...attribute,
+                                  stock: (key === action.payload.key ) ? action.payload.value : attribute.stock
+                                })
+                              )
+            }
+          }
+        }
+      }
+    case 'UPDATE_UI_CATEGORY_STOCK_INC':
+      return {
+        ...state,
+        attributes: {
+          ...state.attributes,
+          secondary: {
+            ...state.attributes.secondary,
+            [action.payload.id]: {
+              ...state.attributes.secondary[action.payload.id],
+              attributes: state.attributes.secondary[action.payload.id].attributes.map(
+                                (attribute, key) => ({
+                                  ...attribute,
+                                  stock: (key === action.payload.key ) ? ( parseInt(attribute.stock, 10) + 1) : attribute.stock
+                                })
+                              )
+            }
+          }
+        }
+      }
+    case 'UPDATE_UI_CATEGORY_STOCK_DEC':
+      return {
+        ...state,
+        attributes: {
+          ...state.attributes,
+          secondary: {
+            ...state.attributes.secondary,
+            [action.payload.id]: {
+              ...state.attributes.secondary[action.payload.id],
+              attributes: state.attributes.secondary[action.payload.id].attributes.map(
+                                (attribute, key) => ({
+                                  ...attribute,
+                                  stock: (key === action.payload.key ) ? ( parseInt(attribute.stock, 10) - 1) : attribute.stock
+                                })
+                              )
+            }
+          }
+        }
+      }
     default:
       return state;
   }

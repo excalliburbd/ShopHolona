@@ -32,6 +32,7 @@ const SidebarUIReducer = (
   state = {
     show: false,
     type: null,
+    radio: 'NONE'
   }, action
 ) => {
   switch (action.type) {
@@ -52,6 +53,11 @@ const SidebarUIReducer = (
         ...state,
         show: false,
         type: null,
+      }
+    case 'SET_SIDEBAR_UI_RADIO_VALUE':
+      return {
+        ...state,
+        radio: action.payload
       }
     default:
       return state;

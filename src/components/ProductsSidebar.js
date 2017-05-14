@@ -15,6 +15,8 @@ import Table from 'react-toolbox/lib/table/Table';
 import TableHead from 'react-toolbox/lib/table/TableHead';
 import TableRow from 'react-toolbox/lib/table/TableRow';
 import TableCell from 'react-toolbox/lib/table/TableCell';
+import RadioGroup from 'react-toolbox/lib/radio/RadioGroup';
+import RadioButton from 'react-toolbox/lib/radio/RadioButton';
 
 import CustomAutocomplete from './CustomAutocomplete';
 
@@ -32,92 +34,115 @@ const ProductsSidebar = ({
   primaryAttributes,
   secondaryAttributes,
   handleSelect,
-  handleAttributeSelect
+  handleAttributeSelect,
+  radioValue,
+  handleRadio,
+  handleStockUpdate,
 }) => {
   switch(type) {
     case 'ADD_PRODUCT':
       return <div className="ProductsSidebar-add">
-                <CustomAutocomplete
-                  label='Enter Product Category'
-                  source={ categories }
-                  onSelected={ id => handleFieldSelect('CATEGORY', id) }
-                />
-                <CustomAutocomplete
-                  label='Enter Product Sub Category'
-                  source={ subCategories }
-                  onSelected={ id => handleFieldSelect('SUB_CATEGORY', categoryID, id) }
-                />
-                <CustomAutocomplete
-                  label='Enter Type of Product'
-                  source={ subSubCategories }
-                  onSelected={
-                    (id, categoryObj ) => {
-                      handleFieldSelect('SUB_SUB_CATEGORY', id);
-                      handleCategoryObj(categoryObj);
-                    }
-                  }
-                />
+
+                <RadioGroup name='comic' value={ radioValue } onChange={ handleRadio }>
+                  <RadioButton label='Product' value='PRODUCT'/>
+                  <RadioButton label='Service' value='SERVICE'/>
+                </RadioGroup>
+
                 {
-                  (primaryAttributes.length > 0) ?
-                    <div className="ProductsSidebar-add--colors">
-                      <h3>Pick product colors</h3>
+                  (radioValue === 'PRODUCT') &&
+                    <div>
+                      <CustomAutocomplete
+                        label='Enter Product Category'
+                        source={ categories }
+                        onSelected={ id => handleFieldSelect('CATEGORY', id) }
+                      />
+                      <CustomAutocomplete
+                        label='Enter Product Sub Category'
+                        source={ subCategories }
+                        onSelected={ id => handleFieldSelect('SUB_CATEGORY', categoryID, id) }
+                      />
+                      <CustomAutocomplete
+                        label='Enter Type of Product'
+                        source={ subSubCategories }
+                        onSelected={
+                          (id, categoryObj ) => {
+                            handleFieldSelect('SUB_SUB_CATEGORY', id);
+                            handleCategoryObj(categoryObj);
+                          }
+                        }
+                      />
                       {
-                        primaryAttributes.map(
-                          obj => <IconButton  icon={
-                                                  (obj.selected) ?
-                                                  'done' :
-                                                  <span />
-                                                }
-                                                onClick={
-                                                  () => handleSelect(obj)
-                                                }
-                                                style={{
-                                                  background: (obj.value) ?
-                                                               obj.value.toLowerCase() : null
-                                                }}
-                                                key={ obj.id }
-                                                className="ProductsSidebar-add--color" />
-                        )
+                        (primaryAttributes.length > 0) ?
+                          <div className="ProductsSidebar-add--colors">
+                            <h3>Pick product colors</h3>
+                            {
+                              primaryAttributes.map(
+                                obj => <IconButton  icon={
+                                                        (obj.selected) ?
+                                                        'done' :
+                                                        <span />
+                                                      }
+                                                      onClick={
+                                                        () => handleSelect(obj)
+                                                      }
+                                                      style={{
+                                                        background: (obj.value) ?
+                                                                    obj.value.toLowerCase() : null
+                                                      }}
+                                                      key={ obj.id }
+                                                      className="ProductsSidebar-add--color" />
+                              )
+                            }
+                          </div> :
+                        null
                       }
-                    </div> :
-                   null
+                      <div className="ProductsSidebar-add-attributes">
+                        {
+                          primaryAttributes
+                            .filter( obj => obj.selected )
+                            .map(
+                              (obj, key) => <Card className='ProductsSidebar-add-attributes--card' key={key} >
+                                      <div className="ProductsSidebar-add-attributes--card-heading">
+                                        <h4>{ obj.value }</h4>
+                                      </div>
+                                      <Table selectable
+                                            onRowSelect={ selected => handleAttributeSelect(selected, obj.id) }>
+                                        <TableHead>
+                                          <TableCell>Size</TableCell>
+                                          <TableCell numeric >Stock</TableCell>
+                                          <TableCell />
+                                        </TableHead>
+                                        {
+                                          secondaryAttributes[obj.id].attributes.map(
+                                            (attribute, key) =>
+                                                  <TableRow key={key} selected={ attribute.selected }>
+                                                    <TableCell>{ attribute.value }</TableCell>
+                                                    <TableCell numeric>
+                                                        <Input value={ attribute.stock }
+                                                               onChange={
+                                                                  value => handleStockUpdate( 'VALUE', value, obj.id, key)
+                                                               } />
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <IconButton icon="keyboard_arrow_up"
+                                                                    onClick={
+                                                                      () => handleStockUpdate( 'INC', null, obj.id, key)
+                                                                    }/>
+                                                        <IconButton icon="keyboard_arrow_down"
+                                                                    onClick={
+                                                                      () => handleStockUpdate( 'DEC', null, obj.id, key)
+                                                                    }/>
+                                                    </TableCell>
+                                                  </TableRow>
+                                          )
+                                        }
+                                        </Table>
+                                    </Card>
+                          )
+                        }
+                      </div>
+                    </div>
                 }
-                <div className="ProductsSidebar-add-attributes">
-                  {
-                    primaryAttributes
-                      .filter( obj => obj.selected )
-                      .map(
-                        (obj, key) => <Card className='ProductsSidebar-add-attributes--card' key={key} >
-                                <div className="ProductsSidebar-add-attributes--card-heading">
-                                  <h4>{ obj.value }</h4>
-                                </div>
-                                <Table selectable
-                                       onRowSelect={ selected => handleAttributeSelect(selected, obj.id) }>
-                                  <TableHead>
-                                    <TableCell>Size</TableCell>
-                                    <TableCell numeric >Stock</TableCell>
-                                    <TableCell />
-                                  </TableHead>
-                                  {
-                                    secondaryAttributes[obj.id].attributes.map(
-                                      (attribute, key) =>
-                                            <TableRow key={key} selected={ attribute.selected }>
-                                              <TableCell>{ attribute.value }</TableCell>
-                                              <TableCell numeric>
-                                                  { attribute.stock }
-                                              </TableCell>
-                                              <TableCell>
-                                                  <IconButton icon="keyboard_arrow_up" />
-                                                  <IconButton icon="keyboard_arrow_down" />
-                                              </TableCell>
-                                            </TableRow>
-                                    )
-                                  }
-                                  </Table>
-                              </Card>
-                    )
-                  }
-                </div>
             </div>
       default:
       return <div />

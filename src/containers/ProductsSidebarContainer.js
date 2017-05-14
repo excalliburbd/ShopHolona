@@ -62,6 +62,7 @@ const mapStateToProps = state => {
     subCategoryID: state.ui.categories.subCategoryID,
     primaryAttributes: state.ui.categories.attributes.primary,
     secondaryAttributes: state.ui.categories.attributes.secondary,
+    radioValue: state.ui.sidebar.radio,
   }
 }
 
@@ -117,6 +118,46 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         type: 'SET_UI_SECONDARY_ATTR',
         payload: { selected, id }
       });
+    },
+    handleRadio: value => {
+      dispatch({
+        type: 'SET_SIDEBAR_UI_RADIO_VALUE',
+        payload: value,
+      })
+    },
+    handleStockUpdate: (type, value, id, key) => {
+      switch(type){
+        case 'VALUE':
+          dispatch({
+            type: 'UPDATE_UI_CATEGORY_STOCK',
+            payload: {
+              value,
+              id,
+              key,
+            }
+          })
+          break;
+        case 'INC':
+          dispatch({
+            type: 'UPDATE_UI_CATEGORY_STOCK_INC',
+            payload: {
+              id,
+              key,
+            }
+          })
+          break;
+        case 'DEC':
+          dispatch({
+            type: 'UPDATE_UI_CATEGORY_STOCK_DEC',
+            payload: {
+              id,
+              key,
+            }
+          })
+          break;
+        default:
+          break;
+      }
     }
   }
 }
