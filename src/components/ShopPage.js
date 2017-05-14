@@ -89,7 +89,6 @@ const ShopPage = ({
             <ProductCard />
             <ProductCard />
             <ProductCard />
-            <ProductCard />
             <div className="emptydiv-phone"></div>
           </div>
         </div>

@@ -80,7 +80,6 @@ const NavigationAppBar = ({
                         icon={
                           <div>
                             <h2>Money 0.00</h2>
-                            <h2>Rewards 0.00</h2>
                           </div>
                           } />
 
@@ -91,7 +90,7 @@ const NavigationAppBar = ({
 
               {
                 (location.pathname === '/') ?
-                  <IconButton icon='shopping_cart' /> :
+                  <IconButton className="NavigationAppBar-cart" icon='shopping_cart' /> :
                   <IconButton disabled />
               }
 

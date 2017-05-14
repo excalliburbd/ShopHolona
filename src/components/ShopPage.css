@@ -102,7 +102,7 @@
 }
 
 .ShopPage-products--content {
-  display: flex;
+  /*display: inline-block;*/
   flex-wrap: wrap;
   background-color: whitesmoke;
   padding: 0.5em;
@@ -213,7 +213,7 @@
   .ShopPage-featured {
     order: 1;
     height: calc(100vh - 4em);
-    width: 15vw;
+    width: 17.647vw;
   }
 
   .ShopPage-products--container {

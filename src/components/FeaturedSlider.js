@@ -18,11 +18,11 @@ const FeaturedSlider = ({
 }) => {
   return (
     <div className="FeaturedSlider">
-      {/*<IconButton icon="keyboard_arrow_left" className="ShopPage-featured-nav" />*/}
+      {/*<div>Featured Products</div>*/}
       <div className="FeaturedSlider-products">
+        <h1>Featured Products</h1>
         { products }
       </div>
-      {/*<IconButton icon="keyboard_arrow_right" className="ShopPage-featured-nav" />*/}
     </div>
   );
 }

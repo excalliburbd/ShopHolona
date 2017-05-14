@@ -96,7 +96,7 @@
 
   ._07g5.Searchbar {
     left: 15em;
-    width: calc(100% - 25em);
+    width: calc(100% - 32em);
   }
 
   .NavigationAppBar-GiftPoint {
@@ -113,7 +113,7 @@
   .NavigationAppBar-rewards {
     display: inline;
     top: -0.8em;
-    left: -1.1em;
+    left: -3em;
   }
 
   .NavigationAppBar-searchbar--close {
@@ -122,5 +122,8 @@
 
   .hC5Z2._2Agdx._2CPs4.NavigationAppBar-search--button{
     display: none;
+  }
+  ._2CPs4.NavigationAppBar-cart {
+    margin: 0em 1em;
   }
 }
