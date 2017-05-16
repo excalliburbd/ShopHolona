@@ -210,6 +210,7 @@
     background-color: white;
     width: 15vw;
     height: calc(100vh - 4em);
+    color: dimgrey;
   }
 
   .ShopPage-products {
@@ -253,6 +254,11 @@
   .ShopPage-details .ShopPage-details-description {
     padding: 0.8em;
     margin: 0px;
+    color: dimgrey;
+  }
+
+  .ShopPage-details-description .ShopPage-details--text {
+    color: dimgrey;
   }
 
   .emptydiv-phone {

@@ -3,6 +3,7 @@ export const UserReducer = (
   state = {
     isLoggedIn: false,
     token: null,
+    shop: 3
   }, action
 ) => {
   switch (action.type) {

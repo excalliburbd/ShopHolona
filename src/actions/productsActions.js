@@ -59,3 +59,25 @@ export const getSubSubCategory = (id, subID )=> dispatch => {
             }
           );
 }
+
+export const saveProduct = (obj, shop, token) => dispatch => {
+  fetch(`http://shophobe-development.herokuapp.com/api/vendors/shops/${shop}/products/`, {
+            method: 'post',
+            body: JSON.stringify(obj),
+            mode: 'cors',
+            headers: {
+              "Accept": "application/json",
+              'Content-type': 'application/json; charset=utf-8',
+              'Authorization': `JWT ${token}`
+            },
+          }).then(
+            res => res.json()
+          ).then(
+            res => {
+              dispatch({
+                type: 'DONE_API_ADD_PRODUCT',
+                payload: res,
+              })
+            }
+          );
+}

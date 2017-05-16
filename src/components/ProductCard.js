@@ -28,10 +28,11 @@ const ProductCard = ({
   productImg = 'https://unsplash.it/480/480',
   productThumb = 'https://unsplash.it/100',
   name = 'Product Name',
-  price = '10000'
+  price = '10000',
+  handleShowDetails,
 }) => {
   return (
-    <Card className="ProductCard">
+    <Card className="ProductCard" onClick={ handleShowDetails }>
       <CardMedia aspectRatio="square"
                   image={ productImg } />
       <div className="ProductCard-price">

@@ -1,9 +1,17 @@
-.rating-stars .material-icons {
+.Stars .material-icons {
   font-size: 18px;
 }
 
+.Stars-active {
+  color: orange;
+}
+
+.Stars-inactive {
+  color: dimgrey;
+}
+
 @media screen and (min-width: 600px) {
-  .rating-stars .material-icons {
+  .Stars .material-icons {
     font-size: 24px;
   }
 

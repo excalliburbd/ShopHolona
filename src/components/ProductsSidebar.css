@@ -1,5 +1,8 @@
-.ProductsSidebar-add {
+.ProductsSidebar-add,
+.ProductsSidebar-add--stock,
+.ProductsSidebar-img {
   padding: 1em;
+  padding-top: 0;
 }
 
 .ProductsSidebar-add .hC5Z2._2Agdx._2CPs4 {
@@ -30,3 +33,64 @@
   margin: 0;
 }
 
+.ProductsSidebar-add-attributes--card .ZoLIG {
+  margin-left: auto;
+}
+
+.ProductsSidebar-add--products,
+.ProductsSidebar-add--stock,
+.ProductsSidebar-img {
+  display: flex;
+  flex-direction: column;
+}
+
+.ProductsSidebar-add-actions {
+  margin-left: auto;
+  margin-top: 1em;
+}
+
+.ProductsSidebar-add .ProductsSidebar-add--color{
+  box-shadow: var(--shadow-4p);
+}
+
+.ProductsSidebar-img-dropzone {
+  height: 6em;
+  width:  4em;
+  margin: .5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: #ccc dotted;
+  color: #ccc;
+}
+
+.ProductsSidebar-img-variants--title {
+  display: flex;
+  align-items: center;
+}
+
+.ProductsSidebar-img-variants--title h4 {
+  margin-left: .5em;
+}
+
+.ProductsSidebar-img-variants--content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ProductsSidebar-add .lFVgC {
+  padding-bottom: 0;
+}
+
+.ProductsSidebar-add--radio {
+  display: flex;
+
+}
+
+.ProductsSidebar-add--radio ._36UDg {
+  margin-left: .5em;
+}
+.ProductsSidebar-img h3 {
+  margin: 0;
+}

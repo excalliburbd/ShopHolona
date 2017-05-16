@@ -8,18 +8,24 @@ const Stars = ({
   rating
 }) => {
 
+  if(rating > 5) {
+    rating = 5;
+  }
+
   const iconsArray = [];
 
   for(let i=0; i<rating; i++) {
-    iconsArray.push(<FontIcon value="star" key={ i }/>);
+    iconsArray.push(<FontIcon value="star" key={ i } className="Stars-active"/>);
+  }
+
+  for(let i=rating; i < 5; i++) {
+    iconsArray.push(<FontIcon value="star" key={ i } className="Stars-inactive"/>);
   }
 
   return (
-    <span style={{ color: 'orange' }}>
-      <div className="rating-stars">{ iconsArray }</div>
-    </span>
-
-
+    <div className="Stars">
+      { iconsArray }
+    </div>
   );
 }
 

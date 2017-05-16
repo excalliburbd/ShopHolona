@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import { FilterUIReducer } from './filterUIReducer';
 import { OrdersReducer, OrdersEntityReducer } from './ordersReducers';
 import { UserReducer, UserUIReducer } from './usersReducers';
-import { ProductsReducer, ProductsEntityReducer } from './productsReducers';
+import { ProductsReducer, ProductsEntityReducer, ProductsUIReducer } from './productsReducers';
 import { BackOfficeUIReducer } from './backOfficeReducers';
 import { CategoriesEntityReducer, CategoriesUIReducer } from './categoriesReducers';
 
@@ -32,6 +32,7 @@ const SidebarUIReducer = (
   state = {
     show: false,
     type: null,
+    subType: null,
     radio: 'NONE'
   }, action
 ) => {
@@ -46,13 +47,30 @@ const SidebarUIReducer = (
       return {
         ...state,
         show: true,
-        type: 'ADD_PRODUCT'
+        type: 'ADD_PRODUCT',
+        subType: 'ADD_PRODUCT'
+      }
+    case 'SHOW_SIDEBAR_ADD_PRODUCT_STOCK':
+      return {
+        ...state,
+        show: true,
+        type: 'ADD_PRODUCT',
+        subType: 'ADD_PRODUCT_STOCK'
+      }
+    case 'SHOW_SIDEBAR_ADD_PRODUCT_IMAGES':
+      return {
+        ...state,
+        show: true,
+        type: 'ADD_PRODUCT',
+        subType: 'ADD_PRODUCT_IMAGES'
       }
     case 'HIDE_SIDEBAR':
       return {
         ...state,
         show: false,
         type: null,
+        subType: null,
+        radio: 'NONE'
       }
     case 'SET_SIDEBAR_UI_RADIO_VALUE':
       return {
@@ -112,6 +130,7 @@ const RootReducer = combineReducers({
     user: UserUIReducer,
     shopPage: ShopPageUIReducer,
     categories: CategoriesUIReducer,
+    product: ProductsUIReducer,
   })
 });
 

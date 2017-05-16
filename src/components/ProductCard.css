@@ -4,6 +4,7 @@
   width: 11em;
   margin: 1em 0.5em;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 .ShopPage-products--list .ProductCard {

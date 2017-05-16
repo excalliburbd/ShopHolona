@@ -102,10 +102,9 @@ const Nav = ({
         </div>
       </Panel>
 
-      <Sidebar pinned={ showSidebar } scrollY className="Navigation-sidebar" >
+      <Sidebar pinned={ showSidebar } className="Navigation-sidebar" >
         <div className="Navigation-sidebar-action">
           <IconButton icon='close' onClick={ handleHideSidebar }/>
-          <Button label="Done" icon="done" flat />
         </div>
         <div className="Navigation-sidebar-content">
           <SidebarContent />

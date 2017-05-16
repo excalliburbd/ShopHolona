@@ -1,3 +1,13 @@
+const getDecrement = stock => {
+  const decrement = parseInt(stock, 10) - 1;
+
+  if(decrement < 0) {
+    return 0;
+  }
+
+  return decrement;
+}
+
 export const CategoriesEntityReducer = (
   state = {
     categories: {},
@@ -68,6 +78,7 @@ export const CategoriesUIReducer = (
     attributes: {
       primary: [],
       secondary: {},
+      selected: -1,
     }
   } , action
 ) => {
@@ -92,7 +103,7 @@ export const CategoriesUIReducer = (
 
       action.payload.attributes.forEach(
         attribute => {
-          primary.push({ ...attribute, selected: false });
+          primary.push({ ...attribute, selected: false, files: [], images: [] });
         }
       )
 
@@ -132,48 +143,28 @@ export const CategoriesUIReducer = (
           secondary: nestedAttr,
         }
       }
-
+    case 'SET_UI_PRIMARY_ATTR_SELECTED':
+      return {
+          ...state,
+          attributes: {
+            ...state.attributes,
+            selected: action.payload.id
+          }
+        }
     case 'SET_UI_PRIMARY_ATTR':
-      let primaryArr = [];
-
-      if(action.payload.obj.selected === true) {
-        primaryArr = state.attributes.primary.map(
-                  attribute => ((attribute.id === action.payload.obj.id)? ({
-                    ...action.payload.obj,
-                    selected: !action.payload.obj.selected
-                  }): attribute)
-                )
-
-        return {
-            ...state,
-            attributes: {
-              ...state.attributes,
-              primary: [
-                ...primaryArr
-              ]
-            }
+      return {
+          ...state,
+          attributes: {
+            ...state.attributes,
+            primary: state.attributes.primary.map(
+              (obj, key) => ({
+                ...obj,
+                selected: (action.payload.id === obj.id) ? true : state.attributes.primary[key].selected
+              })
+            )
           }
-      } else {
-        primaryArr = state.attributes.primary.filter(
-                  attribute => (attribute.id !== action.payload.obj.id)
-                )
-
-        return {
-            ...state,
-            attributes: {
-              ...state.attributes,
-              primary: [
-                {
-                  ...action.payload.obj,
-                  selected: true,
-                },
-                ...primaryArr
-              ]
-            }
-          }
-      }
+        }
     case 'SET_UI_SECONDARY_ATTR':
-      console.log(action)
       return {
         ...state,
         attributes: {
@@ -202,6 +193,7 @@ export const CategoriesUIReducer = (
         attributes: {
           primary: [],
           secondary: [],
+          selected: -1,
         }
       }
     case 'UPDATE_UI_CATEGORY_STOCK':
@@ -217,6 +209,25 @@ export const CategoriesUIReducer = (
                                 (attribute, key) => ({
                                   ...attribute,
                                   stock: (key === action.payload.key ) ? action.payload.value : attribute.stock
+                                })
+                              )
+            }
+          }
+        }
+      }
+    case 'VALIDATE_UI_CATEGORY_STOCK':
+      return {
+        ...state,
+        attributes: {
+          ...state.attributes,
+          secondary: {
+            ...state.attributes.secondary,
+            [action.payload.id]: {
+              ...state.attributes.secondary[action.payload.id],
+              attributes: state.attributes.secondary[action.payload.id].attributes.map(
+                                (attribute, key) => ({
+                                  ...attribute,
+                                  stock: (attribute.stock < 0 ) ? 0 : attribute.stock
                                 })
                               )
             }
@@ -254,13 +265,56 @@ export const CategoriesUIReducer = (
               attributes: state.attributes.secondary[action.payload.id].attributes.map(
                                 (attribute, key) => ({
                                   ...attribute,
-                                  stock: (key === action.payload.key ) ? ( parseInt(attribute.stock, 10) - 1) : attribute.stock
+                                  stock: (key === action.payload.key ) ?
+                                            getDecrement(attribute.stock)
+                                          : attribute.stock
                                 })
                               )
             }
           }
         }
       }
+    case 'SET_CATEGORIES_PRODUCT_IMAGES':
+      return {
+        ...state,
+        attributes: {
+          ...state.attributes,
+          primary: state.attributes.primary.map(
+            (obj, key) => {
+              if(obj.id === action.payload.id ) {
+                return {
+                  ...obj,
+                  files: [
+                    ...obj.files,
+                    ...action.payload.files,
+                  ]
+                }
+              }
+
+              return obj;
+            }
+          )
+        }
+      }
+    case 'REMOVE_CATEGORIES_PRODUCT_IMAGE':
+      return {
+          ...state,
+          attributes: {
+            ...state.attributes,
+            primary: state.attributes.primary.map(
+              (obj, key) => {
+                if(obj.id === action.payload.id ) {
+                  return {
+                    ...obj,
+                    files: obj.files.filter( (img, key) => (key !== action.payload.key))
+                  }
+                }
+
+                return obj;
+              }
+            )
+          }
+        }
     default:
       return state;
   }

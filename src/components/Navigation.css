@@ -40,12 +40,11 @@
 }
 
 .Navigation-sidebar-action {
-  position: fixed;
+  position: absolute;
   top: 5em;
   display: flex;
   justify-content: space-between;
   width: 100%;
-  align-items: center;
 }
 
 .Navigation-sidebar-content {

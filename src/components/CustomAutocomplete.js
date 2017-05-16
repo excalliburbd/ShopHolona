@@ -12,7 +12,7 @@ class CustomAutocomplete  extends Component {
     this.state = {
       suggestions: false,
       list: this.props.source.list,
-      value: '',
+      value: this.props.value || '',
     }
   }
 
@@ -29,6 +29,7 @@ class CustomAutocomplete  extends Component {
     return (
       <div className={ autoObj }>
         <Input type='text'
+              required
               label={ label }
               onChange={
                 input => {
@@ -43,11 +44,12 @@ class CustomAutocomplete  extends Component {
                 this.setState({
                   suggestions: false,
                 })
+                this.props.handleSetValue(this.state.value)
               }}
               onFocus={ () => {
                 this.setState({ suggestions: true })
               }} />
-        <ul className="_3-Nb6">
+        <ul className="CustomAutocomplete _3-Nb6">
           {
             this.state.list.map(
               (category, key) =>  <li className="_1erPE" key={ key }

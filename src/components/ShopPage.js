@@ -58,7 +58,6 @@ const ShopPage = ({
           <Stars rating="4" />
           <Button raised primary label="Follow" />
           <p className="ShopPage-details--text-desc">{shortDesc}</p>
-
         </div>
       </div>
       <div className="ShopPage-products">

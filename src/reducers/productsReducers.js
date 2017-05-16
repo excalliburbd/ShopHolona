@@ -9,6 +9,58 @@ export const ProductsReducer = (
   }
 }
 
+export const ProductsUIReducer = (
+  state = {
+    category: '',
+    subCategory: '',
+    subSubCategory: '',
+    name: '',
+    weight: '',
+    price: '',
+    description: '',
+  }, action
+) => {
+  switch(action.type) {
+    case 'SET_UI_PRODUCT_CATEGORY':
+      return {
+        ...state,
+        category: action.payload.value,
+      }
+    case 'SET_UI_PRODUCT_SUB_CATEGORY':
+      return {
+        ...state,
+        subCategory: action.payload.value,
+      }
+    case 'SET_UI_PRODUCT_SUB_SUB_CATEGORY':
+      return {
+        ...state,
+        subSubCategory: action.payload.value,
+      }
+    case 'SET_UI_PRODUCT_NAME':
+      return {
+        ...state,
+        name: action.payload.value,
+      }
+    case 'SET_UI_PRODUCT_WEIGHT':
+     return {
+        ...state,
+        weight: action.payload.value,
+      }
+    case 'SET_UI_PRODUCT_PRICE':
+      return {
+        ...state,
+        price: action.payload.value,
+      }
+    case 'SET_UI_PRODUCT_DESC':
+      return {
+        ...state,
+        description: action.payload.value,
+      }
+    default:
+      return state;
+  }
+}
+
 export const ProductsEntityReducer = (
   state = {
     1: [
