@@ -1,9 +1,25 @@
-import moment from 'moment';
 
-export const ProductsReducer = (
-  state = [1, 2, 3, 4] , action
+export const productsReducer = (
+  state = [
+
+  ] , action
 ) => {
   switch (action.type) {
+    case 'SET_PRODUCTS_ENTITIES':
+      const products = [];
+
+      action.payload.forEach(
+        product => {
+          if(state.indexOf(product.id) === -1) {
+            products.push(product.id)
+          }
+        }
+      )
+
+      return [
+        ...state,
+        ...products,
+      ]
     default:
       return state;
   }
@@ -61,141 +77,30 @@ export const ProductsUIReducer = (
   }
 }
 
-export const ProductsEntityReducer = (
+export const productsEntityReducer = (
   state = {
-    1: [
-      {
-        value: moment().format('DD-MM-YYYY'),
-        field: '#',
-      },
-      {
-        value: 1,
-        field: 'Name',
-      },
-      {
-        value: 'Mr. X',
-        field: 'Price',
-      },
-      {
-        value: 123,
-        field: 'Views',
-      },
-      {
-        value: moment().format('DD-MM-YYYY'),
-        field: 'Tags',
-      },
-      {
-        value: 1,
-        field: 'Date Added',
-      },
-    ],
-    1: [
-      {
-        value: moment().format('DD-MM-YYYY'),
-        field: '#',
-      },
-      {
-        value: 1,
-        field: 'Name',
-      },
-      {
-        value: 'Mr. X',
-        field: 'Price',
-      },
-      {
-        value: 123,
-        field: 'Views',
-      },
-      {
-        value: moment().format('DD-MM-YYYY'),
-        field: 'Tags',
-      },
-      {
-        value: 1,
-        field: 'Date Added',
-      },
-    ],
-    2: [
-      {
-        value: moment().format('DD-MM-YYYY'),
-        field: '#',
-      },
-      {
-        value: 1,
-        field: 'Name',
-      },
-      {
-        value: 'Mr. X',
-        field: 'Price',
-      },
-      {
-        value: 123,
-        field: 'Views',
-      },
-      {
-        value: moment().format('DD-MM-YYYY'),
-        field: 'Tags',
-      },
-      {
-        value: 1,
-        field: 'Date Added',
-      },
-    ],
-    3: [
-      {
-        value: moment().format('DD-MM-YYYY'),
-        field: '#',
-      },
-      {
-        value: 1,
-        field: 'Name',
-      },
-      {
-        value: 'Mr. X',
-        field: 'Price',
-      },
-      {
-        value: 123,
-        field: 'Views',
-      },
-      {
-        value: moment().format('DD-MM-YYYY'),
-        field: 'Tags',
-      },
-      {
-        value: 1,
-        field: 'Date Added',
-      },
-    ],
-    4: [
-      {
-        value: moment().format('DD-MM-YYYY'),
-        field: '#',
-      },
-      {
-        value: 1,
-        field: 'Name',
-      },
-      {
-        value: 'Mr. X',
-        field: 'Price',
-      },
-      {
-        value: 123,
-        field: 'Views',
-      },
-      {
-        value: moment().format('DD-MM-YYYY'),
-        field: 'Tags',
-      },
-      {
-        value: 1,
-        field: 'Date Added',
-      },
-    ],
+
   }, action
 ) => {
   switch (action.type) {
+    case 'SET_PRODUCTS_ENTITIES':
+      const products = {};
+
+      action.payload.forEach(
+        product => {
+
+          products[product.id] = {
+            ...product,
+            weight: product.variances[0].attributes[0].weight,
+            price: product.variances[0].attributes[0].price
+          }
+        }
+      )
+
+      return {
+        ...state,
+        ...products
+      }
     default:
       return state;
   }

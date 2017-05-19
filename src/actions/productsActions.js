@@ -60,6 +60,35 @@ export const getSubSubCategory = (id, subID )=> dispatch => {
           );
 }
 
+
+export const getAllProducts = shop  => dispatch => {
+
+  dispatch({
+    type: 'START_API_GET_PRODUCT',
+  })
+
+  fetch(`http://shophobe-development.herokuapp.com/api/shops/${shop}/products/`, {
+            mode: 'cors',
+            headers: {
+              "Accept": "application/json",
+              'Content-type': 'application/json; charset=utf-8',
+            },
+          }).then(
+            res => res.json()
+          ).then(
+            res => {
+              dispatch({
+                type: 'DONE_API_GET_PRODUCT',
+              })
+
+              dispatch({
+                type: 'SET_PRODUCTS_ENTITIES',
+                payload: res,
+              })
+            }
+          );
+}
+
 export const saveProduct = (obj, shop, token) => dispatch => {
   fetch(`http://shophobe-development.herokuapp.com/api/vendors/shops/${shop}/products/`, {
             method: 'post',
@@ -77,7 +106,55 @@ export const saveProduct = (obj, shop, token) => dispatch => {
               dispatch({
                 type: 'DONE_API_ADD_PRODUCT',
                 payload: res,
-              })
+              });
+
+              dispatch(getAllProducts(shop));
+            }
+          );
+}
+
+
+export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
+
+  dispatch({
+    type: 'POST_API_PRODUCT_IMGAE',
+  })
+
+  const request = new FormData();
+
+  request.append('image', obj.file);
+  request.append('alt_tag', obj.tag);
+
+  fetch(`http://shophobe-development.herokuapp.com/api/vendors/shops/${shop}/images/`, {
+            method: 'post',
+            body: request,
+            headers: {
+              'Authorization': `JWT ${token}`,
+            },
+          }).then(
+            res => res.json()
+          ).then(
+            res => {
+              if(res.id){
+                dispatch({
+                  type: 'POST_API_PRODUCT_IMGAE_DONE',
+                  payload: { response: res, id, key }
+                })
+              }else{
+                console.log(res)
+
+                dispatch({
+                  type: 'POST_API_PRODUCT_IMGAE_ERROR',
+                  payload: { response: res, id, key }
+                })
+              }
+
+              if(status === 'DONE') {
+                dispatch({
+                  type: 'INVALIDATE_PRODUCT_IMGAES',
+                  payload: { id, key }
+                })
+              }
             }
           );
 }

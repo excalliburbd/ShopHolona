@@ -2,7 +2,12 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import Fuse from 'fuse.js';
 
-import { getSubCategory, getSubSubCategory, saveProduct } from '../actions/productsActions';
+import {
+  getSubCategory,
+  getSubSubCategory,
+  saveProduct,
+  postImage,
+} from '../actions/productsActions';
 
 import ProductsSidebar from '../components/ProductsSidebar';
 
@@ -117,20 +122,24 @@ const getFinishedProduct = createSelector(
                    ({ selected }) => selected
                  )
                  .map(
-                   ({ id, images }) => ({
-                     type: id,
-                     images,
-                     attributes: secondary[id].attributes
-                                 .filter( ({ selected }) => selected )
-                                 .map(
-                                  ({ attributeID, stock}) => ({
-                                    type: attributeID,
-                                    description,
-                                    weight,
-                                    price,
-                                    stock,
-                                  })
-                                 )
+                   obj => ({
+                     type: obj.id,
+                     images: obj.files
+                             .filter( ({ apiError }) => !apiError )
+                             .map(
+                               ({ apiID }) => apiID
+                             ),
+                     attributes: secondary[obj.id].attributes
+                                                  .filter( ({ selected }) => selected )
+                                                  .map(
+                                                    ({ attributeID, stock}) => ({
+                                                      type: attributeID,
+                                                      description,
+                                                      weight,
+                                                      price,
+                                                      stock,
+                                                    })
+                                                  )
                    })
                  )
 
@@ -292,14 +301,42 @@ const mapDispatchToProps = (dispatch, ownProps) => {
          break;
       }
     },
-    handleFiles: (id, files) => {
+    handleFiles: (id, oldFiles, newFiles, name, shop, token) => {
       dispatch({
         type: 'SET_CATEGORIES_PRODUCT_IMAGES',
         payload: {
           id,
-          files,
+          files: newFiles,
         }
       })
+
+      newFiles.forEach(
+        (file, key) => {
+          if( key === (newFiles.lenght - 1)) {
+            dispatch(
+              postImage(
+                token,
+                shop,
+                { file, tag: `${file.name.toLowerCase().split(' ').join('_')}_${key}` },
+                id,
+                (key + oldFiles.length),
+                'DONE'
+              )
+            )
+          } else {
+            dispatch(
+              postImage(
+                token,
+                shop,
+                { file, tag: `${file.name.toLowerCase().split(' ').join('_')}_${key}` },
+                id,
+                (key + oldFiles.length),
+                'NEXT'
+              )
+            )
+          }
+        }
+      )
     },
     handleRemoveImg: (id, key) => {
       dispatch({

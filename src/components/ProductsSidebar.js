@@ -219,15 +219,15 @@ const ProductsSidebar = ({
                                       </div>
                                       <div className="ProductsSidebar-img-variants--content">
                                         <Dropzone className="ProductsSidebar-img-dropzone"
-                                                  onDrop={ files => handleFiles(obj.id, files) }>
+                                                  onDrop={ files => handleFiles(obj.id, obj.files, files, productName, shop, token) }>
                                           <FontIcon value='add' />
                                         </Dropzone>
                                         {
                                           obj.files.map(
-                                            ({ preview }, key) => <div  onClick={ () => handleRemoveImg(obj.id, key) }
+                                            (file, key) => <div  onClick={ () => handleRemoveImg(obj.id, key) }
                                                                         key={ key }
                                                                         style={{
-                                                                          background: `url(${ preview }) no-repeat center center`,
+                                                                          background: `url(${ file.preview }) no-repeat center center`,
                                                                           height: '6em',
                                                                           width: '4em',
                                                                           margin: '.5em',

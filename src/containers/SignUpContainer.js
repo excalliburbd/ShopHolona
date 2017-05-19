@@ -11,6 +11,8 @@ const mapStateToProps = state => {
     phone: state.ui.user.phone,
     phonePassword: state.ui.user.phonePassword,
     error: state.ui.user.error,
+    token: state.user.token,
+    shop: state.user.shop,
   }
 }
 

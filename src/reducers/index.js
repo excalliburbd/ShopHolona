@@ -3,9 +3,9 @@ import { combineReducers } from 'redux';
 import { FilterUIReducer } from './filterUIReducer';
 import { OrdersReducer, OrdersEntityReducer } from './ordersReducers';
 import { UserReducer, UserUIReducer } from './usersReducers';
-import { ProductsReducer, ProductsEntityReducer, ProductsUIReducer } from './productsReducers';
+import { productsReducer, productsEntityReducer, ProductsUIReducer } from './productsReducers';
 import { BackOfficeUIReducer } from './backOfficeReducers';
-import { CategoriesEntityReducer, CategoriesUIReducer } from './categoriesReducers';
+import { categoriesReducer, CategoriesEntityReducer, CategoriesUIReducer } from './categoriesReducers';
 
 const NavigationUIReducer = (
   state = {
@@ -104,9 +104,34 @@ const ShopPageReducer = (
     name: 'Real Shop',
     shortDescription: 'We are the real shop man. We are like, really real',
     longDescription: 'We are like, really really really really really really really really really really really really really really really really really really really really really really really really really really really real',
+    categories: {
+
+    },
+    chip: 0,
   }, action
 ) => {
   switch (action.type) {
+    case 'SET_SHOP_CATEGORY':
+      const categories = {}
+
+      action.payload.forEach(
+        obj => {
+          categories[obj.id] = obj
+        }
+      )
+
+      return {
+        ...state,
+        categories: {
+          ...state.categories,
+          ...categories
+        }
+      }
+    case 'UPDATE_SHOP_CHIP':
+      return {
+        ...state,
+        chip: action.payload,
+      }
     default:
       return state;
   }
@@ -115,11 +140,12 @@ const ShopPageReducer = (
 const RootReducer = combineReducers({
   user: UserReducer,
   shop: ShopPageReducer,
-  products: ProductsReducer,
+  categories: categoriesReducer,
+  products: productsReducer,
   orders: OrdersReducer,
   entities: combineReducers({
     orders: OrdersEntityReducer,
-    products: ProductsEntityReducer,
+    products: productsEntityReducer,
     categoryEntities: CategoriesEntityReducer,
   }),
   ui: combineReducers({

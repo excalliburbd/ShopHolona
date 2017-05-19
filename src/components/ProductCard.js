@@ -24,23 +24,28 @@ import Stars from './Stars';
 import './ProductCard.css';
 
 const ProductCard = ({
-  rating = 1,
+  rating = 3,
   productImg = 'https://unsplash.it/480/480',
-  productThumb = 'https://unsplash.it/100',
   name = 'Product Name',
   price = '10000',
   handleShowDetails,
+  variances,
 }) => {
+  if(variances[0].images[0]){
+    productImg = variances[0].images[0].image
+  }
+
   return (
     <Card className="ProductCard" onClick={ handleShowDetails }>
       <CardMedia aspectRatio="square"
                   image={ productImg } />
       <div className="ProductCard-price">
         {/*<img className="price-tag" src={PriceTag} alt="Price Tag" width="50" height="50"/>*/}
-        <div className="price-tag"></div>
-        <h2 className="product-price">
+        <div className="price-tag">
+          <h2 className="product-price">
           <img className="price-symbol" src={Taka} alt="BDT"/>
           { price }</h2>
+        </div>
       </div>
       <div className="ProductCard-details">
         <h3 className="ProductCard-details-name">{ name }</h3>

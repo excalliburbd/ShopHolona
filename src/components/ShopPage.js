@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 
 import Card from 'react-toolbox/lib/card/Card';
@@ -26,76 +26,94 @@ import FeaturedSlider from './FeaturedSlider';
 
 import './ShopPage.css'
 
-const ShopPage = ({
-  catagories,
-  categoryIndex,
-  handleCategorySelect,
-  toggleDetails,
-  details,
-  shopName,
-  shortDesc
-}) => {
+class ShopPage extends Component {
+  constructor(props) {
+    super(props);
 
-  const detailsClass = classNames({
-    'ShopPage-details': true,
-    'ShopPage-details--show': details,
-  });
+    this.state = {
 
-  return (
-    <div className="ShopPage">
-      <div className="ShopPage-banner" />
-      <div className={ detailsClass }>
-        <div className="ShopPage-banner">
+    }
+  }
+
+  componentWillMount() {
+    const {
+      shop,
+    } = this.props;
+
+    this.props.getShopCategories(
+      shop
+    );
+
+    this.props.getAllProducts(
+      shop,
+    );
+  }
+
+  render() {
+    const {
+      toggleDetails,
+      details,
+      shopName,
+      shortDesc,
+      products,
+      selectedChip,
+      selectChip,
+    } = this.props;
+
+    const detailsClass = classNames({
+      'ShopPage-details': true,
+      'ShopPage-details--show': details,
+    });
+
+    return (
+      <div className="ShopPage">
+        <div className="ShopPage-banner" />
+        <div className={ detailsClass }>
+          <div className="ShopPage-banner">
+            <div className="ShopPage-details-img" />
+          </div>
+          <IconButton icon={ (details) ? 'close' :'keyboard_arrow_down'}
+                      className="ShopPage-details--toggle"
+                      onClick={ toggleDetails }/>
           <div className="ShopPage-details-img" />
-        </div>
-        <IconButton icon={ (details) ? 'close' :'keyboard_arrow_down'}
-                    className="ShopPage-details--toggle"
-                    onClick={ toggleDetails }/>
-        <div className="ShopPage-details-img" />
-        <div className="ShopPage-details-description">
-          <h2 className="ShopPage-details--text">{ shopName }</h2>
-          <p className="ShopPage-details--text">Address</p>
-          <Stars rating="4" />
-          <Button raised primary label="Follow" />
-          <p className="ShopPage-details--text-desc">{shortDesc}</p>
-        </div>
-      </div>
-      <div className="ShopPage-products">
-        <div className="ShopPage-featured">
-          <FeaturedSlider />
-        </div>
-        <div className="ShopPage-products--container">
-          <div className="ShopPage-banner" />
-          <div className="ShopPage-products--categories">
-            <Chip>Chip</Chip>
-            <Chip>Chip</Chip>
-            <Chip>Chip</Chip>
-            <Chip>Chip</Chip>
-            <Chip>Chip</Chip>
-            <Chip>Chip</Chip>
+          <div className="ShopPage-details-description">
+            <h2 className="ShopPage-details--text">{ shopName }</h2>
+            <p className="ShopPage-details--text">Address</p>
+            <Stars rating="4" />
+            <Button raised primary label="Follow" />
+            <p className="ShopPage-details--text-desc">{shortDesc}</p>
           </div>
-          <div className="ShopPage-products--content">
-            <div className="ShopPage-products--list">
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
+        </div>
+        <div className="ShopPage-products">
+          <div className="ShopPage-featured">
+            <FeaturedSlider />
+          </div>
+          <div className="ShopPage-products--container">
+            <div className="ShopPage-banner" />
+            <div className="ShopPage-products--categories">
+              {
+                products.map(
+                  (obj, key) => <Chip onClick={ () => selectChip(key) } key={key}>
+                                  { obj.name }
+                                </Chip>
+                )
+              }
             </div>
-            <div className="emptydiv-phone"></div>
+            <div className="ShopPage-products--content">
+              <div className="ShopPage-products--list">
+                {
+                  products[selectedChip].products.map(
+                    (porduct, key) => <ProductCard { ...porduct } key={ key }/>
+                  )
+                }
+              </div>
+              <div className="emptydiv-phone"></div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    )
+  }
 }
 
 export default ShopPage;

@@ -19,7 +19,7 @@ const NavigationDrawer = ({
   history,
 }) => {
   return (
-  <NavDrawer pinned={ pinned } className="Navigation-sidebar">
+  <NavDrawer pinned={ pinned } className="Navigation-drawer">
       <List selectable >
         <div className="Navigation-filler--div" />
         {

@@ -8,6 +8,33 @@ const getDecrement = stock => {
   return decrement;
 }
 
+export const categoriesReducer = (
+  state = [
+
+  ],
+  action
+) => {
+  switch (action.type) {
+    case 'SET_API_SUB_SUB_CATEGORIES':
+      const categories = [];
+
+      action.payload.forEach(
+        category => {
+          if(state.indexOf(category.id) === -1) {
+            categories.push(category.id)
+          }
+        }
+      )
+
+      return [
+        ...state,
+        ...categories,
+      ]
+    default:
+      return state;
+  }
+}
+
 export const CategoriesEntityReducer = (
   state = {
     categories: {},
@@ -65,6 +92,23 @@ export const CategoriesEntityReducer = (
           ...subSubCategories
         }
       }
+     case 'SET_API_SUB_SUB_CATEGORIES':
+      const apiSubSubCategories = {};
+
+      action.payload.sub_categories.forEach(
+        category => {
+          apiSubSubCategories[category.id] = category;
+        }
+      )
+
+      return {
+        ...state,
+        subSubCategories : {
+          ...state.subSubCategories,
+          ...apiSubSubCategories
+        }
+      }
+
     default:
       return state;
   }
@@ -103,7 +147,7 @@ export const CategoriesUIReducer = (
 
       action.payload.attributes.forEach(
         attribute => {
-          primary.push({ ...attribute, selected: false, files: [], images: [] });
+          primary.push({ ...attribute, selected: false, files: [] });
         }
       )
 
@@ -286,11 +330,10 @@ export const CategoriesUIReducer = (
                   ...obj,
                   files: [
                     ...obj.files,
-                    ...action.payload.files,
+                    ...action.payload.files
                   ]
                 }
               }
-
               return obj;
             }
           )
@@ -306,15 +349,77 @@ export const CategoriesUIReducer = (
                 if(obj.id === action.payload.id ) {
                   return {
                     ...obj,
-                    files: obj.files.filter( (img, key) => (key !== action.payload.key))
+                    files: obj.files.filter(
+                      ( imgObj, key) => (key !== action.payload.key)
+                    )
                   }
                 }
-
                 return obj;
               }
             )
           }
         }
+    case 'POST_API_PRODUCT_IMGAE_DONE':
+      return {
+            ...state,
+            attributes: {
+              ...state.attributes,
+              primary: state.attributes.primary.map(
+                (obj, key) => {
+                  if(obj.id === action.payload.id ) {
+                    return {
+                      ...obj,
+                      files: obj.files.map(
+                        (file, key) => {
+                          if(key === action.payload.key) {
+                            return {
+                              ...file,
+                              apiID: action.payload.response.id,
+                              apiError: false,
+                            }
+                          }
+
+                          return file;
+                        }
+                      )
+                    }
+                  }
+
+                  return obj;
+                }
+              )
+            }
+          }
+    case 'POST_API_PRODUCT_IMGAE_ERROR':
+      return {
+            ...state,
+            attributes: {
+              ...state.attributes,
+              primary: state.attributes.primary.map(
+                (obj, key) => {
+                  if(obj.id === action.payload.id ) {
+                    return {
+                      ...obj,
+                      files: obj.files.map(
+                        (file, key) => {
+                          if(key === action.payload.key) {
+                            return {
+                              ...file,
+                              apiID: null,
+                              apiError: false,
+                            }
+                          }
+
+                          return file;
+                        }
+                      )
+                    }
+                  }
+                  return obj;
+                }
+              )
+            }
+          }
     default:
       return state;
   }
