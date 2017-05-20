@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 
 export const getOrderList = ({ shopId, token }) => dispatch => {
 
-  fetch('/api/users/login/', {
+  fetch('http://shophobe-development.herokuapp.com/api/users/login/', {
             method: 'get',
             mode: 'cors',
             headers: {

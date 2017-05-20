@@ -23,6 +23,11 @@ export const UserReducer = (
         ...state,
         token: action.token,
       }
+    case 'USER_SET_PROFILE':
+      return {
+        ...state,
+        ...action.payload,
+      }
     default:
       return state;
   }

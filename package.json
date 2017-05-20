@@ -74,5 +74,5 @@
     ],
     "output": "public/react-toolbox"
   },
-  "proxy": "http://shophobe-development.herokuapp.com"
+  "homepage": "http://localhost/"
 }

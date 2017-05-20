@@ -5,3 +5,13 @@
 .Navigation--selected {
   background: #eee;
 }
+
+.Navigation ._1sAOY.Navigation-drawer {
+  width: 4em;
+}
+
+@media screen and (min-width: 600px) {
+  .Navigation ._1sAOY.Navigation-drawer {
+    width: 10em;
+  }
+}

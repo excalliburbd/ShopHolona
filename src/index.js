@@ -24,8 +24,6 @@ import './index.css';
 
 // maybeYouMeant();
 
-console.log(store.getState())
-
 ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>

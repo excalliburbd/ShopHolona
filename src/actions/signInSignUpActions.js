@@ -28,11 +28,33 @@ export const trySignInAsyncAction = ({ email, password }) => dispatch => {
             res => res.json()
           ).then(
             res => {
+              fetch('http://shophobe-development.herokuapp.com/api/me', {
+                headers: {
+                    "Accept": "application/json",
+                    'Content-type': 'application/json; charset=utf-8',
+                    'Authorization': `JWT ${res.token}`,
+                  },
+              })
+              .then(
+                res => res.json()
+              ).then(
+                res => {
+                  if (res.id) {
+                    dispatch({
+                      type: 'USER_SET_PROFILE',
+                      payload: res,
+                    });
+                  }
+                }
+              )
+
               if(res.token){
                 dispatch({
                   type: 'USER_SET_TOKEN',
                   token: res.token,
                 });
+
+
 
                 dispatch({
                   type: 'HIDE_SIDEBAR',
