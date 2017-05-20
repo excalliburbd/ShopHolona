@@ -20,12 +20,15 @@
     "react-router-dom": "^4.0.0",
     "recharts": "^0.22.0",
     "redux": "^3.6.0",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-offline": "^2.0.0",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.0"
   },
   "devDependencies": {
+    "gh-pages": "^1.0.0",
     "maybe-you-meant": "^0.1.1",
-    "react-scripts": "0.9.5",
+    "react-scripts": "1.0.0",
     "react-toolbox": "^2.0.0-beta.8",
     "react-toolbox-themr": "^1.0.2"
   },
@@ -70,5 +73,6 @@
       "TOOLTIP"
     ],
     "output": "public/react-toolbox"
-  }
+  },
+  "proxy": "http://shophobe-development.herokuapp.com"
 }

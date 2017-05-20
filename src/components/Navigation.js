@@ -75,7 +75,7 @@ const Nav = ({
       <AddButtonContainer history={ history }
                           location={ location } />
 
-      <NavigationDrawer pinned={ pinned } history={ history } />
+      <NavigationDrawer pinned={ pinned } history={ history } location={ location }/>
 
       <Panel className={ panelClass }>
 

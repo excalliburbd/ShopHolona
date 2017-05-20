@@ -1,10 +1,14 @@
 import { createStore, applyMiddleware, compose } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
+import { offline } from 'redux-offline';
+import defaultConfig from 'redux-offline/lib/defaults';
+
 import RootReducer from '../reducers';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-export default createStore(
+export default  offline(defaultConfig)(createStore)(
   RootReducer,
-  composeEnhancers(applyMiddleware(thunk))
+  composeWithDevTools(
+    applyMiddleware(thunk),
+  )
 );

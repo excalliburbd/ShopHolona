@@ -5,11 +5,13 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
 import maybeYouMeant from 'maybe-you-meant';
 
+import registerServiceWorker from './registerServiceWorker';
+
 import store from './store/configureStore';
 
-import theme from '../public/react-toolbox/theme';
+import theme from './react-toolbox/theme';
 
-import '../public/react-toolbox/theme.css';
+import './react-toolbox/theme.css';
 
 import Settings from './components/Settings';
 
@@ -21,6 +23,8 @@ import ShopPageContainer from './containers/ShopPageContainer';
 import './index.css';
 
 // maybeYouMeant();
+
+console.log(store.getState())
 
 ReactDOM.render(
   <Provider store={store}>
@@ -37,3 +41,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
+registerServiceWorker();

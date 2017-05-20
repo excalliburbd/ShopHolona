@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 
 export const getOrderList = ({ shopId, token }) => dispatch => {
 
-  fetch('http://192.168.1.21:8000/api/users/login/', {
+  fetch('/api/users/login/', {
             method: 'get',
             mode: 'cors',
             headers: {

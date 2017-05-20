@@ -17,6 +17,7 @@ import './NavigationDrawer.css';
 const NavigationDrawer = ({
   pinned,
   history,
+  location
 }) => {
   return (
   <NavDrawer pinned={ pinned } className="Navigation-drawer">

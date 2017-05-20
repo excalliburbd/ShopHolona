@@ -35,7 +35,7 @@ class ShopPage extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const {
       shop,
     } = this.props;
