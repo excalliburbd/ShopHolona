@@ -2,6 +2,10 @@
   height: 100vh;
 }
 
+.Navigation-panel._3aW3s {
+  right: 0px;
+}
+
 .Navigation-content {
   width: calc(100vw - 4em);
   padding-top: 4rem;
@@ -37,16 +41,25 @@
 
 .Navigation-sidebar-action {
   position: absolute;
-  top: 5em;
+  top: 4.2em;
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
 .Navigation-sidebar-content {
-  margin-top: 4em;
+  margin-top: 7em;
+  /*padding: 1em;*/
 }
 
+/*for phone*/
+@media screen and (max-width: 480px) {
+  ._1sAOY.Navigation-sidebar {
+    width: 100vw;
+  }
+}
+
+/*for desktop*/
 @media screen and (min-width: 600px) {
   .Navigation-content,
   .Navigation-content-main {
@@ -69,12 +82,12 @@
   .Navigation-panel-left {
     left: 10em;
   }
-}
-
-
-@media screen and (min-width: 600px) {
   ._1sAOY.Navigation-sidebar {
-    width: 22.5vw;
+    width: 20vw;
     padding-top: 4em;
   }
+  .Navigation-sidebar-content {
+    margin-top: 3em;
+  }
+
 }

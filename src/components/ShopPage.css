@@ -208,7 +208,7 @@
 
   .ShopPage-details {
     background-color: white;
-    width: 15vw;
+    width: 17vw;
     height: calc(100vh - 4em);
     color: dimgrey;
   }
@@ -221,12 +221,12 @@
   .ShopPage-featured {
     order: 1;
     height: calc(100vh - 4em);
-    width: 17.647vw;
+    width: 20vw;
   }
 
   .ShopPage-products--container {
     height: calc(100vh - 4em);
-    width: 70vw;
+    width: 63vw;
   }
 
   .ShopPage-products--container::-webkit-scrollbar {
