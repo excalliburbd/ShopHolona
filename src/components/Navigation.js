@@ -62,7 +62,7 @@ const Nav = ({
     switch(sidebarType){
       case 'SIGNIN':
         return <SignUpContainer />
-      case 'ADD_PRODUCT':
+      case 'PRODUCT':
         return <ProductsSidebarContainer />
       default:
         return null;

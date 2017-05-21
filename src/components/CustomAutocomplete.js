@@ -13,6 +13,9 @@ class CustomAutocomplete  extends Component {
       suggestions: false,
       list: this.props.source.list,
       value: this.props.value || '',
+      error: false,
+      errMsg: 'You must select a catagory from the list',
+      fromList: false,
     }
   }
 
@@ -31,20 +34,31 @@ class CustomAutocomplete  extends Component {
         <Input type='text'
               required
               label={ label }
+              error={ this.state.error && this.state.errMsg }
               onChange={
                 input => {
                   this.setState({
                     value: input,
-                    list: this.props.source.search(input)
+                    list: this.props.source.search(input),
+                    fromList: false,
                   })
                 }
               }
               value={ this.state.value }
               onBlur={ () => {
-                this.setState({
-                  suggestions: false,
-                })
-                this.props.handleSetValue(this.state.value)
+                if (this.props.selectionOnly && !this.state.fromList) {
+                  this.setState({
+                    suggestions: false,
+                    error: true,
+                    value: ''
+                  })
+                  this.props.handleSetValue('');
+                } else {
+                  this.setState({
+                    suggestions: false,
+                  })
+                  this.props.handleSetValue(this.state.value);
+                }
               }}
               onFocus={ () => {
                 this.setState({ suggestions: true })
@@ -56,6 +70,8 @@ class CustomAutocomplete  extends Component {
                                       onMouseDown={ () => {
                                         this.setState({
                                           value: category.name,
+                                          fromList: true,
+                                          error: false,
                                         });
                                         this.props.onSelected(category.id, category);
                                       }}>

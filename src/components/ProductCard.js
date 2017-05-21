@@ -30,13 +30,15 @@ const ProductCard = ({
   price = '10000',
   handleShowDetails,
   variances,
+  id,
+  vendor,
 }) => {
   if(variances[0].images[0]){
     productImg = variances[0].images[0].image
   }
 
   return (
-    <Card className="ProductCard" onClick={ handleShowDetails }>
+    <Card className="ProductCard" onClick={ () => handleShowDetails(id) }>
       <CardMedia aspectRatio="square"
                   image={ productImg } />
       <div className="ProductCard-price">
@@ -51,7 +53,7 @@ const ProductCard = ({
         <h3 className="ProductCard-details-name">{ name }</h3>
         <Stars rating={ rating } />
       </div>
-      <Button className="ProductCard-button" raised label="Add to Cart" />
+      <Button className="ProductCard-button" raised label={ vendor ? 'Edit Product' : 'Add to Cart' } />
     </Card>
   )
 }

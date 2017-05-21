@@ -6,7 +6,15 @@ import defaultConfig from 'redux-offline/lib/defaults';
 
 import RootReducer from '../reducers';
 
-export default  offline(defaultConfig)(createStore)(
+const offlineConfig = {
+  ...defaultConfig,
+  persistOptions: {
+    ...defaultConfig.persistOptions,
+    blacklist: ['userDetails', 'ui']
+  }
+}
+
+export default  offline(offlineConfig)(createStore)(
   RootReducer,
   composeWithDevTools(
     applyMiddleware(thunk),

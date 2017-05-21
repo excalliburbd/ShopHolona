@@ -25,6 +25,8 @@ const getProductWeight =  state => state.ui.product.weight;
 const getProductPrice =  state => state.ui.product.price;
 const getProductDescription =  state => state.ui.product.description;
 const getSubSubCategoryID = state => state.ui.categories.subSubCategoryID;
+const getCategoryID = state => state.ui.categories.categoryID;
+const getSubCategoryID = state => state.ui.categories.subCategoryID;
 
 const getFusedCategories = createSelector(
   [getCategoriesObj],
@@ -147,14 +149,21 @@ const getFinishedProduct = createSelector(
   }
 )
 
+const getShowProductDetails = createSelector(
+  [getCategoryID, getSubCategoryID],
+  (category, subCategory) => {
+    return (category && subCategory)
+  }
+)
+
 const mapStateToProps = state => {
   return {
     type: state.ui.sidebar.subType,
     categories: getFusedCategories(state),
     subCategories: getFusedSubCategories(state),
     subSubCategories: getFusedSubSubCategories(state),
-    categoryID: state.ui.categories.categoryID,
-    subCategoryID: state.ui.categories.subCategoryID,
+    categoryID: getCategoryID(state),
+    subCategoryID: getSubCategoryID(state),
     primaryAttributes: getPrimaryAttributes(state),
     secondaryAttributes: getSecondaryAttributes(state),
     radioValue: state.ui.sidebar.radio,
@@ -171,6 +180,15 @@ const mapStateToProps = state => {
     finishedProduct: getFinishedProduct(state),
     token: state.user.token,
     shop: state.user.shop,
+    productVariances: state.ui.product.selectedProduct.variances,
+    selectedVariance: state.ui.product.selectedVariance,
+    productDetailName: state.ui.product.selectedProduct.name,
+    productDetailWeight: state.ui.product.selectedProduct.weight,
+    productDetailPrice: state.ui.product.selectedProduct.price,
+    productDetailDescription: state.ui.product.selectedProduct.short_desc,
+    selectedProductId: state.ui.product.selectedProduct.id,
+    showProductDetails: getShowProductDetails(state),
+    temporaryAttribute: state.ui.categories.temporaryAttribute,
   }
 }
 
@@ -215,11 +233,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }
       });
     },
-    handleSelect: id => {
+    handleSelect: (key, id) => {
         dispatch({
           type: 'SET_UI_PRIMARY_ATTR_SELECTED',
-          payload: { id }
+          payload: { id: key }
         })
+        if (key === -1) {
+          dispatch({
+            type: 'UNSET_UI_PRIMARY_ATTR',
+            payload: { id }
+          })
+        }
     },
     handleAttributeSelect: (selected, id) => {
       dispatch({
@@ -347,9 +371,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }
       })
     },
-    handleManualInput: (type, value) => {
+    handleManualInput: (uiType, fieldType, value) => {
       dispatch({
-        type: `SET_UI_PRODUCT_${type}`,
+        type: `SET_UI_PRODUCT_${uiType}_${fieldType}`,
         payload: {
           value,
         }
@@ -357,6 +381,59 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     handleSaveProduct: (obj, shop, token) => {
       dispatch(saveProduct(obj, shop, token));
+
+      dispatch({
+        type: 'HIDE_SIDEBAR'
+      });
+    },
+    handleSelectVariance: key => {
+      dispatch({
+        type: 'SET_UI_PRODUCT_SELECTED_VARIANCE',
+        payload: key,
+      })
+    },
+    deleteProduct: id => {
+      dispatch({
+        type: 'DELETE_PRODUTCT_SELECTED',
+        payload: id,
+      })
+    },
+    handleAddVairace: () => {
+      dispatch({
+        type: 'ADD_UI_PRIMARY_ATTRIBUTE'
+      })
+    },
+    handleSetTemporaryAttribute: (type, value, attributes) => {
+      switch(type){
+        case 'KEY':
+          dispatch({
+            type: 'SET_UI_TEMP_ATTRIBUTE_KEY',
+            payload: value,
+          });
+          break;
+        case 'VALUE':
+          dispatch({
+            type: 'SET_UI_TEMP_ATTRIBUTE_VALUE',
+            payload: value,
+          })
+          break;
+        case 'STOCK':
+          dispatch({
+            type: 'SET_UI_TEMP_ATTRIBUTE_STOCK',
+            payload: value,
+          })
+          break;
+        case 'ADD':
+          if( attributes.key !== '' && attributes.value !== '') {
+            dispatch({
+              type: 'SET_UI_TEMP_ATTRIBUTE',
+              payload: value,
+            })
+          }
+          break;
+        default:
+          break;
+      }
     }
   }
 }

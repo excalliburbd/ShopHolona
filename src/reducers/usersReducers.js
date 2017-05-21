@@ -3,7 +3,8 @@ export const UserReducer = (
   state = {
     isLoggedIn: false,
     token: null,
-    shop: 3
+    shop: 3,
+    registered_as: null,
   }, action
 ) => {
   switch (action.type) {
@@ -14,9 +15,10 @@ export const UserReducer = (
       }
     case 'USER_MANUAL_SIGNOUT':
       return {
-        ...state,
         isLoggedIn: false,
         token: null,
+        registered_as: null,
+        shop: state.shop,
       }
     case 'USER_SET_TOKEN':
       return {

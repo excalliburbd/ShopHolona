@@ -10,6 +10,7 @@ const getProcutsArray = state => state.products;
 const getProcutEntities = state => state.entities.products;
 // const getCategoriesArray = state => state.categories;
 const getCategoriesEntities = state => state.shop.categories;
+const getUserDetails = state => state.user;
 
 const getCategories = createSelector(
   [getCategoriesEntities],
@@ -42,6 +43,17 @@ const getProducts = createSelector(
   }
 );
 
+const getVendors = createSelector(
+  [getUserDetails],
+  (user) => {
+    if(user.registered_as) {
+      return (user.registered_as === 1)
+    }
+
+    return false;
+  }
+);
+
 const mapStateToProps = state => {
   return {
     details: state.ui.shopPage.details,
@@ -52,6 +64,7 @@ const mapStateToProps = state => {
     shopCategories: getCategories(state),
     products: getProducts(state),
     selectedChip: state.shop.chip,
+    vendor: getVendors(state),
   }
 }
 
@@ -73,6 +86,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         type: 'UPDATE_SHOP_CHIP',
         payload: index,
       })
+    },
+    handleShowProductDetails: (vendor, product) => {
+      if (vendor) {
+        dispatch({
+        type: 'SHOW_SIDEBAR_PRODUCT_DETAILS',
+        payload: { product }
+      });
+      }
     }
   }
 }

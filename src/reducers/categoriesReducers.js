@@ -123,6 +123,10 @@ export const CategoriesUIReducer = (
       primary: [],
       secondary: {},
       selected: -1,
+    },
+    temporaryAttribute: {
+      key: '',
+      value: ''
     }
   } , action
 ) => {
@@ -172,6 +176,7 @@ export const CategoriesUIReducer = (
       state.attributes.primary.map(
             obj => ({
               id: obj.id,
+              custom: false,
               attributes: secondary,
             })
           ).forEach(
@@ -208,6 +213,19 @@ export const CategoriesUIReducer = (
             )
           }
         }
+    case 'UNSET_UI_PRIMARY_ATTR':
+      return {
+          ...state,
+          attributes: {
+            ...state.attributes,
+            primary: state.attributes.primary.map(
+              (obj, key) => ({
+                ...obj,
+                selected: (action.payload.id === obj.id) ? false : state.attributes.primary[key].selected
+              })
+            )
+          }
+        }
     case 'SET_UI_SECONDARY_ATTR':
       return {
         ...state,
@@ -227,6 +245,59 @@ export const CategoriesUIReducer = (
                               )
             }
           }
+        }
+      }
+    case 'ADD_UI_PRIMARY_ATTRIBUTE':
+      return {
+        ...state,
+        attributes: {
+          ...state.attributes,
+          primary: [
+            ...state.attributes.primary,
+            {
+              id: `custom${state.attributes.primary.length + 1}`,
+              name: `Custom Variance ${state.attributes.primary.length + 1}`,
+              value: `Custom Variance ${state.attributes.primary.length + 1}`,
+              selected: false,
+              files: []
+            }
+          ],
+          secondary: {
+            ...state.attributes.secondary,
+            [`custom${state.attributes.primary.length + 1}`]: {
+              id: `custom${state.attributes.primary.length + 1}`,
+              custom: true,
+              attributes: []
+            }
+          }
+        }
+      }
+    case 'SET_UI_TEMP_ATTRIBUTE':
+      return {
+        ...state,
+        attributes: {
+          ...state.attributes,
+          secondary: {
+            ...state.attributes.secondary,
+            [action.payload]: {
+              ...state.attributes.secondary[action.payload],
+              attributes: [
+                ...state.attributes.secondary[action.payload].attributes,
+                {
+                  id: `custom${state.attributes.secondary[action.payload].attributes}`,
+                  name: state.temporaryAttribute.key,
+                  value: state.temporaryAttribute.value,
+                  selected: true,
+                  stock: state.temporaryAttribute.stock
+                }
+              ]
+            }
+          }
+        },
+        temporaryAttribute: {
+          key: '',
+          value: '',
+          stock: 0,
         }
       }
     case 'HIDE_SIDEBAR':
@@ -420,6 +491,30 @@ export const CategoriesUIReducer = (
               )
             }
           }
+    case 'SET_UI_TEMP_ATTRIBUTE_KEY':
+      return {
+        ...state,
+        temporaryAttribute: {
+          ...state.temporaryAttribute,
+          key: action.payload
+        }
+      }
+    case 'SET_UI_TEMP_ATTRIBUTE_VALUE':
+      return {
+        ...state,
+        temporaryAttribute: {
+          ...state.temporaryAttribute,
+          value: action.payload
+        }
+      }
+    case 'SET_UI_TEMP_ATTRIBUTE_STOCK':
+      return {
+        ...state,
+        temporaryAttribute: {
+          ...state.temporaryAttribute,
+          stock: action.payload
+        }
+      }
     default:
       return state;
   }

@@ -1,6 +1,7 @@
 .ProductsSidebar-add,
 .ProductsSidebar-add--stock,
-.ProductsSidebar-img {
+.ProductsSidebar-img,
+.ProductSidebar-details {
   padding: 1em;
   padding-top: 0;
 }
@@ -94,3 +95,29 @@
 .ProductsSidebar-img h3 {
   margin: 0;
 }
+
+.ProductSidebar-details--images * {
+  min-height: 0;
+  min-width: 0;
+}
+
+.ProductSidebar-details--images {
+  margin: 0 auto;
+  background: #ccc;
+  height: 30vh;
+  width: 80%;
+
+}
+
+.ProductSidebar-details--images img {
+  height: 30vh;
+  margin: 0 auto;
+}
+.ProductSidebar-details--variance {
+  margin-top: 1em;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  width: 90%;
+}
+

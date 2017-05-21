@@ -2,10 +2,14 @@ import { combineReducers } from 'redux';
 
 import { FilterUIReducer } from './filterUIReducer';
 import { OrdersReducer, OrdersEntityReducer } from './ordersReducers';
-import { UserReducer, UserUIReducer } from './usersReducers';
+import { UserReducer, UserUIReducer, userDetailsReducer } from './usersReducers';
 import { productsReducer, productsEntityReducer, ProductsUIReducer } from './productsReducers';
 import { BackOfficeUIReducer } from './backOfficeReducers';
-import { categoriesReducer, CategoriesEntityReducer, CategoriesUIReducer } from './categoriesReducers';
+import {
+  categoriesReducer,
+  CategoriesEntityReducer,
+  CategoriesUIReducer
+} from './categoriesReducers';
 
 const NavigationUIReducer = (
   state = {
@@ -47,22 +51,29 @@ const SidebarUIReducer = (
       return {
         ...state,
         show: true,
-        type: 'ADD_PRODUCT',
+        type: 'PRODUCT',
         subType: 'ADD_PRODUCT'
       }
     case 'SHOW_SIDEBAR_ADD_PRODUCT_STOCK':
       return {
         ...state,
         show: true,
-        type: 'ADD_PRODUCT',
+        type: 'PRODUCT',
         subType: 'ADD_PRODUCT_STOCK'
       }
     case 'SHOW_SIDEBAR_ADD_PRODUCT_IMAGES':
       return {
         ...state,
         show: true,
-        type: 'ADD_PRODUCT',
+        type: 'PRODUCT',
         subType: 'ADD_PRODUCT_IMAGES'
+      }
+    case 'SHOW_SIDEBAR_PRODUCT_DETAILS':
+      return {
+        ...state,
+        show: true,
+        type: 'PRODUCT',
+        subType: 'SHOW_PRODUCT_DETAILS'
       }
     case 'HIDE_SIDEBAR':
       return {
