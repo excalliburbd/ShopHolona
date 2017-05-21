@@ -12,9 +12,9 @@ import {
 
 import ProductsSidebar from '../components/ProductsSidebar';
 
-const getCategoriesObj = state => state.entities.categoryEntities.categories;
-const getSubCategoriesObj = state => state.entities.categoryEntities.subCategories;
-const getSubSubCategoriesObj = state => state.entities.categoryEntities.subSubCategories;
+const getCategoriesObj = state => state.ui.categories.categories;
+const getSubCategoriesObj = state => state.ui.categories.subCategories;
+const getSubSubCategoriesObj = state => state.ui.categories.subSubCategories;
 const getPrimaryAttributes = state => state.ui.categories.attributes.primary;
 const getSecondaryAttributes = state => state.ui.categories.attributes.secondary;
 const getProductUIState = state => state.ui.product;
@@ -216,6 +216,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             type: 'SET_UI_SUB_SUB_CATEGORY',
             id
           });
+          dispatch({type: 'RESET_UI_PRODUCT_ADD_VALUES'});
           break;
         default:
       }
@@ -379,6 +380,25 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           value,
         }
       })
+      if(value === '') {
+        switch(fieldType) {
+          case 'CATEGORY':
+            dispatch({type: 'RESET_CATAGORIES'});
+            break;
+          case 'SUB_CATEGORY':
+            dispatch({type: 'RESET_SUB_CATAGORIES'});
+            dispatch({type: 'RESET_SUB_SUB_CATAGORIES'});
+            dispatch({type: 'RESET_UI_PRODUCT_ADD_VALUES'});
+            break;
+          case 'SUB_SUB_CATEGORY':
+            dispatch({type: 'RESET_SUB_SUB_CATAGORIES'});
+            dispatch({type: 'RESET_UI_PRODUCT_ADD_VALUES'});
+            break;
+          default:
+            break;
+
+        }
+      }
     },
     handleSaveProduct: (obj, shop, token) => {
       dispatch(saveProduct(obj, shop, token));

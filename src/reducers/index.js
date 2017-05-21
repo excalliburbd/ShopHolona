@@ -111,10 +111,9 @@ const ShopPageUIReducer = (
 
 const ShopPageReducer = (
   state = {
-    id: 3,
-    name: 'Real Shop',
-    shortDescription: 'We are the real shop man. We are like, really real',
-    longDescription: 'We are like, really really really really really really really really really really really really really really really really really really really really really really really really really really really real',
+    id: 4,
+    name: 'Test Shop',
+    shortDescription: 'For test purpose',
     categories: {
 
     },

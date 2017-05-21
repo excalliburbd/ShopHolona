@@ -3,7 +3,7 @@ export const UserReducer = (
   state = {
     isLoggedIn: false,
     token: null,
-    shop: 3,
+    shop: 4,
     registered_as: null,
   }, action
 ) => {

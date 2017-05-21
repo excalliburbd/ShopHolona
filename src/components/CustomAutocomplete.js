@@ -19,6 +19,12 @@ class CustomAutocomplete  extends Component {
     }
   }
 
+  componentWillRecieveProps(nextProps) {
+    this.setState({
+      value: nextProps.value,
+    })
+  }
+
   render() {
 
     const {

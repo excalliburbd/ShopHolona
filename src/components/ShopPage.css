@@ -127,6 +127,14 @@
   font-size: 1.5em;
 }
 
+.ShopPage-products--categories ._3Iv9P {
+  cursor: pointer;
+}
+
+.ShopPage-products--categories ._3Iv9P:hover {
+  box-shadow: var(--shadow-2p);
+}
+
 @media screen and (min-width: 600px) {
   .ShopPage {
     display: flex;

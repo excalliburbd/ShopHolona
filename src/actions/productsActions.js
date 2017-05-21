@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
 export const getCategory = () => dispatch => {
-  fetch('http://shophobe-development.herokuapp.com/api/references/categories/', {
+  fetch('http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/references/categories/', {
             method: 'get',
             mode: 'cors',
             headers: {
@@ -21,7 +21,7 @@ export const getCategory = () => dispatch => {
 }
 
 export const getSubCategory = id => dispatch => {
-  fetch(`http://shophobe-development.herokuapp.com/api/references/categories/${id}/`, {
+  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/references/categories/${id}/`, {
             method: 'get',
             mode: 'cors',
             headers: {
@@ -41,7 +41,7 @@ export const getSubCategory = id => dispatch => {
 }
 
 export const getSubSubCategory = (id, subID )=> dispatch => {
-  fetch(`http://shophobe-development.herokuapp.com/api/references/categories/${id}/${subID}/`, {
+  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/references/categories/${id}/${subID}/`, {
             method: 'get',
             mode: 'cors',
             headers: {
@@ -67,7 +67,7 @@ export const getAllProducts = shop  => dispatch => {
     type: 'START_API_GET_PRODUCT',
   })
 
-  fetch(`http://shophobe-development.herokuapp.com/api/shops/${shop}/products/`, {
+  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/shops/${shop}/products/`, {
             mode: 'cors',
             headers: {
               "Accept": "application/json",
@@ -90,7 +90,7 @@ export const getAllProducts = shop  => dispatch => {
 }
 
 export const saveProduct = (obj, shop, token) => dispatch => {
-  fetch(`http://shophobe-development.herokuapp.com/api/vendors/shops/${shop}/products/`, {
+  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/products/`, {
             method: 'post',
             body: JSON.stringify(obj),
             mode: 'cors',
@@ -121,7 +121,7 @@ export const deleteProduct = (id, shop, token) => dispatch => {
     payload: id,
   });
 
-  fetch(`http://shophobe-development.herokuapp.com/api/vendors/shops/${shop}/products/${id}/`, {
+  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/products/${id}/`, {
             method: 'delete',
             headers: {
               'Authorization': `JWT ${token}`
@@ -153,7 +153,7 @@ export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
   request.append('image', obj.file);
   request.append('alt_tag', obj.tag);
 
-  fetch(`http://shophobe-development.herokuapp.com/api/vendors/shops/${shop}/images/`, {
+  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/images/`, {
             method: 'post',
             body: request,
             headers: {

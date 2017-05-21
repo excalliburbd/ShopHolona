@@ -15,7 +15,7 @@ export const trySignInAsyncAction = ({ email, password }) => dispatch => {
     type: 'USER_TRY_SIGNIN'
   });
 
-  fetch('http://shophobe-development.herokuapp.com/api/auth/login/', {
+  fetch('http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/auth/login/', {
             method: 'post',
             body: JSON.stringify(credentials),
             mode: 'cors',
@@ -28,7 +28,7 @@ export const trySignInAsyncAction = ({ email, password }) => dispatch => {
             res => res.json()
           ).then(
             res => {
-              fetch('http://shophobe-development.herokuapp.com/api/me', {
+              fetch('http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/me', {
                 headers: {
                     "Accept": "application/json",
                     'Content-type': 'application/json; charset=utf-8',

@@ -4,7 +4,7 @@ export const getShopCategories = shop  => dispatch => {
     type: 'START_API_GET_SHOP_CATEGORY',
   })
 
-  fetch(`http://shophobe-development.herokuapp.com/api/shops/${shop}/categories/`, {
+  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/shops/${shop}/categories/`, {
             mode: 'cors',
             headers: {
               "Accept": "application/json",

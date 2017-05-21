@@ -50,8 +50,9 @@
   margin-top: 1em;
 }
 
-.ProductsSidebar-add .ProductsSidebar-add--color{
-  box-shadow: var(--shadow-4p);
+.ProductsSidebar-add .ProductsSidebar-add--color,
+.ProductSidebar-details--variance .ProductsSidebar-add--color{
+  box-shadow: var(--shadow-6p);
 }
 
 .ProductsSidebar-img-dropzone {

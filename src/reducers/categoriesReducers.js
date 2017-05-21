@@ -37,77 +37,12 @@ export const categoriesReducer = (
 
 export const CategoriesEntityReducer = (
   state = {
-    categories: {},
-    subCategories: {},
-    subSubCategories: {},
+
   },
   action
 ) => {
   switch (action.type) {
-    case 'SET_CATEGORIES':
-      const categories = {};
 
-      action.payload.forEach(
-        category => {
-          categories[category.id] = category;
-        }
-      )
-
-      return {
-        ...state,
-        categories : {
-          ...state.categories,
-          ...categories
-        }
-      }
-    case 'SET_SUB_CATEGORIES':
-      const subCategories = {};
-
-      action.payload.sub_categories.forEach(
-        category => {
-          subCategories[category.id] = category;
-        }
-      )
-
-      return {
-        ...state,
-        subCategories : {
-          ...state.subCategories,
-          ...subCategories
-        }
-      }
-    case 'SET_SUB_SUB_CATEGORIES':
-      const subSubCategories = {};
-
-      action.payload.sub_categories.forEach(
-        category => {
-          subSubCategories[category.id] = category;
-        }
-      )
-
-      return {
-        ...state,
-        subSubCategories : {
-          ...state.subSubCategories,
-          ...subSubCategories
-        }
-      }
-     case 'SET_API_SUB_SUB_CATEGORIES':
-      const apiSubSubCategories = {};
-
-      action.payload.sub_categories.forEach(
-        category => {
-          apiSubSubCategories[category.id] = category;
-        }
-      )
-
-      return {
-        ...state,
-        subSubCategories : {
-          ...state.subSubCategories,
-          ...apiSubSubCategories
-        }
-      }
 
     default:
       return state;
@@ -119,6 +54,9 @@ export const CategoriesUIReducer = (
     categoryID: null,
     subCategoryID: null,
     subSubCategoryID: null,
+    categories: {},
+    subCategories: {},
+    subSubCategories: {},
     attributes: {
       primary: [],
       secondary: {},
@@ -302,6 +240,7 @@ export const CategoriesUIReducer = (
       }
     case 'HIDE_SIDEBAR':
       return {
+        ...state,
         categoryID: null,
         subCategoryID: null,
         subSubCategoryID: null,
@@ -513,6 +452,66 @@ export const CategoriesUIReducer = (
         temporaryAttribute: {
           ...state.temporaryAttribute,
           stock: action.payload
+        }
+      }
+    case 'SET_CATEGORIES':
+      const categories = {};
+
+      action.payload.forEach(
+        category => {
+          categories[category.id] = category;
+        }
+      )
+
+      return {
+        ...state,
+        categories
+      }
+    case 'SET_SUB_CATEGORIES':
+      const subCategories = {};
+
+      action.payload.sub_categories.forEach(
+        category => {
+          subCategories[category.id] = category;
+        }
+      )
+
+      return {
+        ...state,
+        subCategories,
+      }
+    case 'SET_SUB_SUB_CATEGORIES':
+      const subSubCategories = {};
+
+      action.payload.sub_categories.forEach(
+        category => {
+          subSubCategories[category.id] = category;
+        }
+      )
+
+      return {
+        ...state,
+        subSubCategories,
+      }
+    case 'REMOVE_SUB_SUB_CATEGORIES':
+      return {
+        ...state,
+        subSubCategories: {}
+      }
+    case 'SET_API_SUB_SUB_CATEGORIES':
+      const apiSubSubCategories = {};
+
+      action.payload.sub_categories.forEach(
+        category => {
+          apiSubSubCategories[category.id] = category;
+        }
+      )
+
+      return {
+        ...state,
+        subSubCategories : {
+          ...state.subSubCategories,
+          ...apiSubSubCategories
         }
       }
     default:
