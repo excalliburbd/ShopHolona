@@ -180,7 +180,8 @@ const ProductsSidebar = ({
                                         title={ primaryAttributes[selectedAttribute].value }
                                       />
                                     <Table selectable
-                                          onRowSelect={ selected => handleAttributeSelect(selected, primaryAttributes[selectedAttribute].id) }>
+                                            className="ProductsSidebar-add-attributes--table"
+                                            onRowSelect={ selected => handleAttributeSelect(selected, primaryAttributes[selectedAttribute].id) }>
 
                                     <TableHead>
                                       <TableCell>Name</TableCell>
@@ -194,7 +195,7 @@ const ProductsSidebar = ({
                                                   <TableRow key={key} selected={ attribute.selected }>
                                                     <TableCell>{ attribute.name }</TableCell>
                                                     <TableCell>{ attribute.value }</TableCell>
-                                                    <TableCell numeric>
+                                                    <TableCell numeric className="ProductsSidebar-add-attributes--stock">
                                                         <Input value={ attribute.stock }
                                                                 type="number"
                                                                 onBlur={
