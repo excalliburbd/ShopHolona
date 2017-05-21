@@ -1,9 +1,13 @@
 .NavigationAppBar {
-  background-color: #512DA8;
+  background-color: #CC3333;
 }
 
 .NavigationAppBar-title span {
   margin-left: 1em;
+}
+
+.NavigationAppBar-logo {
+
 }
 
 .NavigationAppBar-title--hidden {

@@ -85,188 +85,188 @@ const ProductsSidebar = ({
     case 'ADD_PRODUCT':
     case 'ADD_SERVICE':
       return <div className="ProductsSidebar-add">
-                <RadioGroup name='comic'
-                            className="ProductsSidebar-add--radio"
-                            value={ radioValue }
-                            onChange={ handleRadio }>
-                  <RadioButton label='Product' value='PRODUCT'/>
-                  <RadioButton label='Service' value='SERVICE'/>
-                </RadioGroup>
-                {
-                  (radioValue === 'PRODUCT') &&
-                    <div className="ProductsSidebar-add--products">
-                      <CustomAutocomplete
-                        label='Enter Product Category'
-                        source={ categories }
-                        value={ productCategory }
-                        selectionOnly
-                        onSelected={ id => handleFieldSelect('CATEGORY', id) }
-                        handleSetValue={ value => handleManualInput('ADD', 'CATEGORY', value)}
-                      />
-                      <CustomAutocomplete
-                        label='Enter Product Sub Category'
-                        source={ subCategories }
-                        value={ productSubCategory }
-                        selectionOnly
-                        onSelected={ id => handleFieldSelect('SUB_CATEGORY', categoryID, id) }
-                        handleSetValue={ value => handleManualInput('ADD', 'SUB_CATEGORY', value)}
-                      />
-                      <CustomAutocomplete
-                        label='Enter Type of Product'
-                        source={ subSubCategories }
-                        value={ productSubSubCategory }
-                        onSelected={
-                          (id, categoryObj ) => {
-                            handleFieldSelect('SUB_SUB_CATEGORY', id);
-                            handleCategoryObj(categoryObj);
-                          }
-                        }
-                        handleSetValue={ value => handleManualInput('ADD', 'SUB_SUB_CATEGORY', value)}
-                      />
-                     {
-                        showProductDetails && <div>
-                          <Input label="Enter Your Product Name"
-                                required
-                                onChange={ value => handleManualInput('ADD', 'NAME', value) }
-                                value={ productName } />
-                          <Input label="Enter Your Product Weight"
-                                required
-                                type="number"
-                                onChange={ value => handleManualInput('ADD', 'WEIGHT', value) }
-                                value={ productWeight } />
-                          <Input label="Enter Your Product Price"
-                                type="number"
-                                required
-                                onChange={ value => handleManualInput('ADD', 'PRICE', value) }
-                                value={ productPrice } />
-                          <Input label="Enter Your Product Description"
-                                onChange={ value => handleManualInput('ADD', 'DESC', value) }
-                                value={ productDescription } />
-
-                          {
-                            showAddColors && <div>
-                              <div className="ProductsSidebar-add--colors">
-                                <h3>Pick product variance</h3>
-                                {
-                                  primaryAttributes.map(
-                                    (obj, key) => <IconButton  icon={
-                                                            (obj.selected) ?
-                                                            'done' :
-                                                            <span />
-                                                          }
-                                                          onClick={
-                                                            () => handleSelect(key)
-                                                          }
-                                                          style={{
-                                                            background: (obj.value && obj.value.split(' ')[0] !== 'Custom') ?
-                                                                        obj.value.toLowerCase() : '#ccc'
-                                                          }}
-                                                          key={ obj.id }
-                                                          className="ProductsSidebar-add--color" />
-                                  )
-                                }
-                                <IconButton   icon="add"
-                                              style={{ background: "#ccc"}}
-                                              onClick={
-                                                handleAddVairace
-                                              }
-                                              className="ProductsSidebar-add--color" />
-                              </div>
-                              <div className="ProductsSidebar-add-attributes">
-                              {
-                                ( selectedAttribute !== -1 ) &&
-                                  <Card className="ProductsSidebar-add-attributes--card">
-                                    <CardTitle
-                                        title={ primaryAttributes[selectedAttribute].value }
-                                      />
-                                    <Table selectable
-                                            className="ProductsSidebar-add-attributes--table"
-                                            onRowSelect={ selected => handleAttributeSelect(selected, primaryAttributes[selectedAttribute].id) }>
-
-                                    <TableHead>
-                                      <TableCell>Name</TableCell>
-                                      <TableCell>Value</TableCell>
-                                      <TableCell numeric>Stock</TableCell>
-                                    </TableHead>
-
-                                    {
-                                      secondaryAttributes[primaryAttributes[selectedAttribute].id].attributes.map(
-                                            (attribute, key) =>
-                                                  <TableRow key={key} selected={ attribute.selected }>
-                                                    <TableCell>{ attribute.name }</TableCell>
-                                                    <TableCell>{ attribute.value }</TableCell>
-                                                    <TableCell numeric className="ProductsSidebar-add-attributes--stock">
-                                                        <Input value={ attribute.stock }
-                                                                type="number"
-                                                                onBlur={
-                                                                  () => {
-                                                                    handleStockInputBlur(primaryAttributes[selectedAttribute].id)
-                                                                  }
-                                                                }
-                                                                onChange={
-                                                                  value => handleStockUpdate( 'VALUE', value, primaryAttributes[selectedAttribute].id, key)
-                                                                } />
-                                                    </TableCell>
-                                                  </TableRow>
-                                          )
-                                    }
-                                    {
-                                      secondaryAttributes[primaryAttributes[selectedAttribute].id].custom ?
-                                          <TableRow>
-                                            <TableCell>
-                                              <Input  value={ temporaryAttribute.key }
-                                                      onChange={
-                                                        value => handleSetTemporaryAttribute( 'KEY', value)
-                                                      }/>
-                                            </TableCell>
-                                            <TableCell>
-                                              <Input  value={ temporaryAttribute.value }
-                                                      onChange={
-                                                        value => handleSetTemporaryAttribute( 'VALUE', value)
-                                                      }/>
-                                            </TableCell>
-                                            <TableCell>
-                                              <Input  value={ temporaryAttribute.stock }
-                                                      onBlur={
-                                                        () => {
-                                                          handleSetTemporaryAttribute(
-                                                            'ADD',
-                                                            primaryAttributes[selectedAttribute].id,
-                                                            temporaryAttribute
-                                                          )
-                                                        }
-                                                      }
-                                                      type="number"
-                                                      onChange={
-                                                        value => handleSetTemporaryAttribute( 'STOCK', value)
-                                                      }/>
-                                            </TableCell>
-                                          </TableRow>
-                                        :
-                                           null                                   }
-                                    </Table>
-                                  <CardActions>
-                                    <Button icon="close" label="cancle" onClick={ () => handleSelect(-1, primaryAttributes[selectedAttribute].id) }/>
-                                    <Button icon="done" label="done" onClick={ () => setAttributeDone(primaryAttributes[selectedAttribute].id) } />
-                                  </CardActions>
-                              </Card>
-                              }
-                              </div>
-                            </div>
-                          }
-                        </div>
-                     }
-                    <div className="ProductsSidebar-add-actions">
-                        <Button label="Next"
-                                icon="send"
-                                onClick={
-                                  () => handleShowRoute('ADD_IMAGES')
-                                }
-                                disabled={ showAddImages } />
-                      </div>
-                    </div>
+        <RadioGroup name='comic'
+                    className="ProductsSidebar-add--radio"
+                    value={ radioValue }
+                    onChange={ handleRadio }>
+          <RadioButton label='Product' value='PRODUCT'/>
+          <RadioButton label='Service' value='SERVICE'/>
+        </RadioGroup>
+        {
+          (radioValue === 'PRODUCT') &&
+          <div className="ProductsSidebar-add--products">
+            <CustomAutocomplete
+              label='Enter Product Category'
+              source={ categories }
+              value={ productCategory }
+              selectionOnly
+              onSelected={ id => handleFieldSelect('CATEGORY', id) }
+              handleSetValue={ value => handleManualInput('ADD', 'CATEGORY', value)}
+            />
+            <CustomAutocomplete
+              label='Enter Product Sub Category'
+              source={ subCategories }
+              value={ productSubCategory }
+              selectionOnly
+              onSelected={ id => handleFieldSelect('SUB_CATEGORY', categoryID, id) }
+              handleSetValue={ value => handleManualInput('ADD', 'SUB_CATEGORY', value)}
+            />
+            <CustomAutocomplete
+              label='Enter Type of Product'
+              source={ subSubCategories }
+              value={ productSubSubCategory }
+              onSelected={
+                (id, categoryObj ) => {
+                  handleFieldSelect('SUB_SUB_CATEGORY', id);
+                  handleCategoryObj(categoryObj);
                 }
+              }
+              handleSetValue={ value => handleManualInput('ADD', 'SUB_SUB_CATEGORY', value)}
+            />
+            {
+              showProductDetails && <div>
+                <Input label="Enter Your Product Name"
+                       required
+                       onChange={ value => handleManualInput('ADD', 'NAME', value) }
+                       value={ productName } />
+                <Input label="Enter Your Product Weight"
+                       required
+                       type="number"
+                       onChange={ value => handleManualInput('ADD', 'WEIGHT', value) }
+                       value={ productWeight } />
+                <Input label="Enter Your Product Price"
+                       type="number"
+                       required
+                       onChange={ value => handleManualInput('ADD', 'PRICE', value) }
+                       value={ productPrice } />
+                <Input label="Enter Your Product Description"
+                       onChange={ value => handleManualInput('ADD', 'DESC', value) }
+                       value={ productDescription } />
+
+                {
+                  showAddColors && <div>
+                    <div className="ProductsSidebar-add--colors">
+                      <h3>Pick product variance</h3>
+                      {
+                        primaryAttributes.map(
+                          (obj, key) => <IconButton  icon={
+                            (obj.selected) ?
+                              'done' :
+                              <span />
+                          }
+                                                     onClick={
+                                                       () => handleSelect(key)
+                                                     }
+                                                     style={{
+                                                       background: (obj.value && obj.value.split(' ')[0] !== 'Custom') ?
+                                                         obj.value.toLowerCase() : '#ccc'
+                                                     }}
+                                                     key={ obj.id }
+                                                     className="ProductsSidebar-add--color" />
+                        )
+                      }
+                      <IconButton   icon="add"
+                                    style={{ background: "#ccc"}}
+                                    onClick={
+                                      handleAddVairace
+                                    }
+                                    className="ProductsSidebar-add--color" />
+                    </div>
+                    <div className="ProductsSidebar-add-attributes">
+                      {
+                        ( selectedAttribute !== -1 ) &&
+                        <Card className="ProductsSidebar-add-attributes--card">
+                          <CardTitle
+                            title={ primaryAttributes[selectedAttribute].value }
+                          />
+                          <Table selectable
+                                 className="ProductsSidebar-add-attributes--table"
+                                 onRowSelect={ selected => handleAttributeSelect(selected, primaryAttributes[selectedAttribute].id) }>
+
+                            <TableHead>
+                              <TableCell>Name</TableCell>
+                              <TableCell>Value</TableCell>
+                              <TableCell numeric>Stock</TableCell>
+                            </TableHead>
+
+                            {
+                              secondaryAttributes[primaryAttributes[selectedAttribute].id].attributes.map(
+                                (attribute, key) =>
+                                  <TableRow key={key} selected={ attribute.selected }>
+                                    <TableCell>{ attribute.name }</TableCell>
+                                    <TableCell>{ attribute.value }</TableCell>
+                                    <TableCell numeric className="ProductsSidebar-add-attributes--stock">
+                                      <Input value={ attribute.stock }
+                                             type="number"
+                                             onBlur={
+                                               () => {
+                                                 handleStockInputBlur(primaryAttributes[selectedAttribute].id)
+                                               }
+                                             }
+                                             onChange={
+                                               value => handleStockUpdate( 'VALUE', value, primaryAttributes[selectedAttribute].id, key)
+                                             } />
+                                    </TableCell>
+                                  </TableRow>
+                              )
+                            }
+                            {
+                              secondaryAttributes[primaryAttributes[selectedAttribute].id].custom ?
+                                <TableRow>
+                                  <TableCell>
+                                    <Input  value={ temporaryAttribute.key }
+                                            onChange={
+                                              value => handleSetTemporaryAttribute( 'KEY', value)
+                                            }/>
+                                  </TableCell>
+                                  <TableCell>
+                                    <Input  value={ temporaryAttribute.value }
+                                            onChange={
+                                              value => handleSetTemporaryAttribute( 'VALUE', value)
+                                            }/>
+                                  </TableCell>
+                                  <TableCell>
+                                    <Input  value={ temporaryAttribute.stock }
+                                            onBlur={
+                                              () => {
+                                                handleSetTemporaryAttribute(
+                                                  'ADD',
+                                                  primaryAttributes[selectedAttribute].id,
+                                                  temporaryAttribute
+                                                )
+                                              }
+                                            }
+                                            type="number"
+                                            onChange={
+                                              value => handleSetTemporaryAttribute( 'STOCK', value)
+                                            }/>
+                                  </TableCell>
+                                </TableRow>
+                                :
+                                null                                   }
+                          </Table>
+                          <CardActions>
+                            <Button icon="close" label="cancle" onClick={ () => handleSelect(-1, primaryAttributes[selectedAttribute].id) }/>
+                            <Button icon="done" label="done" onClick={ () => setAttributeDone(primaryAttributes[selectedAttribute].id) } />
+                          </CardActions>
+                        </Card>
+                      }
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+            <div className="ProductsSidebar-add-actions">
+              <Button label="Next"
+                      icon="send"
+                      onClick={
+                        () => handleShowRoute('ADD_IMAGES')
+                      }
+                      disabled={ showAddImages } />
             </div>
+          </div>
+        }
+      </div>
     case 'ADD_PRODUCT_IMAGES':
       return <div className="ProductsSidebar-img">
               <h3>Add Product Images</h3>

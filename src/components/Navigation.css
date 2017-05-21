@@ -56,10 +56,11 @@
 @media screen and (max-width: 480px) {
   ._1sAOY.Navigation-sidebar {
     width: 100vw;
+    background-color: white;
   }
 }
 
-/*for desktop*/
+/*for tablet*/
 @media screen and (min-width: 600px) {
   .Navigation-content,
   .Navigation-content-main {
@@ -83,11 +84,20 @@
     left: 10em;
   }
   ._1sAOY.Navigation-sidebar {
-    width: 22.5vw;
+    width: 30vw;
     padding-top: 4em;
+    background-color: white;
+    box-shadow: -3px 0px 14px 0px rgba(50, 50, 50, 0.80);
   }
   .Navigation-sidebar-content {
     margin-top: 3em;
   }
 
+}
+
+/*for desktop*/
+@media screen and (min-width: 800px) {
+  ._1sAOY.Navigation-sidebar {
+    width: 22.5vw;
+  }
 }
