@@ -42,11 +42,12 @@ const NavigationAppBar = ({
               title={
                 <span className={ navTitleClass }>
                   <span>{ shopName }</span> <br />
-                  <span>Shop reference code</span>
+                  <span>#REF1234</span>
                 </span>
               }
               leftIcon={
                 <Avatar
+                  className="NavigationAppBar-logo"
                   title="Shop_logo"
                   image={ logo }
                    />
