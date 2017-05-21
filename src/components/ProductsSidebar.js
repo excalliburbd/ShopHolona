@@ -93,10 +93,10 @@ const ProductsSidebar = ({
                   <RadioButton label='Service' value='SERVICE'/>
                 </RadioGroup>
                 {
-                  (radioValue === 'PRODUCT') &&
+                  (radioValue === 'PRODUCT' || radioValue === 'SERVICE') &&
                     <div className="ProductsSidebar-add--products">
                       <CustomAutocomplete
-                        label='Enter Product Category'
+                        label={`Enter ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Category`}
                         source={ categories }
                         value={ productCategory }
                         selectionOnly
@@ -104,7 +104,7 @@ const ProductsSidebar = ({
                         handleSetValue={ value => handleManualInput('ADD', 'CATEGORY', value)}
                       />
                       <CustomAutocomplete
-                        label='Enter Product Sub Category'
+                        label={`Enter ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Sub Category`}
                         source={ subCategories }
                         value={ productSubCategory }
                         selectionOnly
@@ -112,7 +112,7 @@ const ProductsSidebar = ({
                         handleSetValue={ value => handleManualInput('ADD', 'SUB_CATEGORY', value)}
                       />
                       <CustomAutocomplete
-                        label='Enter Type of Product'
+                        label={`Enter type of ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' }`}
                         source={ subSubCategories }
                         value={ productSubSubCategory }
                         onSelected={
@@ -125,28 +125,31 @@ const ProductsSidebar = ({
                       />
                      {
                         showProductDetails && <div>
-                          <Input label="Enter Your Product Name"
+                          <Input label={`Enter Your ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Name`}
                                 required
                                 onChange={ value => handleManualInput('ADD', 'NAME', value) }
                                 value={ productName } />
-                          <Input label="Enter Your Product Weight"
+                          {
+                            (radioValue === 'PRODUCT') &&
+                              <Input label={`Enter Your ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Weight`}
                                 required
                                 type="number"
                                 onChange={ value => handleManualInput('ADD', 'WEIGHT', value) }
                                 value={ productWeight } />
-                          <Input label="Enter Your Product Price"
+                          }
+                          <Input label={`Enter Your ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Price`}
                                 type="number"
                                 required
                                 onChange={ value => handleManualInput('ADD', 'PRICE', value) }
                                 value={ productPrice } />
-                          <Input label="Enter Your Product Description"
+                          <Input label={`Enter Your ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Description`}
                                 onChange={ value => handleManualInput('ADD', 'DESC', value) }
                                 value={ productDescription } />
 
                           {
                             showAddColors && <div>
                               <div className="ProductsSidebar-add--colors">
-                                <h3>Pick product variance</h3>
+                                <h3>Pick product { (productSubCategory === 'Clothing') ? 'color' : 'color' }</h3>
                                 {
                                   primaryAttributes.map(
                                     (obj, key) => <IconButton  icon={
@@ -158,8 +161,9 @@ const ProductsSidebar = ({
                                                             () => handleSelect(key)
                                                           }
                                                           style={{
-                                                            background: (obj.value && obj.value.split(' ')[0] !== 'Custom') ?
-                                                                        obj.value.toLowerCase() : '#ccc'
+                                                            background: (obj.value && (obj.value.split(' ')[0] !== 'Color')) &&
+                                                                        (obj.value && (obj.value.split(' ')[0] !== 'Custom')) ?
+                                                                          obj.value.toLowerCase() : '#ccc'
                                                           }}
                                                           key={ obj.id }
                                                           className="ProductsSidebar-add--color" />
@@ -168,7 +172,7 @@ const ProductsSidebar = ({
                                 <IconButton   icon="add"
                                               style={{ background: "#ccc"}}
                                               onClick={
-                                                handleAddVairace
+                                                () => handleAddVairace(productSubCategory)
                                               }
                                               className="ProductsSidebar-add--color" />
                               </div>
@@ -176,9 +180,16 @@ const ProductsSidebar = ({
                               {
                                 ( selectedAttribute !== -1 ) &&
                                   <Card className="ProductsSidebar-add-attributes--card">
-                                    <CardTitle
+                                    {
+                                      secondaryAttributes[primaryAttributes[selectedAttribute].id].custom ?
+                                      <Input label="Change vaniant name"
+                                             value={ primaryAttributes[selectedAttribute].value }
+                                             />
+                                      :
+                                      <CardTitle
                                         title={ primaryAttributes[selectedAttribute].value }
                                       />
+                                    }
                                     <Table selectable
                                             className="ProductsSidebar-add-attributes--table"
                                             onRowSelect={ selected => handleAttributeSelect(selected, primaryAttributes[selectedAttribute].id) }>
@@ -277,8 +288,9 @@ const ProductsSidebar = ({
                       (obj, key) => <div className="ProductsSidebar-img-variants" key={ key }>
                                       <div className="ProductsSidebar-img-variants--title">
                                         <IconButton style={{
-                                                      background: (obj.value && obj.value.split(' ')[0] !== 'Custom') ?
-                                                                  obj.value.toLowerCase() : '#ccc',
+                                                      background: (obj.value && (obj.value.split(' ')[0] !== 'Color')) &&
+                                                                        (obj.value && (obj.value.split(' ')[0] !== 'Custom')) ?
+                                                                          obj.value.toLowerCase() : '#ccc',
                                                       boxShadow: 'var(--shadow-4p)'
                                                     }} />
                                         <h4>{ obj.value }</h4>

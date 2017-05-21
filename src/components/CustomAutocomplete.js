@@ -12,17 +12,10 @@ class CustomAutocomplete  extends Component {
     this.state = {
       suggestions: false,
       list: this.props.source.list,
-      value: this.props.value || '',
       error: false,
       errMsg: 'You must select a catagory from the list',
       fromList: false,
     }
-  }
-
-  componentWillRecieveProps(nextProps) {
-    this.setState({
-      value: nextProps.value,
-    })
   }
 
   render() {
@@ -44,13 +37,14 @@ class CustomAutocomplete  extends Component {
               onChange={
                 input => {
                   this.setState({
-                    value: input,
                     list: this.props.source.search(input),
                     fromList: false,
                   })
+
+                  this.props.handleSetValue(input);
                 }
               }
-              value={ this.state.value }
+              value={ this.props.value }
               onBlur={ () => {
                 if (this.props.selectionOnly && !this.state.fromList) {
                   this.setState({
@@ -63,7 +57,6 @@ class CustomAutocomplete  extends Component {
                   this.setState({
                     suggestions: false,
                   })
-                  this.props.handleSetValue(this.state.value);
                 }
               }}
               onFocus={ () => {
@@ -79,6 +72,7 @@ class CustomAutocomplete  extends Component {
                                           fromList: true,
                                           error: false,
                                         });
+                                        this.props.handleSetValue(category.name);
                                         this.props.onSelected(category.id, category);
                                       }}>
                                       { category.name }

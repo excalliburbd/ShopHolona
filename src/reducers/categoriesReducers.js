@@ -195,7 +195,9 @@ export const CategoriesUIReducer = (
             {
               id: `custom${state.attributes.primary.length + 1}`,
               name: `Custom Variance ${state.attributes.primary.length + 1}`,
-              value: `Custom Variance ${state.attributes.primary.length + 1}`,
+              value: (action.payload === 'Clothing') ?
+                      `Color ${state.attributes.primary.length + 1}` :
+                      `Custom Variance ${state.attributes.primary.length + 1}`,
               selected: false,
               files: []
             }
@@ -512,6 +514,54 @@ export const CategoriesUIReducer = (
         subSubCategories : {
           ...state.subSubCategories,
           ...apiSubSubCategories
+        }
+      }
+    case 'RESET_UI_SUB_SUB_CATEGORIES':
+      return {
+        ...state,
+        subSubCategoryID: null,
+        attributes: {
+          primary: [],
+          secondary: {},
+          selected: -1,
+        },
+        temporaryAttribute: {
+          key: '',
+          value: ''
+        }
+      }
+    case 'RESET_UI_SUB_CATEGORIES':
+      return {
+        ...state,
+        subCategoryID: null,
+        subSubCategoryID: null,
+        subSubCategories: {},
+        attributes: {
+          primary: [],
+          secondary: {},
+          selected: -1,
+        },
+        temporaryAttribute: {
+          key: '',
+          value: ''
+        }
+      }
+    case 'RESET_UI_CATEGORIES':
+      return {
+        ...state,
+        categoryID: null,
+        subCategoryID: null,
+        subSubCategoryID: null,
+        subCategories: {},
+        subSubCategories: {},
+        attributes: {
+          primary: [],
+          secondary: {},
+          selected: -1,
+        },
+        temporaryAttribute: {
+          key: '',
+          value: ''
         }
       }
     default:

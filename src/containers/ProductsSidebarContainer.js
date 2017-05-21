@@ -28,6 +28,7 @@ const getProductDescription =  state => state.ui.product.description;
 const getSubSubCategoryID = state => state.ui.categories.subSubCategoryID;
 const getCategoryID = state => state.ui.categories.categoryID;
 const getSubCategoryID = state => state.ui.categories.subCategoryID;
+const getRadioValue = state => state.ui.sidebar.radio;
 
 const getFusedCategories = createSelector(
   [getCategoriesObj],
@@ -72,14 +73,18 @@ const getFusedSubSubCategories = createSelector(
 );
 
 const getShowAddColors = createSelector(
-  [getProductUIState],
-  product => {
+  [getProductUIState, getRadioValue],
+  (product, radio) => {
     let show = true;
 
     Object.keys(product).forEach(
       name => {
         if(product[name] === '') {
           show = false;
+        }
+
+        if(radio === 'SERVICE' && name === 'weight') {
+          show = true;
         }
       }
     )
@@ -167,7 +172,7 @@ const mapStateToProps = state => {
     subCategoryID: getSubCategoryID(state),
     primaryAttributes: getPrimaryAttributes(state),
     secondaryAttributes: getSecondaryAttributes(state),
-    radioValue: state.ui.sidebar.radio,
+    radioValue: getRadioValue(state),
     selectedAttribute: state.ui.categories.attributes.selected,
     showAddColors: getShowAddColors(state),
     showAddImages: getShowAddImages(state),
@@ -383,16 +388,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       if(value === '') {
         switch(fieldType) {
           case 'CATEGORY':
-            dispatch({type: 'RESET_CATAGORIES'});
+            dispatch({type: 'RESET_UI_CATEGORIES'});
             break;
           case 'SUB_CATEGORY':
-            dispatch({type: 'RESET_SUB_CATAGORIES'});
-            dispatch({type: 'RESET_SUB_SUB_CATAGORIES'});
-            dispatch({type: 'RESET_UI_PRODUCT_ADD_VALUES'});
+            dispatch({type: 'RESET_UI_SUB_CATEGORIES'});
             break;
           case 'SUB_SUB_CATEGORY':
-            dispatch({type: 'RESET_SUB_SUB_CATAGORIES'});
-            dispatch({type: 'RESET_UI_PRODUCT_ADD_VALUES'});
+            dispatch({type: 'RESET_UI_SUB_SUB_CATEGORIES'});
             break;
           default:
             break;
@@ -419,9 +421,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         payload: id,
       })
     },
-    handleAddVairace: () => {
+    handleAddVairace: category => {
       dispatch({
-        type: 'ADD_UI_PRIMARY_ATTRIBUTE'
+        type: 'ADD_UI_PRIMARY_ATTRIBUTE',
+        payload: category,
       })
     },
     handleSetTemporaryAttribute: (type, value, attributes) => {

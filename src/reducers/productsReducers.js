@@ -123,7 +123,31 @@ export const ProductsUIReducer = (
         ...state,
         selectedVariance: action.payload
       }
+    case 'RESET_UI_SUB_SUB_CATEGORIES':
+      return {
+        ...state,
+        subSubCategory: '',
+        name: '',
+        weight: '',
+        price: '',
+        description: '',
+        selectedVariance: 0,
+        selectedProduct: {}
+      }
+    case 'RESET_UI_SUB_CATEGORIES':
+      return {
+        ...state,
+        subCategory: '',
+        subSubCategory: '',
+        name: '',
+        weight: '',
+        price: '',
+        description: '',
+        selectedVariance: 0,
+        selectedProduct: {}
+      }
     case 'HIDE_SIDEBAR':
+    case 'RESET_UI_CATEGORIES':
       return {
         category: '',
         subCategory: '',
