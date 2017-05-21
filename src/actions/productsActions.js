@@ -114,6 +114,34 @@ export const saveProduct = (obj, shop, token) => dispatch => {
 }
 
 
+export const deleteProduct = (id, shop, token) => dispatch => {
+
+  dispatch({
+    type: 'START_API_DELETE_PRODUCT',
+    payload: id,
+  });
+
+  fetch(`http://shophobe-development.herokuapp.com/api/vendors/shops/${shop}/products/${id}/`, {
+            method: 'delete',
+            headers: {
+              'Authorization': `JWT ${token}`
+            },
+          }).then(
+            res => {
+              if( res.status === 200 || res.status === 204) {
+                dispatch({
+                  type: 'DONE_API_DELETE_PRODUCT',
+                  payload: { response: res, id },
+                });
+
+                dispatch({
+                  type: 'HIDE_SIDEBAR'
+                })
+              }
+            }
+          );
+}
+
 export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
 
   dispatch({

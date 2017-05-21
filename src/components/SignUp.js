@@ -32,10 +32,10 @@ const SignUp = ({
       <p>Sign In/Sign Up to view dashboard</p>
     </div>
     <div className="SignUp-social">
-      <FbLogin handleOnLogin={
+      <FbLogin disabled handleOnLogin={
         handleTrySignIn
       } />
-      <GLogin handleOnLogin={
+      <GLogin disabled handleOnLogin={
         handleTrySignIn
       } />
     </div>
@@ -70,6 +70,7 @@ const SignUp = ({
              required
              value={ phone }
              onChange={ handlePhoneValue }
+             disabled
              icon='local_phone' />
     </div>
      <div className="SignUp-input">
@@ -78,6 +79,7 @@ const SignUp = ({
              label='Enter your password'
              value={ phonePassword }
              onChange={ handlePhonePasswordValue }
+             disabled
              icon='vpn_key' />
       <IconButton icon="forward" onClick={ handleTrySignIn } />
     </div>

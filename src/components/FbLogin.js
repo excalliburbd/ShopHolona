@@ -80,7 +80,7 @@ class FbLogin extends Component {
   render() {
     return (
       <div>
-        <Button raised primary onClick={ this.clickHandler }>
+        <Button disabled raised primary onClick={ this.clickHandler }>
           <FaFacebook /> using Facebook
         </Button>
       </div>

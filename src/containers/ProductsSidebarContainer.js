@@ -7,6 +7,7 @@ import {
   getSubSubCategory,
   saveProduct,
   postImage,
+  deleteProduct,
 } from '../actions/productsActions';
 
 import ProductsSidebar from '../components/ProductsSidebar';
@@ -434,6 +435,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         default:
           break;
       }
+    },
+    deleteSelectedProduct: (id, shop, token) => {
+      dispatch(deleteProduct(id, shop, token));
     }
   }
 }

@@ -75,7 +75,7 @@ const ProductsSidebar = ({
   productDetailDescription,
   handleSelectVariance,
   selectedProductId,
-  deleteProduct,
+  deleteSelectedProduct,
   showProductDetails,
   handleAddVairace,
   temporaryAttribute,
@@ -330,7 +330,6 @@ const ProductsSidebar = ({
                       )
                     }
                   </Slider>
-
                 </div>
                 <div className="ProductSidebar-details--variance">
                   {
@@ -373,7 +372,7 @@ const ProductsSidebar = ({
                             label="Delete"
                             accent
                             onClick={
-                              () => deleteProduct(selectedProductId)
+                              () => deleteSelectedProduct(selectedProductId, shop, token)
                             } />
                     <Button icon="save"
                             label="save"

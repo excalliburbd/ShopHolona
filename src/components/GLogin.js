@@ -64,7 +64,7 @@ class GLogin extends React.Component{
   render () {
     return (
       <div>
-        <Button raised onClick={ this.clickHandler }>
+        <Button disabled raised onClick={ this.clickHandler }>
           <FaGoogle /> using Google
         </Button>
       </div>

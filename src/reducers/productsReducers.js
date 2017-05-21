@@ -17,6 +17,8 @@ export const productsReducer = (
       )
 
       return products;
+    case 'DONE_API_DELETE_PRODUCT':
+      return state.filter( id => (id !== action.payload.id))
     default:
       return state;
   }
@@ -162,6 +164,12 @@ export const productsEntityReducer = (
         ...state,
         ...products
       }
+    case 'DONE_API_DELETE_PRODUCT':
+      const productsEntity = { ...state };
+
+      delete productsEntity[action.payload.id];
+
+      return productsEntity;
     default:
       return state;
   }

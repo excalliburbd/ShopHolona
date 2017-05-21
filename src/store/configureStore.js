@@ -10,7 +10,7 @@ const offlineConfig = {
   ...defaultConfig,
   persistOptions: {
     ...defaultConfig.persistOptions,
-    blacklist: ['userDetails', 'ui']
+    blacklist: ['userDetails', 'ui', 'shop']
   }
 }
 
