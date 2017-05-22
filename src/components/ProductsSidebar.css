@@ -1,7 +1,8 @@
 .ProductsSidebar-add,
 .ProductsSidebar-add--stock,
 .ProductsSidebar-img,
-.ProductSidebar-details {
+.ProductSidebar-details,
+.ProductSidebar-upload{
   padding: 1em;
   padding-top: 0;
 }

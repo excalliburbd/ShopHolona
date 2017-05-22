@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import { getAllProducts } from '../actions/productsActions';
+import { getCategory, getAllProducts } from '../actions/productsActions';
 import { getShopCategories } from '../actions/shopActions';
 
 import ShopPage from '../components/ShopPage';
@@ -94,6 +94,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         payload: { product }
       });
       }
+    },
+    handleAddProduct: () => {
+      dispatch({
+        type: 'SHOW_SIDEBAR_ADD_PRODUCT'
+      });
+      dispatch(getCategory());
     }
   }
 }

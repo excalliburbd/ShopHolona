@@ -60,6 +60,7 @@ class ShopPage extends Component {
       selectChip,
       handleShowProductDetails,
       vendor,
+      handleAddProduct,
     } = this.props;
 
     const detailsClass = classNames({
@@ -88,7 +89,7 @@ class ShopPage extends Component {
         </div>
         <div className="ShopPage-products">
           <div className="ShopPage-featured">
-            <FeaturedSlider />
+            <FeaturedSlider vendor={ vendor }/>
           </div>
           <div className="ShopPage-products--container">
             <div className="ShopPage-banner" />
@@ -103,6 +104,12 @@ class ShopPage extends Component {
             </div>
             <div className="ShopPage-products--content">
               <div className="ShopPage-products--list">
+                {
+                  (vendor) && <ProductCard  addProductCard
+                                            vendor={ vendor }
+                                            handleShowDetails={ handleAddProduct }
+                                            key="AddProductKey" />
+                }
                 {
                   products[selectedChip].products.map(
                     (porduct, key) => <ProductCard { ...porduct }

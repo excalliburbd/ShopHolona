@@ -75,6 +75,13 @@ const SidebarUIReducer = (
         type: 'PRODUCT',
         subType: 'SHOW_PRODUCT_DETAILS'
       }
+    case 'SHOW_SIDEBAR_ADD_PRODUCT_UPLOADING':
+      return {
+          ...state,
+          show: true,
+          type: 'PRODUCT',
+          subType: 'UPLOADING'
+        }
     case 'HIDE_SIDEBAR':
       return {
         ...state,

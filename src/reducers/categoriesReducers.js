@@ -65,7 +65,12 @@ export const CategoriesUIReducer = (
     temporaryAttribute: {
       key: '',
       value: ''
-    }
+    },
+    uploadProgress: {
+      primary: false,
+      secondary: false,
+
+    },
   } , action
 ) => {
   switch (action.type) {
@@ -89,7 +94,7 @@ export const CategoriesUIReducer = (
 
       action.payload.attributes.forEach(
         attribute => {
-          primary.push({ ...attribute, selected: false, files: [] });
+          primary.push({ ...attribute, selected: false, files: [], custom: false });
         }
       )
 
@@ -105,7 +110,7 @@ export const CategoriesUIReducer = (
 
       action.payload.attributes.forEach(
         attribute => {
-          secondary.push({ ...attribute, selected: false, stock: 0 });
+          secondary.push({ ...attribute, selected: false, stock: 0, custom: false });
         }
       )
 
@@ -199,6 +204,7 @@ export const CategoriesUIReducer = (
                       `Color ${state.attributes.primary.length + 1}` :
                       `Custom Variance ${state.attributes.primary.length + 1}`,
               selected: false,
+              custom: true,
               files: []
             }
           ],
@@ -224,11 +230,12 @@ export const CategoriesUIReducer = (
               attributes: [
                 ...state.attributes.secondary[action.payload].attributes,
                 {
-                  id: `custom${state.attributes.secondary[action.payload].attributes}`,
+                  id: `custom${state.attributes.secondary[action.payload].attributes.length}`,
                   name: state.temporaryAttribute.key,
                   value: state.temporaryAttribute.value,
                   selected: true,
-                  stock: state.temporaryAttribute.stock
+                  stock: state.temporaryAttribute.stock,
+                  custom: true,
                 }
               ]
             }
@@ -326,6 +333,68 @@ export const CategoriesUIReducer = (
                                           : attribute.stock
                                 })
                               )
+            }
+          }
+        }
+      }
+    case 'SET_CUSTOM_ATTRIBUT_ID_PRIMAY':
+      return {
+        ...state,
+        attributes: {
+          ...state.attributes,
+          primary: state.attributes.primary.map(
+            (obj, key) => {
+              if(obj.id === action.payload.oldID ) {
+                return {
+                  ...obj,
+                  id: action.payload.newID,
+                  custom: false,
+                }
+              }
+              return obj;
+            }
+          ),
+          secondary: {
+            ...state.attributes.secondary,
+            [action.payload.newID]: {
+              ...state.attributes.secondary[action.payload.oldID],
+              id: action.payload.newID,
+              custom: false,
+            },
+            [action.payload.oldID]: {
+              ...state.attributes.secondary[action.payload.oldID],
+              depricated: true,
+              redirect: action.payload.newID,
+            }
+          }
+        }
+      }
+    case 'SET_CUSTOM_ATTRIBUT_ID_SECONDARY':
+
+      const id = (state.attributes.secondary[action.payload.primaryID].depricated) ?
+                  state.attributes.secondary[action.payload.primaryID].redirect :
+                  action.payload.primaryID;
+      return {
+        ...state,
+        attributes: {
+          ...state.attributes,
+          secondary: {
+            ...state.attributes.secondary,
+            [id]: {
+              ...state.attributes.secondary[id],
+              attributes: state.attributes.secondary[id].attributes.map(
+                obj => {
+                  if(obj.id === action.payload.oldID) {
+                    return {
+                      ...obj,
+                      id: action.payload.newID,
+                      custom: false,
+                    }
+                  }
+
+                  return obj;
+                }
+              )
             }
           }
         }
@@ -563,6 +632,22 @@ export const CategoriesUIReducer = (
           key: '',
           value: ''
         }
+      }
+    case 'DONE_SET_CUSTOM_ATTRIBUTE_PRIMARY':
+      return {
+        ...state,
+        uploadProgress: {
+          ...state.uploadProgress,
+          primary: true,
+        },
+      }
+    case 'DONE_SET_CUSTOM_ATTRIBUTE_SECONDARY':
+      return {
+        ...state,
+        uploadProgress: {
+          ...state.uploadProgress,
+          secondary: true,
+        },
       }
     default:
       return state;

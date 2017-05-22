@@ -24,6 +24,7 @@ import FontIcon from 'react-toolbox/lib/font_icon/FontIcon';
 import Slider from 'react-slick';
 
 import CustomAutocomplete from './CustomAutocomplete';
+import ProductUpload from './ProductUpload';
 
 // import 'react-responsive-carousel/lib/styles/carousel.css';
 import 'slick-carousel/slick/slick.css';
@@ -80,6 +81,8 @@ const ProductsSidebar = ({
   handleAddVairace,
   temporaryAttribute,
   handleSetTemporaryAttribute,
+  makeProduct,
+  progress,
 }) => {
   switch(type) {
     case 'ADD_PRODUCT':
@@ -115,6 +118,7 @@ const ProductsSidebar = ({
                         label={`Enter type of ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' }`}
                         source={ subSubCategories }
                         value={ productSubSubCategory }
+                        selectionOnly
                         onSelected={
                           (id, categoryObj ) => {
                             handleFieldSelect('SUB_SUB_CATEGORY', id);
@@ -326,7 +330,9 @@ const ProductsSidebar = ({
                   <Button icon="done"
                           label="done"
                           onClick={
-                            () => handleSaveProduct(finishedProduct, shop, token)
+                            () => {
+                              handleShowRoute('UPLOADING');
+                            }
                           } />
                 </div>
              </div>
@@ -393,6 +399,14 @@ const ProductsSidebar = ({
                             } />
                   </div>
               </div>
+    case 'UPLOADING':
+      return <ProductUpload className="ProductSidebar-upload"
+                            makeProduct={ makeProduct }
+                            product={finishedProduct}
+                            shop={ shop }
+                            token={token}
+                            saveProduct={ handleSaveProduct }
+                            progress={ progress }/>
     default:
       return <div className="ProductsSidebar-empty"/>
   }

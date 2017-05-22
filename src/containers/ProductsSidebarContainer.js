@@ -8,6 +8,7 @@ import {
   saveProduct,
   postImage,
   deleteProduct,
+  requestAttribute,
 } from '../actions/productsActions';
 
 import ProductsSidebar from '../components/ProductsSidebar';
@@ -29,6 +30,7 @@ const getSubSubCategoryID = state => state.ui.categories.subSubCategoryID;
 const getCategoryID = state => state.ui.categories.categoryID;
 const getSubCategoryID = state => state.ui.categories.subCategoryID;
 const getRadioValue = state => state.ui.sidebar.radio;
+const getProgress = state => state.ui.categories.uploadProgress;
 
 const getFusedCategories = createSelector(
   [getCategoriesObj],
@@ -119,38 +121,79 @@ const getFinishedProduct = createSelector(
     getPrimaryAttributes,
     getSecondaryAttributes,
     getSubSubCategoryID,
+    getProgress,
   ],
-  (name, description, weight, price, primary, secondary, id ) => {
-    return {
-      name: name,
-      short_desc: description,
-      category: id,
-      variances: primary
-                 .filter(
-                   ({ selected }) => selected
-                 )
-                 .map(
-                   obj => ({
-                     type: obj.id,
-                     images: obj.files
-                             .filter( ({ apiError }) => !apiError )
-                             .map(
-                               ({ apiID }) => apiID
-                             ),
-                     attributes: secondary[obj.id].attributes
-                                                  .filter( ({ selected }) => selected )
-                                                  .map(
-                                                    ({ attributeID, stock}) => ({
-                                                      type: attributeID,
-                                                      description,
-                                                      weight,
-                                                      price,
-                                                      stock,
-                                                    })
-                                                  )
-                   })
-                 )
+  (name, description, weight, price, primary, secondary, id, progress ) => {
+    if (!progress.primary && !progress.secondary) {
+      return {
+        name: name,
+        short_desc: description,
+        category: id,
+        variances: primary
+                  .filter(
+                    ({ selected }) => selected
+                  )
+                  .map(
+                    obj => ({
+                      type: obj.id,
+                      key: obj.name,
+                      value: obj.value,
+                      images: obj.files
+                              .filter( ({ apiError }) => !apiError )
+                              .map(
+                                ({ apiID }) => apiID
+                              ),
+                      custom: obj.custom,
+                      attributes: secondary[obj.id].attributes
+                                                    .filter( ({ selected }) => selected )
+                                                    .map(
+                                                      obj => ({
+                                                        type: obj.id,
+                                                        description,
+                                                        weight,
+                                                        price,
+                                                        stock: obj.stock,
+                                                        key: obj.name,
+                                                        value: obj.value,
+                                                        custom: obj.custom
+                                                      })
+                                                    )
+                    })
+                  )
 
+      }
+    } else {
+      return {
+        name: name,
+        short_desc: description,
+        category: id,
+        variances: primary
+                  .filter(
+                    ({ selected }) => selected
+                  )
+                  .map(
+                    obj => ({
+                      type: obj.id,
+                      images: obj.files
+                              .filter( ({ apiError }) => !apiError )
+                              .map(
+                                ({ apiID }) => apiID
+                              ),
+                      attributes: secondary[obj.id].attributes
+                                                    .filter( ({ selected }) => selected )
+                                                    .map(
+                                                      obj => ({
+                                                        type: obj.id,
+                                                        description,
+                                                        weight,
+                                                        price,
+                                                        stock: obj.stock,
+                                                      })
+                                                    )
+                    })
+                  )
+
+      }
     }
   }
 )
@@ -195,6 +238,7 @@ const mapStateToProps = state => {
     selectedProductId: state.ui.product.selectedProduct.id,
     showProductDetails: getShowProductDetails(state),
     temporaryAttribute: state.ui.categories.temporaryAttribute,
+    progress: getProgress(state),
   }
 }
 
@@ -327,6 +371,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           dispatch({
             type: 'SHOW_SIDEBAR_ADD_PRODUCT'
           })
+          break;
+        case 'UPLOADING':
+          dispatch({
+            type: 'SHOW_SIDEBAR_ADD_PRODUCT_UPLOADING'
+          });
           break;
         default:
          break;
@@ -461,6 +510,67 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     deleteSelectedProduct: (id, shop, token) => {
       dispatch(deleteProduct(id, shop, token));
+    },
+    makeProduct: (product, token) => {
+      let customPrimary = false;
+      let customSecondary = false;
+
+      product.variances.forEach(
+        (primaryObj, primaryKey) => {
+
+          if(primaryObj.custom) {
+            customPrimary = true;
+
+            const primaryProgress = ((product.variances.length - 1) === primaryKey) ? 'DONE_PRIMARY' : 'PRIMARY_ONGOING';
+
+            dispatch(requestAttribute(
+              token,
+              primaryObj.key,
+              primaryObj.value,
+              primaryObj.type,
+              true,
+              null,
+              primaryProgress,
+            ));
+          }
+
+          primaryObj.attributes.forEach(
+            (secondaryObj, secondaryKey) => {
+
+              if(secondaryObj.custom) {
+                customSecondary = true;
+
+                const secondaryProgress = ((primaryObj.attributes.length - 1) === secondaryKey) ? 'DONE_SECONDARY' : 'SECONDARY_ONGOING';
+
+                // if(primaryKey === (product.variances.lenght-1) && secondaryKey === (primaryObj.attributes.lenght-1)) {
+                  dispatch(requestAttribute(
+                    token,
+                    secondaryObj.key,
+                    secondaryObj.value,
+                    secondaryObj.type,
+                    false,
+                    primaryObj.type,
+                    secondaryProgress
+                  ));
+                // }
+              }
+
+            }
+          )
+        }
+      )
+
+      dispatch(requestAttribute(
+                    null,
+                    null,
+                    null,
+                    null,
+                    false,
+                    null,
+                    'DONE_ALL',
+                    customPrimary,
+                    customSecondary
+                  ));
     }
   }
 }

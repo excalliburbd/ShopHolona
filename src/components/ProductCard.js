@@ -23,6 +23,9 @@ import Stars from './Stars';
 
 import './ProductCard.css';
 
+import featureCardImg from './featuredProducts.png';
+import productCardImg from './addProduct.png';
+
 const ProductCard = ({
   rating = 3,
   productImg = 'https://unsplash.it/480/480',
@@ -32,28 +35,48 @@ const ProductCard = ({
   variances,
   id,
   vendor,
+  featureCard,
+  addProductCard,
 }) => {
-  if(variances[0].images[0]){
+  if(variances && variances[0].images[0]){
     productImg = variances[0].images[0].image
+  }
+
+  let img = productImg;;
+
+  if(vendor && featureCard) {
+    img = featureCardImg;
+    name = 'Add Featured Product';
+  }
+
+  if(vendor && addProductCard) {
+    img = productCardImg;
+    name = 'Add Product';
   }
 
   return (
     <Card className="ProductCard" onClick={ () => handleShowDetails(id) }>
       <CardMedia aspectRatio="square"
-                  image={ productImg } />
-      <div className="ProductCard-price">
-        {/*<img className="price-tag" src={PriceTag} alt="Price Tag" width="50" height="50"/>*/}
-        <div className="price-tag">
-          <h2 className="product-price">
-          <img className="price-symbol" src={Taka} alt="BDT"/>
-          { price }</h2>
+                  image={ img } />
+      {
+        (!vendor && !addProductCard && !featureCard) &&
+        <div className="ProductCard-price">
+          {/*<img className="price-tag" src={PriceTag} alt="Price Tag" width="50" height="50"/>*/}
+          <div className="price-tag">
+            <h2 className="product-price">
+            <img className="price-symbol" src={Taka} alt="BDT"/>
+            { price }</h2>
+          </div>
         </div>
-      </div>
+      }
       <div className="ProductCard-details">
         <h3 className="ProductCard-details-name">{ name }</h3>
-        <Stars rating={ rating } />
+        { (!vendor && !addProductCard && !featureCard) && <Stars rating={ rating } /> }
       </div>
-      <Button className="ProductCard-button" raised label={ vendor ? 'Edit Product' : 'Add to Cart' } />
+      {
+        (!vendor && !addProductCard && !featureCard) &&
+        <Button className="ProductCard-button" raised label={ vendor ? 'Edit Product' : 'Add to Cart' } />
+      }
     </Card>
   )
 }

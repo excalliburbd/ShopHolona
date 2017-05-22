@@ -186,3 +186,82 @@ export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
             }
           );
 }
+
+export const  requestAttribute = (
+  token,
+  name,
+  value,
+  id,
+  primary,
+  primaryID,
+  signal,
+  customPrimary,
+  customSecondary
+)  => dispatch => {
+
+  dispatch({
+    type: 'START_SET_CUSTOM_ATTRIBUT',
+    payload: signal
+  })
+
+  if (signal !== 'DONE_ALL') {
+        fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/category/attributes/`, {
+              method: 'post',
+              body: JSON.stringify({
+                name: name,
+                value: value,
+              }),
+              headers: {
+                'Content-type': 'application/json; charset=utf-8',
+                'Authorization': `JWT ${token}`,
+              },
+            }).then(
+              res => res.json()
+            ).then(
+              obj => {
+                if (obj.id) {
+                  if (primary) {
+                    dispatch({
+                      type: 'SET_CUSTOM_ATTRIBUT_ID_PRIMAY',
+                      payload: { newID: obj.id, oldID: id },
+                    })
+                  } else {
+                    dispatch({
+                      type: 'SET_CUSTOM_ATTRIBUT_ID_SECONDARY',
+                      payload: { newID: obj.id, oldID: id, primaryID },
+                    })
+                  }
+                } else {
+                  dispatch({
+                    type: 'ERROR_SET_CUSTOM_ATTRIBUTE',
+                    payload: obj,
+                  })
+                }
+
+                if (signal === 'DONE_PRIMARY') {
+                  dispatch({
+                    type: 'DONE_SET_CUSTOM_ATTRIBUTE_PRIMARY'
+                  })
+                }
+
+                if (signal === 'DONE_SECONDARY') {
+                  dispatch({
+                    type: 'DONE_SET_CUSTOM_ATTRIBUTE_SECONDARY'
+                  })
+                }
+              }
+            );
+  } else {
+      if (!customPrimary) {
+        dispatch({
+          type: 'DONE_SET_CUSTOM_ATTRIBUTE_PRIMARY'
+        })
+      }
+
+      if (!customSecondary) {
+        dispatch({
+          type: 'DONE_SET_CUSTOM_ATTRIBUTE_SECONDARY'
+        })
+      }
+  }
+}
