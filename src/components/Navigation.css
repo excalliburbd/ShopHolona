@@ -39,6 +39,11 @@
   margin-left: 18px;
 }
 
+.Navigation-sidebar {
+  z-index: 150;
+
+}
+
 .Navigation-sidebar-action {
   position: absolute;
   top: 4.2em;

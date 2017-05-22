@@ -8,6 +8,34 @@
 }
 
 .ProductCard--addProduct {
+  position: relative;
+  border: 3px dashed dimgray;
+}
+.ProductCard--addProduct:hover {
+  background-color: #ededed;
+}
+
+.ProductCard--addProduct-details-icon {
+  position: absolute;
+  top: 3.8em;
+  left: 0px;
+  width: 100%;
+  text-align: center;
+}
+.ProductCard--addProduct-details-icon img {
+  width: 40%;
+}
+.ProductCard--addProduct-details-content {
+  position: absolute;
+  top: 3.7em;
+  left: 0px;
+  width: 100%;
+  text-align: center;
+  font-size: 2.2em;
+  color: dimgray;
+}
+.ProductCard--addProduct-rating, .ProductCard--addProduct-button, .ProductCard--addProduct-details-name {
+  visibility: hidden;
 }
 
 .ShopPage-products--list .ProductCard {
@@ -69,6 +97,15 @@
   width: 10px;
   margin-right: 0.3em;
 }
+
+/*for phone*/
+@media screen and (max-width: 600px) {
+  .ProductCard--addProduct-details-content {
+    font-size: 1.8em;
+    padding: 0em 0.4em;
+  }
+
+  }
 
 /*for tablet*/
 @media screen and (min-width: 600px) {

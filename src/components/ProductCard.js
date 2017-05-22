@@ -19,6 +19,7 @@ import Dropdown from 'react-toolbox/lib/dropdown/Dropdown';
 import Chip from 'react-toolbox/lib/chip';
 
 import Taka from '../assets/images/taka.png';
+import AddProduct from '../assets/images/add-product.png';
 import Stars from './Stars';
 
 import './ProductCard.css';
@@ -43,10 +44,20 @@ const ProductCard = ({
   }
 
   if (vendor && addProductCard) {
-    return <Card className="ProductCard ProductCard--addProduct" onClick={ () => handleShowDetails(id) }>
-            <CardMedia aspectRatio="square"
-                  image={ productCardImg } />
-           </Card>
+    return (
+      <Card className="ProductCard ProductCard--addProduct" onClick={ () => handleShowDetails(id) }>
+        <CardMedia aspectRatio="square"
+
+        />
+        <div className="ProductCard-details ProductCard--addProduct-details">
+          <div className="ProductCard--addProduct-details-icon"><img src={ AddProduct } alt="Add Product Icon"/></div>
+          <h3 className="ProductCard-details-name ProductCard--addProduct-details-content">Add A New Product / Service</h3>
+          <h3 className="ProductCard-details-name ProductCard--addProduct-details-name">Add Products</h3>
+          <div className="ProductCard--addProduct-rating"><Stars rating={ 0 } /></div>
+        </div>
+        <Button className="ProductCard--addProduct-button" raised label="Add Products" />
+      </Card>
+      )
   }
 
   return (
