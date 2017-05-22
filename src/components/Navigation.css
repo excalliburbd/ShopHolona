@@ -39,17 +39,32 @@
   margin-left: 18px;
 }
 
-.Navigation-sidebar {
-  z-index: 150;
-
+._1sAOY.Navigation-sidebar {
+  z-index: 250;
+  border-left: 0px;
 }
 
 .Navigation-sidebar-action {
   position: absolute;
-  top: 4.2em;
+  top: 0em;
+  height: 4rem;
   display: flex;
   justify-content: space-between;
   width: 100%;
+  background-color: #FFC400;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14),
+              0 1px 10px 0 rgba(0, 0, 0, .12),
+              0 2px 4px -1px rgba(0, 0, 0, .2);
+}
+
+.Navigation-sidebar-action button .material-icons {
+  font-size: 2.2em;
+  margin-top: 0.45em;
+  margin-left: 0.2em;
+}
+.Navigation-sidebar-action h1 {
+  width: 100%;
+  padding-left: 0.3em;
 }
 
 .Navigation-sidebar-content {

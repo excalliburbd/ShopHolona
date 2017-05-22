@@ -107,6 +107,7 @@ const Nav = ({
       <Sidebar pinned={ showSidebar } className="Navigation-sidebar" >
         <div className="Navigation-sidebar-action">
           <IconButton icon='close' onClick={ handleHideSidebar }/>
+          <h1>Add Products/Services</h1>
         </div>
         <div className="Navigation-sidebar-content">
           <SidebarContent />

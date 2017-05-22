@@ -101,8 +101,9 @@
 /*for phone*/
 @media screen and (max-width: 600px) {
   .ProductCard--addProduct-details-content {
-    font-size: 1.8em;
-    padding: 0em 0.4em;
+    font-size: 1.6em;
+    padding: 0.5em 0.4em;
+    margin-top: 1.5em;
   }
 
   }
