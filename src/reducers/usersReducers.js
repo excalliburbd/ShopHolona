@@ -3,7 +3,6 @@ export const UserReducer = (
   state = {
     isLoggedIn: false,
     token: null,
-    shop: 4,
     registered_as: null,
   }, action
 ) => {
@@ -24,6 +23,7 @@ export const UserReducer = (
       return {
         ...state,
         token: action.token,
+        isLoggedIn: true,
       }
     case 'USER_SET_PROFILE':
       return {

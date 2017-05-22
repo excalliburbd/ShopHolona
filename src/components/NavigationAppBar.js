@@ -25,6 +25,7 @@ const NavigationAppBar = ({
   handleSignIn,
   shopName,
   userImg,
+  referal,
 }) => {
 
   const navTitleClass = classNames({
@@ -42,7 +43,7 @@ const NavigationAppBar = ({
               title={
                 <span className={ navTitleClass }>
                   <span>{ shopName }</span> <br />
-                  <span>#REF1234</span>
+                  <span>{ referal }</span>
                 </span>
               }
               leftIcon={

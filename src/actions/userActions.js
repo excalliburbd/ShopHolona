@@ -72,3 +72,25 @@ export const trySignInAsyncAction = ({ email, password }, shop) => dispatch => {
             }
           );
 }
+
+export const getMe = (token, shop) => dispatch => {
+    fetch('http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/me/', {
+      headers: {
+          "Accept": "application/json",
+          'Content-type': 'application/json; charset=utf-8',
+          'Authorization': `JWT ${token}`,
+        },
+    })
+    .then(
+      res => res.json()
+    ).then(
+      res => {
+        if (res.id) {
+          dispatch({
+            type: 'USER_SET_PROFILE',
+            payload: res,
+          });
+        }
+      }
+    )
+}

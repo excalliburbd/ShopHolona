@@ -1,8 +1,10 @@
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+import { withRouter } from 'react-router';
 
 import { getCategory, getAllProducts } from '../actions/productsActions';
-import { getShopCategories } from '../actions/shopActions';
+import { getShopCategories, getShop } from '../actions/shopActions';
+import { getMe } from '../actions/userActions';
 
 import ShopPage from '../components/ShopPage';
 
@@ -57,10 +59,10 @@ const getVendors = createSelector(
 const mapStateToProps = state => {
   return {
     details: state.ui.shopPage.details,
-    shopName: state.shop.name,
-    shortDesc: state.shop.shortDescription,
+    shopName: state.shop.shop_name,
+    shortDesc: state.shop.short_descr,
     token: state.user.token,
-    shop: state.user.shop,
+    shop: state.shop.id,
     shopCategories: getCategories(state),
     products: getProducts(state),
     selectedChip: state.shop.chip,
@@ -74,12 +76,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch({
         type: 'TOGGLE_SHOPPAGE_UI_DETAILS'
       })
-    },
-    getAllProducts: shop => {
-      dispatch(getAllProducts(shop));
-    },
-    getShopCategories: shop => {
-      dispatch(getShopCategories(shop))
     },
     selectChip: index => {
       dispatch({
@@ -100,10 +96,26 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         type: 'SHOW_SIDEBAR_ADD_PRODUCT'
       });
       dispatch(getCategory());
-    }
+    },
+    handleSetCredentials: (shop, token) => {
+      dispatch({
+        type: 'SET_SHOP_ID',
+        payload: shop,
+      });
+      dispatch(getShop(shop));
+      dispatch(getShopCategories(shop));
+      dispatch(getAllProducts(shop));
+
+      dispatch({
+        type: 'USER_SET_TOKEN',
+        token,
+      });
+
+      dispatch(getMe(token));
+    },
   }
 }
 
-const FilterBarContainer = connect(mapStateToProps, mapDispatchToProps)(ShopPage);
+const FilterBarContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(ShopPage));
 
 export default FilterBarContainer;

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { trySignInAsyncAction } from '../actions/signInSignUpActions';
+import { trySignInAsyncAction } from '../actions/userActions';
 
 import SignUp from '../components/SignUp';
 
@@ -12,7 +12,7 @@ const mapStateToProps = state => {
     phonePassword: state.ui.user.phonePassword,
     error: state.ui.user.error,
     token: state.user.token,
-    shop: state.user.shop,
+    shop: state.shop.id,
   }
 }
 

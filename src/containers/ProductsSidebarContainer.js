@@ -228,7 +228,7 @@ const mapStateToProps = state => {
     productDescription: getProductDescription(state),
     finishedProduct: getFinishedProduct(state),
     token: state.user.token,
-    shop: state.user.shop,
+    shop: state.shop.id,
     productVariances: state.ui.product.selectedProduct.variances,
     selectedVariance: state.ui.product.selectedVariance,
     productDetailName: state.ui.product.selectedProduct.name,

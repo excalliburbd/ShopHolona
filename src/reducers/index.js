@@ -118,12 +118,13 @@ const ShopPageUIReducer = (
 
 const ShopPageReducer = (
   state = {
-    id: 4,
-    name: 'Test Shop',
-    shortDescription: 'For test purpose',
+    shop_name: 'Loading',
+    short_descr: 'Loading',
+    referal: '#REF1234',
     categories: {
 
     },
+    id: null,
     chip: 0,
   }, action
 ) => {
@@ -148,6 +149,16 @@ const ShopPageReducer = (
       return {
         ...state,
         chip: action.payload,
+      }
+    case 'SET_SHOP':
+      return {
+        ...state,
+        ...action.payload,
+      }
+    case 'SET_SHOP_ID':
+      return {
+        ...state,
+        id: action.payload,
       }
     default:
       return state;

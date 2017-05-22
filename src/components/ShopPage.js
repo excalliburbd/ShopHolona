@@ -38,15 +38,24 @@ class ShopPage extends Component {
   componentDidMount() {
     const {
       shop,
+      history,
+      location,
+      handleSetCredentials,
     } = this.props;
 
-    this.props.getShopCategories(
-      shop
-    );
+    if(location.search !== '') {
+      const searchParts = location.search.split('&');
+      if(searchParts.length === 2) {
+        const idPart = searchParts[0].split('=');
+        const tokenPart = searchParts[1].split('=');
 
-    this.props.getAllProducts(
-      shop,
-    );
+        if(idPart[0] === '?shopId' && tokenPart[0] === 'accessToken') {
+          handleSetCredentials(idPart[1], tokenPart[1]);
+        }
+      }
+    }
+
+    history.push('/');
   }
 
   render() {
