@@ -25,6 +25,7 @@ const SignUp = ({
   handlePhoneValue,
   handlePhonePasswordValue,
   error,
+  shop
 }) => (
   <div className="SignUp">
     <div className="SignUp-header">
@@ -58,7 +59,7 @@ const SignUp = ({
              value={ emailPassword }
              onChange={ handleEmailPasswordValue }
              icon='vpn_key' />
-      <IconButton icon="forward" onClick={ () => handleTrySignIn({ email, password: emailPassword}) } />
+      <IconButton icon="forward" onClick={ () => handleTrySignIn({ email, password: emailPassword}, shop) } />
     </div>
     <div>
       <p>Or</p>

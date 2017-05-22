@@ -42,41 +42,31 @@ const ProductCard = ({
     productImg = variances[0].images[0].image
   }
 
-  let img = productImg;;
-
-  if(vendor && featureCard) {
-    img = featureCardImg;
-    name = 'Add Featured Product';
-  }
-
-  if(vendor && addProductCard) {
-    img = productCardImg;
-    name = 'Add Product';
+  if (vendor && addProductCard) {
+    return <Card className="ProductCard ProductCard--addProduct" onClick={ () => handleShowDetails(id) }>
+            <CardMedia aspectRatio="square"
+                  image={ productCardImg } />
+           </Card>
   }
 
   return (
     <Card className="ProductCard" onClick={ () => handleShowDetails(id) }>
       <CardMedia aspectRatio="square"
-                  image={ img } />
-      {
-        (!vendor && !addProductCard && !featureCard) &&
+                  image={ productImg } />
         <div className="ProductCard-price">
           {/*<img className="price-tag" src={PriceTag} alt="Price Tag" width="50" height="50"/>*/}
           <div className="price-tag">
             <h2 className="product-price">
-            <img className="price-symbol" src={Taka} alt="BDT"/>
-            { price }</h2>
+              <img className="price-symbol" src={Taka} alt="BDT"/>
+              { price }
+            </h2>
           </div>
         </div>
-      }
       <div className="ProductCard-details">
         <h3 className="ProductCard-details-name">{ name }</h3>
-        { (!vendor && !addProductCard && !featureCard) && <Stars rating={ rating } /> }
+        <Stars rating={ rating } />
       </div>
-      {
-        (!vendor && !addProductCard && !featureCard) &&
-        <Button className="ProductCard-button" raised label={ vendor ? 'Edit Product' : 'Add to Cart' } />
-      }
+      <Button className="ProductCard-button" raised label={ vendor ? 'Edit Product' : 'Add to Cart' } />
     </Card>
   )
 }

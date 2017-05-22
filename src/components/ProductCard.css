@@ -7,6 +7,9 @@
   cursor: pointer;
 }
 
+.ProductCard--addProduct {
+}
+
 .ShopPage-products--list .ProductCard {
   width: calc((100% / 2) - 15px);
 }

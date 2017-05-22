@@ -18,8 +18,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleTrySignIn: res => {
-      dispatch(trySignInAsyncAction(res));
+    handleTrySignIn: (res, shop) => {
+      dispatch(trySignInAsyncAction(res, shop));
     },
     handleEmailValue: val => {
       dispatch({

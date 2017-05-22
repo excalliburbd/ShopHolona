@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 
 import { getShopCategories } from '../actions/shopActions';
 
-export const trySignInAsyncAction = ({ email, password }) => dispatch => {
+export const trySignInAsyncAction = ({ email, password }, shop) => dispatch => {
 
   const credentials = {};
 
@@ -60,7 +60,7 @@ export const trySignInAsyncAction = ({ email, password }) => dispatch => {
                   type: 'HIDE_SIDEBAR',
                 });
 
-                dispatch(getShopCategories(res.token, 3));
+                dispatch(getShopCategories(shop));
 
               }else{
                 console.log(res)
