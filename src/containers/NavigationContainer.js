@@ -10,7 +10,7 @@ const mapStateToProps = state => {
     userLoggedIn: state.user.isLoggedIn,
     sidebarType: state.ui.sidebar.type,
     shopName: state.shop.shop_name,
-    referal: state.shop.referal,
+    refCode: state.user.referral.code,
   }
 }
 

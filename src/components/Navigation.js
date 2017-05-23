@@ -45,7 +45,7 @@ const Nav = ({
   handleSignOut,
   sidebarType,
   shopName,
-  referal,
+  refCode,
   children
 }) => {
 
@@ -83,7 +83,7 @@ const Nav = ({
                           history={ history }
                           location={ location }
                           shopName={ shopName }
-                          referal={ referal }
+                          refCode={ refCode }
                           hideSearchbar={ hideSearchbar }
                           userLoggedIn={ userLoggedIn }
                           handleSignOut={ handleSignOut }

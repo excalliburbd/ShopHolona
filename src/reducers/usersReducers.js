@@ -4,6 +4,9 @@ export const UserReducer = (
     isLoggedIn: false,
     token: null,
     registered_as: null,
+    referral: {
+      code: '#REF1234'
+    }
   }, action
 ) => {
   switch (action.type) {
