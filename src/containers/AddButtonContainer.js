@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 import { getCategory } from '../actions/productsActions';
 
@@ -20,6 +21,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-const AddButtonContainer = connect(mapStateToProps, mapDispatchToProps)(AddButton);
+const AddButtonContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(AddButton));
 
 export default AddButtonContainer;

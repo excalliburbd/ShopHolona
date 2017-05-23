@@ -73,8 +73,7 @@ const Nav = ({
   return (
     <Layout className="Navigation">
 
-      <AddButtonContainer history={ history }
-                          location={ location } />
+      <AddButtonContainer />
 
       <NavigationDrawer pinned={ pinned } history={ history } location={ location }/>
 
