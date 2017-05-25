@@ -1,6 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
+@font-face {
+  font-family: "Gotham Narrow Black";
+  src: url('../src/assets/fonts/gotham_narrow_black.otf') format("opentype");
+}
+
+@font-face {
+  font-family: "Gotham Narrow Book";
+  src: url('../src/assets/fonts/gotham_narrow_book.otf') format("opentype");
+}
+
+@font-face {
+  font-family: "Gotham Thin Regular";
+  src: url('../src/assets/fonts/gotham_thin_regular.otf') format("opentype");
+}
+
 body {
   margin: 0;
 }

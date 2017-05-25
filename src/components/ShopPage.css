@@ -29,7 +29,7 @@
   text-align: center;
   height: 12em;
   justify-content: center;
-  box-shadow: 8px 1px 10px -3px rgba(0, 0, 0, 0.19);
+  box-shadow: 8px 1px 10px -3px rgba(0, 0, 0, 0.055);
   z-index: 10;
 
 }
@@ -58,6 +58,8 @@
   border-radius: 50%;
   background: url('https://unsplash.it/160/160') no-repeat center center;
   margin-top: 1.2em;
+  box-shadow: 0px 0px 16px -1px rgba(0, 0, 0, 0.7);
+  border: 0.5px solid grey;
 }
 
 .ShopPage-details--show  .ShopPage-details-img {
@@ -186,7 +188,7 @@
 
   .ShopPage-featured {
     height: 22em;
-    box-shadow: -8px 1px 10px -3px rgba(0, 0, 0, 0.19);
+    box-shadow: -8px 1px 10px -3px rgba(0, 0, 0, 0.055);
   }
 
   .ShopPage-details > .ShopPage-details-img {
