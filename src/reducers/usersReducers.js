@@ -5,22 +5,19 @@ export const UserReducer = (
     token: null,
     registered_as: null,
     referral: {
-      code: '#REF1234'
+      code: 'loading'
     }
   }, action
 ) => {
   switch (action.type) {
-    case 'USER_TRY_SIGNIN':
-      return {
-        ...state,
-        isLoggedIn: true,
-      }
     case 'USER_MANUAL_SIGNOUT':
       return {
         isLoggedIn: false,
         token: null,
         registered_as: null,
-        shop: state.shop,
+        referral: {
+          code: state.referral.code,
+        }
       }
     case 'USER_SET_TOKEN':
       return {

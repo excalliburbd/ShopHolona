@@ -2,13 +2,12 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { withRouter } from 'react-router';
 
-import { getCategory, getAllProducts } from '../actions/productsActions';
-import { getShopCategories, getShop } from '../actions/shopActions';
-import { getMe } from '../actions/userActions';
+import { getCategory } from '../actions/productsActions';
 
 import ShopPage from '../components/ShopPage';
 
 const getProcutsArray = state => state.products;
+const getFeaturedProcutsArray = state => state.featuredProducts;
 const getProcutEntities = state => state.entities.products;
 // const getCategoriesArray = state => state.categories;
 const getCategoriesEntities = state => state.shop.categories;
@@ -45,6 +44,13 @@ const getProducts = createSelector(
   }
 );
 
+const getFeaturedProducts = createSelector(
+  [getFeaturedProcutsArray, getProcutEntities],
+  (productsArr, productsObj) => {
+    return productsArr.map( id => productsObj[id] );
+  }
+);
+
 const getVendors = createSelector(
   [getUserDetails],
   (user) => {
@@ -65,6 +71,7 @@ const mapStateToProps = state => {
     shop: state.shop.id,
     shopCategories: getCategories(state),
     products: getProducts(state),
+    featuredProducts: getFeaturedProducts(state),
     selectedChip: state.shop.chip,
     vendor: getVendors(state),
   }
@@ -96,22 +103,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         type: 'SHOW_SIDEBAR_ADD_PRODUCT'
       });
       dispatch(getCategory());
-    },
-    handleSetCredentials: (shop, token) => {
-      dispatch({
-        type: 'SET_SHOP_ID',
-        payload: shop,
-      });
-      dispatch(getShop(shop));
-      dispatch(getShopCategories(shop));
-      dispatch(getAllProducts(shop));
-
-      dispatch({
-        type: 'USER_SET_TOKEN',
-        token,
-      });
-
-      dispatch(getMe(token));
     },
   }
 }

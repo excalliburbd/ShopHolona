@@ -7,10 +7,11 @@ import ProductCard from './ProductCard';
 import './FeaturedSlider.css';
 
 const FeaturedSlider = ({
-  products = [
-    <div className="emptydiv-featured"></div>
-  ]
+  products
 }) => {
+
+  products.push(<div className="emptydiv-featured"></div>);
+
   return (
     <div className="FeaturedSlider">
       {/*<div>Featured Products</div>*/}

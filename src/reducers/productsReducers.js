@@ -18,7 +18,32 @@ export const productsReducer = (
 
       return products;
     case 'DONE_API_DELETE_PRODUCT':
-      return state.filter( id => (id !== action.payload.id))
+      return state.filter( id => (id !== action.payload.id));
+    default:
+      return state;
+  }
+}
+
+export const featuredProductsReducer = (
+  state = [
+
+  ] , action
+) => {
+  switch (action.type) {
+    case 'DONE_API_GET_FEATURED_PRODUCT':
+      const products = state;
+
+      action.payload.forEach(
+        ({ product }) => {
+          if(products.indexOf(product.id) === -1) {
+            products.unshift(product.id)
+          }
+        }
+      )
+
+      return products;
+    case 'DONE_API_DELETE_FEATURED_PRODUCT':
+      return state.filter( id => (id !== action.payload.id));
     default:
       return state;
   }
@@ -194,6 +219,29 @@ export const productsEntityReducer = (
       delete productsEntity[action.payload.id];
 
       return productsEntity;
+    case 'DONE_API_GET_FEATURED_PRODUCT':
+      const featuredProducts = {};
+
+      action.payload.forEach(
+        ({ product }) => {
+          featuredProducts[product.id] = {
+            ...product,
+            weight: product.variances[0].attributes[0].weight,
+            price: product.variances[0].attributes[0].price
+          }
+        }
+      )
+
+      return {
+        ...state,
+        ...featuredProducts,
+      }
+    case 'DONE_API_DELETE_FEATURED_PRODUCT':
+      const featuredProductsEntity = { ...state };
+
+      delete featuredProductsEntity[action.payload.id];
+
+      return featuredProductsEntity;
     default:
       return state;
   }

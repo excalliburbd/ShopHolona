@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import { FilterUIReducer } from './filterUIReducer';
 import { OrdersReducer, OrdersEntityReducer } from './ordersReducers';
 import { UserReducer, UserUIReducer, userDetailsReducer } from './usersReducers';
-import { productsReducer, productsEntityReducer, ProductsUIReducer } from './productsReducers';
+import { productsReducer, featuredProductsReducer, productsEntityReducer, ProductsUIReducer } from './productsReducers';
 import { BackOfficeUIReducer } from './backOfficeReducers';
 import {
   categoriesReducer,
@@ -170,6 +170,7 @@ const RootReducer = combineReducers({
   shop: ShopPageReducer,
   categories: categoriesReducer,
   products: productsReducer,
+  featuredProducts: featuredProductsReducer,
   orders: OrdersReducer,
   entities: combineReducers({
     orders: OrdersEntityReducer,

@@ -74,7 +74,7 @@ export const getAllProducts = shop  => dispatch => {
               'Content-type': 'application/json; charset=utf-8',
             },
           }).then(
-            res => res.json()
+            res => (res.status === 200) && res.json()
           ).then(
             res => {
               dispatch({
@@ -264,4 +264,28 @@ export const  requestAttribute = (
         })
       }
   }
+}
+
+export const getFeaturedProduct = (shop, token) => dispatch => {
+
+  dispatch({
+    type: 'START_API_GET_FEATURED_PRODUCT',
+  });
+
+  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/featured-products/`, {
+            method: 'get',
+            headers: {
+              'Authorization': `JWT ${token}`
+            },
+          }).then(
+            res => res.json()
+          ).then(
+            res => {
+              console.log(res)
+              dispatch({
+                type: 'DONE_API_GET_FEATURED_PRODUCT',
+                payload: res,
+              })
+            }
+          )
 }

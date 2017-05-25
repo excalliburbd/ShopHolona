@@ -1,7 +1,26 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { createSelector } from 'reselect';
 
-import Nav from '../components/Navigation';
+import { getCategory, getAllProducts, getFeaturedProduct } from '../actions/productsActions';
+import { getShopCategories, getShop } from '../actions/shopActions';
+import { getMe } from '../actions/userActions';
+
+import Nav from '../components/Navigation/Navigation';
+
+const getLocation = state => state.router.location;
+
+const getPinState = createSelector(
+  [getLocation],
+  location => {
+    if (location.pathname === '/') {
+      return false;
+    } else {
+      return true;
+    }
+  }
+)
+
 
 const mapStateToProps = state => {
   return {
@@ -11,6 +30,7 @@ const mapStateToProps = state => {
     sidebarType: state.ui.sidebar.type,
     shopName: state.shop.shop_name,
     refCode: state.user.referral.code,
+    pinned: getPinState(state),
   }
 }
 
@@ -41,6 +61,29 @@ const mapDispatchToProps = dispatch => {
         type: 'USER_MANUAL_SIGNOUT',
       })
     },
+    handleSetCredentials: (shop, token) => {
+      dispatch({
+        type: 'SET_SHOP_ID',
+        payload: shop,
+      });
+      dispatch(getShop(shop));
+      dispatch(getShopCategories(shop));
+      dispatch(getAllProducts(shop));
+
+      dispatch({
+        type: 'USER_SET_TOKEN',
+        token,
+      });
+
+      dispatch(getFeaturedProduct(shop, token));
+      dispatch(getMe(token));
+    },
+    handleSetSideDrawer: val => {
+      dispatch({
+        type: 'SET_NAVIGATION_PIN_SIDEDRAWER',
+        payload: val,
+      })
+    }
   }
 }
 

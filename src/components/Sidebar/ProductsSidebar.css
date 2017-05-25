@@ -41,7 +41,9 @@
 
 .ProductsSidebar-add--products,
 .ProductsSidebar-add--stock,
-.ProductsSidebar-img {
+.ProductsSidebar-img,
+.ProductSidebar-details,
+.ProductSidebar-upload {
   display: flex;
   flex-direction: column;
 }

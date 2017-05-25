@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Dashboard from '../components/Dashboard';
+import Dashboard from '../components/BackOffice/Dashboard';
 
 const mapStateToProps = state => {
   return {

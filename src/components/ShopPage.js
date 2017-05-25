@@ -26,115 +26,88 @@ import FeaturedSlider from './FeaturedSlider';
 
 import './ShopPage.css'
 
-class ShopPage extends Component {
-  constructor(props) {
-    super(props);
+const  ShopPage = ({
+  toggleDetails,
+  details,
+  shopName,
+  shortDesc,
+  products,
+  selectedChip,
+  selectChip,
+  handleShowProductDetails,
+  vendor,
+  handleAddProduct,
+  featuredProducts,
+}) => {
 
-    this.state = {
+  const detailsClass = classNames({
+    'ShopPage-details': true,
+    'ShopPage-details--show': details,
+  });
 
-    }
-  }
-
-  componentDidMount() {
-    const {
-      shop,
-      history,
-      location,
-      handleSetCredentials,
-    } = this.props;
-
-    if(location.search !== '') {
-      const searchParts = location.search.split('&');
-      if(searchParts.length === 2) {
-        const idPart = searchParts[0].split('=');
-        const tokenPart = searchParts[1].split('=');
-
-        if(idPart[0] === '?shopId' && tokenPart[0] === 'accessToken') {
-          handleSetCredentials(idPart[1], tokenPart[1]);
-        }
-      }
-    }
-
-    history.push('/');
-  }
-
-  render() {
-    const {
-      toggleDetails,
-      details,
-      shopName,
-      shortDesc,
-      products,
-      selectedChip,
-      selectChip,
-      handleShowProductDetails,
-      vendor,
-      handleAddProduct,
-    } = this.props;
-
-    const detailsClass = classNames({
-      'ShopPage-details': true,
-      'ShopPage-details--show': details,
-    });
-
-    return (
-      <div className="ShopPage">
-        <div className="ShopPage-banner" />
-        <div className={ detailsClass }>
-          <div className="ShopPage-banner">
-            <div className="ShopPage-details-img" />
-          </div>
-          <IconButton icon={ (details) ? 'close' :'keyboard_arrow_down'}
-                      className="ShopPage-details--toggle"
-                      onClick={ toggleDetails }/>
+  return (
+    <div className="ShopPage">
+      <div className="ShopPage-banner" />
+      <div className={ detailsClass }>
+        <div className="ShopPage-banner">
           <div className="ShopPage-details-img" />
-          <div className="ShopPage-details-description">
-            <h2 className="ShopPage-details--text">{ shopName }</h2>
-            <p className="ShopPage-details--text">Address</p>
-            <Stars rating="4" />
-            <Button raised primary label="Follow" />
-            <p className="ShopPage-details--text-desc">{shortDesc}</p>
-          </div>
         </div>
-        <div className="ShopPage-products">
-          <div className="ShopPage-featured">
-            <FeaturedSlider vendor={ vendor }/>
+        <IconButton icon={ (details) ? 'close' :'keyboard_arrow_down'}
+                    className="ShopPage-details--toggle"
+                    onClick={ toggleDetails }/>
+        <div className="ShopPage-details-img" />
+        <div className="ShopPage-details-description">
+          <h2 className="ShopPage-details--text">{ shopName }</h2>
+          <p className="ShopPage-details--text">Address</p>
+          <Stars rating="4" />
+          <Button raised primary label="Follow" />
+          <p className="ShopPage-details--text-desc">{shortDesc}</p>
+        </div>
+      </div>
+      <div className="ShopPage-products">
+        <div className="ShopPage-featured">
+          <FeaturedSlider vendor={ vendor }
+                          products = { featuredProducts.map(
+                                          (porduct, key) => <ProductCard { ...porduct }
+                                                                          vendor={ vendor }
+                                                                          handleShowDetails={ () => handleShowProductDetails(vendor, porduct) }
+                                                                          key={ key }/>
+                                        ) }/>
+        </div>
+        <div className="ShopPage-products--container">
+          <div className="ShopPage-banner" />
+          <div className="ShopPage-products--categories">
+            {
+              products.map(
+                (obj, key) => <Chip onClick={ () => selectChip(key) } key={key}>
+                                { obj.name }
+                              </Chip>
+              )
+            }
           </div>
-          <div className="ShopPage-products--container">
-            <div className="ShopPage-banner" />
-            <div className="ShopPage-products--categories">
+          <div className="ShopPage-products--content">
+            <div className="ShopPage-products--list">
               {
-                products.map(
-                  (obj, key) => <Chip onClick={ () => selectChip(key) } key={key}>
-                                  { obj.name }
-                                </Chip>
+                (vendor) && <ProductCard  addProductCard
+                                          vendor={ vendor }
+                                          handleShowDetails={ handleAddProduct }
+                                          key="AddProductKey" />
+              }
+              {
+                products[selectedChip].products.map(
+                  (porduct, key) => <ProductCard { ...porduct }
+                                                  vendor={ vendor }
+                                                  handleShowDetails={ () => handleShowProductDetails(vendor, porduct) }
+                                                  key={ key }/>
                 )
               }
             </div>
-            <div className="ShopPage-products--content">
-              <div className="ShopPage-products--list">
-                {
-                  (vendor) && <ProductCard  addProductCard
-                                            vendor={ vendor }
-                                            handleShowDetails={ handleAddProduct }
-                                            key="AddProductKey" />
-                }
-                {
-                  products[selectedChip].products.map(
-                    (porduct, key) => <ProductCard { ...porduct }
-                                                   vendor={ vendor }
-                                                   handleShowDetails={ () => handleShowProductDetails(vendor, porduct) }
-                                                   key={ key }/>
-                  )
-                }
-              </div>
-              <div className="emptydiv-phone"></div>
-            </div>
+            <div className="emptydiv-phone"></div>
           </div>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default ShopPage;

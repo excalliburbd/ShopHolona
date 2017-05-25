@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import DatePickerFilter from '../components/DatePickerFilter';
+import DatePickerFilter from '../components/Filter/DatePickerFilter';
 
 const mapStateToProps = state => {
   return {

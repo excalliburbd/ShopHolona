@@ -10,7 +10,7 @@ import IconMenu from 'react-toolbox/lib/menu/IconMenu';
 import MenuItem from 'react-toolbox/lib/menu/MenuItem';
 import MenuDivider from 'react-toolbox/lib/menu/MenuDivider';
 
-import logo from '../assets/images/logo/logo.png';
+import logo from '../../assets/images/logo/logo.png';
 
 import './NavigationAppBar.css';
 
@@ -113,7 +113,8 @@ const NavigationAppBar = ({
                                 caption='Profile' />
                       <MenuItem value='settings'
                                 icon='settings'
-                                caption='Settings' />
+                                caption='Settings'
+                                onClick={() => history.push('/settings')} />
                       <MenuDivider />
                       <MenuItem value='signout'
                         icon='signout'

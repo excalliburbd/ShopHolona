@@ -11,7 +11,7 @@ import {
   requestAttribute,
 } from '../actions/productsActions';
 
-import ProductsSidebar from '../components/ProductsSidebar';
+import ProductsSidebar from '../components/Sidebar/ProductsSidebar';
 
 const getCategoriesObj = state => state.ui.categories.categories;
 const getSubCategoriesObj = state => state.ui.categories.subCategories;

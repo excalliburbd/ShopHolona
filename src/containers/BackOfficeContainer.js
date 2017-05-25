@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import BackOffice from '../components/BackOffice';
+import BackOffice from '../components/BackOffice/BackOffice';
 
 const getMenu = state => state.ui.backOffice.menu;
 const getTabIndex = state => state.ui.backOffice.selectedIndexs;

@@ -5,7 +5,7 @@ import Card from 'react-toolbox/lib/card/Card';
 
 import FaTelevision from 'react-icons/lib/fa/television';
 
-import DatePickerFilterContainer from '../containers/DatePickerFilterContainer';
+import DatePickerFilterContainer from '../../containers/DatePickerFilterContainer';
 
 import 'react-day-picker/lib/style.css';
 
