@@ -59,12 +59,17 @@
 
 .Navigation-sidebar-action button .material-icons {
   font-size: 2.2em;
-  margin-top: 0.45em;
+  color: white;
+  font-weight: 900;
+}
+.Navigation-sidebar-action button {
+  margin-top: 1.10em;
   margin-left: 0.2em;
 }
 .Navigation-sidebar-action h1 {
   width: 100%;
-  padding-left: 0.3em;
+  padding-left: 0.4em;
+  color: white;
 }
 
 .Navigation-sidebar-content {
