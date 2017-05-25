@@ -3,7 +3,7 @@
 }
 
 .ShopPage-banner {
-  background: url('https://unsplash.it/1200/700') no-repeat center center;
+  background: url('https://unsplash.it/1200/700') no-repeat fixed;
   background-size: cover;
   height: 12em;
   width: 100%;
@@ -104,6 +104,7 @@
 
 .ShopPage-products--content {
   /*display: inline-block;*/
+  height: 100vh;
   flex-wrap: wrap;
   background-color: whitesmoke;
   justify-content: center;

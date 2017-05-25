@@ -9,6 +9,8 @@ import {
   postImage,
   deleteProduct,
   requestAttribute,
+  makeFeaturedProduct,
+  removeFromFeaturedProduct,
 } from '../actions/productsActions';
 
 import ProductsSidebar from '../components/Sidebar/ProductsSidebar';
@@ -31,6 +33,7 @@ const getCategoryID = state => state.ui.categories.categoryID;
 const getSubCategoryID = state => state.ui.categories.subCategoryID;
 const getRadioValue = state => state.ui.sidebar.radio;
 const getProgress = state => state.ui.categories.uploadProgress;
+const getSelectedPrductID = state => state.ui.product.selectedProduct.id;
 
 const getFusedCategories = createSelector(
   [getCategoriesObj],
@@ -235,10 +238,12 @@ const mapStateToProps = state => {
     productDetailWeight: state.ui.product.selectedProduct.weight,
     productDetailPrice: state.ui.product.selectedProduct.price,
     productDetailDescription: state.ui.product.selectedProduct.short_desc,
-    selectedProductId: state.ui.product.selectedProduct.id,
+    selectedProductId: getSelectedPrductID(state),
     showProductDetails: getShowProductDetails(state),
     temporaryAttribute: state.ui.categories.temporaryAttribute,
     progress: getProgress(state),
+    featured: (state.featuredProducts.indexOf(state.ui.product.selectedProduct.id) !== -1),
+    selectedProduct: state.ui.product.selectedProduct,
   }
 }
 
@@ -571,6 +576,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                     customPrimary,
                     customSecondary
                   ));
+    },
+    makeFeaturedProduct: (id, shop, token) => {
+      dispatch(makeFeaturedProduct(id, shop, token));
+    },
+    deleteFromFeaturedProduct: (id, shop, token) => {
+      dispatch(removeFromFeaturedProduct(id, shop, token));
     }
   }
 }

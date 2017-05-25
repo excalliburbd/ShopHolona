@@ -62,7 +62,10 @@ const ProductsSidebar = ({
   handleSetTemporaryAttribute,
   makeProduct,
   progress,
-  featured = false,
+  featured,
+  makeFeaturedProduct,
+  deleteFromFeaturedProduct,
+  selectedProduct,
 }) => {
   switch(type) {
     case 'ADD_PRODUCT':
@@ -121,7 +124,10 @@ const ProductsSidebar = ({
                                   handleSelectVariance={ handleSelectVariance }
                                   selectedProductId={ selectedProductId }
                                   deleteSelectedProduct={ deleteSelectedProduct }
-                                  featured={ featured } />
+                                  featured={ featured }
+                                  makeFeaturedProduct={ makeFeaturedProduct }
+                                  deleteFromFeaturedProduct={ deleteFromFeaturedProduct }
+                                  selectedProduct={ selectedProduct } />
     case 'UPLOADING':
       return <ProductUpload className="ProductSidebar-upload"
                             makeProduct={ makeProduct }

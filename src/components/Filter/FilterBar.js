@@ -67,7 +67,7 @@ const FilterBar = ({
         <span>{ routeName }</span>
       </div>
       <div className="FilterBar-filters">
-       <DatePickerFilterContainer />
+       {/*<DatePickerFilterContainer />*/}
       </div>
     </Card>
   </div>

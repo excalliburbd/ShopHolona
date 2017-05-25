@@ -31,12 +31,14 @@ const NavigationAppBar = ({
   const navTitleClass = classNames({
     'NavigationAppBar-title': true,
     'NavigationAppBar-title--hidden': searchbar,
-  })
+  });
 
   const searchbarClass = classNames({
     'Searchbar': true,
     'Searchbar--hide': !searchbar,
-  })
+  });
+
+  const windowLocation = window.location;
 
   return (
     <AppBar className="NavigationAppBar"
@@ -54,7 +56,7 @@ const NavigationAppBar = ({
                    />
               }
               onLeftIconClick={
-                () => history.push('/')
+                () => windowLocation.assign('http://demo.shophobe.com/')
               }
               fixed >
             <Autocomplete

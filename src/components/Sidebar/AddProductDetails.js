@@ -21,7 +21,10 @@ const AddProductDetails = ({
   handleSelectVariance,
   selectedProductId,
   deleteSelectedProduct,
-  featured = false,
+  featured,
+  makeFeaturedProduct,
+  deleteFromFeaturedProduct,
+  selectedProduct,
 }) => {
   return (
     <div className="ProductSidebar-details">
@@ -74,21 +77,20 @@ const AddProductDetails = ({
                 </div>
                 {
                       featured ?
-                      <Button icon="start"
-                            label="Add to featured product"
-                            primary
-                            disabled
-                            onClick={
-                              () => deleteSelectedProduct(selectedProductId, shop, token)
-                            } /> :
-                      <Button icon="star_border"
-                            label="Remove featured product"
-                            accent
-                            disabled
-                            onClick={
-                              () => deleteSelectedProduct(selectedProductId, shop, token)
-                            } />
-                    }
+                        <Button icon="star_border"
+                              label="Remove featured product"
+                              accent
+                              onClick={
+                                () => deleteFromFeaturedProduct(selectedProductId, shop, token)
+                              } /> :
+                        <Button icon="start"
+                              label="Add to featured product"
+                              primary
+                              onClick={
+                                () => makeFeaturedProduct(selectedProductId, shop, token)
+                              } />
+
+                }
                 <div className="ProductsSidebar-add-actions">
                     <Button icon="delete"
                             label="Delete"

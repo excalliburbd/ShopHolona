@@ -281,11 +281,71 @@ export const getFeaturedProduct = (shop, token) => dispatch => {
             res => res.json()
           ).then(
             res => {
-              console.log(res)
               dispatch({
                 type: 'DONE_API_GET_FEATURED_PRODUCT',
                 payload: res,
               })
+            }
+          )
+}
+
+export const makeFeaturedProduct = (id, shop, token) => dispatch => {
+
+  dispatch({
+    type: 'START_API_MAKE_FEATURED_PRODUCT',
+  });
+
+  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/featured-products/`, {
+            method: 'post',
+            headers: {
+              'Content-type': 'application/json; charset=utf-8',
+              'Authorization': `JWT ${token}`
+            },
+            body: JSON.stringify({
+                product: `${id}`,
+              })
+          }).then(
+            res => res.json()
+          ).then(
+            res => {
+              dispatch({
+                type: 'DONE_API_MAKE_FEATURED_PRODUCT',
+                payload: res,
+              });
+
+              dispatch(getFeaturedProduct(shop, token));
+
+              dispatch({
+                type: 'HIDE_SIDEBAR'
+              });
+            }
+          )
+}
+
+export const removeFromFeaturedProduct = (id, shop, token) => dispatch => {
+
+  dispatch({
+    type: 'START_API_REMOVE_FEATURED_PRODUCT',
+  });
+
+  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/featured-products/${id}/`, {
+            method: 'delete',
+            headers: {
+              'Content-type': 'application/json; charset=utf-8',
+              'Authorization': `JWT ${token}`
+            }
+          }).then(
+            res => {
+              if (res.status === 204) {
+                dispatch({
+                  type: 'DONE_API_REMOVE_FEATURED_PRODUCT',
+                  payload: { res, id },
+                });
+
+                dispatch({
+                  type: 'HIDE_SIDEBAR'
+                });
+              }
             }
           )
 }
