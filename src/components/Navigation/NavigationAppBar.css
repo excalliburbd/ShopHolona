@@ -14,32 +14,6 @@
   display: none;
 }
 
-._07g5.Searchbar {
-  z-index: 1;
-  padding: 0;
-  position: absolute;
-  left: 2em;
-  width: calc(100% - 5em);
-}
-
-._07g5.Searchbar.Searchbar--hide {
-  display: none;
-}
-
-.Searchbar .lFVgC {
-  padding: 0;
-  position: relative;
-}
-
-.Searchbar ._4bZUj {
-  background-color: white;
-  padding-left: .5em;
-}
-
-.Searchbar ._14fVf {
-  padding: 0;
-}
-
 ._3Py1Z._2dwFx.NavigationAppBar {
   z-index: 200;
   height: 4rem;
@@ -101,15 +75,6 @@
 
 
 @media screen and (min-width: 600px) {
-  ._07g5.Searchbar.Searchbar--hide {
-    display: block;
-  }
-
-  ._07g5.Searchbar {
-    left: 15em;
-    width: calc(100% - 32em);
-  }
-
   .NavigationAppBar-GiftPoint {
     display: none;
   }
@@ -124,13 +89,6 @@
     margin: 0px 1em;
   }
 
-  .NavigationAppBar-searchbar--close {
-    display: none;
-  }
-
-  .hC5Z2._2Agdx._2CPs4.NavigationAppBar-search--button{
-    display: none;
-  }
   ._2CPs4.NavigationAppBar-cart {
     margin: 0em 1em;
   }

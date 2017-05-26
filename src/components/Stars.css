@@ -7,7 +7,7 @@
 }
 
 .Stars-inactive {
-  color: dimgrey;
+  color: #ccc;
 }
 
 @media screen and (min-width: 600px) {

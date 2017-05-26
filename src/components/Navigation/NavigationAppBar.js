@@ -3,12 +3,13 @@ import classNames from 'classnames';
 
 import AppBar from 'react-toolbox/lib/app_bar/AppBar';
 import Avatar from 'react-toolbox/lib/avatar/Avatar';
-import Autocomplete from 'react-toolbox/lib/autocomplete/Autocomplete';
 import IconButton from 'react-toolbox/lib/button/IconButton';
 import Navigation from 'react-toolbox/lib/navigation/Navigation';
 import IconMenu from 'react-toolbox/lib/menu/IconMenu';
 import MenuItem from 'react-toolbox/lib/menu/MenuItem';
 import MenuDivider from 'react-toolbox/lib/menu/MenuDivider';
+
+import Searchbar from './Searchbar';
 
 import logo from '../../assets/images/logo/logo.png';
 
@@ -34,11 +35,6 @@ const NavigationAppBar = ({
     'NavigationAppBar-title--hidden': searchbar,
   });
 
-  const searchbarClass = classNames({
-    'Searchbar': true,
-    'Searchbar--hide': !searchbar,
-  });
-
   const windowLocation = window.location;
 
   return (
@@ -60,7 +56,7 @@ const NavigationAppBar = ({
                 () => windowLocation.assign('http://demo.shophobe.com/')
               }
               fixed >
-            <Autocomplete
+            {/*<Autocomplete
               className={
                 searchbarClass
               }
@@ -71,7 +67,11 @@ const NavigationAppBar = ({
                 icon='clear'
                 onClick={ () => hideSearchbar() }
                 className="NavigationAppBar-searchbar--close" />
-            </Autocomplete>
+            </Autocomplete>*/}
+
+            <Searchbar  id="search"
+                        searchbar={ searchbar }
+                        hideSearchbar={ hideSearchbar }/>
 
             <Navigation type="horizontal" className="NavigationAppBar-right-comp">
               <IconButton
@@ -81,15 +81,12 @@ const NavigationAppBar = ({
                 }
                 icon='search'
               />
-
-              <div className="NavigationAppBar-rewards">
+              {/*<div className="NavigationAppBar-rewards">
                 <h2>Money 0.00</h2>
               </div>
-
               <IconMenu icon="card_giftcard" className="NavigationAppBar-GiftPoint">
                 <MenuItem value='money' caption='Money 0.00' />
-              </IconMenu>
-
+              </IconMenu>*/}
               {
                 (location.pathname === '/') ?
                   <span>
@@ -105,7 +102,6 @@ const NavigationAppBar = ({
                               icon='home'
                               onClick={ () => history.push('/') }/>
               }
-
               <IconMenu icon={
                           (userImg) ?
                             <Avatar title="user image" image={ userImg }/> :
