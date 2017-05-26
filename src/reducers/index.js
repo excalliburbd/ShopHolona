@@ -36,10 +36,11 @@ const NavigationUIReducer = (
 
 const imageUploaderUIReducer = (
   state = {
-    active: true,
+    active: false,
     dropped: false,
     image: null,
     slider: 1,
+    type: null,
   }, action
 ) => {
   switch (action.type) {
@@ -47,11 +48,15 @@ const imageUploaderUIReducer = (
      return {
        ...state,
        active: true,
+       type: action.payload,
      }
     case 'HIDE_IMAGE_UPLOADER':
      return {
        ...state,
        active: false,
+       dropped: false,
+       image: null,
+       slider: 1
      }
     case 'SHOW_IMAGE_UPLOADER_EDITOR':
       return {

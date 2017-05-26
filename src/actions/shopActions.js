@@ -58,3 +58,80 @@ export const getShop = shop  => dispatch => {
             }
           );
 }
+
+
+export const postShopPageProfie = (image, shop, token, formData)  => dispatch => {
+
+  dispatch({
+    type: 'PUT_API_SHOP_PROFILE',
+  });
+
+  image.toBlob( blob => {
+
+    formData.append('prof_pic', blob );
+
+    fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/`, {
+          method: 'put',
+          body: formData,
+          headers: {
+            'Authorization': `JWT ${token}`,
+          },
+        }).then(
+          res => res.json()
+        ).then(
+          res => {
+            if(res.id) {
+              dispatch({
+                type: 'DONE_API_SHOP_PROFILE_PUT',
+                payload: res,
+              });
+
+              dispatch({
+                type: 'HIDE_IMAGE_UPLOADER',
+              });
+
+              dispatch(getShop(shop));
+            }
+          }
+        );
+
+  });
+}
+
+export const postShopPageCover = (image, shop, token, formData)  => dispatch => {
+
+  dispatch({
+    type: 'PUT_API_SHOP_COVER',
+  });
+
+  image.toBlob( blob => {
+
+    formData.append('cover_photo', blob );
+
+    fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/`, {
+          method: 'put',
+          body: formData,
+          headers: {
+            'Authorization': `JWT ${token}`,
+          },
+        }).then(
+          res => res.json()
+        ).then(
+          res => {
+            if(res.id) {
+              dispatch({
+                type: 'DONE_API_SHOP_COVER_PUT',
+                payload: res,
+              });
+
+              dispatch({
+                type: 'HIDE_IMAGE_UPLOADER',
+              });
+
+              dispatch(getShop(shop));
+            }
+          }
+        );
+
+  });
+}

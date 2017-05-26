@@ -17,12 +17,29 @@ const ImageUploader = ({
   droppedImage,
   sliderValue,
   handleSliderValue,
+  shop,
+  formData,
+  token,
+  type,
 }) => {
 
   let editorRef = null;
 
   const doneFunc = () => {
-    handleDone( editorRef ? editorRef.getImage() : null);
+    handleDone( type , editorRef ? editorRef.getImage() : null, shop, token, formData);
+  }
+
+  let border = 12.5;
+  let radius = 0;
+  let width= 250;
+  let height= 250;
+
+  if (type === 'PROFILE') {
+    radius = 250;
+  }
+
+  if ( type === 'COVER') {
+    width = 500;
   }
 
   return (
@@ -42,7 +59,10 @@ const ImageUploader = ({
             <div className="ImageUploader-content--editor">
               <AvatarEditor image={ droppedImage }
                             ref={ editorContent => { editorRef = editorContent }}
-                            border={50}
+                            border={ border }
+                            borderRadius={ radius }
+                            width={ width}
+                            height={ height }
                             color={[0,0,0,.54]}
                             scale={ sliderValue }
                             rotate={0}

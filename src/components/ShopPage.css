@@ -2,8 +2,7 @@
   position: relative;
 }
 
-.ShopPage-banner {
-  background: url('https://unsplash.it/1200/700') no-repeat fixed;
+.ShopPage-banner {;
   background-size: cover;
   height: 12em;
   width: 100%;
@@ -56,7 +55,6 @@
   height: 6em;
   width: 6em;
   border-radius: 50%;
-  background: url('https://unsplash.it/160/160') no-repeat center center;
   margin-top: 1.2em;
   box-shadow: var(--shadow-4p);
   border: 0.5px solid grey;
@@ -236,6 +234,10 @@
   }
   .ShopPage-details .ShopPage-details-description p{
     margin-top: 1em;
+  }
+
+  .ShopPage-details .ShopPage-add-banner {
+    display: none;
   }
 }
 

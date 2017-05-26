@@ -2,6 +2,8 @@ export const ShopPageReducer = (
   state = {
     shop_name: 'Loading',
     short_descr: 'Loading',
+    prof_pic: 'https://unsplash.it/160/160',
+    cover_photo: 'https://unsplash.it/1200/700',
     categories: {
 
     },

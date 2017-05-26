@@ -25,6 +25,8 @@ const  ShopPage = ({
   handleAddProduct,
   featuredProducts,
   handleShowImageUploader,
+  proficePic,
+  coverPhoto,
 }) => {
 
   const detailsClass = classNames({
@@ -34,18 +36,22 @@ const  ShopPage = ({
 
   return (
     <div className="ShopPage">
-      <div className="ShopPage-banner" />
+      <div className="ShopPage-banner" style={{ background: `url(${coverPhoto}) no-repeat fixed` }}>
+
+      </div>
       <div className={ detailsClass }>
         <div className="ShopPage-banner">
-          <div className="ShopPage-details-img">
-            <IconButton icon="add_a_photo" onClick={ handleShowImageUploader } />
+          <div className="ShopPage-details-img" style={{ background: `url(${proficePic}) no-repeat center center` }}>
+            <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') } />
           </div>
         </div>
+        <IconButton className="ShopPage-add-banner"
+                    icon="add_a_photo" onClick={ () => handleShowImageUploader('COVER') } />
         <IconButton icon={ (details) ? 'close' :'keyboard_arrow_down'}
                     className="ShopPage-details--toggle"
                     onClick={ toggleDetails }/>
-        <div className="ShopPage-details-img">
-          <IconButton icon="add_a_photo" onClick={ handleShowImageUploader } />
+        <div className="ShopPage-details-img" style={{ background: `url(${proficePic}) no-repeat center center` }}>
+          <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') } />
         </div>
         <div className="ShopPage-details-description">
           <h2 className="ShopPage-details--text">{ shopName }</h2>
@@ -66,7 +72,9 @@ const  ShopPage = ({
                                         ) }/>
         </div>
         <div className="ShopPage-products--container">
-          <div className="ShopPage-banner" />
+          <div className="ShopPage-banner" style={{ background: `url(${coverPhoto}) no-repeat fixed` }}>
+            <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('COVER') } />
+          </div>
           <div className="ShopPage-products--categories">
             {
               products.map(

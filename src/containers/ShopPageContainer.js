@@ -74,6 +74,8 @@ const mapStateToProps = state => {
     featuredProducts: getFeaturedProducts(state),
     selectedChip: state.shop.chip,
     vendor: getVendors(state),
+    proficePic: state.shop.prof_pic,
+    coverPhoto: state.shop.cover_photo,
   }
 }
 
@@ -104,9 +106,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       });
       dispatch(getCategory());
     },
-    handleShowImageUploader: () => {
+    handleShowImageUploader: type => {
       dispatch({
         type: 'SHOW_IMAGE_UPLOADER',
+        payload: type,
       });
     },
   }

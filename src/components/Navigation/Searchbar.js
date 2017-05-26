@@ -50,7 +50,8 @@ class Searchbar  extends Component {
                     placeholder: false,
                   })
                 }} >
-          { this.state.placeholder && <label className="Searchbar-input--label">Search</label> }
+          { this.state.placeholder && <label className="Searchbar-input--label"
+                                             onClick={ () => this.searchInput.getWrappedInstance().focus() }>Search Products</label> }
           <div className="Searchbar-input--button">
             <IconButton icon='search'
                         className="Searchbar--search"
