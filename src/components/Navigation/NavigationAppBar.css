@@ -67,6 +67,14 @@
   font-size: 2rem;
 }
 
+.NavigationAppBar-title--shopname {
+  font-family: "Gotham Narrow Black"
+}
+
+.NavigationAppBar-title--ref {
+  font-family: "Gotham Narrow Book"
+}
+
 @media screen and (max-width: 450px) {
   .NavigationAppBar-title {
     display: none;
@@ -91,5 +99,9 @@
 
   ._2CPs4.NavigationAppBar-cart {
     margin: 0em 1em;
+  }
+
+  .hC5Z2._2Agdx._2CPs4.NavigationAppBar-search--button{
+    display: none;
   }
 }

@@ -49,6 +49,9 @@
 
 .ProductCard-details {
   padding: 0px 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .ProductCard-details-name {

@@ -54,8 +54,8 @@ const getFeaturedProducts = createSelector(
 const getVendors = createSelector(
   [getUserDetails],
   (user) => {
-    if(user.registered_as) {
-      return (user.registered_as === 1)
+    if((user.registered_as === 0) || (user.registered_as === 1)) {
+      return true;
     }
 
     return false;

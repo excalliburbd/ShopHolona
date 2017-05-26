@@ -28,6 +28,7 @@ const NavigationAppBar = ({
   userImg,
   refCode,
   vendor,
+  profilePic,
 }) => {
 
   const navTitleClass = classNames({
@@ -41,8 +42,8 @@ const NavigationAppBar = ({
     <AppBar className="NavigationAppBar"
               title={
                 <span className={ navTitleClass }>
-                  <span>{ shopName }</span> <br />
-                  <span>{ refCode }</span>
+                  <span  className="NavigationAppBar-title--shopname" >{ shopName }</span> <br />
+                  <span  className="NavigationAppBar-title--ref" >{ refCode }</span>
                 </span>
               }
               leftIcon={
@@ -69,15 +70,16 @@ const NavigationAppBar = ({
                 className="NavigationAppBar-searchbar--close" />
             </Autocomplete>*/}
 
-            <Searchbar  id="search"
-                        searchbar={ searchbar }
-                        hideSearchbar={ hideSearchbar }/>
+            <Searchbar  searchbar={ searchbar }
+                        hideSearchbar={ hideSearchbar } />
 
             <Navigation type="horizontal" className="NavigationAppBar-right-comp">
               <IconButton
                 className="NavigationAppBar-search--button"
                 onClick={
-                  () => showSearchbar()
+                  () => {
+                    showSearchbar();
+                  }
                 }
                 icon='search'
               />
@@ -103,8 +105,8 @@ const NavigationAppBar = ({
                               onClick={ () => history.push('/') }/>
               }
               <IconMenu icon={
-                          (userImg) ?
-                            <Avatar title="user image" image={ userImg }/> :
+                          (profilePic) ?
+                            <Avatar title="user image" image={ profilePic }/> :
                             'account_circle'
                         }
                         position='topRight'

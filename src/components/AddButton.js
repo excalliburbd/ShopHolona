@@ -6,12 +6,14 @@ import './AddButton.css';
 
 const AddButton = ({
   location,
-  handleAddProduct
+  handleAddProduct,
+  vendor,
 }) => {
 
-  if(location.pathname === '/') {
+  if(!vendor) {
     return null;
   }
+
   return (
     <Button icon='add'
             floating

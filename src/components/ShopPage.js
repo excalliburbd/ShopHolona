@@ -60,7 +60,7 @@ const  ShopPage = ({
           <h2 className="ShopPage-details--text">{ shopName }</h2>
           <p className="ShopPage-details--text">Address</p>
           <Stars rating="4" />
-          <Button raised primary label="Follow" />
+          { !vendor &&  <Button raised primary label="Follow" />}
           <p className="ShopPage-details--text-desc">{shortDesc}</p>
         </div>
       </div>

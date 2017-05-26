@@ -15,7 +15,7 @@
   padding: 0;
   position: absolute;
   left: 2em;
-  top: 1em;
+  top: .9em;
   width: calc(100% - 4.5em);
 }
 
@@ -46,28 +46,56 @@
   left: 0;
 }
 
-@media screen and (min-width: 601px) {
+.Searchbar-input--label {
+  position: absolute;
+  top: 0;
+  left: .5em;
+  color: dimgrey;
+  font-size: 2em;
+}
+
+.Searchbar-input--button {
+  background: #FFC400;
+  display: inline;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.Searchbar--search {
+  display: none;
+}
+
+@media screen and (min-width: 600px) {
   ._07g5.Searchbar.Searchbar--hide {
     display: block;
   }
 
   ._07g5.Searchbar {
-    left: 15em;
-    width: calc(100% - 32em);
+    left: 8em;
+    width: calc(100% - 14em);
   }
 
- .NavigationAppBar-searchbar--close {
+  .Searchbar--close {
     display: none;
   }
 
-  .hC5Z2._2Agdx._2CPs4.NavigationAppBar-search--button{
-    display: none;
+  .Searchbar--search {
+    display: inline;
   }
 }
 
-@media screen and (min-width: 700px) {
+/*@media screen and (min-width: 700px) {
   ._07g5.Searchbar {
-      left: 9em;
-      width: calc(100% - 16em);
+      width: calc(100% - 32em);
+  }
+}*/
+
+@media screen and (min-width: 1024px) {
+  ._07g5.Searchbar {
+    left: 36em;
+    width: calc(100% - 42em);
   }
 }
+
+

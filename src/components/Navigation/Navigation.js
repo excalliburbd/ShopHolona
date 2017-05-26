@@ -82,6 +82,7 @@ class Nav extends Component {
       refCode,
       pinned,
       vendor,
+      profilePic,
       children,
     } = this.props;
 
@@ -102,7 +103,7 @@ class Nav extends Component {
 
     return (
       <Layout className="Navigation">
-        <AddButtonContainer />
+        <AddButtonContainer vendor={ vendor } />
         <NavigationDrawer pinned={ pinned } history={ history } location={ location }/>
         <Panel className={ panelClass }>
           <NavigationAppBar searchbar={ searchbar }
@@ -115,7 +116,8 @@ class Nav extends Component {
                             handleSignOut={ handleSignOut }
                             showSearchbar={ showSearchbar }
                             handleSignIn={ handleSignIn }
-                            vendor={ vendor } />
+                            vendor={ vendor }
+                            profilePic={ profilePic } />
           <div className={
                 (location.pathname === '/') ?
                   'Navigation-content-main' :

@@ -25,8 +25,8 @@ const getPinState = createSelector(
 const getVendors = createSelector(
   [getUserDetails],
   (user) => {
-    if(user.registered_as) {
-      return (user.registered_as === 1)
+    if((user.registered_as === 0) || (user.registered_as === 1)) {
+      return true;
     }
 
     return false;
@@ -43,6 +43,7 @@ const mapStateToProps = state => {
     refCode: state.user.referral.code,
     pinned: getPinState(state),
     vendor: getVendors(state),
+    profilePic: state.user.profile_pic,
   }
 }
 

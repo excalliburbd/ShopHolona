@@ -120,7 +120,6 @@ const ShopPageReducer = (
   state = {
     shop_name: 'Loading',
     short_descr: 'Loading',
-    referal: '#REF1234',
     categories: {
 
     },

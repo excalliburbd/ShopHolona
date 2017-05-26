@@ -21,5 +21,9 @@ body {
 }
 
 * {
-  font-family: Gotham-Book, Arial, sans-serif;
+  font-family: "Gotham Narrow Book", Arial, sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: "Gotham Narrow Black", Arial, sans-serif;
 }

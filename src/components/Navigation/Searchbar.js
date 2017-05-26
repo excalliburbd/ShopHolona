@@ -13,15 +13,12 @@ class Searchbar  extends Component {
     this.state = {
       suggestions: false,
       fromList: false,
+      placeholder: true,
+      instance: null,
     }
   }
 
   render() {
-
-    const {
-      label,
-    } = this.props;
-
     const searchbarClass = classNames('Searchbar _07g5 ', {
       'Searchbar--hide': !this.props.searchbar,
       '_3qQkg' : this.state.suggestions
@@ -29,40 +26,39 @@ class Searchbar  extends Component {
 
     return (
       <div className={ searchbarClass }>
-        <Input type='text'
-              label={ label }
-              onChange={
-                input => {
-                  this.setState({
-                    list: this.props.source.search(input),
-                    fromList: false,
-                  })
-
-                  this.props.handleSetValue(input);
+        <Input  type='text'
+                id="Searchbar-input"
+                className="Searchbar-input"
+                ref={ input => {
+                         {/*this.props.setWrappedInstance(input.getWrappedInstance());*/}
+                         this.searchInput = input;
+                    }}
+                onChange={
+                  input => {
+                  }
                 }
-              }
-              value={ this.props.value }
-              onBlur={ () => {
-                if (this.props.selectionOnly && !this.state.fromList) {
+                value={ this.props.value }
+                onBlur={ () => {
                   this.setState({
                     suggestions: false,
-                    error: true,
-                    value: ''
+                    placeholder: true,
                   })
-                  this.props.handleSetValue('');
-                } else {
+                }}
+                onFocus={ () => {
                   this.setState({
-                    suggestions: false,
+                    suggestions: true,
+                    placeholder: false,
                   })
-                }
-              }}
-              onFocus={ () => {
-                this.setState({ suggestions: true })
-              }} >
-          <IconButton
-            icon='clear'
-            onClick={ () => this.props.hideSearchbar() }
-            className="NavigationAppBar-searchbar--close" />
+                }} >
+          { this.state.placeholder && <label className="Searchbar-input--label">Search</label> }
+          <div className="Searchbar-input--button">
+            <IconButton icon='search'
+                        className="Searchbar--search"
+                        onClick={ () => this.searchInput.getWrappedInstance().focus() } />
+            <IconButton icon='clear'
+                        onClick={ () => this.props.hideSearchbar() }
+                        className="Searchbar--close" />
+          </div>
         </Input>
         <ul className="Searchbar _3-Nb6">
           {
