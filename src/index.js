@@ -25,6 +25,7 @@ import BackOfficeContainer from './containers/BackOfficeContainer';
 import ShopPageContainer from './containers/ShopPageContainer';
 
 import './index.css';
+import 'trmix/dist/trmix.min.js';
 
 // maybeYouMeant();
 

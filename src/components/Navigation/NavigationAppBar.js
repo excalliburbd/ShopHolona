@@ -26,6 +26,7 @@ const NavigationAppBar = ({
   shopName,
   userImg,
   refCode,
+  vendor,
 }) => {
 
   const navTitleClass = classNames({
@@ -91,8 +92,18 @@ const NavigationAppBar = ({
 
               {
                 (location.pathname === '/') ?
-                  <IconButton className="NavigationAppBar-cart" icon='shopping_cart' /> :
-                  <IconButton disabled />
+                  <span>
+                  {
+                    vendor ?
+                      <IconButton className="NavigationAppBar-cart"
+                                  icon='dashboard'
+                                  onClick={ () => history.push('/dashboard') }/> :
+                      <IconButton className="NavigationAppBar-cart" icon='shopping_cart' />
+                  }
+                  </span> :
+                  <IconButton className="NavigationAppBar-cart"
+                              icon='home'
+                              onClick={ () => history.push('/') }/>
               }
 
               <IconMenu icon={
@@ -107,9 +118,15 @@ const NavigationAppBar = ({
                 {
                   (userLoggedIn) ?
                     <div className="NavigationAppBar-profile-menuitem">
-                      <MenuItem value='dashboard'
-                        icon="dashboard"
-                        onClick={() => history.push('/dashboard')} caption='Dashboard' />
+                      {
+                        (location.pathname === '/') ?
+                          <MenuItem value='dashboard'
+                                    icon="dashboard"
+                                    onClick={() => history.push('/dashboard')} caption='Dashboard' /> :
+                          <MenuItem value='dashboard'
+                                    icon="home"
+                                    onClick={() => history.push('/')} caption='Home' />
+                      }
                       <MenuItem value='profile'
                                 icon='profile'
                                 caption='Profile' />

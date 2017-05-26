@@ -72,6 +72,10 @@
   color: white;
 }
 
+._2aMxm.NavigationAppBar-profile-menu ._2PdTB{
+  min-width: 9em;
+}
+
 .NavigationAppBar-profile-menuitem .material-icons {
   color: #424242;
 }
@@ -84,7 +88,10 @@
 ._3Py1Z ::after {
   display: none;
 }
-/*special appbar title logic*/
+
+.NavigationAppBar .material-icons {
+  font-size: 2rem;
+}
 
 @media screen and (max-width: 450px) {
   .NavigationAppBar-title {

@@ -9,6 +9,7 @@ import { getMe } from '../actions/userActions';
 import Nav from '../components/Navigation/Navigation';
 
 const getLocation = state => state.router.location;
+const getUserDetails = state => state.user;
 
 const getPinState = createSelector(
   [getLocation],
@@ -21,6 +22,16 @@ const getPinState = createSelector(
   }
 )
 
+const getVendors = createSelector(
+  [getUserDetails],
+  (user) => {
+    if(user.registered_as) {
+      return (user.registered_as === 1)
+    }
+
+    return false;
+  }
+);
 
 const mapStateToProps = state => {
   return {
@@ -31,6 +42,7 @@ const mapStateToProps = state => {
     shopName: state.shop.shop_name,
     refCode: state.user.referral.code,
     pinned: getPinState(state),
+    vendor: getVendors(state),
   }
 }
 

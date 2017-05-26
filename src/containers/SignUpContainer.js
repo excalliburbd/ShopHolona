@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import { trySignInAsyncAction } from '../actions/userActions';
 
-import SignUp from '../components/SignUp';
+import SignUp from '../components/SignUp/SignUp';
 
 const mapStateToProps = state => {
   return {

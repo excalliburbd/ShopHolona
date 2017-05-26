@@ -43,7 +43,6 @@ const SignUp = ({
     <div>
       <p>Or</p>
     </div>
-    <div className="SignUp-input">
       <Input type='email'
              label='Using email address'
              required
@@ -51,39 +50,41 @@ const SignUp = ({
              onChange={ handleEmailValue }
              error={ error && "Error with Email" }
              icon='email' />
-    </div>
-    <div className="SignUp-input">
       <Input type='password'
              required
              label='Enter your password'
              value={ emailPassword }
              onChange={ handleEmailPasswordValue }
+             onKeyPress={
+               event => {
+                 if(event.which == 13) {
+                   handleTrySignIn({ email, password: emailPassword}, shop)
+                 }
+               }
+             }
              icon='vpn_key' />
-      <IconButton icon="forward" onClick={ () => handleTrySignIn({ email, password: emailPassword}, shop) } />
-    </div>
+      <Button icon="forward"
+              label="login"
+              onClick={ () => handleTrySignIn({ email, password: emailPassword}, shop) } />
     <div>
       <p>Or</p>
     </div>
-    <div className="SignUp-input">
-      <Input type='tel'
-             label='Using phone number'
-             name='phone'
-             required
-             value={ phone }
-             onChange={ handlePhoneValue }
-             disabled
-             icon='local_phone' />
-    </div>
-     <div className="SignUp-input">
-      <Input type='password'
-             required
-             label='Enter your password'
-             value={ phonePassword }
-             onChange={ handlePhonePasswordValue }
-             disabled
-             icon='vpn_key' />
-      <IconButton icon="forward" onClick={ handleTrySignIn } />
-    </div>
+    <Input type='tel'
+            label='Using phone number'
+            name='phone'
+            required
+            value={ phone }
+            onChange={ handlePhoneValue }
+            disabled
+            icon='local_phone' />
+    <Input type='password'
+            required
+            label='Enter your password'
+            value={ phonePassword }
+            onChange={ handlePhonePasswordValue }
+            disabled
+            icon='vpn_key' />
+    <Button icon="forward" label="login" onClick={ handleTrySignIn } />
   </div>
 );
 

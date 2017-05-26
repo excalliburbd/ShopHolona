@@ -81,6 +81,7 @@ class Nav extends Component {
       shopName,
       refCode,
       pinned,
+      vendor,
       children,
     } = this.props;
 
@@ -113,7 +114,8 @@ class Nav extends Component {
                             userLoggedIn={ userLoggedIn }
                             handleSignOut={ handleSignOut }
                             showSearchbar={ showSearchbar }
-                            handleSignIn={ handleSignIn } />
+                            handleSignIn={ handleSignIn }
+                            vendor={ vendor } />
           <div className={
                 (location.pathname === '/') ?
                   'Navigation-content-main' :
