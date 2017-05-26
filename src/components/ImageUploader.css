@@ -1,0 +1,19 @@
+.ImageUploader-content {
+  display: flex;
+  justify-content: center;
+  background: #ccc;
+}
+
+.ImageUploader-dropzone {
+  border: #ccc dotted;
+  height: 10em;
+  width: 10em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ImageUploader-add-icon.material-icons {
+  font-size: 8em;
+}

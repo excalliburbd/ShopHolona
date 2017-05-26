@@ -28,6 +28,7 @@ import FilterBarContainer from '../../containers/FilterBarContainer';
 import SignUpContainer from '../../containers/SignUpContainer';
 import AddButtonContainer from '../../containers/AddButtonContainer';
 import ProductsSidebarContainer from '../../containers/ProductsSidebarContainer';
+import ImageUploaderContainer from '../../containers/ImageUploaderContainer';
 
 import './Navigation.css';
 
@@ -46,7 +47,6 @@ class Nav extends Component {
       history,
       location,
       handleSetCredentials,
-      handleSetSideDrawer,
     } = this.props;
 
     if(location.search !== '') {
@@ -103,6 +103,7 @@ class Nav extends Component {
 
     return (
       <Layout className="Navigation">
+        <ImageUploaderContainer />
         <AddButtonContainer vendor={ vendor } />
         <NavigationDrawer pinned={ pinned } history={ history } location={ location }/>
         <Panel className={ panelClass }>

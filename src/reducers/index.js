@@ -10,6 +10,8 @@ import {
   CategoriesEntityReducer,
   CategoriesUIReducer
 } from './categoriesReducers';
+import { SidebarUIReducer } from './sidebarReducers';
+import { ShopPageReducer, ShopPageUIReducer } from './shopReducers'
 
 const NavigationUIReducer = (
   state = {
@@ -32,132 +34,35 @@ const NavigationUIReducer = (
   }
 }
 
-const SidebarUIReducer = (
+const imageUploaderUIReducer = (
   state = {
-    show: false,
-    type: null,
-    subType: null,
-    radio: 'NONE'
+    active: true,
+    dropped: false,
+    image: null,
+    slider: 1,
   }, action
 ) => {
   switch (action.type) {
-    case 'SHOW_SIDEBAR_SIGNIN':
+    case 'SHOW_IMAGE_UPLOADER':
+     return {
+       ...state,
+       active: true,
+     }
+    case 'HIDE_IMAGE_UPLOADER':
+     return {
+       ...state,
+       active: false,
+     }
+    case 'SHOW_IMAGE_UPLOADER_EDITOR':
       return {
         ...state,
-        show: true,
-        type: 'SIGNIN'
+        dropped: true,
+        image: action.payload[0].preview,
       }
-    case 'SHOW_SIDEBAR_ADD_PRODUCT':
+    case 'UPDATE_IMAGE_UPLOADER_SLIDER':
       return {
         ...state,
-        show: true,
-        type: 'PRODUCT',
-        subType: 'ADD_PRODUCT'
-      }
-    case 'SHOW_SIDEBAR_ADD_PRODUCT_STOCK':
-      return {
-        ...state,
-        show: true,
-        type: 'PRODUCT',
-        subType: 'ADD_PRODUCT_STOCK'
-      }
-    case 'SHOW_SIDEBAR_ADD_PRODUCT_IMAGES':
-      return {
-        ...state,
-        show: true,
-        type: 'PRODUCT',
-        subType: 'ADD_PRODUCT_IMAGES'
-      }
-    case 'SHOW_SIDEBAR_PRODUCT_DETAILS':
-      return {
-        ...state,
-        show: true,
-        type: 'PRODUCT',
-        subType: 'SHOW_PRODUCT_DETAILS'
-      }
-    case 'SHOW_SIDEBAR_ADD_PRODUCT_UPLOADING':
-      return {
-          ...state,
-          show: true,
-          type: 'PRODUCT',
-          subType: 'UPLOADING'
-        }
-    case 'HIDE_SIDEBAR':
-      return {
-        ...state,
-        show: false,
-        type: null,
-        subType: null,
-        radio: 'NONE'
-      }
-    case 'SET_SIDEBAR_UI_RADIO_VALUE':
-      return {
-        ...state,
-        radio: action.payload
-      }
-    default:
-      return state;
-  }
-}
-
-const ShopPageUIReducer = (
-  state = {
-    details: false,
-  } , action
-) => {
-  switch (action.type) {
-    case 'TOGGLE_SHOPPAGE_UI_DETAILS':
-      return {
-        ...state,
-        details: !state.details,
-      }
-    default:
-      return state;
-  }
-}
-
-const ShopPageReducer = (
-  state = {
-    shop_name: 'Loading',
-    short_descr: 'Loading',
-    categories: {
-
-    },
-    id: null,
-    chip: 0,
-  }, action
-) => {
-  switch (action.type) {
-    case 'SET_SHOP_CATEGORY':
-      const categories = {}
-
-      action.payload.forEach(
-        obj => {
-          categories[obj.id] = obj
-        }
-      )
-
-      return {
-        ...state,
-        categories: {
-          ...state.categories,
-          ...categories
-        }
-      }
-    case 'UPDATE_SHOP_CHIP':
-      return {
-        ...state,
-        chip: action.payload,
-      }
-    case 'SET_SHOP':
-      return {
-        ...state,
-        ...action.payload,
-      }
-    case 'SET_SHOP_ID':
-      return {
-        ...state,
-        id: action.payload,
+        slider: action.payload,
       }
     default:
       return state;
@@ -185,6 +90,7 @@ const RootReducer = combineReducers({
     shopPage: ShopPageUIReducer,
     categories: CategoriesUIReducer,
     product: ProductsUIReducer,
+    uploader: imageUploaderUIReducer,
   })
 });
 

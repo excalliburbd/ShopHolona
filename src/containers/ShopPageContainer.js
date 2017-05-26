@@ -104,6 +104,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       });
       dispatch(getCategory());
     },
+    handleShowImageUploader: () => {
+      dispatch({
+        type: 'SHOW_IMAGE_UPLOADER',
+      });
+    },
   }
 }
 

@@ -5321,6 +5321,12 @@ react-addons-shallow-compare@^15.4.2:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
 
+react-avatar-editor@^9.1.1:
+  version "9.1.1"
+  resolved "https://registry.yarnpkg.com/react-avatar-editor/-/react-avatar-editor-9.1.1.tgz#6a9c83c35698936530ff6c602966461abd145aeb"
+  dependencies:
+    prop-types "^15.5.8"
+
 react-css-themr@^1.7.2:
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/react-css-themr/-/react-css-themr-1.7.2.tgz#424701383488f63966677f10a908d40861544ef3"
