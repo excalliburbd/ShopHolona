@@ -21,8 +21,9 @@
   width: 100%;
   text-align: center;
 }
-.ProductCard--addProduct-details-icon img {
-  width: 40%;
+.ProductCard--addProduct-details-icon svg {
+  font-size: 5em;
+  color: #666;
 }
 .ProductCard--addProduct-details-content {
   position: absolute;

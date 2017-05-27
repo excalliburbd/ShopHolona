@@ -74,5 +74,9 @@
     text-align: center;
     width: 100%
   }
+  .FeaturedSlider-text h1 {
+    margin: 0.2em 0em;
+  }
+
 
 }

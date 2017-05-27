@@ -1,6 +1,7 @@
 import React from 'react';
 
 import FontIcon from 'react-toolbox/lib/font_icon/FontIcon';
+import FaStar from 'react-icons/lib/fa/star';
 
 import './Stars.css';
 
@@ -15,11 +16,12 @@ const Stars = ({
   const iconsArray = [];
 
   for(let i=0; i<rating; i++) {
-    iconsArray.push(<FontIcon value="star" key={ i } className="Stars-active"/>);
+    // iconsArray.push(<FontIcon value="star" key={ i } className="Stars-active"/>);
+    iconsArray.push(<FaStar value="star" key={ i } className="Stars-active"/>);
   }
 
   for(let i=rating; i < 5; i++) {
-    iconsArray.push(<FontIcon value="star" key={ i } className="Stars-inactive"/>);
+    iconsArray.push(<FaStar value="star" key={ i } className="Stars-inactive"/>);
   }
 
   return (

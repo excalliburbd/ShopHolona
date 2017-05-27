@@ -1,3 +1,6 @@
+.Stars {
+  display: flex;
+}
 .Stars .material-icons {
   font-size: 18px;
 }

@@ -31,6 +31,7 @@
 .Searchbar ._4bZUj {
   background-color: white;
   padding-left: .5em;
+  letter-spacing: 0.5px;
 }
 
 .Searchbar ._14fVf {
@@ -46,12 +47,17 @@
   left: 0;
 }
 
+.Searchbar-input {
+
+}
+
 .Searchbar-input--label {
   position: absolute;
   top: 0;
   left: .5em;
   color: dimgrey;
-  font-size: 2em;
+  font-size: 1em;
+  padding: 0.55em;
 }
 
 .Searchbar-input--button {
@@ -61,7 +67,10 @@
   top: 0;
   right: 0;
 }
-
+.Searchbar-input--button .material-icons {
+  font-size: 1.7em !important;
+  color: #757575;
+}
 .Searchbar--search {
   display: none;
 }
@@ -93,7 +102,7 @@
 
 @media screen and (min-width: 1024px) {
   ._07g5.Searchbar {
-    left: 36em;
+    left: 33.5em;
     width: calc(100% - 42em);
   }
 }

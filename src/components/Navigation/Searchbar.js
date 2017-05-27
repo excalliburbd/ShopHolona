@@ -26,7 +26,7 @@ class Searchbar  extends Component {
 
     return (
       <div className={ searchbarClass }>
-        <Input  type='text'
+        <Input type='text'
                 id="Searchbar-input"
                 className="Searchbar-input"
                 ref={ input => {
