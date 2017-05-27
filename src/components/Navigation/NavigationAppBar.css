@@ -7,7 +7,8 @@
 }
 
 .NavigationAppBar-logo {
-
+  /*box-shadow: 0px 0px 14px -1px rgba(0, 0, 0, 0.55);*/
+  box-shadow: var(--shadow-4p);
 }
 
 .NavigationAppBar-title--hidden {
@@ -68,11 +69,17 @@
 }
 
 .NavigationAppBar-title--shopname {
-  font-family: "Gotham Narrow Black"
+  font-family: "Gotham Narrow Black";
 }
 
 .NavigationAppBar-title--ref {
-  font-family: "Gotham Narrow Book"
+  font-family: "Gotham Narrow Book";
+  font-weight: 400;
+}
+
+._2CPs4.NavigationAppBar-icon svg {
+  color: white;
+  font-size: 2em;
 }
 
 @media screen and (max-width: 450px) {
@@ -81,7 +88,7 @@
   }
 }
 
-
+/*for tablet*/
 @media screen and (min-width: 600px) {
   .NavigationAppBar-GiftPoint {
     display: none;
@@ -97,11 +104,17 @@
     margin: 0px 1em;
   }
 
-  ._2CPs4.NavigationAppBar-cart {
-    margin: 0em 1em;
-  }
-
   .hC5Z2._2Agdx._2CPs4.NavigationAppBar-search--button{
     display: none;
   }
+}
+
+/*for desktop*/
+@media screen and (min-width: 800px) {
+  ._2CPs4.NavigationAppBar-icon {
+    margin: 0em 2em;
+    color: white;
+  }
+
+
 }

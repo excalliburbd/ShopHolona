@@ -26,7 +26,7 @@ class Searchbar  extends Component {
 
     return (
       <div className={ searchbarClass }>
-        <Input  type='text'
+        <Input type='text'
                 id="Searchbar-input"
                 className="Searchbar-input"
                 ref={ input => {
@@ -50,7 +50,8 @@ class Searchbar  extends Component {
                     placeholder: false,
                   })
                 }} >
-          { this.state.placeholder && <label className="Searchbar-input--label">Search</label> }
+          { this.state.placeholder && <label className="Searchbar-input--label"
+                                             onClick={ () => this.searchInput.getWrappedInstance().focus() }>Search Products</label> }
           <div className="Searchbar-input--button">
             <IconButton icon='search'
                         className="Searchbar--search"

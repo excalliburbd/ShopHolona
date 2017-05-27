@@ -9,6 +9,8 @@ import IconMenu from 'react-toolbox/lib/menu/IconMenu';
 import MenuItem from 'react-toolbox/lib/menu/MenuItem';
 import MenuDivider from 'react-toolbox/lib/menu/MenuDivider';
 
+import FaBarChart from 'react-icons/lib/fa/bar-chart';
+
 import Searchbar from './Searchbar';
 
 import logo from '../../assets/images/logo/logo.png';
@@ -94,13 +96,13 @@ const NavigationAppBar = ({
                   <span>
                   {
                     vendor ?
-                      <IconButton className="NavigationAppBar-cart"
-                                  icon='dashboard'
+                      <IconButton className="NavigationAppBar-icon"
+                                  icon={<FaBarChart/>}
                                   onClick={ () => history.push('/dashboard') }/> :
-                      <IconButton className="NavigationAppBar-cart" icon='shopping_cart' />
+                      <IconButton className="NavigationAppBar-icon" icon='shopping_cart' />
                   }
                   </span> :
-                  <IconButton className="NavigationAppBar-cart"
+                  <IconButton className="NavigationAppBar-icon"
                               icon='home'
                               onClick={ () => history.push('/') }/>
               }

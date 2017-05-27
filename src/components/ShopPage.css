@@ -58,8 +58,8 @@
   border-radius: 50%;
   background: url('https://unsplash.it/160/160') no-repeat center center;
   margin-top: 1.2em;
-  box-shadow: var(--shadow-4p);
-  border: 0.5px solid grey;
+  box-shadow: 0px 0px 14px -1px rgba(0, 0, 0, 0.55);
+  border: 0.2px solid darkgrey;
   overflow: hidden;
   display: flex;
   align-items: flex-end;
@@ -289,6 +289,7 @@
 
   .ShopPage-details-description .ShopPage-details--text {
     color: dimgrey;
+    margin-top: -0.15em;
   }
 
   .emptydiv-phone {
@@ -306,5 +307,11 @@
 
   .ShopPage-details-img:hover .hC5Z2._2Agdx._2CPs4 {
     background: rgba(0,0,0,.54);
+  }
+  .ShopPage-details .ShopPage-details-description p{
+    margin-top: 0em;
+  }
+  .ShopPage-details .ShopPage-details-description .ShopPage-details--text-desc {
+    margin-top: 1em;
   }
 }
