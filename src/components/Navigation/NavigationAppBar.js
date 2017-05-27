@@ -45,7 +45,8 @@ const NavigationAppBar = ({
               title={
                 <span className={ navTitleClass }>
                   <span  className="NavigationAppBar-title--shopname" >{ shopName }</span> <br />
-                  <span  className="NavigationAppBar-title--ref" >{ refCode }</span>
+                  {/*<span  className="NavigationAppBar-title--ref" >{ refCode }</span>*/}
+                  <span  className="NavigationAppBar-title--ref" >REF: CZ-001</span>
                 </span>
               }
               leftIcon={
