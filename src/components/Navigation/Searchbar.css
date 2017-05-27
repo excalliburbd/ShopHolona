@@ -47,8 +47,8 @@
   left: 0;
 }
 
-.Searchbar-input {
-
+#Searchbar-input {
+  border-radius: 2px;
 }
 
 .Searchbar-input--label {
@@ -62,6 +62,8 @@
 
 .Searchbar-input--button {
   background: #FFC400;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
   display: inline;
   position: absolute;
   top: 0;
@@ -71,10 +73,16 @@
   font-size: 1.7em !important;
   color: #757575;
 }
+
+.Searchbar--search {
+
+}
+
 .Searchbar--search {
   display: none;
 }
 
+/*for desktop*/
 @media screen and (min-width: 600px) {
   ._07g5.Searchbar.Searchbar--hide {
     display: block;

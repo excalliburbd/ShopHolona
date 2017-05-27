@@ -49,11 +49,7 @@ const NavigationAppBar = ({
                 </span>
               }
               leftIcon={
-                <Avatar
-                  className="NavigationAppBar-logo"
-                  title="Shop_logo"
-                  image={ logo }
-                   />
+                <img className="NavigationAppBar-logo" src={logo} alt="Shop logo"/>
               }
               onLeftIconClick={
                 () => windowLocation.assign('http://demo.shophobe.com/')
