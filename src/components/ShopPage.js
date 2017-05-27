@@ -36,9 +36,8 @@ const  ShopPage = ({
 
   return (
     <div className="ShopPage">
-      <div className="ShopPage-banner" style={{ background: `url(${coverPhoto}) no-repeat fixed` }}>
-
-      </div>
+      <div className="ShopPage-banner" style={{ background: `url(${coverPhoto}) no-repeat center top fixed`,
+                                                'background-size': 'cover'}} />
       <div className={ detailsClass }>
         <div className="ShopPage-banner">
           <div className="ShopPage-details-img" style={{ background: `url(${proficePic}) no-repeat center center` }}>
@@ -72,7 +71,9 @@ const  ShopPage = ({
                                         ) }/>
         </div>
         <div className="ShopPage-products--container">
-          <div className="ShopPage-banner" style={{ background: `url(${coverPhoto}) no-repeat fixed` }}>
+          <div className="ShopPage-banner" style={{ background: `url(${coverPhoto}) no-repeat center top fixed`,
+                                                    'background-size': 'cover'}}>
+
             <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('COVER') } />
           </div>
           <div className="ShopPage-products--categories">
