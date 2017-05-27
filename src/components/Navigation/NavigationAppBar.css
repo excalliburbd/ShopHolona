@@ -2,13 +2,18 @@
   background-color: #CC3333;
 }
 
+.NavigationAppBar-title {
+  height: auto;
+  vertical-align: middle;
+
+}
+
 .NavigationAppBar-title span {
   margin-left: 1em;
 }
 
 .NavigationAppBar-logo {
-  /*box-shadow: 0px 0px 14px -1px rgba(0, 0, 0, 0.55);*/
-  box-shadow: var(--shadow-4p);
+  box-shadow: 0px 0px 68px -16px rgba(38, 36, 35, 0.70);
 }
 
 .NavigationAppBar-title--hidden {
@@ -70,11 +75,17 @@
 
 .NavigationAppBar-title--shopname {
   font-family: "Gotham Narrow Black";
+  position: relative;
+  top: -0.1em;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .NavigationAppBar-title--ref {
-  font-family: "Gotham Narrow Book";
-  font-weight: 400;
+  font-family: "Dincond Bold";
+  letter-spacing: 0.5px;
+  position: relative;
+  bottom: -0.1em;
 }
 
 ._2CPs4.NavigationAppBar-icon svg {

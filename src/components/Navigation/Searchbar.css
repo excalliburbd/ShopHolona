@@ -15,7 +15,6 @@
   padding: 0;
   position: absolute;
   left: 2em;
-  top: .9em;
   width: calc(100% - 4.5em);
 }
 
@@ -104,6 +103,10 @@
   ._07g5.Searchbar {
     left: 33.5em;
     width: calc(100% - 42em);
+  }
+  .Searchbar--search .material-icons {
+    width: 100%;
+    text-align: center;
   }
 }
 

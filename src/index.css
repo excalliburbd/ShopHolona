@@ -16,6 +16,16 @@
   src: url('../src/assets/fonts/gotham_thin_regular.otf') format("opentype");
 }
 
+@font-face {
+  font-family: "Dincond Bold";
+  src: url('../src/assets/fonts/dincond-bold.otf') format("opentype");
+}
+
+@font-face {
+  font-family: "Dincond Medium";
+  src: url('../src/assets/fonts/dincond-medium.otf') format("opentype");
+}
+
 body {
   margin: 0;
 }
