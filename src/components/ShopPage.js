@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import Button from 'react-toolbox/lib/button/Button';
 import IconButton from 'react-toolbox/lib/button/IconButton';
 import Chip from 'react-toolbox/lib/chip';
-import FontIcon from 'react-toolbox/lib/font_icon/FontIcon';
+import Input from 'react-toolbox/lib/input';
 
 import ProductCard from './ProductCard';
 import Stars from './Stars';
@@ -27,6 +27,9 @@ const  ShopPage = ({
   handleShowImageUploader,
   proficePic,
   coverPhoto,
+  shopPhones,
+  handleEditContactNumber,
+  handleSaveContactNumber,
 }) => {
 
   const detailsClass = classNames({
@@ -36,11 +39,10 @@ const  ShopPage = ({
 
   return (
     <div className="ShopPage">
-      <div className="ShopPage-banner" style={{ background: `url(${coverPhoto}) no-repeat center top fixed`,
-                                                'background-size': 'cover'}} />
+      <div className="ShopPage-banner" style={{ backgroundImage: `url(${coverPhoto})`}} />
       <div className={ detailsClass }>
         <div className="ShopPage-banner">
-          <div className="ShopPage-details-img" style={{ background: `url(${proficePic}) no-repeat center center` }}>
+          <div className="ShopPage-details-img" style={{ backgroundImage: `url(${proficePic})` }}>
             <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') } />
           </div>
         </div>
@@ -49,12 +51,31 @@ const  ShopPage = ({
         <IconButton icon={ (details) ? 'close' :'keyboard_arrow_down'}
                     className="ShopPage-details--toggle"
                     onClick={ toggleDetails }/>
-        <div className="ShopPage-details-img" style={{ background: `url(${proficePic}) no-repeat center center` }}>
+        <div className="ShopPage-details-img" style={{ backgroundImage: `url(${proficePic})` }}>
           <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') } />
         </div>
         <div className="ShopPage-details-description">
           <h2 className="ShopPage-details--text">{ shopName }</h2>
-          <p className="ShopPage-details--text">Address</p>
+          <ul className="ShopPage-details-contacts">
+            {
+              shopPhones.map(
+                contact => {
+                  if (vendor) {
+                     return  <div className="ShopPage-details-contacts--contact">
+                                <Input label="Edit contact number"
+                                    value={ contact.number }
+                                    onChange={
+                                      value => handleEditContactNumber(contact.id, value)
+                                    }
+                                />
+                                <IconButton icon="save" onClick={ () => handleSaveContactNumber(contact.id) }/>
+                             </div>
+                  }
+                  return <li>{ contact.number }</li>
+                }
+              )
+            }
+          </ul>
           <Stars rating="4" />
           { !vendor &&  <Button raised primary label="Follow" />}
           <p className="ShopPage-details--text-desc">{shortDesc}</p>
@@ -71,8 +92,7 @@ const  ShopPage = ({
                                         ) }/>
         </div>
         <div className="ShopPage-products--container">
-          <div className="ShopPage-banner" style={{ background: `url(${coverPhoto}) no-repeat center top fixed`,
-                                                    'background-size': 'cover'}}>
+          <div className="ShopPage-banner" style={{ backgroundImage: `url(${coverPhoto})`}}>
 
             <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('COVER') } />
           </div>

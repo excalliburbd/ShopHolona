@@ -12,6 +12,7 @@ const getProcutEntities = state => state.entities.products;
 // const getCategoriesArray = state => state.categories;
 const getCategoriesEntities = state => state.shop.categories;
 const getUserDetails = state => state.user;
+const getContacts = state => state.shop.contacts;
 
 const getCategories = createSelector(
   [getCategoriesEntities],
@@ -62,6 +63,20 @@ const getVendors = createSelector(
   }
 );
 
+const getPhones = createSelector(
+  [getContacts],
+  contacts => {
+    return contacts.filter(
+      contact => (contact.type === 0)
+    ).map(
+      phone => ({
+        id: phone.id,
+        number: phone.description,
+      })
+    )
+  }
+)
+
 const mapStateToProps = state => {
   return {
     details: state.ui.shopPage.details,
@@ -76,6 +91,7 @@ const mapStateToProps = state => {
     vendor: getVendors(state),
     proficePic: state.shop.prof_pic,
     coverPhoto: state.shop.cover_photo,
+    shopPhones: getPhones(state),
   }
 }
 
@@ -112,6 +128,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         payload: type,
       });
     },
+    handleEditContactNumber: (id, value) => {
+      dispatch({
+        type: 'SET_SHOP_CONTACT_NUMBER',
+        payload: { id, value }
+      })
+    }
   }
 }
 
