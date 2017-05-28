@@ -16,6 +16,7 @@
   position: absolute;
   left: 2em;
   width: calc(100% - 4.5em);
+  top: .8em;
 }
 
 ._07g5.Searchbar.Searchbar--hide {

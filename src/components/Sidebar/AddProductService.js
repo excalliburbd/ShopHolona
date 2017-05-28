@@ -58,11 +58,9 @@ const AddProductService = ({
                     <div className="ProductsSidebar-add--radio" >
                       <Button icon={ <Icon size={ 32 } icon={ packageIcon } />}
                               label='Product'
-                              disabled={ radioValue === 'PRODUCT' }
                               onClick={ () => handleRadio('PRODUCT') } />
                       <Button icon={ <Icon size={ 32 } icon={ tools } /> }
                               label="service"
-                              disabled={ radioValue === 'SERVICE' }
                               onClick={ () => handleRadio('SERVICE') } />
                     </div>
                 }

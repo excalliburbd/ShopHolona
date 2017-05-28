@@ -85,9 +85,10 @@ const getShowAddColors = createSelector(
 
     Object.keys(product).forEach(
       name => {
-        if(name !== 'description' &&  product[name] === '') {
-          show = false;
-        }
+        //this is not possible due to server limitation
+        // if(name !== 'description' &&  product[name] === '') {
+        //   show = false;
+        // }
 
         if(radio === 'SERVICE' && name === 'weight') {
           show = true;
