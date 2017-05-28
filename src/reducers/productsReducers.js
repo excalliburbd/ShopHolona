@@ -224,9 +224,10 @@ export const productsEntityReducer = (
       const featuredProducts = {};
 
       action.payload.forEach(
-        ({ product }) => {
+        ({ id, product }) => {
           featuredProducts[product.id] = {
             ...product,
+            featuredID: id,
             weight: product.variances[0].attributes[0].weight,
             price: product.variances[0].attributes[0].price
           }
@@ -240,7 +241,7 @@ export const productsEntityReducer = (
     case 'DONE_API_DELETE_FEATURED_PRODUCT':
       const featuredProductsEntity = { ...state };
 
-      delete featuredProductsEntity[action.payload.id];
+      delete featuredProductsEntity[action.payload.productID];
 
       return featuredProductsEntity;
     default:

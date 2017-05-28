@@ -34,6 +34,7 @@ const getSubCategoryID = state => state.ui.categories.subCategoryID;
 const getRadioValue = state => state.ui.sidebar.radio;
 const getProgress = state => state.ui.categories.uploadProgress;
 const getSelectedPrductID = state => state.ui.product.selectedProduct.id;
+const getProductsObj = state => state.entities.products;
 
 const getFusedCategories = createSelector(
   [getCategoriesObj],
@@ -208,6 +209,17 @@ const getShowProductDetails = createSelector(
   }
 )
 
+const getSelectedFeturedPrductID = createSelector(
+  [getSelectedPrductID, getProductsObj],
+  (id, productsObj) => {
+    if (productsObj[id]){
+      return productsObj[id].featuredID
+    }
+
+    return null;
+  }
+)
+
 const mapStateToProps = state => {
   return {
     type: state.ui.sidebar.subType,
@@ -244,6 +256,7 @@ const mapStateToProps = state => {
     progress: getProgress(state),
     featured: (state.featuredProducts.indexOf(state.ui.product.selectedProduct.id) !== -1),
     selectedProduct: state.ui.product.selectedProduct,
+    featuredID: getSelectedFeturedPrductID(state),
   }
 }
 

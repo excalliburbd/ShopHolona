@@ -66,6 +66,7 @@ const ProductsSidebar = ({
   makeFeaturedProduct,
   deleteFromFeaturedProduct,
   selectedProduct,
+  featuredID,
 }) => {
   switch(type) {
     case 'ADD_PRODUCT':
@@ -127,7 +128,8 @@ const ProductsSidebar = ({
                                   featured={ featured }
                                   makeFeaturedProduct={ makeFeaturedProduct }
                                   deleteFromFeaturedProduct={ deleteFromFeaturedProduct }
-                                  selectedProduct={ selectedProduct } />
+                                  selectedProduct={ selectedProduct }
+                                  featuredID={ featuredID } />
     case 'UPLOADING':
       return <ProductUpload className="ProductSidebar-upload"
                             makeProduct={ makeProduct }

@@ -9,7 +9,9 @@ import IconMenu from 'react-toolbox/lib/menu/IconMenu';
 import MenuItem from 'react-toolbox/lib/menu/MenuItem';
 import MenuDivider from 'react-toolbox/lib/menu/MenuDivider';
 
-import FaBarChart from 'react-icons/lib/fa/bar-chart';
+
+import Icon from 'react-icons-kit';
+import { speedometer } from 'react-icons-kit/ionicons/speedometer';
 
 import Searchbar from './Searchbar';
 
@@ -95,7 +97,7 @@ const NavigationAppBar = ({
                   {
                     vendor ?
                       <IconButton className="NavigationAppBar-icon"
-                                  icon={<img src={dashboard} alt="dashboard icon"/>}
+                                  icon={ <Icon size={ 32 } icon={speedometer} /> }
                                   onClick={ () => history.push('/dashboard') }/> :
                       <IconButton className="NavigationAppBar-icon" icon='shopping_cart' />
                   }

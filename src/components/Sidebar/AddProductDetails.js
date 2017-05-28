@@ -25,19 +25,23 @@ const AddProductDetails = ({
   makeFeaturedProduct,
   deleteFromFeaturedProduct,
   selectedProduct,
+  featuredID,
 }) => {
   return (
     <div className="ProductSidebar-details">
                 <div className="ProductSidebar-details--images">
-                  <Slider dots lazyLoad={ false }>
-                    {
-                      productVariances[selectedVariance].images.map(
-                        ({image, alt_tag}) => <div>
-                                                <img src={ image } alt={ alt_tag } />
-                                              </div>
-                      )
-                    }
-                  </Slider>
+                  {
+                    (productVariances[selectedVariance].images.length > 0) &&
+                      <Slider dots lazyLoad={ false }>
+                        {
+                          productVariances[selectedVariance].images.map(
+                            ({image, alt_tag}) => <div>
+                                                    <img src={ image } alt={ alt_tag } />
+                                                  </div>
+                          )
+                        }
+                      </Slider>
+                  }
                 </div>
                 <div className="ProductSidebar-details--variance">
                   {
@@ -81,7 +85,7 @@ const AddProductDetails = ({
                               label="Remove featured product"
                               accent
                               onClick={
-                                () => deleteFromFeaturedProduct(selectedProductId, shop, token)
+                                () => deleteFromFeaturedProduct(selectedProductId, featuredID, shop, token)
                               } /> :
                         <Button icon="start"
                               label="Add to featured product"

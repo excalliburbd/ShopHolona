@@ -5,6 +5,7 @@
   margin: 1em 0.5em;
   border-radius: 4px;
   cursor: pointer;
+  justify-content: space-between;
 }
 
 .ProductCard--addProduct {
@@ -51,22 +52,12 @@
 .ProductCard-details {
   padding: 0px 0.5em;
   display: flex;
-  margin-bottom: 1em;
-  position: relative;
   flex-direction: column;
   align-items: flex-end;
-}
-
-.ProductCard-details .Stars {
-  position: absolute;
-  bottom: -0.5em;
+  min-height: 4.5em;
 }
 
 .ProductCard-details-quantity {
-  position: absolute;
-  bottom: -0.5em;
-  left: 0px;
-  margin: 0px;
   font-family: "Gotham Thin Regular";
   font-weight: 600;
   font-size: 1em;
@@ -74,10 +65,22 @@
 }
 
 .ProductCard-details-name {
-  margin-bottom: 0.4em;
-  margin-top: 0px;
+  margin: 0;
   font-size: 1.2em;
   height: 2.4em;
+  display: flex;
+  align-items: center;
+}
+
+.ProductCard-details > div {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.ProductCard-details  h3 {
+  margin: 0;
 }
 
 .card-title._1dU3o._2iwOK ._3qCP3 {

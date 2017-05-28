@@ -88,7 +88,7 @@ const mapDispatchToProps = dispatch => {
         token,
       });
 
-      dispatch(getFeaturedProduct(shop, token));
+      dispatch(getFeaturedProduct(shop));
       dispatch(getMe(token));
     },
     handleSetSideDrawer: val => {

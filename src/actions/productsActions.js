@@ -266,17 +266,14 @@ export const  requestAttribute = (
   }
 }
 
-export const getFeaturedProduct = (shop, token) => dispatch => {
+export const getFeaturedProduct = (shop) => dispatch => {
 
   dispatch({
     type: 'START_API_GET_FEATURED_PRODUCT',
   });
 
-  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/featured-products/`, {
+  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/shops/${shop}/featured-products/`, {
             method: 'get',
-            headers: {
-              'Authorization': `JWT ${token}`
-            },
           }).then(
             res => res.json()
           ).then(
@@ -313,7 +310,7 @@ export const makeFeaturedProduct = (id, shop, token) => dispatch => {
                 payload: res,
               });
 
-              dispatch(getFeaturedProduct(shop, token));
+              dispatch(getFeaturedProduct(shop));
 
               dispatch({
                 type: 'HIDE_SIDEBAR'
@@ -322,13 +319,13 @@ export const makeFeaturedProduct = (id, shop, token) => dispatch => {
           )
 }
 
-export const removeFromFeaturedProduct = (id, shop, token) => dispatch => {
+export const removeFromFeaturedProduct = (productID, featuredID, shop, token) => dispatch => {
 
   dispatch({
     type: 'START_API_REMOVE_FEATURED_PRODUCT',
   });
 
-  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/featured-products/${id}/`, {
+  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/featured-products/${featuredID}/`, {
             method: 'delete',
             headers: {
               'Content-type': 'application/json; charset=utf-8',
@@ -339,7 +336,7 @@ export const removeFromFeaturedProduct = (id, shop, token) => dispatch => {
               if (res.status === 204) {
                 dispatch({
                   type: 'DONE_API_REMOVE_FEATURED_PRODUCT',
-                  payload: { res, id },
+                  payload: { res, productID },
                 });
 
                 dispatch({
