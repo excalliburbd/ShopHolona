@@ -9,14 +9,12 @@ import IconMenu from 'react-toolbox/lib/menu/IconMenu';
 import MenuItem from 'react-toolbox/lib/menu/MenuItem';
 import MenuDivider from 'react-toolbox/lib/menu/MenuDivider';
 
-
 import Icon from 'react-icons-kit';
 import { speedometer } from 'react-icons-kit/ionicons/speedometer';
 
 import Searchbar from './Searchbar';
 
 import logo from '../../assets/images/logo/logo.png';
-import dashboard from '../../assets/images/dashboard-icon.png';
 
 import './NavigationAppBar.css';
 

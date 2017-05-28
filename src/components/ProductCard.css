@@ -62,6 +62,7 @@
   font-weight: 600;
   font-size: 1em;
   color: dimgray;
+  min-height: 5em;
 }
 
 .ProductCard-details-name {

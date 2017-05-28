@@ -85,6 +85,10 @@
   padding: .2em;
 }
 
+.ShopPage-details--text {
+  letter-spacing: 0.5px;
+}
+
 .ShopPage-details--show .ShopPage-details--text {
   text-shadow: none;
   background: initial;

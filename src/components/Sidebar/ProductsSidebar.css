@@ -90,12 +90,9 @@
 
 .ProductsSidebar-add--radio {
   display: flex;
-
+  justify-content: space-around;
 }
 
-.ProductsSidebar-add--radio ._36UDg {
-  margin-left: .5em;
-}
 .ProductsSidebar-img h3 {
   margin: 0;
 }

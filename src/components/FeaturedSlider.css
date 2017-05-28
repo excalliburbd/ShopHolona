@@ -64,6 +64,10 @@
     flex: auto;
   }
 
+  .FeaturedSlider-products > .ProductCard{
+    margin-top: 0;
+  }
+
   .emptydiv-featured {
     display: flex;
     height: 10em;

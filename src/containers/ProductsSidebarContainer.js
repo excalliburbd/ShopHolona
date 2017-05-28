@@ -85,7 +85,7 @@ const getShowAddColors = createSelector(
 
     Object.keys(product).forEach(
       name => {
-        if(product[name] === '') {
+        if(name !== 'description' &&  product[name] === '') {
           show = false;
         }
 

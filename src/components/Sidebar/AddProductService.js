@@ -15,6 +15,10 @@ import RadioButton from 'react-toolbox/lib/radio/RadioButton';
 
 import CustomAutocomplete from '../CustomAutocomplete';
 
+import Icon from 'react-icons-kit';
+import { tools } from 'react-icons-kit/entypo/tools';
+import { packageIcon } from 'react-icons-kit/oct/packageIcon';
+
 const AddProductService = ({
   handleFieldSelect,
   categories,
@@ -50,13 +54,18 @@ const AddProductService = ({
 }) => {
   return (
     <div className="ProductsSidebar-add">
-                <RadioGroup name='comic'
-                            className="ProductsSidebar-add--radio"
-                            value={ radioValue }
-                            onChange={ handleRadio }>
-                  <RadioButton label='Product' value='PRODUCT'/>
-                  <RadioButton label='Service' value='SERVICE'/>
-                </RadioGroup>
+                {
+                    <div className="ProductsSidebar-add--radio" >
+                      <Button icon={ <Icon size={ 32 } icon={ packageIcon } />}
+                              label='Product'
+                              disabled={ radioValue === 'PRODUCT' }
+                              onClick={ () => handleRadio('PRODUCT') } />
+                      <Button icon={ <Icon size={ 32 } icon={ tools } /> }
+                              label="service"
+                              disabled={ radioValue === 'SERVICE' }
+                              onClick={ () => handleRadio('SERVICE') } />
+                    </div>
+                }
                 {
                   (radioValue === 'PRODUCT' || radioValue === 'SERVICE') &&
                     <div className="ProductsSidebar-add--products">
