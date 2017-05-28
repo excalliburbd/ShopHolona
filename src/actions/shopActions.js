@@ -72,6 +72,7 @@ export const postShopPageProfie = (image, shop, token, formData)  => dispatch =>
 
     fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/`, {
           method: 'put',
+          mode: 'cors',
           body: formData,
           headers: {
             'Authorization': `JWT ${token}`,
@@ -110,6 +111,7 @@ export const postShopPageCover = (image, shop, token, formData)  => dispatch => 
 
     fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/`, {
           method: 'put',
+          mode: 'cors',
           body: formData,
           headers: {
             'Authorization': `JWT ${token}`,

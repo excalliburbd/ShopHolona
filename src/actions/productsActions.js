@@ -156,6 +156,7 @@ export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
   fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/images/`, {
             method: 'post',
             body: request,
+            mode: 'cors',
             headers: {
               'Authorization': `JWT ${token}`,
             },
@@ -207,6 +208,7 @@ export const  requestAttribute = (
   if (signal !== 'DONE_ALL') {
         fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/category/attributes/`, {
               method: 'post',
+              mode: 'cors',
               body: JSON.stringify({
                 name: name,
                 value: value,
@@ -294,6 +296,7 @@ export const makeFeaturedProduct = (id, shop, token) => dispatch => {
 
   fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/featured-products/`, {
             method: 'post',
+            mode: 'cors',
             headers: {
               'Content-type': 'application/json; charset=utf-8',
               'Authorization': `JWT ${token}`

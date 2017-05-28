@@ -61,7 +61,7 @@ const  ShopPage = ({
             {
               shopPhones.map(
                 contact => {
-                  if (vendor) {
+                  {/*if (vendor) {
                      return  <div className="ShopPage-details-contacts--contact">
                                 <Input label="Edit contact number"
                                     value={ contact.number }
@@ -71,7 +71,7 @@ const  ShopPage = ({
                                 />
                                 <IconButton icon="save" onClick={ () => handleSaveContactNumber(contact.id) }/>
                              </div>
-                  }
+                  }*/}
                   return <li>{ contact.number }</li>
                 }
               )
