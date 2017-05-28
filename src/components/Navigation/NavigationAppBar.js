@@ -14,6 +14,7 @@ import FaBarChart from 'react-icons/lib/fa/bar-chart';
 import Searchbar from './Searchbar';
 
 import logo from '../../assets/images/logo/logo.png';
+import dashboard from '../../assets/images/dashboard-icon.png';
 
 import './NavigationAppBar.css';
 
@@ -94,7 +95,7 @@ const NavigationAppBar = ({
                   {
                     vendor ?
                       <IconButton className="NavigationAppBar-icon"
-                                  icon={<FaBarChart/>}
+                                  icon={<img src={dashboard} alt="dashboard icon"/>}
                                   onClick={ () => history.push('/dashboard') }/> :
                       <IconButton className="NavigationAppBar-icon" icon='shopping_cart' />
                   }

@@ -26,6 +26,11 @@
   src: url('../src/assets/fonts/dincond-medium.otf') format("opentype");
 }
 
+@font-face {
+  font-family: "Harmonia Regular";
+  src: url('../src/assets/fonts/HarmoniaSansProCyr-Regular.otf') format("opentype");
+}
+
 body {
   margin: 0;
 }

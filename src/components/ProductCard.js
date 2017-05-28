@@ -77,6 +77,7 @@ const ProductCard = ({
       <div className="ProductCard-details">
         <h3 className="ProductCard-details-name">{ name }</h3>
         <Stars rating={ rating } />
+        <h3 className="ProductCard-details-quantity"> Quantity: 3</h3>
       </div>
       <Button className="ProductCard-button" raised label={ vendor ? 'Edit Product' : 'Add to Cart' } />
     </Card>

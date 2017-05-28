@@ -52,6 +52,14 @@
   margin: .2em 0;
 }
 
+.ShopPage-details-description .ShopPage-details--text {
+  color: dimgray;
+  font-family: "Gotham Narrow Book";
+  font-weight: 700;
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+
 .ShopPage-details-img {
   height: 6em;
   width: 6em;
@@ -74,7 +82,6 @@
 
 .ShopPage-details .ShopPage-details--text {
   text-shadow: 2px 1px 3px black;
-  color: #eee;
   padding: .2em;
 }
 
@@ -211,8 +218,8 @@
   .ShopPage-details .ShopPage-details--text,
   .ShopPage-details--show .ShopPage-details--text {
     text-shadow: 0 0 0;
-    background: initial;
-    color: initial;
+    /*background: initial;*/
+    /*color: initial;*/
   }
   .ShopPage-details--toggle {
     display: none;
@@ -285,13 +292,19 @@
   }
   .ShopPage-details .ShopPage-details-description {
     padding: 0.6em;
+    padding-top: 0.3em;
     margin: 0px;
     color: dimgrey;
   }
-  .ShopPage-details-description .ShopPage-details--text {
-    color: dimgrey;
-    margin-top: -0.15em;
+  .ShopPage-details-description .Stars {
+    font-size: 1.5em;
+    letter-spacing: 2px;
+    margin-top: -0.1em;
   }
+  .ShopPage-details-description .Stars .Stars-active{
+    text-shadow: 0 0 20px rgba(0,0,0,0.7);
+  }
+
   .emptydiv-phone {
     display: none;
   }

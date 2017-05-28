@@ -56,6 +56,7 @@ const  ShopPage = ({
         </div>
         <div className="ShopPage-details-description">
           <h2 className="ShopPage-details--text">{ shopName }</h2>
+          <Stars rating="4" />
           <ul className="ShopPage-details-contacts">
             {
               shopPhones.map(
@@ -76,7 +77,6 @@ const  ShopPage = ({
               )
             }
           </ul>
-          <Stars rating="4" />
           { !vendor &&  <Button raised primary label="Follow" />}
           <p className="ShopPage-details--text-desc">{shortDesc}</p>
         </div>
