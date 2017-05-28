@@ -197,23 +197,28 @@ export const productsEntityReducer = (
 ) => {
   switch (action.type) {
     case 'SET_PRODUCTS_ENTITIES':
-      const products = {};
+      const products = {
+        ...state
+      }
 
       action.payload.forEach(
         product => {
-
-          products[product.id] = {
-            ...product,
-            weight: product.variances[0].attributes[0].weight,
-            price: product.variances[0].attributes[0].price
+          if (products[product.id]) {
+            products[product.id] = {
+              ...products[product.id],
+              ...product,
+            }
+          } else {
+            products[product.id] = {
+              ...product,
+              weight: product.variances[0].attributes[0].weight,
+              price: product.variances[0].attributes[0].price
+            }
           }
         }
       )
 
-      return {
-        ...state,
-        ...products
-      }
+      return products;
     case 'DONE_API_DELETE_PRODUCT':
       const productsEntity = { ...state };
 
@@ -221,23 +226,30 @@ export const productsEntityReducer = (
 
       return productsEntity;
     case 'DONE_API_GET_FEATURED_PRODUCT':
-      const featuredProducts = {};
+      const featuredProducts = {
+        ...state
+      }
 
       action.payload.forEach(
         ({ id, product }) => {
-          featuredProducts[product.id] = {
-            ...product,
-            featuredID: id,
-            weight: product.variances[0].attributes[0].weight,
-            price: product.variances[0].attributes[0].price
+          if (featuredProducts[product.id]) {
+            featuredProducts[product.id] = {
+              ...featuredProducts[product.id],
+              ...product,
+              featuredID: id,
+            }
+          } else {
+            featuredProducts[product.id] = {
+              ...product,
+              featuredID: id,
+              weight: product.variances[0].attributes[0].weight,
+              price: product.variances[0].attributes[0].price
+            }
           }
         }
       )
 
-      return {
-        ...state,
-        ...featuredProducts,
-      }
+      return featuredProducts;
     case 'DONE_API_DELETE_FEATURED_PRODUCT':
       const featuredProductsEntity = { ...state };
 

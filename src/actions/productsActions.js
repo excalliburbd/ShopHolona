@@ -330,12 +330,14 @@ export const removeFromFeaturedProduct = (productID, featuredID, shop, token) =>
 
   fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/featured-products/${featuredID}/`, {
             method: 'delete',
+            mode: 'cors',
             headers: {
               'Content-type': 'application/json; charset=utf-8',
               'Authorization': `JWT ${token}`
             }
           }).then(
             res => {
+              console.log(res);
               if (res.status === 204) {
                 dispatch({
                   type: 'DONE_API_REMOVE_FEATURED_PRODUCT',
