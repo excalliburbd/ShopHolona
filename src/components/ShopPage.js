@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
 import Button from 'react-toolbox/lib/button/Button';
 import IconButton from 'react-toolbox/lib/button/IconButton';
 import Chip from 'react-toolbox/lib/chip';
-import Input from 'react-toolbox/lib/input';
 import MenuDivider from 'react-toolbox/lib/menu/MenuDivider';
 import MdLocalPhone from 'react-icons/lib/md/local-phone';
-import MdHome from 'react-icons/lib/md/home';
+import FontIcon from 'react-toolbox/lib/font_icon/FontIcon';
 
 import ProductCard from './ProductCard';
 import Stars from './Stars';
@@ -63,7 +62,12 @@ const  ShopPage = ({
         <div className="ShopPage-details-description">
           <h2 className="ShopPage-details--text">{ shopName }</h2>
           <Stars rating="4" />
-          <p className="address"><MdHome/> </p>
+          {
+            shopAddress &&
+              <p className="ShopPage-details--address">
+                <FontIcon value="store" /><label>{ shopAddress.details }</label>
+              </p>
+          }
           <ul className="ShopPage-details-contacts">
             {
               shopPhones.map(
@@ -79,7 +83,9 @@ const  ShopPage = ({
                                 <IconButton icon="save" onClick={ () => handleSaveContactNumber(contact.id) }/>
                              </div>
                   }*/}
-                  return <li className="contact-number"><MdLocalPhone/> { contact.number }</li>
+                  return <li className="ShopPage-details--contact-number">
+                            <FontIcon value="local_phone" /> <label>{ contact.number }</label>
+                         </li>
                 }
               )
             }

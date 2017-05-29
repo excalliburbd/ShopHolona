@@ -181,11 +181,22 @@
   display: inline-flex;
 }
 
-.contact-number svg {
+.ShopPage-details--address {
+  font-size: 12px;
+}
+
+.ShopPage-details--address .material-icons {
+  color: #FFC400;
+  margin-right: .25em;
+}
+
+.ShopPage-details--contact-number .material-icons {
   color: forestgreen;
 }
-.address svg {
-  color: #FFC400;
+
+.ShopPage-details--address label,
+.ShopPage-details--contact-number label {
+  vertical-align: super;
 }
 
 .ShopPage-details-contacts--contact {
@@ -344,7 +355,7 @@
     margin-top: 0.4em;
     margin-bottom: 1em;
     padding: 0em 1.1em;
-    font-size: 0.96em;
+    font-size: 13px;
     text-align: justify;
     margin-left: 0.2em;
     font-family: "Gotham Narrow Book";

@@ -81,9 +81,9 @@ const getPhones = createSelector(
 const getAddress = createSelector(
   [getAddresses],
   addressObj => {
-    return addressObj[Object.keys(addressObj)[0]];
+    return addressObj[1];
   }
-)
+);
 
 
 const mapStateToProps = state => {
