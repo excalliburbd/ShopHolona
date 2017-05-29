@@ -3,14 +3,16 @@
 }
 
 .ShopPage-banner {
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
   height: 12em;
   width: 100%;
 }
 
-.ShopPage>.ShopPage-banner {
+.ShopPage-banner--fixed {
+  height: 12em;
+  width: 100%;
+}
+
+.ShopPage > .ShopPage-banner {
   position: absolute;
   top: 0;
   z-index: -1;
@@ -308,7 +310,6 @@
   .ShopPage-details-description .Stars .Stars-active{
     text-shadow: 0 0 20px rgba(0,0,0,0.7);
   }
-
   .emptydiv-phone {
     display: none;
   }
@@ -327,5 +328,18 @@
   }
   .ShopPage-details .ShopPage-details-description .ShopPage-details--text-desc {
     margin-top: 1em;
+  }
+
+  .ShopPage-products--container > .ShopPage-banner {
+    position: fixed;
+    top: 4em;
+    width: calc(100% - 37vw - .375em);
+  }
+
+  .ShopPage-products--categories,
+  .ShopPage-products--content {
+    position: relative;
+    top: 12em;
+    z-index: 1;
   }
 }
