@@ -83,6 +83,16 @@
   font-size: 2rem;
 }
 
+.NavigationAppBar-dashboard-icon svg {
+  margin-top: -0.1em;
+  width: 40px;
+  height: 40px;
+}
+
+.NavigationAppBar-user-profile-icon {
+  margin-top: -0.1em;
+  box-shadow: 1px 1px 8px 0px rgba(107, 107, 107, 0.60);
+}
 .NavigationAppBar-title--shopname {
   font-family: "Gotham Narrow Black";
   position: relative;

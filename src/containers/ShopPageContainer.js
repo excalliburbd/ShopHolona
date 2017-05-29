@@ -13,6 +13,7 @@ const getProcutEntities = state => state.entities.products;
 const getCategoriesEntities = state => state.shop.categories;
 const getUserDetails = state => state.user;
 const getContacts = state => state.shop.contacts;
+const getAddresses = state => state.shop.address;
 
 const getCategories = createSelector(
   [getCategoriesEntities],
@@ -77,6 +78,14 @@ const getPhones = createSelector(
   }
 )
 
+const getAddress = createSelector(
+  [getAddresses],
+  addressObj => {
+    return addressObj[Object.keys(addressObj)[0]];
+  }
+)
+
+
 const mapStateToProps = state => {
   return {
     details: state.ui.shopPage.details,
@@ -92,6 +101,7 @@ const mapStateToProps = state => {
     proficePic: state.shop.prof_pic,
     coverPhoto: state.shop.cover_photo,
     shopPhones: getPhones(state),
+    shopAddress: getAddress(state)
   }
 }
 

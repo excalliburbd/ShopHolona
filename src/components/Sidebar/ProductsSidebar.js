@@ -72,7 +72,8 @@ const ProductsSidebar = ({
   switch(type) {
     case 'ADD_PRODUCT':
     case 'ADD_SERVICE':
-      return <AddProductService   handleFieldSelect={ handleFieldSelect }
+      return <AddProductService type={type}
+                                  handleFieldSelect={ handleFieldSelect }
                                   categories={ categories }
                                   subCategories={ subCategories }
                                   subSubCategories={ subSubCategories }

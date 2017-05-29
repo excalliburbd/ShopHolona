@@ -95,7 +95,7 @@ const NavigationAppBar = ({
                   {
                     vendor ?
                       <IconButton className="NavigationAppBar-icon"
-                                  icon={ <Icon size={ 32 } icon={speedometer} /> }
+                                  icon={ <Icon className="NavigationAppBar-dashboard-icon" icon={speedometer} /> }
                                   onClick={ () => history.push('/dashboard') }/> :
                       <IconButton className="NavigationAppBar-icon" icon='shopping_cart' />
                   }
@@ -106,7 +106,7 @@ const NavigationAppBar = ({
               }
               <IconMenu icon={
                           (profilePic) ?
-                            <Avatar title="user image" image={ profilePic }/> :
+                            <Avatar className="NavigationAppBar-user-profile-icon" title="user image" image={ profilePic }/> :
                             'account_circle'
                         }
                         position='topRight'
@@ -125,16 +125,16 @@ const NavigationAppBar = ({
                                     icon="home"
                                     onClick={() => history.push('/')} caption='Home' />
                       }
-                      <MenuItem value='profile'
-                                icon='profile'
-                                caption='Profile' />
+                      <MenuItem  value='profile'
+                                  icon='account_circle'
+                                  caption='Profile' />
                       <MenuItem value='settings'
                                 icon='settings'
                                 caption='Settings'
                                 onClick={() => history.push('/settings')} />
                       <MenuDivider />
                       <MenuItem value='signout'
-                        icon='signout'
+                        icon='power_settings_new'
                         onClick={ () => {
                           handleSignOut();
                           history.push('/');

@@ -68,6 +68,7 @@
   position: absolute;
   top: 0;
   right: 0;
+  height: 100%;
 }
 .Searchbar-input--button .material-icons {
   font-size: 1.7em !important;

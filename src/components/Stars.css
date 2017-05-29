@@ -5,6 +5,9 @@
   font-size: 18px;
 }
 
+.Stars svg {
+  margin-left: 1.8px;
+}
 .Stars-active {
   color: orange;
 }

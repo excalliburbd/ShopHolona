@@ -1,16 +1,16 @@
-.Addbutton {
+.addbutton {
   position: fixed;
   top: calc(90vh - 1em);
   right: 1em;
   z-index: 200;
+  box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
 }
 
-._2Agdx._3IRMZ._1ZxqC._2CPs4.Addbutton {
+._2Agdx._3IRMZ._1ZxqC._2CPs4.addbutton {
   background-color: rgb(183, 28, 28);
 }
 
-.Addbutton .material-icons{
+.addbutton .material-icons{
   color: white;
-  font-size: 1.5em;
-  font-weight: 500;
+  font-size: 1.4em;
 }

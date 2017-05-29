@@ -31,6 +31,36 @@
   src: url('../src/assets/fonts/HarmoniaSansProCyr-Regular.otf') format("opentype");
 }
 
+@font-face {
+  font-family: "Harmonia Bold";
+  src: url('../src/assets/fonts/HarmoniaSansProCyr-Bold.otf') format("opentype");
+}
+
+@font-face {
+  font-family: "Harmonia Light";
+  src: url('../src/assets/fonts/HarmoniaSansProCyr-Light.otf') format("opentype");
+}
+
+@font-face {
+  font-family: "NeueKabel";
+  src: url('../src/assets/fonts/NeueKabel.otf') format("opentype");
+}
+
+@font-face {
+  font-family: "NeueKabel Book";
+  src: url('../src/assets/fonts/NeueKabel-Book.otf') format("opentype");
+}
+
+@font-face {
+  font-family: "NeueKabel Medium";
+  src: url('../src/assets/fonts/NeueKabel-Medium.otf') format("opentype");
+}
+
+@font-face {
+  font-family: "NeueKabel Thin";
+  src: url('../src/assets/fonts/NeueKabel-Thin.otf') format("opentype");
+}
+
 body {
   margin: 0;
 }

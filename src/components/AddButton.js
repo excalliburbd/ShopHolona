@@ -18,7 +18,7 @@ const AddButton = ({
     <Button icon='add'
             floating
             onClick={ handleAddProduct }
-            className="Addbutton" />
+            className="addbutton" />
   );
 }
 
