@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch';
+
 export const getShopCategories = shop  => dispatch => {
 
   dispatch({

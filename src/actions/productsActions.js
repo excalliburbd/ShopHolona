@@ -1,5 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
+import { getShopCategories } from './shopActions';
+
 export const getCategory = () => dispatch => {
   fetch('http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/references/categories/', {
             method: 'get',
@@ -93,7 +95,6 @@ export const saveProduct = (obj, shop, token) => dispatch => {
   fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/products/`, {
             method: 'post',
             body: JSON.stringify(obj),
-            mode: 'cors',
             headers: {
               "Accept": "application/json",
               'Content-type': 'application/json; charset=utf-8',
@@ -109,6 +110,7 @@ export const saveProduct = (obj, shop, token) => dispatch => {
               });
 
               dispatch(getAllProducts(shop));
+              dispatch(getShopCategories(shop));
             }
           );
 }

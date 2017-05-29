@@ -10,6 +10,9 @@ import defaultConfig from 'redux-offline/lib/defaults';
 import { createBrowserHistory } from 'history'
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 
+import {REHYDRATE} from 'redux-persist/constants';
+import createActionBuffer from 'redux-action-buffer';
+
 import RootReducer from '../reducers';
 
 export const history = createBrowserHistory();
@@ -28,6 +31,7 @@ export default  offline(offlineConfig)(createStore)(
     applyMiddleware(
       thunk,
       routerMiddleware(history),
+      createActionBuffer(REHYDRATE),
     ),
   )
 );
