@@ -342,4 +342,10 @@
     top: 12em;
     z-index: 1;
   }
+
+  .ShopPage-banner--fixed {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
 }
