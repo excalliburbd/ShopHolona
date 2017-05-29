@@ -128,7 +128,6 @@
 
 .ShopPage-products--content {
   /*display: inline-block;*/
-  height: 100vh;
   flex-wrap: wrap;
   background-color: whitesmoke;
   justify-content: center;
