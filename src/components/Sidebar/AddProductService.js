@@ -12,7 +12,7 @@ import TableRow from 'react-toolbox/lib/table/TableRow';
 import TableCell from 'react-toolbox/lib/table/TableCell';
 import RadioGroup from 'react-toolbox/lib/radio/RadioGroup';
 import RadioButton from 'react-toolbox/lib/radio/RadioButton';
-
+import classNames from 'classnames';
 import CustomAutocomplete from '../CustomAutocomplete';
 
 import Icon from 'react-icons-kit';
@@ -51,16 +51,28 @@ const AddProductService = ({
   handleAddVairace,
   temporaryAttribute,
   handleSetTemporaryAttribute,
+  type
 }) => {
+
   return (
     <div className="ProductsSidebar-add">
                 {
                     <div className="ProductsSidebar-add--radio" >
                       <Button icon={ <Icon size={ 32 } icon={ packageIcon } />}
                               label='Product'
+                              className={
+                                (type === 'ADD_PRODUCT') ?
+                                  'ProductSidebar-add-product ProductSidebar-add-product--active' :
+                                  'ProductSidebar-add-product'
+                              }
                               onClick={ () => handleRadio('PRODUCT') } />
                       <Button icon={ <Icon size={ 32 } icon={ tools } /> }
                               label="service"
+                              className={
+                                (type === 'ADD_SERVICE') ?
+                                  'ProductSidebar-add-service ProductSidebar-add-service--active' :
+                                  'ProductSidebar-add-service'
+                              }
                               onClick={ () => handleRadio('SERVICE') } />
                     </div>
                 }

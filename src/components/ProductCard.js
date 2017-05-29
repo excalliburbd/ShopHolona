@@ -19,14 +19,15 @@ import Dropdown from 'react-toolbox/lib/dropdown/Dropdown';
 import Chip from 'react-toolbox/lib/chip';
 import MdLibraryAdd from 'react-icons/lib/md/library-add';
 
-import Taka from '../assets/images/taka.png';
-import AddProduct from '../assets/images/add-product.png';
+import Icon from 'react-icons-kit';
+import { tools } from 'react-icons-kit/entypo/tools';
+import { packageIcon } from 'react-icons-kit/oct/packageIcon';
+
+
+import addIcon from '../assets/images/service.png';
 import Stars from './Stars';
 
 import './ProductCard.css';
-
-import featureCardImg from './featuredProducts.png';
-import productCardImg from './addProduct.png';
 
 const ProductCard = ({
   rating = 3,
@@ -53,7 +54,7 @@ const ProductCard = ({
         <CardMedia aspectRatio="square"/>
         <div className="ProductCard-details ProductCard--addProduct-details">
           <div className="ProductCard--addProduct-details-icon">
-            <MdLibraryAdd/>
+            <img className="addicon" src={addIcon} alt=""/>
           </div>
           <h3 className="ProductCard-details-name ProductCard--addProduct-details-content">
             Add A New Product / Service
@@ -89,7 +90,8 @@ const ProductCard = ({
           {/*<h3 className="ProductCard-details-quantity"> Quantity: 3</h3>*/}
         </div>
       </div>
-      <Button className="ProductCard-button" raised label={ vendor ? 'Edit Product' : 'Add to Cart' } />
+      {/*<Button className="ProductCard-button" raised label={ vendor ? 'Edit Product' : 'Add to Cart' } />*/}
+      <Button className={ vendor ? 'ProductCard-button-vendor' : 'ProductCard-button' } raised label={ vendor ? 'Edit Product' : 'Add to Cart' } />
     </Card>
   )
 }

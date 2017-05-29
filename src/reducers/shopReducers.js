@@ -6,6 +6,9 @@ export const ShopPageReducer = (
     prof_pic: 'https://unsplash.it/160/160',
     cover_photo: 'https://unsplash.it/1200/700',
     contacts: [],
+    address: {
+
+    },
     categories: {
 
     },
@@ -59,6 +62,19 @@ export const ShopPageReducer = (
             return contact;
           }
         )
+      }
+    case 'SET_SHOP_ADDRESS':
+      const addresses = {};
+
+      action.payload.forEach(
+        obj => {
+          addresses[obj.id] = obj;
+        }
+      )
+
+      return {
+        ...state,
+        address: addresses
       }
     default:
       return state;

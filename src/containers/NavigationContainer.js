@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 import { createSelector } from 'reselect';
 
 import { getCategory, getAllProducts, getFeaturedProduct } from '../actions/productsActions';
-import { getShopCategories, getShop } from '../actions/shopActions';
+import { getShopCategories, getShop, getShopAddress } from '../actions/shopActions';
 import { getMe } from '../actions/userActions';
 
 import Nav from '../components/Navigation/Navigation';
@@ -82,6 +82,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(getShop(shop));
       dispatch(getShopCategories(shop));
       dispatch(getAllProducts(shop));
+      dispatch(getShopAddress(shop));
 
       dispatch({
         type: 'USER_SET_TOKEN',

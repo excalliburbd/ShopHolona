@@ -5,6 +5,9 @@ import Button from 'react-toolbox/lib/button/Button';
 import IconButton from 'react-toolbox/lib/button/IconButton';
 import Chip from 'react-toolbox/lib/chip';
 import Input from 'react-toolbox/lib/input';
+import MenuDivider from 'react-toolbox/lib/menu/MenuDivider';
+import MdLocalPhone from 'react-icons/lib/md/local-phone';
+import MdHome from 'react-icons/lib/md/home';
 
 import ProductCard from './ProductCard';
 import Stars from './Stars';
@@ -28,6 +31,7 @@ const  ShopPage = ({
   proficePic,
   coverPhoto,
   shopPhones,
+  shopAddress,
   handleEditContactNumber,
   handleSaveContactNumber,
 }) => {
@@ -46,6 +50,7 @@ const  ShopPage = ({
             <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') } />
           </div>
         </div>
+        <div className="ShopPage-banner-divider"><MenuDivider/></div>
         <IconButton className="ShopPage-add-banner"
                     icon="add_a_photo" onClick={ () => handleShowImageUploader('COVER') } />
         <IconButton icon={ (details) ? 'close' :'keyboard_arrow_down'}
@@ -54,9 +59,11 @@ const  ShopPage = ({
         <div className="ShopPage-details-img" style={{ backgroundImage: `url(${proficePic})` }}>
           <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') } />
         </div>
+
         <div className="ShopPage-details-description">
           <h2 className="ShopPage-details--text">{ shopName }</h2>
           <Stars rating="4" />
+          <p className="address"><MdHome/> </p>
           <ul className="ShopPage-details-contacts">
             {
               shopPhones.map(
@@ -72,14 +79,16 @@ const  ShopPage = ({
                                 <IconButton icon="save" onClick={ () => handleSaveContactNumber(contact.id) }/>
                              </div>
                   }*/}
-                  return <li>{ contact.number }</li>
+                  return <li className="contact-number"><MdLocalPhone/> { contact.number }</li>
                 }
               )
             }
           </ul>
           { !vendor &&  <Button raised primary label="Follow" />}
-          <p className="ShopPage-details--text-desc">{shortDesc}</p>
         </div>
+        <MenuDivider/>
+        <p className="ShopPage-details--text-desc">{shortDesc}</p>
+        <MenuDivider/>
       </div>
       <div className="ShopPage-products">
         <div className="ShopPage-featured">
