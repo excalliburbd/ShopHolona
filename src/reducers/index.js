@@ -41,6 +41,8 @@ const imageUploaderUIReducer = (
     image: null,
     slider: 1,
     type: null,
+    productImage: false,
+    productID: null,
   }, action
 ) => {
   switch (action.type) {
@@ -58,11 +60,20 @@ const imageUploaderUIReducer = (
        image: null,
        slider: 1
      }
-    case 'SHOW_IMAGE_UPLOADER_EDITOR':
+    case 'SHOW_IMAGE_EDITOR':
       return {
         ...state,
         dropped: true,
-        image: action.payload[0].preview,
+        image: action.payload[0],
+      }
+    case 'SHOW_IMAGE_UPLOADER_EDITOR':
+      return {
+        ...state,
+        active: true,
+        dropped: true,
+        image: action.payload.file,
+        type: 'PRODUCT',
+        productID: action.payload.id,
       }
     case 'UPDATE_IMAGE_UPLOADER_SLIDER':
       return {

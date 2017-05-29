@@ -440,7 +440,7 @@ export const CategoriesUIReducer = (
             )
           }
         }
-    case 'POST_API_PRODUCT_IMGAE_DONE':
+    case 'DONE_API_PRODUCT_IMGAE_POST':
       return {
             ...state,
             attributes: {
@@ -471,7 +471,7 @@ export const CategoriesUIReducer = (
               )
             }
           }
-    case 'POST_API_PRODUCT_IMGAE_ERROR':
+    case 'ERROR_API_PRODUCT_IMGAE_POST':
       return {
             ...state,
             attributes: {

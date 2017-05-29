@@ -168,14 +168,24 @@ export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
             res => {
               if(res.id){
                 dispatch({
-                  type: 'POST_API_PRODUCT_IMGAE_DONE',
+                  type: 'DONE_API_PRODUCT_IMGAE_POST',
                   payload: { response: res, id, key }
+                });
+
+                dispatch({
+                  type: 'INC_PRODUCTS_UPLOAD_COUNT'
                 })
+
+                if (status === 'CROPED') {
+                  dispatch({
+                    type: 'HIDE_IMAGE_UPLOADER',
+                  });
+                }
               }else{
                 console.log(res)
 
                 dispatch({
-                  type: 'POST_API_PRODUCT_IMGAE_ERROR',
+                  type: 'ERROR_API_PRODUCT_IMGAE_POST',
                   payload: { response: res, id, key }
                 })
               }

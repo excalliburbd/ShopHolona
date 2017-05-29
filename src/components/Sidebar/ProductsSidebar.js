@@ -67,6 +67,7 @@ const ProductsSidebar = ({
   deleteFromFeaturedProduct,
   selectedProduct,
   featuredID,
+  showDone,
 }) => {
   switch(type) {
     case 'ADD_PRODUCT':
@@ -109,7 +110,8 @@ const ProductsSidebar = ({
                                 handleRemoveImg={ handleRemoveImg }
                                 productName={ productName }
                                 token={ token }
-                                shop={ shop } />
+                                shop={ shop }
+                                showDone={ showDone } />
     case 'SHOW_PRODUCT_DETAILS':
       return <AddProductDetails   handleManualInput={ handleManualInput }
                                   finishedProduct={ finishedProduct }
@@ -137,7 +139,7 @@ const ProductsSidebar = ({
                             shop={ shop }
                             token={token}
                             saveProduct={ handleSaveProduct }
-                            progress={ progress }/>
+                            progress={ progress } />
     default:
       return <div className="ProductsSidebar-empty"/>
   }

@@ -3,6 +3,7 @@ import { withRouter } from 'react-router';
 import { createSelector } from 'reselect';
 
 import { postShopPageProfie, postShopPageCover } from '../actions/shopActions';
+import { postImage } from '../actions/productsActions';
 
 import ImageUploader from '../components/ImageUploader';
 
@@ -39,12 +40,13 @@ const mapStateToProps = state => {
   return {
     active: state.ui.uploader.active,
     dropped: state.ui.uploader.dropped,
-    droppedImage: state.ui.uploader.image,
+    droppedImage: state.ui.uploader.image,//[0].preview
     sliderValue: state.ui.uploader.slider,
     token: state.user.token,
     shop: state.shop.id,
     formData: makeFormData(state),
     type: state.ui.uploader.type,
+    productID: state.ui.uploader.productID,
   }
 }
 
@@ -57,7 +59,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     handleImageDropped: file => {
       dispatch({
-        type: 'SHOW_IMAGE_UPLOADER_EDITOR',
+        type: 'SHOW_IMAGE_EDITOR',
         payload: file,
       })
     },
@@ -67,14 +69,29 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         payload: value
       })
     },
-    handleDone: (type, image, shop, token, formData) => {
+    handleDone: (type, image, shop, token, formData, id, file) => {
 
-      if(type === 'PROFILE') {
+      if (type === 'PROFILE') {
        dispatch(postShopPageProfie(image, shop, token, formData));
       }
 
-      if(type === 'COVER') {
+      if (type === 'COVER') {
        dispatch(postShopPageCover(image, shop, token, formData));
+      }
+
+      if (type === 'PRODUCT') {
+        image.toBlob( blob => {
+          dispatch(
+            postImage(
+              token,
+              shop,
+              { file: blob, tag: `${file.name.toLowerCase().split(' ').join('_')}_0` },
+              id,
+              0,
+              'CROPED'
+            )
+          )
+        })
       }
     }
   }

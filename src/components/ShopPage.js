@@ -121,7 +121,7 @@ const  ShopPage = ({
             <div className="emptydiv-phone"></div>
           </div>
           <div className="ShopPage-banner" >
-            {/*<IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('COVER') } />*/}
+            <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('COVER') } />
             <div style={{ backgroundImage: `url(${coverPhoto})`}} className="ShopPage-banner--fixed" />
           </div>
         </div>

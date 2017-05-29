@@ -60,7 +60,9 @@ export const ProductsUIReducer = (
     price: '',
     description: '',
     selectedVariance: 0,
-    selectedProduct: {}
+    selectedProduct: {},
+    uploadCount: 0,
+    doneUploadCount: 0,
   }, action
 ) => {
   switch(action.type) {
@@ -184,6 +186,17 @@ export const ProductsUIReducer = (
         description: '',
         selectedVariance: 0,
         selectedProduct: {}
+      }
+    case 'SET_PRODUCTS_UPLOAD_COUNT':
+      return {
+        ...state,
+        uploadCount: action.payload,
+        doneUploadCount: 0,
+      }
+    case 'INC_PRODUCTS_UPLOAD_COUNT':
+      return {
+        ...state,
+        doneUploadCount: state.doneUploadCount + 1,
       }
     default:
       return state;

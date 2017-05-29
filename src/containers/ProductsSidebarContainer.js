@@ -35,6 +35,8 @@ const getRadioValue = state => state.ui.sidebar.radio;
 const getProgress = state => state.ui.categories.uploadProgress;
 const getSelectedPrductID = state => state.ui.product.selectedProduct.id;
 const getProductsObj = state => state.entities.products;
+const getUploadCount = state => state.ui.product.uploadCount;
+const getDoneUploadCount = state => state.ui.product.doneUploadCount;
 
 const getFusedCategories = createSelector(
   [getCategoriesObj],
@@ -98,7 +100,7 @@ const getShowAddColors = createSelector(
 
     return show;
   }
-)
+);
 
 const getShowAddImages = createSelector(
   [getPrimaryAttributes],
@@ -115,7 +117,7 @@ const getShowAddImages = createSelector(
 
     return show;
   }
-)
+);
 
 const getFinishedProduct = createSelector(
   [
@@ -201,14 +203,14 @@ const getFinishedProduct = createSelector(
       }
     }
   }
-)
+);
 
 const getShowProductDetails = createSelector(
   [getCategoryID, getSubCategoryID],
   (category, subCategory) => {
     return (category && subCategory)
   }
-)
+);
 
 const getSelectedFeturedPrductID = createSelector(
   [getSelectedPrductID, getProductsObj],
@@ -219,7 +221,14 @@ const getSelectedFeturedPrductID = createSelector(
 
     return null;
   }
-)
+);
+
+const getShowDone = createSelector(
+  [getUploadCount, getDoneUploadCount],
+  (upload, done) => {
+    return (upload === done)
+  }
+);
 
 const mapStateToProps = state => {
   return {
@@ -258,6 +267,7 @@ const mapStateToProps = state => {
     featured: (state.featuredProducts.indexOf(state.ui.product.selectedProduct.id) !== -1),
     selectedProduct: state.ui.product.selectedProduct,
     featuredID: getSelectedFeturedPrductID(state),
+    showDone: getShowDone(state),
   }
 }
 
@@ -407,32 +417,54 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           id,
           files: newFiles,
         }
-      })
+      });
 
-      newFiles.forEach(
+      dispatch({
+        type: 'SET_PRODUCTS_UPLOAD_COUNT',
+        payload: (oldFiles.length + newFiles.length)
+      });
+
+      const [
+        first,
+        ...rest
+      ] = newFiles;
+
+      const toPost = [
+        (oldFiles.length === 0) ? 'EDITED' : first,
+        ...rest
+      ];
+
+      toPost.forEach(
         (file, key) => {
-          if( key === (newFiles.lenght - 1)) {
-            dispatch(
-              postImage(
-                token,
-                shop,
-                { file, tag: `${file.name.toLowerCase().split(' ').join('_')}_${key}` },
-                id,
-                (key + oldFiles.length),
-                'DONE'
-              )
-            )
+          if (file === 'EDITED') {
+            dispatch({
+              type: 'SHOW_IMAGE_UPLOADER_EDITOR',
+              payload: { file: first, id }
+            });
           } else {
-            dispatch(
-              postImage(
-                token,
-                shop,
-                { file, tag: `${file.name.toLowerCase().split(' ').join('_')}_${key}` },
-                id,
-                (key + oldFiles.length),
-                'NEXT'
+            if( key === (newFiles.lenght - 1)) {
+              dispatch(
+                postImage(
+                  token,
+                  shop,
+                  { file, tag: `${file.name.toLowerCase().split(' ').join('_')}_${key}` },
+                  id,
+                  (key + oldFiles.length),
+                  'DONE'
+                )
               )
-            )
+            } else {
+              dispatch(
+                postImage(
+                  token,
+                  shop,
+                  { file, tag: `${file.name.toLowerCase().split(' ').join('_')}_${key}` },
+                  id,
+                  (key + oldFiles.length),
+                  'NEXT'
+                )
+              )
+            }
           }
         }
       )

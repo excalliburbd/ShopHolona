@@ -21,12 +21,13 @@ const ImageUploader = ({
   formData,
   token,
   type,
+  productID,
 }) => {
 
   let editorRef = null;
 
   const doneFunc = () => {
-    handleDone( type , editorRef ? editorRef.getImage() : null, shop, token, formData);
+    handleDone( type , editorRef ? editorRef.getImage() : null, shop, token, formData, productID, droppedImage);
   }
 
   let border = 12.5;
@@ -75,7 +76,7 @@ const ImageUploader = ({
         {
           dropped ?
             <div className="ImageUploader-content--editor">
-              <AvatarEditor image={ droppedImage }
+              <AvatarEditor image={ droppedImage.preview }
                             ref={ editorContent => { editorRef = editorContent }}
                             border={ border }
                             borderRadius={ radius }

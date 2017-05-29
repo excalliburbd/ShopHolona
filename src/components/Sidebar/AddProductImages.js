@@ -13,44 +13,43 @@ const AddProductImages = ({
   productName,
   token,
   shop,
+  showDone,
 }) => {
-
   return (
     <div className="ProductsSidebar-img">
               <h3>Add Product Images</h3>
                {
-                 primaryAttributes
-                 .filter( obj => obj.selected )
+                 primaryAttributes.filter( obj => obj.selected )
                  .map(
-                      (obj, key) => <div className="ProductsSidebar-img-variants" key={ key }>
-                                      <div className="ProductsSidebar-img-variants--title">
-                                        <IconButton style={{
-                                                      background: (obj.value && (obj.value.split(' ')[0] !== 'Color')) &&
-                                                                        (obj.value && (obj.value.split(' ')[0] !== 'Custom')) ?
-                                                                          obj.value.toLowerCase() : '#ccc',
-                                                      boxShadow: 'var(--shadow-4p)'
-                                                    }} />
-                                        <h4>{ obj.value }</h4>
-                                      </div>
-                                      <div className="ProductsSidebar-img-variants--content">
-                                        <Dropzone className="ProductsSidebar-img-dropzone"
-                                                  onDrop={ files => handleFiles(obj.id, obj.files, files, productName, shop, token) }>
-                                          <FontIcon value='add' />
-                                        </Dropzone>
-                                        {
-                                          obj.files.map(
-                                            (file, key) => <div  onClick={ () => handleRemoveImg(obj.id, key) }
-                                                                        key={ key }
-                                                                        style={{
-                                                                          background: `url(${ file.preview }) no-repeat center center`,
-                                                                          height: '6em',
-                                                                          width: '4em',
-                                                                          margin: '.5em',
-                                                                        }} />
-                                          )
-                                        }
-                                      </div>
-                                    </div>
+                  (obj, key) => <div className="ProductsSidebar-img-variants" key={ key }>
+                                  <div className="ProductsSidebar-img-variants--title">
+                                    <IconButton style={{
+                                                  background: (obj.value && (obj.value.split(' ')[0] !== 'Color')) &&
+                                                                    (obj.value && (obj.value.split(' ')[0] !== 'Custom')) ?
+                                                                      obj.value.toLowerCase() : '#ccc',
+                                                  boxShadow: 'var(--shadow-4p)'
+                                                }} />
+                                    <h4>{ obj.value }</h4>
+                                  </div>
+                                  <div className="ProductsSidebar-img-variants--content">
+                                    <Dropzone className="ProductsSidebar-img-dropzone"
+                                              onDrop={ files => handleFiles(obj.id, obj.files, files, productName, shop, token) }>
+                                      <FontIcon value='add' />
+                                    </Dropzone>
+                                    {
+                                      obj.files.map(
+                                        (file, key) => <div onClick={ () => handleRemoveImg(obj.id, key) }
+                                                            key={ key }
+                                                            style={{
+                                                              background: `url(${ file.preview }) no-repeat center center`,
+                                                              height: '6em',
+                                                              width: '4em',
+                                                              margin: '.5em',
+                                                            }} />
+                                      )
+                                    }
+                                  </div>
+                                </div>
 
                     )
                 }
@@ -62,6 +61,7 @@ const AddProductImages = ({
                           } />
                   <Button icon="done"
                           label="done"
+                          disabled={ !showDone }
                           onClick={
                             () => {
                               handleShowRoute('UPLOADING');
