@@ -14,6 +14,8 @@ export const getCategory = () => dispatch => {
             res => res.json()
           ).then(
             res => {
+              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+
               dispatch({
                 type: 'SET_CATEGORIES',
                 payload: res,
@@ -34,6 +36,8 @@ export const getSubCategory = id => dispatch => {
             res => res.json()
           ).then(
             res => {
+              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+
               dispatch({
                 type: 'SET_SUB_CATEGORIES',
                 payload: res,
@@ -54,6 +58,8 @@ export const getSubSubCategory = (id, subID )=> dispatch => {
             res => res.json()
           ).then(
             res => {
+              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+
               dispatch({
                 type: 'SET_SUB_SUB_CATEGORIES',
                 payload: res,
@@ -80,6 +86,8 @@ export const getAllProducts = shop  => dispatch => {
             res => (res.status === 200) && res.json()
           ).then(
             res => {
+              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+
               dispatch({
                 type: 'DONE_API_GET_PRODUCT',
               })
@@ -105,6 +113,8 @@ export const saveProduct = (obj, shop, token) => dispatch => {
             res => res.json()
           ).then(
             res => {
+              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+
               dispatch({
                 type: 'DONE_API_ADD_PRODUCT',
                 payload: res,
@@ -131,11 +141,20 @@ export const deleteProduct = (id, shop, token) => dispatch => {
             },
           }).then(
             res => {
+              dispatch({type: 'RESPONSE_API_DEBUG',payload:res})
+
               if( res.status === 200 || res.status === 204) {
                 dispatch({
                   type: 'DONE_API_DELETE_PRODUCT',
                   payload: { response: res, id },
                 });
+
+                dispatch({
+                  type: 'UPDATE_SHOP_CHIP',
+                  payload: 0
+                });
+
+                dispatch(getShopCategories(shop));
 
                 dispatch({
                   type: 'HIDE_SIDEBAR'
@@ -167,6 +186,8 @@ export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
             res => res.json()
           ).then(
             res => {
+              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+
               if(res.id){
                 dispatch({
                   type: 'DONE_API_PRODUCT_IMGAE_POST',
@@ -244,6 +265,8 @@ export const  requestAttribute = (
               res => res.json()
             ).then(
               obj => {
+                dispatch({type: 'RESPONSE_API_DEBUG',payload:obj});
+
                 if (obj.id) {
                   if (primary) {
                     dispatch({
@@ -333,6 +356,8 @@ export const makeFeaturedProduct = (id, shop, token) => dispatch => {
             res => res.json()
           ).then(
             res => {
+              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+
               dispatch({
                 type: 'DONE_API_MAKE_FEATURED_PRODUCT',
                 payload: res,
@@ -363,7 +388,8 @@ export const removeFromFeaturedProduct = (productID, featuredID, shop, token) =>
             }
           }).then(
             res => {
-              console.log(res);
+              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+
               if (res.status === 204) {
                 dispatch({
                   type: 'DONE_API_REMOVE_FEATURED_PRODUCT',

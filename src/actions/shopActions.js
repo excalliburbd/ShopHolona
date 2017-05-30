@@ -17,6 +17,8 @@ export const getShopCategories = shop  => dispatch => {
     res => res.json()
   ).then(
     res => {
+      dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+
       dispatch({
         type: 'DONE_API_GET_SHOP_CATEGORY',
       })
@@ -48,6 +50,8 @@ export const getShopAddress = shop  => dispatch => {
     res => res.json()
   ).then(
     res => {
+      dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+
       dispatch({
         type: 'DONE_API_GET_SHOP_ADDRESS',
       })
@@ -80,6 +84,8 @@ export const getShop = shop  => dispatch => {
             res => res.json()
           ).then(
             res => {
+              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+
               dispatch({
                 type: 'DONE_API_GET_SHOP',
               })
@@ -116,6 +122,8 @@ export const postShopPageProfie = (image, shop, token, formData)  => dispatch =>
           res => res.json()
         ).then(
           res => {
+            dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+
             if(res.id) {
               dispatch({
                 type: 'DONE_API_SHOP_PROFILE_PUT',
@@ -155,6 +163,8 @@ export const postShopPageCover = (image, shop, token, formData)  => dispatch => 
           res => res.json()
         ).then(
           res => {
+            dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+
             if(res.id) {
               dispatch({
                 type: 'DONE_API_SHOP_COVER_PUT',

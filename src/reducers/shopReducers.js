@@ -11,8 +11,7 @@ export const ShopPageReducer = (
     },
     categories: {
 
-    },
-    chip: 0,
+    }
   }, action
 ) => {
   switch (action.type) {
@@ -28,14 +27,8 @@ export const ShopPageReducer = (
       return {
         ...state,
         categories: {
-          ...state.categories,
           ...categories
         }
-      }
-    case 'UPDATE_SHOP_CHIP':
-      return {
-        ...state,
-        chip: action.payload,
       }
     case 'SET_SHOP':
       return {
@@ -84,6 +77,7 @@ export const ShopPageReducer = (
 export const ShopPageUIReducer = (
   state = {
     details: false,
+    chip: 0,
   } , action
 ) => {
   switch (action.type) {
@@ -91,6 +85,11 @@ export const ShopPageUIReducer = (
       return {
         ...state,
         details: !state.details,
+      }
+    case 'UPDATE_SHOP_CHIP':
+      return {
+        ...state,
+        chip: action.payload,
       }
     default:
       return state;

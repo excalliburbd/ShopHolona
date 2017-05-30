@@ -28,6 +28,8 @@ export const trySignInAsyncAction = ({ email, password }, shop) => dispatch => {
             res => res.json()
           ).then(
             res => {
+              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+
               fetch('http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/me/', {
                 headers: {
                     "Accept": "application/json",
@@ -39,6 +41,8 @@ export const trySignInAsyncAction = ({ email, password }, shop) => dispatch => {
                 res => res.json()
               ).then(
                 res => {
+                  dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+
                   if (res.id) {
                     dispatch({
                       type: 'USER_SET_PROFILE',
@@ -85,6 +89,8 @@ export const getMe = (token, shop) => dispatch => {
       res => res.json()
     ).then(
       res => {
+        dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+
         if (res.id) {
           dispatch({
             type: 'USER_SET_PROFILE',

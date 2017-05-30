@@ -45,8 +45,7 @@ const ImageUploader = ({
   }
 
   if (type === 'PRODUCT') {
-    width = 500;
-    height = 500;
+    border = 0;
   }
 
   if (!HTMLCanvasElement.prototype.toBlob) {
