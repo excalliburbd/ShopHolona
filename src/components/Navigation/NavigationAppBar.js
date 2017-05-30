@@ -15,6 +15,7 @@ import { speedometer } from 'react-icons-kit/ionicons/speedometer';
 import Searchbar from './Searchbar';
 
 import logo from '../../assets/images/logo/logo.png';
+import DashboardIcon from '../../assets/svg/dashboard.svg';
 
 import './NavigationAppBar.css';
 
@@ -95,7 +96,8 @@ const NavigationAppBar = ({
                   {
                     vendor ?
                       <IconButton className="NavigationAppBar-icon"
-                                  icon={ <Icon className="NavigationAppBar-dashboard-icon" icon={speedometer} /> }
+                                  // icon={ <Icon className="NavigationAppBar-dashboard-icon" icon={DashboardIcon} /> }
+                                  icon={<img className="NavigationAppBar-dashboard-icon" src={DashboardIcon} alt="Dashboard Icon"/>}
                                   onClick={ () => history.push('/dashboard') }/> :
                       <IconButton className="NavigationAppBar-icon" icon='shopping_cart' />
                   }
