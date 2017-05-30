@@ -298,6 +298,10 @@
     height: calc(100vh - 4em);
     color: dimgrey;
   }
+
+  .ShopPage-details > .VX5Lv {
+    height: 1.1px;
+  }
   .ShopPage-products {
     display: flex;
     width: calc(100vw - 17vw);
