@@ -61,6 +61,14 @@ class Nav extends Component {
         }
       }
 
+      if(searchParts.length === 1) {
+        const idPart = searchParts[0].split('=');
+
+        if(idPart[0] === '?shopId') {
+          handleSetCredentials(idPart[1]);
+        }
+      }
+
       history.replace('/');
     }
   }

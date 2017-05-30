@@ -83,14 +83,16 @@ const mapDispatchToProps = dispatch => {
       dispatch(getShopCategories(shop));
       dispatch(getAllProducts(shop));
       dispatch(getShopAddress(shop));
-
-      dispatch({
-        type: 'USER_SET_TOKEN',
-        token,
-      });
-
       dispatch(getFeaturedProduct(shop));
-      dispatch(getMe(token));
+
+      if (token) {
+        dispatch({
+          type: 'USER_SET_TOKEN',
+          token,
+        });
+
+        dispatch(getMe(token));
+      }
     },
     handleSetSideDrawer: val => {
       dispatch({
