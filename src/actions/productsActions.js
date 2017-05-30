@@ -67,6 +67,7 @@ export const getAllProducts = shop  => dispatch => {
 
   dispatch({
     type: 'START_API_GET_PRODUCT',
+    payload: { shop },
   })
 
   fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/shops/${shop}/products/`, {
@@ -120,7 +121,7 @@ export const deleteProduct = (id, shop, token) => dispatch => {
 
   dispatch({
     type: 'START_API_DELETE_PRODUCT',
-    payload: id,
+    payload: {id, shop, token},
   });
 
   fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/products/${id}/`, {
@@ -214,7 +215,17 @@ export const  requestAttribute = (
 
   dispatch({
     type: 'START_SET_CUSTOM_ATTRIBUT',
-    payload: signal
+    payload: {
+        token,
+        name,
+        value,
+        id,
+        primary,
+        primaryID,
+        signal,
+        customPrimary,
+        customSecondary
+    }
   })
 
   if (signal !== 'DONE_ALL') {
@@ -280,10 +291,11 @@ export const  requestAttribute = (
   }
 }
 
-export const getFeaturedProduct = (shop) => dispatch => {
+export const getFeaturedProduct = shop => dispatch => {
 
   dispatch({
     type: 'START_API_GET_FEATURED_PRODUCT',
+    payload: { shop }
   });
 
   fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/shops/${shop}/featured-products/`, {
@@ -304,6 +316,7 @@ export const makeFeaturedProduct = (id, shop, token) => dispatch => {
 
   dispatch({
     type: 'START_API_MAKE_FEATURED_PRODUCT',
+    payload: {id, shop, token}
   });
 
   fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/featured-products/`, {
@@ -338,6 +351,7 @@ export const removeFromFeaturedProduct = (productID, featuredID, shop, token) =>
 
   dispatch({
     type: 'START_API_REMOVE_FEATURED_PRODUCT',
+    payload: {productID, featuredID, shop, token}
   });
 
   fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/featured-products/${featuredID}/`, {

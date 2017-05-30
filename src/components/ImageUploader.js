@@ -44,6 +44,11 @@ const ImageUploader = ({
     height = 192;
   }
 
+  if (type === 'PRODUCT') {
+    width = 500;
+    height = 500;
+  }
+
   if (!HTMLCanvasElement.prototype.toBlob) {
       Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
         value: function (callback, type, quality) {

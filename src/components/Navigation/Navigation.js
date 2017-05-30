@@ -91,6 +91,9 @@ class Nav extends Component {
       pinned,
       vendor,
       profilePic,
+      online,
+      shopID,
+      hadleLoadData,
       children,
     } = this.props;
 
@@ -107,6 +110,10 @@ class Nav extends Component {
         default:
           return null;
       }
+    }
+
+    if (online) {
+      shopID && hadleLoadData(shopID);
     }
 
     return (

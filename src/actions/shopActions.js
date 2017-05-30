@@ -4,6 +4,7 @@ export const getShopCategories = shop  => dispatch => {
 
   dispatch({
     type: 'START_API_GET_SHOP_CATEGORY',
+    payload: {shop}
   })
 
   fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/shops/${shop}/categories/`, {
@@ -34,6 +35,7 @@ export const getShopAddress = shop  => dispatch => {
 
   dispatch({
     type: 'START_API_GET_SHOP_ADDRESS',
+    payload: {shop}
   })
 
   fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/shops/${shop}/address/`, {
@@ -65,6 +67,7 @@ export const getShop = shop  => dispatch => {
 
   dispatch({
     type: 'START_API_GET_SHOP',
+    payload: {shop}
   })
 
   fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/shops/${shop}/`, {
