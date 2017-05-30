@@ -1,28 +1,7 @@
 import React from 'react';
-
 import Card from 'react-toolbox/lib/card/Card';
 import CardMedia from 'react-toolbox/lib/card/CardMedia';
-import CardTitle from 'react-toolbox/lib/card/CardTitle';
-import CardText from 'react-toolbox/lib/card/CardText';
-import CardActions from 'react-toolbox/lib/card/CardActions';
-import Avatar from 'react-toolbox/lib/avatar/Avatar';
-import Navigation from 'react-toolbox/lib/navigation/Navigation';
-import Link from 'react-toolbox/lib/link/Link';
-import Menu from 'react-toolbox/lib/menu/Menu';
-import IconMenu from 'react-toolbox/lib/menu/IconMenu';
 import Button from 'react-toolbox/lib/button/Button';
-import IconButton from 'react-toolbox/lib/button/IconButton';
-import MenuItem from 'react-toolbox/lib/menu/MenuItem';
-import MenuDivider from 'react-toolbox/lib/menu/MenuDivider';
-import Autocomplete from 'react-toolbox/lib/autocomplete/Autocomplete';
-import Dropdown from 'react-toolbox/lib/dropdown/Dropdown';
-import Chip from 'react-toolbox/lib/chip';
-import MdLibraryAdd from 'react-icons/lib/md/library-add';
-
-import Icon from 'react-icons-kit';
-import { tools } from 'react-icons-kit/entypo/tools';
-import { packageIcon } from 'react-icons-kit/oct/packageIcon';
-
 
 import addIcon from '../assets/images/service.png';
 import Stars from './Stars';

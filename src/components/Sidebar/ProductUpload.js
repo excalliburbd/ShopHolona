@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 
 class ProductUpload extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-
-    }
-  }
-
   componentDidMount() {
     this.props.makeProduct(
       this.props.product,
@@ -17,7 +9,6 @@ class ProductUpload extends Component {
   }
 
   render() {
-
     const {
       progress,
       product,

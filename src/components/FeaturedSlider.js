@@ -1,9 +1,5 @@
 import React from 'react';
 
-import IconButton from 'react-toolbox/lib/button/IconButton';
-
-import ProductCard from './ProductCard';
-
 import './FeaturedSlider.css';
 
 const FeaturedSlider = ({

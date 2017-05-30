@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 import { FilterUIReducer } from './filterUIReducer';
 import { OrdersReducer, OrdersEntityReducer } from './ordersReducers';
-import { UserReducer, UserUIReducer, userDetailsReducer } from './usersReducers';
+import { UserReducer, UserUIReducer } from './usersReducers';
 import { productsReducer, featuredProductsReducer, productsEntityReducer, ProductsUIReducer } from './productsReducers';
 import { BackOfficeUIReducer } from './backOfficeReducers';
 import {

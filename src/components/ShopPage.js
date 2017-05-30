@@ -5,7 +5,6 @@ import Button from 'react-toolbox/lib/button/Button';
 import IconButton from 'react-toolbox/lib/button/IconButton';
 import Chip from 'react-toolbox/lib/chip';
 import MenuDivider from 'react-toolbox/lib/menu/MenuDivider';
-import MdLocalPhone from 'react-icons/lib/md/local-phone';
 import FontIcon from 'react-toolbox/lib/font_icon/FontIcon';
 
 import ProductCard from './ProductCard';
@@ -72,7 +71,7 @@ const  ShopPage = ({
             {
               shopPhones.map(
                 contact => {
-                  {/*if (vendor) {
+                  /*{if (vendor) {
                      return  <div className="ShopPage-details-contacts--contact">
                                 <Input label="Edit contact number"
                                     value={ contact.number }
@@ -82,10 +81,10 @@ const  ShopPage = ({
                                 />
                                 <IconButton icon="save" onClick={ () => handleSaveContactNumber(contact.id) }/>
                              </div>
-                  }*/}
-                  return <li className="ShopPage-details--contact-number">
+                  }}*/
+                  return (<li className="ShopPage-details--contact-number">
                             <FontIcon value="local_phone" /> <label>{ contact.number }</label>
-                         </li>
+                         </li>)
                 }
               )
             }

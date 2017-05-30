@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { createSelector } from 'reselect';
 
-import { getCategory, getAllProducts, getFeaturedProduct } from '../actions/productsActions';
+import { getAllProducts, getFeaturedProduct } from '../actions/productsActions';
 import { getShopCategories, getShop, getShopAddress } from '../actions/shopActions';
 import { getMe } from '../actions/userActions';
 

@@ -22,7 +22,7 @@ class GLogin extends React.Component{
 
   checkLoginState (response) {
     if (window.auth2.isSignedIn.get()) {
-      var profile = window.auth2.currentUser.get().getBasicProfile();
+      // var profile = window.auth2.currentUser.get().getBasicProfile();
     } else {
       if(this.props.responseHandler) {
         this.props.responseHandler({status: response.status});

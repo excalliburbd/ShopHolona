@@ -1,6 +1,4 @@
 import React from 'react';
-
-import FontIcon from 'react-toolbox/lib/font_icon/FontIcon';
 import FaStar from 'react-icons/lib/fa/star';
 
 import './Stars.css';

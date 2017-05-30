@@ -10,9 +10,6 @@ import Table from 'react-toolbox/lib/table/Table';
 import TableHead from 'react-toolbox/lib/table/TableHead';
 import TableRow from 'react-toolbox/lib/table/TableRow';
 import TableCell from 'react-toolbox/lib/table/TableCell';
-import RadioGroup from 'react-toolbox/lib/radio/RadioGroup';
-import RadioButton from 'react-toolbox/lib/radio/RadioButton';
-import classNames from 'classnames';
 import CustomAutocomplete from '../CustomAutocomplete';
 
 import Icon from 'react-icons-kit';
