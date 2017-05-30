@@ -210,6 +210,10 @@
   width: 7em;
 }
 
+.ShopPage-products--categories-selected {
+  box-shadow: var(--shadow-2p);
+}
+
 /*for phone*/
 
 @media screen and (max-width: 600px) {

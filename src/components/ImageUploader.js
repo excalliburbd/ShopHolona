@@ -22,12 +22,13 @@ const ImageUploader = ({
   token,
   type,
   productID,
+  responsive,
 }) => {
 
   let editorRef = null;
 
   const doneFunc = () => {
-    handleDone( type , editorRef ? editorRef.getImage() : null, shop, token, formData, productID, droppedImage);
+    handleDone( type , editorRef ? editorRef.getImageScaledToCanvas() : null, shop, token, formData, productID, droppedImage);
   }
 
   let border = 12.5;

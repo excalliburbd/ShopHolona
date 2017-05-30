@@ -160,7 +160,9 @@ export const ProductsUIReducer = (
         price: '',
         description: '',
         selectedVariance: 0,
-        selectedProduct: {}
+        selectedProduct: {},
+        uploadCount: 0,
+        doneUploadCount: 0,
       }
     case 'RESET_UI_SUB_CATEGORIES':
       return {
@@ -172,7 +174,9 @@ export const ProductsUIReducer = (
         price: '',
         description: '',
         selectedVariance: 0,
-        selectedProduct: {}
+        selectedProduct: {},
+        uploadCount: 0,
+        doneUploadCount: 0,
       }
     case 'HIDE_SIDEBAR':
     case 'RESET_UI_CATEGORIES':
@@ -185,18 +189,25 @@ export const ProductsUIReducer = (
         price: '',
         description: '',
         selectedVariance: 0,
-        selectedProduct: {}
+        selectedProduct: {},
+        uploadCount: 0,
+        doneUploadCount: 0,
       }
     case 'SET_PRODUCTS_UPLOAD_COUNT':
       return {
         ...state,
         uploadCount: action.payload,
-        doneUploadCount: 0,
       }
     case 'INC_PRODUCTS_UPLOAD_COUNT':
       return {
         ...state,
         doneUploadCount: state.doneUploadCount + 1,
+      }
+    case 'DEC_PRDUCTS_UPLOAD_DONE_COUNT':
+      return {
+        ...state,
+        uploadCount: ((state.uploadCount - 1) < 0) ? 0 : (state.uploadCount - 1),
+        doneUploadCount: ((state.doneUploadCount - 1) < 0) ? 0 : (state.doneUploadCount - 1)
       }
     default:
       return state;

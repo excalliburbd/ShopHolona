@@ -47,7 +47,10 @@ class Nav extends Component {
       history,
       location,
       handleSetCredentials,
+      handleGetMedia,
     } = this.props;
+
+    handleGetMedia();
 
     if(location.search !== '') {
       const searchParts = location.search.split('&');

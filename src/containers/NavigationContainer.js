@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { createSelector } from 'reselect';
+import { mediaQueryTracker } from 'redux-mediaquery';
 
 import { getCategory, getAllProducts, getFeaturedProduct } from '../actions/productsActions';
 import { getShopCategories, getShop, getShopAddress } from '../actions/shopActions';
@@ -108,6 +109,14 @@ const mapDispatchToProps = dispatch => {
       dispatch(getAllProducts(shop));
       dispatch(getShopAddress(shop));
       dispatch(getFeaturedProduct(shop));
+    },
+    handleGetMedia: () => {
+      dispatch(mediaQueryTracker({
+        isPhone: "screen and (max-width: 767px)",
+        isTablet: "screen and (max-width: 1024px)",
+        innerWidth: true,
+        innerHeight: true,
+      }));
     }
   }
 }

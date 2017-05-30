@@ -110,7 +110,9 @@ const  ShopPage = ({
           <div className="ShopPage-products--categories">
             {
               products.map(
-                (obj, key) => <Chip onClick={ () => selectChip(key) } key={key}>
+                (obj, key) => <Chip onClick={ () => selectChip(key) }
+                                    className={ (selectedChip === key) ? 'ShopPage-products--categories-selected' : 'null' }
+                                    key={key}>
                                 { obj.name }
                               </Chip>
               )
