@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Card from 'react-toolbox/lib/card/Card';
 import CardMedia from 'react-toolbox/lib/card/CardMedia';
 import Button from 'react-toolbox/lib/button/Button';
@@ -7,6 +8,14 @@ import addIcon from '../assets/images/service.png';
 import Stars from './Stars';
 
 import './ProductCard.css';
+
+const actionsToState = dispatch => ({
+  showCartProducts: () => {
+    dispatch({
+      type: 'SHOW_SIDEBAR_CART_CHOOSE'
+    })
+  }
+})
 
 const ProductCard = ({
   rating = 3,
@@ -19,6 +28,7 @@ const ProductCard = ({
   vendor,
   featureCard,
   addProductCard,
+  showCartProducts
 }) => {
 
   price = Math.round(price);
@@ -70,10 +80,13 @@ const ProductCard = ({
         </div>
       </div>
       {/*<Button className="ProductCard-button" raised label={ vendor ? 'Edit Product' : 'Add to Cart' } />*/}
-      <Button className={ vendor ? 'ProductCard-button-vendor' : 'ProductCard-button' } raised label={ vendor ? 'Edit Product' : 'Add to Cart' } />
+      { vendor ? <Button className='ProductCard-button-vendor' raised label='Edit Product' />
+      :
+      <Button className='ProductCard-button' raised label='Add to Cart' onClick={showCartProducts}/>
+      }
     </Card>
   )
 }
 
-export default ProductCard;
+export default connect(null, actionsToState)(ProductCard);
 

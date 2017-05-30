@@ -3888,6 +3888,10 @@ lodash.cond@^4.3.0:
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/lodash.cond/-/lodash.cond-4.5.2.tgz#f471a1da486be60f6ab955d17115523dd1d255d5"
 
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+
 lodash.defaults@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/lodash.defaults/-/lodash.defaults-4.2.0.tgz#d09178716ffea4dde9e5fb7b37f6f0802274580c"
@@ -3912,6 +3916,10 @@ lodash.templatesettings@^4.0.0:
   resolved "https://registry.yarnpkg.com/lodash.templatesettings/-/lodash.templatesettings-4.1.0.tgz#2b4d4e95ba440d915ff08bc899e4553666713316"
   dependencies:
     lodash._reinterpolate "~3.0.0"
+
+lodash.throttle@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
 
 lodash.topath@^4.5.2:
   version "4.5.2"
@@ -5422,6 +5430,19 @@ react-icons@^2.2.3:
   dependencies:
     react-icon-base "2.0.7"
 
+react-image-gallery@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/react-image-gallery/-/react-image-gallery-0.8.0.tgz#d8dc439ff3ca55b5194107eda98232af9f31f57b"
+  dependencies:
+    lodash.debounce "^4.0.8"
+    lodash.throttle "^4.1.1"
+    prop-types "^15.5.8"
+    react-swipeable "^4.0.0"
+
+react-mui-speeddial@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/react-mui-speeddial/-/react-mui-speeddial-0.0.6.tgz#072e0be07f3013d7d137f13d87c5ad7d3b77a107"
+
 react-onclickoutside@^5.9.0:
   version "5.11.1"
   resolved "https://registry.yarnpkg.com/react-onclickoutside/-/react-onclickoutside-5.11.1.tgz#00314e52567cf55faba94cabbacd119619070623"
@@ -5544,6 +5565,12 @@ react-smooth@0.3.0:
 react-style-proptype@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/react-style-proptype/-/react-style-proptype-2.0.2.tgz#b4687990ac256deed89ee5777a3c58de5ac7bd15"
+
+react-swipeable@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/react-swipeable/-/react-swipeable-4.0.0.tgz#5f574c59b8518fcf018cc4b83e1bd4e62284dc7c"
+  dependencies:
+    prop-types "^15.5.8"
 
 react-toolbox-themr@^1.0.2:
   version "1.0.2"

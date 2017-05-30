@@ -141,6 +141,7 @@ const ProductsSidebar = ({
                             token={token}
                             saveProduct={ handleSaveProduct }
                             progress={ progress } />
+
     default:
       return <div className="ProductsSidebar-empty"/>
   }

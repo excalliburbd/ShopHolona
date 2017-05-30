@@ -13,19 +13,11 @@ import SignUpContainer from '../../containers/SignUpContainer';
 import AddButtonContainer from '../../containers/AddButtonContainer';
 import ProductsSidebarContainer from '../../containers/ProductsSidebarContainer';
 import ImageUploaderContainer from '../../containers/ImageUploaderContainer';
+import CartProduct from '../Sidebar/CartProduct'
 
 import './Navigation.css';
 
 class Nav extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-
-    }
-  }
-
   componentDidMount() {
     const {
       history,
@@ -88,6 +80,8 @@ class Nav extends Component {
           return <SignUpContainer />
         case 'PRODUCT':
           return <ProductsSidebarContainer />
+        case 'CART':
+          return <CartProduct/>
         default:
           return null;
       }
