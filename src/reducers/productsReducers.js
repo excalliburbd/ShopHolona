@@ -44,7 +44,7 @@ export const featuredProductsReducer = (
       return products;
     case 'DONE_API_DELETE_PRODUCT':
     case 'DONE_API_REMOVE_FEATURED_PRODUCT':
-      return state.filter( id => (id !== action.payload.id));
+      return state.filter( id => (id !== action.payload.productID));
     default:
       return state;
   }

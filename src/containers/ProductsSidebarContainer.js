@@ -626,8 +626,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     makeFeaturedProduct: (id, shop, token) => {
       dispatch(makeFeaturedProduct(id, shop, token));
     },
-    deleteFromFeaturedProduct: (id, shop, token) => {
-      dispatch(removeFromFeaturedProduct(id, shop, token));
+    deleteFromFeaturedProduct: (id, featuredID, shop, token) => {
+      dispatch(removeFromFeaturedProduct(id, featuredID, shop, token));
     }
   }
 }
