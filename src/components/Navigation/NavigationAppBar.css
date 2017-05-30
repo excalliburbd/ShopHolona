@@ -91,7 +91,7 @@
 
 .NavigationAppBar-user-profile-icon {
   margin-top: -0.1em;
-  box-shadow: 1px 1px 8px 0px rgba(107, 107, 107, 0.60);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 .NavigationAppBar-title--shopname {
   font-family: "Gotham Narrow Black";

@@ -23,8 +23,8 @@ import Icon from 'react-icons-kit';
 import { tools } from 'react-icons-kit/entypo/tools';
 import { packageIcon } from 'react-icons-kit/oct/packageIcon';
 
-
 import addIcon from '../assets/images/service.png';
+import addProductIcon from '../assets/svg/add-product.svg';
 import Stars from './Stars';
 
 import './ProductCard.css';
@@ -54,7 +54,7 @@ const ProductCard = ({
         <CardMedia aspectRatio="square"/>
         <div className="ProductCard-details ProductCard--addProduct-details">
           <div className="ProductCard--addProduct-details-icon">
-            <img className="addicon" src={addIcon} alt=""/>
+            <img className="addicon" src={addProductIcon} alt="Add icon"/>
           </div>
           <h3 className="ProductCard-details-name ProductCard--addProduct-details-content">
             Add A New Product / Service
