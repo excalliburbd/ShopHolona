@@ -398,7 +398,8 @@
 
   .ShopPage-products--container-scroll-div {
     display: block;
-    background: transparent;
     height: 12em;
+    position: relative;
+    z-index: 1;
   }
 }
