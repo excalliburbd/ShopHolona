@@ -1,4 +1,3 @@
-import { REHYDRATE } from 'redux-persist/constants' ;
 
 export const productsReducer = (
   state = [

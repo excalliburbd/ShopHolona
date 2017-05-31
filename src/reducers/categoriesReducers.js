@@ -253,11 +253,23 @@ export const CategoriesUIReducer = (
         categoryID: null,
         subCategoryID: null,
         subSubCategoryID: null,
+        categories: {},
+        subCategories: {},
+        subSubCategories: {},
         attributes: {
           primary: [],
-          secondary: [],
+          secondary: {},
           selected: -1,
-        }
+        },
+        temporaryAttribute: {
+          key: '',
+          value: ''
+        },
+        uploadProgress: {
+          primary: false,
+          secondary: false,
+
+        },
       }
     case 'UPDATE_UI_CATEGORY_STOCK':
       return {
@@ -597,7 +609,12 @@ export const CategoriesUIReducer = (
         temporaryAttribute: {
           key: '',
           value: ''
-        }
+        },
+        uploadProgress: {
+          primary: false,
+          secondary: false,
+
+        },
       }
     case 'RESET_UI_SUB_CATEGORIES':
       return {
@@ -613,7 +630,12 @@ export const CategoriesUIReducer = (
         temporaryAttribute: {
           key: '',
           value: ''
-        }
+        },
+        uploadProgress: {
+          primary: false,
+          secondary: false,
+
+        },
       }
     case 'RESET_UI_CATEGORIES':
       return {
@@ -631,7 +653,12 @@ export const CategoriesUIReducer = (
         temporaryAttribute: {
           key: '',
           value: ''
-        }
+        },
+        uploadProgress: {
+          primary: false,
+          secondary: false,
+
+        },
       }
     case 'DONE_SET_CUSTOM_ATTRIBUTE_PRIMARY':
       return {
