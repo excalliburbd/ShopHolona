@@ -240,7 +240,7 @@ const AddProductService = ({
                                            null                                   }
                                     </Table>
                                   <CardActions>
-                                    <Button icon="close" label="cancle" onClick={ () => handleSelect(-1, primaryAttributes[selectedAttribute].id) }/>
+                                    <Button icon="close" label="cancel" onClick={ () => handleSelect(-1, primaryAttributes[selectedAttribute].id) }/>
                                     <Button icon="done" label="done" onClick={ () => setAttributeDone(primaryAttributes[selectedAttribute].id) } />
                                   </CardActions>
                               </Card>

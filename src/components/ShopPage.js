@@ -55,7 +55,7 @@ const  ShopPage = ({
                     className="ShopPage-details--toggle"
                     onClick={ toggleDetails }/>
         <div className="ShopPage-details-img" style={{ backgroundImage: `url(${proficePic})` }}>
-          <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') } />
+          <IconButton className="ShopPage-details-img--camera" icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') } />
         </div>
 
         <div className="ShopPage-details-description">
@@ -111,7 +111,11 @@ const  ShopPage = ({
             {
               products.map(
                 (obj, key) => <Chip onClick={ () => selectChip(key) }
-                                    className={ (selectedChip === key) ? 'ShopPage-products--categories-selected' : 'null' }
+                                    className={
+                                      (selectedChip === key) ?
+                                      'ShopPage-products--category ShopPage-products--categories-selected' :
+                                      'ShopPage-products--category'
+                                    }
                                     key={key}>
                                 { obj.name }
                               </Chip>
@@ -138,7 +142,9 @@ const  ShopPage = ({
             <div className="emptydiv-phone"></div>
           </div>
           <div className="ShopPage-banner" >
-            <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('COVER') } />
+            <IconButton className="ShopPage-banner--icon"
+                        icon="add_a_photo"
+                        onClick={ () => handleShowImageUploader('COVER') } />
             <div style={{ backgroundImage: `url(${coverPhoto})`}} className="ShopPage-banner--fixed" />
           </div>
         </div>

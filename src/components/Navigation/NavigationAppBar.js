@@ -97,13 +97,17 @@ const NavigationAppBar = ({
                     vendor ?
                       <IconButton className="NavigationAppBar-icon"
                                   // icon={ <Icon className="NavigationAppBar-dashboard-icon" icon={DashboardIcon} /> }
-                                  icon={<img className="NavigationAppBar-dashboard-icon" src={DashboardIcon} alt="Dashboard Icon"/>}
+                                  icon={
+                                    <img className="NavigationAppBar-dashboard-icon"
+                                         src={ DashboardIcon }
+                                         alt="Dashboard Icon"/>
+                                  }
                                   onClick={ () => history.push('/dashboard') }/> :
                       <IconButton className="NavigationAppBar-icon" icon='shopping_cart' />
                   }
                   </span> :
                   <IconButton className="NavigationAppBar-icon"
-                              icon='home'
+                              icon='store'
                               onClick={ () => history.push('/') }/>
               }
               <IconMenu icon={
@@ -124,7 +128,7 @@ const NavigationAppBar = ({
                                     icon="dashboard"
                                     onClick={() => history.push('/dashboard')} caption='Dashboard' /> :
                           <MenuItem value='dashboard'
-                                    icon="home"
+                                    icon="store"
                                     onClick={() => history.push('/')} caption='Home' />
                       }
                       <MenuItem  value='profile'

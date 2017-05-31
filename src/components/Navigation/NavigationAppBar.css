@@ -113,6 +113,11 @@
   font-size: 2em;
 }
 
+.hC5Z2._2Agdx._2CPs4.NavigationAppBar-icon {
+  border-radius: initial;
+  margin-top: .2em;
+}
+
 @media screen and (max-width: 450px) {
   .NavigationAppBar-title {
     display: none;

@@ -9,8 +9,14 @@ import Stars from './Stars';
 
 import './ProductCard.css';
 
+const getRandomInt = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 const ProductCard = ({
-  rating = 3,
+  rating = getRandomInt(3, 5),
   productImg = 'https://unsplash.it/480/480',
   name = 'Product Name',
   price = '10000',
