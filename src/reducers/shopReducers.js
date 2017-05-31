@@ -15,7 +15,7 @@ export const ShopPageReducer = (
   }, action
 ) => {
   switch (action.type) {
-    case 'SET_SHOP_CATEGORY':
+    case 'SET_API_SHOP_CATEGORY':
       const categories = {}
 
       action.payload.forEach(

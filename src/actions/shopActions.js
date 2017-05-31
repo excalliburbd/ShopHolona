@@ -25,7 +25,7 @@ export const getShopCategories = shop  => dispatch => {
 
       if(res.length > 0) {
         dispatch({
-          type: 'SET_SHOP_CATEGORY',
+          type: 'SET_API_SHOP_CATEGORY',
           payload: res,
         })
       }

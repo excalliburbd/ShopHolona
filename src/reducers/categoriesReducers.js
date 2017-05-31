@@ -15,21 +15,21 @@ export const categoriesReducer = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_API_SUB_SUB_CATEGORIES':
-      const categories = [];
+    // case 'SET_API_SUB_SUB_CATEGORIES':
+    //   const categories = [];
 
-      action.payload.forEach(
-        category => {
-          if(state.indexOf(category.id) === -1) {
-            categories.push(category.id)
-          }
-        }
-      )
+    //   action.payload.forEach(
+    //     category => {
+    //       if(state.indexOf(category.id) === -1) {
+    //         categories.push(category.id)
+    //       }
+    //     }
+    //   )
 
-      return [
-        ...state,
-        ...categories,
-      ]
+    //   return [
+    //     ...state,
+    //     ...categories,
+    //   ]
     default:
       return state;
   }
@@ -569,22 +569,22 @@ export const CategoriesUIReducer = (
         ...state,
         subSubCategories: {}
       }
-    case 'SET_API_SUB_SUB_CATEGORIES':
-      const apiSubSubCategories = {};
+    // case 'SET_API_SUB_SUB_CATEGORIES':
+    //   const apiSubSubCategories = {};
 
-      action.payload.sub_categories.forEach(
-        category => {
-          apiSubSubCategories[category.id] = category;
-        }
-      )
+    //   action.payload.sub_categories.forEach(
+    //     category => {
+    //       apiSubSubCategories[category.id] = category;
+    //     }
+    //   )
 
-      return {
-        ...state,
-        subSubCategories : {
-          ...state.subSubCategories,
-          ...apiSubSubCategories
-        }
-      }
+    //   return {
+    //     ...state,
+    //     subSubCategories : {
+    //       ...state.subSubCategories,
+    //       ...apiSubSubCategories
+    //     }
+    //   }
     case 'RESET_UI_SUB_SUB_CATEGORIES':
       return {
         ...state,

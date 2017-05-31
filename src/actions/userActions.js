@@ -54,8 +54,8 @@ export const trySignInAsyncAction = ({ email, password }, shop) => dispatch => {
 
               if(res.token){
                 dispatch({
-                  type: 'USER_SET_TOKEN',
-                  token: res.token,
+                  type: 'SET_API_USER_TOKEN',
+                  payload: res.token,
                 });
 
 

@@ -6,7 +6,7 @@ export const productsReducer = (
   ] , action
 ) => {
   switch (action.type) {
-    case 'SET_PRODUCTS_ENTITIES':
+    case 'SET_API_PRODUCTS_ENTITIES':
       const products = state;
 
       action.payload.forEach(
@@ -221,7 +221,7 @@ export const productsEntityReducer = (
   }, action
 ) => {
   switch (action.type) {
-    case 'SET_PRODUCTS_ENTITIES':
+    case 'SET_API_PRODUCTS_ENTITIES':
       const products = {
         ...state
       }

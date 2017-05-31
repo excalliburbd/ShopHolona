@@ -93,7 +93,7 @@ export const getAllProducts = shop  => dispatch => {
               })
 
               dispatch({
-                type: 'SET_PRODUCTS_ENTITIES',
+                type: 'SET_API_PRODUCTS_ENTITIES',
                 payload: res,
               })
             }
