@@ -209,7 +209,7 @@
 /*For FullHD Desktop*/
 @media screen and (min-width: 1800px) {
   .ShopPage-products--content .ProductCard {
-    width: calc(20% - 2em);
+    width: calc(25% - 2em);
   }
 
 
