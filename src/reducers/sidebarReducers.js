@@ -50,6 +50,14 @@ export const SidebarUIReducer = (
         subType: 'CART_CHOOSE_PRODUCT'
       }
 
+    case 'SHOW_PRODUCT_DETAILS':
+      return {
+        ...state,
+        show: true,
+        type: 'PRODUCT_DETAILS',
+        subType: 'SHOW_PRODUCT_DETAILS'
+      }
+
     case 'SHOW_SIDEBAR_ADD_PRODUCT_UPLOADING':
       return {
           ...state,

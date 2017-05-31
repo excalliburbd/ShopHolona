@@ -3,8 +3,8 @@ import ImageGallery from 'react-image-gallery';
 import Button from 'react-toolbox/lib/button/Button';
 import Input from 'react-toolbox/lib/input/Input';
 
-import Stars from '../Stars'
-import './CartProduct.css'
+import Stars from './Stars'
+import './ProductDetails.css'
 
 class CartProduct extends Component {
   state = {
