@@ -83,14 +83,14 @@
   font-size: 2rem;
 }
 
-.NavigationAppBar-dashboard-icon svg {
+.NavigationAppBar-dashboard-icon {
   margin-top: -0.1em;
-  width: 40px;
-  height: 40px;
+  width: 85%;
+  height: 100%;
 }
 
 .NavigationAppBar-user-profile-icon {
-  margin-top: -0.1em;
+  margin-top: -0.15em;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 .NavigationAppBar-title--shopname {
