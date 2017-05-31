@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 
-import Input from 'react-toolbox/lib/input';
+import Input from 'react-toolbox/lib/input/Input';
 
 import './CustomAutocomplete.css';
 

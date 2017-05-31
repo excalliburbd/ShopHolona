@@ -3,9 +3,8 @@ import classNames from 'classnames';
 
 import Button from 'react-toolbox/lib/button/Button';
 import IconButton from 'react-toolbox/lib/button/IconButton';
-import Chip from 'react-toolbox/lib/chip';
+import Chip from 'react-toolbox/lib/chip/Chip';
 import MenuDivider from 'react-toolbox/lib/menu/MenuDivider';
-import MdLocalPhone from 'react-icons/lib/md/local-phone';
 import FontIcon from 'react-toolbox/lib/font_icon/FontIcon';
 
 import ProductCard from './ProductCard';
@@ -107,6 +106,7 @@ const  ShopPage = ({
                                         ) }/>
         </div>
         <div className="ShopPage-products--container">
+          <div className="ShopPage-products--container-scroll-div" />
           <div className="ShopPage-products--categories">
             {
               products.map(

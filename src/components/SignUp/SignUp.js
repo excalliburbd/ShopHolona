@@ -2,11 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Button from 'react-toolbox/lib/button/Button';
-import IconButton from 'react-toolbox/lib/button/IconButton';
-import Input from 'react-toolbox/lib/input';
-import MdEmail from 'react-icons/lib/md/email';
-import MdLocalPhone from 'react-icons/lib/md/local-phone';
-import FaCode from 'react-icons/lib/fa/code';
+import Input from 'react-toolbox/lib/input/Input';
 
 import GLogin from './GLogin';
 import FbLogin from './FbLogin';

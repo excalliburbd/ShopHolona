@@ -2,12 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 
-import List from 'react-toolbox/lib/list/List';
-import ListItem from 'react-toolbox/lib/list/ListItem';
-import ListSubHeader from 'react-toolbox/lib/list/ListSubHeader';
-import ListDivider from 'react-toolbox/lib/list/ListDivider';
-import ListCheckbox from 'react-toolbox/lib/list/ListCheckbox';
-
 import TabList from './TabList';
 import Reports from './Reports';
 

@@ -5,12 +5,7 @@ import Tab from 'react-toolbox/lib/tabs/Tab';
 import Tabs from 'react-toolbox/lib/tabs/Tabs';
 
 import Card from 'react-toolbox/lib/card/Card';
-import CardMedia from 'react-toolbox/lib/card/CardMedia';
-import CardTitle from 'react-toolbox/lib/card/CardTitle';
 import CardText from 'react-toolbox/lib/card/CardText';
-import CardActions from 'react-toolbox/lib/card/CardActions';
-
-import MdRateReview from 'react-icons/lib/md/rate-review';
 
 const Products = ({
   menu,

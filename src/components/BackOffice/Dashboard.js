@@ -1,12 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 
 import Card from 'react-toolbox/lib/card/Card';
-import CardMedia from 'react-toolbox/lib/card/CardMedia';
 import CardTitle from 'react-toolbox/lib/card/CardTitle';
 import CardText from 'react-toolbox/lib/card/CardText';
-import CardActions from 'react-toolbox/lib/card/CardActions';
 
 import MdInsertChart from 'react-icons/lib/md/insert-chart';
 import MdAddShoppingCart from 'react-icons/lib/md/add-shopping-cart';
