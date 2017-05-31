@@ -424,36 +424,37 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         payload: (oldFiles.length + newFiles.length)
       });
 
-      const [
-        first,
-        ...rest
-      ] = newFiles;
+      // const [
+      //   first,
+      //   ...rest
+      // ] = newFiles;
 
-      const toPost = [
-        (oldFiles.length === 0) ? 'EDITED' : first,
-        ...rest
-      ];
+      // const toPost = [
+      //   (oldFiles.length === 0) ? 'EDITED' : first,
+      //   ...rest
+      // ];
 
-      toPost.forEach(
+      // toPost.forEach(
+      newFiles.forEach(
         (file, key) => {
-          if (file === 'EDITED') {
-            dispatch({
-              type: 'SHOW_IMAGE_UPLOADER_EDITOR',
-              payload: { file: first, id }
-            });
-          } else {
-            if( key === (newFiles.lenght - 1)) {
-              dispatch(
-                postImage(
-                  token,
-                  shop,
-                  { file, tag: `${file.name.toLowerCase().split(' ').join('_')}_${key}` },
-                  id,
-                  (key + oldFiles.length),
-                  'DONE'
-                )
-              )
-            } else {
+          // if (file === 'EDITED') {
+          //   dispatch({
+          //     type: 'SHOW_IMAGE_UPLOADER_EDITOR',
+          //     payload: { file: first, id }
+          //   });
+          // } else {
+          //   if( key === (newFiles.lenght - 1)) {
+          //     dispatch(
+          //       postImage(
+          //         token,
+          //         shop,
+          //         { file, tag: `${file.name.toLowerCase().split(' ').join('_')}_${key}` },
+          //         id,
+          //         (key + oldFiles.length),
+          //         'DONE'
+          //       )
+          //     )
+          //   } else {
               dispatch(
                 postImage(
                   token,
@@ -464,8 +465,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                   'NEXT'
                 )
               )
-            }
-          }
+            // }
+          // }
         }
       )
     },
@@ -476,7 +477,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           id,
           key,
         }
-      })
+      });
+      dispatch({
+        type: 'DEC_PRDUCTS_UPLOAD_DONE_COUNT'
+      });
     },
     handleManualInput: (uiType, fieldType, value) => {
       dispatch({

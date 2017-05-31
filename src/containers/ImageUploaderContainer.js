@@ -47,6 +47,7 @@ const mapStateToProps = state => {
     formData: makeFormData(state),
     type: state.ui.uploader.type,
     productID: state.ui.uploader.productID,
+    responsive: state.ui.responsive,
   }
 }
 

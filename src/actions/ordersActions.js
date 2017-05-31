@@ -15,7 +15,7 @@ export const getOrderList = ({ shopId, token }) => dispatch => {
             res => res.json()
           ).then(
             res => {
-              console.log(res);
+              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
             }
           );
 }

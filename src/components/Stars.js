@@ -1,4 +1,5 @@
 import React from 'react';
+
 import FaStar from 'react-icons/lib/fa/star';
 
 import './Stars.css';

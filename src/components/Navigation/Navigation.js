@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import Layout from 'react-toolbox/lib/layout/Layout';
 import Sidebar from 'react-toolbox/lib/layout/Sidebar';
 import Panel from 'react-toolbox/lib/layout/Panel';
+
 import IconButton from 'react-toolbox/lib/button/IconButton';
 
 import NavigationDrawer from './NavigationDrawer';
@@ -23,7 +24,10 @@ class Nav extends Component {
       history,
       location,
       handleSetCredentials,
+      handleGetMedia,
     } = this.props;
+
+    handleGetMedia();
 
     if(location.search !== '') {
       const searchParts = location.search.split('&');
@@ -67,6 +71,9 @@ class Nav extends Component {
       pinned,
       vendor,
       profilePic,
+      online,
+      shopID,
+      hadleLoadData,
       children,
     } = this.props;
 
@@ -85,6 +92,10 @@ class Nav extends Component {
         default:
           return null;
       }
+    }
+
+    if (online) {
+      shopID && hadleLoadData(shopID);
     }
 
     return (

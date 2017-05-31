@@ -1,6 +1,8 @@
 import React from 'react';
-import FaGoogle from 'react-icons/lib/fa/google';
+
 import Button from 'react-toolbox/lib/button/Button';
+
+import FaGoogle from 'react-icons/lib/fa/google';
 
 class GLogin extends React.Component{
   constructor(props) {

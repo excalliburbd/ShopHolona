@@ -4,7 +4,8 @@ import Card from 'react-toolbox/lib/card/Card';
 import CardMedia from 'react-toolbox/lib/card/CardMedia';
 import Button from 'react-toolbox/lib/button/Button';
 
-import addIcon from '../assets/images/service.png';
+import addProductIcon from '../assets/svg/add-product.svg';
+
 import Stars from './Stars';
 
 import './ProductCard.css';
@@ -43,7 +44,7 @@ const ProductCard = ({
         <CardMedia aspectRatio="square"/>
         <div className="ProductCard-details ProductCard--addProduct-details">
           <div className="ProductCard--addProduct-details-icon">
-            <img className="addicon" src={addIcon} alt=""/>
+            <img className="addicon" src={addProductIcon} alt="Add icon"/>
           </div>
           <h3 className="ProductCard-details-name ProductCard--addProduct-details-content">
             Add A New Product / Service

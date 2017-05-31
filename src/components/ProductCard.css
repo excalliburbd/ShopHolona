@@ -17,19 +17,20 @@
 
 .ProductCard--addProduct-details-icon {
   position: absolute;
-  top: 1.8em;
+  top: 15%;
   left: 0px;
   width: 100%;
   text-align: center;
 }
 
 .addicon {
-  width: 80%;
+  width: 60%;
+  color: #666666;
   /*height: 20px;*/
 }
 
 .ProductCard--addProduct-details-icon svg {
-  font-size: 5em;
+  font-size: 3em;
   color: #666;
 }
 .ProductCard--addProduct-details-content {
@@ -150,8 +151,7 @@
   font-size: 0.8em;
   margin: 0;
   padding: 0;
-  font-family: "Ubuntu";
-  font-weight: 600;
+  font-family: "Gotham Narrow Book";
 }
 
 /*
@@ -160,6 +160,10 @@
   width: 10px;
   margin-right: 0.3em;
 }*/
+
+.ShopPage-products--list ._3Yc6z._1HBxg {
+  background-size: contain;
+}
 
 /*for phone*/
 @media screen and (max-width: 600px) {

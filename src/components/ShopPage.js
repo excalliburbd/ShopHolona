@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import Button from 'react-toolbox/lib/button/Button';
 import IconButton from 'react-toolbox/lib/button/IconButton';
-import Chip from 'react-toolbox/lib/chip';
+import Chip from 'react-toolbox/lib/chip/Chip';
 import MenuDivider from 'react-toolbox/lib/menu/MenuDivider';
 import FontIcon from 'react-toolbox/lib/font_icon/FontIcon';
 
@@ -106,10 +106,13 @@ const  ShopPage = ({
                                         ) }/>
         </div>
         <div className="ShopPage-products--container">
+          <div className="ShopPage-products--container-scroll-div" />
           <div className="ShopPage-products--categories">
             {
               products.map(
-                (obj, key) => <Chip onClick={ () => selectChip(key) } key={key}>
+                (obj, key) => <Chip onClick={ () => selectChip(key) }
+                                    className={ (selectedChip === key) ? 'ShopPage-products--categories-selected' : 'null' }
+                                    key={key}>
                                 { obj.name }
                               </Chip>
               )

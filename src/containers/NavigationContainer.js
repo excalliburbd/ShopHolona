@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { createSelector } from 'reselect';
+import { mediaQueryTracker } from 'redux-mediaquery';
 
 import { getAllProducts, getFeaturedProduct } from '../actions/productsActions';
 import { getShopCategories, getShop, getShopAddress } from '../actions/shopActions';
@@ -39,11 +40,13 @@ const mapStateToProps = state => {
     showSidebar: state.ui.sidebar.show,
     userLoggedIn: state.user.isLoggedIn,
     sidebarType: state.ui.sidebar.type,
+    shopID: state.shop.id,
     shopName: state.shop.shop_name,
     refCode: state.user.referral.code,
     pinned: getPinState(state),
     vendor: getVendors(state),
     profilePic: state.user.profile_pic,
+    online: state.offline.online,
   }
 }
 
@@ -99,6 +102,21 @@ const mapDispatchToProps = dispatch => {
         type: 'SET_NAVIGATION_PIN_SIDEDRAWER',
         payload: val,
       })
+    },
+    hadleLoadData: shop => {
+      dispatch(getShop(shop));
+      dispatch(getShopCategories(shop));
+      dispatch(getAllProducts(shop));
+      dispatch(getShopAddress(shop));
+      dispatch(getFeaturedProduct(shop));
+    },
+    handleGetMedia: () => {
+      dispatch(mediaQueryTracker({
+        isPhone: "screen and (max-width: 767px)",
+        isTablet: "screen and (max-width: 1024px)",
+        innerWidth: true,
+        innerHeight: true,
+      }));
     }
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 import Button from 'react-toolbox/lib/button/Button';
 import IconButton from 'react-toolbox/lib/button/IconButton';
-import Input from 'react-toolbox/lib/input';
+import Input from 'react-toolbox/lib/input/Input';
 import Card from 'react-toolbox/lib/card/Card';
 import CardTitle from 'react-toolbox/lib/card/CardTitle';
 import CardActions from 'react-toolbox/lib/card/CardActions';
@@ -10,6 +10,7 @@ import Table from 'react-toolbox/lib/table/Table';
 import TableHead from 'react-toolbox/lib/table/TableHead';
 import TableRow from 'react-toolbox/lib/table/TableRow';
 import TableCell from 'react-toolbox/lib/table/TableCell';
+
 import CustomAutocomplete from '../CustomAutocomplete';
 
 import Icon from 'react-icons-kit';

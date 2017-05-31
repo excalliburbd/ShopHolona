@@ -6,9 +6,11 @@
     "classnames": "^2.2.5",
     "connected-react-router": "^4.2.1",
     "fuse.js": "^3.0.1",
+    "i": "^0.3.5",
     "isomorphic-fetch": "^2.2.1",
     "js-cookie": "^2.1.4",
     "moment": "^2.18.1",
+    "npm": "^4.6.1",
     "prop-types": "^15.5.8",
     "react": "^15.5.0",
     "react-addons-shallow-compare": "^15.4.2",
@@ -25,10 +27,12 @@
     "react-responsive-carousel": "^3.1.16",
     "react-router-dom": "^4.0.0",
     "react-slick": "^0.14.11",
+    "react-toolbox": "2.0.0-beta.10",
     "recharts": "^0.22.0",
     "redux": "^3.6.0",
     "redux-action-buffer": "^1.0.1",
     "redux-devtools-extension": "^2.13.2",
+    "redux-mediaquery": "^0.10.0",
     "redux-offline": "^2.0.0",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.0",
@@ -38,7 +42,6 @@
     "gh-pages": "^1.0.0",
     "maybe-you-meant": "^0.1.1",
     "react-scripts": "^1.0.3",
-    "react-toolbox": "^2.0.0-beta.8",
     "react-toolbox-themr": "^1.0.2"
   },
   "scripts": {
@@ -47,7 +50,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "toolbox": "react-toolbox-themr",
-    "deploy": "yarn build && aws s3 cp build/ s3://demostore.shophobe.com/ --recursive"
+    "deploy": "yarn build && aws s3 cp build/ s3://demostore.shophobe.com/ --recursive",
+    "stage": "yarn build && cp -a build/. /var/www/html/"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -210,6 +210,14 @@
   width: 7em;
 }
 
+.ShopPage-products--categories-selected {
+  box-shadow: var(--shadow-2p);
+}
+
+.ShopPage-products--container-scroll-div {
+  display: none;
+}
+
 /*for phone*/
 
 @media screen and (max-width: 600px) {
@@ -298,6 +306,10 @@
     height: calc(100vh - 4em);
     color: dimgrey;
   }
+
+  .ShopPage-details > .VX5Lv {
+    height: 1.1px;
+  }
   .ShopPage-products {
     display: flex;
     width: calc(100vw - 17vw);
@@ -370,7 +382,6 @@
   .ShopPage-products--categories,
   .ShopPage-products--content {
     position: relative;
-    top: 12em;
     z-index: 1;
   }
 
@@ -383,5 +394,12 @@
   .ShopPage-banner .hC5Z2._2Agdx._2CPs4 {
     position: absolute;
 
+  }
+
+  .ShopPage-products--container-scroll-div {
+    display: block;
+    height: 12em;
+    position: relative;
+    z-index: 1;
   }
 }

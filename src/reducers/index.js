@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import {reducer as responsive } from 'redux-mediaquery';
 
 import { FilterUIReducer } from './filterUIReducer';
 import { OrdersReducer, OrdersEntityReducer } from './ordersReducers';
@@ -108,6 +109,7 @@ const RootReducer = combineReducers({
     categories: CategoriesUIReducer,
     product: ProductsUIReducer,
     uploader: imageUploaderUIReducer,
+    responsive,
   }),
   cart,
 });

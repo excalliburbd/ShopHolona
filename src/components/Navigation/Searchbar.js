@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 
-import Input from 'react-toolbox/lib/input';
+import Input from 'react-toolbox/lib/input/Input';
 import IconButton from 'react-toolbox/lib/button/IconButton';
 
 import './Searchbar.css';
