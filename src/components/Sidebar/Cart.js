@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import Input from 'react-toolbox/lib/input/Input';
 import Dropdown from 'react-toolbox/lib/dropdown/Dropdown';
 
+import './Cart.css'
+
 const stateToProps = state => ({
   cartItems: state.cart.items
 })
@@ -59,24 +61,24 @@ class Cart extends Component {
 
   render(){
     return (
-      <div>
-        <header>
-          <div>
+      <div className="cart-container">
+        <header className="cart-header">
+          <div className="cart-header-text">
             <h4>Your Cart</h4>
             <p>3 items</p>
           </div>
-          <div>
+          <div className="cart-header-total">
             <p>Total</p>
             <h4>৳ 6820</h4>
           </div>
         </header>
-        <ul>
-          <li>
+        <ul className="product-list">
+          <li className="product-list-item">
             <div>
               <img src={img} alt="Cup" style={{ maxWidth: '70px', maxHeight: '70px'}}/>
             </div>
             <h4>Product Name</h4>
-            <div>
+            <div className="product-quantity">
               <span>+</span>
               <Input type='text' name='name' value={0}/>
               <span>-</span>

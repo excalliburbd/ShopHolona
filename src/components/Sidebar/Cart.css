@@ -1,0 +1,21 @@
+.cart-container {
+  padding: 1em;
+}
+
+.cart-header, .cart-header-text, .cart-header-total {
+  display: flex;
+  flex-direction: row;
+}
+
+.cart-header-total {
+  margin-left: 9em;
+}
+
+.product-list {
+  list-style: none;
+}
+
+.product-list-item, .product-quantity {
+  display: flex;
+  flex-direction: row;
+}
