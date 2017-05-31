@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Input from 'react-toolbox/lib/input/Input';
 import Dropdown from 'react-toolbox/lib/dropdown/Dropdown';
+import Card from 'react-toolbox/lib/card/Card';
 
 import './Cart.css'
 
@@ -21,10 +22,11 @@ const actionsToState = dispatch => ({
 
 const img = 'https://images.unsplash.com/photo-1485091466790-3735fe896408?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=&bg='
 
-const customItem  = item => (<div style={{
+const customItem  = item => (<div className="cart-attributes-color" style={{
     backgroundColor: item.color,
-    width: '1.2em',
-    height: '1.2em'
+    width: "1.4em",
+  height: "1.4em",
+  borderRadius: "50%"
 }}></div>)
 
 class Cart extends Component {
@@ -64,41 +66,54 @@ class Cart extends Component {
       <div className="cart-container">
         <header className="cart-header">
           <div className="cart-header-text">
-            <h4>Your Cart</h4>
-            <p>3 items</p>
+            <h4>3 items</h4>
           </div>
           <div className="cart-header-total">
-            <p>Total</p>
+            <h3>Total</h3>
             <h4>৳ 6820</h4>
           </div>
         </header>
-        <ul className="product-list">
-          <li className="product-list-item">
-            <div>
-              <img src={img} alt="Cup" style={{ maxWidth: '70px', maxHeight: '70px'}}/>
-            </div>
-            <h4>Product Name</h4>
-            <div className="product-quantity">
-              <span>+</span>
-              <Input type='text' name='name' value={0}/>
-              <span>-</span>
-            </div>
-            <div>
-              <Dropdown
-                auto={false}
-                source={this.colors}
-                onChange={this.handleColorChange}
-                template={customItem}
-                value={this.state.color}
-              />
-            </div>
-            <div>
-              <Dropdown
-                source={this.others}
-                onChange={this.handleOtherChange}
-                value={this.state.other}
-              />
-            </div>
+        <ul className="cart-product-list">
+          <li className="cart-product-list-item-container">
+            <Card className="cart-product-list-item-card">
+              <div className="cart-item-img">
+                <img src={img} alt="Cup" style={{ width: '70px', height: '70px'}}/>
+              </div>
+              <div className="cart-item-details">
+                <div className="cart-item-name">
+                  <h4>Product Name</h4>
+                </div>
+                <div className="cart-product-attributes">
+                  <div className="cart-product-quantity">
+                    <span>+</span>
+                    <Input className="cart-quantity-input" type='text' name='name' value={20}/>
+                    <span>-</span>
+                  </div>
+                  <div className="cart-dropdown-attribute-colors">
+                    <Dropdown
+                      className="cart-dropdown-colors"
+                      auto={false}
+                      source={this.colors}
+                      onChange={this.handleColorChange}
+                      template={customItem}
+                      value={this.state.color}
+                    />
+                  </div>
+                  <div className="cart-dropdown-attribute-others">
+                    <Dropdown
+                      className="cart-dropdown-others"
+                      source={this.others}
+                      onChange={this.handleOtherChange}
+                      value={this.state.other}
+                    />
+                  </div>
+                  <div className="cart-product-price">
+                    <h3>Total Price</h3>
+                    <h5>Each Price</h5>
+                  </div>
+                </div>
+              </div>
+            </Card>
           </li>
         </ul>
       </div>
