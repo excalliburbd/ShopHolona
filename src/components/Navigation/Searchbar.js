@@ -16,6 +16,12 @@ class Searchbar  extends Component {
       placeholder: true,
       instance: null,
     }
+
+    this.handleSearchbarFocus = this.handleSearchbarFocus.bind(this);
+  }
+
+  handleSearchbarFocus() {
+    this.searchInput.focus();
   }
 
   render() {
@@ -29,7 +35,7 @@ class Searchbar  extends Component {
         <Input type='text'
                 id="Searchbar-input"
                 className="Searchbar-input"
-                ref={ input => {
+                innerRef={ input => {
                          {/*this.props.setWrappedInstance(input.getWrappedInstance());*/}
                          this.searchInput = input;
                     }}
@@ -51,11 +57,11 @@ class Searchbar  extends Component {
                   })
                 }} >
           { this.state.placeholder && <label className="Searchbar-input--label"
-                                             onClick={ () => this.searchInput.getWrappedInstance().focus() }>Search Products</label> }
+                                             onClick={ this.handleSearchbarFocus }>Search Products</label> }
           <div className="Searchbar-input--button">
             <IconButton icon='search'
                         className="Searchbar--search"
-                        onClick={ () => this.searchInput.getWrappedInstance().focus() } />
+                        onClick={ this.handleSearchbarFocus } />
             <IconButton icon='clear'
                         onClick={ () => this.props.hideSearchbar() }
                         className="Searchbar--close" />

@@ -106,7 +106,11 @@ const  ShopPage = ({
                                         ) }/>
         </div>
         <div className="ShopPage-products--container">
-          <div className="ShopPage-products--container-scroll-div" />
+          <div className="ShopPage-products--container-scroll-div">
+            <IconButton className="ShopPage-banner--icon"
+                        icon="add_a_photo"
+                        onClick={ () => handleShowImageUploader('COVER') } />
+          </div>
           <div className="ShopPage-products--categories">
             {
               products.map(
@@ -142,9 +146,6 @@ const  ShopPage = ({
             <div className="emptydiv-phone"></div>
           </div>
           <div className="ShopPage-banner" >
-            <IconButton className="ShopPage-banner--icon"
-                        icon="add_a_photo"
-                        onClick={ () => handleShowImageUploader('COVER') } />
             <div style={{ backgroundImage: `url(${coverPhoto})`}} className="ShopPage-banner--fixed" />
           </div>
         </div>
