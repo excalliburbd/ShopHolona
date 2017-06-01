@@ -60,7 +60,10 @@ class CustomAutocomplete  extends Component {
                 }
               }}
               onFocus={ () => {
-                this.setState({ suggestions: true })
+                this.setState({
+                  suggestions: true,
+                  list: this.props.source.list,
+                })
               }} />
         <ul className="CustomAutocomplete _3-Nb6">
           {

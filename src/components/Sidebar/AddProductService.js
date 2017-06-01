@@ -11,7 +11,7 @@ import TableHead from 'react-toolbox/lib/table/TableHead';
 import TableRow from 'react-toolbox/lib/table/TableRow';
 import TableCell from 'react-toolbox/lib/table/TableCell';
 
-import CustomAutocomplete from '../CustomAutocomplete';
+import CustomAutocomplete from './CustomAutocomplete';
 
 import Icon from 'react-icons-kit';
 import { tools } from 'react-icons-kit/entypo/tools';
@@ -59,7 +59,7 @@ const AddProductService = ({
                       <Button icon={ <Icon size={ 32 } icon={ packageIcon } />}
                               label='Product'
                               className={
-                                (type === 'ADD_PRODUCT') ?
+                                (radioValue === 'PRODUCT') ?
                                   'ProductSidebar-add-product ProductSidebar-add-product--active' :
                                   'ProductSidebar-add-product'
                               }
@@ -67,7 +67,7 @@ const AddProductService = ({
                       <Button icon={ <Icon size={ 32 } icon={ tools } /> }
                               label="service"
                               className={
-                                (type === 'ADD_SERVICE') ?
+                                (radioValue === 'SERVICE') ?
                                   'ProductSidebar-add-service ProductSidebar-add-service--active' :
                                   'ProductSidebar-add-service'
                               }
