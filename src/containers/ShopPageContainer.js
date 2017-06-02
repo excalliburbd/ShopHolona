@@ -37,6 +37,8 @@ const getProducts = createSelector(
   (productsArr, productsObj, categories) => {
     const products = productsArr.map( id => productsObj[id] );
 
+    console.log(categories)
+
     return categories.map(
              obj => ({
                       ...obj,

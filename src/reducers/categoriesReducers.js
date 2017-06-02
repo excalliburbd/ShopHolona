@@ -16,14 +16,10 @@ export const categoriesReducer = (
 ) => {
   switch (action.type) {
     case 'SET_API_SHOP_CATEGORY':
-      const categories = state;
+      const categories = [];
 
       action.payload.forEach(
-        category => {
-          if(categories.indexOf(category.id) === -1) {
-            categories.unshift(category.id)
-          }
-        }
+        category => categories.push(category.id)
       );
 
       return categories

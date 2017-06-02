@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch';
+import { request, getConfig } from './helpers';
 
 import { getShopCategories } from '../actions/shopActions';
 
@@ -15,31 +15,17 @@ export const trySignInAsyncAction = ({ email, password }, shop) => dispatch => {
     type: 'USER_TRY_SIGNIN'
   });
 
-  fetch('http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/auth/login/', {
-            method: 'post',
-            body: JSON.stringify(credentials),
-            mode: 'cors',
-            headers: {
-              "Accept": "application/json",
-              'Content-type': 'application/json; charset=utf-8',
-            },
-
-          }).then(
-            res => res.json()
-          ).then(
+  request('/api/auth/login/', getConfig(
+            null,
+            credentials,
+            'post'
+          )).then(
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
-              fetch('http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/me/', {
-                headers: {
-                    "Accept": "application/json",
-                    'Content-type': 'application/json; charset=utf-8',
-                    'Authorization': `JWT ${res.token}`,
-                  },
-              })
-              .then(
-                res => res.json()
-              ).then(
+              request('/api/me/', getConfig(
+                res.token
+              )).then(
                 res => {
                   dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
@@ -67,8 +53,6 @@ export const trySignInAsyncAction = ({ email, password }, shop) => dispatch => {
                 dispatch(getShopCategories(shop));
 
               }else{
-                console.log(res)
-
                 dispatch({
                   type: 'SET_USER_UI_EMAIL_ERROR'
                 })
@@ -78,25 +62,18 @@ export const trySignInAsyncAction = ({ email, password }, shop) => dispatch => {
 }
 
 export const getMe = (token, shop) => dispatch => {
-    fetch('http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/me/', {
-      headers: {
-          "Accept": "application/json",
-          'Content-type': 'application/json; charset=utf-8',
-          'Authorization': `JWT ${token}`,
-        },
-    })
-    .then(
-      res => res.json()
-    ).then(
-      res => {
-        dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+    request('/api/me/', getConfig(
+          token
+        )).then(
+          res => {
+            dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
-        if (res.id) {
-          dispatch({
-            type: 'USER_SET_PROFILE',
-            payload: res,
-          });
-        }
-      }
-    )
+            if (res.id) {
+              dispatch({
+                type: 'USER_SET_PROFILE',
+                payload: res,
+              });
+            }
+          }
+        )
 }

@@ -73,8 +73,6 @@ const  ShopPage = ({
     }
   )
 
-  console.log(products)
-
   return (
     <div className="ShopPage">
       <div className="ShopPage-banner" style={{ backgroundImage: `url(${coverPhoto})`}} />
