@@ -6,10 +6,17 @@ import IconButton from 'react-toolbox/lib/button/IconButton';
 import Chip from 'react-toolbox/lib/chip/Chip';
 import MenuDivider from 'react-toolbox/lib/menu/MenuDivider';
 import FontIcon from 'react-toolbox/lib/font_icon/FontIcon';
+import Avatar from 'react-toolbox/lib/avatar/Avatar';
+import Icon from 'react-icons-kit';
 
 import ProductCard from './ProductCard';
 import Stars from './Stars';
 import FeaturedSlider from './FeaturedSlider';
+
+import { female } from 'react-icons-kit/ionicons/female';
+import { male } from 'react-icons-kit/ionicons/male';
+
+
 
 import './ShopPage.css'
 
@@ -38,6 +45,35 @@ const  ShopPage = ({
     'ShopPage-details': true,
     'ShopPage-details--show': details,
   });
+
+  const getIcon = name => {
+    switch(name) {
+      case 'Womens':
+        return <Icon icon={ female } />
+      case 'Men\'s':
+        return <Icon icon={ male } />
+      case 'Electronics':
+        return <FontIcon value='devices_other' />;
+      default:
+        break;
+    }
+
+    return null;
+  }
+
+  products = products.map(
+    obj => {
+      return {
+        ...obj,
+        first_parent: {
+          ...obj.first_parent,
+          icon: getIcon(obj.first_parent.name)
+        }
+      }
+    }
+  )
+
+  console.log(products)
 
   return (
     <div className="ShopPage">
@@ -121,6 +157,7 @@ const  ShopPage = ({
                                       'ShopPage-products--category'
                                     }
                                     key={key}>
+                                { obj.first_parent.icon && <Avatar icon={ obj.first_parent.icon } /> }
                                 { obj.name }
                               </Chip>
               )

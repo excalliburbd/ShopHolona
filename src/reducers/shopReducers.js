@@ -8,28 +8,10 @@ export const ShopPageReducer = (
     contacts: [],
     address: {
 
-    },
-    categories: {
-
     }
   }, action
 ) => {
   switch (action.type) {
-    case 'SET_API_SHOP_CATEGORY':
-      const categories = {}
-
-      action.payload.forEach(
-        obj => {
-          categories[obj.id] = obj
-        }
-      )
-
-      return {
-        ...state,
-        categories: {
-          ...categories
-        }
-      }
     case 'SET_SHOP':
       return {
         ...state,

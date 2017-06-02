@@ -15,21 +15,18 @@ export const categoriesReducer = (
   action
 ) => {
   switch (action.type) {
-    // case 'SET_API_SUB_SUB_CATEGORIES':
-    //   const categories = [];
+    case 'SET_API_SHOP_CATEGORY':
+      const categories = state;
 
-    //   action.payload.forEach(
-    //     category => {
-    //       if(state.indexOf(category.id) === -1) {
-    //         categories.push(category.id)
-    //       }
-    //     }
-    //   )
+      action.payload.forEach(
+        category => {
+          if(categories.indexOf(category.id) === -1) {
+            categories.unshift(category.id)
+          }
+        }
+      );
 
-    //   return [
-    //     ...state,
-    //     ...categories,
-    //   ]
+      return categories
     default:
       return state;
   }
@@ -42,8 +39,18 @@ export const CategoriesEntityReducer = (
   action
 ) => {
   switch (action.type) {
+    case 'SET_API_SHOP_CATEGORY':
+      const categories = {}
 
+      action.payload.forEach(
+        obj => {
+          categories[obj.id] = obj
+        }
+      )
 
+      return {
+          ...categories
+        }
     default:
       return state;
   }
