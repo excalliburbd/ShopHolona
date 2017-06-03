@@ -58,8 +58,6 @@ export const trySignInAsyncAction = ({ email, password }, shop) => dispatch => {
                   token: res.token,
                 });
 
-
-
                 dispatch({
                   type: 'HIDE_SIDEBAR',
                 });

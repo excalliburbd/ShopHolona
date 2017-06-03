@@ -1,21 +1,27 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import Card from 'react-toolbox/lib/card/Card';
-import CardMedia from 'react-toolbox/lib/card/CardMedia';
-import Button from 'react-toolbox/lib/button/Button';
-import Dialog from 'react-toolbox/lib/dialog/Dialog';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import uuid from "uuid"
+import Card from 'react-toolbox/lib/card/Card'
+import CardMedia from 'react-toolbox/lib/card/CardMedia'
+import Button from 'react-toolbox/lib/button/Button'
+import Dialog from 'react-toolbox/lib/dialog/Dialog'
 
-import addProductIcon from '../assets/svg/add-product.svg';
+import addProductIcon from '../assets/svg/add-product.svg'
 import ProductDetails from './ProductDetails'
+import * as types from '../constants/cart'
 
-import Stars from './Stars';
+import Stars from './Stars'
 
-import './ProductCard.css';
+import './ProductCard.css'
 
 const actionsToState = dispatch => ({
-  showCartProducts: () => {
+  addToCart: payload => {
     dispatch({
       type: 'SHOW_SIDEBAR_CART_CHOOSE'
+    })
+    dispatch({
+      type: types.CART_ITEM_ADD_SUCCESS,
+      payload
     })
   }
 })
@@ -25,13 +31,23 @@ class ProductCard extends Component {
     active: false
   }
 
-  handleToggle = () => {
-    this.setState({active: !this.state.active});
-  }
-
   actions = [
     { label: "Cancel", onClick: this.handleToggle }
-  ];
+  ]
+
+  handleToggle = () => {
+    this.setState({active: !this.state.active})
+  }
+
+  addToCart = () => {
+    this.props.addToCart({
+      id: uuid.v4(),
+      productId: this.props.id,
+      varianceId: this.props.variances[0].id,
+      price: this.props.variances[0].attributes[0].price,
+      quantity: 1
+    })
+  }
 
   render() {
     let {
@@ -43,11 +59,10 @@ class ProductCard extends Component {
       variances,
       id,
       vendor,
-      addProductCard,
-      showCartProducts
+      addProductCard
     } = this.props
 
-    price = Math.round(price);
+    price = Math.round(price)
 
     if(variances && variances[0].images[0]){
       productImg = variances[0].images[0].image
@@ -85,7 +100,7 @@ class ProductCard extends Component {
             {/*<img className="price-tag" src={PriceTag} alt="Price Tag" width="50" height="50"/>*/}
             <div className="price-tag"  >
               <h2 className="product-price">
-                &#2547; { price }
+                &#2547 { price }
               </h2>
             </div>
           </div>
@@ -100,7 +115,7 @@ class ProductCard extends Component {
         {/*<Button className="ProductCard-button" raised label={ vendor ? 'Edit Product' : 'Add to Cart' } />*/}
         { vendor ? <Button className='ProductCard-button-vendor' raised label='Edit Product' />
           :
-          <Button className='ProductCard-button' raised label='Add to Cart' onClick={showCartProducts}/>
+          <Button className='ProductCard-button' raised label='Add to Cart' onClick={this.addToCart}/>
         }
         <Dialog
           actions={this.actions}
@@ -115,5 +130,4 @@ class ProductCard extends Component {
   }
 }
 
-export default connect(null, actionsToState)(ProductCard);
-
+export default connect(null, actionsToState)(ProductCard)

@@ -2,11 +2,8 @@ import React from 'react';
 
 import './FeaturedSlider.css';
 
-const FeaturedSlider = ({
-  products
-}) => {
-
-  products.push(<div className="emptydiv-featured"></div>);
+const FeaturedSlider = ({ products }) => {
+  products.push(<div className="emptydiv-featured" key="featured-products"></div>);
 
   return (
     <div className="FeaturedSlider">

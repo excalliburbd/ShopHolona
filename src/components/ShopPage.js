@@ -13,7 +13,7 @@ import FeaturedSlider from './FeaturedSlider';
 
 import './ShopPage.css'
 
-const  ShopPage = ({
+const ShopPage = ({
   toggleDetails,
   details,
   shopName,
@@ -41,55 +41,55 @@ const  ShopPage = ({
 
   return (
     <div className="ShopPage">
-      <div className="ShopPage-banner" style={{ backgroundImage: `url(${coverPhoto})`}} />
+      <div className="ShopPage-banner" style={{ backgroundImage: `url(${coverPhoto})`}}/>
       <div className={ detailsClass }>
         <div className="ShopPage-banner">
           <div className="ShopPage-details-img" style={{ backgroundImage: `url(${proficePic})` }}>
-            <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') } />
+            <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') }/>
           </div>
         </div>
         <div className="ShopPage-banner-divider"><MenuDivider/></div>
         <IconButton className="ShopPage-add-banner"
-                    icon="add_a_photo" onClick={ () => handleShowImageUploader('COVER') } />
+                    icon="add_a_photo" onClick={ () => handleShowImageUploader('COVER') }/>
         <IconButton icon={ (details) ? 'close' :'keyboard_arrow_down'}
                     className="ShopPage-details--toggle"
                     onClick={ toggleDetails }/>
         <div className="ShopPage-details-img" style={{ backgroundImage: `url(${proficePic})` }}>
-          <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') } />
+          <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') }/>
         </div>
 
         <div className="ShopPage-details-description">
           <h2 className="ShopPage-details--text">{ shopName }</h2>
-          <Stars rating="4" />
+          <Stars rating="4"/>
           {
             shopAddress &&
-              <p className="ShopPage-details--address">
-                <FontIcon value="store" /><label>{ shopAddress.details }</label>
-              </p>
+            <p className="ShopPage-details--address">
+              <FontIcon value="store"/><label>{ shopAddress.details }</label>
+            </p>
           }
           <ul className="ShopPage-details-contacts">
             {
               shopPhones.map(
-                contact => {
+                (contact, key) => {
                   /*{if (vendor) {
-                     return  <div className="ShopPage-details-contacts--contact">
-                                <Input label="Edit contact number"
-                                    value={ contact.number }
-                                    onChange={
-                                      value => handleEditContactNumber(contact.id, value)
-                                    }
-                                />
-                                <IconButton icon="save" onClick={ () => handleSaveContactNumber(contact.id) }/>
-                             </div>
-                  }}*/
-                  return (<li className="ShopPage-details--contact-number">
-                            <FontIcon value="local_phone" /> <label>{ contact.number }</label>
-                         </li>)
+                   return  <div className="ShopPage-details-contacts--contact">
+                   <Input label="Edit contact number"
+                   value={ contact.number }
+                   onChange={
+                   value => handleEditContactNumber(contact.id, value)
+                   }
+                   />
+                   <IconButton icon="save" onClick={ () => handleSaveContactNumber(contact.id) }/>
+                   </div>
+                   }}*/
+                  return (<li className="ShopPage-details--contact-number" key={key}>
+                    <FontIcon value="local_phone"/> <label>{ contact.number }</label>
+                  </li>)
                 }
               )
             }
           </ul>
-          { !vendor &&  <Button raised primary label="Follow" />}
+          { !vendor && <Button raised primary label="Follow"/>}
         </div>
         <MenuDivider/>
         <p className="ShopPage-details--text-desc">{shortDesc}</p>
@@ -98,7 +98,7 @@ const  ShopPage = ({
       <div className="ShopPage-products">
         <div className="ShopPage-featured">
           <FeaturedSlider vendor={ vendor }
-                          products = { featuredProducts.map(
+                          products={ featuredProducts.map(
                                           (porduct, key) => <ProductCard { ...porduct }
                                                                           vendor={ vendor }
                                                                           handleShowDetails={ () => handleShowProductDetails(vendor, porduct) }
@@ -106,40 +106,40 @@ const  ShopPage = ({
                                         ) }/>
         </div>
         <div className="ShopPage-products--container">
-          <div className="ShopPage-products--container-scroll-div" />
+          <div className="ShopPage-products--container-scroll-div"/>
           <div className="ShopPage-products--categories">
             {
               products.map(
                 (obj, key) => <Chip onClick={ () => selectChip(key) }
                                     className={ (selectedChip === key) ? 'ShopPage-products--categories-selected' : 'null' }
                                     key={key}>
-                                { obj.name }
-                              </Chip>
+                  { obj.name }
+                </Chip>
               )
             }
           </div>
           <div className="ShopPage-products--content">
             <div className="ShopPage-products--list">
               {
-                (vendor) && <ProductCard  addProductCard
-                                          vendor={ vendor }
-                                          handleShowDetails={ handleAddProduct }
-                                          key="AddProductKey" />
+                (vendor) && <ProductCard addProductCard
+                                         vendor={ vendor }
+                                         handleShowDetails={ handleAddProduct }
+                                         key="AddProductKey"/>
               }
               {
                 products[selectedChip].products.map(
                   (porduct, key) => <ProductCard { ...porduct }
-                                                  vendor={ vendor }
-                                                  handleShowDetails={ () => handleShowProductDetails(vendor, porduct) }
-                                                  key={ key }/>
+                    vendor={ vendor }
+                    handleShowDetails={ () => handleShowProductDetails(vendor, porduct) }
+                    key={ key }/>
                 )
               }
             </div>
             <div className="emptydiv-phone"></div>
           </div>
-          <div className="ShopPage-banner" >
-            <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('COVER') } />
-            <div style={{ backgroundImage: `url(${coverPhoto})`}} className="ShopPage-banner--fixed" />
+          <div className="ShopPage-banner">
+            <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('COVER') }/>
+            <div style={{ backgroundImage: `url(${coverPhoto})`}} className="ShopPage-banner--fixed"/>
           </div>
         </div>
       </div>

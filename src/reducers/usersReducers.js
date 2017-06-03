@@ -11,6 +11,7 @@ export const UserReducer = (
 ) => {
   switch (action.type) {
     case 'USER_MANUAL_SIGNOUT':
+      localStorage.removeItem('accessToken')
       return {
         isLoggedIn: false,
         token: null,
@@ -20,6 +21,7 @@ export const UserReducer = (
         }
       }
     case 'USER_SET_TOKEN':
+      localStorage.setItem('accessToken', action.token)
       return {
         ...state,
         token: action.token,

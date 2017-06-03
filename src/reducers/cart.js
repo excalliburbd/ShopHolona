@@ -9,11 +9,10 @@ const initialState = {
 
 const Cart = (state = initialState, action) => {
   switch (action.type){
-    // Fetch cart
     case types.CART_FETCH:
     case types.CART_ITEM_ADD:
-    case types.CART_ITEM_DELETE:
     case types.CART_ITEM_UPDATE:
+    case types.CART_ITEM_DELETE:
       return {
         ...state,
         loading: true
@@ -21,17 +20,16 @@ const Cart = (state = initialState, action) => {
 
     case types.CART_FETCH_ERROR:
     case types.CART_ITEM_ADD_ERROR:
-    case types.CART_ITEM_DELETE_ERROR:
     case types.CART_ITEM_UPDATE_ERROR:
+    case types.CART_ITEM_DELETE_ERROR:
       return {
         ...state,
         loading: false,
-        error: action.payload,
         items: null,
+        error: action.payload,
       }
 
     case types.CART_FETCH_SUCCESS:
-    case types.CART_ITEM_ADD_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -39,11 +37,35 @@ const Cart = (state = initialState, action) => {
         items: [...state.items, ...action.payload]
       }
 
-    case types.CART_ITEM_UPDATE_SUCCESS:
+    case types.CART_ITEM_ADD_SUCCESS:
+      const existingItem = state.items.find(item => item.varianceId === action.payload.varianceId)
+      if (existingItem) {
+        return {
+          ...state,
+          loading: false,
+          error: null,
+          items: state.items.map(item => {
+            if (item === existingItem) {
+              return {
+                ...item,
+                quantity: item.quantity + 1
+              }
+            }
+            return item
+          })
+        }
+      }
+
       return {
         ...state,
         loading: false,
         error: null,
+        items: [...state.items, action.payload]
+      }
+
+    case types.CART_ITEM_UPDATE_SUCCESS:
+      return {
+        ...state,
         items: state.items.map(item => {
           if (item.id === action.id) {
             return {
@@ -51,7 +73,7 @@ const Cart = (state = initialState, action) => {
               ...action.payload
             }
           }
-          return null
+          return item
         })
       }
 

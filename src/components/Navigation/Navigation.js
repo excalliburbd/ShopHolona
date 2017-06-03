@@ -14,7 +14,7 @@ import SignUpContainer from '../../containers/SignUpContainer';
 import AddButtonContainer from '../../containers/AddButtonContainer';
 import ProductsSidebarContainer from '../../containers/ProductsSidebarContainer';
 import ImageUploaderContainer from '../../containers/ImageUploaderContainer';
-import Cart from '../Sidebar/Cart'
+import Cart from '../Cart'
 
 import './Navigation.css';
 

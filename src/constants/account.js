@@ -1,1 +1,1 @@
-export const ACCOUNT_LOGOUT_SUCCESS = 'shophobe/account/logout-success'
+export const ACCOUNT_LOGOUT_SUCCESS = 'USER_MANUAL_SIGNOUT'
