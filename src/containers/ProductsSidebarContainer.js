@@ -279,7 +279,25 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           dispatch({
             type: 'SET_UI_CATEGORY',
             id
-          })
+          });
+          dispatch({
+            type: 'RESET_UI_SUB_CATEGORIES'
+          });
+          dispatch({
+            type: 'RESET_UI_SUB_SUB_CATEGORIES'
+          });
+          dispatch({
+            type: 'SET_UI_PRODUCT_ADD_SUB_CATEGORY',
+            payload: {
+              value: '',
+            }
+          });
+          dispatch({
+            type: 'SET_UI_PRODUCT_ADD_SUB_SUB_CATEGORY',
+            payload: {
+              value: '',
+            }
+          });
           dispatch(getSubCategory(id));
           break;
         case 'SUB_CATEGORY':
@@ -287,6 +305,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             type: 'SET_UI_SUB_CATEGORY',
             id
           })
+          dispatch({
+            type: 'RESET_UI_SUB_SUB_CATEGORIES'
+          });
+          dispatch({
+            type: 'SET_UI_PRODUCT_ADD_SUB_SUB_CATEGORY',
+            payload: {
+              value: '',
+            }
+          });
           dispatch(getSubSubCategory(id, subID));
           break;
         case 'SUB_SUB_CATEGORY':

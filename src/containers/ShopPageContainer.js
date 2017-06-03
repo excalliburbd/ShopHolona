@@ -9,24 +9,25 @@ import ShopPage from '../components/ShopPage';
 const getProcutsArray = state => state.products;
 const getFeaturedProcutsArray = state => state.featuredProducts;
 const getProcutEntities = state => state.entities.products;
-// const getCategoriesArray = state => state.categories;
-const getCategoriesEntities = state => state.shop.categories;
+const getCategoriesArray = state => state.categories;
+const getCategoriesEntities = state => state.entities.categories;
 const getUserDetails = state => state.user;
 const getContacts = state => state.shop.contacts;
 const getAddresses = state => state.shop.address;
 
 const getCategories = createSelector(
-  [getCategoriesEntities],
-  (categoriesObj) => {
+  [getCategoriesArray, getCategoriesEntities],
+  (categoriesArr, categoriesObj) => {
     return [
       {
         id: 'META_ALL',
         name: 'All',
         first_parent: {
-          id: -1
+          id: -1,
+          name: 'All'
         }
       },
-      ...Object.keys(categoriesObj).map( id => categoriesObj[id])
+      ...categoriesArr.map( id => categoriesObj[id])
     ]
   }
 );
@@ -35,6 +36,8 @@ const getProducts = createSelector(
   [getProcutsArray, getProcutEntities, getCategories],
   (productsArr, productsObj, categories) => {
     const products = productsArr.map( id => productsObj[id] );
+
+    console.log(categories)
 
     return categories.map(
              obj => ({

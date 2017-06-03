@@ -43,8 +43,6 @@ class FbLogin extends Component {
       picture,
     } = response;
 
-    console.log('I"m in')
-
     if (response) {
       this.props.handleOnLogin({
         accessToken,

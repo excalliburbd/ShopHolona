@@ -4,7 +4,36 @@ import Dashboard from '../components/BackOffice/Dashboard';
 
 const mapStateToProps = state => {
   return {
-    procudctsStatus: state.ui.backOffice.menu.products,
+    procudctsStatus: [
+      {
+        lable: 'Total',
+        amount: 24,
+      },
+      {
+        lable: 'Total',
+        amount: 12,
+      },
+      {
+        lable: 'Pending',
+        amount: 2,
+      },
+      {
+        lable: 'Processing',
+        amount: 4,
+      },
+      {
+        lable: 'Canceled',
+        amount: 3,
+      },
+      {
+        lable: 'Refunding',
+        amount: 0,
+      },
+      {
+        lable: 'On Hold',
+        amount: 3,
+      },
+    ],
     reviewsStatus: [
       {
         lable: 'All',

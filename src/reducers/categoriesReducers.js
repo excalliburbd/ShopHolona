@@ -15,21 +15,14 @@ export const categoriesReducer = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_API_SUB_SUB_CATEGORIES':
+    case 'SET_API_SHOP_CATEGORY':
       const categories = [];
 
       action.payload.forEach(
-        category => {
-          if(state.indexOf(category.id) === -1) {
-            categories.push(category.id)
-          }
-        }
-      )
+        category => categories.push(category.id)
+      );
 
-      return [
-        ...state,
-        ...categories,
-      ]
+      return categories
     default:
       return state;
   }
@@ -42,8 +35,18 @@ export const CategoriesEntityReducer = (
   action
 ) => {
   switch (action.type) {
+    case 'SET_API_SHOP_CATEGORY':
+      const categories = {}
 
+      action.payload.forEach(
+        obj => {
+          categories[obj.id] = obj
+        }
+      )
 
+      return {
+          ...categories
+        }
     default:
       return state;
   }
@@ -253,11 +256,23 @@ export const CategoriesUIReducer = (
         categoryID: null,
         subCategoryID: null,
         subSubCategoryID: null,
+        categories: {},
+        subCategories: {},
+        subSubCategories: {},
         attributes: {
           primary: [],
-          secondary: [],
+          secondary: {},
           selected: -1,
-        }
+        },
+        temporaryAttribute: {
+          key: '',
+          value: ''
+        },
+        uploadProgress: {
+          primary: false,
+          secondary: false,
+
+        },
       }
     case 'UPDATE_UI_CATEGORY_STOCK':
       return {
@@ -569,22 +584,22 @@ export const CategoriesUIReducer = (
         ...state,
         subSubCategories: {}
       }
-    case 'SET_API_SUB_SUB_CATEGORIES':
-      const apiSubSubCategories = {};
+    // case 'SET_API_SUB_SUB_CATEGORIES':
+    //   const apiSubSubCategories = {};
 
-      action.payload.sub_categories.forEach(
-        category => {
-          apiSubSubCategories[category.id] = category;
-        }
-      )
+    //   action.payload.sub_categories.forEach(
+    //     category => {
+    //       apiSubSubCategories[category.id] = category;
+    //     }
+    //   )
 
-      return {
-        ...state,
-        subSubCategories : {
-          ...state.subSubCategories,
-          ...apiSubSubCategories
-        }
-      }
+    //   return {
+    //     ...state,
+    //     subSubCategories : {
+    //       ...state.subSubCategories,
+    //       ...apiSubSubCategories
+    //     }
+    //   }
     case 'RESET_UI_SUB_SUB_CATEGORIES':
       return {
         ...state,
@@ -597,7 +612,12 @@ export const CategoriesUIReducer = (
         temporaryAttribute: {
           key: '',
           value: ''
-        }
+        },
+        uploadProgress: {
+          primary: false,
+          secondary: false,
+
+        },
       }
     case 'RESET_UI_SUB_CATEGORIES':
       return {
@@ -613,7 +633,12 @@ export const CategoriesUIReducer = (
         temporaryAttribute: {
           key: '',
           value: ''
-        }
+        },
+        uploadProgress: {
+          primary: false,
+          secondary: false,
+
+        },
       }
     case 'RESET_UI_CATEGORIES':
       return {
@@ -631,7 +656,12 @@ export const CategoriesUIReducer = (
         temporaryAttribute: {
           key: '',
           value: ''
-        }
+        },
+        uploadProgress: {
+          primary: false,
+          secondary: false,
+
+        },
       }
     case 'DONE_SET_CUSTOM_ATTRIBUTE_PRIMARY':
       return {

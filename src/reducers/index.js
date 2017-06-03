@@ -97,7 +97,7 @@ const RootReducer = combineReducers({
   entities: combineReducers({
     orders: OrdersEntityReducer,
     products: productsEntityReducer,
-    categoryEntities: CategoriesEntityReducer,
+    categories: CategoriesEntityReducer,
   }),
   ui: combineReducers({
     filter: FilterUIReducer,

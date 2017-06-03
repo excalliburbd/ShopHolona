@@ -90,8 +90,8 @@ const mapDispatchToProps = dispatch => {
 
       if (token) {
         dispatch({
-          type: 'USER_SET_TOKEN',
-          token,
+          type: 'SET_API_USER_TOKEN',
+          payload: token,
         });
 
         dispatch(getMe(token));

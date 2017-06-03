@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch';
+import { request, getConfig } from './helpers';
 
 export const getShopCategories = shop  => dispatch => {
 
@@ -7,30 +7,23 @@ export const getShopCategories = shop  => dispatch => {
     payload: {shop}
   })
 
-  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/shops/${shop}/categories/`, {
-    mode: 'cors',
-    headers: {
-      "Accept": "application/json",
-      'Content-type': 'application/json; charset=utf-8',
-    },
-  }).then(
-    res => res.json()
-  ).then(
-    res => {
-      dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+  request(`/api/shops/${shop}/categories/`, getConfig()
+            ).then(
+              res => {
+                dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
-      dispatch({
-        type: 'DONE_API_GET_SHOP_CATEGORY',
-      })
+                dispatch({
+                  type: 'DONE_API_GET_SHOP_CATEGORY',
+                })
 
-      if(res.length > 0) {
-        dispatch({
-          type: 'SET_SHOP_CATEGORY',
-          payload: res,
-        })
-      }
-    }
-  );
+                if(res.length > 0) {
+                  dispatch({
+                    type: 'SET_API_SHOP_CATEGORY',
+                    payload: res,
+                  })
+                }
+              }
+            );
 }
 
 export const getShopAddress = shop  => dispatch => {
@@ -40,30 +33,24 @@ export const getShopAddress = shop  => dispatch => {
     payload: {shop}
   })
 
-  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/shops/${shop}/address/`, {
-    mode: 'cors',
-    headers: {
-      "Accept": "application/json",
-      'Content-type': 'application/json; charset=utf-8',
-    },
-  }).then(
-    res => res.json()
-  ).then(
-    res => {
-      dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+  request(`/api/shops/${shop}/address/`, getConfig()
 
-      dispatch({
-        type: 'DONE_API_GET_SHOP_ADDRESS',
-      })
+            ).then(
+              res => {
+                dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
-      if(res.length > 0) {
-        dispatch({
-          type: 'SET_SHOP_ADDRESS',
-          payload: res,
-        })
-      }
-    }
-  );
+                dispatch({
+                  type: 'DONE_API_GET_SHOP_ADDRESS',
+                })
+
+                if(res.length > 0) {
+                  dispatch({
+                    type: 'SET_SHOP_ADDRESS',
+                    payload: res,
+                  })
+                }
+              }
+            );
 }
 
 
@@ -74,14 +61,7 @@ export const getShop = shop  => dispatch => {
     payload: {shop}
   })
 
-  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/shops/${shop}/`, {
-            mode: 'cors',
-            headers: {
-              "Accept": "application/json",
-              'Content-type': 'application/json; charset=utf-8',
-            },
-          }).then(
-            res => res.json()
+  request(`/api/shops/${shop}/`, getConfig()
           ).then(
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
@@ -111,16 +91,11 @@ export const postShopPageProfie = (image, shop, token, formData)  => dispatch =>
 
     formData.append('prof_pic', blob );
 
-    fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/`, {
-          method: 'put',
-          mode: 'cors',
-          body: formData,
-          headers: {
-            'Authorization': `JWT ${token}`,
-          },
-        }).then(
-          res => res.json()
-        ).then(
+    request(`/api/vendors/shops/${shop}/`, getConfig(
+          token,
+          formData,
+          'put'
+        )).then(
           res => {
             dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
@@ -152,16 +127,11 @@ export const postShopPageCover = (image, shop, token, formData)  => dispatch => 
 
     formData.append('cover_photo', blob );
 
-    fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/`, {
-          method: 'put',
-          mode: 'cors',
-          body: formData,
-          headers: {
-            'Authorization': `JWT ${token}`,
-          },
-        }).then(
-          res => res.json()
-        ).then(
+    request(`/api/vendors/shops/${shop}/`, getConfig(
+          token,
+          formData,
+          'put'
+        )).then(
           res => {
             dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 

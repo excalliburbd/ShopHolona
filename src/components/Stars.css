@@ -1,8 +1,9 @@
 .Stars {
-  display: flex;
+  display: inline-flex;
 }
 .Stars .material-icons {
   font-size: 18px;
+  display: inline;
 }
 
 .Stars svg {

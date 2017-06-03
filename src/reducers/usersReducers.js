@@ -6,7 +6,12 @@ export const UserReducer = (
     registered_as: null,
     referral: {
       code: 'loading'
-    }
+    },
+    last_login: null,
+    full_name: '',
+    email: '',
+    phone_verified: false,
+    email_verified: false,
   }, action
 ) => {
   switch (action.type) {
@@ -17,15 +22,19 @@ export const UserReducer = (
         token: null,
         registered_as: null,
         referral: {
-          code: state.referral.code,
-        }
+          code: 'loading'
+        },
+        last_login: null,
+        full_name: '',
+        email: '',
+        phone_verified: false,
+        email_verified: false,
       }
-    case 'USER_SET_TOKEN':
-      localStorage.setItem('accessToken', action.token)
+    case 'SET_API_USER_TOKEN':
       return {
         ...state,
-        token: action.token,
         isLoggedIn: true,
+        token: action.payload,
       }
     case 'USER_SET_PROFILE':
       return {

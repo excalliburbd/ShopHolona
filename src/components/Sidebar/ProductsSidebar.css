@@ -125,3 +125,8 @@
 .ProductsSidebar-add-attributes--stock>.lFVgC {
   padding-top: 0px;
 }
+
+ .ProductSidebar-add-product.ProductSidebar-add-product--active,
+ .ProductSidebar-add-service.ProductSidebar-add-service--active {
+    border-bottom: 2px solid rgb(71, 84, 144);
+  }

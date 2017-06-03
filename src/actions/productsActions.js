@@ -1,18 +1,9 @@
-import fetch from 'isomorphic-fetch';
+import { request, getConfig } from './helpers';
 
 import { getShopCategories } from './shopActions';
 
 export const getCategory = () => dispatch => {
-  fetch('http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/references/categories/', {
-            method: 'get',
-            mode: 'cors',
-            headers: {
-              'Accept': 'application/json',
-              'Content-type': 'application/json; charset=utf-8'
-            },
-          }).then(
-            res => res.json()
-          ).then(
+  request('/api/references/categories/', getConfig() ).then(
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
@@ -25,16 +16,7 @@ export const getCategory = () => dispatch => {
 }
 
 export const getSubCategory = id => dispatch => {
-  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/references/categories/${id}/`, {
-            method: 'get',
-            mode: 'cors',
-            headers: {
-              'Accept': 'application/json',
-              'Content-type': 'application/json; charset=utf-8'
-            },
-          }).then(
-            res => res.json()
-          ).then(
+  request(`/api/references/categories/${id}/`, getConfig() ).then(
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
@@ -47,16 +29,7 @@ export const getSubCategory = id => dispatch => {
 }
 
 export const getSubSubCategory = (id, subID )=> dispatch => {
-  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/references/categories/${id}/${subID}/`, {
-            method: 'get',
-            mode: 'cors',
-            headers: {
-              'Accept': 'application/json',
-              'Content-type': 'application/json; charset=utf-8'
-            },
-          }).then(
-            res => res.json()
-          ).then(
+  request(`/api/references/categories/${id}/${subID}/`, getConfig() ).then(
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
@@ -76,15 +49,7 @@ export const getAllProducts = shop  => dispatch => {
     payload: { shop },
   })
 
-  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/shops/${shop}/products/`, {
-            mode: 'cors',
-            headers: {
-              "Accept": "application/json",
-              'Content-type': 'application/json; charset=utf-8',
-            },
-          }).then(
-            res => (res.status === 200) && res.json()
-          ).then(
+  request(`/api/shops/${shop}/products/`, getConfig() ).then(
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
@@ -93,7 +58,7 @@ export const getAllProducts = shop  => dispatch => {
               })
 
               dispatch({
-                type: 'SET_PRODUCTS_ENTITIES',
+                type: 'SET_API_PRODUCTS_ENTITIES',
                 payload: res,
               })
             }
@@ -101,17 +66,11 @@ export const getAllProducts = shop  => dispatch => {
 }
 
 export const saveProduct = (obj, shop, token) => dispatch => {
-  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/products/`, {
-            method: 'post',
-            body: JSON.stringify(obj),
-            headers: {
-              "Accept": "application/json",
-              'Content-type': 'application/json; charset=utf-8',
-              'Authorization': `JWT ${token}`
-            },
-          }).then(
-            res => res.json()
-          ).then(
+  request(`/api/vendors/shops/${shop}/products/`, getConfig(
+            token,
+            obj,
+            'post'
+          )).then(
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
@@ -134,16 +93,14 @@ export const deleteProduct = (id, shop, token) => dispatch => {
     payload: {id, shop, token},
   });
 
-  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/products/${id}/`, {
-            method: 'delete',
-            headers: {
-              'Authorization': `JWT ${token}`
-            },
-          }).then(
-            res => {
-              dispatch({type: 'RESPONSE_API_DEBUG',payload:res})
+  request(`/api/vendors/shops/${shop}/products/${id}/`, getConfig(
+              token,
+              null,
+              'delete'
+            )).then(
+              res => {
+                dispatch({type: 'RESPONSE_API_DEBUG',payload:res})
 
-              if( res.status === 200 || res.status === 204) {
                 dispatch({
                   type: 'DONE_API_DELETE_PRODUCT',
                   payload: { response: res, id },
@@ -160,7 +117,6 @@ export const deleteProduct = (id, shop, token) => dispatch => {
                   type: 'HIDE_SIDEBAR'
                 })
               }
-            }
           );
 }
 
@@ -170,21 +126,16 @@ export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
     type: 'POST_API_PRODUCT_IMGAE',
   })
 
-  const request = new FormData();
+  const apiRequest = new FormData();
 
-  request.append('image', obj.file);
-  request.append('alt_tag', obj.tag);
+  apiRequest.append('image', obj.file);
+  apiRequest.append('alt_tag', obj.tag);
 
-  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/images/`, {
-            method: 'post',
-            body: request,
-            mode: 'cors',
-            headers: {
-              'Authorization': `JWT ${token}`,
-            },
-          }).then(
-            res => res.json()
-          ).then(
+  request(`/api/vendors/shops/${shop}/images/`, getConfig(
+            token,
+            apiRequest,
+            'post'
+          )).then(
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
@@ -204,8 +155,6 @@ export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
                   });
                 }
               }else{
-                console.log(res)
-
                 dispatch({
                   type: 'ERROR_API_PRODUCT_IMGAE_POST',
                   payload: { response: res, id, key }
@@ -250,20 +199,14 @@ export const  requestAttribute = (
   })
 
   if (signal !== 'DONE_ALL') {
-        fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/category/attributes/`, {
-              method: 'post',
-              mode: 'cors',
-              body: JSON.stringify({
+        request(`/api/vendors/category/attributes/`, getConfig(
+              token,
+              {
                 name: name,
                 value: value,
-              }),
-              headers: {
-                'Content-type': 'application/json; charset=utf-8',
-                'Authorization': `JWT ${token}`,
               },
-            }).then(
-              res => res.json()
-            ).then(
+              'post'
+            )).then(
               obj => {
                 dispatch({type: 'RESPONSE_API_DEBUG',payload:obj});
 
@@ -321,10 +264,7 @@ export const getFeaturedProduct = shop => dispatch => {
     payload: { shop }
   });
 
-  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/shops/${shop}/featured-products/`, {
-            method: 'get',
-          }).then(
-            res => res.json()
+  request(`/api/shops/${shop}/featured-products/`, getConfig()
           ).then(
             res => {
               dispatch({
@@ -342,19 +282,13 @@ export const makeFeaturedProduct = (id, shop, token) => dispatch => {
     payload: {id, shop, token}
   });
 
-  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/featured-products/`, {
-            method: 'post',
-            mode: 'cors',
-            headers: {
-              'Content-type': 'application/json; charset=utf-8',
-              'Authorization': `JWT ${token}`
+  request(`/api/vendors/shops/${shop}/featured-products/`, getConfig(
+            token,
+            {
+              product: `${id}`,
             },
-            body: JSON.stringify({
-                product: `${id}`,
-              })
-          }).then(
-            res => res.json()
-          ).then(
+            'post'
+          )).then(
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
@@ -379,27 +313,20 @@ export const removeFromFeaturedProduct = (productID, featuredID, shop, token) =>
     payload: {productID, featuredID, shop, token}
   });
 
-  fetch(`http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api/vendors/shops/${shop}/featured-products/${featuredID}/`, {
-            method: 'delete',
-            mode: 'cors',
-            headers: {
-              'Content-type': 'application/json; charset=utf-8',
-              'Authorization': `JWT ${token}`
-            }
-          }).then(
+  request(`/api/vendors/shops/${shop}/featured-products/${featuredID}/`, getConfig(
+            token,
+            null,
+            'delete'
+          )).then(
             res => {
-              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+              dispatch({
+                type: 'DONE_API_REMOVE_FEATURED_PRODUCT',
+                payload: { productID },
+              });
 
-              if (res.status === 204) {
-                dispatch({
-                  type: 'DONE_API_REMOVE_FEATURED_PRODUCT',
-                  payload: { res, productID },
-                });
-
-                dispatch({
-                  type: 'HIDE_SIDEBAR'
-                });
-              }
+              dispatch({
+                type: 'HIDE_SIDEBAR'
+              });
             }
           )
 }
