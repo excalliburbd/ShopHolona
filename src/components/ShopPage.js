@@ -95,7 +95,7 @@ const  ShopPage = ({
         </div>
 
         <div className="ShopPage-details-description">
-          <h2 className="ShopPage-details--text">{ shopName }</h2>
+          <h2 className="ShopPage-details--title">{ shopName }</h2>
           <Stars rating="4" />
           {
             shopAddress &&
@@ -127,8 +127,8 @@ const  ShopPage = ({
           </ul>
           { !vendor &&  <Button raised primary label="Follow" />}
         </div>
-        <div className="ShopPage-details--text-desc">
-          <p>{shortDesc}</p>
+        <div className="ShopPage-details--text">
+          <p className="ShopPage-details--text-desc">{shortDesc}</p>
         </div>
       </div>
       <div className="ShopPage-products">
@@ -157,7 +157,7 @@ const  ShopPage = ({
                                       'ShopPage-products--category'
                                     }
                                     key={key}>
-                                { obj.first_parent.icon && <Avatar icon={ obj.first_parent.icon } /> }
+                                {/*{ obj.first_parent.icon && <Avatar icon={ obj.first_parent.icon } /> }*/}
                                 { obj.name }
                               </Chip>
               )
