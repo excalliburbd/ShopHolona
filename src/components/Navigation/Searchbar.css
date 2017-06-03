@@ -14,8 +14,7 @@
   z-index: 1;
   padding: 0;
   position: absolute;
-  left: .5em;
-  width: calc(100% - 2em);
+  width: 100%;
   top: .8em;
 }
 
