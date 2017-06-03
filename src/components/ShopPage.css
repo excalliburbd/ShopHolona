@@ -2,27 +2,22 @@
   position: relative;
 }
 
-.ShopPage-banner {
-  height: 12em;
-  width: 100%;
-}
-
-.ShopPage-banner--fixed {
-  height: 12em;
-  width: 100%;
-}
-
 .ShopPage > .ShopPage-banner {
   position: absolute;
   top: 0;
   z-index: -1;
 }
 
-.ShopPage-details>.ShopPage-banner {
-  display: none;
+.ShopPage-banner {
+  height: 12em;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
-.ShopPage-products--container>.ShopPage-banner {
+.ShopPage-details > .ShopPage-banner,
+.ShopPage-products--container > .ShopPage-banner {
   display: none;
 }
 
@@ -42,6 +37,14 @@
   z-index: 10;
 }
 
+.ShopPage-details .ShopPage-details-description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1em;
+  width: 9em;
+}
+
 .ShopPage-details--show {
   flex-direction: column;
   padding-top: 7em;
@@ -49,11 +52,8 @@
   height: auto;
 }
 
-.ShopPage-details .ShopPage-details-description {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 1em;
+.ShopPage-details--show .ShopPage-details-description {
+  width: auto;
 }
 
 .ShopPage-details-description * {
@@ -70,18 +70,24 @@
 }
 
 .ShopPage-details-img {
-  height: 6em;
-  width: 6em;
+  height: 5em;
+  width: 5em;
   border-radius: 50%;
   margin-top: 1.2em;
   box-shadow: 0px 0px 14px -1px rgba(0, 0, 0, 0.55);
   border: 0.2px solid darkgrey;
   overflow: hidden;
   display: flex;
-  align-items: flex-end;
   color: #eee;
   background-size: contain;
+  background-repeat: no-repeat;
+  align-items: center;
+  justify-content: center;
 }
+
+.ShopPage-details-img .hC5Z2._2Agdx._2CPs4 {
+    background: rgba(0, 0, 0, .3);
+  }
 
 .ShopPage-details--show .ShopPage-details-img {
   height: 10em;
@@ -104,12 +110,20 @@
   color: initial;
 }
 
-.ShopPage-details--toggle {
-  order: 1;
-  margin-left: auto;
+.ShopPage-details--toggle,
+.ShopPage-details .ShopPage-add-banner {
   position: absolute;
   top: 0.5em;
+}
+
+.ShopPage-details--toggle {
+  margin-left: auto;
   right: .5em;
+}
+
+.ShopPage-details .ShopPage-add-banner {
+  margin-right: auto;
+  left: .5em;
 }
 
 .ShopPage-details--toggle .material-icons {
@@ -118,7 +132,6 @@
 }
 
 .ShopPage-details--show * {
-  display: block;
   margin: 0 auto;
 }
 
@@ -158,10 +171,6 @@
 
 .ShopPage-products--categories ._3Iv9P:hover {
   box-shadow: var(--shadow-2p);
-}
-
-.ShopPage-details-img .hC5Z2._2Agdx._2CPs4 {
-  background: rgba(0, 0, 0, .54);
 }
 
 .ShopPage-details-img .material-icons {
@@ -216,12 +225,36 @@
   margin-bottom: .5em;
 }
 
+.ShopPage-details--text-desc p {
+    /*margin-top: 0.4em;
+    margin-bottom: 1em;
+    padding: 0em 1.1em;*/
+    padding: 1em 0;
+    font-size: 13px;
+    margin-left: 0.2em;
+    font-family: "Gotham Narrow Book";
+  }
+
+.ShopPage-details--text-desc {
+  position: relative;
+  width: 100%;
+  margin: .5em 0;
+}
+
+.ShopPage-details--text-desc::after,
+.ShopPage-details--text-desc::before {
+    content: " ";
+    display: block;
+    background: rgba(0,0,0,0.12);
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    right: 0;
+}
+
 /*for phone*/
 
 @media screen and (max-width: 600px) {
-  .ShopPage-details .ShopPage-details--text-desc {
-    display: none;
-  }
   .ShopPage-details--show .ShopPage-details--text-desc {
     display: block;
     margin-top: 1em;
@@ -235,7 +268,7 @@
   .ShopPage {
     display: flex;
   }
-  .ShopPage>.ShopPage-banner {
+  .ShopPage > .ShopPage-banner {
     display: none;
   }
   .ShopPage-details>.ShopPage-banner {
@@ -282,6 +315,7 @@
   }
   .ShopPage-details .ShopPage-details-description {
     margin: 0.7em;
+    width: auto;
   }
   .ShopPage-details .ShopPage-details-description p {
     margin-top: 1em;
@@ -353,31 +387,17 @@
     width: 100%;
   }
 
-  .ShopPage-details-img {
-    align-items: center;
-    justify-content: center;
-  }
-
   .ShopPage-details-img .hC5Z2._2Agdx._2CPs4 {
     background: initial;
-    margin: auto auto;
   }
+
   .ShopPage-details-img:hover .hC5Z2._2Agdx._2CPs4 {
     background: rgba(0, 0, 0, .54);
   }
+
   .ShopPage-details .ShopPage-details-description p {
     margin-top: 0em;
   }
-  .ShopPage-details--text-desc {
-    margin-top: 0.4em;
-    margin-bottom: 1em;
-    padding: 0em 1.1em;
-    font-size: 13px;
-    text-align: justify;
-    margin-left: 0.2em;
-    font-family: "Gotham Narrow Book";
-  }
-
   .ShopPage-products--container > .ShopPage-banner {
     position: fixed;
     top: 4em;
@@ -390,16 +410,9 @@
     z-index: 1;
   }
 
-  .ShopPage-banner--fixed {
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+  .ShopPage-banner .hC5Z2._2Agdx._2CPs4.ShopPage-banner--icon {
+    position: absolute;
   }
-
-   .ShopPage-banner .hC5Z2._2Agdx._2CPs4.ShopPage-banner--icon{
-      position: absolute;
-
-    }
 
   .ShopPage-products--container-scroll-div {
     display: block;

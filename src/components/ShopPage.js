@@ -82,14 +82,16 @@ const  ShopPage = ({
             <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') } />
           </div>
         </div>
-        <div className="ShopPage-banner-divider"><MenuDivider/></div>
+        <div className="ShopPage-banner-divider">
+          <MenuDivider/>
+        </div>
         <IconButton className="ShopPage-add-banner"
                     icon="add_a_photo" onClick={ () => handleShowImageUploader('COVER') } />
         <IconButton icon={ (details) ? 'close' :'keyboard_arrow_down'}
                     className="ShopPage-details--toggle"
                     onClick={ toggleDetails }/>
         <div className="ShopPage-details-img" style={{ backgroundImage: `url(${proficePic})` }}>
-          <IconButton className="ShopPage-details-img--camera" icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') } />
+          <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') } />
         </div>
 
         <div className="ShopPage-details-description">
@@ -125,9 +127,9 @@ const  ShopPage = ({
           </ul>
           { !vendor &&  <Button raised primary label="Follow" />}
         </div>
-        <MenuDivider/>
-        <p className="ShopPage-details--text-desc">{shortDesc}</p>
-        <MenuDivider/>
+        <div className="ShopPage-details--text-desc">
+          <p>{shortDesc}</p>
+        </div>
       </div>
       <div className="ShopPage-products">
         <div className="ShopPage-featured">
@@ -181,7 +183,7 @@ const  ShopPage = ({
             <div className="emptydiv-phone"></div>
           </div>
           <div className="ShopPage-banner" >
-            <div style={{ backgroundImage: `url(${coverPhoto})`}} className="ShopPage-banner--fixed" />
+            <div style={{ backgroundImage: `url(${coverPhoto})`}} className="ShopPage-banner" />
           </div>
         </div>
       </div>
