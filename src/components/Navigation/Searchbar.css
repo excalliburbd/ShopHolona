@@ -14,8 +14,8 @@
   z-index: 1;
   padding: 0;
   position: absolute;
-  left: 2em;
-  width: calc(100% - 4.5em);
+  left: .5em;
+  width: calc(100% - 2em);
   top: .8em;
 }
 
@@ -68,8 +68,8 @@
   position: absolute;
   top: 0;
   right: 0;
-  height: 100%;
 }
+
 .Searchbar-input--button .material-icons {
   font-size: 1.7em !important;
   color: #757575;
@@ -90,8 +90,8 @@
   }
 
   ._07g5.Searchbar {
-    left: 8em;
-    width: calc(100% - 14em);
+    left: 10em;
+    width: calc(100% - 16em);
   }
 
   .Searchbar--close {

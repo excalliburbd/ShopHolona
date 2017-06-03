@@ -52,7 +52,7 @@ const NavigationAppBar = ({
                 </span>
               }
               leftIcon={
-                <img className="NavigationAppBar-logo" src={logo} alt="Shop logo"/>
+                !searchbar && <img className="NavigationAppBar-logo" src={logo} alt="Shop logo"/>
               }
               onLeftIconClick={
                 () => windowLocation.assign('http://demo.shophobe.com/')
@@ -74,89 +74,91 @@ const NavigationAppBar = ({
             <Searchbar  searchbar={ searchbar }
                         hideSearchbar={ hideSearchbar } />
 
-            <Navigation type="horizontal" className="NavigationAppBar-right-comp">
-              <IconButton
-                className="NavigationAppBar-search--button"
-                onClick={
-                  () => {
-                    showSearchbar();
+            {
+              !searchbar && <Navigation type="horizontal" className="NavigationAppBar-right-comp">
+                <IconButton
+                  className="NavigationAppBar-search--button"
+                  onClick={
+                    () => {
+                      showSearchbar();
+                    }
                   }
-                }
-                icon='search'
-              />
-              {/*<div className="NavigationAppBar-rewards">
-                <h2>Money 0.00</h2>
-              </div>
-              <IconMenu icon="card_giftcard" className="NavigationAppBar-GiftPoint">
-                <MenuItem value='money' caption='Money 0.00' />
-              </IconMenu>*/}
-              {
-                (location.pathname === '/') ?
-                  <span>
-                  {
-                    vendor ?
-                      <IconButton className="NavigationAppBar-icon"
-                                  // icon={ <Icon className="NavigationAppBar-dashboard-icon" icon={DashboardIcon} /> }
-                                  icon={
-                                    <img className="NavigationAppBar-dashboard-icon"
-                                         src={ DashboardIcon }
-                                         alt="Dashboard Icon"/>
-                                  }
-                                  onClick={ () => history.push('/dashboard') }/> :
-                      <IconButton className="NavigationAppBar-icon" icon='shopping_cart' />
-                  }
-                  </span> :
-                  <IconButton className="NavigationAppBar-icon"
-                              icon='store'
-                              onClick={ () => history.push('/') }/>
-              }
-              <IconMenu icon={
-                          (profilePic) ?
-                            <Avatar className="NavigationAppBar-user-profile-icon" title="user image" image={ profilePic }/> :
-                            'account_circle'
-                        }
-                        position='topRight'
-                        className="NavigationAppBar-profile-menu"
-                        iconRipple={ false }
-                        menuRipple={ false } >
+                  icon='search'
+                />
+                {/*<div className="NavigationAppBar-rewards">
+                  <h2>Money 0.00</h2>
+                </div>
+                <IconMenu icon="card_giftcard" className="NavigationAppBar-GiftPoint">
+                  <MenuItem value='money' caption='Money 0.00' />
+                </IconMenu>*/}
                 {
-                  (userLoggedIn) ?
-                    <div className="NavigationAppBar-profile-menuitem">
-                      {
-                        (location.pathname === '/') ?
-                          <MenuItem value='dashboard'
-                                    icon="dashboard"
-                                    onClick={() => history.push('/dashboard')} caption='Dashboard' /> :
-                          <MenuItem value='dashboard'
-                                    icon="store"
-                                    onClick={() => history.push('/')} caption='Home' />
-                      }
-                      <MenuItem  value='profile'
-                                  icon='account_circle'
-                                  caption='Profile' />
-                      <MenuItem value='settings'
-                                icon='settings'
-                                caption='Settings'
-                                onClick={() => history.push('/settings')} />
-                      <MenuDivider />
-                      <MenuItem value='signout'
-                        icon='power_settings_new'
-                        onClick={ () => {
-                          handleSignOut();
-                          history.push('/');
-                        }}
-                        caption='Sign Out' />
-                    </div > :
-                    <div className="NavigationAppBar-profile-menuitem">
-                      <MenuItem value='signin'
-                                icon='account_circle'
-                                onClick={ handleSignIn }
-                                caption='Sign In/Sign Up' />
-                    </div>
-
+                  (location.pathname === '/') ?
+                    <span>
+                    {
+                      vendor ?
+                        <IconButton className="NavigationAppBar-icon"
+                                    // icon={ <Icon className="NavigationAppBar-dashboard-icon" icon={DashboardIcon} /> }
+                                    icon={
+                                      <img className="NavigationAppBar-dashboard-icon"
+                                          src={ DashboardIcon }
+                                          alt="Dashboard Icon"/>
+                                    }
+                                    onClick={ () => history.push('/dashboard') }/> :
+                        <IconButton className="NavigationAppBar-icon" icon='shopping_cart' />
+                    }
+                    </span> :
+                    <IconButton className="NavigationAppBar-icon"
+                                icon='store'
+                                onClick={ () => history.push('/') }/>
                 }
-              </IconMenu>
-            </Navigation>
+                <IconMenu icon={
+                            (profilePic) ?
+                              <Avatar className="NavigationAppBar-user-profile-icon" title="user image" image={ profilePic }/> :
+                              'account_circle'
+                          }
+                          position='topRight'
+                          className="NavigationAppBar-profile-menu"
+                          iconRipple={ false }
+                          menuRipple={ false } >
+                  {
+                    (userLoggedIn) ?
+                      <div className="NavigationAppBar-profile-menuitem">
+                        {
+                          (location.pathname === '/') ?
+                            <MenuItem value='dashboard'
+                                      icon="dashboard"
+                                      onClick={() => history.push('/dashboard')} caption='Dashboard' /> :
+                            <MenuItem value='dashboard'
+                                      icon="store"
+                                      onClick={() => history.push('/')} caption='Home' />
+                        }
+                        <MenuItem  value='profile'
+                                    icon='account_circle'
+                                    caption='Profile' />
+                        <MenuItem value='settings'
+                                  icon='settings'
+                                  caption='Settings'
+                                  onClick={() => history.push('/settings')} />
+                        <MenuDivider />
+                        <MenuItem value='signout'
+                          icon='power_settings_new'
+                          onClick={ () => {
+                            handleSignOut();
+                            history.push('/');
+                          }}
+                          caption='Sign Out' />
+                      </div > :
+                      <div className="NavigationAppBar-profile-menuitem">
+                        <MenuItem value='signin'
+                                  icon='account_circle'
+                                  onClick={ handleSignIn }
+                                  caption='Sign In/Sign Up' />
+                      </div>
+
+                  }
+                </IconMenu>
+              </Navigation>
+            }
       </AppBar>
   );
 }
