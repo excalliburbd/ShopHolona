@@ -5,11 +5,9 @@ import Card from 'react-toolbox/lib/card/Card';
 import CardTitle from 'react-toolbox/lib/card/CardTitle';
 import CardText from 'react-toolbox/lib/card/CardText';
 
-import MdInsertChart from 'react-icons/lib/md/insert-chart';
 import MdAddShoppingCart from 'react-icons/lib/md/add-shopping-cart';
 import MdRateReview from 'react-icons/lib/md/rate-review';
 import FaCartArrowDown from 'react-icons/lib/fa/cart-arrow-down';
-import MdStar from 'react-icons/lib/md/star';
 
 import {
   ResponsiveContainer,

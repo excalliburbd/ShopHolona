@@ -6,7 +6,6 @@ import IconButton from 'react-toolbox/lib/button/IconButton';
 import Chip from 'react-toolbox/lib/chip/Chip';
 import MenuDivider from 'react-toolbox/lib/menu/MenuDivider';
 import FontIcon from 'react-toolbox/lib/font_icon/FontIcon';
-import Avatar from 'react-toolbox/lib/avatar/Avatar';
 import Icon from 'react-icons-kit';
 
 import ProductCard from './ProductCard';

@@ -36,10 +36,10 @@ class GLogin extends React.Component{
     const socialId = '432434621552-kne26sb1jke6er2ucqp4k5shipmtad8s.apps.googleusercontent.com';
 
     const responseHandler = googleUser => {
-                  var id_token = googleUser.getAuthResponse().id_token;
+                  // var id_token = googleUser.getAuthResponse().id_token;
                   // console.log({accessToken: id_token});
 
-                  var profile = googleUser.getBasicProfile();
+                  // var profile = googleUser.getBasicProfile();
                   // console.dir(profile);
                   // console.log("ID: " + profile.getId()); // Don't send this directly to your server!
                   // console.log('Full Name: ' + profile.getName());

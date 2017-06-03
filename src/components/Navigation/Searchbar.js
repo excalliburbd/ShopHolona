@@ -36,7 +36,7 @@ class Searchbar  extends Component {
                 id="Searchbar-input"
                 className="Searchbar-input"
                 innerRef={ input => {
-                         {/*this.props.setWrappedInstance(input.getWrappedInstance());*/}
+                         /*{this.props.setWrappedInstance(input.getWrappedInstance());}*/
                          this.searchInput = input;
                     }}
                 onChange={
