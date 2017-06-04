@@ -1,5 +1,9 @@
 import { request, getConfig } from './helpers';
 
+import { shopActions } from '../actions/';
+import { categoryActions } from '../actions/';
+import { imageUploaderActions } from '../actions/';
+
 export const getShopCategories = shop  => dispatch => {
 
   dispatch({
@@ -17,10 +21,7 @@ export const getShopCategories = shop  => dispatch => {
                 })
 
                 if(res.length > 0) {
-                  dispatch({
-                    type: 'SET_API_SHOP_CATEGORY',
-                    payload: res,
-                  })
+                  dispatch(categoryActions.categories.done.get.shopCategory(res));
                 }
               }
             );
@@ -44,10 +45,7 @@ export const getShopAddress = shop  => dispatch => {
                 })
 
                 if(res.length > 0) {
-                  dispatch({
-                    type: 'SET_SHOP_ADDRESS',
-                    payload: res,
-                  })
+                  dispatch(shopActions.shop.set.address(res));
                 }
               }
             );
@@ -71,10 +69,7 @@ export const getShop = shop  => dispatch => {
               })
 
               if(res.id) {
-                dispatch({
-                  type: 'SET_SHOP',
-                  payload: res,
-                })
+                dispatch(shopActions.shop.set.shop(res))
               }
             }
           );
@@ -105,9 +100,7 @@ export const postShopPageProfie = (image, shop, token, formData)  => dispatch =>
                 payload: res,
               });
 
-              dispatch({
-                type: 'HIDE_IMAGE_UPLOADER',
-              });
+              dispatch(imageUploaderActions.imageUploader.hide());
 
               dispatch(getShop(shop));
             }
@@ -141,9 +134,7 @@ export const postShopPageCover = (image, shop, token, formData)  => dispatch => 
                 payload: res,
               });
 
-              dispatch({
-                type: 'HIDE_IMAGE_UPLOADER',
-              });
+              dispatch(imageUploaderActions.imageUploader.hide());
 
               dispatch(getShop(shop));
             }

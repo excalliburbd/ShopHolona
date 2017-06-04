@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 
-import { trySignInAsyncAction } from '../actions/userActions';
+import { trySignInAsyncAction } from '../thunks/userThunks';
+
+import { userActions } from '../actions/';
 
 import SignUp from '../components/SignUp/SignUp';
 
@@ -22,28 +24,16 @@ const mapDispatchToProps = dispatch => {
       dispatch(trySignInAsyncAction(res, shop));
     },
     handleEmailValue: val => {
-      dispatch({
-        type: 'UPDATE_USER_UI_EMAIL',
-        val,
-      })
+      dispatch(userActions.user.ui.email(val));
     },
     handleEmailPasswordValue: val => {
-      dispatch({
-        type: 'UPDATE_USER_UI_EMAIL_PASSWORD',
-        val,
-      })
+      dispatch(userActions.user.ui.emailPassword(val));
     },
     handlePhoneValue: val => {
-      dispatch({
-        type: 'UPDATE_USER_UI_PHONE',
-        val,
-      })
+      dispatch(userActions.user.ui.phone(val));
     },
     handlePhonePasswordValue: val => {
-      dispatch({
-        type: 'UPDATE_USER_UI_PHONE_PASSWORD',
-        val,
-      })
+      dispatch(userActions.user.ui.phonePassword(val));
     },
   }
 }

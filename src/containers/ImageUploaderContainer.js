@@ -2,8 +2,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { createSelector } from 'reselect';
 
-import { postShopPageProfie, postShopPageCover } from '../actions/shopActions';
-import { postImage } from '../actions/productsActions';
+import { postShopPageProfie, postShopPageCover } from '../thunks/shopThunks';
+import { postImage } from '../thunks/productThunks';
+
+import { imageUploaderActions } from '../actions/';
 
 import ImageUploader from '../components/ImageUploader';
 
@@ -54,21 +56,13 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     handleClose: () => {
-      dispatch({
-        type: 'HIDE_IMAGE_UPLOADER',
-      });
+      dispatch(imageUploaderActions.imageUploader.hide());
     },
     handleImageDropped: file => {
-      dispatch({
-        type: 'SHOW_IMAGE_EDITOR',
-        payload: file,
-      })
+      dispatch(imageUploaderActions.imageUploader.show.editor(file));
     },
     handleSliderValue: value => {
-      dispatch({
-        type: 'UPDATE_IMAGE_UPLOADER_SLIDER',
-        payload: value
-      })
+      dispatch(imageUploaderActions.imageUploader.updateSlider(value));
     },
     handleDone: (type, image, shop, token, formData, id, file) => {
 

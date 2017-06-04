@@ -83,7 +83,7 @@ const AddProductService = ({
                         value={ productCategory }
                         selectionOnly
                         onSelected={ id => handleFieldSelect('CATEGORY', id) }
-                        handleSetValue={ value => handleManualInput('ADD', 'CATEGORY', value)}
+                        handleSetValue={ value => handleManualInput('add', 'category', value)}
                       />
                       <CustomAutocomplete
                         label={`Enter ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Sub Category`}
@@ -91,7 +91,7 @@ const AddProductService = ({
                         value={ productSubCategory }
                         selectionOnly
                         onSelected={ id => handleFieldSelect('SUB_CATEGORY', categoryID, id) }
-                        handleSetValue={ value => handleManualInput('ADD', 'SUB_CATEGORY', value)}
+                        handleSetValue={ value => handleManualInput('add', 'subCategory', value)}
                       />
                       <CustomAutocomplete
                         label={`Enter type of ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' }`}
@@ -104,29 +104,29 @@ const AddProductService = ({
                             handleCategoryObj(categoryObj);
                           }
                         }
-                        handleSetValue={ value => handleManualInput('ADD', 'SUB_SUB_CATEGORY', value)}
+                        handleSetValue={ value => handleManualInput('add', 'subSubCategory', value)}
                       />
                      {
                         showProductDetails && <div>
                           <Input label={`Enter Your ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Name`}
                                 required
-                                onChange={ value => handleManualInput('ADD', 'NAME', value) }
+                                onChange={ value => handleManualInput('add', 'name', value) }
                                 value={ productName } />
                           {
                             (radioValue === 'PRODUCT') &&
                               <Input label={`Enter Your ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Weight`}
                                 required
                                 type="number"
-                                onChange={ value => handleManualInput('ADD', 'WEIGHT', value) }
+                                onChange={ value => handleManualInput('add', 'weight', value) }
                                 value={ productWeight } />
                           }
                           <Input label={`Enter Your ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Price`}
                                 type="number"
                                 required
-                                onChange={ value => handleManualInput('ADD', 'PRICE', value) }
+                                onChange={ value => handleManualInput('add', 'price', value) }
                                 value={ productPrice } />
                           <Input label={`Enter Your ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Description`}
-                                onChange={ value => handleManualInput('ADD', 'DESC', value) }
+                                onChange={ value => handleManualInput('add', 'desc', value) }
                                 value={ productDescription } />
 
                           {

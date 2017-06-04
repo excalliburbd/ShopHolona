@@ -65,18 +65,18 @@ const AddProductDetails = ({
                 </div>
                 <div className="ProductSidebar-details--details">
                   <Input  label="Name"
-                          onChange={ value => handleManualInput('DETAILS', 'NAME', value) }
+                          onChange={ value => handleManualInput('edit', 'name', value) }
                           value={ productDetailName } />
                   <Input  label="Weight"
                           type="number"
-                          onChange={ value => handleManualInput('DETAILS', 'WEIGHT', value) }
+                          onChange={ value => handleManualInput('edit', 'weight', value) }
                           value={ productDetailWeight } />
                   <Input  label="Price"
                           type="number"
-                          onChange={ value => handleManualInput('DETAILS', 'PRICE', value) }
+                          onChange={ value => handleManualInput('edit', 'price', value) }
                           value={ productDetailPrice } />
                   <Input  label="Description"
-                          onChange={ value => handleManualInput('DETAILS', 'DESC', value) }
+                          onChange={ value => handleManualInput('edit', 'desc', value) }
                           value={ productDetailDescription } />
                 </div>
                 {

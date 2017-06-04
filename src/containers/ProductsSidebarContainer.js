@@ -11,7 +11,11 @@ import {
   requestAttribute,
   makeFeaturedProduct,
   removeFromFeaturedProduct,
-} from '../actions/productsActions';
+} from '../thunks/productThunks';
+
+import { sidebarActions } from '../actions/';
+import { productActions } from '../actions/';
+import { categoryActions } from '../actions/';
 
 import ProductsSidebar from '../components/Sidebar/ProductsSidebar';
 
@@ -276,180 +280,113 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleFieldSelect: (type, id, subID) => {
       switch(type) {
         case 'CATEGORY':
-          dispatch({
-            type: 'SET_UI_CATEGORY',
-            id
-          });
-          dispatch({
-            type: 'RESET_UI_SUB_CATEGORIES'
-          });
-          dispatch({
-            type: 'RESET_UI_SUB_SUB_CATEGORIES'
-          });
-          dispatch({
-            type: 'SET_UI_PRODUCT_ADD_SUB_CATEGORY',
-            payload: {
-              value: '',
-            }
-          });
-          dispatch({
-            type: 'SET_UI_PRODUCT_ADD_SUB_SUB_CATEGORY',
-            payload: {
-              value: '',
-            }
-          });
+          dispatch(categoryActions.categories.ui.set.category(id));
+
+          dispatch(productActions.products.ui.reset.subCategories());
+
+          dispatch(productActions.products.ui.reset.subSubCategories());
+
+          dispatch(productActions.products.ui.set.add.subCategory(''));
+
+          dispatch(productActions.products.ui.set.add.subSubCategory(''));
+
           dispatch(getSubCategory(id));
           break;
         case 'SUB_CATEGORY':
-          dispatch({
-            type: 'SET_UI_SUB_CATEGORY',
-            id
-          })
-          dispatch({
-            type: 'RESET_UI_SUB_SUB_CATEGORIES'
-          });
-          dispatch({
-            type: 'SET_UI_PRODUCT_ADD_SUB_SUB_CATEGORY',
-            payload: {
-              value: '',
-            }
-          });
+          dispatch(categoryActions.categories.ui.set.subCategory(id));
+
+          dispatch(productActions.products.ui.reset.subSubCategories());
+
+          dispatch(productActions.products.ui.set.add.subSubCategory(''));
+
           dispatch(getSubSubCategory(id, subID));
           break;
         case 'SUB_SUB_CATEGORY':
-          dispatch({
-            type: 'SET_UI_SUB_SUB_CATEGORY',
-            id
-          });
+          dispatch(categoryActions.categories.ui.set.subSubCategory(id));
+
           dispatch({type: 'RESET_UI_PRODUCT_ADD_VALUES'});
           break;
         default:
       }
     },
     handleCategoryObj: obj => {
-      dispatch({
-        type: 'SET_PRIMARY_ATTR',
-        payload: {
+      dispatch(categoryActions.categories.ui.set.attr.primary({
           attributes: obj.primary_attr,
-        }
-      });
-      dispatch({
-        type: 'SET_SECONDARY_ATTR',
-        payload: {
+        }));
+      dispatch(categoryActions.categories.ui.set.attr.secondary({
           attributes: obj.secondary_attr,
-        }
-      });
+        }));
     },
     handleSelect: (key, id) => {
-        dispatch({
-          type: 'SET_UI_PRIMARY_ATTR_SELECTED',
-          payload: { id: key }
-        })
+        dispatch(categoryActions.categories.ui.set.attr.selected({ id: key }));
+
         if (key === -1) {
-          dispatch({
-            type: 'UNSET_UI_PRIMARY_ATTR',
-            payload: { id }
-          })
+          dispatch(categoryActions.categories.ui.unsetPrimaryAttr({ id }));
         }
     },
     handleAttributeSelect: (selected, id) => {
-      dispatch({
-        type: 'SET_UI_SECONDARY_ATTR',
-        payload: { selected, id }
-      });
+      dispatch(categoryActions.categories.ui.set.attr.selectSecondary({ selected, id }));
     },
     handleRadio: value => {
-      dispatch({
-        type: 'SET_SIDEBAR_UI_RADIO_VALUE',
-        payload: value,
-      })
+      dispatch(sidebarActions.sidebar.ui.set.radioValue(value));
     },
     handleStockUpdate: (type, value, id, key) => {
       switch(type){
         case 'VALUE':
-          dispatch({
-            type: 'UPDATE_UI_CATEGORY_STOCK',
-            payload: {
+          dispatch(categoryActions.categories.ui.update.stock({
               value,
               id,
               key,
-            }
-          })
+            }));
           break;
         case 'INC':
-          dispatch({
-            type: 'UPDATE_UI_CATEGORY_STOCK_INC',
-            payload: {
+          dispatch(categoryActions.categories.ui.update.stockInc({
               id,
               key,
-            }
-          })
+            }));
           break;
         case 'DEC':
-          dispatch({
-            type: 'UPDATE_UI_CATEGORY_STOCK_DEC',
-            payload: {
+          dispatch(categoryActions.categories.ui.update.stockDec({
               id,
               key,
-            }
-          })
+            }));
           break;
         default:
           break;
       }
     },
     setAttributeDone: id => {
-      dispatch({
-        type: 'SET_UI_PRIMARY_ATTR',
-        payload: { id }
-      })
-      dispatch({
-          type: 'SET_UI_PRIMARY_ATTR_SELECTED',
-          payload: { id: -1 }
-        })
+      dispatch(categoryActions.categories.ui.set.attr.selectPrimary({ id }));
+
+      dispatch(categoryActions.categories.ui.set.attr.selected({ id: -1 }));
     },
     handleStockInputBlur: id => {
-      dispatch({
-        type: 'VALIDATE_UI_CATEGORY_STOCK',
-        payload: {
+      dispatch(categoryActions.categories.ui.validateStock({
           id
-        }
-      })
+        }));
     },
     handleShowRoute: type => {
       switch(type){
         case 'ADD_IMAGES':
-          dispatch({
-            type: 'SHOW_SIDEBAR_ADD_PRODUCT_IMAGES'
-          })
+          dispatch(sidebarActions.sidebar.show.addProductImages())
           break;
         case 'ADD_PRODUCTS':
-          dispatch({
-            type: 'SHOW_SIDEBAR_ADD_PRODUCT'
-          })
+          dispatch(sidebarActions.sidebar.show.addProduct())
           break;
         case 'UPLOADING':
-          dispatch({
-            type: 'SHOW_SIDEBAR_ADD_PRODUCT_UPLOADING'
-          });
+          dispatch(sidebarActions.sidebar.show.addProductUploading());
           break;
         default:
          break;
       }
     },
     handleFiles: (id, oldFiles, newFiles, name, shop, token) => {
-      dispatch({
-        type: 'SET_CATEGORIES_PRODUCT_IMAGES',
-        payload: {
+      dispatch(categoryActions.categories.ui.set.productImages({
           id,
           files: newFiles,
-        }
-      });
+        }));
 
-      dispatch({
-        type: 'SET_PRODUCTS_UPLOAD_COUNT',
-        payload: (oldFiles.length + newFiles.length)
-      });
+      dispatch(productActions.products.ui.set.upload.count(oldFiles.length + newFiles.length));
 
       // const [
       //   first,
@@ -465,10 +402,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       newFiles.forEach(
         (file, key) => {
           // if (file === 'EDITED') {
-          //   dispatch({
-          //     type: 'SHOW_IMAGE_UPLOADER_EDITOR',
-          //     payload: { file: first, id }
-          //   });
+          //   dispatch(imageUploaderActions.imageUploader.show.uploaderEditor({ file: first, id }));
           // } else {
           //   if( key === (newFiles.lenght - 1)) {
           //     dispatch(
@@ -498,34 +432,26 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       )
     },
     handleRemoveImg: (id, key) => {
-      dispatch({
-        type: 'REMOVE_CATEGORIES_PRODUCT_IMAGE',
-        payload:{
+      dispatch(categoryActions.categories.remove.productImage({
           id,
           key,
-        }
-      });
-      dispatch({
-        type: 'DEC_PRDUCTS_UPLOAD_DONE_COUNT'
-      });
+        }));
+      dispatch(productActions.products.ui.set.upload.dec());
     },
     handleManualInput: (uiType, fieldType, value) => {
-      dispatch({
-        type: `SET_UI_PRODUCT_${uiType}_${fieldType}`,
-        payload: {
-          value,
-        }
-      })
+
+      dispatch(productActions.products.ui.set[uiType][fieldType](value));
+
       if(value === '') {
         switch(fieldType) {
-          case 'CATEGORY':
-            dispatch({type: 'RESET_UI_CATEGORIES'});
+          case 'category':
+            dispatch(productActions.products.ui.reset.categories());
             break;
-          case 'SUB_CATEGORY':
-            dispatch({type: 'RESET_UI_SUB_CATEGORIES'});
+          case 'subCategory':
+            dispatch(productActions.products.ui.reset.subCategories());
             break;
-          case 'SUB_SUB_CATEGORY':
-            dispatch({type: 'RESET_UI_SUB_SUB_CATEGORIES'});
+          case 'subSubCategory':
+            dispatch(productActions.products.ui.reset.subSubCategories());
             break;
           default:
             break;
@@ -536,15 +462,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleSaveProduct: (obj, shop, token) => {
       dispatch(saveProduct(obj, shop, token));
 
-      dispatch({
-        type: 'HIDE_SIDEBAR'
-      });
+      dispatch(sidebarActions.sidebar.hide());
     },
     handleSelectVariance: key => {
-      dispatch({
-        type: 'SET_UI_PRODUCT_SELECTED_VARIANCE',
-        payload: key,
-      })
+      dispatch(productActions.products.ui.set.variance(key));
     },
     deleteProduct: id => {
       dispatch({
@@ -553,37 +474,22 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       })
     },
     handleAddVairace: category => {
-      dispatch({
-        type: 'ADD_UI_PRIMARY_ATTRIBUTE',
-        payload: category,
-      })
+      dispatch(categoryActions.categories.ui.addPrimaryAttribute(category));
     },
     handleSetTemporaryAttribute: (type, value, attributes) => {
       switch(type){
         case 'KEY':
-          dispatch({
-            type: 'SET_UI_TEMP_ATTRIBUTE_KEY',
-            payload: value,
-          });
+          dispatch(categoryActions.categories.ui.set.attr.temp.key(value));
           break;
         case 'VALUE':
-          dispatch({
-            type: 'SET_UI_TEMP_ATTRIBUTE_VALUE',
-            payload: value,
-          })
+          dispatch(categoryActions.categories.ui.set.attr.temp.value(value));
           break;
         case 'STOCK':
-          dispatch({
-            type: 'SET_UI_TEMP_ATTRIBUTE_STOCK',
-            payload: value,
-          })
+          dispatch(categoryActions.categories.ui.set.attr.temp.stock(value));
           break;
         case 'ADD':
           if( attributes.key !== '' && attributes.value !== '') {
-            dispatch({
-              type: 'SET_UI_TEMP_ATTRIBUTE',
-              payload: value,
-            })
+            dispatch(categoryActions.categories.ui.set.attr.temp.attribute(value));
           }
           break;
         default:

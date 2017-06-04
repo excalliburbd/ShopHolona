@@ -1,22 +1,9 @@
+import { handleActions } from 'redux-actions';
 
-export const UserReducer = (
-  state = {
-    isLoggedIn: false,
-    token: null,
-    registered_as: null,
-    referral: {
-      code: 'loading'
-    },
-    last_login: null,
-    full_name: '',
-    email: '',
-    phone_verified: false,
-    email_verified: false,
-  }, action
-) => {
-  switch (action.type) {
-    case 'USER_MANUAL_SIGNOUT':
-      return {
+import { userActions } from '../actions/';
+
+export const UserReducer = handleActions({
+  [userActions.user.manualSignOut]: (state, action) => ({
         isLoggedIn: false,
         token: null,
         registered_as: null,
@@ -28,61 +15,63 @@ export const UserReducer = (
         email: '',
         phone_verified: false,
         email_verified: false,
-      }
-    case 'SET_API_USER_TOKEN':
-      return {
+      }),
+  [userActions.user.done.get.token]: (state, action) => ({
         ...state,
         isLoggedIn: true,
         token: action.payload,
-      }
-    case 'USER_SET_PROFILE':
-      return {
+      }),
+  [userActions.user.done.get.profile]: (state, action) => ({
         ...state,
         ...action.payload,
-      }
-    default:
-      return state;
-  }
-}
+      }),
+}, {
+  isLoggedIn: false,
+  token: null,
+  registered_as: null,
+  referral: {
+    code: 'loading'
+  },
+  last_login: null,
+  full_name: '',
+  email: '',
+  phone_verified: false,
+  email_verified: false,
+});
 
-export const UserUIReducer = (
-  state = {
-    email: '',
-    emailPassword: '',
-    password: '',
-    phonePassword: '',
-    error: false,
-  }, action
-) => {
-  switch (action.type) {
-    case 'UPDATE_USER_UI_EMAIL':
-      return {
-        ...state,
-        email: action.val,
+export const UserUIReducer = handleActions({
+  [userActions.user.ui.email]: {
+      next(state, action) {
+        return {
+          ...state,
+          email: action.payload,
+        }
+      },
+      throw(state, action) {
+        return {
+          ...state,
+          email: '',
+          emailPassword: '',
+          error: true,
+        }
       }
-    case 'UPDATE_USER_UI_EMAIL_PASSWORD':
-     return {
+    },
+  [userActions.user.ui.emailPassword]: (state, action) => ({
        ...state,
-       emailPassword: action.val,
-     }
-    case 'UPDATE_USER_UI_PHONE_PASSWORD':
-     return {
+       emailPassword: action.payload,
+     }),
+  [userActions.user.ui.phone]: (state, action) => ({
        ...state,
-       phonePassword: action.val,
-     }
-    case 'UPDATE_USER_UI_PHONE':
-      return {
+       phonePassword: action.payload,
+     }),
+  [userActions.user.ui.phonePassword]: (state, action) => ({
         ...state,
-        phone: action.val,
-      }
-    case 'SET_USER_UI_EMAIL_ERROR':
-      return {
-        ...state,
-        email: '',
-        emailPassword: '',
-        error: true,
-      }
-    default:
-      return state;
-  }
-}
+        phone: action.payload,
+      }),
+}, {
+  email: '',
+  emailPassword: '',
+  password: '',
+  phonePassword: '',
+  error: false,
+});

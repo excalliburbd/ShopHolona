@@ -1,3 +1,9 @@
+import { handleActions } from 'redux-actions';
+
+import { categoryActions } from '../actions/';
+import { productActions } from '../actions/';
+import { sidebarActions } from '../actions/';
+
 const getDecrement = stock => {
   const decrement = parseInt(stock, 10) - 1;
 
@@ -8,14 +14,8 @@ const getDecrement = stock => {
   return decrement;
 }
 
-export const categoriesReducer = (
-  state = [
-
-  ],
-  action
-) => {
-  switch (action.type) {
-    case 'SET_API_SHOP_CATEGORY':
+export const categoriesReducer = handleActions({
+  [categoryActions.categories.done.get.shopCategory]: (state, action) => {
       const categories = [];
 
       action.payload.forEach(
@@ -23,19 +23,13 @@ export const categoriesReducer = (
       );
 
       return categories
-    default:
-      return state;
   }
-}
+}, [
 
-export const CategoriesEntityReducer = (
-  state = {
+])
 
-  },
-  action
-) => {
-  switch (action.type) {
-    case 'SET_API_SHOP_CATEGORY':
+export const CategoriesEntityReducer = handleActions({
+  [categoryActions.categories.done.get.shopCategory]: (state, action) => {
       const categories = {}
 
       action.payload.forEach(
@@ -47,52 +41,31 @@ export const CategoriesEntityReducer = (
       return {
           ...categories
         }
-    default:
-      return state;
   }
-}
+}, {
 
-export const CategoriesUIReducer = (
-  state = {
-    categoryID: null,
-    subCategoryID: null,
-    subSubCategoryID: null,
-    categories: {},
-    subCategories: {},
-    subSubCategories: {},
-    attributes: {
-      primary: [],
-      secondary: {},
-      selected: -1,
-    },
-    temporaryAttribute: {
-      key: '',
-      value: ''
-    },
-    uploadProgress: {
-      primary: false,
-      secondary: false,
+})
 
-    },
-  } , action
-) => {
-  switch (action.type) {
-    case 'SET_UI_CATEGORY':
+export const CategoriesUIReducer = handleActions({
+  [categoryActions.categories.ui.set.category]: (state, action) => {
       return {
         ...state,
-        categoryID: action.id
+        categoryID: action.payload
       }
-    case 'SET_UI_SUB_CATEGORY':
+  },
+  [categoryActions.categories.ui.set.subCategory]: (state, action) => {
       return {
         ...state,
-        subCategoryID: action.id
+        subCategoryID: action.payload
       }
-    case 'SET_UI_SUB_SUB_CATEGORY':
+  },
+  [categoryActions.categories.ui.set.subSubCategory]: (state, action) => {
       return {
         ...state,
-        subSubCategoryID: action.id
+        subSubCategoryID: action.payload
       }
-    case 'SET_PRIMARY_ATTR':
+  },
+  [categoryActions.categories.ui.set.attr.primary]: (state, action) => {
       const primary = [];
 
       action.payload.attributes.forEach(
@@ -108,7 +81,8 @@ export const CategoriesUIReducer = (
           primary
         }
       }
-    case 'SET_SECONDARY_ATTR':
+  },
+  [categoryActions.categories.ui.set.attr.secondary]: (state, action) => {
       const secondary = [];
 
       action.payload.attributes.forEach(
@@ -138,7 +112,8 @@ export const CategoriesUIReducer = (
           secondary: nestedAttr,
         }
       }
-    case 'SET_UI_PRIMARY_ATTR_SELECTED':
+  },
+  [categoryActions.categories.ui.set.attr.selected]: (state, action) => {
       return {
           ...state,
           attributes: {
@@ -146,7 +121,8 @@ export const CategoriesUIReducer = (
             selected: action.payload.id
           }
         }
-    case 'SET_UI_PRIMARY_ATTR':
+  },
+  [categoryActions.categories.ui.set.attr.selectPrimary]: (state, action) => {
       return {
           ...state,
           attributes: {
@@ -159,7 +135,8 @@ export const CategoriesUIReducer = (
             )
           }
         }
-    case 'UNSET_UI_PRIMARY_ATTR':
+  },
+  [categoryActions.categories.ui.unsetPrimaryAttr]: (state, action) => {
       return {
           ...state,
           attributes: {
@@ -172,7 +149,8 @@ export const CategoriesUIReducer = (
             )
           }
         }
-    case 'SET_UI_SECONDARY_ATTR':
+  },
+  [categoryActions.categories.ui.set.attr.selectSecondary]: (state, action) => {
       return {
         ...state,
         attributes: {
@@ -193,7 +171,8 @@ export const CategoriesUIReducer = (
           }
         }
       }
-    case 'ADD_UI_PRIMARY_ATTRIBUTE':
+  },
+  [categoryActions.categories.ui.addPrimaryAttribute]: (state, action) => {
       return {
         ...state,
         attributes: {
@@ -221,7 +200,8 @@ export const CategoriesUIReducer = (
           }
         }
       }
-    case 'SET_UI_TEMP_ATTRIBUTE':
+  },
+  [categoryActions.categories.ui.set.attr.temp.attribute]: (state, action) => {
       return {
         ...state,
         attributes: {
@@ -250,8 +230,8 @@ export const CategoriesUIReducer = (
           stock: 0,
         }
       }
-    case 'HIDE_SIDEBAR':
-      return {
+  },
+  [sidebarActions.sidebar.hide]: (state, action) => ({
         ...state,
         categoryID: null,
         subCategoryID: null,
@@ -273,8 +253,8 @@ export const CategoriesUIReducer = (
           secondary: false,
 
         },
-      }
-    case 'UPDATE_UI_CATEGORY_STOCK':
+  }),
+  [categoryActions.categories.ui.update.stock]: (state, action) => {
       return {
         ...state,
         attributes: {
@@ -293,7 +273,8 @@ export const CategoriesUIReducer = (
           }
         }
       }
-    case 'VALIDATE_UI_CATEGORY_STOCK':
+  },
+  [categoryActions.categories.ui.validateStock]: (state, action) => {
       return {
         ...state,
         attributes: {
@@ -312,7 +293,8 @@ export const CategoriesUIReducer = (
           }
         }
       }
-    case 'UPDATE_UI_CATEGORY_STOCK_INC':
+  },
+  [categoryActions.categories.ui.update.stockInc]: (state, action) => {
       return {
         ...state,
         attributes: {
@@ -331,7 +313,8 @@ export const CategoriesUIReducer = (
           }
         }
       }
-    case 'UPDATE_UI_CATEGORY_STOCK_DEC':
+  },
+  [categoryActions.categories.ui.update.stockDec]: (state, action) => {
       return {
         ...state,
         attributes: {
@@ -352,7 +335,8 @@ export const CategoriesUIReducer = (
           }
         }
       }
-    case 'SET_CUSTOM_ATTRIBUT_ID_PRIMAY':
+  },
+  [categoryActions.categories.done.post.customAttr.idPrimary]: (state, action) => {
       return {
         ...state,
         attributes: {
@@ -384,8 +368,8 @@ export const CategoriesUIReducer = (
           }
         }
       }
-    case 'SET_CUSTOM_ATTRIBUT_ID_SECONDARY':
-
+  },
+  [categoryActions.categories.done.post.customAttr.idSecondary]: (state, action) => {
       const id = (state.attributes.secondary[action.payload.primaryID].depricated) ?
                   state.attributes.secondary[action.payload.primaryID].redirect :
                   action.payload.primaryID;
@@ -414,7 +398,8 @@ export const CategoriesUIReducer = (
           }
         }
       }
-    case 'SET_CATEGORIES_PRODUCT_IMAGES':
+  },
+  [categoryActions.categories.ui.set.productImages]: (state, action) => {
       return {
         ...state,
         attributes: {
@@ -435,7 +420,8 @@ export const CategoriesUIReducer = (
           )
         }
       }
-    case 'REMOVE_CATEGORIES_PRODUCT_IMAGE':
+  },
+  [categoryActions.categories.remove.productImage]: (state, action) => {
       return {
           ...state,
           attributes: {
@@ -455,7 +441,9 @@ export const CategoriesUIReducer = (
             )
           }
         }
-    case 'DONE_API_PRODUCT_IMGAE_POST':
+  },
+  [categoryActions.categories.done.post.productImage]: {
+    next (state, action) {
       return {
             ...state,
             attributes: {
@@ -486,19 +474,20 @@ export const CategoriesUIReducer = (
               )
             }
           }
-    case 'ERROR_API_PRODUCT_IMGAE_POST':
+        },
+    throw (state, action) {
       return {
             ...state,
             attributes: {
               ...state.attributes,
               primary: state.attributes.primary.map(
                 (obj, key) => {
-                  if(obj.id === action.payload.id ) {
+                  if(obj.id === action.meta.id ) {
                     return {
                       ...obj,
                       files: obj.files.map(
                         (file, key) => {
-                          if(key === action.payload.key) {
+                          if(key === action.meta.key) {
                             return {
                               ...file,
                               apiID: null,
@@ -516,7 +505,9 @@ export const CategoriesUIReducer = (
               )
             }
           }
-    case 'SET_UI_TEMP_ATTRIBUTE_KEY':
+    }
+  },
+  [categoryActions.categories.ui.set.attr.temp.key]: (state, action) => {
       return {
         ...state,
         temporaryAttribute: {
@@ -524,7 +515,8 @@ export const CategoriesUIReducer = (
           key: action.payload
         }
       }
-    case 'SET_UI_TEMP_ATTRIBUTE_VALUE':
+  },
+  [categoryActions.categories.ui.set.attr.temp.value]: (state, action) => {
       return {
         ...state,
         temporaryAttribute: {
@@ -532,7 +524,8 @@ export const CategoriesUIReducer = (
           value: action.payload
         }
       }
-    case 'SET_UI_TEMP_ATTRIBUTE_STOCK':
+  },
+  [categoryActions.categories.ui.set.attr.temp.stock]: (state, action) => {
       return {
         ...state,
         temporaryAttribute: {
@@ -540,7 +533,8 @@ export const CategoriesUIReducer = (
           stock: action.payload
         }
       }
-    case 'SET_CATEGORIES':
+  },
+  [categoryActions.categories.done.get.category]: (state, action) => {
       const categories = {};
 
       action.payload.forEach(
@@ -553,7 +547,8 @@ export const CategoriesUIReducer = (
         ...state,
         categories
       }
-    case 'SET_SUB_CATEGORIES':
+  },
+  [categoryActions.categories.done.get.subCategory]: (state, action) => {
       const subCategories = {};
 
       action.payload.sub_categories.forEach(
@@ -566,7 +561,8 @@ export const CategoriesUIReducer = (
         ...state,
         subCategories,
       }
-    case 'SET_SUB_SUB_CATEGORIES':
+  },
+  [categoryActions.categories.done.get.subSubCategory]: (state, action) => {
       const subSubCategories = {};
 
       action.payload.sub_categories.forEach(
@@ -579,11 +575,15 @@ export const CategoriesUIReducer = (
         ...state,
         subSubCategories,
       }
-    case 'REMOVE_SUB_SUB_CATEGORIES':
-      return {
-        ...state,
-        subSubCategories: {}
-      }
+  },
+  // [categoryActions.categories]: (state, action) => {
+  //   // case 'REMOVE_SUB_SUB_CATEGORIES':
+  //     return {
+  //       ...state,
+  //       subSubCategories: {}
+  //     }
+  // },
+  // [categoryActions.categories]: (state, action) => {
     // case 'SET_API_SUB_SUB_CATEGORIES':
     //   const apiSubSubCategories = {};
 
@@ -600,7 +600,8 @@ export const CategoriesUIReducer = (
     //       ...apiSubSubCategories
     //     }
     //   }
-    case 'RESET_UI_SUB_SUB_CATEGORIES':
+  // },
+  [productActions.products.ui.reset.subSubCategories]: (state, action) => {
       return {
         ...state,
         subSubCategoryID: null,
@@ -619,7 +620,8 @@ export const CategoriesUIReducer = (
 
         },
       }
-    case 'RESET_UI_SUB_CATEGORIES':
+  },
+  [productActions.products.ui.reset.subCategories]: (state, action) => {
       return {
         ...state,
         subCategoryID: null,
@@ -640,7 +642,8 @@ export const CategoriesUIReducer = (
 
         },
       }
-    case 'RESET_UI_CATEGORIES':
+  },
+  [productActions.products.ui.reset.categories]: (state, action) => {
       return {
         ...state,
         categoryID: null,
@@ -663,7 +666,8 @@ export const CategoriesUIReducer = (
 
         },
       }
-    case 'DONE_SET_CUSTOM_ATTRIBUTE_PRIMARY':
+  },
+  [categoryActions.categories.done.post.customAttr.primary]: (state, action) => {
       return {
         ...state,
         uploadProgress: {
@@ -671,7 +675,8 @@ export const CategoriesUIReducer = (
           primary: true,
         },
       }
-    case 'DONE_SET_CUSTOM_ATTRIBUTE_SECONDARY':
+  },
+  [categoryActions.categories.done.post.customAttr.secondary]: (state, action) => {
       return {
         ...state,
         uploadProgress: {
@@ -679,7 +684,26 @@ export const CategoriesUIReducer = (
           secondary: true,
         },
       }
-    default:
-      return state;
   }
-}
+}, {
+  categoryID: null,
+  subCategoryID: null,
+  subSubCategoryID: null,
+  categories: {},
+  subCategories: {},
+  subSubCategories: {},
+  attributes: {
+    primary: [],
+    secondary: {},
+    selected: -1,
+  },
+  temporaryAttribute: {
+    key: '',
+    value: ''
+  },
+  uploadProgress: {
+    primary: false,
+    secondary: false,
+
+  },
+})
