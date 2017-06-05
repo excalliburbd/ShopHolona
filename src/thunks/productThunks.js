@@ -1,16 +1,19 @@
 import { request, getConfig } from './helpers';
 
-import { getShopCategories } from './shopActions';
+import { getShopCategories } from './shopThunks';
+
+import { sidebarActions } from '../actions/';
+import { shopActions } from '../actions/';
+import { productActions } from '../actions/';
+import { categoryActions } from '../actions/';
+import { imageUploaderActions } from '../actions/';
 
 export const getCategory = () => dispatch => {
   request('/api/references/categories/', getConfig() ).then(
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
-              dispatch({
-                type: 'SET_CATEGORIES',
-                payload: res,
-              })
+              dispatch(categoryActions.categories.done.get.category(res));
             }
           );
 }
@@ -20,10 +23,7 @@ export const getSubCategory = id => dispatch => {
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
-              dispatch({
-                type: 'SET_SUB_CATEGORIES',
-                payload: res,
-              })
+              dispatch(categoryActions.categories.done.get.subCategory(res));
             }
           );
 }
@@ -33,10 +33,7 @@ export const getSubSubCategory = (id, subID )=> dispatch => {
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
-              dispatch({
-                type: 'SET_SUB_SUB_CATEGORIES',
-                payload: res,
-              })
+              dispatch(categoryActions.categories.done.get.subSubCategory(res));
             }
           );
 }
@@ -57,10 +54,7 @@ export const getAllProducts = shop  => dispatch => {
                 type: 'DONE_API_GET_PRODUCT',
               })
 
-              dispatch({
-                type: 'SET_API_PRODUCTS_ENTITIES',
-                payload: res,
-              })
+              dispatch(productActions.products.done.get.products(res));
             }
           );
 }
@@ -101,21 +95,13 @@ export const deleteProduct = (id, shop, token) => dispatch => {
               res => {
                 dispatch({type: 'RESPONSE_API_DEBUG',payload:res})
 
-                dispatch({
-                  type: 'DONE_API_DELETE_PRODUCT',
-                  payload: { response: res, id },
-                });
+                dispatch(productActions.products.done.delete.product(id));
 
-                dispatch({
-                  type: 'UPDATE_SHOP_CHIP',
-                  payload: 0
-                });
+                dispatch(shopActions.shop.updateChip(0));
 
                 dispatch(getShopCategories(shop));
 
-                dispatch({
-                  type: 'HIDE_SIDEBAR'
-                })
+                dispatch(sidebarActions.sidebar.hide())
               }
           );
 }
@@ -140,25 +126,13 @@ export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
               if(res.id){
-                dispatch({
-                  type: 'DONE_API_PRODUCT_IMGAE_POST',
-                  payload: { response: res, id, key }
-                });
+                dispatch(categoryActions.categories.done.post.productImage({ response: res, id, key }));
 
-                dispatch({
-                  type: 'INC_PRODUCTS_UPLOAD_COUNT'
-                })
+                dispatch(productActions.products.ui.set.upload.inc())
 
                 if (status === 'CROPED') {
-                  dispatch({
-                    type: 'HIDE_IMAGE_UPLOADER',
-                  });
+                  dispatch(imageUploaderActions.imageUploader.hide());
                 }
-              }else{
-                dispatch({
-                  type: 'ERROR_API_PRODUCT_IMGAE_POST',
-                  payload: { response: res, id, key }
-                })
               }
 
               if(status === 'DONE') {
@@ -167,6 +141,10 @@ export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
                   payload: { id, key }
                 })
               }
+            }
+          ).catch(
+            err => {
+              dispatch(categoryActions.categories.done.post.productImage( new Error(err), { id, key } ));
             }
           );
 }
@@ -212,15 +190,17 @@ export const  requestAttribute = (
 
                 if (obj.id) {
                   if (primary) {
-                    dispatch({
-                      type: 'SET_CUSTOM_ATTRIBUT_ID_PRIMAY',
-                      payload: { newID: obj.id, oldID: id },
-                    })
+                    dispatch(categoryActions.categories.done.post.customAttr.idPrimary(
+                      {
+                        newID: obj.id,
+                        oldID: id
+                      }));
                   } else {
-                    dispatch({
-                      type: 'SET_CUSTOM_ATTRIBUT_ID_SECONDARY',
-                      payload: { newID: obj.id, oldID: id, primaryID },
-                    })
+                    dispatch(categoryActions.categories.done.post.customAttr.idSecondary(
+                      {
+                        newID: obj.id,
+                        oldID: id, primaryID,
+                      }));
                   }
                 } else {
                   dispatch({
@@ -230,29 +210,21 @@ export const  requestAttribute = (
                 }
 
                 if (signal === 'DONE_PRIMARY') {
-                  dispatch({
-                    type: 'DONE_SET_CUSTOM_ATTRIBUTE_PRIMARY'
-                  })
+                  dispatch(categoryActions.categories.done.post.customAttr.primary());
                 }
 
                 if (signal === 'DONE_SECONDARY') {
-                  dispatch({
-                    type: 'DONE_SET_CUSTOM_ATTRIBUTE_SECONDARY'
-                  })
+                  dispatch(categoryActions.categories.done.post.customAttr.secondary())
                 }
               }
             );
   } else {
       if (!customPrimary) {
-        dispatch({
-          type: 'DONE_SET_CUSTOM_ATTRIBUTE_PRIMARY'
-        })
+        dispatch(categoryActions.categories.done.post.customAttr.primary())
       }
 
       if (!customSecondary) {
-        dispatch({
-          type: 'DONE_SET_CUSTOM_ATTRIBUTE_SECONDARY'
-        })
+        dispatch(categoryActions.categories.done.post.customAttr.secondary())
       }
   }
 }
@@ -267,10 +239,7 @@ export const getFeaturedProduct = shop => dispatch => {
   request(`/api/shops/${shop}/featured-products/`, getConfig()
           ).then(
             res => {
-              dispatch({
-                type: 'DONE_API_GET_FEATURED_PRODUCT',
-                payload: res,
-              })
+              dispatch(productActions.products.done.get.featuredProducts(res));
             }
           )
 }
@@ -299,9 +268,7 @@ export const makeFeaturedProduct = (id, shop, token) => dispatch => {
 
               dispatch(getFeaturedProduct(shop));
 
-              dispatch({
-                type: 'HIDE_SIDEBAR'
-              });
+              dispatch(sidebarActions.sidebar.hide());
             }
           )
 }
@@ -319,14 +286,9 @@ export const removeFromFeaturedProduct = (productID, featuredID, shop, token) =>
             'delete'
           )).then(
             res => {
-              dispatch({
-                type: 'DONE_API_REMOVE_FEATURED_PRODUCT',
-                payload: { productID },
-              });
+              dispatch(productActions.products.done.delete.featuredProduct(productID));
 
-              dispatch({
-                type: 'HIDE_SIDEBAR'
-              });
+              dispatch(sidebarActions.sidebar.hide());
             }
           )
 }

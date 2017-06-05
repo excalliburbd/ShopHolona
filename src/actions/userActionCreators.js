@@ -1,0 +1,18 @@
+
+export const userActionCreators = {
+  USER: {
+    UI: {
+      EMAIL: payload => payload,
+      EMAIL_PASSWORD: payload => payload,
+      PHONE: payload => payload,
+      PHONE_PASSWORD: payload => payload,
+    },
+    DONE: {
+      GET: {
+        TOKEN: payload => payload,
+        PROFILE: payload => payload,
+      }
+    },
+    MANUAL_SIGN_OUT: payload => payload
+  }
+}

@@ -89,8 +89,6 @@ class Nav extends Component {
           return <ProductsSidebarContainer />
         case 'CART':
           return <Cart/>
-        case 'PRODUCT_DETAILS':
-          return <Cart/>
         default:
           return null;
       }

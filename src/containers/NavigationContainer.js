@@ -3,9 +3,12 @@ import { withRouter } from 'react-router';
 import { createSelector } from 'reselect';
 import { mediaQueryTracker } from 'redux-mediaquery';
 
-import { getAllProducts, getFeaturedProduct } from '../actions/productsActions';
-import { getShopCategories, getShop, getShopAddress } from '../actions/shopActions';
-import { getMe } from '../actions/userActions';
+import { getAllProducts, getFeaturedProduct } from '../thunks/productThunks';
+import { getShopCategories, getShop, getShopAddress } from '../thunks/shopThunks';
+import { getMe } from '../thunks/userThunks';
+
+import { userActions } from '../actions/';
+import { sidebarActions } from '../actions/';
 
 import Nav from '../components/Navigation/Navigation';
 
@@ -63,19 +66,13 @@ const mapDispatchToProps = dispatch => {
      })
    },
    handleSignIn: () => {
-     dispatch({
-       type: 'SHOW_SIDEBAR_SIGNIN'
-     })
+     dispatch(sidebarActions.sidebar.show.signIn())
    },
    handleHideSidebar: () => {
-     dispatch({
-       type: 'HIDE_SIDEBAR'
-     })
+     dispatch(sidebarActions.sidebar.hide());
    },
    handleSignOut: () => {
-      dispatch({
-        type: 'USER_MANUAL_SIGNOUT',
-      })
+      dispatch(userActions.user.manualSignOut())
     },
     handleSetCredentials: (shop, token) => {
       dispatch({
@@ -89,11 +86,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(getFeaturedProduct(shop));
 
       if (token) {
-        dispatch({
-          type: 'SET_API_USER_TOKEN',
-          payload: token,
-        });
-
+        dispatch(userActions.user.done.get.token(token));
         dispatch(getMe(token));
       }
     },

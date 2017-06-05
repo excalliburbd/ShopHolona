@@ -1,7 +1,10 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import { getCategory } from '../actions/productsActions';
+import { getCategory } from '../thunks/productThunks';
+
+import { sidebarActions } from '../actions/';
+
 import AddButton from '../components/AddButton';
 
 const mapStateToProps = state => {
@@ -12,9 +15,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     handleAddProduct: () => {
-      dispatch({
-        type: 'SHOW_SIDEBAR_ADD_PRODUCT'
-      });
+      dispatch(sidebarActions.sidebar.show.addProduct());
       dispatch(getCategory());
     }
   }

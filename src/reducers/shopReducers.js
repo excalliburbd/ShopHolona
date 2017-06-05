@@ -1,29 +1,17 @@
-export const ShopPageReducer = (
-  state = {
-    id: null,
-    shop_name: 'Loading',
-    short_descr: 'Loading',
-    prof_pic: 'https://unsplash.it/160/160',
-    cover_photo: 'https://unsplash.it/1200/700',
-    contacts: [],
-    address: {
+import { handleActions } from 'redux-actions';
 
-    }
-  }, action
-) => {
-  switch (action.type) {
-    case 'SET_SHOP':
-      return {
+import { shopActions } from '../actions/';
+
+export const ShopPageReducer = handleActions({
+    [shopActions.shop.set.shop]: (state, action) => ({
         ...state,
         ...action.payload,
-      }
-    case 'SET_SHOP_ID':
-      return {
+      }),
+    [shopActions.shop.set.id]: (state, action) => ({
         ...state,
-        id: action.payload,
-      }
-    case 'SET_SHOP_CONTACT_NUMBER':
-      return {
+        ...action.payload,
+      }),
+    [shopActions.shop.set.contactNumber]: (state, action) => ({
         ...state,
         contacts: state.contacts.map(
           contact => {
@@ -37,43 +25,43 @@ export const ShopPageReducer = (
             return contact;
           }
         )
-      }
-    case 'SET_SHOP_ADDRESS':
-      const addresses = {};
+      }),
+    [shopActions.shop.set.address]: (state, action) => {
+        const addresses = {};
 
-      action.payload.forEach(
-        obj => {
-          addresses[obj.id] = obj;
-        }
-      )
+        action.payload.forEach(
+          obj => {
+            addresses[obj.id] = obj;
+          }
+        )
 
-      return {
-        ...state,
-        address: addresses
+        return {
+          ...state,
+          address: addresses
       }
-    default:
-      return state;
+    }
+}, {
+  id: null,
+  shop_name: 'Loading',
+  short_descr: 'Loading',
+  prof_pic: 'https://unsplash.it/160/160',
+  cover_photo: 'https://unsplash.it/1200/700',
+  contacts: [],
+  address: {
+
   }
-}
+})
 
-export const ShopPageUIReducer = (
-  state = {
-    details: false,
-    chip: 0,
-  } , action
-) => {
-  switch (action.type) {
-    case 'TOGGLE_SHOPPAGE_UI_DETAILS':
-      return {
+export const ShopPageUIReducer = handleActions({
+    [shopActions.shop.toggleDetails]: (state, action) => ({
         ...state,
         details: !state.details,
-      }
-    case 'UPDATE_SHOP_CHIP':
-      return {
+      }),
+    [shopActions.shop.updateChip]:  (state, action) => ({
         ...state,
         chip: action.payload,
-      }
-    default:
-      return state;
-  }
-}
+      })
+}, {
+  details: false,
+  chip: 0,
+})

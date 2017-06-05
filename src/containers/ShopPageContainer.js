@@ -2,7 +2,11 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { withRouter } from 'react-router';
 
-import { getCategory } from '../actions/productsActions';
+import { getCategory } from '../thunks/productThunks';
+
+import { sidebarActions } from '../actions/';
+import { shopActions } from '../actions/';
+import { imageUploaderActions } from '../actions/';
 
 import ShopPage from '../components/ShopPage';
 
@@ -36,8 +40,6 @@ const getProducts = createSelector(
   [getProcutsArray, getProcutEntities, getCategories],
   (productsArr, productsObj, categories) => {
     const products = productsArr.map( id => productsObj[id] );
-
-    console.log(categories)
 
     return categories.map(
              obj => ({
@@ -111,41 +113,25 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     toggleDetails: () => {
-      dispatch({
-        type: 'TOGGLE_SHOPPAGE_UI_DETAILS'
-      })
+      dispatch(shopActions.shop.toggleDetails())
     },
     selectChip: index => {
-      dispatch({
-        type: 'UPDATE_SHOP_CHIP',
-        payload: index,
-      })
+      dispatch(shopActions.shop.updateChip(index));
     },
     handleShowProductDetails: (vendor, product) => {
       if (vendor) {
-        dispatch({
-        type: 'SHOW_SIDEBAR_PRODUCT_DETAILS',
-        payload: { product }
-      });
+        dispatch(sidebarActions.sidebar.show.addProductDetails(product));
       }
     },
     handleAddProduct: () => {
-      dispatch({
-        type: 'SHOW_SIDEBAR_ADD_PRODUCT'
-      });
+      dispatch(sidebarActions.sidebar.show.addProduct());
       dispatch(getCategory());
     },
     handleShowImageUploader: type => {
-      dispatch({
-        type: 'SHOW_IMAGE_UPLOADER',
-        payload: type,
-      });
+      dispatch(imageUploaderActions.imageUploader.show.uploader(type));
     },
     handleEditContactNumber: (id, value) => {
-      dispatch({
-        type: 'SET_SHOP_CONTACT_NUMBER',
-        payload: { id, value }
-      })
+      dispatch(shopActions.shop.set.contactNumber({ id, value }));
     }
   }
 }

@@ -1,6 +1,9 @@
 import { request, getConfig } from './helpers';
 
-import { getShopCategories } from '../actions/shopActions';
+import { getShopCategories } from './shopThunks';
+
+import { userActions } from '../actions/';
+import { sidebarActions } from '../actions/';
 
 export const trySignInAsyncAction = ({ email, password }, shop) => dispatch => {
 
@@ -30,31 +33,23 @@ export const trySignInAsyncAction = ({ email, password }, shop) => dispatch => {
                   dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
                   if (res.id) {
-                    dispatch({
-                      type: 'USER_SET_PROFILE',
-                      payload: res,
-                    });
+                    dispatch(userActions.user.done.get.profile(res));
                   }
                 }
               )
 
               if(res.token){
-                dispatch({
-                  type: 'SET_API_USER_TOKEN',
-                  payload: res.token,
-                });
+                dispatch(userActions.user.done.get.token(res.token));
 
-                dispatch({
-                  type: 'HIDE_SIDEBAR',
-                });
+                dispatch(sidebarActions.sidebar.hide());
 
                 dispatch(getShopCategories(shop));
 
-              }else{
-                dispatch({
-                  type: 'SET_USER_UI_EMAIL_ERROR'
-                })
               }
+            }
+          ).catch(
+            err => {
+              dispatch(userActions.user.ui.email(new Error(err)))
             }
           );
 }
@@ -67,10 +62,7 @@ export const getMe = (token, shop) => dispatch => {
             dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
             if (res.id) {
-              dispatch({
-                type: 'USER_SET_PROFILE',
-                payload: res,
-              });
+              dispatch(userActions.user.done.get.profile(res));
             }
           }
         )

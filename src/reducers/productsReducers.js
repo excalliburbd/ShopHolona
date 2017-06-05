@@ -1,10 +1,10 @@
-export const productsReducer = (
-  state = [
+import { handleActions } from 'redux-actions';
 
-  ] , action
-) => {
-  switch (action.type) {
-    case 'SET_API_PRODUCTS_ENTITIES':
+import { productActions } from '../actions/';
+import { sidebarActions } from '../actions/';
+
+export const productsReducer = handleActions({
+  [productActions.products.done.get.products]: (state, action) => {
       const products = state;
 
       action.payload.forEach(
@@ -16,20 +16,16 @@ export const productsReducer = (
       )
 
       return products;
-    case 'DONE_API_DELETE_PRODUCT':
-      return state.filter( id => (id !== action.payload.id));
-    default:
-      return state;
+  },
+  [productActions.products.done.delete.product]: (state, action) => {
+      return state.filter( id => (id !== action.payload));
   }
-}
+}, [
 
-export const featuredProductsReducer = (
-  state = [
+]);
 
-  ] , action
-) => {
-  switch (action.type) {
-    case 'DONE_API_GET_FEATURED_PRODUCT':
+export const featuredProductsReducer = handleActions({
+  [productActions.products.done.get.featuredProducts]: (state, action) => {
       const products = state;
 
       action.payload.forEach(
@@ -41,79 +37,76 @@ export const featuredProductsReducer = (
       )
 
       return products;
-    case 'DONE_API_DELETE_PRODUCT':
-    case 'DONE_API_REMOVE_FEATURED_PRODUCT':
-      return state.filter( id => (id !== action.payload.productID));
-    default:
-      return state;
-  }
-}
+    },
+    [productActions.products.done.delete.product]: (state, action) => {
+      return state.filter( id => (id !== action.payload));
+    },
+    [productActions.products.done.delete.featuredProduct]: (state, action) => {
+      return state.filter( id => (id !== action.payload));
+    }
+}, [
 
-export const ProductsUIReducer = (
-  state = {
-    category: '',
-    subCategory: '',
-    subSubCategory: '',
-    name: '',
-    weight: '',
-    price: '',
-    description: '',
-    selectedVariance: 0,
-    selectedProduct: {},
-    uploadCount: 0,
-    doneUploadCount: 0,
-  }, action
-) => {
-  switch(action.type) {
-    case 'SET_UI_PRODUCT_ADD_CATEGORY':
+]);
+
+export const ProductsUIReducer = handleActions({
+  [productActions.products.ui.set.add.category]: (state, action) => {
+    return {
+      ...state,
+      category: action.payload,
+    }
+  },
+  [productActions.products.ui.set.add.subCategory]: (state, action) => {
+    return {
+      ...state,
+      subCategory: action.payload,
+    }
+  },
+  [productActions.products.ui.set.add.subSubCategory]: (state, action) => {
+    return {
+      ...state,
+      subSubCategory: action.payload,
+    }
+  },
+  [productActions.products.ui.set.add.name]: (state, action) => {
+    return {
+      ...state,
+      name: action.payload,
+    }
+  },
+  [productActions.products.ui.set.add.weight]: (state, action) => {
+    return {
+      ...state,
+      weight: action.payload,
+    }
+  },
+  [productActions.products.ui.set.add.price]: (state, action) => {
+    return {
+      ...state,
+      price: action.payload,
+    }
+  },
+  [productActions.products.ui.set.add.desc]: (state, action) => {
+    return {
+      ...state,
+      description: action.payload,
+    }
+  },
+  [sidebarActions.sidebar.show.addProductDetails]: (state, action) => {
       return {
         ...state,
-        category: action.payload.value,
+        selectedProduct: action.payload,
       }
-    case 'SET_UI_PRODUCT_ADD_SUB_CATEGORY':
-      return {
-        ...state,
-        subCategory: action.payload.value,
-      }
-    case 'SET_UI_PRODUCT_ADD_SUB_SUB_CATEGORY':
-      return {
-        ...state,
-        subSubCategory: action.payload.value,
-      }
-    case 'SET_UI_PRODUCT_ADD_NAME':
-      return {
-        ...state,
-        name: action.payload.value,
-      }
-    case 'SET_UI_PRODUCT_ADD_WEIGHT':
-     return {
-        ...state,
-        weight: action.payload.value,
-      }
-    case 'SET_UI_PRODUCT_ADD_PRICE':
-      return {
-        ...state,
-        price: action.payload.value,
-      }
-    case 'SET_UI_PRODUCT_ADD_DESC':
-      return {
-        ...state,
-        description: action.payload.value,
-      }
-    case "SHOW_SIDEBAR_PRODUCT_DETAILS":
-      return {
-        ...state,
-        selectedProduct: action.payload.product,
-      }
-    case 'SET_UI_PRODUCT_DETAILS_NAME':
+  },
+  [productActions.products.ui.set.edit.name]: (state, action) => {
       return {
         ...state,
         selectedProduct: {
           ...state.selectedProduct,
-          name: action.payload.value,
+          name: action.payload,
         }
       }
-    case 'SET_UI_PRODUCT_DETAILS_WEIGHT':
+  },
+  [productActions.products.ui.set.edit.weight]: (state, action) => {
      return {
         ...state,
         selectedProduct: {
@@ -121,7 +114,8 @@ export const ProductsUIReducer = (
           weight: action.payload.value,
         }
       }
-    case 'SET_UI_PRODUCT_DETAILS_PRICE':
+  },
+  [productActions.products.ui.set.edit.price]: (state, action) => {
       return {
         ...state,
         selectedProduct: {
@@ -129,7 +123,8 @@ export const ProductsUIReducer = (
           price: action.payload.value,
         }
       }
-    case 'SET_UI_PRODUCT_DETAILS_DESC':
+  },
+  [productActions.products.ui.set.edit.desc]: (state, action) => {
       return {
         ...state,
         selectedProduct: {
@@ -137,20 +132,24 @@ export const ProductsUIReducer = (
           short_desc: action.payload.value,
         }
       }
-    case 'SHOW_SIDEBAR_PRODUCT_DETAILS_DETAILS':
-      return {
-        ...state,
-        selectedProduct: {
-          ...state.selectedProduct,
-          details: action.payload.value,
-        }
-      }
-    case 'SET_UI_PRODUCT_SELECTED_VARIANCE':
+  },
+  // [productActions.products.ui.set.add.subSubCategory]: (state, action) => {
+  //   case 'SHOW_SIDEBAR_PRODUCT_DETAILS_DETAILS':
+  //     return {
+  //       ...state,
+  //       selectedProduct: {
+  //         ...state.selectedProduct,
+  //         details: action.payload.value,
+  //       }
+  //     }
+  // },
+  [productActions.products.ui.set.variance]: (state, action) => {
       return {
         ...state,
         selectedVariance: action.payload
       }
-    case 'RESET_UI_SUB_SUB_CATEGORIES':
+  },
+  [productActions.products.ui.reset.subSubCategories]: (state, action) => {
       return {
         ...state,
         subSubCategory: '',
@@ -163,7 +162,8 @@ export const ProductsUIReducer = (
         uploadCount: 0,
         doneUploadCount: 0,
       }
-    case 'RESET_UI_SUB_CATEGORIES':
+  },
+  [productActions.products.ui.reset.subCategories]: (state, action) => {
       return {
         ...state,
         subCategory: '',
@@ -177,8 +177,21 @@ export const ProductsUIReducer = (
         uploadCount: 0,
         doneUploadCount: 0,
       }
-    case 'HIDE_SIDEBAR':
-    case 'RESET_UI_CATEGORIES':
+  },
+  [sidebarActions.sidebar.hide]: (state, action) => ({
+        category: '',
+        subCategory: '',
+        subSubCategory: '',
+        name: '',
+        weight: '',
+        price: '',
+        description: '',
+        selectedVariance: 0,
+        selectedProduct: {},
+        uploadCount: 0,
+        doneUploadCount: 0,
+  }),
+  [productActions.products.ui.reset.categories]: (state, action) => {
       return {
         category: '',
         subCategory: '',
@@ -192,34 +205,42 @@ export const ProductsUIReducer = (
         uploadCount: 0,
         doneUploadCount: 0,
       }
-    case 'SET_PRODUCTS_UPLOAD_COUNT':
+  },
+  [productActions.products.ui.set.upload.count]: (state, action) => {
       return {
         ...state,
         uploadCount: action.payload,
       }
-    case 'INC_PRODUCTS_UPLOAD_COUNT':
+  },
+  [productActions.products.ui.set.upload.inc]: (state, action) => {
       return {
         ...state,
         doneUploadCount: state.doneUploadCount + 1,
       }
-    case 'DEC_PRDUCTS_UPLOAD_DONE_COUNT':
+  },
+  [productActions.products.ui.set.upload.dec]: (state, action) => {
       return {
         ...state,
         uploadCount: ((state.uploadCount - 1) < 0) ? 0 : (state.uploadCount - 1),
         doneUploadCount: ((state.doneUploadCount - 1) < 0) ? 0 : (state.doneUploadCount - 1)
       }
-    default:
-      return state;
-  }
-}
+  },
+}, {
+  category: '',
+  subCategory: '',
+  subSubCategory: '',
+  name: '',
+  weight: '',
+  price: '',
+  description: '',
+  selectedVariance: 0,
+  selectedProduct: {},
+  uploadCount: 0,
+  doneUploadCount: 0,
+});
 
-export const productsEntityReducer = (
-  state = {
-
-  }, action
-) => {
-  switch (action.type) {
-    case 'SET_API_PRODUCTS_ENTITIES':
+export const productsEntityReducer = handleActions({
+    [productActions.products.done.get.products]: (state, action) => {
       const products = {
         ...state
       }
@@ -242,13 +263,15 @@ export const productsEntityReducer = (
       )
 
       return products;
-    case 'DONE_API_DELETE_PRODUCT':
+    },
+    [productActions.products.done.delete.product]: (state, action) => {
       const productsEntity = { ...state };
 
-      delete productsEntity[action.payload.id];
+      delete productsEntity[action.payload];
 
       return productsEntity;
-    case 'DONE_API_GET_FEATURED_PRODUCT':
+    },
+    [productActions.products.done.get.featuredProducts]: (state, action) => {
       const featuredProducts = {
         ...state
       }
@@ -273,13 +296,14 @@ export const productsEntityReducer = (
       )
 
       return featuredProducts;
-    case 'DONE_API_DELETE_FEATURED_PRODUCT':
+    },
+  [productActions.products.done.delete.featuredProducts]: (state, action) => {
       const featuredProductsEntity = { ...state };
 
-      delete featuredProductsEntity[action.payload.productID];
+      delete featuredProductsEntity[action.payload];
 
       return featuredProductsEntity;
-    default:
-      return state;
-  }
-}
+  },
+}, {
+
+});

@@ -1,84 +1,65 @@
-export const SidebarUIReducer = (
-  state = {
-    show: false,
-    type: null,
-    subType: null,
-    radio: 'NONE'
-  }, action
-) => {
-  switch (action.type) {
-    case 'SHOW_SIDEBAR_SIGNIN':
-      return {
+import { handleActions } from 'redux-actions';
+
+import { sidebarActions } from '../actions/';
+
+export const SidebarUIReducer = handleActions({
+    [sidebarActions.sidebar.show.signIn]: (state, action) => ({
         ...state,
         show: true,
         type: 'SIGNIN'
-      }
-    case 'SHOW_SIDEBAR_ADD_PRODUCT':
-      return {
+      }),
+    [sidebarActions.sidebar.show.addProduct]: (state, action) => ({
         ...state,
         show: true,
         type: 'PRODUCT',
         subType: 'ADD_PRODUCT'
-      }
-    case 'SHOW_SIDEBAR_ADD_PRODUCT_STOCK':
-      return {
+      }),
+    [sidebarActions.sidebar.show.addProductStock]: (state, action) => ({
         ...state,
         show: true,
         type: 'PRODUCT',
         subType: 'ADD_PRODUCT_STOCK'
-      }
-    case 'SHOW_SIDEBAR_ADD_PRODUCT_IMAGES':
-      return {
+      }),
+    [sidebarActions.sidebar.show.addProductImages]: (state, action) => ({
         ...state,
         show: true,
         type: 'PRODUCT',
         subType: 'ADD_PRODUCT_IMAGES'
-      }
-    case 'SHOW_SIDEBAR_PRODUCT_DETAILS':
-      return {
+      }),
+    [sidebarActions.sidebar.show.addProductDetails]: (state, action) => ({
         ...state,
         show: true,
         type: 'PRODUCT',
         subType: 'SHOW_PRODUCT_DETAILS'
-      }
+      }),
 
-    case 'SHOW_SIDEBAR_CART_CHOOSE':
-      return {
-        ...state,
+    ['SHOW_SIDEBAR_CART_CHOOSE']: (state, action) => ({
+       ...state,
         show: true,
         type: 'CART',
         subType: 'CART_CHOOSE_PRODUCT'
-      }
+    }),
 
-    case 'SHOW_PRODUCT_DETAILS':
-      return {
-        ...state,
-        show: true,
-        type: 'PRODUCT_DETAILS',
-        subType: 'SHOW_PRODUCT_DETAILS'
-      }
-
-    case 'SHOW_SIDEBAR_ADD_PRODUCT_UPLOADING':
-      return {
+    [sidebarActions.sidebar.show.addProductUploading]: (state, action) => ({
           ...state,
           show: true,
           type: 'PRODUCT',
           subType: 'UPLOADING'
-        }
-    case 'HIDE_SIDEBAR':
-      return {
+        }),
+    [sidebarActions.sidebar.hide]: (state, action) => ({
         ...state,
         show: false,
         type: null,
         subType: null,
         radio: 'NONE'
-      }
-    case 'SET_SIDEBAR_UI_RADIO_VALUE':
-      return {
+      }),
+    [sidebarActions.sidebar.ui.set.radioValue]: (state, action) => ({
         ...state,
         radio: action.payload
-      }
-    default:
-      return state;
-  }
-}
+      })
+}, {
+  show: false,
+  type: null,
+  subType: null,
+  radio: 'NONE'
+})
