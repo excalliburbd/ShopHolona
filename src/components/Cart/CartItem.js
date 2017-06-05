@@ -76,10 +76,28 @@ class CartItem extends Component {
     this.props.deleteCartItem(this.props.cartItem.id)
   }
 
+  // secondaryDropdown = (varianceParentId) => {
+  //   return this.props.product.variances.map(variance => {
+  //     if (variance.id === varianceParentId) {
+  //       return variance.attributes.map(attribute => {
+  //         return {
+  //           id: attribute.type.id,
+  //           value: attribute.type.value,
+  //         }
+  //       })
+  //     }
+  //     return
+  //   })
+  // }
+
   render(){
     let { cartItem } = this.props
     const product = this.props.products[cartItem.productId]
-    const variance = product.variances.find(variance => variance.id === cartItem.varianceId)
+    const variance = product.variances.find(variance => variance.attributes[0].id === cartItem.varianceId)
+    // const primaryDropdown = product.variances.map(variance => ({
+    //   id: variance.type.id,
+    //   value: variance.type.value,
+    // }))
 
     return (
       <li className="cart-product-list-item-container">

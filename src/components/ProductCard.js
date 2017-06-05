@@ -49,7 +49,8 @@ class ProductCard extends Component {
     this.props.addToCart({
       id: uuid.v4(),
       productId: this.props.id,
-      varianceId: this.props.variances[0].id,
+      varianceParentId: this.props.variances[0].id,
+      varianceId: this.props.variances[0].attributes[0].id,
       price: this.props.variances[0].attributes[0].price,
       quantity: 1
     })
