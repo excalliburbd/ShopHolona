@@ -1,12 +1,24 @@
 import { handleActions } from 'redux-actions';
 
 import { shopActions } from '../actions/';
+import { REHYDRATE } from 'redux-persist/constants';
 
 export const ShopPageReducer = handleActions({
-    [shopActions.shop.set.shop]: (state, action) => ({
-        ...state,
-        ...action.payload,
-      }),
+    [shopActions.shop.set.shop]: (state, action) => {
+      if (!state.information.editing) {
+        return {
+          ...state,
+          ...action.payload,
+          information: {
+            ...state.information,
+            upToDate: true,
+            name: action.payload.shop_name,
+          }
+        }
+      }
+
+      return state;
+    },
     [shopActions.shop.set.id]: (state, action) => ({
         ...state,
         ...action.payload,
@@ -38,6 +50,28 @@ export const ShopPageReducer = handleActions({
         return {
           ...state,
           address: addresses
+        }
+    },
+    [REHYDRATE]: (state, action) => {
+      const incoming = action.payload.shop;
+
+      return {
+        ...state,
+        ...incoming,
+        information: {
+          upToDate: false,
+          name: 'loading',
+        }
+      }
+    },
+    [shopActions.shop.edit.name]: (state, action) => {
+      return {
+        ...state,
+        information: {
+          ...state.information,
+          editing: true,
+          name: action.payload,
+        }
       }
     }
 }, {
@@ -49,6 +83,11 @@ export const ShopPageReducer = handleActions({
   contacts: [],
   address: {
 
+  },
+  information: {
+    upToDate: false,
+    editing: false,
+    name: 'loading'
   }
 })
 
@@ -60,7 +99,7 @@ export const ShopPageUIReducer = handleActions({
     [shopActions.shop.updateChip]:  (state, action) => ({
         ...state,
         chip: action.payload,
-      })
+      }),
 }, {
   details: false,
   chip: 0,

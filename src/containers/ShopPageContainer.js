@@ -33,7 +33,7 @@ const mapStateToProps = state => {
     proficePic: state.shop.prof_pic,
     coverPhoto: state.shop.cover_photo,
     shopPhones: getPhones(state),
-    shopAddress: getAddress(state)
+    shopAddress: getAddress(state),
   }
 }
 

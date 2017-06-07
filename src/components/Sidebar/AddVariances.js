@@ -36,7 +36,7 @@ const AddVariances = ({
                   <Card className="ProductsSidebar-add-attributes--card" key={ key }>
                   {
                     secondaryAttributes[obj.id].custom ?
-                      <Input label="Change vaniant name"
+                      <Input label="Change variant name"
                               value={ obj.value }
                               />
                       :

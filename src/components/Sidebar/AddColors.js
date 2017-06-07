@@ -62,7 +62,7 @@ const AddColors = ({
           <Card className="ProductsSidebar-add-attributes--card">
             {
               secondaryAttributes[primaryAttributes[selectedAttribute].id].custom ?
-              <Input label="Change vaniant name"
+              <Input label="Change variant name"
                       value={ primaryAttributes[selectedAttribute].value }
                       />
               :

@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import moment from 'moment';
 
 export const getProcutsArray = state => state.products;
 export const getFeaturedProcutsArray = state => state.featuredProducts;
@@ -8,6 +9,16 @@ export const getCategoriesEntities = state => state.entities.categories;
 export const getUserDetails = state => state.user;
 export const getContacts = state => state.shop.contacts;
 export const getAddresses = state => state.shop.address;
+export const getShopName = state => state.shop.information.name;
+export const getShopDomain = state => state.shop.subdomain;
+export const getHours = state => ([
+  moment(state.shop.hours_from).format('DD/MM/YYYY').toString(),
+  moment(state.shop.hours_to).format('DD/MM/YYYY').toString()
+]);
+export const getTradeLicence = state => ({
+  number: state.shop.trade_license_number,
+  image: state.shop.trade_license_image
+});
 
 export const getCategories = createSelector(
   [getCategoriesArray, getCategoriesEntities],
@@ -79,3 +90,12 @@ export const getAddress = createSelector(
     return addressObj[1];
   }
 );
+
+export const getAllAddresses = createSelector(
+  [getAddresses],
+  addressObj => {
+    return Object.keys(addressObj).map(
+      id => addressObj[id]
+    )
+  }
+)
