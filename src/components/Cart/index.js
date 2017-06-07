@@ -17,7 +17,7 @@ const Cart = ({ cartItems, totalPrice }) => (
         <h4>{cartItems.length} items</h4>
       </div>
       <div className="cart-header-total">
-        <p>Total</p>
+        <h4>Total</h4>
         <h4>৳ {totalPrice}</h4>
       </div>
     </header>

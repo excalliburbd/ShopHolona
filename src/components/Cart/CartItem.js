@@ -3,6 +3,10 @@ import { connect } from 'react-redux'
 import Input from 'react-toolbox/lib/input/Input';
 import Dropdown from 'react-toolbox/lib/dropdown/Dropdown';
 import Card from 'react-toolbox/lib/card/Card';
+import IconButton from 'react-toolbox/lib/button/IconButton';
+
+import MdClose from 'react-icons/lib/md/close';
+
 import * as types from '../../constants/cart'
 
 const stateToProps = state => ({
@@ -103,7 +107,7 @@ class CartItem extends Component {
       <li className="cart-product-list-item-container">
         <Card className="cart-product-list-item-card">
           <div className="cart-item-img">
-            <img src={variance.images[0].image} alt={product.name} style={{ width: '70px', height: '70px'}}/>
+            <img src={variance.images[0].image} alt={product.name} style={{ width: '70px', height: '6rem'}}/>
           </div>
           <div className="cart-item-details">
             <div className="cart-item-name">
@@ -111,11 +115,15 @@ class CartItem extends Component {
             </div>
             <div className="cart-product-attributes">
               <div className="cart-product-quantity">
-                <span onClick={this.increaseQuantity}>+</span>
-                <Input className="cart-quantity-input" type='text' name='name' value={cartItem.quantity}/>
-                <span onClick={this.decreaseQuantity}>-</span>
+                <span className="cart-attributes-title">Quantity</span>
+                <div className="cart-product-quantity-body">
+                  <span onClick={this.increaseQuantity}>+</span>
+                  <Input className="cart-quantity-input" type='text' name='name' value={cartItem.quantity}/>
+                  <span onClick={this.decreaseQuantity}>-</span>
+                </div>
               </div>
               <div className="cart-dropdown-attribute-colors">
+                <span className="cart-attributes-title">Color</span>
                 <Dropdown
                   className="cart-dropdown-colors"
                   auto={false}
@@ -126,6 +134,7 @@ class CartItem extends Component {
                 />
               </div>
               <div className="cart-dropdown-attribute-others">
+                <span className="cart-attributes-title">Size</span>
                 <Dropdown
                   className="cart-dropdown-others"
                   source={this.others}
@@ -134,11 +143,11 @@ class CartItem extends Component {
                 />
               </div>
               <div className="cart-product-price">
-                <h3>{ cartItem.price * cartItem.quantity }</h3>
-                <h5>{ variance.attributes[0].price }</h5>
+                <h3>৳ { cartItem.price * cartItem.quantity }</h3>
+                <h5>৳ { variance.attributes[0].price } each</h5>
               </div>
             </div>
-            <button onClick={this.deleteCartItem}>X</button>
+            <IconButton className="cart-product-delete" icon={<MdClose />} onClick={this.deleteCartItem} />
           </div>
         </Card>
       </li>

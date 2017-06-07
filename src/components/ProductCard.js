@@ -107,7 +107,7 @@ class ProductCard extends Component {
             {/*<img className="price-tag" src={PriceTag} alt="Price Tag" width="50" height="50"/>*/}
             <div className="price-tag"  >
               <h2 className="product-price">
-                &#2547 { price }
+                &#2547; { price }
               </h2>
             </div>
           </div>
@@ -125,6 +125,7 @@ class ProductCard extends Component {
           <Button className='ProductCard-button' raised label='Add to Cart' onClick={this.addToCart}/>
         }
         <Dialog
+          className="ProductCard-dialog-main"
           actions={this.actions}
           active={this.state.active}
           onEscKeyDown={this.handleToggle}

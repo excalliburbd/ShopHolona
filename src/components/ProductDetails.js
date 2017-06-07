@@ -28,7 +28,7 @@ class CartProduct extends Component {
     ]
 
     return (
-      <div>
+      <div className="product-details-container">
         <ul className="color--attribute--group">
           <li className="round"></li>
           <li className="round"></li>
