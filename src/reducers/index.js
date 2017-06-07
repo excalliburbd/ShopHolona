@@ -6,7 +6,6 @@ import { OrdersReducer, OrdersEntityReducer } from './ordersReducers';
 import {
   UserReducer,
   UserUIReducer,
-  userDetailsReducer
 } from './usersReducers';
 import {
   productsReducer,
@@ -23,6 +22,7 @@ import {
 import { SidebarUIReducer } from './sidebarReducers';
 import { ShopPageReducer, ShopPageUIReducer } from './shopReducers';
 import { imageUploaderUIReducer } from './imageUploaderReducers';
+import { servicesUIReducer } from './serviceReducers';
 
 const NavigationUIReducer = (
   state = {
@@ -67,6 +67,7 @@ const RootReducer = combineReducers({
     categories: CategoriesUIReducer,
     product: ProductsUIReducer,
     uploader: imageUploaderUIReducer,
+    service: servicesUIReducer,
     responsive,
   })
 });

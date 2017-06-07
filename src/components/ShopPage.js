@@ -158,7 +158,7 @@ const  ShopPage = ({
                                     }
                                     key={key}>
                                 {/*{ obj.first_parent.icon && <Avatar icon={ obj.first_parent.icon } /> }*/}
-                                { obj.name }
+                                { `${obj.name} (${obj.products.length})` }
                               </Chip>
               )
             }

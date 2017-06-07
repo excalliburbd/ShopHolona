@@ -1,6 +1,4 @@
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
-import Fuse from 'fuse.js';
 
 import {
   getSubCategory,
@@ -16,223 +14,37 @@ import {
 import { sidebarActions } from '../actions/';
 import { productActions } from '../actions/';
 import { categoryActions } from '../actions/';
+import { imageUploaderActions } from '../actions/';
+import { serviceActions } from '../actions/';
 
 import ProductsSidebar from '../components/Sidebar/ProductsSidebar';
 
-const getCategoriesObj = state => state.ui.categories.categories;
-const getSubCategoriesObj = state => state.ui.categories.subCategories;
-const getSubSubCategoriesObj = state => state.ui.categories.subSubCategories;
-const getPrimaryAttributes = state => state.ui.categories.attributes.primary;
-const getSecondaryAttributes = state => state.ui.categories.attributes.secondary;
-const getProductUIState = state => state.ui.product;
-const getProductCategory =  state => state.ui.product.category;
-const getProductSubCategory =  state => state.ui.product.subCategory;
-const getProductSubSubCategory =  state => state.ui.product.subSubCategory;
-const getProductName =  state => state.ui.product.name;
-const getProductWeight =  state => state.ui.product.weight;
-const getProductPrice =  state => state.ui.product.price;
-const getProductDescription =  state => state.ui.product.description;
-const getSubSubCategoryID = state => state.ui.categories.subSubCategoryID;
-const getCategoryID = state => state.ui.categories.categoryID;
-const getSubCategoryID = state => state.ui.categories.subCategoryID;
-const getRadioValue = state => state.ui.sidebar.radio;
-const getProgress = state => state.ui.categories.uploadProgress;
-const getSelectedPrductID = state => state.ui.product.selectedProduct.id;
-const getProductsObj = state => state.entities.products;
-const getUploadCount = state => state.ui.product.uploadCount;
-const getDoneUploadCount = state => state.ui.product.doneUploadCount;
-
-const getFusedCategories = createSelector(
-  [getCategoriesObj],
-  (categoriesObj) => {
-
-    const categories = [];
-
-    Object.keys(categoriesObj).forEach(
-      id => categories.push(categoriesObj[id])
-    )
-
-    return new Fuse(categories, { keys: ['name'] })
-  }
-);
-
-const getFusedSubCategories = createSelector(
-  [getSubCategoriesObj],
-  (categoriesObj) => {
-
-    const categories = [];
-
-    Object.keys(categoriesObj).forEach(
-      id => categories.push(categoriesObj[id])
-    )
-
-    return new Fuse(categories, { keys: ['name'] })
-  }
-);
-
-const getFusedSubSubCategories = createSelector(
-  [getSubSubCategoriesObj],
-  (categoriesObj) => {
-
-    const categories = [];
-
-    Object.keys(categoriesObj).forEach(
-      id => categories.push(categoriesObj[id])
-    )
-
-    return new Fuse(categories, { keys: ['name'] })
-  }
-);
-
-const getShowAddColors = createSelector(
-  [getProductUIState, getRadioValue],
-  (product, radio) => {
-    let show = true;
-
-    Object.keys(product).forEach(
-      name => {
-        //this is not possible due to server limitation
-        // if(name !== 'description' &&  product[name] === '') {
-        //   show = false;
-        // }
-
-        if(radio === 'SERVICE' && name === 'weight') {
-          show = true;
-        }
-      }
-    )
-
-    return show;
-  }
-);
-
-const getShowAddImages = createSelector(
-  [getPrimaryAttributes],
-  (primary) => {
-    let show = true;
-
-    primary.forEach(
-      obj => {
-        if(obj.selected === true) {
-          show = false;
-        }
-      }
-    )
-
-    return show;
-  }
-);
-
-const getFinishedProduct = createSelector(
-  [
-    getProductName,
-    getProductDescription,
-    getProductWeight,
-    getProductPrice,
-    getPrimaryAttributes,
-    getSecondaryAttributes,
-    getSubSubCategoryID,
-    getProgress,
-  ],
-  (name, description, weight, price, primary, secondary, id, progress ) => {
-    if (!progress.primary && !progress.secondary) {
-      return {
-        name: name,
-        short_desc: description,
-        category: id,
-        variances: primary
-                  .filter(
-                    ({ selected }) => selected
-                  )
-                  .map(
-                    obj => ({
-                      type: obj.id,
-                      key: obj.name,
-                      value: obj.value,
-                      images: obj.files
-                              .filter( ({ apiError }) => !apiError )
-                              .map(
-                                ({ apiID }) => apiID
-                              ),
-                      custom: obj.custom,
-                      attributes: secondary[obj.id].attributes
-                                                    .filter( ({ selected }) => selected )
-                                                    .map(
-                                                      obj => ({
-                                                        type: obj.id,
-                                                        description,
-                                                        weight,
-                                                        price,
-                                                        stock: obj.stock,
-                                                        key: obj.name,
-                                                        value: obj.value,
-                                                        custom: obj.custom
-                                                      })
-                                                    )
-                    })
-                  )
-
-      }
-    } else {
-      return {
-        name: name,
-        short_desc: description,
-        category: id,
-        variances: primary
-                  .filter(
-                    ({ selected }) => selected
-                  )
-                  .map(
-                    obj => ({
-                      type: obj.id,
-                      images: obj.files
-                              .filter( ({ apiError }) => !apiError )
-                              .map(
-                                ({ apiID }) => apiID
-                              ),
-                      attributes: secondary[obj.id].attributes
-                                                    .filter( ({ selected }) => selected )
-                                                    .map(
-                                                      obj => ({
-                                                        type: obj.id,
-                                                        description,
-                                                        weight,
-                                                        price,
-                                                        stock: obj.stock,
-                                                      })
-                                                    )
-                    })
-                  )
-
-      }
-    }
-  }
-);
-
-const getShowProductDetails = createSelector(
-  [getCategoryID, getSubCategoryID],
-  (category, subCategory) => {
-    return (category && subCategory)
-  }
-);
-
-const getSelectedFeturedPrductID = createSelector(
-  [getSelectedPrductID, getProductsObj],
-  (id, productsObj) => {
-    if (productsObj[id]){
-      return productsObj[id].featuredID
-    }
-
-    return null;
-  }
-);
-
-const getShowDone = createSelector(
-  [getUploadCount, getDoneUploadCount],
-  (upload, done) => {
-    return (upload === done)
-  }
-);
+import {
+  getPrimaryAttributes,
+  getSecondaryAttributes,
+  getProductCategory,
+  getProductSubCategory,
+  getProductSubSubCategory,
+  getProductName,
+  getProductWeight,
+  getProductPrice,
+  getProductDescription,
+  getCategoryID,
+  getSubCategoryID,
+  getRadioValue,
+  getProgress,
+  getSelectedPrductID,
+  getFusedCategories,
+  getFusedSubCategories,
+  getFusedSubSubCategories,
+  getShowAddColors,
+  getShowAddVariances,
+  getShowAddImages,
+  getFinishedProduct,
+  getShowProductDetails,
+  getSelectedFeturedPrductID,
+  getShowDone,
+} from '../selectors/productSelectors';
 
 const mapStateToProps = state => {
   return {
@@ -272,6 +84,11 @@ const mapStateToProps = state => {
     selectedProduct: state.ui.product.selectedProduct,
     featuredID: getSelectedFeturedPrductID(state),
     showDone: getShowDone(state),
+    showServiceDetails: getShowProductDetails(state),
+    serviceTitle: state.ui.service.title,
+    serviceFee: state.ui.service.name,
+    serviceDescription: state.ui.service.desc,
+    showAddVariances: getShowAddVariances(state),
   }
 }
 
@@ -386,7 +203,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           files: newFiles,
         }));
 
-      dispatch(productActions.products.ui.set.upload.count(oldFiles.length + newFiles.length));
+      dispatch(imageUploaderActions.imageUploader.upload.count(oldFiles.length + newFiles.length));
 
       // const [
       //   first,
@@ -436,11 +253,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           id,
           key,
         }));
-      dispatch(productActions.products.ui.set.upload.dec());
+      dispatch(imageUploaderActions.imageUploader.upload.dec());
     },
     handleManualInput: (uiType, fieldType, value) => {
 
-      dispatch(productActions.products.ui.set[uiType][fieldType](value));
+      if(uiType === 'add') {
+        dispatch(productActions.products.ui.set[uiType][fieldType](value));
+      }
+
+      if(uiType === 'service') {
+        dispatch(serviceActions.services.ui.set.add[fieldType](value));
+      }
 
       if(value === '') {
         switch(fieldType) {

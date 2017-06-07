@@ -67,6 +67,14 @@
   max-width: 6.5em;
 }
 
+.TabList-card--preview {
+  height: 3em;
+  width: 2em;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 1;
+}
+
 @media screen and (min-width: 600px) {
   .K_kzH.TabList-data {
     flex-direction: row;

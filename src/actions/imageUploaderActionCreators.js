@@ -8,5 +8,11 @@ export const imageUploaderActionCreators = {
     },
     UPDATE_SLIDER: payload => payload,
     HIDE: payload => payload,
+    UPLOAD: {
+      COUNT: payload => payload,
+      DONE: payload => payload,
+      INC: payload => payload,
+      DEC: payload => payload,
+    }
   }
 }

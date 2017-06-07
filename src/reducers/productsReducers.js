@@ -2,6 +2,7 @@ import { handleActions } from 'redux-actions';
 
 import { productActions } from '../actions/';
 import { sidebarActions } from '../actions/';
+import { imageUploaderActions } from '../actions/';
 
 export const productsReducer = handleActions({
   [productActions.products.done.get.products]: (state, action) => {
@@ -159,8 +160,6 @@ export const ProductsUIReducer = handleActions({
         description: '',
         selectedVariance: 0,
         selectedProduct: {},
-        uploadCount: 0,
-        doneUploadCount: 0,
       }
   },
   [productActions.products.ui.reset.subCategories]: (state, action) => {
@@ -174,8 +173,6 @@ export const ProductsUIReducer = handleActions({
         description: '',
         selectedVariance: 0,
         selectedProduct: {},
-        uploadCount: 0,
-        doneUploadCount: 0,
       }
   },
   [sidebarActions.sidebar.hide]: (state, action) => ({
@@ -188,8 +185,6 @@ export const ProductsUIReducer = handleActions({
         description: '',
         selectedVariance: 0,
         selectedProduct: {},
-        uploadCount: 0,
-        doneUploadCount: 0,
   }),
   [productActions.products.ui.reset.categories]: (state, action) => {
       return {
@@ -202,27 +197,6 @@ export const ProductsUIReducer = handleActions({
         description: '',
         selectedVariance: 0,
         selectedProduct: {},
-        uploadCount: 0,
-        doneUploadCount: 0,
-      }
-  },
-  [productActions.products.ui.set.upload.count]: (state, action) => {
-      return {
-        ...state,
-        uploadCount: action.payload,
-      }
-  },
-  [productActions.products.ui.set.upload.inc]: (state, action) => {
-      return {
-        ...state,
-        doneUploadCount: state.doneUploadCount + 1,
-      }
-  },
-  [productActions.products.ui.set.upload.dec]: (state, action) => {
-      return {
-        ...state,
-        uploadCount: ((state.uploadCount - 1) < 0) ? 0 : (state.uploadCount - 1),
-        doneUploadCount: ((state.doneUploadCount - 1) < 0) ? 0 : (state.doneUploadCount - 1)
       }
   },
 }, {
@@ -235,8 +209,6 @@ export const ProductsUIReducer = handleActions({
   description: '',
   selectedVariance: 0,
   selectedProduct: {},
-  uploadCount: 0,
-  doneUploadCount: 0,
 });
 
 export const productsEntityReducer = handleActions({

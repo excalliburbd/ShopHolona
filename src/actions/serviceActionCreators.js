@@ -1,21 +1,19 @@
 
-export const productActionCreators = {
-  PRODUCTS: {
+export const serviceActionCreators = {
+  SERVICES: {
     UI: {
       SET: {
         ADD: {
           CATEGORY:  payload => payload,
           SUB_CATEGORY:  payload => payload,
           SUB_SUB_CATEGORY:  payload => payload,
-          NAME:  payload => payload,
-          WEIGHT:  payload => payload,
-          PRICE:  payload => payload,
+          TITLE:  payload => payload,
+          FEE:  payload => payload,
           DESC:  payload => payload,
         },
         EDIT: {
-          NAME:  payload => payload,
-          WEIGHT:  payload => payload,
-          PRICE:  payload => payload,
+          TITLE:  payload => payload,
+          FEE:  payload => payload,
           DESC:  payload => payload,
         },
         VARIANCE:  payload => payload,
@@ -28,12 +26,12 @@ export const productActionCreators = {
     },
     DONE: {
       DELETE: {
-        PRODUCT:  payload => payload,
-        FEATURED_PRODUCT:  payload => payload,
+        SERVICE:  payload => payload,
+        FEATURED_SERVICE:  payload => payload,
       },
       GET: {
-        PRODUCTS:  payload => payload,
-        FEATURED_PRODUCTS:  payload => payload,
+        SERVICES:  payload => payload,
+        FEATURED_SERVICES:  payload => payload,
       }
     }
   }

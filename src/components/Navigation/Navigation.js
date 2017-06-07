@@ -28,6 +28,19 @@ class Nav extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+
+    const {
+      online,
+      shopID,
+      hadleLoadData,
+    } = nextProps;
+
+    if(this.props.online !== online && online) {
+      shopID && hadleLoadData(shopID);
+    }
+  }
+
   componentDidMount() {
     const {
       history,
@@ -80,9 +93,6 @@ class Nav extends Component {
       pinned,
       vendor,
       profilePic,
-      online,
-      shopID,
-      hadleLoadData,
       children,
     } = this.props;
 
@@ -99,10 +109,6 @@ class Nav extends Component {
         default:
           return null;
       }
-    }
-
-    if (online) {
-      shopID && hadleLoadData(shopID);
     }
 
     return (

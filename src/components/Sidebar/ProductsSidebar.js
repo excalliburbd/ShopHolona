@@ -68,6 +68,7 @@ const ProductsSidebar = ({
   selectedProduct,
   featuredID,
   showDone,
+  showAddVariances
 }) => {
   switch(type) {
     case 'ADD_PRODUCT':
@@ -103,7 +104,8 @@ const ProductsSidebar = ({
                                   showProductDetails={ showProductDetails }
                                   handleAddVairace={ handleAddVairace }
                                   temporaryAttribute={ temporaryAttribute }
-                                  handleSetTemporaryAttribute={ handleSetTemporaryAttribute } />
+                                  handleSetTemporaryAttribute={ handleSetTemporaryAttribute }
+                                  showAddVariances={ showAddVariances } />
     case 'ADD_PRODUCT_IMAGES':
       return <AddProductImages  primaryAttributes={ primaryAttributes }
                                 handleShowRoute={ handleShowRoute }
