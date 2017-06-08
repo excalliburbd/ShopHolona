@@ -1,0 +1,24 @@
+.round {
+  display: inline-block;
+  list-style: none;
+  margin: 0em .5em;
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+  background: red;
+  box-shadow: var(--shadow-2p);
+}
+
+.details-action {
+  position: absolute;
+  bottom: 4rem;
+}
+.details-action-cart._3tTAW:not([disabled]) {
+  background: #CC3333;
+}
+.details-action-cart {
+  font-weight: 600;
+}
+.details-action-cart._3tTAW:not([disabled]):hover {
+  background-color: rgb(183, 28, 28);
+}

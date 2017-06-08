@@ -1,32 +1,81 @@
 @import "../../node_modules/react-image-gallery/styles/css/image-gallery.css";
 
-.color--attribute--group {
-  width: 100%;
-  text-align: center;
-  padding-left: 0;
-}
-
-.round {
-  display: inline-block;
-  list-style: none;
-  margin: 0em .5em;
-  height: 2em;
-  width: 2em;
-  border-radius: 50%;
-  background: red;
-  box-shadow: var(--shadow-2p);
-}
-
-.cart--image--slider {
-  width: 100%;
-  padding: 1em;
-}
-
-.quantity--input--group{
+.product-details-container {
+  width: 100vw;
+  padding-left: 3em;
+  height: calc(100vh - 4rem);
+  overflow-y: scroll;
+  color: #4D4D4D;
   display: flex;
-  text-align: center;
+  flex-direction: row;
+}
+.product-details-container::-webkit-scrollbar {
+  width: 5px;
+  background-color: #F5F5F5;
+}
+.product-details-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #F5F5F5, #F5F5F5, #666, #F5F5F5, #F5F5F5);
+}
+.product-details-left {
+  width: 35%;
+  height: 100%;
 }
 
-.quantity--input {
-  width: 25px;
+.product-details-title {
+  width: 20rem;
+  font-size: 1.5em;
+  margin-bottom: 14px;
+}
+.product-details-price {
+  margin: 0;
+  margin-bottom: 12px;
+  font-size: 1.2em;
+}
+
+.product-details-slider {
+  height: auto;
+  width: 20rem;
+}
+.image-gallery-slide-wrapper {
+  box-shadow: var(--shadow-4p);
+}
+.image-gallery-image img {
+  object-fit: contain;
+  width: 20rem;
+  height: 20rem;
+}
+.image-gallery-bullets .image-gallery-bullet {
+  background-color: rgba(184, 190, 224, 0.29);
+  box-shadow: 0 1px 0 #757575;
+}
+.image-gallery-bullets .image-gallery-bullet.active {
+  background: rgba(117, 117, 117, 0.35);
+  box-shadow: 0 1px 0 #757575;
+}
+.image-gallery-thumbnails-container {
+  margin-top: 10px;
+}
+.image-gallery-thumbnail {
+  width: 5rem;
+  height: 5rem;
+  margin: 4px;
+  border: 1px solid transparent;
+}
+.image-gallery-thumbnail div img {
+  width: 5rem;
+  height: 5rem;
+  object-fit: scale-down;
+  border: 1px solid #eee;
+  box-shadow: var(--shadow-3p);
+}
+.image-gallery-thumbnail.active {
+  width: auto;
+  height: auto;
+  border: 1px solid #ababab;
+  border-radius: 2px;
+}
+
+
+.product-details-right {
+  width: 65%;
 }
