@@ -25,13 +25,24 @@
   width: 20rem;
   font-size: 1.5em;
   margin-bottom: 14px;
+  font-family: "Gotham Narrow Book";
+  font-weight: 600;
+}
+.product-details-price-title {
+  display: flex;
+  flex-direction: row;
 }
 .product-details-price {
   margin: 0;
+  height: 2em;
   margin-bottom: 12px;
   font-size: 1.2em;
+  margin-right: 1.2em;
 }
-
+.product-details-price-title .Stars {
+  align-items: center;
+  height: 2em;
+}
 .product-details-slider {
   height: auto;
   width: 20rem;
@@ -78,4 +89,7 @@
 
 .product-details-right {
   width: 65%;
+}
+.product-details-tabs ._26SP9 {
+  outline: none;
 }

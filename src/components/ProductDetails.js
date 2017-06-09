@@ -37,8 +37,10 @@ class CartProduct extends Component {
       <div className="product-details-container">
         <div className="product-details-left">
           <h1 className="product-details-title">Product Name</h1>
-          <Stars rating={ 3 } />
-          <h2 className="product-details-price">Price: &#2547; 2000</h2>
+          <div className="product-details-price-title">
+            <h2 className="product-details-price">Price: &#2547; 2000</h2>
+            <Stars rating={ 3 } />
+          </div>
           <div className="product-details-slider">
             <ImageGallery
               items={images}
@@ -52,7 +54,7 @@ class CartProduct extends Component {
         </div>
 
         <div className="product-details-right">
-          <Tabs index={this.state.detailsTabIndex} onChange={this.handleDetailsTabChange} fixed>
+          <Tabs className="product-details-tabs" index={this.state.detailsTabIndex} onChange={this.handleDetailsTabChange} fixed>
             <Tab label='Details'><small><ProductDetailsMain/></small></Tab>
             <Tab label='Specifications'><small>Product Specifications Not Available</small></Tab>
           </Tabs>

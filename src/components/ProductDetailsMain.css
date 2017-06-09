@@ -1,14 +1,34 @@
-.round {
-  display: inline-block;
+.details-main-subtitle {
+  font-family: "Gotham Narrow Book";
+  font-weight: 600;
+}
+
+.details-main-size {
+  display: flex;
+  flex-direction: row;
+}
+.size {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   list-style: none;
   margin: 0em .5em;
   height: 2em;
   width: 2em;
   border-radius: 50%;
-  background: red;
+  border: 2px solid gray;
   box-shadow: var(--shadow-2p);
+  cursor: pointer;
 }
 
+.details-main-color {
+  display: flex;
+  flex-direction: row;
+}
+.details-main-color .circle-picker {
+  margin-top: 1em;
+  margin-left: 3em;
+}
 .details-action {
   position: absolute;
   bottom: 4rem;
