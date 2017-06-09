@@ -7,6 +7,9 @@ export const shopActionCreators = {
       CONTACT_NUMBER:  payload => payload,
       ADDRESS:  payload => payload,
     },
+    EDIT: {
+      NAME: payload => payload,
+    },
     TOGGLE_DETAILS: payload => payload,
     UPDATE_CHIP: payload => payload,
   }

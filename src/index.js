@@ -12,11 +12,11 @@ import theme from './react-toolbox/theme';
 
 import './react-toolbox/theme.css';
 
-import Settings from './components/BackOffice/Settings';
 import NavigationContainer from './containers/NavigationContainer';
 import DashboardContainer from './containers/DashboardContainer';
 import BackOfficeContainer from './containers/BackOfficeContainer';
 import ShopPageContainer from './containers/ShopPageContainer';
+import SettingsContainer from './containers/SettingsContainer';
 
 import './index.css';
 import 'trmix/dist/trmix.min.js';
@@ -29,7 +29,7 @@ ReactDOM.render(
             <Route exact path="/" component={ ShopPageContainer }/>
             <Route exact path="/dashboard" component={ DashboardContainer }/>
             <Route exact path="/admin/:backOffice" component={ BackOfficeContainer } />
-            <Route exact path="/settings" component={ Settings }/>
+            <Route exact path="/settings" component={ SettingsContainer }/>
           </NavigationContainer>
       </ThemeProvider>
     </ConnectedRouter>

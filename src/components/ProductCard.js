@@ -8,7 +8,6 @@ import Dialog from 'react-toolbox/lib/dialog/Dialog'
 
 import addProductIcon from '../assets/svg/add-product.svg'
 import ProductDetails from './ProductDetails'
-import * as types from '../constants/cart'
 
 import Stars from './Stars'
 

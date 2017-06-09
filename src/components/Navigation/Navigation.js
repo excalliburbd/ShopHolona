@@ -14,11 +14,33 @@ import SignUpContainer from '../../containers/SignUpContainer';
 import AddButtonContainer from '../../containers/AddButtonContainer';
 import ProductsSidebarContainer from '../../containers/ProductsSidebarContainer';
 import ImageUploaderContainer from '../../containers/ImageUploaderContainer';
-import Cart from '../Cart'
+import Cart from '../Cart/Cart';
 
 import './Navigation.css';
 
 class Nav extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+
+    const {
+      online,
+      shopID,
+      hadleLoadData,
+    } = nextProps;
+
+    if(this.props.online !== online && online) {
+      shopID && hadleLoadData(shopID);
+    }
+  }
+
   componentDidMount() {
     const {
       history,
@@ -71,9 +93,6 @@ class Nav extends Component {
       pinned,
       vendor,
       profilePic,
-      online,
-      shopID,
-      hadleLoadData,
       showCartSidebar,
       children,
     } = this.props;
@@ -93,10 +112,6 @@ class Nav extends Component {
         default:
           return null;
       }
-    }
-
-    if (online) {
-      shopID && hadleLoadData(shopID);
     }
 
     return (

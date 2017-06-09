@@ -4,7 +4,7 @@ import Tab from 'react-toolbox/lib/tabs/Tab';
 import Tabs from 'react-toolbox/lib/tabs/Tabs';
 import Card from 'react-toolbox/lib/card/Card';
 import CardText from 'react-toolbox/lib/card/CardText';
-import Dropdown from 'react-toolbox/lib/dropdown/Dropdown';
+// import Dropdown from 'react-toolbox/lib/dropdown/Dropdown';
 
 import './TabList.css';
 
@@ -16,23 +16,28 @@ const TabList = ({
   dropdownOptions,
   handleDropdownChange,
   data,
+  handleShowProductDetails,
+  vendor,
 }) => {
+
+  const getListStyle = length => ({ flex: 1 / length });
+
   return (
     <Tabs index={ tabIndex }
-            onChange={
-              index => handleTabChange(index, route)
-            }>
+          onChange={
+            index => handleTabChange(index, route)
+          }>
         {
           menu.map(
-            ({ label, amount }, key) => (
-                <Tab label={ `${ label } (${ amount})` } key={ key } >
+            ({ name, items }, key) => (
+                <Tab label={ `${ name } (${ items.length })` } key={ key } >
                   {
                     <Card  className="TabList-card TabList-card--titles" key={ key }>
                         <CardText  className="TabList-data">
                           {
-                              data[0][0][`${route}Arr`].map(
-                                ({field, value}, key) => (
-                                  <span key={ key } style={{ flex: 1 / 6}}
+                              data[tabIndex].maping.map(
+                                ( field, key) => (
+                                  <span key={ key } style={ getListStyle(data[tabIndex].maping.length) }
                                         className="TabList-data--row TabList-data--row--title">
                                     <span>{ field }</span>
                                   </span>
@@ -44,30 +49,40 @@ const TabList = ({
                   }
                   {
 
-                    data[key].map(
+                    data[tabIndex].content.map(
                       (info, key) => (
-                        <Card  className="TabList-card" key={ key }>
+                        <Card  className="TabList-card" key={ key }
+                               onClick={
+                                 () => {
+                                   handleShowProductDetails(vendor, items[key]);
+                                 }
+                               }>
                           <CardText  className="TabList-data">
                             {
-                              info[`${route}Arr`].map(
-                                    ({field, value}, key) => (
-                                      (field !== 'Status')?
-                                        <span key={ key } style={{ flex: 1 / 6}} className="TabList-data--row">
-                                          <span>{ field }</span>
-                                          <span>{ value }</span>
-                                        </span> :
-                                        <span key={ key } style={{ flex: 1 / 6}} className="TabList-data--row">
-                                          <span>{ field }</span>
-                                          <span>
-                                            <Dropdown source={ dropdownOptions }
-                                                      onChange={
-                                                        value => handleDropdownChange(value, info[`${route}ID`])
-                                                      }
-                                                      className="TabList-dropdown"
-                                                      value={ value } />
-                                          </span>
-                                        </span>
-                                    )
+                              info.map(
+                                    ({field, value}, key) => {
+                                        switch(field){
+                                          case 'Image':
+                                           return <span key={ key } style={getListStyle(data[tabIndex].maping.length)} className="TabList-data--row">
+                                                    <span>{ field }</span>
+                                                    <span>
+                                                      <div style={{
+                                                              backgroundImage: `url(${value})`,
+                                                            }} className="TabList-card--preview"/>
+                                                    </span>
+                                                  </span>
+                                          case 'Status':
+                                            return <span key={ key } style={getListStyle(data[tabIndex].maping.length)} className="TabList-data--row">
+                                                      <span>{ field }</span>
+                                                      <span>{ value }</span>
+                                                    </span>
+                                          default:
+                                            return <span key={ key } style={getListStyle(data[tabIndex].maping.length)} className="TabList-data--row">
+                                                      <span>{ field }</span>
+                                                      <span>{ value }</span>
+                                                    </span>
+                                        }
+                                    }
                                   )
                             }
                             </CardText>

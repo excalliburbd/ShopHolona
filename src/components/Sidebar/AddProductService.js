@@ -1,17 +1,11 @@
 import React from 'react';
 
 import Button from 'react-toolbox/lib/button/Button';
-import IconButton from 'react-toolbox/lib/button/IconButton';
 import Input from 'react-toolbox/lib/input/Input';
-import Card from 'react-toolbox/lib/card/Card';
-import CardTitle from 'react-toolbox/lib/card/CardTitle';
-import CardActions from 'react-toolbox/lib/card/CardActions';
-import Table from 'react-toolbox/lib/table/Table';
-import TableHead from 'react-toolbox/lib/table/TableHead';
-import TableRow from 'react-toolbox/lib/table/TableRow';
-import TableCell from 'react-toolbox/lib/table/TableCell';
 
 import CustomAutocomplete from './CustomAutocomplete';
+import AddColors from './AddColors';
+import AddVariances from './AddVariances';
 
 import Icon from 'react-icons-kit';
 import { tools } from 'react-icons-kit/entypo/tools';
@@ -24,21 +18,12 @@ const AddProductService = ({
   subSubCategories,
   categoryID,
   handleCategoryObj,
-  primaryAttributes,
-  secondaryAttributes,
-  handleSelect,
-  handleAttributeSelect,
   radioValue,
   handleRadio,
-  handleStockUpdate,
-  selectedAttribute,
-  setAttributeDone,
   showAddColors,
   showAddImages,
-  handleStockInputBlur,
   handleShowRoute,
   productCategory,
-  productSubCategory,
   productSubSubCategory,
   productName,
   productWeight,
@@ -46,10 +31,24 @@ const AddProductService = ({
   productDescription,
   handleManualInput,
   showProductDetails,
+  productSubCategory,
+  primaryAttributes,
+  secondaryAttributes,
+  handleSelect,
+  handleAttributeSelect,
+  handleStockUpdate,
+  selectedAttribute,
+  setAttributeDone,
+  handleStockInputBlur,
   handleAddVairace,
   temporaryAttribute,
   handleSetTemporaryAttribute,
-  type
+  type,
+  showServiceDetails,
+  serviceTitle,
+  serviceFee,
+  serviceDescription,
+  showAddVariances
 }) => {
 
   return (
@@ -97,7 +96,6 @@ const AddProductService = ({
                         label={`Enter type of ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' }`}
                         source={ subSubCategories }
                         value={ productSubSubCategory }
-                        selectionOnly
                         onSelected={
                           (id, categoryObj ) => {
                             handleFieldSelect('SUB_SUB_CATEGORY', id);
@@ -108,154 +106,80 @@ const AddProductService = ({
                       />
                      {
                         showProductDetails && <div>
-                          <Input label={`Enter Your ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Name`}
+                          <Input label={'Enter Your Product Name'}
                                 required
                                 onChange={ value => handleManualInput('add', 'name', value) }
                                 value={ productName } />
-                          {
-                            (radioValue === 'PRODUCT') &&
-                              <Input label={`Enter Your ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Weight`}
-                                required
-                                type="number"
-                                onChange={ value => handleManualInput('add', 'weight', value) }
-                                value={ productWeight } />
-                          }
-                          <Input label={`Enter Your ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Price`}
+                          <Input label={'Enter Your Product Weight'}
+                              required
+                              type="number"
+                              onChange={ value => handleManualInput('add', 'weight', value) }
+                              value={ productWeight } />
+                          <Input label={'Enter Your Product Price'}
                                 type="number"
                                 required
                                 onChange={ value => handleManualInput('add', 'price', value) }
                                 value={ productPrice } />
-                          <Input label={`Enter Your ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Description`}
+                          <Input label={'Enter Your Product Description'}
                                 onChange={ value => handleManualInput('add', 'desc', value) }
                                 value={ productDescription } />
 
                           {
-                            showAddColors && <div>
-                              <div className="ProductsSidebar-add--colors">
-                                <h3>Pick product { (productSubCategory === 'Clothing') ? 'color' : 'color' }</h3>
-                                {
-                                  primaryAttributes.map(
-                                    (obj, key) => <IconButton  icon={
-                                                            (obj.selected) ?
-                                                            'done' :
-                                                            <span />
-                                                          }
-                                                          onClick={
-                                                            () => handleSelect(key)
-                                                          }
-                                                          style={{
-                                                            background: (obj.value && (obj.value.split(' ')[0] !== 'Color')) &&
-                                                                        (obj.value && (obj.value.split(' ')[0] !== 'Custom')) ?
-                                                                          obj.value.toLowerCase() : '#ccc'
-                                                          }}
-                                                          key={ obj.id }
-                                                          className="ProductsSidebar-add--color" />
-                                  )
-                                }
-                                <IconButton   icon="add"
-                                              style={{ background: "#ccc"}}
-                                              onClick={
-                                                () => handleAddVairace(productSubCategory)
-                                              }
-                                              className="ProductsSidebar-add--color" />
-                              </div>
-                              <div className="ProductsSidebar-add-attributes">
-                              {
-                                ( selectedAttribute !== -1 ) &&
-                                  <Card className="ProductsSidebar-add-attributes--card">
-                                    {
-                                      secondaryAttributes[primaryAttributes[selectedAttribute].id].custom ?
-                                      <Input label="Change vaniant name"
-                                             value={ primaryAttributes[selectedAttribute].value }
-                                             />
-                                      :
-                                      <CardTitle
-                                        title={ primaryAttributes[selectedAttribute].value }
-                                      />
-                                    }
-                                    <Table selectable
-                                            className="ProductsSidebar-add-attributes--table"
-                                            onRowSelect={ selected => handleAttributeSelect(selected, primaryAttributes[selectedAttribute].id) }>
-
-                                    <TableHead>
-                                      <TableCell>Name</TableCell>
-                                      <TableCell>Value</TableCell>
-                                      <TableCell numeric>Stock</TableCell>
-                                    </TableHead>
-
-                                    {
-                                      secondaryAttributes[primaryAttributes[selectedAttribute].id].attributes.map(
-                                            (attribute, key) =>
-                                                  <TableRow key={key} selected={ attribute.selected }>
-                                                    <TableCell>{ attribute.name }</TableCell>
-                                                    <TableCell>{ attribute.value }</TableCell>
-                                                    <TableCell numeric className="ProductsSidebar-add-attributes--stock">
-                                                        <Input value={ attribute.stock }
-                                                                type="number"
-                                                                onBlur={
-                                                                  () => {
-                                                                    handleStockInputBlur(primaryAttributes[selectedAttribute].id)
-                                                                  }
-                                                                }
-                                                                onChange={
-                                                                  value => handleStockUpdate( 'VALUE', value, primaryAttributes[selectedAttribute].id, key)
-                                                                } />
-                                                    </TableCell>
-                                                  </TableRow>
-                                          )
-                                    }
-                                    {
-                                      secondaryAttributes[primaryAttributes[selectedAttribute].id].custom ?
-                                          <TableRow>
-                                            <TableCell>
-                                              <Input  value={ temporaryAttribute.key }
-                                                      onChange={
-                                                        value => handleSetTemporaryAttribute( 'KEY', value)
-                                                      }/>
-                                            </TableCell>
-                                            <TableCell>
-                                              <Input  value={ temporaryAttribute.value }
-                                                      onChange={
-                                                        value => handleSetTemporaryAttribute( 'VALUE', value)
-                                                      }/>
-                                            </TableCell>
-                                            <TableCell>
-                                              <Input  value={ temporaryAttribute.stock }
-                                                      onBlur={
-                                                        () => {
-                                                          handleSetTemporaryAttribute(
-                                                            'ADD',
-                                                            primaryAttributes[selectedAttribute].id,
-                                                            temporaryAttribute
-                                                          )
-                                                        }
-                                                      }
-                                                      type="number"
-                                                      onChange={
-                                                        value => handleSetTemporaryAttribute( 'STOCK', value)
-                                                      }/>
-                                            </TableCell>
-                                          </TableRow>
-                                        :
-                                           null                                   }
-                                    </Table>
-                                  <CardActions>
-                                    <Button icon="close" label="cancel" onClick={ () => handleSelect(-1, primaryAttributes[selectedAttribute].id) }/>
-                                    <Button icon="done" label="done" onClick={ () => setAttributeDone(primaryAttributes[selectedAttribute].id) } />
-                                  </CardActions>
-                              </Card>
-                              }
-                              </div>
-                            </div>
+                            showAddColors
+                              && <AddColors productSubCategory={ productSubCategory }
+                                                        primaryAttributes={ primaryAttributes }
+                                                        secondaryAttributes={ secondaryAttributes }
+                                                        handleSelect={ handleSelect }
+                                                        handleAttributeSelect={ handleAttributeSelect }
+                                                        handleStockUpdate={ handleStockUpdate }
+                                                        selectedAttribute={ selectedAttribute }
+                                                        setAttributeDone={ setAttributeDone }
+                                                        handleStockInputBlur={ handleStockInputBlur }
+                                                        handleAddVairace={ handleAddVairace }
+                                                        temporaryAttribute={ temporaryAttribute }
+                                                        handleSetTemporaryAttribute={ handleSetTemporaryAttribute }
+                                                        type={ type } />
+                          }
+                          {
+                            showAddVariances
+                              && <AddVariances  productSubCategory={ productSubCategory }
+                                                primaryAttributes={ primaryAttributes }
+                                                secondaryAttributes={ secondaryAttributes }
+                                                handleSelect={ handleSelect }
+                                                handleAttributeSelect={ handleAttributeSelect }
+                                                handleStockUpdate={ handleStockUpdate }
+                                                selectedAttribute={ selectedAttribute }
+                                                setAttributeDone={ setAttributeDone }
+                                                handleStockInputBlur={ handleStockInputBlur }
+                                                handleAddVairace={ handleAddVairace }
+                                                temporaryAttribute={ temporaryAttribute }
+                                                handleSetTemporaryAttribute={ handleSetTemporaryAttribute }
+                                                type={ type } />
                           }
                         </div>
                      }
+                     {
+                       showServiceDetails && <div>
+                         <Input label={'Enter Your service title'}
+                                required
+                                onChange={ value => handleManualInput('service', 'title', value) }
+                                value={ serviceTitle } />
+                         <Input label={'Enter Your service fee'}
+                                type="number"
+                                required
+                                onChange={ value => handleManualInput('service', 'fee', value) }
+                                value={ serviceFee } />
+                          <Input label={'Enter Your service description'}
+                                onChange={ value => handleManualInput('service', 'desc', value) }
+                                value={ serviceDescription } />
+                       </div>
+                     }
                     <div className="ProductsSidebar-add-actions">
-                        <Button label="Next"
-                                icon="send"
-                                onClick={
-                                  () => handleShowRoute('ADD_IMAGES')
-                                }
+                      <Button label="Next"
+                              icon="send"
+                              onClick={
+                                () => handleShowRoute('ADD_IMAGES')
+                              }
                                 disabled={ showAddImages } />
                       </div>
                     </div>

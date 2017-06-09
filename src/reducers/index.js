@@ -26,7 +26,8 @@ import { SidebarUIReducer } from './sidebarReducers';
 
 import { ShopPageReducer, ShopPageUIReducer } from './shopReducers';
 import { imageUploaderUIReducer } from './imageUploaderReducers';
-import cart from './cart'
+import { servicesUIReducer } from './serviceReducers';
+import { cartReducer } from './cartReducers';
 
 const NavigationUIReducer = (
   state = {
@@ -71,9 +72,10 @@ const RootReducer = combineReducers({
     categories: CategoriesUIReducer,
     product: ProductsUIReducer,
     uploader: imageUploaderUIReducer,
+    service: servicesUIReducer,
     responsive,
   }),
-  cart,
+  cart: cartReducer,
 });
 
 export default RootReducer;

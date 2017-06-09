@@ -42,6 +42,25 @@ export const imageUploaderUIReducer = handleActions({
           slider: action.payload,
         }
     },
+     [imageUploaderActions.imageUploader.upload.count]: (state, action) => {
+      return {
+        ...state,
+        uploadCount: action.payload,
+      }
+    },
+    [imageUploaderActions.imageUploader.upload.inc]: (state, action) => {
+        return {
+          ...state,
+          doneUploadCount: state.doneUploadCount + 1,
+        }
+    },
+    [imageUploaderActions.imageUploader.upload.dec]: (state, action) => {
+        return {
+          ...state,
+          uploadCount: ((state.uploadCount - 1) < 0) ? 0 : (state.uploadCount - 1),
+          doneUploadCount: ((state.doneUploadCount - 1) < 0) ? 0 : (state.doneUploadCount - 1)
+        }
+  },
 }, {
   active: false,
   dropped: false,
@@ -50,4 +69,6 @@ export const imageUploaderUIReducer = handleActions({
   type: null,
   productImage: false,
   productID: null,
+  uploadCount: 0,
+  doneUploadCount: 0,
 });

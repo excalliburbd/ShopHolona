@@ -13,27 +13,13 @@ const BackOffice = ({
   data,
   handleTabChange,
   options,
-  setOrderStatus
+  setOrderStatus,
+  handleShowProductDetails,
+  vendor,
 }) => {
-
-  const menuList = {
-    orders: menu.orders.map(
-              (status, key) => ({
-                ...status,
-                amount: data.orders[key].length
-              })
-            ),
-    products: menu.products.map(
-                (status, key) => ({
-                  ...status,
-                  amount: data.orders[key].length
-                })
-              )
-  }
-
   return (
     <div className="Backoffice">
-      <Route exact path="/admin/orders" render={
+      {/*<Route exact path="/admin/orders" render={
                   () => <TabList menu={ menuList.orders }
                                  route="order"
                                  dropdownOptions={
@@ -45,18 +31,15 @@ const BackOffice = ({
                                  data={ data.orders }
                                  tabIndex={ tabIndex.orders }
                                  handleTabChange={ handleTabChange } />
-                                } />
+                                } />*/}
       <Route exact path="/admin/products" render={
-                  () => <TabList menu={ menuList.products }
-                                 route="product"
-                                 dropdownOptions={
-                                                    menu.products.filter(
-                                                      status => (status.label !== 'All')
-                                                    )
-                                                 }
+                  () => <TabList menu={ menu.products }
+                                 route="products"
                                  data={ data.products }
                                  tabIndex={ tabIndex.products }
-                                 handleTabChange={ handleTabChange } />
+                                 handleTabChange={ handleTabChange }
+                                 handleShowProductDetails={ handleShowProductDetails }
+                                 vendor={ vendor }/>
                                 } />
       <Route exact path="/admin/reports" component={ Reports } />
     </div>

@@ -7,8 +7,6 @@ import IconButton from 'react-toolbox/lib/button/IconButton';
 
 import MdClose from 'react-icons/lib/md/close';
 
-import * as types from '../../constants/cart'
-
 const customItem  = item => (
   <div className="cart-attributes-color" style={{
     backgroundColor: item.color,

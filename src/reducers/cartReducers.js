@@ -5,7 +5,7 @@ import {
   userActions,
 } from '../actions/';
 
-export const productsReducer = handleActions({
+export const cartReducer = handleActions({
   [cartActions.cart.set.loading]: (state, action) => {
     return {
       ...state,
