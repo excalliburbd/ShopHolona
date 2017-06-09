@@ -13,9 +13,11 @@ import {
   removeFromFeaturedProduct,
 } from '../thunks/productThunks';
 
-import { sidebarActions } from '../actions/';
-import { productActions } from '../actions/';
-import { categoryActions } from '../actions/';
+import {
+  sidebarActions,
+  productActions,
+  categoryActions
+} from '../actions/';
 
 import ProductsSidebar from '../components/Sidebar/ProductsSidebar';
 

@@ -7,8 +7,10 @@ import { getAllProducts, getFeaturedProduct } from '../thunks/productThunks';
 import { getShopCategories, getShop, getShopAddress } from '../thunks/shopThunks';
 import { getMe } from '../thunks/userThunks';
 
-import { userActions } from '../actions/';
-import { sidebarActions } from '../actions/';
+import {
+  userActions,
+  sidebarActions
+} from '../actions/';
 
 import Nav from '../components/Navigation/Navigation';
 
@@ -110,6 +112,9 @@ const mapDispatchToProps = dispatch => {
         innerWidth: true,
         innerHeight: true,
       }));
+    },
+    showCartSidebar: () => {
+      dispatch(sidebarActions.sidebar.show.addToCart())
     }
   }
 }

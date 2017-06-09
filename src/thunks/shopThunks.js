@@ -1,8 +1,10 @@
 import { request, getConfig } from './helpers';
 
-import { shopActions } from '../actions/';
-import { categoryActions } from '../actions/';
-import { imageUploaderActions } from '../actions/';
+import {
+  shopActions,
+  categoryActions,
+  imageUploaderActions,
+} from '../actions/';
 
 export const getShopCategories = shop  => dispatch => {
 
@@ -120,7 +122,7 @@ export const postShopPageCover = (image, shop, token, formData)  => dispatch => 
 
     formData.append('cover_photo', blob );
 
-    request(`/api/vendors/shops/${shop}/`, getConfig(
+    request(`/vendors/shops/${shop}/`, getConfig(
           token,
           formData,
           'put'

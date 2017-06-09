@@ -8,6 +8,7 @@ export const sidebarActionCreators = {
       ADD_PRODUCT_IMAGES: payload => payload,
       ADD_PRODUCT_DETAILS: payload => payload,
       ADD_PRODUCT_UPLOADING: payload => payload,
+      ADD_TO_CART: payload => payload,
     },
     UI: {
       SET: {

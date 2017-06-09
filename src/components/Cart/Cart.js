@@ -1,14 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import CartItem from './CartItem'
-import { totalPrice } from '../../selectors'
 
-import './style.css'
+import CartItem from './CartItem';
 
-const stateToProps = state => ({
-  cartItems: state.cart.items,
-  totalPrice: totalPrice(state)
-})
+import './Cart.css';
 
 const Cart = ({ cartItems, totalPrice }) => (
   <div className="cart-container">
@@ -29,4 +23,4 @@ const Cart = ({ cartItems, totalPrice }) => (
   </div>
 )
 
-export default connect(stateToProps)(Cart)
+export default Cart;

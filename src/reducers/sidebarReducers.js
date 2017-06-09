@@ -33,7 +33,7 @@ export const SidebarUIReducer = handleActions({
         subType: 'SHOW_PRODUCT_DETAILS'
       }),
 
-    ['SHOW_SIDEBAR_CART_CHOOSE']: (state, action) => ({
+    [sidebarActions.sidebar.show.addToCart]: (state, action) => ({
        ...state,
         show: true,
         type: 'CART',

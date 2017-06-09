@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+
 import Input from 'react-toolbox/lib/input/Input';
 import Dropdown from 'react-toolbox/lib/dropdown/Dropdown';
 import Card from 'react-toolbox/lib/card/Card';
@@ -8,22 +8,6 @@ import IconButton from 'react-toolbox/lib/button/IconButton';
 import MdClose from 'react-icons/lib/md/close';
 
 import * as types from '../../constants/cart'
-
-const stateToProps = state => ({
-  products: state.entities.products,
-})
-
-const actionsToState = dispatch => ({
-  updateCartItem: (id, payload) =>  dispatch({
-    type: types.CART_ITEM_UPDATE_SUCCESS,
-    id,
-    payload,
-  }),
-  deleteCartItem: (id) => dispatch({
-    type: types.CART_ITEM_DELETE_SUCCESS,
-    id,
-  })
-})
 
 const customItem  = item => (
   <div className="cart-attributes-color" style={{
@@ -155,4 +139,4 @@ class CartItem extends Component {
   }
 }
 
-export default connect(stateToProps, actionsToState)(CartItem);
+export default CartItem;

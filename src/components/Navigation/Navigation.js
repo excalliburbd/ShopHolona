@@ -74,6 +74,7 @@ class Nav extends Component {
       online,
       shopID,
       hadleLoadData,
+      showCartSidebar,
       children,
     } = this.props;
 
@@ -115,7 +116,8 @@ class Nav extends Component {
                             showSearchbar={ showSearchbar }
                             handleSignIn={ handleSignIn }
                             vendor={ vendor }
-                            profilePic={ profilePic } />
+                            profilePic={ profilePic }
+                            showCartSidebar={ showCartSidebar } />
           <div className={
                 (location.pathname === '/') ?
                   'Navigation-content-main' :

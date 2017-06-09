@@ -4,9 +4,12 @@ import { withRouter } from 'react-router';
 
 import { getCategory } from '../thunks/productThunks';
 
-import { sidebarActions } from '../actions/';
-import { shopActions } from '../actions/';
-import { imageUploaderActions } from '../actions/';
+import {
+  sidebarActions,
+  shopActions,
+  imageUploaderActions,
+  cartActions,
+} from '../actions/';
 
 import ShopPage from '../components/ShopPage';
 
@@ -132,7 +135,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     handleEditContactNumber: (id, value) => {
       dispatch(shopActions.shop.set.contactNumber({ id, value }));
-    }
+    },
+    addToCart: payload => {
+
+      dispatch(sidebarActions.sidebar.show.addToCart());
+
+      dispatch(cartActions.cart.add.item(payload));
+    },
   }
 }
 

@@ -1,8 +1,10 @@
 import { handleActions } from 'redux-actions';
 
-import { categoryActions } from '../actions/';
-import { productActions } from '../actions/';
-import { sidebarActions } from '../actions/';
+import {
+  categoryActions,
+  productActions,
+  sidebarActions
+} from '../actions/';
 
 const getDecrement = stock => {
   const decrement = parseInt(stock, 10) - 1;

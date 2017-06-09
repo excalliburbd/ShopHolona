@@ -1,7 +1,9 @@
 import { handleActions } from 'redux-actions';
 
-import { productActions } from '../actions/';
-import { sidebarActions } from '../actions/';
+import {
+  productActions,
+  sidebarActions
+} from '../actions/';
 
 export const productsReducer = handleActions({
   [productActions.products.done.get.products]: (state, action) => {

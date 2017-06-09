@@ -14,18 +14,6 @@ import Stars from './Stars'
 
 import './ProductCard.css'
 
-const actionsToState = dispatch => ({
-  addToCart: payload => {
-    dispatch({
-      type: 'SHOW_SIDEBAR_CART_CHOOSE'
-    })
-    dispatch({
-      type: types.CART_ITEM_ADD_SUCCESS,
-      payload
-    })
-  }
-})
-
 // const getRandomInt = (min, max) => {
 //   min = Math.ceil(min);
 //   max = Math.floor(max);
@@ -138,4 +126,4 @@ class ProductCard extends Component {
   }
 }
 
-export default connect(null, actionsToState)(ProductCard)
+export default ProductCard;

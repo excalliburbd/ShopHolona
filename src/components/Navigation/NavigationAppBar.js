@@ -17,14 +17,6 @@ import DashboardIcon from '../../assets/svg/dashboard.svg';
 
 import './NavigationAppBar.css';
 
-const actionsToState = dispatch => ({
-  showCartSidebar: () => {
-    dispatch({
-      type: 'SHOW_SIDEBAR_CART_CHOOSE'
-    })
-  }
-})
-
 const NavigationAppBar = ({
   searchbar,
   history,
@@ -39,7 +31,7 @@ const NavigationAppBar = ({
   refCode,
   vendor,
   profilePic,
-  showCartSidebar
+  showCartSidebar,
 }) => {
 
   const navTitleClass = classNames({
@@ -170,4 +162,4 @@ const NavigationAppBar = ({
   );
 }
 
-export default connect(null, actionsToState)(NavigationAppBar);
+export default NavigationAppBar;

@@ -2,8 +2,10 @@ import { request, getConfig } from './helpers';
 
 import { getShopCategories } from './shopThunks';
 
-import { userActions } from '../actions/';
-import { sidebarActions } from '../actions/';
+import {
+   userActions,
+   sidebarActions,
+} from '../actions/';
 
 export const trySignInAsyncAction = ({ email, password }, shop) => dispatch => {
 
@@ -18,7 +20,7 @@ export const trySignInAsyncAction = ({ email, password }, shop) => dispatch => {
     type: 'USER_TRY_SIGNIN'
   });
 
-  request('/api/auth/login/', getConfig(
+  request('/auth/login/', getConfig(
             null,
             credentials,
             'post'
@@ -55,7 +57,7 @@ export const trySignInAsyncAction = ({ email, password }, shop) => dispatch => {
 }
 
 export const getMe = (token, shop) => dispatch => {
-    request('/api/me/', getConfig(
+    request('/me/', getConfig(
           token
         )).then(
           res => {
