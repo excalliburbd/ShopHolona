@@ -154,7 +154,14 @@ export const ShopPageUIReducer = handleActions({
         ...state,
         chip: action.payload,
       }),
+    [shopActions.shop.toggle.productDetails]: (state, action) => ({
+      ...state,
+      showProductDetails: !state.showProductDetails,
+      product: (action.payload ) ? action.payload : {},
+    })
 }, {
   details: false,
   chip: 0,
+  showProductDetails: false,
+  product: {}
 })

@@ -10,6 +10,9 @@ export const shopActionCreators = {
     EDIT: {
       NAME: payload => payload,
     },
+    TOGGLE: {
+      PRODUCT_DETAILS:  payload => payload,
+    },
     TOGGLE_DETAILS: payload => payload,
     UPDATE_CHIP: payload => payload,
   }

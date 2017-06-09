@@ -37,6 +37,7 @@ const mapStateToProps = state => {
     coverPhoto: state.shop.cover_photo,
     shopPhones: getPhones(state),
     shopAddress: getAddress(state),
+    productDetails: state.ui.shopPage.showProductDetails,
   }
 }
 
@@ -51,6 +52,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleShowProductDetails: (vendor, product) => {
       if (vendor) {
         dispatch(sidebarActions.sidebar.show.addProductDetails(product));
+      } else {
+        dispatch(shopActions.shop.toggle.productDetails(product));
       }
     },
     handleAddProduct: () => {
@@ -63,7 +66,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleEditContactNumber: (id, value) => {
       dispatch(shopActions.shop.set.contactNumber({ id, value }));
     },
-    addToCart: payload => {
+    handleAddToCart: payload => {
 
       dispatch(sidebarActions.sidebar.show.addToCart());
 

@@ -11,7 +11,7 @@ import Icon from 'react-icons-kit';
 import ProductCard from './ProductCard';
 import Stars from './Stars';
 import FeaturedSlider from './FeaturedSlider';
-import ProductDetails from './ProductDetails'
+import ProductDetails from './ProductDetails';
 
 import { female } from 'react-icons-kit/ionicons/female';
 import { male } from 'react-icons-kit/ionicons/male';
@@ -39,6 +39,8 @@ const ShopPage = ({
   shopAddress,
   handleEditContactNumber,
   handleSaveContactNumber,
+  handleAddToCart,
+  productDetails,
 }) => {
 
   const detailsClass = classNames({
@@ -132,60 +134,72 @@ const ShopPage = ({
         </div>
       </div>
         <div className="ShopPage-products">
-          <div className="ShopPage-featured">
-            <FeaturedSlider vendor={ vendor }
-                            products = { featuredProducts.map(
-                                            (porduct, key) => <ProductCard { ...porduct }
-                                                                            vendor={ vendor }
-                                                                            handleShowDetails={ () => handleShowProductDetails(vendor, porduct) }
-                                                                            key={ key }/>
-                                          ) }/>
-          </div>
-          <div className="ShopPage-products--container">
-            <div className="ShopPage-products--container-scroll-div">
-              <IconButton className="ShopPage-banner--icon"
-                          icon="add_a_photo"
-                          onClick={ () => handleShowImageUploader('COVER') } />
-            </div>
-            <div className="ShopPage-products--categories">
-              {
-                products.map(
-                  (obj, key) => <Chip onClick={ () => selectChip(key) }
-                                      className={
-                                        (selectedChip === key) ?
-                                        'ShopPage-products--category ShopPage-products--categories-selected' :
-                                        'ShopPage-products--category'
-                                      }
-                                      key={key}>
-                                  {/*{ obj.first_parent.icon && <Avatar icon={ obj.first_parent.icon } /> }*/}
-                                  { `${obj.name} (${obj.products.length})` }
-                                </Chip>
-                )
-              }
-            </div>
-            <div className="ShopPage-products--content">
-              <div className="ShopPage-products--list">
-                {
-                  (vendor) && <ProductCard  addProductCard
-                                            vendor={ vendor }
-                                            handleShowDetails={ handleAddProduct }
-                                            key="AddProductKey" />
-                }
-                {
-                  products[selectedChip].products.map(
-                    (porduct, key) => <ProductCard { ...porduct }
-                                                    vendor={ vendor }
-                                                    handleShowDetails={ () => handleShowProductDetails(vendor, porduct) }
-                                                    key={ key }/>
-                  )
-                }
-              </div>
-              <div className="emptydiv-phone"></div>
-            </div>
-            <div className="ShopPage-banner" >
-              <div style={{ backgroundImage: `url(${coverPhoto})`}} className="ShopPage-banner" />
-            </div>
-        </div>
+          {
+            (productDetails) ?
+              <ProductDetails /> :
+              [
+                <div className="ShopPage-featured">
+                  <FeaturedSlider vendor={ vendor }
+                                  products = { featuredProducts.map(
+                                                  (porduct, key) => <ProductCard { ...porduct }
+                                                                                  vendor={ vendor }
+                                                                                  handleShowVendorDetails={ () => handleShowProductDetails(vendor, porduct) }
+                                                                                  handleShowCustomerDetails={ () => handleShowProductDetails(false, porduct) }
+                                                                                  key={ key }
+                                                                                  addToCart={ handleAddToCart } />
+                                                ) }/>
+                </div>,
+                <div className="ShopPage-products--container">
+                  <div className="ShopPage-products--container-scroll-div">
+                    <IconButton className="ShopPage-banner--icon"
+                                icon="add_a_photo"
+                                onClick={ () => handleShowImageUploader('COVER') } />
+                 </div>
+                  <div className="ShopPage-products--categories">
+                    {
+                      products.map(
+                        (obj, key) => <Chip onClick={ () => selectChip(key) }
+                                            className={
+                                              (selectedChip === key) ?
+                                              'ShopPage-products--category ShopPage-products--categories-selected' :
+                                              'ShopPage-products--category'
+                                            }
+                                            key={key}>
+                                        {/*{ obj.first_parent.icon && <Avatar icon={ obj.first_parent.icon } /> }*/}
+                                        { `${obj.name} (${obj.products.length})` }
+                                      </Chip>
+                      )
+                    }
+                  </div>
+                  <div className="ShopPage-products--content">
+                    <div className="ShopPage-products--list">
+                      {
+                        (vendor) && <ProductCard  addProductCard
+                                                  vendor={ vendor }
+                                                  handleShowVendorDetails={ handleAddProduct }
+                                                  handleShowCustomerDetails={ handleAddProduct }
+                                                  key="AddProductKey"
+                                                  addToCart={ handleAddToCart } />
+                      }
+                      {
+                        products[selectedChip].products.map(
+                          (porduct, key) => <ProductCard { ...porduct }
+                                                          vendor={ vendor }
+                                                          handleShowVendorDetails={ () => handleShowProductDetails(vendor, porduct) }
+                                                          handleShowCustomerDetails={ () => handleShowProductDetails(false, porduct) }
+                                                          key={ key }
+                                                          addToCart={ handleAddToCart } />
+                        )
+                      }
+                    </div>
+                    <div className="emptydiv-phone"></div>
+                  </div>
+                  <div className="ShopPage-banner" >
+                    <div style={{ backgroundImage: `url(${coverPhoto})`}} className="ShopPage-banner" />
+                  </div>
+                </div>
+              ]
+          }
       </div>
     </div>
   );

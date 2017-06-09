@@ -7,7 +7,7 @@ import ProductDetailsMain from './ProductDetailsMain';
 import Stars from './Stars'
 import './ProductDetails.css'
 
-class CartProduct extends Component {
+class ProductDetails extends Component {
   state = {
     quantity: 0,
     detailsTabIndex: 0,
@@ -65,4 +65,4 @@ class CartProduct extends Component {
   }
 }
 
-export default CartProduct;
+export default ProductDetails;
