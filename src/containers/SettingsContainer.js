@@ -6,20 +6,12 @@ import Settings from '../components/BackOffice/Settings';
 import { shopActions } from '../actions';
 
 import {
-  getShopName,
-  getShopDomain,
-  getAddress,
-  getHours,
-  getTradeLicence,
+  getShopInfo,
 } from '../selectors/shopSelectors';
 
 const mapStateToProps = state => {
   return {
-    name: getShopName(state),
-    domain: getShopDomain(state),
-    addresses: getAddress(state),
-    hours: getHours(state),
-    tradeLicence: getTradeLicence(state),
+    info: getShopInfo(state),
   }
 }
 

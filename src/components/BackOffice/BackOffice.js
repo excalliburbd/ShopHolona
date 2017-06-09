@@ -17,22 +17,6 @@ const BackOffice = ({
   handleShowProductDetails,
   vendor,
 }) => {
-
-  // const menuList = {
-  //   orders: menu.orders.map(
-  //             (status, key) => ({
-  //               ...status,
-  //               amount: data.orders[key].length
-  //             })
-  //           ),
-  //   products: menu.products.map(
-  //               (status, key) => ({
-  //                 ...status,
-  //                 amount: data.orders[key].length
-  //               })
-  //             )
-  // }
-
   return (
     <div className="Backoffice">
       {/*<Route exact path="/admin/orders" render={

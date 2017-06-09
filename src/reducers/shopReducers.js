@@ -6,13 +6,33 @@ import { REHYDRATE } from 'redux-persist/constants';
 export const ShopPageReducer = handleActions({
     [shopActions.shop.set.shop]: (state, action) => {
       if (!state.information.editing) {
+        const {
+          shop_name,
+          subdomain,
+          contacts,
+          hours_from,
+          hours_to,
+          trade_license_number,
+          trade_license_image
+        } = action.payload;
+
         return {
           ...state,
           ...action.payload,
           information: {
             ...state.information,
             upToDate: true,
-            name: action.payload.shop_name,
+            name: shop_name,
+            domain: subdomain,
+            phone: contacts[0].description,
+            hours: {
+              from: hours_from,
+              to: hours_to,
+            },
+            license: {
+              number: trade_license_number,
+              image: trade_license_image,
+            }
           }
         }
       }
@@ -39,18 +59,21 @@ export const ShopPageReducer = handleActions({
         )
       }),
     [shopActions.shop.set.address]: (state, action) => {
-        const addresses = {};
 
-        action.payload.forEach(
-          obj => {
-            addresses[obj.id] = obj;
+      const address = action.payload[0]
+
+      return {
+        ...state,
+        address: action.payload,
+        information: {
+          ...state.information,
+          address: {
+            body: address.details,
+            city: address.city.city,
+            postal: address.postal_code
           }
-        )
-
-        return {
-          ...state,
-          address: addresses
         }
+      }
     },
     [REHYDRATE]: (state, action) => {
       const incoming = action.payload.shop;
@@ -60,7 +83,23 @@ export const ShopPageReducer = handleActions({
         ...incoming,
         information: {
           upToDate: false,
+          editing: false,
           name: 'loading',
+          domain: 'loading',
+          address: {
+            body: 'loading',
+            city: 'loading',
+            postal: 'loading'
+          },
+          hours: {
+            from: new Date(),
+            to: new Date(),
+          },
+          phone: 'loading',
+          license: {
+            number: 'loading',
+            img: 'https://unsplash.it/480/480'
+          },
         }
       }
     },
@@ -87,7 +126,22 @@ export const ShopPageReducer = handleActions({
   information: {
     upToDate: false,
     editing: false,
-    name: 'loading'
+    name: 'loading',
+    domain: 'loading',
+    address: {
+      body: 'loading',
+      city: 'loading',
+      postal: 'loading'
+    },
+    hours: {
+      from: new Date(),
+      to: new Date(),
+    },
+    phone: 'loading',
+    license: {
+      number: 'loading',
+      img: 'https://unsplash.it/480/480'
+    },
   }
 })
 

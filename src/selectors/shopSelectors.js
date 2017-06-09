@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import moment from 'moment';
 
 export const getProcutsArray = state => state.products;
 export const getFeaturedProcutsArray = state => state.featuredProducts;
@@ -11,14 +10,15 @@ export const getContacts = state => state.shop.contacts;
 export const getAddresses = state => state.shop.address;
 export const getShopName = state => state.shop.information.name;
 export const getShopDomain = state => state.shop.subdomain;
-export const getHours = state => ([
-  moment(state.shop.hours_from).format('DD/MM/YYYY').toString(),
-  moment(state.shop.hours_to).format('DD/MM/YYYY').toString()
-]);
+export const getHours = state => ({
+  from: state.shop.hours_from,
+  to: state.shop.hours_to
+});
 export const getTradeLicence = state => ({
   number: state.shop.trade_license_number,
-  image: state.shop.trade_license_image
+  img: state.shop.trade_license_image
 });
+export const getShopInfo = state => state.shop.information;
 
 export const getCategories = createSelector(
   [getCategoriesArray, getCategoriesEntities],
@@ -82,20 +82,28 @@ export const getPhones = createSelector(
       })
     )
   }
-)
+);
 
-export const getAddress = createSelector(
-  [getAddresses],
-  addressObj => {
-    return addressObj[1];
+export const getPhone = createSelector(
+  [getPhones],
+  phone => {
+    return phone[0];
   }
 );
 
-export const getAllAddresses = createSelector(
+export const getAddress = createSelector(
   [getAddresses],
-  addressObj => {
-    return Object.keys(addressObj).map(
-      id => addressObj[id]
-    )
+  addressArr => {
+
+    return addressArr[0];
   }
-)
+);
+
+// export const getAllAddresses = createSelector(
+//   [getAddresses],
+//   addressObj => {
+//     return Object.keys(addressObj).map(
+//       id => addressObj[id]
+//     )
+//   }
+// );

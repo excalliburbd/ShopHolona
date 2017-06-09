@@ -20,6 +20,7 @@ export const getSubCategoryID = state => state.ui.categories.subCategoryID;
 export const getRadioValue = state => state.ui.sidebar.radio;
 export const getProgress = state => state.ui.categories.uploadProgress;
 export const getSelectedPrductID = state => state.ui.product.selectedProduct.id;
+export const getProductsArray = state => state.products;
 export const getProductsObj = state => state.entities.products;
 export const getUploadCount = state => state.ui.uploader.uploadCount;
 export const getDoneUploadCount = state => state.ui.uploader.doneUploadCount;
@@ -245,5 +246,14 @@ export const getShowDone = createSelector(
   [getUploadCount, getDoneUploadCount],
   (upload, done) => {
     return (upload === done)
+  }
+);
+
+export const getAllProducts = createSelector(
+  [getProductsArray, getProductsObj],
+  (arr, obj) => {
+    return arr.map(
+      id => obj[id]
+    )
   }
 );
