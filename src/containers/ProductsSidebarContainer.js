@@ -199,13 +199,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
          break;
       }
     },
-    handleFiles: (id, oldFiles, newFiles, name, shop, token) => {
+    handleFiles: (id, oldFiles, newFiles, name, shop, token,) => {
       dispatch(categoryActions.categories.ui.set.productImages({
           id,
           files: newFiles,
         }));
 
-      dispatch(imageUploaderActions.imageUploader.upload.count(oldFiles.length + newFiles.length));
+      dispatch(
+        imageUploaderActions.imageUploader.upload.count(newFiles.length)
+      );
 
       // const [
       //   first,

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import uuid from "uuid";
 
 import { getCategory } from '../thunks/productThunks';
 
@@ -68,11 +69,18 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleEditContactNumber: (id, value) => {
       dispatch(shopActions.shop.set.contactNumber({ id, value }));
     },
-    handleAddToCart: payload => {
+    handleAddToCart: (id, variances) => {
 
       dispatch(sidebarActions.sidebar.show.addToCart());
 
-      dispatch(cartActions.cart.add.item(payload));
+      dispatch(cartActions.cart.add.item({
+                            id: uuid.v4(),
+                            productId: id,
+                            varianceParentId: variances[0].id,
+                            varianceId: variances[0].attributes[0].id,
+                            price: variances[0].attributes[0].price,
+                            quantity: 1
+                          }));
     },
     handleToggleProductDetails: payload => {
       dispatch(shopActions.shop.toggle.productDetails(payload))

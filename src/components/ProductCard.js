@@ -1,13 +1,10 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import uuid from "uuid"
-import Card from 'react-toolbox/lib/card/Card'
-import CardMedia from 'react-toolbox/lib/card/CardMedia'
-import Button from 'react-toolbox/lib/button/Button'
-import Dialog from 'react-toolbox/lib/dialog/Dialog'
+import React from 'react';
 
-import addProductIcon from '../assets/svg/add-product.svg'
-import ProductDetails from './ProductDetails'
+import Card from 'react-toolbox/lib/card/Card';
+import CardMedia from 'react-toolbox/lib/card/CardMedia';
+import Button from 'react-toolbox/lib/button/Button';
+
+import addProductIcon from '../assets/svg/add-product.svg';
 
 import Stars from './Stars'
 
@@ -93,14 +90,7 @@ const ProductCard = ({
                   raised
                   label='Add to Cart'
                   onClick={
-                    () => addToCart({
-                            id: uuid.v4(),
-                            productId: id,
-                            varianceParentId: variances[0].id,
-                            varianceId: variances[0].attributes[0].id,
-                            price: variances[0].attributes[0].price,
-                            quantity: 1
-                          })
+                    () => addToCart(id, variances)
                   }/>
       }
     </Card>

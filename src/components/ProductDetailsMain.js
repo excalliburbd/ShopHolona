@@ -16,6 +16,9 @@ class ProductDetailsMain extends Component {
     const {
       selected,
       select,
+      id,
+      variances,
+      addToCart,
     } = this.props;
 
     const colorsArray = ["#f44336", "#e91e63", "#9c27b0", "#673ab7", "#3f51b5", "#2196f3", "#03a9f4", "#00bcd4"];
@@ -59,7 +62,11 @@ class ProductDetailsMain extends Component {
         </div>
 
         <div className="details-action">
-          <Button className="details-action-cart" label='Add to cart' raised primary />
+          <Button className="details-action-cart"
+                  onClick={ () => addToCart(id, variances) }
+                  label='Add to cart'
+                  raised
+                  primary />
         </div>
 
       </div>

@@ -27,6 +27,7 @@ class ProductDetails extends Component {
       product,
       selectedProductVariance,
       selectVariance,
+      addToCart,
     } = this.props;
 
     const images = product.variances[selectedProductVariance].images.map(
@@ -64,7 +65,9 @@ class ProductDetails extends Component {
             <Tab label='Details'>
               <small>
                 <ProductDetailsMain selected={ selectedProductVariance }
-                                    select={ selectVariance }/>
+                                    select={ selectVariance }
+                                    { ...product }
+                                    addToCart={ addToCart } />
               </small>
             </Tab>
             <Tab label='Specifications'><small>Product Specifications Not Available</small></Tab>

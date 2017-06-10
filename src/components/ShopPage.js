@@ -143,15 +143,16 @@ const ShopPage = ({
               <ProductDetails toggleDetails={ handleToggleProductDetails }
                               product={ selectedProductDetails }
                               selectVariance={ handleSetSelectedVariance }
-                              selectedProductVariance={ selectedProductVariance } /> :
+                              selectedProductVariance={ selectedProductVariance }
+                              addToCart={ handleAddToCart }/> :
               [
                 <div className="ShopPage-featured">
                   <FeaturedSlider vendor={ vendor }
                                   products = { featuredProducts.map(
-                                                  (porduct, key) => <ProductCard { ...porduct }
+                                                  (product, key) => <ProductCard { ...product }
                                                                                   vendor={ vendor }
-                                                                                  handleShowVendorDetails={ () => handleShowProductDetails(vendor, porduct) }
-                                                                                  handleShowCustomerDetails={ () => handleShowProductDetails(false, porduct) }
+                                                                                  handleShowVendorDetails={ () => handleShowProductDetails(vendor, product) }
+                                                                                  handleShowCustomerDetails={ () => handleShowProductDetails(false, product) }
                                                                                   key={ key }
                                                                                   addToCart={ handleAddToCart } />
                                                 ) }/>
@@ -190,10 +191,10 @@ const ShopPage = ({
                       }
                       {
                         products[selectedChip].products.map(
-                          (porduct, key) => <ProductCard { ...porduct }
+                          (product, key) => <ProductCard { ...product }
                                                           vendor={ vendor }
-                                                          handleShowVendorDetails={ () => handleShowProductDetails(vendor, porduct) }
-                                                          handleShowCustomerDetails={ () => handleShowProductDetails(false, porduct) }
+                                                          handleShowVendorDetails={ () => handleShowProductDetails(vendor, product) }
+                                                          handleShowCustomerDetails={ () => handleShowProductDetails(false, product) }
                                                           key={ key }
                                                           addToCart={ handleAddToCart } />
                         )

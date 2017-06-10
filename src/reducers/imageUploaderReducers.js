@@ -45,7 +45,7 @@ export const imageUploaderUIReducer = handleActions({
      [imageUploaderActions.imageUploader.upload.count]: (state, action) => {
       return {
         ...state,
-        uploadCount: action.payload,
+        uploadCount: state.uploadCount + action.payload,
       }
     },
     [imageUploaderActions.imageUploader.upload.inc]: (state, action) => {
