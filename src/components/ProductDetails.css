@@ -86,10 +86,15 @@
   border-radius: 2px;
 }
 
-
 .product-details-right {
   width: 65%;
 }
+
 .product-details-tabs ._26SP9 {
   outline: none;
+}
+
+.ProductDetails--toggle .material-icons {
+  color: #FFC400;
+  font-size: 3em;
 }

@@ -10,11 +10,15 @@ class ProductDetailsMain extends Component {
     quantity: 0,
     background: '#fff',
   };
-  handleChangeComplete = (color) => {
-    this.setState({ background: color.hex });
-  };
 
   render() {
+
+    const {
+      selected,
+      select,
+    } = this.props;
+
+    const colorsArray = ["#f44336", "#e91e63", "#9c27b0", "#673ab7", "#3f51b5", "#2196f3", "#03a9f4", "#00bcd4"];
 
     return (
       <div className="details-main-container">
@@ -38,10 +42,18 @@ class ProductDetailsMain extends Component {
         <div className="details-main-color">
           <h4 className="details-main-subtitle">Color</h4>
           <CirclePicker
-            colors={ ["#f44336", "#e91e63", "#9c27b0", "#673ab7", "#3f51b5", "#2196f3", "#03a9f4", "#00bcd4"] }
+            colors={ colorsArray }
             width= "80%"
-            color={ this.state.background }
-            onChangeComplete={ this.handleChangeComplete }
+            color={ colorsArray[selected] }
+            onChangeComplete={ (color) => {
+              let id = colorsArray.indexOf(color);
+
+              if (id === -1) {
+                id = 0;
+              }
+
+              select(id);
+            } }
           />
 
         </div>

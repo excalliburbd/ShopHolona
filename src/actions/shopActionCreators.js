@@ -6,6 +6,7 @@ export const shopActionCreators = {
       ID:  payload => payload,
       CONTACT_NUMBER:  payload => payload,
       ADDRESS:  payload => payload,
+      SELECTED_VARIANCE:  payload => payload,
     },
     EDIT: {
       NAME: payload => payload,

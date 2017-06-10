@@ -7,6 +7,7 @@ import {
 } from '../actions/';
 
 import { totalPrice } from '../selectors/cartSelectors';
+import { getProductsObj } from '../selectors/productSelectors';
 
 import Cart from '../components/Cart/Cart';
 
@@ -14,17 +15,17 @@ const mapStateToProps = state => {
   return {
     cartItems: state.cart.items,
     totalPrice: totalPrice(state),
-    products: state.entities.products,
+    products: getProductsObj(state),
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    updateCartItem: (id, res) =>  {
-      dispatch(cartActions.cart.update.item(id, res))
+    updateCartItem: (token, id, res) =>  {
+      dispatch(cartActions.cart.update.item(token, id, res))
     },
-    deleteCartItem: (id) => {
-      dispatch(cartActions.cart.done.delete(id))
+    deleteCartItem: (token, id) => {
+      dispatch(cartActions.cart.done.delete(token, id))
     },
   }
 }

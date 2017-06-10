@@ -21,10 +21,29 @@ export const UserReducer = handleActions({
         isLoggedIn: true,
         token: action.payload,
       }),
-  [userActions.user.done.get.profile]: (state, action) => ({
+  [userActions.user.done.get.profile]: {
+    next(state, action) {
+      return {
         ...state,
         ...action.payload,
-      }),
+      }
+    },
+    throw(state, action) {
+      return {
+        isLoggedIn: false,
+        token: null,
+        registered_as: null,
+        referral: {
+          code: 'loading'
+        },
+        last_login: null,
+        full_name: '',
+        email: '',
+        phone_verified: false,
+        email_verified: false,
+      }
+    }
+  },
 }, {
   isLoggedIn: false,
   token: null,

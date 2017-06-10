@@ -445,7 +445,7 @@ export const CategoriesUIReducer = handleActions({
         }
   },
   [categoryActions.categories.done.post.productImage]: {
-    next (state, action) {
+    next(state, action) {
       return {
             ...state,
             attributes: {
@@ -477,7 +477,7 @@ export const CategoriesUIReducer = handleActions({
             }
           }
         },
-    throw (state, action) {
+    throw(state, action) {
       return {
             ...state,
             attributes: {

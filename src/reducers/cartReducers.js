@@ -86,8 +86,8 @@ export const cartReducer = handleActions({
     return {
       ...state,
       loading: false,
-      error: null,
-      items: null,
+      error: undefined,
+      items: [],
     }
   },
 }, {

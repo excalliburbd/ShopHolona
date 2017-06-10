@@ -38,6 +38,8 @@ const mapStateToProps = state => {
     shopPhones: getPhones(state),
     shopAddress: getAddress(state),
     productDetails: state.ui.shopPage.showProductDetails,
+    selectedProductDetails: state.ui.shopPage.product,
+    selectedProductVariance: state.ui.shopPage.selectedVariance,
   }
 }
 
@@ -72,6 +74,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
       dispatch(cartActions.cart.add.item(payload));
     },
+    handleToggleProductDetails: payload => {
+      dispatch(shopActions.shop.toggle.productDetails(payload))
+    },
+    handleSetSelectedVariance: payload => {
+      dispatch(shopActions.shop.set.selectedVariance(payload));
+    }
   }
 }
 

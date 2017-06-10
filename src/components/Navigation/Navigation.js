@@ -14,7 +14,7 @@ import SignUpContainer from '../../containers/SignUpContainer';
 import AddButtonContainer from '../../containers/AddButtonContainer';
 import ProductsSidebarContainer from '../../containers/ProductsSidebarContainer';
 import ImageUploaderContainer from '../../containers/ImageUploaderContainer';
-import Cart from '../Cart/Cart';
+import CartContainer from '../../containers/CartContainer';
 
 import './Navigation.css';
 
@@ -108,7 +108,7 @@ class Nav extends Component {
         case 'PRODUCT':
           return <ProductsSidebarContainer />
         case 'CART':
-          return <Cart/>
+          return <CartContainer />
         default:
           return null;
       }

@@ -41,6 +41,10 @@ const ShopPage = ({
   handleSaveContactNumber,
   handleAddToCart,
   productDetails,
+  handleToggleProductDetails,
+  selectedProductDetails,
+  handleSetSelectedVariance,
+  selectedProductVariance,
 }) => {
 
   const detailsClass = classNames({
@@ -136,7 +140,10 @@ const ShopPage = ({
         <div className="ShopPage-products">
           {
             (productDetails) ?
-              <ProductDetails /> :
+              <ProductDetails toggleDetails={ handleToggleProductDetails }
+                              product={ selectedProductDetails }
+                              selectVariance={ handleSetSelectedVariance }
+                              selectedProductVariance={ selectedProductVariance } /> :
               [
                 <div className="ShopPage-featured">
                   <FeaturedSlider vendor={ vendor }

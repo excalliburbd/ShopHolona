@@ -16,10 +16,6 @@ export const trySignInAsyncAction = ({ email, password }, shop) => dispatch => {
     credentials.password = password;
   }
 
-  dispatch({
-    type: 'USER_TRY_SIGNIN'
-  });
-
   request('/auth/login/', getConfig(
             null,
             credentials,
@@ -28,7 +24,7 @@ export const trySignInAsyncAction = ({ email, password }, shop) => dispatch => {
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
-              request('/api/me/', getConfig(
+              request('/me/', getConfig(
                 res.token
               )).then(
                 res => {
@@ -66,6 +62,10 @@ export const getMe = (token, shop) => dispatch => {
             if (res.id) {
               dispatch(userActions.user.done.get.profile(res));
             }
+          }
+        ).catch(
+          err => {
+            dispatch(userActions.user.done.get.profile(new Error(err)));
           }
         )
 }

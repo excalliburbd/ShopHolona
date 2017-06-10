@@ -9,6 +9,7 @@ import { categoryActions } from '../actions/';
 import { imageUploaderActions } from '../actions/';
 
 export const getCategory = () => dispatch => {
+
   request('/api/references/categories/', getConfig() ).then(
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
@@ -19,6 +20,7 @@ export const getCategory = () => dispatch => {
 }
 
 export const getSubCategory = id => dispatch => {
+
   request(`/api/references/categories/${id}/`, getConfig() ).then(
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
@@ -29,6 +31,7 @@ export const getSubCategory = id => dispatch => {
 }
 
 export const getSubSubCategory = (id, subID )=> dispatch => {
+
   request(`/api/references/categories/${id}/${subID}/`, getConfig() ).then(
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
@@ -40,11 +43,6 @@ export const getSubSubCategory = (id, subID )=> dispatch => {
 
 
 export const getAllProducts = shop  => dispatch => {
-
-  dispatch({
-    type: 'START_API_GET_PRODUCT',
-    payload: { shop },
-  })
 
   request(`/api/shops/${shop}/products/`, getConfig() ).then(
             res => {
@@ -60,6 +58,7 @@ export const getAllProducts = shop  => dispatch => {
 }
 
 export const saveProduct = (obj, shop, token) => dispatch => {
+
   request(`/api/vendors/shops/${shop}/products/`, getConfig(
             token,
             obj,
@@ -82,11 +81,6 @@ export const saveProduct = (obj, shop, token) => dispatch => {
 
 export const deleteProduct = (id, shop, token) => dispatch => {
 
-  dispatch({
-    type: 'START_API_DELETE_PRODUCT',
-    payload: {id, shop, token},
-  });
-
   request(`/api/vendors/shops/${shop}/products/${id}/`, getConfig(
               token,
               null,
@@ -107,10 +101,6 @@ export const deleteProduct = (id, shop, token) => dispatch => {
 }
 
 export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
-
-  dispatch({
-    type: 'POST_API_PRODUCT_IMGAE',
-  })
 
   const apiRequest = new FormData();
 
@@ -160,21 +150,6 @@ export const  requestAttribute = (
   customPrimary,
   customSecondary
 )  => dispatch => {
-
-  dispatch({
-    type: 'START_SET_CUSTOM_ATTRIBUT',
-    payload: {
-        token,
-        name,
-        value,
-        id,
-        primary,
-        primaryID,
-        signal,
-        customPrimary,
-        customSecondary
-    }
-  })
 
   if (signal !== 'DONE_ALL') {
         request(`/api/vendors/category/attributes/`, getConfig(
@@ -231,25 +206,15 @@ export const  requestAttribute = (
 
 export const getFeaturedProduct = shop => dispatch => {
 
-  dispatch({
-    type: 'START_API_GET_FEATURED_PRODUCT',
-    payload: { shop }
-  });
-
   request(`/api/shops/${shop}/featured-products/`, getConfig()
           ).then(
             res => {
               dispatch(productActions.products.done.get.featuredProducts(res));
             }
-          )
+          );
 }
 
 export const makeFeaturedProduct = (id, shop, token) => dispatch => {
-
-  dispatch({
-    type: 'START_API_MAKE_FEATURED_PRODUCT',
-    payload: {id, shop, token}
-  });
 
   request(`/api/vendors/shops/${shop}/featured-products/`, getConfig(
             token,
@@ -270,15 +235,10 @@ export const makeFeaturedProduct = (id, shop, token) => dispatch => {
 
               dispatch(sidebarActions.sidebar.hide());
             }
-          )
+          );
 }
 
 export const removeFromFeaturedProduct = (productID, featuredID, shop, token) => dispatch => {
-
-  dispatch({
-    type: 'START_API_REMOVE_FEATURED_PRODUCT',
-    payload: {productID, featuredID, shop, token}
-  });
 
   request(`/api/vendors/shops/${shop}/featured-products/${featuredID}/`, getConfig(
             token,
@@ -290,5 +250,5 @@ export const removeFromFeaturedProduct = (productID, featuredID, shop, token) =>
 
               dispatch(sidebarActions.sidebar.hide());
             }
-          )
+          );
 }

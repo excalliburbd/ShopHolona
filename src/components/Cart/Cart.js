@@ -4,7 +4,13 @@ import CartItem from './CartItem';
 
 import './Cart.css';
 
-const Cart = ({ cartItems, totalPrice }) => (
+const Cart = ({
+  cartItems,
+  totalPrice,
+  products,
+  updateCartItem,
+  deleteCartItem
+}) => (
   <div className="cart-container">
     <header className="cart-header">
       <div className="cart-header-text">
@@ -17,8 +23,13 @@ const Cart = ({ cartItems, totalPrice }) => (
     </header>
     <ul className="cart-product-list">
       { cartItems.map(cartItem => (
-        <CartItem cartItem={cartItem} key={cartItem.id}/>
-      )) }
+              <CartItem cartItem={cartItem}
+                        key={cartItem.id}
+                        products={ products }
+                        updateCartItem={ updateCartItem }
+                        deleteCartItem={ deleteCartItem }/>
+            ))
+      }
     </ul>
   </div>
 )

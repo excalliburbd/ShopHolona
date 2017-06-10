@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+
 import ImageGallery from 'react-image-gallery';
+
 import Tab from 'react-toolbox/lib/tabs/Tab';
 import Tabs from 'react-toolbox/lib/tabs/Tabs';
+import IconButton from 'react-toolbox/lib/button/IconButton';
 
 import ProductDetailsMain from './ProductDetailsMain';
-import Stars from './Stars'
+import Stars from './Stars';
+
 import './ProductDetails.css'
 
 class ProductDetails extends Component {
@@ -18,23 +22,25 @@ class ProductDetails extends Component {
   };
 
   render() {
-    const images = [
-      {
-        original: 'http://lorempixel.com/200/200/fashion',
-        thumbnail: 'http://lorempixel.com/250/250/fashion',
-      },
-      {
-        original: 'http://lorempixel.com/600/400/fashion',
-        thumbnail: 'http://lorempixel.com/250/150/fashion',
-      },
-      {
-        original: 'http://lorempixel.com/400/600/fashion',
-        thumbnail: 'http://lorempixel.com/150/350/fashion'
-      }
-    ]
+    const {
+      toggleDetails,
+      product,
+      selectedProductVariance,
+      selectVariance,
+    } = this.props;
+
+    const images = product.variances[selectedProductVariance].images.map(
+      ({ image }) => ({
+        original: image,
+        thumbnail: image,
+      })
+    )
 
     return (
       <div className="product-details-container">
+        <IconButton icon="close"
+                    className="ProductDetails--toggle"
+                    onClick={ toggleDetails }/>
         <div className="product-details-left">
           <h1 className="product-details-title">Product Name</h1>
           <div className="product-details-price-title">
@@ -55,7 +61,12 @@ class ProductDetails extends Component {
 
         <div className="product-details-right">
           <Tabs className="product-details-tabs" index={this.state.detailsTabIndex} onChange={this.handleDetailsTabChange} fixed>
-            <Tab label='Details'><small><ProductDetailsMain/></small></Tab>
+            <Tab label='Details'>
+              <small>
+                <ProductDetailsMain selected={ selectedProductVariance }
+                                    select={ selectVariance }/>
+              </small>
+            </Tab>
             <Tab label='Specifications'><small>Product Specifications Not Available</small></Tab>
           </Tabs>
         </div>

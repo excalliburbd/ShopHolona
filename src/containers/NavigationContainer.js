@@ -9,7 +9,8 @@ import { getMe } from '../thunks/userThunks';
 
 import {
   userActions,
-  sidebarActions
+  sidebarActions,
+  shopActions,
 } from '../actions/';
 
 import Nav from '../components/Navigation/Navigation';
@@ -77,10 +78,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(userActions.user.manualSignOut())
     },
     handleSetCredentials: (shop, token) => {
-      dispatch({
-        type: 'SET_SHOP_ID',
-        payload: shop,
-      });
+      dispatch(shopActions.shop.set.id(shop));
+
       dispatch(getShop(shop));
       dispatch(getShopCategories(shop));
       dispatch(getAllProducts(shop));

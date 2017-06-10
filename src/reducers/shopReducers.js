@@ -41,7 +41,7 @@ export const ShopPageReducer = handleActions({
     },
     [shopActions.shop.set.id]: (state, action) => ({
         ...state,
-        ...action.payload,
+        id: action.payload,
       }),
     [shopActions.shop.set.contactNumber]: (state, action) => ({
         ...state,
@@ -157,11 +157,16 @@ export const ShopPageUIReducer = handleActions({
     [shopActions.shop.toggle.productDetails]: (state, action) => ({
       ...state,
       showProductDetails: !state.showProductDetails,
-      product: (action.payload ) ? action.payload : {},
+      product: (action.payload ) ? action.payload : null,
+    }),
+    [shopActions.shop.set.selectedVariance]: (state, action) => ({
+      ...state,
+      selectedVariance: action.payload
     })
 }, {
   details: false,
   chip: 0,
   showProductDetails: false,
-  product: {}
+  product: null,
+  selectedVariance: 0
 })

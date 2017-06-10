@@ -42,11 +42,6 @@ export const getSubSubCategory = (id, subID )=> dispatch => {
 
 export const getAllProducts = shop  => dispatch => {
 
-  dispatch({
-    type: 'START_API_GET_PRODUCT',
-    payload: { shop },
-  })
-
   request(`/shops/${shop}/products/`, getConfig() ).then(
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
@@ -81,11 +76,6 @@ export const saveProduct = (obj, shop, token) => dispatch => {
 }
 
 export const deleteProduct = (id, shop, token) => dispatch => {
-
-  dispatch({
-    type: 'START_API_DELETE_PRODUCT',
-    payload: {id, shop, token},
-  });
 
   request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
               token,
@@ -161,21 +151,6 @@ export const  requestAttribute = (
   customSecondary
 )  => dispatch => {
 
-  dispatch({
-    type: 'START_SET_CUSTOM_ATTRIBUT',
-    payload: {
-        token,
-        name,
-        value,
-        id,
-        primary,
-        primaryID,
-        signal,
-        customPrimary,
-        customSecondary
-    }
-  })
-
   if (signal !== 'DONE_ALL') {
         request(`/vendors/category/attributes/`, getConfig(
               token,
@@ -231,11 +206,6 @@ export const  requestAttribute = (
 
 export const getFeaturedProduct = shop => dispatch => {
 
-  dispatch({
-    type: 'START_API_GET_FEATURED_PRODUCT',
-    payload: { shop }
-  });
-
   request(`/shops/${shop}/featured-products/`, getConfig()
           ).then(
             res => {
@@ -245,11 +215,6 @@ export const getFeaturedProduct = shop => dispatch => {
 }
 
 export const makeFeaturedProduct = (id, shop, token) => dispatch => {
-
-  dispatch({
-    type: 'START_API_MAKE_FEATURED_PRODUCT',
-    payload: {id, shop, token}
-  });
 
   request(`/vendors/shops/${shop}/featured-products/`, getConfig(
             token,
@@ -274,11 +239,6 @@ export const makeFeaturedProduct = (id, shop, token) => dispatch => {
 }
 
 export const removeFromFeaturedProduct = (productID, featuredID, shop, token) => dispatch => {
-
-  dispatch({
-    type: 'START_API_REMOVE_FEATURED_PRODUCT',
-    payload: {productID, featuredID, shop, token}
-  });
 
   request(`/vendors/shops/${shop}/featured-products/${featuredID}/`, getConfig(
             token,

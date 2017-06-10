@@ -8,19 +8,10 @@ import {
 
 export const getShopCategories = shop  => dispatch => {
 
-  dispatch({
-    type: 'START_API_GET_SHOP_CATEGORY',
-    payload: {shop}
-  })
-
-  request(`/api/shops/${shop}/categories/`, getConfig()
+  request(`/shops/${shop}/categories/`, getConfig()
             ).then(
               res => {
                 dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
-
-                dispatch({
-                  type: 'DONE_API_GET_SHOP_CATEGORY',
-                })
 
                 if(res.length > 0) {
                   dispatch(categoryActions.categories.done.get.shopCategory(res));
@@ -31,20 +22,11 @@ export const getShopCategories = shop  => dispatch => {
 
 export const getShopAddress = shop  => dispatch => {
 
-  dispatch({
-    type: 'START_API_GET_SHOP_ADDRESS',
-    payload: {shop}
-  })
-
-  request(`/api/shops/${shop}/address/`, getConfig()
+  request(`/shops/${shop}/address/`, getConfig()
 
             ).then(
               res => {
                 dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
-
-                dispatch({
-                  type: 'DONE_API_GET_SHOP_ADDRESS',
-                })
 
                 if(res.length > 0) {
                   dispatch(shopActions.shop.set.address(res));
@@ -56,19 +38,10 @@ export const getShopAddress = shop  => dispatch => {
 
 export const getShop = shop  => dispatch => {
 
-  dispatch({
-    type: 'START_API_GET_SHOP',
-    payload: {shop}
-  })
-
-  request(`/api/shops/${shop}/`, getConfig()
+  request(`/shops/${shop}/`, getConfig()
           ).then(
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
-
-              dispatch({
-                type: 'DONE_API_GET_SHOP',
-              })
 
               if(res.id) {
                 dispatch(shopActions.shop.set.shop(res))
@@ -80,15 +53,11 @@ export const getShop = shop  => dispatch => {
 
 export const postShopPageProfie = (image, shop, token, formData)  => dispatch => {
 
-  dispatch({
-    type: 'PUT_API_SHOP_PROFILE',
-  });
-
   image.toBlob( blob => {
 
     formData.append('prof_pic', blob );
 
-    request(`/api/vendors/shops/${shop}/`, getConfig(
+    request(`/vendors/shops/${shop}/`, getConfig(
           token,
           formData,
           'put'
@@ -96,16 +65,12 @@ export const postShopPageProfie = (image, shop, token, formData)  => dispatch =>
           res => {
             dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
-            if(res.id) {
-              dispatch({
-                type: 'DONE_API_SHOP_PROFILE_PUT',
-                payload: res,
-              });
+              if(res.id) {
 
-              dispatch(imageUploaderActions.imageUploader.hide());
+                dispatch(imageUploaderActions.imageUploader.hide());
 
-              dispatch(getShop(shop));
-            }
+                dispatch(getShop(shop));
+              }
           }
         );
 
@@ -113,10 +78,6 @@ export const postShopPageProfie = (image, shop, token, formData)  => dispatch =>
 }
 
 export const postShopPageCover = (image, shop, token, formData)  => dispatch => {
-
-  dispatch({
-    type: 'PUT_API_SHOP_COVER',
-  });
 
   image.toBlob( blob => {
 
@@ -131,11 +92,6 @@ export const postShopPageCover = (image, shop, token, formData)  => dispatch => 
             dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
             if(res.id) {
-              dispatch({
-                type: 'DONE_API_SHOP_COVER_PUT',
-                payload: res,
-              });
-
               dispatch(imageUploaderActions.imageUploader.hide());
 
               dispatch(getShop(shop));

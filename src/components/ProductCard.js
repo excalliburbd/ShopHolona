@@ -62,7 +62,7 @@ const ProductCard = ({
   }
 
   return (
-    <Card className="ProductCard" onClick={ vendor ? () => handleShowVendorDetails(id) : null }>
+    <Card className="ProductCard">
       <div onClick={ () => handleShowCustomerDetails(id) }>
         <CardMedia aspectRatio="square"
                     image={ productImg } />
@@ -83,21 +83,25 @@ const ProductCard = ({
         </div>
       </div>
       {/*<Button className="ProductCard-button" raised label={ vendor ? 'Edit Product' : 'Add to Cart' } />*/}
-      { vendor ? <Button className='ProductCard-button-vendor' raised label='Edit Product' />
-        :
-        <Button className='ProductCard-button'
-                raised
-                label='Add to Cart'
-                onClick={
-                  () => addToCart({
-                          id: uuid.v4(),
-                          productId: id,
-                          varianceParentId: variances[0].id,
-                          varianceId: variances[0].attributes[0].id,
-                          price: variances[0].attributes[0].price,
-                          quantity: 1
-                        })
-                }/>
+      {
+        vendor ?
+          <Button className='ProductCard-button-vendor'
+                  raised
+                  label='Edit Product'
+                  onClick={ () => handleShowVendorDetails(id) } /> :
+          <Button className='ProductCard-button'
+                  raised
+                  label='Add to Cart'
+                  onClick={
+                    () => addToCart({
+                            id: uuid.v4(),
+                            productId: id,
+                            varianceParentId: variances[0].id,
+                            varianceId: variances[0].attributes[0].id,
+                            price: variances[0].attributes[0].price,
+                            quantity: 1
+                          })
+                  }/>
       }
     </Card>
   );
