@@ -164,7 +164,7 @@ export const ShopPageUIReducer = handleActions({
       selectedVariance: action.payload
     })
 }, {
-  details: false,
+  details: true,
   chip: 0,
   showProductDetails: false,
   product: null,

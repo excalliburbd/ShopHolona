@@ -7,7 +7,6 @@ const FeaturedSlider = ({ products }) => {
 
   return (
     <div className="FeaturedSlider">
-      {/*<div>Featured Products</div>*/}
       <div className="FeaturedSlider-products">
         <div className="FeaturedSlider-text"><h1>Featured Products</h1></div>
         { products }

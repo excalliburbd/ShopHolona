@@ -124,9 +124,11 @@ const ShopPage = ({
                    <IconButton icon="save" onClick={ () => handleSaveContactNumber(contact.id) }/>
                    </div>
                    }}*/
-                  return (<li className="ShopPage-details--contact-number" key={key}>
-                    <FontIcon value="local_phone"/> <label>{ contact.number }</label>
-                  </li>)
+                  return (
+                    <li className="ShopPage-details--contact-number" key={key}>
+                      <FontIcon value="local_phone"/> <label>{ contact.number }</label>
+                    </li>
+                  )
                 }
               )
             }
@@ -146,10 +148,10 @@ const ShopPage = ({
                               selectedProductVariance={ selectedProductVariance }
                               addToCart={ handleAddToCart }/> :
               [
-                <div className="ShopPage-featured">
+                <div className="ShopPage-featured" key="arr-layout-1">
                   <FeaturedSlider vendor={ vendor }
                                   products = { featuredProducts.map(
-                                                  (product, key) => <ProductCard { ...product }
+                                                  (product, key) => <ProductCard  { ...product }
                                                                                   vendor={ vendor }
                                                                                   handleShowVendorDetails={ () => handleShowProductDetails(vendor, product) }
                                                                                   handleShowCustomerDetails={ () => handleShowProductDetails(false, product) }
@@ -157,7 +159,7 @@ const ShopPage = ({
                                                                                   addToCart={ handleAddToCart } />
                                                 ) }/>
                 </div>,
-                <div className="ShopPage-products--container">
+                <div className="ShopPage-products--container" key="arr-layout-2">
                   <div className="ShopPage-products--container-scroll-div">
                     <IconButton className="ShopPage-banner--icon"
                                 icon="add_a_photo"
@@ -191,7 +193,7 @@ const ShopPage = ({
                       }
                       {
                         products[selectedChip].products.map(
-                          (product, key) => <ProductCard { ...product }
+                          (product, key) => <ProductCard  { ...product }
                                                           vendor={ vendor }
                                                           handleShowVendorDetails={ () => handleShowProductDetails(vendor, product) }
                                                           handleShowCustomerDetails={ () => handleShowProductDetails(false, product) }

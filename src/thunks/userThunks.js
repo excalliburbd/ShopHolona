@@ -66,6 +66,7 @@ export const getMe = (token, shop) => dispatch => {
         ).catch(
           err => {
             dispatch(userActions.user.done.get.profile(new Error(err)));
+            dispatch(sidebarActions.sidebar.show.signIn());
           }
         )
 }

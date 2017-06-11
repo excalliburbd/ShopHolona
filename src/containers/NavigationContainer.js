@@ -58,24 +58,24 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-   showSearchbar: () => {
-     dispatch({
-       type: 'SHOW_NAVIGATION_SEARCHBAR',
-     })
-   },
-   hideSearchbar: () => {
-     dispatch({
-       type: 'HIDE_NAVIGATION_SEARCHBAR',
-     })
-   },
-   handleSignIn: () => {
-     dispatch(sidebarActions.sidebar.show.signIn())
-   },
-   handleHideSidebar: () => {
-     dispatch(sidebarActions.sidebar.hide());
-   },
-   handleSignOut: () => {
-      dispatch(userActions.user.manualSignOut())
+    showSearchbar: () => {
+      dispatch({
+        type: 'SHOW_NAVIGATION_SEARCHBAR',
+      })
+    },
+    hideSearchbar: () => {
+      dispatch({
+        type: 'HIDE_NAVIGATION_SEARCHBAR',
+      })
+    },
+    handleSignIn: () => {
+      dispatch(sidebarActions.sidebar.show.signIn());
+    },
+    handleHideSidebar: () => {
+      dispatch(sidebarActions.sidebar.hide());
+    },
+    handleSignOut: () => {
+      dispatch(userActions.user.manualSignOut());
     },
     handleSetCredentials: (shop, token) => {
       dispatch(shopActions.shop.set.id(shop));
@@ -113,7 +113,7 @@ const mapDispatchToProps = dispatch => {
       }));
     },
     showCartSidebar: () => {
-      dispatch(sidebarActions.sidebar.show.addToCart())
+      dispatch(sidebarActions.sidebar.show.addToCart());
     }
   }
 }
