@@ -52,6 +52,10 @@ const ShopPage = ({
     'ShopPage-details--show': details,
   });
 
+  const productDetailsClass = classNames( 'ShopPage', {
+    'ShopPage-product-details': productDetails,
+  });
+
   const getIcon = name => {
     switch(name) {
       case 'Womens':
@@ -80,7 +84,7 @@ const ShopPage = ({
   )
 
   return (
-    <div className="ShopPage">
+    <div className={ productDetailsClass }>
       <div className="ShopPage-banner" style={{ backgroundImage: `url(${coverPhoto})`}}/>
       <div className={ detailsClass }>
         <div className="ShopPage-banner">
@@ -122,7 +126,11 @@ const ShopPage = ({
                    }
                    />
                    <IconButton icon="save" onClick={ () => handleSaveContactNumber(contact.id) }/>
-                   </div>
+                   </div><h1 className="product-details-title">{ product.name }</h1>
+          <div className="product-details-price-title">
+            <h2 className="product-details-price">Price: &#2547; { product.price }</h2>
+            <Stars rating={ 3 } />
+          </div>
                    }}*/
                   return (<li className="ShopPage-details--contact-number" key={key}>
                     <FontIcon value="local_phone"/> <label>{ contact.number }</label>

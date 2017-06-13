@@ -19,16 +19,19 @@ class ProductDetailsMain extends Component {
       id,
       variances,
       addToCart,
+      weight,
     } = this.props;
+
+    let shortDesc = this.props.short_desc;
+
+    if ( shortDesc === '' ) {
+      shortDesc = 'No description available';
+    }
 
     const colorsArray = ["#f44336", "#e91e63", "#9c27b0", "#673ab7", "#3f51b5", "#2196f3", "#03a9f4", "#00bcd4"];
 
     return (
       <div className="details-main-container">
-        <div className="details-main-desc">
-          <h4 className="details-main-subtitle">Description</h4>
-          <p>European minnow priapumfish mosshead warbonnet shrimpfish bigscale. Cutlassfish porbeagle shark ricefish walking catfish glassfish Black swallower.</p>
-        </div>
 
         <div className="details-main-size">
           <h4 className="details-main-subtitle">Size</h4>
@@ -58,7 +61,16 @@ class ProductDetailsMain extends Component {
               select(id);
             } }
           />
+        </div>
 
+        <div className="details-main-desc">
+          <h4 className="details-main-subtitle">Description</h4>
+          <p>{ shortDesc }</p>
+        </div>
+
+        <div className="details-main-weight">
+          <h4 className="details-main-subtitle">Weight</h4>
+          <p>{ weight } kg </p>
         </div>
 
         <div className="details-action">

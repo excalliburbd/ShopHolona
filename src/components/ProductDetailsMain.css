@@ -29,6 +29,17 @@
   margin-top: 1em;
   margin-left: 3em;
 }
+
+.details-main-weight {
+  display: flex;
+  flex-direction: row;
+}
+.details-main-weight p {
+  padding-left: 3em;
+  align-items: center;
+  display: flex;
+}
+
 .details-action {
   position: absolute;
   bottom: 4rem;
@@ -41,4 +52,27 @@
 }
 .details-action-cart._3tTAW:not([disabled]):hover {
   background-color: rgb(183, 28, 28);
+}
+
+/*for mobile*/
+@media screen and (max-width: 600px) {
+  .details-sizes {
+    padding-left: 1.5em;
+  }
+  .details-main-color .circle-picker {
+    margin-left: 1.5em;
+    width: 100% !important;
+  }
+
+  .details-main-weight p {
+    padding-left: 1.5em;
+  }
+
+  .details-action {
+    margin-top: 2.5em;
+    margin-bottom: 2em;
+    position: relative;
+    text-align: center;
+    bottom: 0;
+  }
 }
