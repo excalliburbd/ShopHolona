@@ -9,6 +9,7 @@ import IconButton from 'react-toolbox/lib/button/IconButton';
 
 import NavigationDrawer from './NavigationDrawer';
 import NavigationAppBar from './NavigationAppBar';
+import NotFound from '../NotFound';
 
 import FilterBarContainer from '../../containers/FilterBarContainer';
 import SignUpContainer from '../../containers/SignUpContainer';
@@ -86,6 +87,8 @@ class Nav extends Component {
 
     const id = window.shopID;
     handleSetCredentials(id);
+
+
   }
 
   render() {
@@ -125,6 +128,15 @@ class Nav extends Component {
         default:
           return null;
       }
+    }
+
+    let notFound = false;
+    if (location.pathname === '/not-found') {
+      notFound = true;
+    }
+
+    if (notFound) {
+      return <NotFound />
     }
 
     return (

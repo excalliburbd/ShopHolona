@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import TabList from './TabList';
 import Reports from './Reports';
@@ -19,29 +19,32 @@ const BackOffice = ({
 }) => {
   return (
     <div className="Backoffice">
-      {/*<Route exact path="/admin/orders" render={
-                  () => <TabList menu={ menuList.orders }
-                                 route="order"
-                                 dropdownOptions={
-                                                    menu.orders.filter(
-                                                      status => (status.label !== 'All')
-                                                    )
-                                                 }
-                                 handleDropdownChange={ setOrderStatus }
-                                 data={ data.orders }
-                                 tabIndex={ tabIndex.orders }
-                                 handleTabChange={ handleTabChange } />
-                                } />*/}
-      <Route exact path="/admin/products" render={
-                  () => <TabList menu={ menu.products }
-                                 route="products"
-                                 data={ data.products }
-                                 tabIndex={ tabIndex.products }
-                                 handleTabChange={ handleTabChange }
-                                 handleShowProductDetails={ handleShowProductDetails }
-                                 vendor={ vendor }/>
-                                } />
-      <Route exact path="/admin/reports" component={ Reports } />
+      <Switch>
+        {/*<Route exact path="/admin/orders" render={
+                    () => <TabList menu={ menuList.orders }
+                                  route="order"
+                                  dropdownOptions={
+                                                      menu.orders.filter(
+                                                        status => (status.label !== 'All')
+                                                      )
+                                                  }
+                                  handleDropdownChange={ setOrderStatus }
+                                  data={ data.orders }
+                                  tabIndex={ tabIndex.orders }
+                                  handleTabChange={ handleTabChange } />
+                                  } />*/}
+        <Route exact path="/admin/products" render={
+                    () => <TabList menu={ menu.products }
+                                  route="products"
+                                  data={ data.products }
+                                  tabIndex={ tabIndex.products }
+                                  handleTabChange={ handleTabChange }
+                                  handleShowProductDetails={ handleShowProductDetails }
+                                  vendor={ vendor }/>
+                                  } />
+        <Route exact path="/admin/reports" component={ Reports } />
+        <Redirect to="/not-found" />
+      </Switch>
     </div>
   );
 }

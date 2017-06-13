@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router'
 import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
 
@@ -25,12 +25,15 @@ ReactDOM.render(
   <Provider store={store}>
    <ConnectedRouter history={history}>
       <ThemeProvider theme={theme}>
-          <NavigationContainer>
+        <NavigationContainer>
+          <Switch>
             <Route exact path="/" component={ ShopPageContainer }/>
             <Route exact path="/dashboard" component={ DashboardContainer }/>
             <Route exact path="/admin/:backOffice" component={ BackOfficeContainer } />
             <Route exact path="/settings" component={ SettingsContainer }/>
-          </NavigationContainer>
+            <Redirect to="/not-found" />
+          </Switch>
+        </NavigationContainer>
       </ThemeProvider>
     </ConnectedRouter>
   </Provider>,
