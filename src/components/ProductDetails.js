@@ -5,6 +5,7 @@ import ImageGallery from 'react-image-gallery';
 import Tab from 'react-toolbox/lib/tabs/Tab';
 import Tabs from 'react-toolbox/lib/tabs/Tabs';
 import IconButton from 'react-toolbox/lib/button/IconButton';
+import Sticky from 'react-sticky-el';
 
 import ProductDetailsMain from './ProductDetailsMain';
 import Stars from './Stars';
@@ -41,13 +42,17 @@ class ProductDetails extends Component {
       <div className="product-details-container">
         <IconButton icon="close"
                     className="ProductDetails--toggle"
-                    onClick={ toggleDetails }/>
+                    onClick={ toggleDetails }
+          />
+
         <div className="product-details-left">
-          <h1 className="product-details-title">Product Name</h1>
-          <div className="product-details-price-title">
-            <h2 className="product-details-price">Price: &#2547; 2000</h2>
-            <Stars rating={ 3 } />
-          </div>
+          <Sticky stickyClassName="product-details-info-sticky">
+            <h1 className="product-details-title">{ product.name }</h1>
+            <div className="product-details-price-title">
+              <h2 className="product-details-price">Price: &#2547; { product.price }</h2>
+              <Stars rating={ 3 } />
+            </div>
+          </Sticky>
           <div className="product-details-slider">
             <ImageGallery
               items={images}
