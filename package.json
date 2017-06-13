@@ -90,6 +90,5 @@
       "TOOLTIP"
     ],
     "output": "public/react-toolbox"
-  },
-  "homepage": "https://demo.shophobe.com/"
+  }
 }

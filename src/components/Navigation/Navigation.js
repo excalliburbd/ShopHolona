@@ -1,9 +1,10 @@
 import React , { Component }from 'react';
 import classNames from 'classnames';
+// import fetch from 'isomorphic-fetch';
+
 import Layout from 'react-toolbox/lib/layout/Layout';
 import Sidebar from 'react-toolbox/lib/layout/Sidebar';
 import Panel from 'react-toolbox/lib/layout/Panel';
-
 import IconButton from 'react-toolbox/lib/button/IconButton';
 
 import NavigationDrawer from './NavigationDrawer';
@@ -51,28 +52,40 @@ class Nav extends Component {
 
     handleGetMedia();
 
-    if(location.search !== '') {
-      const searchParts = location.search.split('&');
+    // if(location.search !== '') {
+    //   const searchParts = location.search.split('&');
 
-      if(searchParts.length === 2) {
-        const idPart = searchParts[0].split('=');
-        const tokenPart = searchParts[1].split('=');
+    //   if(searchParts.length === 2) {
+    //     const idPart = searchParts[0].split('=');
+    //     const tokenPart = searchParts[1].split('=');
 
-        if(idPart[0] === '?shopId' && tokenPart[0] === 'accessToken') {
-          handleSetCredentials(idPart[1], tokenPart[1]);
-        }
-      }
+    //     if(idPart[0] === '?shopId' && tokenPart[0] === 'accessToken') {
+    //       handleSetCredentials(idPart[1], tokenPart[1]);
+    //     }
+    //   }
 
-      if(searchParts.length === 1) {
-        const idPart = searchParts[0].split('=');
+    //   if(searchParts.length === 1) {
+    //     const idPart = searchParts[0].split('=');
 
-        if(idPart[0] === '?shopId') {
-          handleSetCredentials(idPart[1]);
-        }
-      }
+    //     if(idPart[0] === '?shopId') {
+    //       handleSetCredentials(idPart[1]);
+    //     }
+    //   }
 
-      history.replace('/');
-    }
+    //   history.replace('/');
+    // }
+
+    // fetch(`${process.env.PUBLIC_URL}/details.json`, {})
+    //       .then(
+    //         res => res.json()
+    //       ).then(
+    //         res => {
+    //           handleSetCredentials(res.shop_id);
+    //         }
+    //       )
+
+    const id = window.shopID;
+    handleSetCredentials(id);
   }
 
   render() {
