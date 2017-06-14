@@ -52,8 +52,8 @@ const AddProductImages = ({
                                                       key={ key }
                                                       style={{
                                                         background: `url(${ file.preview }) no-repeat center center`,
-                                                        height: '6em',
-                                                        width: '4em',
+                                                        height: '5em',
+                                                        width: '5em',
                                                         margin: '.5em',
                                                       }} />
                                 )

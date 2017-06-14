@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import Button from 'react-toolbox/lib/button/Button';
 import { CirclePicker } from 'react-color';
 
 import './ProductDetailsMain.css'
@@ -16,9 +15,6 @@ class ProductDetailsMain extends Component {
     const {
       selected,
       select,
-      id,
-      variances,
-      addToCart,
       weight,
     } = this.props;
 
@@ -71,14 +67,6 @@ class ProductDetailsMain extends Component {
         <div className="details-main-weight">
           <h4 className="details-main-subtitle">Weight</h4>
           <p>{ weight } kg </p>
-        </div>
-
-        <div className="details-action">
-          <Button className="details-action-cart"
-                  onClick={ () => addToCart(id, variances) }
-                  label='Add to cart'
-                  raised
-                  primary />
         </div>
 
       </div>

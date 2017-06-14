@@ -6,6 +6,7 @@ import Tab from 'react-toolbox/lib/tabs/Tab';
 import Tabs from 'react-toolbox/lib/tabs/Tabs';
 import IconButton from 'react-toolbox/lib/button/IconButton';
 import Sticky from 'react-sticky-el';
+import Button from 'react-toolbox/lib/button/Button';
 
 import ProductDetailsMain from './ProductDetailsMain';
 import Stars from './Stars';
@@ -61,6 +62,19 @@ class ProductDetails extends Component {
               showBullets={true}
               showNav={false}
             />
+          </div>
+
+          <div className="ProductDetails-action">
+            <Button className="ProductDetails-action-cart"
+                    onClick={ () => addToCart(product.id, product.variances) }
+                    label='Add to cart'
+                    raised
+                    primary />
+            <Button className="ProductDetails-action-buy"
+                    // onClick={  }
+                    label='Buy Now'
+                    raised
+                    primary />
           </div>
 
         </div>
