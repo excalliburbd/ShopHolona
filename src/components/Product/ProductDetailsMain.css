@@ -40,19 +40,6 @@
   display: flex;
 }
 
-.details-action {
-  position: absolute;
-  bottom: 4rem;
-}
-.details-action-cart._3tTAW:not([disabled]) {
-  background: #CC3333;
-}
-.details-action-cart {
-  font-weight: 600;
-}
-.details-action-cart._3tTAW:not([disabled]):hover {
-  background-color: rgb(183, 28, 28);
-}
 
 /*for mobile*/
 @media screen and (max-width: 600px) {
@@ -68,11 +55,4 @@
     padding-left: 1.5em;
   }
 
-  .details-action {
-    margin-top: 2.5em;
-    margin-bottom: 2em;
-    position: relative;
-    text-align: center;
-    bottom: 0;
-  }
 }
