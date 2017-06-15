@@ -9,6 +9,7 @@ import {
   shopActions,
   imageUploaderActions,
   cartActions,
+  productActions,
 } from '../actions/';
 
 import ShopPage from '../components/ShopPage';
@@ -39,8 +40,8 @@ const mapStateToProps = state => {
     shopPhones: getPhones(state),
     shopAddress: getAddress(state),
     productDetails: state.ui.shopPage.showProductDetails,
-    selectedProductDetails: state.ui.shopPage.product,
-    selectedProductVariance: state.ui.shopPage.selectedVariance,
+    selectedProductDetails: state.entities.products[state.ui.shopPage.product],
+    productDetailstabIndex: state.ui.shopPage.detailsTab,
   }
 }
 
@@ -56,7 +57,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       if (vendor) {
         dispatch(sidebarActions.sidebar.show.addProductDetails(product));
       } else {
-        dispatch(shopActions.shop.toggle.productDetails(product));
+        dispatch(shopActions.shop.toggle.productDetails(product.id));
       }
     },
     handleAddProduct: () => {
@@ -83,10 +84,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                           }));
     },
     handleToggleProductDetails: payload => {
-      dispatch(shopActions.shop.toggle.productDetails(payload))
+      dispatch(shopActions.shop.toggle.productDetails(payload));
+      dispatch(shopActions.shop.set.detailsTab(0));
     },
-    handleSetSelectedVariance: payload => {
-      dispatch(shopActions.shop.set.selectedVariance(payload));
+    handleSetVariant: (id, key) => {
+      dispatch(productActions.products.ui.set.productVariance({ id, key }));
+    },
+    handleProductDetailsTab: tab => {
+      dispatch(shopActions.shop.set.detailsTab(tab));
     }
   }
 }

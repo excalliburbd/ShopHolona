@@ -229,7 +229,8 @@ export const productsEntityReducer = handleActions({
             products[product.id] = {
               ...product,
               weight: product.variances[0].attributes[0].weight,
-              price: product.variances[0].attributes[0].price
+              price: product.variances[0].attributes[0].price,
+              selectedVariant: 0,
             }
           }
         }
@@ -262,7 +263,8 @@ export const productsEntityReducer = handleActions({
               ...product,
               featuredID: id,
               weight: product.variances[0].attributes[0].weight,
-              price: product.variances[0].attributes[0].price
+              price: product.variances[0].attributes[0].price,
+              selectedVariant: 0,
             }
           }
         }
@@ -270,13 +272,22 @@ export const productsEntityReducer = handleActions({
 
       return featuredProducts;
     },
-  [productActions.products.done.delete.featuredProducts]: (state, action) => {
+    [productActions.products.done.delete.featuredProducts]: (state, action) => {
       const featuredProductsEntity = { ...state };
 
       delete featuredProductsEntity[action.payload];
 
       return featuredProductsEntity;
-  },
+    },
+    [productActions.products.ui.set.productVariance]: (state, action) => {
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          selectedVariant: action.payload.key,
+        }
+      }
+    }
 }, {
 
 });

@@ -8,10 +8,10 @@ import MenuDivider from 'react-toolbox/lib/menu/MenuDivider';
 import FontIcon from 'react-toolbox/lib/font_icon/FontIcon';
 import Icon from 'react-icons-kit';
 
-import ProductCard from './ProductCard';
+import ProductCard from './Product/ProductCard';
+import ProductDetails from './Product/ProductDetails';
 import Stars from './Stars';
 import FeaturedSlider from './FeaturedSlider';
-import ProductDetails from './ProductDetails';
 
 import { female } from 'react-icons-kit/ionicons/female';
 import { male } from 'react-icons-kit/ionicons/male';
@@ -43,8 +43,9 @@ const ShopPage = ({
   productDetails,
   handleToggleProductDetails,
   selectedProductDetails,
-  handleSetSelectedVariance,
-  selectedProductVariance,
+  handleSetVariant,
+  productDetailstabIndex,
+  handleProductDetailsTab,
 }) => {
 
   const detailsClass = classNames({
@@ -127,10 +128,10 @@ const ShopPage = ({
                    />
                    <IconButton icon="save" onClick={ () => handleSaveContactNumber(contact.id) }/>
                    </div><h1 className="product-details-title">{ product.name }</h1>
-          <div className="product-details-price-title">
-            <h2 className="product-details-price">Price: &#2547; { product.price }</h2>
-            <Stars rating={ 3 } />
-          </div>
+                   <div className="product-details-price-title">
+                     <h2 className="product-details-price">Price: &#2547; { product.price }</h2>
+                     <Stars rating={ 3 } />
+                   </div>
                    }}*/
                   return (
                     <li className="ShopPage-details--contact-number" key={key}>
@@ -152,9 +153,10 @@ const ShopPage = ({
             (productDetails) ?
               <ProductDetails toggleDetails={ handleToggleProductDetails }
                               product={ selectedProductDetails }
-                              selectVariance={ handleSetSelectedVariance }
-                              selectedProductVariance={ selectedProductVariance }
-                              addToCart={ handleAddToCart }/> :
+                              addToCart={ handleAddToCart }
+                              setVariant={ handleSetVariant }
+                              tabIndex={ productDetailstabIndex }
+                              tabChange={ handleProductDetailsTab } /> :
               [
                 <div className="ShopPage-featured" key="arr-layout-1">
                   <FeaturedSlider vendor={ vendor }
@@ -164,7 +166,8 @@ const ShopPage = ({
                                                                                   handleShowVendorDetails={ () => handleShowProductDetails(vendor, product) }
                                                                                   handleShowCustomerDetails={ () => handleShowProductDetails(false, product) }
                                                                                   key={ key }
-                                                                                  addToCart={ handleAddToCart } />
+                                                                                  addToCart={ handleAddToCart }
+                                                                                  setVariant={ handleSetVariant } />
                                                 ) }/>
                 </div>,
                 <div className="ShopPage-products--container" key="arr-layout-2">
@@ -197,7 +200,8 @@ const ShopPage = ({
                                                   handleShowVendorDetails={ handleAddProduct }
                                                   handleShowCustomerDetails={ handleAddProduct }
                                                   key="AddProductKey"
-                                                  addToCart={ handleAddToCart } />
+                                                  addToCart={ handleAddToCart }
+                                                  setVariant={ handleSetVariant } />
                       }
                       {
                         products[selectedChip].products.map(
@@ -206,7 +210,8 @@ const ShopPage = ({
                                                           handleShowVendorDetails={ () => handleShowProductDetails(vendor, product) }
                                                           handleShowCustomerDetails={ () => handleShowProductDetails(false, product) }
                                                           key={ key }
-                                                          addToCart={ handleAddToCart } />
+                                                          addToCart={ handleAddToCart }
+                                                          setVariant={ handleSetVariant } />
                         )
                       }
                     </div>

@@ -150,7 +150,7 @@ export const ShopPageUIReducer = handleActions({
         ...state,
         details: !state.details,
       }),
-    [shopActions.shop.updateChip]:  (state, action) => ({
+    [shopActions.shop.updateChip]: (state, action) => ({
         ...state,
         chip: action.payload,
       }),
@@ -159,14 +159,14 @@ export const ShopPageUIReducer = handleActions({
       showProductDetails: !state.showProductDetails,
       product: (action.payload ) ? action.payload : null,
     }),
-    [shopActions.shop.set.selectedVariance]: (state, action) => ({
+    [shopActions.shop.set.detailsTab]: (state, action) => ({
       ...state,
-      selectedVariance: action.payload
+      detailsTab: action.payload,
     })
 }, {
   details: true,
   chip: 0,
   showProductDetails: false,
   product: null,
-  selectedVariance: 0
+  detailsTab: 0,
 })

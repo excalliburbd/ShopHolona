@@ -69,7 +69,7 @@ export const UserUIReducer = handleActions({
       throw(state, action) {
         return {
           ...state,
-          email: '',
+          email: state.email,
           emailPassword: '',
           error: true,
         }

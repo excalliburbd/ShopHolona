@@ -21,7 +21,6 @@ import CartContainer from '../../containers/CartContainer';
 import './Navigation.css';
 
 class Nav extends Component {
-
   constructor(props) {
     super(props);
 

@@ -164,6 +164,28 @@
   background-size: contain;
 }
 
+.ProductCard-images {
+  position: relative;
+}
+
+.ProductCard-images--select {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.ProductCard-images--select--circle {
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  margin: .25em;
+  background-repeat: no-repeat;
+  background-size: contain;
+  box-shadow: var(--shadow-4p);
+}
+
 /*for phone*/
 @media screen and (max-width: 600px) {
   .ProductCard--addProduct-details-content {
