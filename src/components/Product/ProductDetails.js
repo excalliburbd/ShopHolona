@@ -20,6 +20,7 @@ const ProductDetails = ({
   setVariant,
   tabIndex,
   tabChange,
+  setAttribute,
 }) => {
 
   const images = product.variances[product.selectedVariant].images.map(
@@ -61,6 +62,7 @@ const ProductDetails = ({
           <Tab label='Details'>
             <small>
               <ProductDetailsMain select={ setVariant }
+                                  chooseAttribute={ setAttribute }
                                   { ...product }
                                   addToCart={ addToCart } />
             </small>

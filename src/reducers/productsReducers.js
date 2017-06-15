@@ -231,6 +231,7 @@ export const productsEntityReducer = handleActions({
               weight: product.variances[0].attributes[0].weight,
               price: product.variances[0].attributes[0].price,
               selectedVariant: 0,
+              selectedAttribute: 0,
             }
           }
         }
@@ -265,6 +266,7 @@ export const productsEntityReducer = handleActions({
               weight: product.variances[0].attributes[0].weight,
               price: product.variances[0].attributes[0].price,
               selectedVariant: 0,
+              selectedAttribute: 0,
             }
           }
         }
@@ -285,6 +287,15 @@ export const productsEntityReducer = handleActions({
         [action.payload.id]: {
           ...state[action.payload.id],
           selectedVariant: action.payload.key,
+        }
+      }
+    },
+    [productActions.products.ui.set.productAttribute]: (state, action) => {
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          selectedAttribute: action.payload.key,
         }
       }
     }

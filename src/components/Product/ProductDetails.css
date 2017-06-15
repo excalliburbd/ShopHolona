@@ -14,6 +14,7 @@
 .product-details-container::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #F5F5F5, #F5F5F5, #666, #F5F5F5, #F5F5F5);
 }
+
 .product-details-left {
   width: 35%;
   height: 100%;
@@ -26,11 +27,13 @@
   font-family: "Gotham Narrow Book";
   font-weight: 600;
 }
+
 .product-details-price-title {
   display: flex;
   flex-direction: row;
   width: 20rem;
 }
+
 .product-details-price {
   margin: 0;
   height: 2em;
@@ -38,39 +41,48 @@
   font-size: 1.2em;
   margin-right: 1.2em;
 }
+
 .product-details-price-title .Stars {
   align-items: center;
   height: 2em;
 }
+
 .product-details-slider {
   height: auto;
   width: 20rem;
 }
+
 .image-gallery-slide-wrapper {
   box-shadow: var(--shadow-4p);
 }
+
 .image-gallery-image img {
   object-fit: contain;
   width: 20rem;
   height: 20rem;
 }
+
 .image-gallery-bullets .image-gallery-bullet {
   background-color: rgba(184, 190, 224, 0.29);
   box-shadow: 0 1px 0 #757575;
 }
+
 .image-gallery-bullets .image-gallery-bullet.active {
   background: rgba(117, 117, 117, 0.35);
   box-shadow: 0 1px 0 #757575;
 }
+
 .image-gallery-thumbnails-container {
   margin-top: 10px;
 }
+
 .image-gallery-thumbnail {
   width: 5rem;
   height: 5rem;
   margin: 4px;
   border: 1px solid transparent;
 }
+
 .image-gallery-thumbnail div img {
   width: 5rem;
   height: 5rem;
@@ -78,6 +90,7 @@
   border: 1px solid #eee;
   box-shadow: var(--shadow-3p);
 }
+
 .image-gallery-thumbnail.active {
   width: auto;
   height: auto;

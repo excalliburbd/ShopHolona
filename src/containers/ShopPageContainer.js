@@ -90,6 +90,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleSetVariant: (id, key) => {
       dispatch(productActions.products.ui.set.productVariance({ id, key }));
     },
+    handleSetAttribute: (id, key) => {
+      dispatch(productActions.products.ui.set.productAttribute({ id, key }));
+    },
     handleProductDetailsTab: tab => {
       dispatch(shopActions.shop.set.detailsTab(tab));
     }

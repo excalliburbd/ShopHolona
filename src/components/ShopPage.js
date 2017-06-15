@@ -44,6 +44,7 @@ const ShopPage = ({
   handleToggleProductDetails,
   selectedProductDetails,
   handleSetVariant,
+  handleSetAttribute,
   productDetailstabIndex,
   handleProductDetailsTab,
 }) => {
@@ -156,7 +157,8 @@ const ShopPage = ({
                               addToCart={ handleAddToCart }
                               setVariant={ handleSetVariant }
                               tabIndex={ productDetailstabIndex }
-                              tabChange={ handleProductDetailsTab } /> :
+                              tabChange={ handleProductDetailsTab }
+                              setAttribute={ handleSetAttribute } /> :
               [
                 <div className="ShopPage-featured" key="arr-layout-1">
                   <FeaturedSlider vendor={ vendor }
