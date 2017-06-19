@@ -71,11 +71,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(shopActions.shop.set.contactNumber({ id, value }));
     },
     handleAddToCart: (id, token, productID) => {
-      if (token) {
-        dispatch(addToCart(id, token));
-      } else {
-        dispatch(addToCart(id, token, productID));
-      }
+      dispatch(addToCart(id, token, productID));
     },
     handleToggleProductDetails: payload => {
       dispatch(shopActions.shop.toggle.productDetails(payload));

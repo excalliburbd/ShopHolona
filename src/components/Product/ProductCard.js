@@ -106,13 +106,13 @@ class ProductCard extends Component {
                     }
                   }
 
-                  return <div className="ProductCard-images--select--circle"
+                  {/*return <div className="ProductCard-images--select--circle"
                               onClick={ event => {
                                 event.stopPropagation();
                                 setVariant(id, key);
                               }}
                               style={ style }
-                              key={ key } />
+                              key={ key } />*/}
                 }
               )
             }

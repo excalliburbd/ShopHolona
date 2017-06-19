@@ -10,6 +10,7 @@ export const cartActionCreators = {
     },
     UPDATE: {
       ITEM: payload => payload,
+      ITEM_BY_VARIANT: payload => payload,
     },
     SET:{
       LOADING: payload => payload,

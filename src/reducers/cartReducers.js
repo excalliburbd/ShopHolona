@@ -66,6 +66,25 @@ export const cartReducer = handleActions({
       items: [],
     }
   },
+  [cartActions.cart.update.itemByVariant]: (state, action) => {
+    const {
+      id,
+      response,
+    } = action.payload;
+
+    return {
+      ...state,
+      items: state.items.map(
+        cartID => {
+          if (cartID === id) {
+            return response.id;
+          }
+
+          return cartID;
+        }
+      )
+      }
+  },
 }, {
   loading: false,
   error: undefined,
@@ -117,10 +136,33 @@ export const cartEntitiesReducer = handleActions({
     }
   },
   [cartActions.cart.add.item]: (state, action) => {
+    const variantID = action.payload.product_variance_attribute.variance.id;
+    const attributeID = action.payload.product_variance_attribute.id;
+
+    const productSpecs = action.payload.product.variances
+                          .find(
+                            variant => (variant.id === variantID)
+                          ).attributes.find(
+                            attribute => (attribute.id === attributeID)
+                          );
+
+    const {
+      price,
+      weight,
+      stock,
+    } = productSpecs;
 
     return {
       ...state,
-      [action.payload.id]: action.payload
+      [action.payload.id]: {
+        ...action.payload,
+        product: {
+          ...action.payload.product,
+          price,
+          weight,
+          stock
+        }
+      }
     }
   },
   [cartActions.cart.done.delete]: (state, action) => {
@@ -141,6 +183,40 @@ export const cartEntitiesReducer = handleActions({
       [id]: {
         ...state[id],
         quantity
+      }
+    }
+  },
+  [cartActions.cart.update.itemByVariant]: (state, action) => {
+    const {
+      response,
+    } = action.payload;
+
+    const variantID = response.product_variance_attribute.variance.id;
+    const attributeID = response.product_variance_attribute.id;
+
+    const productSpecs = response.product.variances
+                          .find(
+                            variant => (variant.id === variantID)
+                          ).attributes.find(
+                            attribute => (attribute.id === attributeID)
+                          );
+
+    const {
+      price,
+      weight,
+      stock,
+    } = productSpecs;
+
+    return {
+      ...state,
+      [response.id] : {
+        ...response,
+        product: {
+          ...response.product,
+          price,
+          weight,
+          stock,
+        }
       }
     }
   },
