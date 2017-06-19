@@ -117,10 +117,10 @@ const ProductsSidebar = ({
                                 showDone={ showDone } />
     case 'SHOW_PRODUCT_DETAILS':
       return <AddProductDetails   handleManualInput={ handleManualInput }
-                                  finishedProduct={ finishedProduct }
-                                  handleSaveProduct={ handleSaveProduct }
+                                  handleSaveProduct={handleSaveProduct}
                                   token={ token }
                                   shop={ shop }
+                                  handleShowRoute={ handleShowRoute }
                                   productVariances={ productVariances }
                                   selectedVariance={ selectedVariance }
                                   productDetailName={ productDetailName }

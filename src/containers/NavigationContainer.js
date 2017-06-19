@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { createSelector } from 'reselect';
 import { mediaQueryTracker } from 'redux-mediaquery';
 
 import { getAllProducts, getFeaturedProduct } from '../thunks/productThunks';
 import { getShopCategories, getShop, getShopAddress } from '../thunks/shopThunks';
 import { getMe } from '../thunks/userThunks';
+import { getCart } from '../thunks/cartThunks';
 
 import {
   userActions,
@@ -13,32 +13,12 @@ import {
   shopActions,
 } from '../actions/';
 
+import { getVendor } from '../selectors/shopSelectors';
+import { getToken } from '../selectors/userSelectors';
+import { getPinState, getTitleMsg } from '../selectors/navigationSelectors';
+
 import Nav from '../components/Navigation/Navigation';
 
-const getLocation = state => state.router.location;
-const getUserDetails = state => state.user;
-
-const getPinState = createSelector(
-  [getLocation],
-  location => {
-    if (location.pathname === '/') {
-      return false;
-    } else {
-      return true;
-    }
-  }
-)
-
-const getVendors = createSelector(
-  [getUserDetails],
-  (user) => {
-    if((user.registered_as === 0) || (user.registered_as === 1)) {
-      return true;
-    }
-
-    return false;
-  }
-);
 
 const mapStateToProps = state => {
   return {
@@ -50,9 +30,11 @@ const mapStateToProps = state => {
     shopName: state.shop.shop_name,
     refCode: state.user.referral.code,
     pinned: getPinState(state),
-    vendor: getVendors(state),
+    vendor: getVendor(state),
     profilePic: state.user.profile_pic,
     online: state.offline.online,
+    token: getToken(state),
+    titleMsg: getTitleMsg(state),
   }
 }
 
@@ -85,11 +67,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(getAllProducts(shop));
       dispatch(getShopAddress(shop));
       dispatch(getFeaturedProduct(shop));
-
-      if (token) {
-        dispatch(userActions.user.done.get.token(token));
-        dispatch(getMe(token));
-      }
     },
     handleSetSideDrawer: val => {
       dispatch({
@@ -97,12 +74,16 @@ const mapDispatchToProps = dispatch => {
         payload: val,
       })
     },
-    hadleLoadData: shop => {
+    hadleLoadData: (shop, token) => {
       dispatch(getShop(shop));
       dispatch(getShopCategories(shop));
       dispatch(getAllProducts(shop));
       dispatch(getShopAddress(shop));
       dispatch(getFeaturedProduct(shop));
+
+      if (token) {
+        dispatch(getCart(token, false));
+      }
     },
     handleGetMedia: () => {
       dispatch(mediaQueryTracker({

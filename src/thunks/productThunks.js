@@ -55,15 +55,81 @@ export const getAllProducts = shop  => dispatch => {
           );
 }
 
-export const saveProduct = (obj, shop, token) => dispatch => {
-  request(`/vendors/shops/${shop}/products/`, getConfig(
+export const saveProduct = (obj, shop, token, editing) => dispatch => {
+  if (editing) {
+
+    const weight = obj.weight;
+    const price = obj.price;
+
+    const product = {
+      ...obj,
+      category: obj.category.id,
+      variances: obj.variances.map(
+        variant => ({
+          type: variant.type.id,
+          key: variant.type.name,
+          value: variant.type.value,
+          images: variant.images.map(
+            image => image.id
+          ),
+          attributes: variant.attributes.map(
+                          attr => ({
+                            type: attr.type.id,
+                            key: attr.type.name,
+                            value: attr.type.value,
+                            description: attr.description,
+                            weight,
+                            price,
+                            stock: attr.stock,
+                          })
+                        )
+        })
+      )
+    }
+
+    delete product.selectedVariant;
+    delete product.selectedAttribute;
+    delete product.weight;
+    delete product.price;
+    delete product.id;
+    delete product.created_at;
+    delete product.updated_at;
+    delete product.more_categories;
+    delete product.shop;
+    delete product.status;
+    delete product.long_desc;
+
+    Object.keys(product).forEach(
+      key => {
+        if (!product[key]) {
+          delete product[key];
+        }
+
+        if ( key === 'id') {
+          delete product[key];
+        }
+      }
+    )
+
+    request(`/vendors/shops/${shop}/products/${obj.id}`, getConfig(
+            token,
+            product,
+            'put'
+          )).then(
+            res => {
+              dispatch(getAllProducts(shop));
+              dispatch(getShopCategories(shop));
+            }
+          ).catch(
+            err => console.log(err)
+          );
+  } else {
+    request(`/vendors/shops/${shop}/products/`, getConfig(
             token,
             obj,
             'post'
           )).then(
             res => {
-              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
-
               dispatch({
                 type: 'DONE_API_ADD_PRODUCT',
                 payload: res,
@@ -73,6 +139,7 @@ export const saveProduct = (obj, shop, token) => dispatch => {
               dispatch(getShopCategories(shop));
             }
           );
+  }
 }
 
 export const deleteProduct = (id, shop, token) => dispatch => {
@@ -113,23 +180,27 @@ export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
             'post'
           )).then(
             res => {
-              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+              if (status === 'EDIT') {
+                dispatch(productActions.products.ui.set.edit.image({ response: res, id, image: obj.file.preview }))
+              } else {
+                dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
-              if(res.id){
-                dispatch(categoryActions.categories.done.post.productImage({ response: res, id, key }));
+                if(res.id){
+                  dispatch(categoryActions.categories.done.post.productImage({ response: res, id, key }));
 
-                dispatch(imageUploaderActions.imageUploader.upload.inc())
+                  dispatch(imageUploaderActions.imageUploader.upload.inc())
 
-                if (status === 'CROPED') {
-                  dispatch(imageUploaderActions.imageUploader.hide());
+                  if (status === 'CROPED') {
+                    dispatch(imageUploaderActions.imageUploader.hide());
+                  }
                 }
-              }
 
-              if(status === 'DONE') {
-                dispatch({
-                  type: 'INVALIDATE_PRODUCT_IMGAES',
-                  payload: { id, key }
-                })
+                if(status === 'DONE') {
+                  dispatch({
+                    type: 'INVALIDATE_PRODUCT_IMGAES',
+                    payload: { id, key }
+                  })
+                }
               }
             }
           ).catch(

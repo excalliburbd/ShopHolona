@@ -46,7 +46,7 @@ export const getProducts = createSelector(
              obj => ({
                       ...obj,
                       products: ( obj.id === 'META_ALL') ? products :
-                                products.filter( product => ( product.category === obj.id )),
+                                products.filter( product => ( product.category.id === obj.id )),
                     })
            )
   }
@@ -59,10 +59,10 @@ export const getFeaturedProducts = createSelector(
   }
 );
 
-export const getVendors = createSelector(
+export const getVendor = createSelector(
   [getUserDetails],
   (user) => {
-    if((user.registered_as === 0) || (user.registered_as === 1)) {
+    if(user.registered_as === 1) {
       return true;
     }
 

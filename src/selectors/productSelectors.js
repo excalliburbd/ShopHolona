@@ -4,7 +4,7 @@ import Fuse from 'fuse.js';
 export const getCategoriesObj = state => state.ui.categories.categories;
 export const getSubCategoriesObj = state => state.ui.categories.subCategories;
 export const getSubSubCategoriesObj = state => state.ui.categories.subSubCategories;
-export const getPrimaryAttributes = state => state.ui.categories.attributes.primary;
+export const getProductPrimaryAttributes = state => state.ui.categories.attributes.primary;
 export const getSecondaryAttributes = state => state.ui.categories.attributes.secondary;
 export const getProductUIState = state => state.ui.product;
 export const getProductCategory = state => state.ui.product.category;
@@ -19,7 +19,8 @@ export const getCategoryID = state => state.ui.categories.categoryID;
 export const getSubCategoryID = state => state.ui.categories.subCategoryID;
 export const getRadioValue = state => state.ui.sidebar.radio;
 export const getProgress = state => state.ui.categories.uploadProgress;
-export const getSelectedPrductID = state => state.ui.product.selectedProduct.id;
+export const getSelectedProduct = state => state.ui.product.selectedProduct;
+export const getSelectedProductID = state => state.ui.product.selectedProduct.id;
 export const getProductsArray = state => state.products;
 export const getProductsObj = state => state.entities.products;
 export const getUploadCount = state => state.ui.uploader.uploadCount;
@@ -120,7 +121,7 @@ export const getShowAddVariances = createSelector(
 );
 
 export const getShowAddImages = createSelector(
-  [getPrimaryAttributes],
+  [getProductPrimaryAttributes],
   (primary) => {
     let show = true;
 
@@ -142,7 +143,7 @@ export const getFinishedProduct = createSelector(
     getProductDescription,
     getProductWeight,
     getProductPrice,
-    getPrimaryAttributes,
+    getProductPrimaryAttributes,
     getSecondaryAttributes,
     getSubSubCategoryID,
     getProgress,
@@ -184,7 +185,7 @@ export const getFinishedProduct = createSelector(
                                                     )
                     })
                   ),
-      status: 3,
+        status: 3,
 
       }
     } else {
@@ -232,7 +233,7 @@ export const getShowProductDetails = createSelector(
 );
 
 export const getSelectedFeturedPrductID = createSelector(
-  [getSelectedPrductID, getProductsObj],
+  [getSelectedProductID, getProductsObj],
   (id, productsObj) => {
     if (productsObj[id]){
       return productsObj[id].featuredID
@@ -257,3 +258,14 @@ export const getAllProducts = createSelector(
     )
   }
 );
+
+export const getPrimaryAttributes = createSelector(
+  [getProductPrimaryAttributes, getSelectedProductID, getSelectedProduct],
+  (attr, id, product) => {
+    if (id) {
+      return [ 'edit', product];
+    }
+
+    return attr
+  }
+)

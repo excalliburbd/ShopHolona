@@ -47,6 +47,7 @@ const ShopPage = ({
   handleSetAttribute,
   productDetailstabIndex,
   handleProductDetailsTab,
+  token,
 }) => {
 
   const detailsClass = classNames({
@@ -154,6 +155,7 @@ const ShopPage = ({
             (productDetails) ?
               <ProductDetails toggleDetails={ handleToggleProductDetails }
                               product={ selectedProductDetails }
+                              token={ token }
                               addToCart={ handleAddToCart }
                               setVariant={ handleSetVariant }
                               tabIndex={ productDetailstabIndex }
@@ -165,6 +167,7 @@ const ShopPage = ({
                                   products = { featuredProducts.map(
                                                   (product, key) => <ProductCard  { ...product }
                                                                                   vendor={ vendor }
+                                                                                  token={ token }
                                                                                   handleShowVendorDetails={ () => handleShowProductDetails(vendor, product) }
                                                                                   handleShowCustomerDetails={ () => handleShowProductDetails(false, product) }
                                                                                   key={ key }
@@ -199,6 +202,7 @@ const ShopPage = ({
                       {
                         (vendor) && <ProductCard  addProductCard
                                                   vendor={ vendor }
+                                                  token={ token }
                                                   handleShowVendorDetails={ handleAddProduct }
                                                   handleShowCustomerDetails={ handleAddProduct }
                                                   key="AddProductKey"
@@ -209,6 +213,7 @@ const ShopPage = ({
                         products[selectedChip].products.map(
                           (product, key) => <ProductCard  { ...product }
                                                           vendor={ vendor }
+                                                          token={ token }
                                                           handleShowVendorDetails={ () => handleShowProductDetails(vendor, product) }
                                                           handleShowCustomerDetails={ () => handleShowProductDetails(false, product) }
                                                           key={ key }

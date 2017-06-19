@@ -6,8 +6,5 @@ export const getOrderList = ({ shopId, token }) => dispatch => {
             token,
             null,
           )).then(
-            res => {
-              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
-            }
           );
 }

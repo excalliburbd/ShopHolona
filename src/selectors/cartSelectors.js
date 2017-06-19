@@ -1,8 +1,26 @@
 import { createSelector } from 'reselect';
 
-export const cartItems = state => state.cart.items;
+const getCartArray = state => state.cart.items;
+const getCartObjects = state => state.entities.cart;
 
-export const totalPrice = createSelector(
-  [cartItems],
-  items => items.reduce((acc, item) => (acc + item.quantity * item.price), 0)
+export const getTotal = createSelector(
+  [getCartArray, getCartObjects],
+  (cartArr, cartObj) => cartArr.reduce(
+    (acc, item) => ({
+      price: (acc.price + (cartObj[item].quantity * cartObj[item].product.price)),
+      weight: (acc.weight + (cartObj[item].quantity * cartObj[item].product.weight)),
+    })
+  , {
+    price: 0,
+    weight: 0,
+  })
+);
+
+export const getCartItems = createSelector(
+  [getCartArray, getCartObjects],
+  (cartArr, cartObj) => {
+    return cartArr.map(
+      id => cartObj[id]
+    );
+  }
 );

@@ -14,6 +14,7 @@ const ProductDetailsMain = ({
   selectedAttribute,
   select,
   chooseAttribute,
+  token,
   short_desc: shortDesc,
 }) => {
   if ( shortDesc === '' ) {
@@ -89,7 +90,13 @@ const ProductDetailsMain = ({
 
       <div className="details-action">
         <Button className="details-action-cart"
-                onClick={ () => addToCart(id, variances) }
+                onClick={
+                          () => addToCart(
+                                  variances[selectedVariant].attributes[selectedAttribute].id,
+                                  token,
+                                  id
+                                )
+                        }
                 label='Add to cart'
                 raised
                 primary />

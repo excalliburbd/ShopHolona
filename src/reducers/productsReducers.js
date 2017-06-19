@@ -113,7 +113,7 @@ export const ProductsUIReducer = handleActions({
         ...state,
         selectedProduct: {
           ...state.selectedProduct,
-          weight: action.payload.value,
+          weight: action.payload,
         }
       }
   },
@@ -122,7 +122,7 @@ export const ProductsUIReducer = handleActions({
         ...state,
         selectedProduct: {
           ...state.selectedProduct,
-          price: action.payload.value,
+          price: action.payload,
         }
       }
   },
@@ -131,7 +131,7 @@ export const ProductsUIReducer = handleActions({
         ...state,
         selectedProduct: {
           ...state.selectedProduct,
-          short_desc: action.payload.value,
+          short_desc: action.payload,
         }
       }
   },
@@ -199,6 +199,53 @@ export const ProductsUIReducer = handleActions({
         selectedVariance: 0,
         selectedProduct: {},
       }
+  },
+  [productActions.products.ui.set.edit.image]: (state, action) => {
+    const {
+      response,
+      id,
+      image
+    } = action.payload;
+
+    return {
+      ...state,
+      selectedProduct:{
+        ...state.selectedProduct,
+        variances: state.selectedProduct.variances.map(
+          (variance, key) => {
+            if ( id === key) {
+              return {
+                ...variance,
+                images: [
+                  ...variance.images,
+                  response
+                ]
+              }
+            }
+            return variance;
+          }
+        )
+      }
+    }
+  },
+  [productActions.products.ui.set.delete.image]: (state, action) => {
+    return {
+      ...state,
+      selectedProduct:{
+        ...state.selectedProduct,
+        variances: state.selectedProduct.variances.map(
+          (variance, key) => {
+            if ( action.payload.variantKey === key) {
+              return {
+                ...variance,
+                images: variance.images.filter( (image, iKey) => action.payload.imageKey !== iKey)
+              }
+            }
+            return variance;
+          }
+        )
+      }
+    }
   },
 }, {
   category: '',

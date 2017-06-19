@@ -5,7 +5,7 @@ import BackOffice from '../components/BackOffice/BackOffice';
 
 import { sidebarActions } from '../actions/';
 
-import { getVendors } from '../selectors/shopSelectors';
+import { getVendor } from '../selectors/shopSelectors';
 import {
   getMenu,
   getTabIndex,
@@ -18,7 +18,7 @@ const mapStateToProps = state => {
     menu: getMenu(state),
     tabIndex: getTabIndex(state),
     data: getTablistData(state),
-    vendor: getVendors(state),
+    vendor: getVendor(state),
   }
 }
 

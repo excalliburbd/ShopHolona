@@ -53,7 +53,7 @@ const AddProductService = ({
 
   return (
     <div className="ProductsSidebar-add">
-                {
+                {/*{
                     <div className="ProductsSidebar-add--radio" >
                       <Button icon={ <Icon size={ 32 } icon={ packageIcon } />}
                               label='Product'
@@ -72,7 +72,7 @@ const AddProductService = ({
                               }
                               onClick={ () => handleRadio('SERVICE') } />
                     </div>
-                }
+                }*/}
                 {
                   (radioValue === 'PRODUCT' || radioValue === 'SERVICE') &&
                     <div className="ProductsSidebar-add--products">

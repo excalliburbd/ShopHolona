@@ -39,7 +39,9 @@ class ProductCard extends Component {
       addProductCard,
       addToCart,
       selectedVariant,
+      selectedAttribute,
       setVariant,
+      token,
     } = this.props;
 
     let {
@@ -141,7 +143,11 @@ class ProductCard extends Component {
                     raised
                     label='Add to Cart'
                     onClick={
-                      () => addToCart(id, variances)
+                      () => addToCart(
+                        variances[selectedVariant].attributes[selectedAttribute].id,
+                        token,
+                        id
+                      )
                     }/>
         }
       </Card>

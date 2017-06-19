@@ -35,59 +35,24 @@ class Nav extends Component {
       online,
       shopID,
       hadleLoadData,
+      token,
     } = nextProps;
 
     if(this.props.online !== online && online) {
-      shopID && hadleLoadData(shopID);
+      shopID && hadleLoadData(shopID, token);
     }
   }
 
   componentDidMount() {
     const {
-      history,
-      location,
       handleSetCredentials,
       handleGetMedia,
     } = this.props;
 
     handleGetMedia();
 
-    // if(location.search !== '') {
-    //   const searchParts = location.search.split('&');
-
-    //   if(searchParts.length === 2) {
-    //     const idPart = searchParts[0].split('=');
-    //     const tokenPart = searchParts[1].split('=');
-
-    //     if(idPart[0] === '?shopId' && tokenPart[0] === 'accessToken') {
-    //       handleSetCredentials(idPart[1], tokenPart[1]);
-    //     }
-    //   }
-
-    //   if(searchParts.length === 1) {
-    //     const idPart = searchParts[0].split('=');
-
-    //     if(idPart[0] === '?shopId') {
-    //       handleSetCredentials(idPart[1]);
-    //     }
-    //   }
-
-    //   history.replace('/');
-    // }
-
-    // fetch(`${process.env.PUBLIC_URL}/details.json`, {})
-    //       .then(
-    //         res => res.json()
-    //       ).then(
-    //         res => {
-    //           handleSetCredentials(res.shop_id);
-    //         }
-    //       )
-
     const id = window.shopID;
-    handleSetCredentials(id);
-
-
+    handleSetCredentials(id, null);
   }
 
   render() {
@@ -109,6 +74,7 @@ class Nav extends Component {
       vendor,
       profilePic,
       showCartSidebar,
+      titleMsg,
       children,
     } = this.props;
 
@@ -172,7 +138,9 @@ class Nav extends Component {
         <Sidebar pinned={ showSidebar } className="Navigation-sidebar" >
           <div className="Navigation-sidebar-action">
             <IconButton icon='close' onClick={ handleHideSidebar }/>
-            <h1>Add Products/Services</h1>
+            <h1>
+              { titleMsg }
+            </h1>
           </div>
           <div className="Navigation-sidebar-content">
             <SidebarContent />

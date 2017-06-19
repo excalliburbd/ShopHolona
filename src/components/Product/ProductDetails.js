@@ -21,6 +21,7 @@ const ProductDetails = ({
   tabIndex,
   tabChange,
   setAttribute,
+  token,
 }) => {
 
   const images = product.variances[product.selectedVariant].images.map(
@@ -34,7 +35,7 @@ const ProductDetails = ({
     <div className="product-details-container">
       <IconButton icon="close"
                   className="ProductDetails--toggle"
-                  onClick={ toggleDetails }
+                  onClick={ () => toggleDetails(null) }
         />
 
       <div className="product-details-left">
@@ -63,6 +64,7 @@ const ProductDetails = ({
             <small>
               <ProductDetailsMain select={ setVariant }
                                   chooseAttribute={ setAttribute }
+                                  token={ token }
                                   { ...product }
                                   addToCart={ addToCart } />
             </small>

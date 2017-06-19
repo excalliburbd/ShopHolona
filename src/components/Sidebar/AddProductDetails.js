@@ -8,7 +8,6 @@ import Slider from 'react-slick';
 
 const AddProductDetails = ({
   handleManualInput,
-  finishedProduct,
   handleSaveProduct,
   token,
   shop,
@@ -26,6 +25,7 @@ const AddProductDetails = ({
   deleteFromFeaturedProduct,
   selectedProduct,
   featuredID,
+  handleShowRoute,
 }) => {
   return (
     <div className="ProductSidebar-details">
@@ -70,11 +70,11 @@ const AddProductDetails = ({
                   <Input  label="Weight"
                           type="number"
                           onChange={ value => handleManualInput('edit', 'weight', value) }
-                          value={ productDetailWeight } />
+                          value={ Math.round(productDetailWeight) } />
                   <Input  label="Price"
                           type="number"
                           onChange={ value => handleManualInput('edit', 'price', value) }
-                          value={ productDetailPrice } />
+                          value={ Math.round(productDetailPrice) } />
                   <Input  label="Description"
                           onChange={ value => handleManualInput('edit', 'desc', value) }
                           value={ productDetailDescription } />
@@ -96,6 +96,11 @@ const AddProductDetails = ({
 
                 }
                 <div className="ProductsSidebar-add-actions">
+                    <Button icon="photo_camera"
+                        label="Edit product images"
+                        onClick={
+                          () => handleShowRoute('ADD_IMAGES', 'edit')
+                        } />
                     <Button icon="delete"
                             label="Delete"
                             accent
@@ -104,9 +109,8 @@ const AddProductDetails = ({
                             } />
                     <Button icon="save"
                             label="save"
-                            disabled
                             onClick={
-                              () => handleSaveProduct(finishedProduct, shop, token)
+                              () => handleSaveProduct(selectedProduct, shop, token, true)
                             } />
                   </div>
               </div>

@@ -35,7 +35,7 @@ import {
   getSubCategoryID,
   getRadioValue,
   getProgress,
-  getSelectedPrductID,
+  getSelectedProductID,
   getFusedCategories,
   getFusedSubCategories,
   getFusedSubSubCategories,
@@ -78,7 +78,7 @@ const mapStateToProps = state => {
     productDetailWeight: state.ui.product.selectedProduct.weight,
     productDetailPrice: state.ui.product.selectedProduct.price,
     productDetailDescription: state.ui.product.selectedProduct.short_desc,
-    selectedProductId: getSelectedPrductID(state),
+    selectedProductId: getSelectedProductID(state),
     showProductDetails: getShowProductDetails(state),
     temporaryAttribute: state.ui.categories.temporaryAttribute,
     progress: getProgress(state),
@@ -184,7 +184,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           id
         }));
     },
-    handleShowRoute: type => {
+    handleShowRoute: (type, ui) => {
       switch(type){
         case 'ADD_IMAGES':
           dispatch(sidebarActions.sidebar.show.addProductImages())
@@ -195,48 +195,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         case 'UPLOADING':
           dispatch(sidebarActions.sidebar.show.addProductUploading());
           break;
+        case 'EDITING':
+          dispatch(sidebarActions.sidebar.show.addProductDetails(ui));
+          break;
         default:
          break;
       }
     },
-    handleFiles: (id, oldFiles, newFiles, name, shop, token,) => {
-      dispatch(categoryActions.categories.ui.set.productImages({
-          id,
-          files: newFiles,
-        }));
-
-      dispatch(
-        imageUploaderActions.imageUploader.upload.count(newFiles.length)
-      );
-
-      // const [
-      //   first,
-      //   ...rest
-      // ] = newFiles;
-
-      // const toPost = [
-      //   (oldFiles.length === 0) ? 'EDITED' : first,
-      //   ...rest
-      // ];
-
-      // toPost.forEach(
-      newFiles.forEach(
-        (file, key) => {
-          // if (file === 'EDITED') {
-          //   dispatch(imageUploaderActions.imageUploader.show.uploaderEditor({ file: first, id }));
-          // } else {
-          //   if( key === (newFiles.lenght - 1)) {
-          //     dispatch(
-          //       postImage(
-          //         token,
-          //         shop,
-          //         { file, tag: `${file.name.toLowerCase().split(' ').join('_')}_${key}` },
-          //         id,
-          //         (key + oldFiles.length),
-          //         'DONE'
-          //       )
-          //     )
-          //   } else {
+    handleFiles: (id, oldFiles, newFiles, name, shop, token, editing) => {
+      if (editing) {
+        newFiles.forEach(
+          (file, key) => {
               dispatch(
                 postImage(
                   token,
@@ -244,20 +213,75 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                   { file, tag: `${file.name.toLowerCase().split(' ').join('_')}_${key}` },
                   id,
                   (key + oldFiles.length),
-                  'NEXT'
+                  'EDIT'
                 )
               )
+          }
+        )
+      } else {
+        dispatch(categoryActions.categories.ui.set.productImages({
+            id,
+            files: newFiles,
+          }));
+
+        dispatch(
+          imageUploaderActions.imageUploader.upload.count(newFiles.length)
+        );
+
+        // const [
+        //   first,
+        //   ...rest
+        // ] = newFiles;
+
+        // const toPost = [
+        //   (oldFiles.length === 0) ? 'EDITED' : first,
+        //   ...rest
+        // ];
+
+        // toPost.forEach(
+        newFiles.forEach(
+          (file, key) => {
+            // if (file === 'EDITED') {
+            //   dispatch(imageUploaderActions.imageUploader.show.uploaderEditor({ file: first, id }));
+            // } else {
+            //   if( key === (newFiles.lenght - 1)) {
+            //     dispatch(
+            //       postImage(
+            //         token,
+            //         shop,
+            //         { file, tag: `${file.name.toLowerCase().split(' ').join('_')}_${key}` },
+            //         id,
+            //         (key + oldFiles.length),
+            //         'DONE'
+            //       )
+            //     )
+            //   } else {
+                dispatch(
+                  postImage(
+                    token,
+                    shop,
+                    { file, tag: `${file.name.toLowerCase().split(' ').join('_')}_${key}` },
+                    id,
+                    (key + oldFiles.length),
+                    'NEXT'
+                  )
+                )
+              // }
             // }
-          // }
-        }
-      )
+          }
+        )
+      }
     },
-    handleRemoveImg: (id, key) => {
-      dispatch(categoryActions.categories.remove.productImage({
-          id,
-          key,
-        }));
-      dispatch(imageUploaderActions.imageUploader.upload.dec());
+    handleRemoveImg: (id, key, editing) => {
+      if (editing) {
+        dispatch(productActions.products.ui.set.delete.image({variantKey: id, imageKey: key}));
+      } else {
+        dispatch(categoryActions.categories.remove.productImage({
+            id,
+            key,
+          }));
+        dispatch(imageUploaderActions.imageUploader.upload.dec());
+      }
     },
     handleManualInput: (uiType, fieldType, value) => {
 
@@ -267,6 +291,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
       if(uiType === 'service') {
         dispatch(serviceActions.services.ui.set.add[fieldType](value));
+      }
+
+      if (uiType === 'edit') {
+        dispatch(productActions.products.ui.set[uiType][fieldType](value))
       }
 
       if(value === '') {
@@ -286,10 +314,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }
       }
     },
-    handleSaveProduct: (obj, shop, token) => {
-      dispatch(saveProduct(obj, shop, token));
+    handleSaveProduct: (obj, shop, token, editing) => {
+      if (editing) {
+        dispatch(saveProduct(obj, shop, token, true));
+      } else {
+        dispatch(saveProduct(obj, shop, token));
 
-      dispatch(sidebarActions.sidebar.hide());
+        dispatch(sidebarActions.sidebar.hide());
+      }
     },
     handleSelectVariance: key => {
       dispatch(productActions.products.ui.set.variance(key));

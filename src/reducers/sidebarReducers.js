@@ -6,25 +6,29 @@ export const SidebarUIReducer = handleActions({
     [sidebarActions.sidebar.show.signIn]: (state, action) => ({
         ...state,
         show: true,
-        type: 'SIGNIN'
+        type: 'SIGNIN',
+        titleMsg: 'Sign In/ Sign Up'
       }),
     [sidebarActions.sidebar.show.addProduct]: (state, action) => ({
         ...state,
         show: true,
         type: 'PRODUCT',
-        subType: 'ADD_PRODUCT'
+        subType: 'ADD_PRODUCT',
+        titleMsg: 'Add Product',
       }),
     [sidebarActions.sidebar.show.addProductStock]: (state, action) => ({
         ...state,
         show: true,
         type: 'PRODUCT',
-        subType: 'ADD_PRODUCT_STOCK'
+        subType: 'ADD_PRODUCT_STOCK',
+        titleMsg: 'Add Product Stock'
       }),
     [sidebarActions.sidebar.show.addProductImages]: (state, action) => ({
         ...state,
         show: true,
         type: 'PRODUCT',
-        subType: 'ADD_PRODUCT_IMAGES'
+        subType: 'ADD_PRODUCT_IMAGES',
+        titleMsg: 'Add Product Images'
       }),
     [sidebarActions.sidebar.show.addProductDetails]: (state, action) => ({
         ...state,
@@ -37,21 +41,24 @@ export const SidebarUIReducer = handleActions({
        ...state,
         show: true,
         type: 'CART',
-        subType: 'CART_CHOOSE_PRODUCT'
+        subType: 'CART_CHOOSE_PRODUCT',
+        titleMsg: 'Shopping Cart'
     }),
 
     [sidebarActions.sidebar.show.addProductUploading]: (state, action) => ({
           ...state,
           show: true,
           type: 'PRODUCT',
-          subType: 'UPLOADING'
+          subType: 'UPLOADING',
+          titleMsg: 'Uploading Product'
         }),
     [sidebarActions.sidebar.hide]: (state, action) => ({
         ...state,
         show: false,
         type: null,
         subType: null,
-        radio: 'NONE'
+        radio: 'NONE',
+        titleMsg: '',
       }),
     [sidebarActions.sidebar.ui.set.radioValue]: (state, action) => ({
         ...state,
@@ -61,5 +68,6 @@ export const SidebarUIReducer = handleActions({
   show: false,
   type: null,
   subType: null,
-  radio: 'NONE'
+  radio: 'PRODUCT',
+  titleMsg: ''
 })

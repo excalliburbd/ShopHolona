@@ -31,11 +31,12 @@ const offlineConfig = {
       'ui',
       'router',
       'offline',
+      'cart',
     ]
   }
 }
 
-export default  offline(offlineConfig)(createStore)(
+export default offline(offlineConfig)(createStore)(
   connectRouter(history)(RootReducer),
   composeWithDevTools(
     applyMiddleware(
