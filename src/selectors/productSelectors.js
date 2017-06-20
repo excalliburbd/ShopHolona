@@ -1,6 +1,10 @@
 import { createSelector } from 'reselect';
 import Fuse from 'fuse.js';
 
+import {
+  getIsFcom
+} from './shopSelectors';
+
 export const getCategoriesObj = state => state.ui.categories.categories;
 export const getSubCategoriesObj = state => state.ui.categories.subCategories;
 export const getSubSubCategoriesObj = state => state.ui.categories.subSubCategories;
@@ -13,6 +17,7 @@ export const getProductSubSubCategory = state => state.ui.product.subSubCategory
 export const getProductName = state => state.ui.product.name;
 export const getProductWeight = state => state.ui.product.weight;
 export const getProductPrice = state => state.ui.product.price;
+export const getFcomPrice = state => state.ui.product.fcomPrice;
 export const getProductDescription = state => state.ui.product.description;
 export const getSubSubCategoryID = state => state.ui.categories.subSubCategoryID;
 export const getCategoryID = state => state.ui.categories.categoryID;
@@ -25,6 +30,7 @@ export const getProductsArray = state => state.products;
 export const getProductsObj = state => state.entities.products;
 export const getUploadCount = state => state.ui.uploader.uploadCount;
 export const getDoneUploadCount = state => state.ui.uploader.doneUploadCount;
+export const getProductDetailfcomPrice = state => state.ui.product.selectedProduct.fcomPrice;
 
 export const getFusedCategories = createSelector(
   [getCategoriesObj],
@@ -147,8 +153,10 @@ export const getFinishedProduct = createSelector(
     getSecondaryAttributes,
     getSubSubCategoryID,
     getProgress,
+    getIsFcom,
+    getFcomPrice,
   ],
-  (name, description, weight, price, primary, secondary, id, progress ) => {
+  (name, description, weight, price, primary, secondary, id, progress, fcom, fprice) => {
     if (!progress.primary && !progress.secondary) {
       return {
         name: name,
@@ -176,7 +184,7 @@ export const getFinishedProduct = createSelector(
                                                         type: obj.id,
                                                         description,
                                                         weight,
-                                                        price,
+                                                        price: fcom ? fprice : price,
                                                         stock: obj.stock,
                                                         key: obj.name,
                                                         value: obj.value,
@@ -212,7 +220,7 @@ export const getFinishedProduct = createSelector(
                                                         type: obj.id,
                                                         description,
                                                         weight,
-                                                        price,
+                                                        price: fcom ? fprice : price,
                                                         stock: obj.stock,
                                                       })
                                                     )

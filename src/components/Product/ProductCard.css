@@ -10,6 +10,7 @@
 
 .ProductCard--addProduct {
   position: relative;
+  top: -1.5em;
 }
 .ProductCard--addProduct:hover {
   background-color: #ededed;

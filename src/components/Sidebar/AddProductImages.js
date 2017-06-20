@@ -63,6 +63,7 @@ const AddProductImages = ({
                                                     style={{
                                                       backgroundImage: `url(${ image })`,
                                                       backgroundSize: 'contain',
+                                                      backgroundRepeat: 'no-repeat',
                                                       height: '5em',
                                                       width: '5em',
                                                       margin: '.5em',
@@ -120,8 +121,9 @@ const AddProductImages = ({
                                   (file, key) => <div onClick={ () => handleRemoveImg(obj.id, key) }
                                                       key={ key }
                                                       style={{
-                                                        backgroundImage: `url(${ file.preview }) no-repeat center center`,
+                                                        backgroundImage: `url(${ file.preview })`,
                                                         backgroundSize: 'contain',
+                                                        backgroundRepeat: 'no-repeat',
                                                         height: '5em',
                                                         width: '5em',
                                                         margin: '.5em',

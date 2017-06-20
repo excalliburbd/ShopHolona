@@ -48,7 +48,9 @@ const AddProductService = ({
   serviceTitle,
   serviceFee,
   serviceDescription,
-  showAddVariances
+  showAddVariances,
+  fcom,
+  fcomPrice,
 }) => {
 
   return (
@@ -73,11 +75,12 @@ const AddProductService = ({
                               onClick={ () => handleRadio('SERVICE') } />
                     </div>
                 }*/}
+
+                  {/*(radioValue === 'PRODUCT' || radioValue === 'SERVICE') &&*/}
                 {
-                  (radioValue === 'PRODUCT' || radioValue === 'SERVICE') &&
                     <div className="ProductsSidebar-add--products">
                       <CustomAutocomplete
-                        label={`Enter ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Category`}
+                        label={`Enter ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Class`}
                         source={ categories }
                         value={ productCategory }
                         selectionOnly
@@ -85,7 +88,7 @@ const AddProductService = ({
                         handleSetValue={ value => handleManualInput('add', 'category', value)}
                       />
                       <CustomAutocomplete
-                        label={`Enter ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Sub Category`}
+                        label={`Enter ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Category`}
                         source={ subCategories }
                         value={ productSubCategory }
                         selectionOnly
@@ -110,7 +113,7 @@ const AddProductService = ({
                                 required
                                 onChange={ value => handleManualInput('add', 'name', value) }
                                 value={ productName } />
-                          <Input label={'Enter Your Product Weight'}
+                          <Input label={'Enter Your Product Weight(in grams)'}
                               required
                               type="number"
                               onChange={ value => handleManualInput('add', 'weight', value) }
@@ -120,6 +123,7 @@ const AddProductService = ({
                                 required
                                 onChange={ value => handleManualInput('add', 'price', value) }
                                 value={ productPrice } />
+                          { fcom && <p>Charged to customer: { fcomPrice } &#2547;</p> }
                           <Input label={'Enter Your Product Description'}
                                 onChange={ value => handleManualInput('add', 'desc', value) }
                                 value={ productDescription } />

@@ -68,44 +68,49 @@ const ProductsSidebar = ({
   selectedProduct,
   featuredID,
   showDone,
-  showAddVariances
+  showAddVariances,
+  isFcom,
+  fcomPrice,
+  productDetailfcomPrice,
 }) => {
   switch(type) {
     case 'ADD_PRODUCT':
     case 'ADD_SERVICE':
       return <AddProductService type={type}
-                                  handleFieldSelect={ handleFieldSelect }
-                                  categories={ categories }
-                                  subCategories={ subCategories }
-                                  subSubCategories={ subSubCategories }
-                                  categoryID={ categoryID }
-                                  handleCategoryObj={ handleCategoryObj }
-                                  primaryAttributes={ primaryAttributes }
-                                  secondaryAttributes={ secondaryAttributes }
-                                  handleSelect={ handleSelect }
-                                  handleAttributeSelect={ handleAttributeSelect }
-                                  radioValue={ radioValue }
-                                  handleRadio={ handleRadio }
-                                  handleStockUpdate={ handleStockUpdate }
-                                  selectedAttribute={ selectedAttribute }
-                                  setAttributeDone={ setAttributeDone }
-                                  showAddColors={ showAddColors }
-                                  showAddImages={ showAddImages }
-                                  handleStockInputBlur={ handleStockInputBlur }
-                                  handleShowRoute={ handleShowRoute }
-                                  productCategory={ productCategory }
-                                  productSubCategory={ productSubCategory }
-                                  productSubSubCategory={ productSubSubCategory }
-                                  productName={ productName }
-                                  productWeight={ productWeight }
-                                  productPrice={ productPrice }
-                                  productDescription={ productDescription }
-                                  handleManualInput={ handleManualInput }
-                                  showProductDetails={ showProductDetails }
-                                  handleAddVairace={ handleAddVairace }
-                                  temporaryAttribute={ temporaryAttribute }
-                                  handleSetTemporaryAttribute={ handleSetTemporaryAttribute }
-                                  showAddVariances={ showAddVariances } />
+                                handleFieldSelect={ handleFieldSelect }
+                                categories={ categories }
+                                subCategories={ subCategories }
+                                subSubCategories={ subSubCategories }
+                                categoryID={ categoryID }
+                                handleCategoryObj={ handleCategoryObj }
+                                primaryAttributes={ primaryAttributes }
+                                secondaryAttributes={ secondaryAttributes }
+                                handleSelect={ handleSelect }
+                                handleAttributeSelect={ handleAttributeSelect }
+                                radioValue={ radioValue }
+                                handleRadio={ handleRadio }
+                                handleStockUpdate={ handleStockUpdate }
+                                selectedAttribute={ selectedAttribute }
+                                setAttributeDone={ setAttributeDone }
+                                showAddColors={ showAddColors }
+                                showAddImages={ showAddImages }
+                                handleStockInputBlur={ handleStockInputBlur }
+                                handleShowRoute={ handleShowRoute }
+                                productCategory={ productCategory }
+                                productSubCategory={ productSubCategory }
+                                productSubSubCategory={ productSubSubCategory }
+                                productName={ productName }
+                                productWeight={ productWeight }
+                                productPrice={ productPrice }
+                                productDescription={ productDescription }
+                                handleManualInput={ handleManualInput }
+                                showProductDetails={ showProductDetails }
+                                handleAddVairace={ handleAddVairace }
+                                temporaryAttribute={ temporaryAttribute }
+                                handleSetTemporaryAttribute={ handleSetTemporaryAttribute }
+                                showAddVariances={ showAddVariances }
+                                fcom={ isFcom }
+                                fcomPrice={ fcomPrice } />
     case 'ADD_PRODUCT_IMAGES':
       return <AddProductImages  primaryAttributes={ primaryAttributes }
                                 handleShowRoute={ handleShowRoute }
@@ -134,7 +139,9 @@ const ProductsSidebar = ({
                                   makeFeaturedProduct={ makeFeaturedProduct }
                                   deleteFromFeaturedProduct={ deleteFromFeaturedProduct }
                                   selectedProduct={ selectedProduct }
-                                  featuredID={ featuredID } />
+                                  featuredID={ featuredID }
+                                  fcom={ isFcom }
+                                  productDetailfcomPrice={ productDetailfcomPrice } />
     case 'UPLOADING':
       return <ProductUpload className="ProductSidebar-upload"
                             makeProduct={ makeProduct }

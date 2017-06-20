@@ -82,10 +82,26 @@ export const ProductsUIReducer = handleActions({
     }
   },
   [productActions.products.ui.set.add.price]: (state, action) => {
-    return {
-      ...state,
-      price: action.payload,
-    }
+      const price = Math.round(action.payload);
+      let commissioned = price;
+
+      if (price < 1000) {
+        commissioned = Math.round(price + (price * .06));
+      } else if(price < 5000) {
+        commissioned = Math.round(price + (price * .04));
+      } else if (price < 10000) {
+        commissioned = Math.round(price + (price * .03));
+      } else if (price < 20000) {
+        commissioned = Math.round(price + (price * .02));
+      } else {
+        commissioned = Math.round(price + (price * .01));
+      }
+
+      return {
+        ...state,
+        price,
+        fcomPrice: commissioned,
+      }
   },
   [productActions.products.ui.set.add.desc]: (state, action) => {
     return {
@@ -94,9 +110,26 @@ export const ProductsUIReducer = handleActions({
     }
   },
   [sidebarActions.sidebar.show.addProductDetails]: (state, action) => {
+      const price = Math.round(action.payload.price);
+      let commissioned = price;
+
+      if (price < 1000) {
+        commissioned = Math.round(price + (price * .06));
+      } else if(price < 5000) {
+        commissioned = Math.round(price + (price * .04));
+      } else if (price < 10000) {
+        commissioned = Math.round(price + (price * .03));
+      } else if (price < 20000) {
+        commissioned = Math.round(price + (price * .02));
+      } else {
+        commissioned = Math.round(price + (price * .01));
+      }
       return {
         ...state,
-        selectedProduct: action.payload,
+        selectedProduct: {
+          ...action.payload,
+          fcomPrice: commissioned,
+        },
       }
   },
   [productActions.products.ui.set.edit.name]: (state, action) => {
@@ -118,11 +151,27 @@ export const ProductsUIReducer = handleActions({
       }
   },
   [productActions.products.ui.set.edit.price]: (state, action) => {
+      const price = Math.round(action.payload);
+      let commissioned = price;
+
+      if (price < 1000) {
+        commissioned = Math.round(price + (price * .06));
+      } else if(price < 5000) {
+        commissioned = Math.round(price + (price * .04));
+      } else if (price < 10000) {
+        commissioned = Math.round(price + (price * .03));
+      } else if (price < 20000) {
+        commissioned = Math.round(price + (price * .02));
+      } else {
+        commissioned = Math.round(price + (price * .01));
+      }
+
       return {
         ...state,
         selectedProduct: {
           ...state.selectedProduct,
-          price: action.payload,
+          price,
+          fcomPrice: commissioned,
         }
       }
   },
@@ -158,6 +207,7 @@ export const ProductsUIReducer = handleActions({
         name: '',
         weight: '',
         price: '',
+        fcomPrice: '',
         description: '',
         selectedVariance: 0,
         selectedProduct: {},
@@ -171,6 +221,7 @@ export const ProductsUIReducer = handleActions({
         name: '',
         weight: '',
         price: '',
+        fcomPrice: '',
         description: '',
         selectedVariance: 0,
         selectedProduct: {},
@@ -183,6 +234,7 @@ export const ProductsUIReducer = handleActions({
         name: '',
         weight: '',
         price: '',
+        fcomPrice: '',
         description: '',
         selectedVariance: 0,
         selectedProduct: {},
@@ -195,6 +247,7 @@ export const ProductsUIReducer = handleActions({
         name: '',
         weight: '',
         price: '',
+        fcomPrice: '',
         description: '',
         selectedVariance: 0,
         selectedProduct: {},
@@ -254,6 +307,7 @@ export const ProductsUIReducer = handleActions({
   name: '',
   weight: '',
   price: '',
+  fcomPrice: '',
   description: '',
   selectedVariance: 0,
   selectedProduct: {},

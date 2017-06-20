@@ -10,7 +10,12 @@
   background-color: rgb(183, 28, 28);
 }
 
-.addbutton .material-icons{
+.addbutton .material-icons,
+._3aBSX > svg {
   color: white;
   font-size: 1.4em;
+}
+
+._2Agdx._3IRMZ._1ZxqC._2CPs4.addbutton.addbutton-social {
+  background-color: rgba(0, 132, 255, 1)
 }

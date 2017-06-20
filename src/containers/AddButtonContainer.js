@@ -5,10 +5,13 @@ import { getCategory } from '../thunks/productThunks';
 
 import { sidebarActions } from '../actions/';
 
+import { getFacebook } from '../selectors/shopSelectors';
+
 import AddButton from '../components/AddButton';
 
 const mapStateToProps = state => {
   return {
+    facebook: getFacebook(state),
   }
 }
 

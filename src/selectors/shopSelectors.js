@@ -19,6 +19,8 @@ export const getTradeLicence = state => ({
   img: state.shop.trade_license_image
 });
 export const getShopInfo = state => state.shop.information;
+export const getIsFcom = state => state.shop.fcom;
+export const getFacebook = state => state.shop.fb_link;
 
 export const getCategories = createSelector(
   [getCategoriesArray, getCategoriesEntities],

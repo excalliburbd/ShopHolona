@@ -34,7 +34,8 @@ export const SidebarUIReducer = handleActions({
         ...state,
         show: true,
         type: 'PRODUCT',
-        subType: 'SHOW_PRODUCT_DETAILS'
+        subType: 'SHOW_PRODUCT_DETAILS',
+        titleMsg: 'Edit Product'
       }),
 
     [sidebarActions.sidebar.show.addToCart]: (state, action) => ({

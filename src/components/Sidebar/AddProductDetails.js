@@ -26,6 +26,8 @@ const AddProductDetails = ({
   selectedProduct,
   featuredID,
   handleShowRoute,
+  fcom,
+  productDetailfcomPrice,
 }) => {
   return (
     <div className="ProductSidebar-details">
@@ -75,6 +77,7 @@ const AddProductDetails = ({
                           type="number"
                           onChange={ value => handleManualInput('edit', 'price', value) }
                           value={ Math.round(productDetailPrice) } />
+                  { fcom && <p>Charged to customer: { productDetailfcomPrice } &#2547;</p> }
                   <Input  label="Description"
                           onChange={ value => handleManualInput('edit', 'desc', value) }
                           value={ productDetailDescription } />
