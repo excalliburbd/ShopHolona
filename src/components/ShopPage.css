@@ -91,8 +91,6 @@
   font-family: "Gotham Narrow Book";
   letter-spacing: 1px;
   font-weight: 900;
-  margin-top: 0em;
-  margin-bottom: 0em;
 }
 
 .ShopPage-details .ShopPage-details--text {
@@ -126,7 +124,7 @@
     font-size: 13px;
     margin-left: 0.2em;
     font-family: "Gotham Narrow Book";
-  }
+}
 
 .ShopPage-details--show .ShopPage-details--text {
   display: block;
@@ -204,7 +202,7 @@
 }
 
 .ShopPage-details-contacts {
-  margin: 0;
+  margin-bottom: 0em;
   padding: 0;
   list-style: none;
   display: inline-flex;
@@ -381,11 +379,13 @@
     margin: 0px;
     color: dimgrey;
   }
+  .ShopPage-details--title {
+    margin: 0.4em 0;
+  }
 
   .ShopPage-details-description .Stars {
     font-size: 1.4em;
-    /*letter-spacing: 2px;*/
-    margin-top: -0.1em;
+    margin-bottom: 0.4em;
   }
 
   .ShopPage-details-description .Stars .Stars-active{
@@ -411,6 +411,7 @@
 
   .ShopPage-details .ShopPage-details-description p {
     margin-top: 0em;
+    margin-bottom: 0.4em;
   }
 
   .ShopPage-products--container > .ShopPage-banner {

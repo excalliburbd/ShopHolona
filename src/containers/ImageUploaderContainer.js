@@ -7,6 +7,7 @@ import { postImage } from '../thunks/productThunks';
 
 import { imageUploaderActions } from '../actions/';
 
+import { getResponsive } from '../selectors/uiSelectors';
 import ImageUploader from '../components/ImageUploader';
 
 const getShop = state => state.shop;
@@ -49,7 +50,7 @@ const mapStateToProps = state => {
     formData: makeFormData(state),
     type: state.ui.uploader.type,
     productID: state.ui.uploader.productID,
-    responsive: state.ui.responsive,
+    responsive: getResponsive(state)
   }
 }
 

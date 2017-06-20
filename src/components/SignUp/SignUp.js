@@ -24,19 +24,18 @@ const SignUp = ({
   <div className="SignUp">
     <div className="SignUp-header">
       <h1>ShopHobe</h1>
-      <p>Sign In/Sign Up to view dashboard</p>
     </div>
-    <div className="SignUp-social">
-      <FbLogin disabled handleOnLogin={
-        handleTrySignIn
-      } />
-      <GLogin disabled handleOnLogin={
-        handleTrySignIn
-      } />
-    </div>
-    <div>
-      <p>Or</p>
-    </div>
+    {/*<div className="SignUp-social">*/}
+      {/*<FbLogin disabled handleOnLogin={*/}
+        {/*handleTrySignIn*/}
+      {/*} />*/}
+      {/*<GLogin disabled handleOnLogin={*/}
+        {/*handleTrySignIn*/}
+      {/*} />*/}
+    {/*</div>*/}
+    {/*<div>*/}
+      {/*<p>Or</p>*/}
+    {/*</div>*/}
       <Input type='email'
              label='Using email address'
              required
@@ -60,25 +59,25 @@ const SignUp = ({
       <Button icon="forward"
               label="login"
               onClick={ () => handleTrySignIn({ email, password: emailPassword}, shop) } />
-    <div>
-      <p>Or</p>
-    </div>
-    <Input type='tel'
-            label='Using phone number'
-            name='phone'
-            required
-            value={ phone }
-            onChange={ handlePhoneValue }
-            disabled
-            icon='local_phone' />
-    <Input type='password'
-            required
-            label='Enter your password'
-            value={ phonePassword }
-            onChange={ handlePhonePasswordValue }
-            disabled
-            icon='vpn_key' />
-    <Button icon="forward" label="login" onClick={ handleTrySignIn } />
+    {/*<div>*/}
+      {/*<p>Or</p>*/}
+    {/*</div>*/}
+    {/*<Input type='tel'*/}
+            {/*label='Using phone number'*/}
+            {/*name='phone'*/}
+            {/*required*/}
+            {/*value={ phone }*/}
+            {/*onChange={ handlePhoneValue }*/}
+            {/*disabled*/}
+            {/*icon='local_phone' />*/}
+    {/*<Input type='password'*/}
+            {/*required*/}
+            {/*label='Enter your password'*/}
+            {/*value={ phonePassword }*/}
+            {/*onChange={ handlePhonePasswordValue }*/}
+            {/*disabled*/}
+            {/*icon='vpn_key' />*/}
+    {/*<Button icon="forward" label="login" onClick={ handleTrySignIn } />*/}
   </div>
 );
 
