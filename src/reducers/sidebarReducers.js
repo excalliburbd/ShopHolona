@@ -7,7 +7,7 @@ export const SidebarUIReducer = handleActions({
         ...state,
         show: true,
         type: 'SIGNIN',
-        titleMsg: 'Sign In/ Sign Up'
+        titleMsg: 'Sign In'
       }),
     [sidebarActions.sidebar.show.addProduct]: (state, action) => ({
         ...state,

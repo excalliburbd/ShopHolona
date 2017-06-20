@@ -20,8 +20,7 @@ const Cart = ({
         </div>
         <div className="cart-header-total">
           <h4>Total</h4>
-          <h4>৳ { total.price }</h4>
-          <h4>{ total.weight } gm</h4>
+          <h4>৳ { total.price } - { total.weight } gm</h4>
         </div>
       </header>
       <ul className="cart-product-list">

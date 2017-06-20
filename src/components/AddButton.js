@@ -1,9 +1,6 @@
 import React from 'react';
-import Icon from 'react-icons-kit';
 
 import Button from 'react-toolbox/lib/button/Button';
-
-import FaFacebook from 'react-icons/lib/fa/facebook';
 
 import './AddButton.css';
 
@@ -19,12 +16,12 @@ const AddButton = ({
   }
 
   if(!vendor && facebook) {
-    return <Button  icon={ <FaFacebook />  }
+    return <Button  icon="message"
                     floating
                     onClick={
                      () => {
                        const page = facebook.split('/')
-                       window.location = `https://www.messenger.com/t/${page[page.length - 1]}`
+                       window.open(`https://www.messenger.com/t/${page[page.length - 1]}`);
                      }
                     }
                     className="addbutton addbutton-social" />

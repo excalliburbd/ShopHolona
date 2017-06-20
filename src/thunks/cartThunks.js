@@ -84,6 +84,7 @@ export const addToCart = (id, token, productID) => (dispatch, getState) => {
       id: cart[cartItem].id,
       quantity: (cart[cartItem].quantity + 1)
     }));
+    dispatch(sidebarActions.sidebar.show.addToCart());
 
     if (token) {
       dispatch(updateCartItem(
@@ -93,40 +94,41 @@ export const addToCart = (id, token, productID) => (dispatch, getState) => {
         token
       ));
     }
-  }
+  } else {
+    const newCartItem = {
+      id: uuid.v4(),
+      user: null,
+      product_variance_attribute: {
+        id: id,
+        variance: {
+          id: variantID
+        }
+      },
+      product,
+      quantity: 1
+    }
 
-  const newCartItem = {
-    id: uuid.v4(),
-    user: null,
-    product_variance_attribute: {
-      id: id,
-      variance: {
-        id: variantID
-      }
-    },
-    product,
-    quantity: 1
-  }
+    dispatch(cartActions.cart.add.item(newCartItem));
+    dispatch(sidebarActions.sidebar.show.addToCart());
 
-  dispatch(cartActions.cart.add.item(newCartItem));
-
-  if (token) {
-    request('/me/carts/', getConfig(
-            token,
-            {
-              product_variance_attribute: id,
-              quantity: 1
-            },
-            'post'
-          )).then(
-            res => {
-              // success
-              dispatch(cartActions.cart.update.itemByVariant({
-                id: newCartItem.id,
-                response: res,
-              }));
-            }
-          );
+    if (token) {
+      request('/me/carts/', getConfig(
+              token,
+              {
+                product_variance_attribute: id,
+                quantity: 1
+              },
+              'post'
+            )).then(
+              res => {
+                // success
+                dispatch(cartActions.cart.update.itemByVariant({
+                  id: newCartItem.id,
+                  response: res,
+                }));
+              }
+            );
+    }
   }
 }
 
