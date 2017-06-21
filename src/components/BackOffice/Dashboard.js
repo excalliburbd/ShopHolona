@@ -60,13 +60,13 @@ const Dashboard = ({
 }) => {
 
   const revenueData = [
-    {name: 'date1', revenue: 2400},
-    {name: 'date2', revenue: 1300},
-    {name: 'date3', revenue: 800},
-    {name: 'date4', revenue: 3900},
-    {name: 'date5', revenue: 4800},
-    {name: 'date6', revenue: 3800},
-    {name: 'date7', revenue: 4300},
+    {name: 'January', revenue: 2400},
+    {name: 'February', revenue: 1300},
+    {name: 'March', revenue: 800},
+    {name: 'April', revenue: 3900},
+    {name: 'May', revenue: 4800},
+    {name: 'June', revenue: 3800},
+    {name: 'July', revenue: 4300},
   ];
 
   return (
@@ -100,13 +100,12 @@ const Dashboard = ({
         <ResponsiveContainer>
           <LineChart width={600} height={300} data={revenueData}
                      margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-            <XAxis/>
+            <XAxis dataKey="name"/>
             <YAxis/>
             <CartesianGrid strokeDasharray="1 1"/>
             <Tooltip/>
             <Legend />
             <Line type="monotone" dataKey="revenue" stroke="#8884d8" activeDot={<CustomizedDot />}/>
-
           </LineChart>
 
         </ResponsiveContainer>
@@ -129,7 +128,7 @@ const Dashboard = ({
         },
         {
           caption: 'Reviews',
-          path: '/admin/reviews',
+          path: '/dashboard',
           icon: MdRateReview,
           status: reviewsStatus
         },

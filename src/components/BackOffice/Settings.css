@@ -1,5 +1,7 @@
 .Settings {
   margin: .5em;
+  display: flex;
+  flex-direction: column;
 }
 
 .Settings ._8pay8 {
@@ -16,8 +18,28 @@
   margin-bottom: 0em;
 }
 
+.Settings-info--address-group h2,
+.Settings-info--time-group h2 {
+  color: #aaa;
+  display: flex;
+}
+
+
+.Settings-info--address-group--inputs,
+.Settings-info--time-group--inputs {
+  padding: 0 2em;
+}
+
 @media screen and (min-width: 600px) {
+  .Settings {
+    flex-direction: row;
+  }
+
+  .Settings ._8pay8:nth-child(2) {
+    margin: 0 .5em;
+  }
 }
 
 @media screen and (min-width: 800px) {
+
 }

@@ -46,11 +46,6 @@ const NavigationDrawer = ({
               icon: <MdInsertChart />
             },
             {
-              caption: 'Reviews',
-              path: '/admin/reviews',
-              icon: <MdRateReview />
-            },
-            {
               caption: 'Settings',
               path: '/settings',
               icon: <MdSettings />

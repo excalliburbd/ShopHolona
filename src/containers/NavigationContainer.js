@@ -3,7 +3,12 @@ import { withRouter } from 'react-router';
 import { mediaQueryTracker } from 'redux-mediaquery';
 
 import { getAllProducts, getFeaturedProduct } from '../thunks/productThunks';
-import { getShopCategories, getShop, getShopAddress } from '../thunks/shopThunks';
+import {
+  getShopCategories,
+  getShop,
+  getShopAddress,
+  getShopHours,
+} from '../thunks/shopThunks';
 import { getMe } from '../thunks/userThunks';
 import { getCart } from '../thunks/cartThunks';
 
@@ -83,6 +88,7 @@ const mapDispatchToProps = dispatch => {
 
       if (token) {
         dispatch(getCart(token, false));
+        dispatch(getShopHours(shop, token));
       }
     },
     handleGetMedia: () => {

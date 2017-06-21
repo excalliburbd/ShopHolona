@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 
+export const getShopID = state => state.shop.id;
 export const getProcutsArray = state => state.products;
 export const getFeaturedProcutsArray = state => state.featuredProducts;
 export const getProcutEntities = state => state.entities.products;
@@ -11,8 +12,8 @@ export const getAddresses = state => state.shop.address;
 export const getShopName = state => state.shop.information.name;
 export const getShopDomain = state => state.shop.subdomain;
 export const getHours = state => ({
-  from: state.shop.hours_from,
-  to: state.shop.hours_to
+  from: state.shop.information.hours_from,
+  to: state.shop.information.hours_to
 });
 export const getTradeLicence = state => ({
   number: state.shop.trade_license_number,

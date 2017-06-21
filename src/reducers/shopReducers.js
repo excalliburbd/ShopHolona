@@ -1,19 +1,18 @@
 import { handleActions } from 'redux-actions';
+import uuid from 'uuid';
 
 import { shopActions } from '../actions/';
 import { REHYDRATE } from 'redux-persist/constants';
 
 export const ShopPageReducer = handleActions({
     [shopActions.shop.set.shop]: (state, action) => {
-      if (!state.information.editing) {
+      if (state.information.editing.length === 0) {
         const {
           shop_name,
-          subdomain,
           contacts,
-          hours_from,
-          hours_to,
           trade_license_number,
-          trade_license_image
+          trade_license_image,
+          fcom,
         } = action.payload;
 
         return {
@@ -23,16 +22,15 @@ export const ShopPageReducer = handleActions({
             ...state.information,
             upToDate: true,
             name: shop_name,
-            domain: subdomain,
-            phone: contacts[0].description,
-            hours: {
-              from: hours_from,
-              to: hours_to,
+            phone: {
+              id: contacts[0].id,
+              number:contacts[0].description,
             },
             license: {
               number: trade_license_number,
               image: trade_license_image,
-            }
+            },
+            fcom
           }
         }
       }
@@ -75,30 +73,15 @@ export const ShopPageReducer = handleActions({
         }
       }
     },
-    [REHYDRATE]: (state, action) => {
-      const incoming = action.payload.shop;
-
+    [shopActions.shop.set.hours]: (state, action) => {
       return {
         ...state,
-        ...incoming,
         information: {
-          upToDate: false,
-          editing: false,
-          name: 'loading',
-          domain: 'loading',
-          address: {
-            body: 'loading',
-            city: 'loading',
-            postal: 'loading'
-          },
+          ...state.information,
           hours: {
-            from: new Date(),
-            to: new Date(),
-          },
-          phone: 'loading',
-          license: {
-            number: 'loading',
-            img: 'https://unsplash.it/480/480'
+            ...action.payload,
+            from_hour: new Date(`1993-04-19 ${action.payload.from_hour}`),
+            to_hour: new Date(`1993-04-19 ${action.payload.to_hour}`)
           },
         }
       }
@@ -108,11 +91,158 @@ export const ShopPageReducer = handleActions({
         ...state,
         information: {
           ...state.information,
-          editing: true,
+          editing: (state.information.editing.indexOf('name') === -1 ) ?
+                    [ ...state.information.editing, 'name' ]:
+                    state.information.editing,
           name: action.payload,
         }
       }
+    },
+    [shopActions.shop.edit.phone]: (state, action) => {
+      return {
+        ...state,
+        information: {
+          ...state.information,
+          editing: (state.information.editing.indexOf('phone') === -1 ) ?
+                    [ ...state.information.editing, 'phone' ]:
+                    state.information.editing,
+          phone: {
+            ...state.information.phone,
+            number: action.payload,
+          },
+        }
+      }
+    },
+    [shopActions.shop.edit.address]: (state, action) => {
+      return {
+        ...state,
+        information: {
+          ...state.information,
+          editing: (state.information.editing.indexOf('address') === -1 ) ?
+                    [ ...state.information.editing, 'address' ]:
+                    state.information.editing,
+          address: {
+            ...state.information.address,
+            body: action.payload,
+          },
+        }
+      }
+    },
+    [shopActions.shop.edit.city]: (state, action) => {
+      return {
+        ...state,
+        information: {
+          ...state.information,
+          editing: (state.information.editing.indexOf('city') === -1 ) ?
+                    [ ...state.information.editing, 'city' ]:
+                    state.information.editing,
+          address: {
+            ...state.information.address,
+            city: action.payload,
+          },
+        }
+      }
+    },
+    [shopActions.shop.edit.postal]: (state, action) => {
+      return {
+        ...state,
+        information: {
+          ...state.information,
+          editing: (state.information.editing.indexOf('postal') === -1 ) ?
+                    [ ...state.information.editing, 'postal' ]:
+                    state.information.editing,
+          address: {
+            ...state.information.address,
+            postal: action.payload
+          },
+        }
+      }
+    },
+    [shopActions.shop.edit.fromHour]: (state, action) => {
+      return {
+        ...state,
+        information: {
+          ...state.information,
+          editing: (state.information.editing.indexOf('from_hour') === -1 ) ?
+                    [ ...state.information.editing, 'from_hour' ]:
+                    state.information.editing,
+          hours: {
+            ...state.information.hours,
+            from_hour: action.payload,
+          },
+        }
+      }
+    },
+    [shopActions.shop.edit.toHour]: (state, action) => {
+      return {
+        ...state,
+        information: {
+          ...state.information,
+          editing: (state.information.editing.indexOf('to_hour') === -1 ) ?
+                    [ ...state.information.editing, 'to_hour' ]:
+                    state.information.editing,
+          hours: {
+            ...state.information.hours,
+            to_hour: action.payload,
+          },
+        }
+      }
+    },
+    [shopActions.shop.edit.licenseNumber]: (state, action) => {
+      return {
+        ...state,
+        information: {
+          ...state.information,
+          editing: (state.information.editing.indexOf('license') === -1 ) ?
+                    [ ...state.information.editing, 'license' ]:
+                    state.information.editing,
+          licenseNumber: action.payload,
+        }
+      }
+    },
+    [REHYDRATE]: (state, action) => {
+      const incoming = action.payload.shop;
+
+      return {
+        ...state,
+        ...incoming,
+        information: {
+          upToDate: false,
+          editing: [],
+          name: 'loading',
+          domain: 'loading',
+          address: {
+            body: 'loading',
+            city: 'loading',
+            postal: 'loading'
+          },
+          hours: {
+            id: uuid.v4(),
+            weekday: 1,
+            from_hour: new Date('1993-04-19 09:00:00'),
+            to_hour: new Date('1993-04-19 21:00:00'),
+          },
+          phone: {
+            id: null,
+            number: 'loading',
+          },
+          license: {
+            number: 'loading',
+            img: 'https://unsplash.it/480/480'
+          },
+          fcom: false,
+        }
+      }
+    },
+  [shopActions.shop.set.editing]: (state, action) => {
+    return {
+      ...state,
+      information: {
+        ...state.information,
+        editing: action.payload,
+      }
     }
+  }
 }, {
   id: null,
   shop_name: 'Loading',
@@ -125,7 +255,7 @@ export const ShopPageReducer = handleActions({
   },
   information: {
     upToDate: false,
-    editing: false,
+    editing: [],
     name: 'loading',
     domain: 'loading',
     address: {
@@ -134,14 +264,20 @@ export const ShopPageReducer = handleActions({
       postal: 'loading'
     },
     hours: {
-      from: new Date(),
-      to: new Date(),
+      id: uuid.v4(),
+      weekday: 1,
+      from_hour: new Date('1993-04-19 09:00:00'),
+      to_hour: new Date('1993-04-19 21:00:00'),
     },
-    phone: 'loading',
+    phone: {
+      id: null,
+      number: 'loading',
+    },
     license: {
       number: 'loading',
       img: 'https://unsplash.it/480/480'
     },
+    fcom: false,
   }
 })
 

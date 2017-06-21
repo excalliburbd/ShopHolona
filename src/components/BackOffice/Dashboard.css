@@ -31,6 +31,22 @@
   fill: #003366;
 }
 
+.Dashboard ._8pay8:last-child {
+  position: relative;
+}
+
+.Dashboard ._8pay8:last-child :after {
+  content: "";
+  z-index: 10;
+  display: block;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.1);
+}
+
 @media screen and (min-width: 600px) {
   .Dashboard {
     display: flex;
