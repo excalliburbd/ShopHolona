@@ -7,13 +7,18 @@ import {
    sidebarActions,
 } from '../actions/';
 
-export const trySignInAsyncAction = ({ email, password }, shop) => dispatch => {
+export const trySignInAsyncAction = (res, shop) => dispatch => {
 
   const credentials = {};
 
-  if(email && password) {
-    credentials.email = email;
-    credentials.password = password;
+  if(res.email && res.password) {
+    credentials.email = res.email;
+    credentials.password = res.password;
+  }
+
+  if(res.phone && res.password) {
+    credentials.phone = res.phone;
+    credentials.password = res.password;
   }
 
   request('/auth/login/', getConfig(
