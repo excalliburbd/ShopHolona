@@ -92,19 +92,22 @@ const ShopPage = ({
       <div className={ detailsClass }>
         <div className="ShopPage-banner">
           <div className="ShopPage-details-img" style={{ backgroundImage: `url(${proficePic})` }}>
-            <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') }/>
+            { vendor && <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') }/> }
           </div>
         </div>
         <div className="ShopPage-banner-divider">
           <MenuDivider/>
         </div>
-        <IconButton className="ShopPage-add-banner"
-                    icon="add_a_photo" onClick={ () => handleShowImageUploader('COVER') }/>
+        {
+          vendor && <IconButton className="ShopPage-add-banner"
+                                icon="add_a_photo"
+                                onClick={ () => handleShowImageUploader('COVER') }/>
+        }
         <IconButton icon={ (details) ? 'close' :'keyboard_arrow_down'}
                     className="ShopPage-details--toggle"
                     onClick={ toggleDetails }/>
         <div className="ShopPage-details-img" style={{ backgroundImage: `url(${proficePic})` }}>
-          <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') }/>
+          { vendor && <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') }/> }
         </div>
 
         <div className="ShopPage-details-description">
@@ -177,9 +180,11 @@ const ShopPage = ({
                 </div>,
                 <div className="ShopPage-products--container" key="arr-layout-2">
                   <div className="ShopPage-products--container-scroll-div">
-                    <IconButton className="ShopPage-banner--icon"
+                    {
+                      vendor && <IconButton className="ShopPage-banner--icon"
                                 icon="add_a_photo"
                                 onClick={ () => handleShowImageUploader('COVER') } />
+                    }
                  </div>
                   <div className="ShopPage-products--categories">
                     {

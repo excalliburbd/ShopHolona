@@ -57,7 +57,7 @@ export const postShopPageProfie = (image, shop, token, formData)  => dispatch =>
     request(`/vendors/shops/${shop}/`, getConfig(
           token,
           formData,
-          'put'
+          'PUT'
         )).then(
           res => {
 
@@ -82,7 +82,7 @@ export const postShopPageCover = (image, shop, token, formData)  => dispatch => 
     request(`/vendors/shops/${shop}/`, getConfig(
           token,
           formData,
-          'put'
+          'PUT'
         )).then(
           res => {
 
@@ -150,11 +150,12 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                       shop_name: name,
                       fcom,
                     },
-                    'patch'
+                    'PATCH'
                   )).then(
                     res => {
                       if (res.id) {
                         //do something
+
                       }
                     }
                   ).catch(
@@ -170,7 +171,7 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                       type: 0,
                       description: phone.number
                     },
-                    'put'
+                    'PUT'
                   )).then(
                     res => {
                       if (res.type === 0) {
@@ -188,20 +189,17 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                   );
           return returnArr;
         case 'from_hour':
-          console.log(hours,`/vendors/shops/${shop}/hours/${hours.id}`)
           request(`/vendors/shops/${shop}/hours/${hours.id}`, getConfig(
                     token,
                     {
-                      from_hour: hours.from_hour
+                      from_hour: `${hours.from_hour.getHours()}:${hours.from_hour.getMinutes()}`
                     },
-                    'patch'
+                    'PATCH'
                   )).then(
                     res => {
-                      console.log(res)
                       if (res.from_hour) {
-                        dispatch(shopActions.shop.set.hours({
+                        dispatch(shopActions.shop.set.fromHour({
                           from_hour: res.from_hour,
-                          to_hour: hours.to_hour,
                         }))
                       }
                     }
@@ -212,6 +210,29 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                     }
                   );
           return returnArr;
+        case 'to_hour':
+          request(`/vendors/shops/${shop}/hours/${hours.id}`, getConfig(
+                    token,
+                    {
+                      to_hour: `${hours.to_hour.getHours()}:${hours.to_hour.getMinutes()}`
+                    },
+                    'PATCH'
+                  )).then(
+                    res => {
+                      if (res.to_hour) {
+                        dispatch(shopActions.shop.set.toHours({
+                          to_hour: res.to_hour,
+                        }))
+                      }
+                    }
+                  ).catch(
+                    err => {
+                      console.log(err)
+                      returnArr = [ ...arr, infoKey ];
+                    }
+                  );
+          return returnArr;
+
         default:
           return [ ...arr, infoKey ]
       }
@@ -219,4 +240,5 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
   );
 
   dispatch(shopActions.shop.set.editing(edited));
+  dispatch(getShop(shop));
 }

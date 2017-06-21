@@ -34,7 +34,7 @@ export const updateCartItem = (cartID, id, quantity, token) => dispatch => {
   request(`/me/carts/${cartID}/`, getConfig(
             token,
             null,
-            'delete'
+            'DELETE'
           )).then(
             res => {
               // successful
@@ -46,7 +46,7 @@ export const updateCartItem = (cartID, id, quantity, token) => dispatch => {
                           product_variance_attribute: id,
                           quantity,
                         },
-                        'post',
+                        'POST',
                       )).then(
                         res => {
                           // successful
@@ -118,7 +118,7 @@ export const addToCart = (id, token, productID) => (dispatch, getState) => {
                 product_variance_attribute: id,
                 quantity: 1
               },
-              'post'
+              'POST'
             )).then(
               res => {
                 // success
@@ -140,7 +140,7 @@ export const deleteCartItem = (id, token) => dispatch => {
     request(`/me/carts/${id}/`, getConfig(
             token,
             null,
-            'delete'
+            'DELETE'
           )).then(
             res => {
               // successful
@@ -167,7 +167,7 @@ export const checkout = (token) => dispatch => {
                 },
                 "carts_id": []
               },
-              'post'
+              'POST'
             ))
   }
 }

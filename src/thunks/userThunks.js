@@ -24,7 +24,7 @@ export const trySignInAsyncAction = (res, shop) => dispatch => {
   request('/auth/login/', getConfig(
             null,
             credentials,
-            'post'
+            'POST'
           )).then(
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});

@@ -62,7 +62,7 @@ export const saveProduct = (obj, shop, token) => dispatch => {
   request(`/api/vendors/shops/${shop}/products/`, getConfig(
             token,
             obj,
-            'post'
+            'POST'
           )).then(
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
@@ -84,7 +84,7 @@ export const deleteProduct = (id, shop, token) => dispatch => {
   request(`/api/vendors/shops/${shop}/products/${id}/`, getConfig(
               token,
               null,
-              'delete'
+              'DELETE'
             )).then(
               res => {
                 dispatch({type: 'RESPONSE_API_DEBUG',payload:res})
@@ -110,7 +110,7 @@ export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
   request(`/api/vendors/shops/${shop}/images/`, getConfig(
             token,
             apiRequest,
-            'post'
+            'POST'
           )).then(
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
@@ -158,7 +158,7 @@ export const  requestAttribute = (
                 name: name,
                 value: value,
               },
-              'post'
+              'POST'
             )).then(
               obj => {
                 dispatch({type: 'RESPONSE_API_DEBUG',payload:obj});
@@ -221,7 +221,7 @@ export const makeFeaturedProduct = (id, shop, token) => dispatch => {
             {
               product: `${id}`,
             },
-            'post'
+            'POST'
           )).then(
             res => {
               dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
@@ -243,7 +243,7 @@ export const removeFromFeaturedProduct = (productID, featuredID, shop, token) =>
   request(`/api/vendors/shops/${shop}/featured-products/${featuredID}/`, getConfig(
             token,
             null,
-            'delete'
+            'DELETE'
           )).then(
             res => {
               dispatch(productActions.products.done.delete.featuredProduct(productID));

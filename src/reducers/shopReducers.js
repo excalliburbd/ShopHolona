@@ -86,6 +86,30 @@ export const ShopPageReducer = handleActions({
         }
       }
     },
+    [shopActions.shop.set.fromHour]: (state, action) => {
+      return {
+        ...state,
+        information: {
+          ...state.information,
+          hours: {
+            ...state.information.hours,
+            from_hour: new Date(`1993-04-19 ${action.payload.from_hour}`)
+          },
+        }
+      }
+    },
+    [shopActions.shop.set.toHour]: (state, action) => {
+      return {
+        ...state,
+        information: {
+          ...state.information,
+          hours: {
+            ...state.information.hours,
+            to_hour: new Date(`1993-04-19 ${action.payload.to_hour}`)
+          },
+        }
+      }
+    },
     [shopActions.shop.edit.name]: (state, action) => {
       return {
         ...state,

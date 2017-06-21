@@ -8,6 +8,8 @@ export const shopActionCreators = {
       ADDRESS:  payload => payload,
       DETAILS_TAB: payload => payload,
       HOURS: payload => payload,
+      FROM_HOUR: payload => payload,
+      TO_HOUR: payload => payload,
       EDITING: payload => payload,
     },
     EDIT: {

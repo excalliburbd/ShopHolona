@@ -45,11 +45,12 @@
     "gh-pages": "^1.0.0",
     "maybe-you-meant": "^0.1.1",
     "react-scripts": "^1.0.3",
+    "react-snapshot": "^1.1.0",
     "react-toolbox-themr": "^1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && react-snapshot",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "toolbox": "react-toolbox-themr",

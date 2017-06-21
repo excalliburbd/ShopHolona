@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-snapshot';
 import { Provider } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router'
@@ -21,7 +21,7 @@ import SettingsContainer from './containers/SettingsContainer';
 import './index.css';
 import 'trmix/dist/trmix.min.js';
 
-ReactDOM.render(
+render(
   <Provider store={store}>
    <ConnectedRouter history={history}>
       <ThemeProvider theme={theme}>
