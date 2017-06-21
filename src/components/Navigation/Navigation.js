@@ -1,6 +1,6 @@
 import React , { Component }from 'react';
 import classNames from 'classnames';
-// import fetch from 'isomorphic-fetch';
+import { Helmet } from "react-helmet";
 
 import Layout from 'react-toolbox/lib/layout/Layout';
 import Sidebar from 'react-toolbox/lib/layout/Sidebar';
@@ -106,6 +106,9 @@ class Nav extends Component {
 
     return (
       <Layout className="Navigation">
+        <Helmet>
+          <title>{ shopName }</title>
+        </Helmet>
         <ImageUploaderContainer />
         <AddButtonContainer vendor={ vendor } />
         <NavigationDrawer pinned={ pinned } history={ history } location={ location }/>

@@ -47,7 +47,8 @@ export default class NotFound extends React.Component {
       }
     }];
     return (
-      <TransitionMotion willLeave={this.willLeave} styles={styles}>
+      <div className="not-found">
+        <TransitionMotion willLeave={this.willLeave} styles={styles}>
         {circles =>
           <div
             onMouseMove={this.handleMouseMove}
@@ -72,6 +73,7 @@ export default class NotFound extends React.Component {
           </div>
         }
       </TransitionMotion>
+      </div>
     );
   };
 }
