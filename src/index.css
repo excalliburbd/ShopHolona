@@ -61,6 +61,11 @@
   src: url('../src/assets/fonts/NeueKabel-Thin.otf') format("opentype");
 }
 
+@font-face {
+  font-family: "Special Elite";
+  src: url('../src/assets/fonts/SpecialElite.ttf') format("truetype");
+}
+
 body {
   margin: 0;
 }

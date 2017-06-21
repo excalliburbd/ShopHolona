@@ -1,0 +1,52 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  color: white;
+
+}
+.demo7 {
+  background-color: #1B1B1B;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.demo7-ball {
+  width: 50px;
+  height: 50px;
+  border-radius: 99px;
+  position: absolute;
+  border: 1px solid lightblue;
+}
+
+.not-found-container {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+  text-align: center;
+}
+.not-found-title {
+  font-family: "Special Elite";
+  font-size: 8em;
+}
+.not-found-text {
+  font-family: "Special Elite";
+  font-size: 2em;
+}
+
+.not-found-btn {
+  margin-top: 5em;
+  border-radius: 50px;
+  background: rgba(65, 131, 241, 0.53) !important;
+  font-family: "Gotham Narrow Book";
+}
+.not-found-btn ._3AVBi {
+  border-radius: 50px;
+}
+.not-found-btn ._16N7o {
+  border-radius: 50px;
+}
