@@ -48,6 +48,10 @@ const ShopPage = ({
   productDetailstabIndex,
   handleProductDetailsTab,
   token,
+  featured,
+  shop,
+  makeFeaturedProduct,
+  deleteFromFeaturedProduct,
 }) => {
 
   const detailsClass = classNames({
@@ -163,7 +167,12 @@ const ShopPage = ({
                               setVariant={ handleSetVariant }
                               tabIndex={ productDetailstabIndex }
                               tabChange={ handleProductDetailsTab }
-                              setAttribute={ handleSetAttribute } /> :
+                              setAttribute={ handleSetAttribute }
+                              vendor={vendor}
+                              featured={ featured }
+                              shop={ shop }
+                              makeFeaturedProduct={ makeFeaturedProduct }
+                              deleteFromFeaturedProduct={ deleteFromFeaturedProduct } />:
               [
                 <div className="ShopPage-featured" key="arr-layout-1">
                   <FeaturedSlider vendor={ vendor }

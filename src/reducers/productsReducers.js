@@ -184,16 +184,6 @@ export const ProductsUIReducer = handleActions({
         }
       }
   },
-  // [productActions.products.ui.set.add.subSubCategory]: (state, action) => {
-  //   case 'SHOW_SIDEBAR_PRODUCT_DETAILS_DETAILS':
-  //     return {
-  //       ...state,
-  //       selectedProduct: {
-  //         ...state.selectedProduct,
-  //         details: action.payload.value,
-  //       }
-  //     }
-  // },
   [productActions.products.ui.set.variance]: (state, action) => {
       return {
         ...state,
@@ -238,6 +228,7 @@ export const ProductsUIReducer = handleActions({
         description: '',
         selectedVariance: 0,
         selectedProduct: {},
+        pricingInfo: false,
   }),
   [productActions.products.ui.reset.categories]: (state, action) => {
       return {
@@ -300,6 +291,12 @@ export const ProductsUIReducer = handleActions({
       }
     }
   },
+  [productActions.products.ui.toggle.info]: (state, action) => {
+    return {
+      ...state,
+      pricingInfo: !state.pricingInfo,
+    }
+  }
 }, {
   category: '',
   subCategory: '',
@@ -311,6 +308,7 @@ export const ProductsUIReducer = handleActions({
   description: '',
   selectedVariance: 0,
   selectedProduct: {},
+  pricingInfo: false,
 });
 
 export const productsEntityReducer = handleActions({

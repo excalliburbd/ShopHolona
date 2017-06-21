@@ -301,6 +301,9 @@ export const ShopPageReducer = handleActions({
       number: 'loading',
       img: 'https://unsplash.it/480/480'
     },
+    bank: {
+
+    },
     fcom: false,
   }
 })

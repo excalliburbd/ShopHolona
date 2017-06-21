@@ -10,6 +10,8 @@ import Button from 'react-toolbox/lib/button/Button';
 import FontIcon from 'react-toolbox/lib/font_icon/FontIcon';
 import TimePicker from 'react-toolbox/lib/time_picker/TimePicker';
 
+import CustomAutocomplete from '../CustomAutocomplete';
+
 import './Settings.css';
 
 const Settings = ({
@@ -18,6 +20,7 @@ const Settings = ({
   postUpdates,
   shop,
   token,
+  handleSelect,
 }) => {
 
   const {
@@ -26,6 +29,7 @@ const Settings = ({
     phone,
     hours,
     license,
+
   } = info;
 
   return (
@@ -100,20 +104,31 @@ const Settings = ({
           <Button label="update" primary onClick={ () => postUpdates(info, shop, token) } />
         </CardActions>
       </Card>
-      <Card>
-        <CardTitle title="Shop Payment" />
-        <CardActions>
-          <Button label="reset"  />
-          <Button label="update" primary onClick={ () => postUpdates(info, shop, token) } />
-        </CardActions>
-      </Card>
-      <Card>
-        <CardTitle title="Shop Shipping" />
-        <CardActions>
-          <Button label="reset"  />
-          <Button label="update" primary onClick={ () => postUpdates(info, shop, token) } />
-        </CardActions>
-      </Card>
+      <div className="Settings-payment-gourp">
+        <Card>
+          <CardTitle title="Shop Payment" />
+
+          {/*<CustomAutocomplete label="Bank Name"
+                              source={ bankNames }
+                              value={ bankName }
+                              selectionOnly
+                              onSelected={ id => handleSelect('bank', id) }
+                            />*/}
+              b. Bank Branch Name
+              c. Account Number (Not Typeahead)
+          <CardActions>
+            <Button label="reset"  />
+            <Button label="update" primary onClick={ () => postUpdates(info, shop, token) } />
+          </CardActions>
+        </Card>
+        <Card>
+          <CardTitle title="Shop Shipping" />
+          <CardActions>
+            <Button label="reset"  />
+            <Button label="update" primary onClick={ () => postUpdates(info, shop, token) } />
+          </CardActions>
+        </Card>
+      </div>
     </div>
   );
 }

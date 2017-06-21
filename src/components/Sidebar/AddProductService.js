@@ -1,15 +1,13 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import Button from 'react-toolbox/lib/button/Button';
+import IconButton from 'react-toolbox/lib/button/IconButton';
 import Input from 'react-toolbox/lib/input/Input';
 
-import CustomAutocomplete from './CustomAutocomplete';
+import CustomAutocomplete from '../CustomAutocomplete';
 import AddColors from './AddColors';
 import AddVariances from './AddVariances';
-
-import Icon from 'react-icons-kit';
-import { tools } from 'react-icons-kit/entypo/tools';
-import { packageIcon } from 'react-icons-kit/oct/packageIcon';
 
 const AddProductService = ({
   handleFieldSelect,
@@ -51,7 +49,13 @@ const AddProductService = ({
   showAddVariances,
   fcom,
   fcomPrice,
+  showInfo,
+  togglePricingInfo,
 }) => {
+
+  const infoClass = classNames('ProductsSidebar-add--products--info', {
+    'ProductsSidebar-add--products--info--show': showInfo,
+  });
 
   return (
     <div className="ProductsSidebar-add">
@@ -123,7 +127,24 @@ const AddProductService = ({
                                 required
                                 onChange={ value => handleManualInput('add', 'price', value) }
                                 value={ productPrice } />
-                          { fcom && <p>Charged to customer: { fcomPrice } &#2547;</p> }
+                          {
+                            fcom &&
+                              <p>
+                                Charged to customer: { fcomPrice } &#2547;
+                                <IconButton icon="info_outline"
+                                            onClick={ togglePricingInfo } />
+                              </p>
+                          }
+                          <div className={ infoClass }>
+                            <p>We charge a minimum commission per product for insurance and so that you don't lose the competitive edge:</p>
+                            <ul>
+                              <li>BDT 1 - BDT 999 : 8%</li>
+                              <li>BDT 1000 - BDT 4999 : 6%</li>
+                              <li>BDT 5000 - BDT 9,999 : 4%</li>
+                              <li>BDT 10,000 - BDT 19,999 : 2%</li>
+                              <li>BDT 20,000+ : 1%</li>
+                            </ul>
+                          </div>
                           <Input label={'Enter Your Product Description'}
                                 onChange={ value => handleManualInput('add', 'desc', value) }
                                 value={ productDescription } />

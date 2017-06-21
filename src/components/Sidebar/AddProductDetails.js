@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import Input from 'react-toolbox/lib/input/Input';
 import Button from 'react-toolbox/lib/button/Button';
@@ -28,7 +29,14 @@ const AddProductDetails = ({
   handleShowRoute,
   fcom,
   productDetailfcomPrice,
+  togglePricingInfo,
+  showInfo
 }) => {
+
+  const infoClass = classNames('ProductsSidebar-add--products--info', {
+    'ProductsSidebar-add--products--info--show': showInfo,
+  });
+
   return (
     <div className="ProductSidebar-details">
                 <div className="ProductSidebar-details--images">
@@ -77,7 +85,23 @@ const AddProductDetails = ({
                           type="number"
                           onChange={ value => handleManualInput('edit', 'price', value) }
                           value={ Math.round(productDetailPrice) } />
-                  { fcom && <p>Charged to customer: { productDetailfcomPrice } &#2547;</p> }
+                  { fcom &&
+                      <p>
+                        Charged to customer: { productDetailfcomPrice } &#2547;
+                        <IconButton icon="info_outline"
+                                    onClick={ togglePricingInfo } />
+                      </p>
+                  }
+                  <div className={ infoClass }>
+                    <p>We charge a minimum commission per product for insurance and so that you don't lose the competitive edge:</p>
+                    <ul>
+                      <li>BDT 1 - BDT 999 : 8%</li>
+                      <li>BDT 1000 - BDT 4999 : 6%</li>
+                      <li>BDT 5000 - BDT 9,999 : 4%</li>
+                      <li>BDT 10,000 - BDT 19,999 : 2%</li>
+                      <li>BDT 20,000+ : 1%</li>
+                    </ul>
+                  </div>
                   <Input  label="Description"
                           onChange={ value => handleManualInput('edit', 'desc', value) }
                           value={ productDetailDescription } />

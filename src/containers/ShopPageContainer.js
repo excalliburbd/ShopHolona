@@ -12,6 +12,11 @@ import {
   productActions,
 } from '../actions/';
 
+import {
+  makeFeaturedProduct,
+  removeFromFeaturedProduct,
+} from '../thunks/productThunks';
+
 import ShopPage from '../components/ShopPage';
 
 import {
@@ -21,6 +26,8 @@ import {
   getVendor,
   getPhones,
   getAddress,
+  getProductDetailsID,
+  getProductDetailsIsFeaturedProduct,
 } from '../selectors/shopSelectors';
 
 const mapStateToProps = state => {
@@ -40,8 +47,9 @@ const mapStateToProps = state => {
     shopPhones: getPhones(state),
     shopAddress: getAddress(state),
     productDetails: state.ui.shopPage.showProductDetails,
-    selectedProductDetails: state.entities.products[state.ui.shopPage.product],
+    selectedProductDetails: state.entities.products[getProductDetailsID(state)],
     productDetailstabIndex: state.ui.shopPage.detailsTab,
+    featured: getProductDetailsIsFeaturedProduct(state),
   }
 }
 
@@ -85,6 +93,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     handleProductDetailsTab: tab => {
       dispatch(shopActions.shop.set.detailsTab(tab));
+    },
+    makeFeaturedProduct: (id, shop, token) => {
+      dispatch(makeFeaturedProduct(id, shop, token));
+    },
+    deleteFromFeaturedProduct: (id, featuredID, shop, token) => {
+      dispatch(removeFromFeaturedProduct(id, featuredID, shop, token));
     }
   }
 }

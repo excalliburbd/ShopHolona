@@ -35,8 +35,18 @@
     flex-direction: row;
   }
 
-  .Settings ._8pay8:nth-child(2) {
-    margin: 0 .5em;
+  .Settings:nth-child(2) {
+    display: flex;
+  }
+
+  .Settings > ._8pay8 {
+    flex: .5;
+    margin-right: .25em;
+  }
+
+  .Settings > .Settings-payment-gourp {
+    flex: .5;
+    margin-left: .25em;
   }
 }
 

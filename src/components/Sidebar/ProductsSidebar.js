@@ -72,6 +72,8 @@ const ProductsSidebar = ({
   isFcom,
   fcomPrice,
   productDetailfcomPrice,
+  showInfo,
+  togglePricingInfo,
 }) => {
   switch(type) {
     case 'ADD_PRODUCT':
@@ -110,7 +112,9 @@ const ProductsSidebar = ({
                                 handleSetTemporaryAttribute={ handleSetTemporaryAttribute }
                                 showAddVariances={ showAddVariances }
                                 fcom={ isFcom }
-                                fcomPrice={ fcomPrice } />
+                                fcomPrice={ fcomPrice }
+                                showInfo={ showInfo }
+                                togglePricingInfo={ togglePricingInfo } />
     case 'ADD_PRODUCT_IMAGES':
       return <AddProductImages  primaryAttributes={ primaryAttributes }
                                 handleShowRoute={ handleShowRoute }
@@ -141,7 +145,9 @@ const ProductsSidebar = ({
                                   selectedProduct={ selectedProduct }
                                   featuredID={ featuredID }
                                   fcom={ isFcom }
-                                  productDetailfcomPrice={ productDetailfcomPrice } />
+                                  productDetailfcomPrice={ productDetailfcomPrice }
+                                  showInfo={ showInfo }
+                                  togglePricingInfo={ togglePricingInfo } />
     case 'UPLOADING':
       return <ProductUpload className="ProductSidebar-upload"
                             makeProduct={ makeProduct }

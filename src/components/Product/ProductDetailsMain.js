@@ -16,6 +16,12 @@ const ProductDetailsMain = ({
   chooseAttribute,
   token,
   short_desc: shortDesc,
+  vendor,
+  featured,
+  shop,
+  deleteFromFeaturedProduct,
+  makeFeaturedProduct,
+  featuredID,
 }) => {
   if ( shortDesc === '' ) {
     shortDesc = 'No description available';
@@ -89,17 +95,35 @@ const ProductDetailsMain = ({
       </div>
 
       <div className="details-action">
-        <Button className="details-action-cart"
-                onClick={
-                          () => addToCart(
-                                  variances[selectedVariant].attributes[selectedAttribute].id,
-                                  token,
-                                  id
-                                )
-                        }
-                label='Add to cart'
-                raised
-                primary />
+        {
+          vendor ?
+            (
+              featured ?
+                <Button icon="star_border"
+                      label="Remove featured product"
+                      accent
+                      onClick={
+                        () => deleteFromFeaturedProduct(id, featuredID, shop, token)
+                      } /> :
+                <Button icon="start"
+                      label="Add to featured product"
+                      primary
+                      onClick={
+                        () => makeFeaturedProduct(id, shop, token)
+                      } />
+            ) :
+              <Button className="details-action-cart"
+                      onClick={
+                                () => addToCart(
+                                        variances[selectedVariant].attributes[selectedAttribute].id,
+                                        token,
+                                        id
+                                      )
+                              }
+                      label='Add to cart'
+                      raised
+                      primary />
+          }
       </div>
 
     </div>

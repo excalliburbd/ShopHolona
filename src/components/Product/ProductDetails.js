@@ -22,6 +22,11 @@ const ProductDetails = ({
   tabChange,
   setAttribute,
   token,
+  vendor,
+  featured,
+  shop,
+  deleteFromFeaturedProduct,
+  makeFeaturedProduct,
 }) => {
 
   const images = product.variances[product.selectedVariant].images.map(
@@ -66,7 +71,12 @@ const ProductDetails = ({
                                   chooseAttribute={ setAttribute }
                                   token={ token }
                                   { ...product }
-                                  addToCart={ addToCart } />
+                                  addToCart={ addToCart }
+                                  vendor={ vendor }
+                                  featured={ featured }
+                                  shop={ shop }
+                                  makeFeaturedProduct={ makeFeaturedProduct }
+                                  deleteFromFeaturedProduct={ deleteFromFeaturedProduct } />
             </small>
           </Tab>
           <Tab label='Specifications'><small>Product Specifications Not Available</small></Tab>

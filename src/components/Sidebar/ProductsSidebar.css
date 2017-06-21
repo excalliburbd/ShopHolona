@@ -126,7 +126,22 @@
   padding-top: 0px;
 }
 
- .ProductSidebar-add-product.ProductSidebar-add-product--active,
- .ProductSidebar-add-service.ProductSidebar-add-service--active {
+.ProductSidebar-add-product.ProductSidebar-add-product--active,
+.ProductSidebar-add-service.ProductSidebar-add-service--active {
     border-bottom: 2px solid rgb(71, 84, 144);
-  }
+}
+
+.ProductsSidebar-add--products .material-icons,
+.ProductSidebar-details .material-icons {
+  font-size: 14px;
+}
+
+.ProductsSidebar-add--products--info {
+  font-size: 12px;
+  padding-left: .5em;
+  display: none;
+}
+
+.ProductsSidebar-add--products--info.ProductsSidebar-add--products--info--show {
+  display: block;
+}

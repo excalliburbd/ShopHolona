@@ -100,6 +100,7 @@ const mapStateToProps = state => {
     showAddVariances: getShowAddVariances(state),
     isFcom: getIsFcom(state),
     productDetailfcomPrice: getProductDetailfcomPrice(state),
+    showInfo: state.ui.product.pricingInfo,
   }
 }
 
@@ -433,6 +434,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     deleteFromFeaturedProduct: (id, featuredID, shop, token) => {
       dispatch(removeFromFeaturedProduct(id, featuredID, shop, token));
+    },
+    togglePricingInfo: () => {
+      dispatch(productActions.products.ui.toggle.info());
     }
   }
 }

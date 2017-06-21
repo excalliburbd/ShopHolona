@@ -22,6 +22,8 @@ export const getTradeLicence = state => ({
 export const getShopInfo = state => state.shop.information;
 export const getIsFcom = state => state.shop.fcom;
 export const getFacebook = state => state.shop.fb_link;
+export const getProductDetailsID = state => state.ui.shopPage.product;
+export const getProductDetailsIsFeaturedProduct = state => (getFeaturedProcutsArray(state).indexOf(getProductDetailsID(state)) !== -1)
 
 export const getCategories = createSelector(
   [getCategoriesArray, getCategoriesEntities],
