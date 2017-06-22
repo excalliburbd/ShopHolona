@@ -16,6 +16,9 @@ import {
   makeFeaturedProduct,
   removeFromFeaturedProduct,
 } from '../thunks/productThunks';
+import {
+  runShopInfoUpdate
+} from '../thunks/shopThunks';
 
 import ShopPage from '../components/ShopPage';
 
@@ -34,7 +37,8 @@ const mapStateToProps = state => {
   return {
     details: state.ui.shopPage.details,
     shopName: state.shop.shop_name,
-    shortDesc: state.shop.short_descr,
+    shortDesc: state.shop.information.description,
+    info: state.shop.information,
     token: state.user.token,
     shop: state.shop.id,
     shopCategories: getCategories(state),
@@ -50,6 +54,7 @@ const mapStateToProps = state => {
     selectedProductDetails: state.entities.products[getProductDetailsID(state)],
     productDetailstabIndex: state.ui.shopPage.detailsTab,
     featured: getProductDetailsIsFeaturedProduct(state),
+    editDesc: state.ui.shopPage.editDesc && getVendor(state)
   }
 }
 
@@ -99,6 +104,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     deleteFromFeaturedProduct: (id, featuredID, shop, token) => {
       dispatch(removeFromFeaturedProduct(id, featuredID, shop, token));
+    },
+    handleSaveDescription: (info, shop, token) => {
+      dispatch(runShopInfoUpdate(info, shop, token));
+    },
+    handleEditDescription: value => {
+      dispatch(shopActions.shop.edit.description(value));
+    },
+    handleShowEditDescription: () => {
+      dispatch(shopActions.shop.set.editDesc(true));
     }
   }
 }

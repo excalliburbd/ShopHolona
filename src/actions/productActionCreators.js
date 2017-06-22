@@ -25,6 +25,7 @@ export const productActionCreators = {
         VARIANCE: payload => payload,
         PRODUCT_VARIANCE: payload => payload,
         PRODUCT_ATTRIBUTE: payload => payload,
+        EDITING: payload => payload,
       },
       RESET: {
         CATEGORIES: payload => payload,

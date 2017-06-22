@@ -123,6 +123,9 @@ const Settings = ({
         </Card>
         <Card>
           <CardTitle title="Shop Shipping" />
+            Shipping Information:
+            a. Pick up Address (Checkbox to write, same as shop address)
+            b. Preferred pick up time slo
           <CardActions>
             <Button label="reset"  />
             <Button label="update" primary onClick={ () => postUpdates(info, shop, token) } />

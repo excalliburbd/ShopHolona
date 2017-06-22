@@ -58,71 +58,63 @@ export const getAllProducts = shop  => dispatch => {
 export const saveProduct = (obj, shop, token, editing) => dispatch => {
   if (editing) {
 
-    const weight = obj.weight;
-    const price = obj.price;
+    const {
+      id,
+      name,
+      short_desc
+    } = obj;
 
-    const product = {
-      ...obj,
-      category: obj.category.id,
-      variances: obj.variances.map(
-        variant => ({
-          type: variant.type.id,
-          key: variant.type.name,
-          value: variant.type.value,
-          images: variant.images.map(
-            image => image.id
-          ),
-          attributes: variant.attributes.map(
-                          attr => ({
-                            type: attr.type.id,
-                            key: attr.type.name,
-                            value: attr.type.value,
-                            description: attr.description,
-                            weight,
-                            price,
-                            stock: attr.stock,
-                          })
-                        )
-        })
-      )
-    }
+    const edited = obj.editing.reduce(
+      (arr, infoKey) => {
+        let returnArr = arr;
 
-    delete product.selectedVariant;
-    delete product.selectedAttribute;
-    delete product.weight;
-    delete product.price;
-    delete product.id;
-    delete product.created_at;
-    delete product.updated_at;
-    delete product.more_categories;
-    delete product.shop;
-    delete product.status;
-    delete product.long_desc;
+        switch(infoKey) {
+          case 'name':
+            request(`/vendors/shops/${shop}/products/${id}`, getConfig(
+                      token,
+                      {
+                        name
+                      },
+                      'PATCH'
+                    )).then(
+                      res => {
+                        if (res.id) {
+                          //do something
 
-    Object.keys(product).forEach(
-      key => {
-        if (!product[key]) {
-          delete product[key];
+                        }
+                      }
+                    ).catch(
+                      err => {
+                        returnArr = [ ...arr, infoKey ];
+                      }
+                    );
+            return returnArr;
+          case 'desc':
+            request(`/vendors/shops/${shop}/products/${id}`, getConfig(
+                      token,
+                      {
+                        short_desc,
+                      },
+                      'PATCH'
+                    )).then(
+                      res => {
+                        if (res.id) {
+                          //do something
+
+                        }
+                      }
+                    ).catch(
+                      err => {
+                        returnArr = [ ...arr, infoKey ];
+                      }
+                    );
+            return returnArr;
+          default:
+            return returnArr;
         }
+      }, []);
 
-        if ( key === 'id') {
-          delete product[key];
-        }
-      }
-    )
-
-    request(`/vendors/shops/${shop}/products/${obj.id}`, getConfig(
-            token,
-            product,
-            'PUT'
-          )).then(
-            res => {
-              dispatch(getAllProducts(shop));
-              dispatch(getShopCategories(shop));
-            }
-          ).catch(
-            err => console.log(err)
-          );
+      dispatch(productActions.products.ui.set.editing(edited));
   } else {
     request(`/vendors/shops/${shop}/products/`, getConfig(
             token,
@@ -130,11 +122,6 @@ export const saveProduct = (obj, shop, token, editing) => dispatch => {
             'post'
           )).then(
             res => {
-              dispatch({
-                type: 'DONE_API_ADD_PRODUCT',
-                payload: res,
-              });
-
               dispatch(getAllProducts(shop));
               dispatch(getShopCategories(shop));
             }

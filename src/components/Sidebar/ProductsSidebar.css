@@ -145,3 +145,14 @@
 .ProductsSidebar-add--products--info.ProductsSidebar-add--products--info--show {
   display: block;
 }
+
+.ProductsSidebar-add--products--info ul,
+.ProductsSidebar-add--products--info p,
+.ProductSidebar-details--commission {
+  margin: 0;
+}
+
+.ProductsSidebar-add--products--info p {
+  margin-bottom: .5em;
+}
+

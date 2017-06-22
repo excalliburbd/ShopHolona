@@ -11,6 +11,7 @@ export const shopActionCreators = {
       FROM_HOUR: payload => payload,
       TO_HOUR: payload => payload,
       EDITING: payload => payload,
+      EDIT_DESC: payload => payload,
     },
     EDIT: {
       NAME: payload => payload,
@@ -21,6 +22,7 @@ export const shopActionCreators = {
       FROM_HOUR: payload => payload,
       TO_HOUR: payload => payload,
       LICENSE_NUMBER: payload => payload,
+      DESCRIPTION: payload => payload,
     },
     TOGGLE: {
       PRODUCT_DETAILS:  payload => payload,

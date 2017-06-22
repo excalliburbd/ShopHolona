@@ -13,6 +13,7 @@ export const ShopPageReducer = handleActions({
           trade_license_number,
           trade_license_image,
           fcom,
+          short_descr,
         } = action.payload;
 
         return {
@@ -30,7 +31,8 @@ export const ShopPageReducer = handleActions({
               number: trade_license_number,
               image: trade_license_image,
             },
-            fcom
+            fcom,
+            description: short_descr,
           }
         }
       }
@@ -224,6 +226,18 @@ export const ShopPageReducer = handleActions({
         }
       }
     },
+    [shopActions.shop.edit.description]: (state, action) => {
+      return {
+        ...state,
+        information: {
+          ...state.information,
+          editing: (state.information.editing.indexOf('description') === -1 ) ?
+                    [ ...state.information.editing, 'description' ]:
+                    state.information.editing,
+          description: action.payload,
+        }
+      }
+    },
     [REHYDRATE]: (state, action) => {
       const incoming = action.payload.shop;
 
@@ -255,6 +269,7 @@ export const ShopPageReducer = handleActions({
             img: 'https://unsplash.it/480/480'
           },
           fcom: false,
+          description: 'loading',
         }
       }
     },
@@ -305,6 +320,7 @@ export const ShopPageReducer = handleActions({
 
     },
     fcom: false,
+    description: 'loading'
   }
 })
 
@@ -325,6 +341,10 @@ export const ShopPageUIReducer = handleActions({
     [shopActions.shop.set.detailsTab]: (state, action) => ({
       ...state,
       detailsTab: action.payload,
+    }),
+    [shopActions.shop.set.editDesc]: (state, action) => ({
+      ...state,
+      editDesc: action.payload,
     })
 }, {
   details: true,
@@ -332,4 +352,5 @@ export const ShopPageUIReducer = handleActions({
   showProductDetails: false,
   product: null,
   detailsTab: 0,
+  editDesc: false,
 })

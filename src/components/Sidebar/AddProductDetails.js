@@ -7,6 +7,8 @@ import IconButton from 'react-toolbox/lib/button/IconButton';
 
 import Slider from 'react-slick';
 
+import AddVariances from './AddVariances';
+
 const AddProductDetails = ({
   handleManualInput,
   handleSaveProduct,
@@ -73,6 +75,11 @@ const AddProductDetails = ({
                     )
                   }
                 </div>
+                <Button icon="photo_camera"
+                        label="Edit product images"
+                        onClick={
+                          () => handleShowRoute('ADD_IMAGES', 'edit')
+                        } />
                 <div className="ProductSidebar-details--details">
                   <Input  label="Name"
                           onChange={ value => handleManualInput('edit', 'name', value) }
@@ -86,7 +93,7 @@ const AddProductDetails = ({
                           onChange={ value => handleManualInput('edit', 'price', value) }
                           value={ Math.round(productDetailPrice) } />
                   { fcom &&
-                      <p>
+                      <p className="ProductSidebar-details--commission">
                         Charged to customer: { productDetailfcomPrice } &#2547;
                         <IconButton icon="info_outline"
                                     onClick={ togglePricingInfo } />
@@ -122,12 +129,8 @@ const AddProductDetails = ({
                               } />
 
                 }
+                <AddVariances />
                 <div className="ProductsSidebar-add-actions">
-                    <Button icon="photo_camera"
-                        label="Edit product images"
-                        onClick={
-                          () => handleShowRoute('ADD_IMAGES', 'edit')
-                        } />
                     <Button icon="delete"
                             label="Delete"
                             accent

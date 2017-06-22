@@ -129,7 +129,7 @@ const AddProductService = ({
                                 value={ productPrice } />
                           {
                             fcom &&
-                              <p>
+                              <p className="ProductSidebar-details--commission">
                                 Charged to customer: { fcomPrice } &#2547;
                                 <IconButton icon="info_outline"
                                             onClick={ togglePricingInfo } />

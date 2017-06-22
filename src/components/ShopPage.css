@@ -249,6 +249,15 @@
   margin-bottom: .5em;
 }
 
+.ShopPage-details--text-desc--update {
+  display: flex;
+  align-items: center;
+}
+
+.ShopPage-details--text-desc--update .lFVgC {
+  padding-bottom: 0;
+}
+
 /*for tablet*/
 
 @media screen and (min-width: 600px) {

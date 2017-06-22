@@ -136,6 +136,7 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
     editing,
     phone,
     hours,
+    description,
   } = info;
 
   const edited = editing.reduce(
@@ -232,7 +233,28 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                     }
                   );
           return returnArr;
-
+        case 'description':
+          request(`/vendors/shops/${shop}/`, getConfig(
+                    token,
+                    {
+                      short_descr: description,
+                      fcom,
+                    },
+                    'PATCH'
+                  )).then(
+                    res => {
+                      if (res.id) {
+                        //do something
+                        dispatch(shopActions.shop.set.editDesc(false));
+                        dispatch(getShop(shop));
+                      }
+                    }
+                  ).catch(
+                    err => {
+                      returnArr = [ ...arr, infoKey ];
+                    }
+                  );
+          return returnArr;
         default:
           return [ ...arr, infoKey ]
       }

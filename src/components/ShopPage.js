@@ -7,6 +7,7 @@ import Chip from 'react-toolbox/lib/chip/Chip';
 import MenuDivider from 'react-toolbox/lib/menu/MenuDivider';
 import FontIcon from 'react-toolbox/lib/font_icon/FontIcon';
 import Icon from 'react-icons-kit';
+import Input from 'react-toolbox/lib/input/Input';
 
 import ProductCard from './Product/ProductCard';
 import ProductDetails from './Product/ProductDetails';
@@ -52,6 +53,11 @@ const ShopPage = ({
   shop,
   makeFeaturedProduct,
   deleteFromFeaturedProduct,
+  handleSaveDescription,
+  handleEditDescription,
+  editDesc,
+  handleShowEditDescription,
+  info,
 }) => {
 
   const detailsClass = classNames({
@@ -154,7 +160,28 @@ const ShopPage = ({
           { !vendor && <Button raised primary label="Follow"/>}
         </div>
         <div className="ShopPage-details--text">
-          <p className="ShopPage-details--text-desc">{shortDesc}</p>
+          {
+              (editDesc) ? <div className="ShopPage-details--text-desc--update">
+                <Input  label="Edit Shop Description"
+                        value={ shortDesc }
+                        multiline
+                        onChange={
+                          value => handleEditDescription(value)
+                        }
+                        />
+                <IconButton icon="save"
+                            onClick={ () => handleSaveDescription(info, shop, token) }/>
+              </div> :
+              <div className="ShopPage-details--text-desc--update">
+                <p className="ShopPage-details--text-desc">
+                  { shortDesc }
+                </p>
+                {
+                  vendor && <IconButton icon="edit"
+                                        onClick={ () => handleShowEditDescription() }/>
+                }
+              </div>
+          }
         </div>
       </div>
         <div className="ShopPage-products">

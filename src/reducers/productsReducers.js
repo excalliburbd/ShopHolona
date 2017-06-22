@@ -129,7 +129,17 @@ export const ProductsUIReducer = handleActions({
         selectedProduct: {
           ...action.payload,
           fcomPrice: commissioned,
+          editing: []
         },
+      }
+  },
+  [productActions.products.ui.set.editing]: (state, action) => {
+      return {
+        ...state,
+        selectedProduct: {
+          ...state.selectedProduct,
+          editing: action.payload,
+        }
       }
   },
   [productActions.products.ui.set.edit.name]: (state, action) => {
@@ -138,6 +148,9 @@ export const ProductsUIReducer = handleActions({
         selectedProduct: {
           ...state.selectedProduct,
           name: action.payload,
+          editing: (state.selectedProduct.editing.indexOf('name') === -1 ) ?
+                    [ ...state.selectedProduct.editing, 'name' ]:
+                    state.selectedProduct.editing,
         }
       }
   },
@@ -147,6 +160,9 @@ export const ProductsUIReducer = handleActions({
         selectedProduct: {
           ...state.selectedProduct,
           weight: action.payload,
+          editing: (state.selectedProduct.editing.indexOf('weight') === -1 ) ?
+                    [ ...state.selectedProduct.editing, 'weight' ]:
+                    state.selectedProduct.editing,
         }
       }
   },
@@ -172,6 +188,9 @@ export const ProductsUIReducer = handleActions({
           ...state.selectedProduct,
           price,
           fcomPrice: commissioned,
+          editing: (state.selectedProduct.editing.indexOf('price') === -1 ) ?
+                    [ ...state.selectedProduct.editing, 'price' ]:
+                    state.selectedProduct.editing,
         }
       }
   },
@@ -181,6 +200,9 @@ export const ProductsUIReducer = handleActions({
         selectedProduct: {
           ...state.selectedProduct,
           short_desc: action.payload,
+          editing: (state.selectedProduct.editing.indexOf('desc') === -1 ) ?
+                    [ ...state.selectedProduct.editing, 'desc' ]:
+                    state.selectedProduct.editing,
         }
       }
   },
@@ -268,7 +290,10 @@ export const ProductsUIReducer = handleActions({
             }
             return variance;
           }
-        )
+        ),
+        editing: (state.selectedProduct.editing.indexOf('image') === -1 ) ?
+                    [ ...state.selectedProduct.editing, 'image' ]:
+                    state.selectedProduct.editing,
       }
     }
   },
