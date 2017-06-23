@@ -437,6 +437,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     togglePricingInfo: () => {
       dispatch(productActions.products.ui.toggle.info());
+    },
+    handleStockEdit: (variantKey, attributeKey, value) => {
+      dispatch(productActions.products.ui.set.edit.stock({variantKey, attributeKey, value}))
     }
   }
 }

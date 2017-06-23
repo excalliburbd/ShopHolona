@@ -18,6 +18,7 @@ export const productActionCreators = {
           PRICE: payload => payload,
           DESC: payload => payload,
           IMAGE: payload => payload,
+          STOCK: payload => payload,
         },
         DELETE: {
           IMAGE: payload => payload,

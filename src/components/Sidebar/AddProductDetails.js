@@ -32,7 +32,8 @@ const AddProductDetails = ({
   fcom,
   productDetailfcomPrice,
   togglePricingInfo,
-  showInfo
+  showInfo,
+  handleStockEdit,
 }) => {
 
   const infoClass = classNames('ProductsSidebar-add--products--info', {
@@ -114,7 +115,8 @@ const AddProductDetails = ({
                           value={ productDetailDescription } />
                 </div>
                 <EditVariance product={ selectedProduct }
-                              variant={ selectedVariance } />
+                              variant={ selectedVariance }
+                              handleStockEdit={ handleStockEdit } />
                 {
                       featured ?
                         <Button icon="star_border"

@@ -124,12 +124,41 @@ export const ProductsUIReducer = handleActions({
       } else {
         commissioned = Math.round(price + (price * .01));
       }
+
+      const allAttr = action.payload.variances.map(
+                        variance => {
+                          return {
+                            ...variance,
+                            attributes: action.payload.category.secondary_attr.map(
+                                            attribute => {
+
+                                              const found = variance.attributes.find(
+                                                attr => attr.type.id === attribute.id
+                                              );
+
+                                              if (found) {
+                                                return found
+                                              }
+
+                                              return {
+                                                type: attribute,
+                                                description: '',
+                                                weight: action.payload.weight,
+                                                price: action.payload.price,
+                                                stock: '',
+                                              }
+                                            }
+                                        )
+                          }
+                        }
+                      )
       return {
         ...state,
         selectedProduct: {
           ...action.payload,
           fcomPrice: commissioned,
-          editing: []
+          editing: [],
+          variances: allAttr,
         },
       }
   },
@@ -139,6 +168,7 @@ export const ProductsUIReducer = handleActions({
         selectedProduct: {
           ...state.selectedProduct,
           editing: action.payload,
+
         }
       }
   },
@@ -206,6 +236,69 @@ export const ProductsUIReducer = handleActions({
         }
       }
   },
+  [productActions.products.ui.set.edit.image]: (state, action) => {
+    const {
+      response,
+      id,
+      image
+    } = action.payload;
+
+    return {
+      ...state,
+      selectedProduct:{
+        ...state.selectedProduct,
+        variances: state.selectedProduct.variances.map(
+          (variance, key) => {
+            if ( id === key) {
+              return {
+                ...variance,
+                images: [
+                  ...variance.images,
+                  response
+                ]
+              }
+            }
+            return variance;
+          }
+        ),
+        editing: (state.selectedProduct.editing.indexOf('image') === -1 ) ?
+                    [ ...state.selectedProduct.editing, 'image' ]:
+                    state.selectedProduct.editing,
+      }
+    }
+  },
+  [productActions.products.ui.set.edit.stock]: (state, action) => {
+    return {
+      ...state,
+      selectedProduct:{
+        ...state.selectedProduct,
+        variances: state.selectedProduct.variances.map(
+          (variance, key) => {
+            if ( action.payload.variantKey === key) {
+              return {
+                ...variance,
+                attributes: variance.attributes.map(
+                  (attr, key) => {
+                    if (action.payload.attributeKey === key) {
+                      return {
+                        ...attr,
+                        stock: action.payload.value
+                      }
+                    }
+                    return attr;
+                  }
+                )
+              }
+            }
+            return variance;
+          }
+        ),
+        editing: (state.selectedProduct.editing.indexOf('stock') === -1 ) ?
+                    [ ...state.selectedProduct.editing, 'stock' ]:
+                    state.selectedProduct.editing,
+      }
+    }
+  },
   [productActions.products.ui.set.variance]: (state, action) => {
       return {
         ...state,
@@ -265,37 +358,6 @@ export const ProductsUIReducer = handleActions({
         selectedVariance: 0,
         selectedProduct: {},
       }
-  },
-  [productActions.products.ui.set.edit.image]: (state, action) => {
-    const {
-      response,
-      id,
-      image
-    } = action.payload;
-
-    return {
-      ...state,
-      selectedProduct:{
-        ...state.selectedProduct,
-        variances: state.selectedProduct.variances.map(
-          (variance, key) => {
-            if ( id === key) {
-              return {
-                ...variance,
-                images: [
-                  ...variance.images,
-                  response
-                ]
-              }
-            }
-            return variance;
-          }
-        ),
-        editing: (state.selectedProduct.editing.indexOf('image') === -1 ) ?
-                    [ ...state.selectedProduct.editing, 'image' ]:
-                    state.selectedProduct.editing,
-      }
-    }
   },
   [productActions.products.ui.set.delete.image]: (state, action) => {
     return {

@@ -74,6 +74,7 @@ const ProductsSidebar = ({
   productDetailfcomPrice,
   showInfo,
   togglePricingInfo,
+  handleStockEdit,
 }) => {
   switch(type) {
     case 'ADD_PRODUCT':
@@ -147,7 +148,8 @@ const ProductsSidebar = ({
                                   fcom={ isFcom }
                                   productDetailfcomPrice={ productDetailfcomPrice }
                                   showInfo={ showInfo }
-                                  togglePricingInfo={ togglePricingInfo } />
+                                  togglePricingInfo={ togglePricingInfo }
+                                  handleStockEdit={ handleStockEdit } />
     case 'UPLOADING':
       return <ProductUpload className="ProductSidebar-upload"
                             makeProduct={ makeProduct }

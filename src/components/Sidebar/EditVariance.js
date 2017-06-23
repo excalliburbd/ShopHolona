@@ -13,29 +13,11 @@ import Button from 'react-toolbox/lib/button/Button';
 
 const EditVariance = ({
   product,
-  variant
+  variant,
+  handleStockEdit,
 }) => {
   const variance = product.variances[variant];
-  const attributes = product.category.secondary_attr.map(
-                        attribute => {
-
-                          const found = variance.attributes.find(
-                            attr => attr.type.id === attribute.id
-                          );
-
-                          if (found) {
-                            return found
-                          }
-
-                          return {
-                            type: attribute,
-                            description: '',
-                            weight: '',
-                            price: '',
-                            stock: '',
-                          }
-                        }
-                     )
+  const attributes = variance.attributes;
 
   return (
     <div>
@@ -65,7 +47,7 @@ const EditVariance = ({
                                   () => null
                                 }
                                 onChange={
-                                  value => null
+                                  value => handleStockEdit(variant, key, value)
                                 } />
                         </TableCell>
                       </TableRow>
