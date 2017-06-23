@@ -7,7 +7,7 @@ import IconButton from 'react-toolbox/lib/button/IconButton';
 
 import Slider from 'react-slick';
 
-import AddVariances from './AddVariances';
+import EditVariance from './EditVariance';
 
 const AddProductDetails = ({
   handleManualInput,
@@ -113,6 +113,8 @@ const AddProductDetails = ({
                           onChange={ value => handleManualInput('edit', 'desc', value) }
                           value={ productDetailDescription } />
                 </div>
+                <EditVariance product={ selectedProduct }
+                              variant={ selectedVariance } />
                 {
                       featured ?
                         <Button icon="star_border"
@@ -129,7 +131,7 @@ const AddProductDetails = ({
                               } />
 
                 }
-                <AddVariances />
+
                 <div className="ProductsSidebar-add-actions">
                     <Button icon="delete"
                             label="Delete"
