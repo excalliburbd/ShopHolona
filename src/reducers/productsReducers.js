@@ -137,7 +137,11 @@ export const ProductsUIReducer = handleActions({
                                               );
 
                                               if (found) {
-                                                return found
+                                                return {
+                                                  ...found,
+                                                  edited: false,
+                                                  attrType: 'old',
+                                                }
                                               }
 
                                               return {
@@ -146,9 +150,12 @@ export const ProductsUIReducer = handleActions({
                                                 weight: action.payload.weight,
                                                 price: action.payload.price,
                                                 stock: '',
+                                                edited: false,
+                                                attrType: 'new',
                                               }
                                             }
-                                        )
+                                        ),
+                            edited: false,
                           }
                         }
                       )
@@ -190,8 +197,8 @@ export const ProductsUIReducer = handleActions({
         selectedProduct: {
           ...state.selectedProduct,
           weight: action.payload,
-          editing: (state.selectedProduct.editing.indexOf('weight') === -1 ) ?
-                    [ ...state.selectedProduct.editing, 'weight' ]:
+          editing: (state.selectedProduct.editing.indexOf('price_weight') === -1 ) ?
+                    [ ...state.selectedProduct.editing, 'price_weight' ]:
                     state.selectedProduct.editing,
         }
       }
@@ -218,8 +225,8 @@ export const ProductsUIReducer = handleActions({
           ...state.selectedProduct,
           price,
           fcomPrice: commissioned,
-          editing: (state.selectedProduct.editing.indexOf('price') === -1 ) ?
-                    [ ...state.selectedProduct.editing, 'price' ]:
+          editing: (state.selectedProduct.editing.indexOf('price_weight') === -1 ) ?
+                    [ ...state.selectedProduct.editing, 'price_weight' ]:
                     state.selectedProduct.editing,
         }
       }
@@ -255,7 +262,8 @@ export const ProductsUIReducer = handleActions({
                 images: [
                   ...variance.images,
                   response
-                ]
+                ],
+                imgEdit: true,
               }
             }
             return variance;
@@ -268,6 +276,9 @@ export const ProductsUIReducer = handleActions({
     }
   },
   [productActions.products.ui.set.edit.stock]: (state, action) => {
+
+    let editType = 'stock';
+
     return {
       ...state,
       selectedProduct:{
@@ -280,9 +291,16 @@ export const ProductsUIReducer = handleActions({
                 attributes: variance.attributes.map(
                   (attr, key) => {
                     if (action.payload.attributeKey === key) {
+                      if (attr.attrType === 'old') {
+                        editType = 'old_stock';
+                      }
+                      if (attr.attrType === 'new') {
+                        editType = 'new_stock';
+                      }
                       return {
                         ...attr,
-                        stock: action.payload.value
+                        stock: action.payload.value,
+                        edited: true,
                       }
                     }
                     return attr;
@@ -293,8 +311,8 @@ export const ProductsUIReducer = handleActions({
             return variance;
           }
         ),
-        editing: (state.selectedProduct.editing.indexOf('stock') === -1 ) ?
-                    [ ...state.selectedProduct.editing, 'stock' ]:
+        editing: (state.selectedProduct.editing.indexOf(editType) === -1 ) ?
+                    [ ...state.selectedProduct.editing, editType ]:
                     state.selectedProduct.editing,
       }
     }
@@ -369,6 +387,7 @@ export const ProductsUIReducer = handleActions({
             if ( action.payload.variantKey === key) {
               return {
                 ...variance,
+                imgEdit: true,
                 images: variance.images.filter( (image, iKey) => action.payload.imageKey !== iKey)
               }
             }

@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
-export const baseURL = 'http://ec2-52-66-156-152.ap-south-1.compute.amazonaws.com/api';
+export const baseURL = 'https://shophobe-development.herokuapp.com/api';
 
 export const getConfig = ( token = null, body = null, method = 'GET', mode = 'cors') => {
   let config =  {
@@ -69,6 +69,11 @@ const parseJSON = response => {
 
 const handleErrors = response => {
     if (!response.ok) {
+      response.text().then(
+        text => {
+          console.log(text)
+        }
+      )
         throw Error(response.statusText);
     }
     return response;
