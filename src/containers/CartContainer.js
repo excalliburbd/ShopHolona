@@ -4,13 +4,14 @@ import { withRouter } from 'react-router';
 import {
   cartActions,
   sidebarActions,
+  userActions,
 } from '../actions/';
 
 import { getTotal, getCartItems } from '../selectors/cartSelectors';
 import { getProductsObj } from '../selectors/productSelectors';
 import { getToken } from '../selectors/userSelectors';
 
-import { deleteCartItem, updateCartItem } from '../thunks/cartThunks';
+import { deleteCartItem, updateCartItem, checkout } from '../thunks/cartThunks';
 
 import Cart from '../components/Cart/Cart';
 
@@ -20,6 +21,8 @@ const mapStateToProps = state => {
     total: getTotal(state),
     products: getProductsObj(state),
     token: getToken(state),
+    sidebarType: state.ui.sidebar.subType,
+    address: state.ui.user.address,
   }
 }
 
@@ -38,6 +41,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       } else {
         dispatch(cartActions.cart.done.delete(id))
       }
+    },
+    handleShowCheckout: () => {
+      dispatch(sidebarActions.sidebar.show.checkout());
+    },
+    handleCheckout: (total, cart, address, token) => {
+      dispatch(checkout(total, cart, address, token));
+    },
+    handleAddress: value => {
+      dispatch(userActions.user.ui.address(value));
     },
   }
 }

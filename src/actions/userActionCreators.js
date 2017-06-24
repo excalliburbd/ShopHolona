@@ -6,6 +6,7 @@ export const userActionCreators = {
       EMAIL_PASSWORD: payload => payload,
       PHONE: payload => payload,
       PHONE_PASSWORD: payload => payload,
+      ADDRESS: payload => payload,
     },
     DONE: {
       GET: {

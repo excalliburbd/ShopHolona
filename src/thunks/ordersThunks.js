@@ -1,10 +1,16 @@
 import { request, getConfig } from './helpers';
 
-export const getOrderList = ({ shopId, token }) => dispatch => {
+import { orderActions } from '../actions';
 
-  request('/users/login/', getConfig(
+export const getOrderList = (shop, token) => dispatch => {
+
+  request(`/vendors/shops/${shop}/orders/`, getConfig(
             token,
-            null,
           )).then(
+            res => {
+              if (res.length > 0) {
+                dispatch(orderActions.orders.done.get.all(res));
+              }
+            }
           );
 }

@@ -6,7 +6,7 @@ export const getFeaturedProcutsArray = state => state.featuredProducts;
 export const getProcutEntities = state => state.entities.products;
 export const getCategoriesArray = state => state.categories;
 export const getCategoriesEntities = state => state.entities.categories;
-export const getUserDetails = state => state.user;
+
 export const getContacts = state => state.shop.contacts;
 export const getAddresses = state => state.shop.address;
 export const getShopName = state => state.shop.information.name;
@@ -61,17 +61,6 @@ export const getFeaturedProducts = createSelector(
   [getFeaturedProcutsArray, getProcutEntities],
   (productsArr, productsObj) => {
     return productsArr.map( id => productsObj[id] );
-  }
-);
-
-export const getVendor = createSelector(
-  [getUserDetails],
-  (user) => {
-    if(user.registered_as === 1) {
-      return true;
-    }
-
-    return false;
   }
 );
 

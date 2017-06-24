@@ -1,6 +1,8 @@
 .cart-container {
   padding: .5em;
   padding-top: 0px;
+  position: relative;
+  min-height: calc(100vh - 6em);
 }
 
 .cart-container * {
@@ -210,4 +212,20 @@
   position: absolute;
   top: 0;
   right: 1em;
+}
+
+.Cart-actions {
+  position: absolute;
+  bottom: 0;
+  width: calc(100% - 1em);
+  display: flex;
+  flex-direction: column;
+}
+
+.Checkout {
+  padding: 1em;
+}
+
+.Checkout li {
+  list-style: none;
 }

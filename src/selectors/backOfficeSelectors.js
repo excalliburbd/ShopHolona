@@ -5,10 +5,22 @@ import { getProducts, getCategoriesEntities } from '../selectors/shopSelectors';
 import { getAllProducts } from '../selectors/productSelectors';
 
 export const getTabIndex = state => state.ui.backOffice.selectedIndexs;
+export const getOrdersArray = state => state.orders;
+export const getOrders = state => state.entities.orders;
+
+export const getallOrders = createSelector(
+  [getOrdersArray, getOrders],
+  (ordersArr, ordersObj) => {
+    console.log(ordersArr, ordersObj)
+    return ordersArr.map(
+      id => ordersObj[id]
+    );
+  }
+);
 
 export const getMenu = createSelector(
-  [getAllProducts],
-  (products) => {
+  [getAllProducts, getallOrders],
+  (products, orders) => {
     return {
       products: [
         {
@@ -22,10 +34,42 @@ export const getMenu = createSelector(
               items: products.filter( ({ status }) => ((status === key)))
             })
           )
+      ],
+      orders: [
+        {
+          name: 'All',
+          items: orders,
+        },
+        ...['Completed', 'Pending', 'Processing', 'Cancelled','Refund', 'On Hold']
+          .map(
+            (name, key) => ({
+              name,
+              items: orders.filter( ({ status }) => ((status === key)))
+            })
+          )
       ]
     }
   }
 );
+
+const getOrderStatus = id => {
+  switch(id) {
+    case 0:
+      return 'Completed';
+    case 1:
+      return 'Pending';
+    case 2:
+      return 'Processing';
+    case 3:
+      return 'Cancelled';
+    case 4:
+      return 'Refund';
+    case 5:
+      return 'On Hold';
+    default:
+      return 'Pending';
+  }
+}
 
 const getProductStatus = id => {
   switch(id) {
@@ -48,7 +92,7 @@ const getProductStatus = id => {
 
 export const getTablistData = createSelector(
   [getMenu, getCategoriesEntities],
-  ({ products }, categoryObj) => {
+  ({ products, orders }, categoryObj) => {
     return {
       products: products.map(
         ({ items }) => {
@@ -121,6 +165,66 @@ export const getTablistData = createSelector(
               ]
             }
           }
+      ),
+      orders: orders.map(
+        ({ items }) => {
+            return {
+              maping: ['User', 'No.', 'Due Date', 'Total Price', 'Total Weight', 'Address','Status'],
+              content: [
+                ...items.map(
+                  order => {
+                    return ['User', 'No.', 'Due Date', 'Total Price', 'Total Weight', 'Address','Status']
+                            .map(
+                              field => {
+                                switch(field) {
+                                  case 'User':
+                                    return {
+                                      field,
+                                      value: order.user
+                                    }
+                                  case 'No.':
+                                    return {
+                                      field,
+                                      value: order.id
+                                    }
+                                  case 'Due Date':
+                                    return {
+                                      field,
+                                      value: moment(order.created_at).add(7, 'days').format('DD/MM/YYYY').toString()
+                                    }
+                                  case 'Total Price':
+                                    return {
+                                      field,
+                                      value: order.total_price
+                                    }
+                                  case 'Total Weight':
+                                    return {
+                                      field,
+                                      value: order.total_weight
+                                    }
+                                  case 'Address':
+                                    return {
+                                      field,
+                                      value: order.to_address
+                                    }
+                                  case 'Status':
+                                    return {
+                                      field,
+                                      value: getOrderStatus(order.status)
+                                    }
+                                  default:
+                                    return {
+                                      field,
+                                      value: 'N/A'
+                                    }
+                                }
+                              }
+                            )
+                  }
+                )
+              ]
+            }
+        }
       )
     }
   }

@@ -1,6 +1,9 @@
 import React from 'react';
 
+import Button from 'react-toolbox/lib/button/Button';
+
 import CartItem from './CartItem';
+import Checkout from './Checkout';
 
 import './Cart.css';
 
@@ -11,7 +14,22 @@ const Cart = ({
   updateCartItem,
   deleteCartItem,
   token,
+  sidebarType,
+  handleShowCheckout,
+  handleCheckout,
+  address,
+  handleAddress,
 }) => {
+
+  if (sidebarType === 'CHECKOUT') {
+    return <Checkout total={ total }
+                     cartItems={ cartItems }
+                     handleCheckout={ handleCheckout }
+                     token={ token }
+                     address={ address }
+                     handleAddress={ handleAddress } />
+  }
+
   return (
     <div className="cart-container">
       <header className="cart-header">
@@ -20,7 +38,7 @@ const Cart = ({
         </div>
         <div className="cart-header-total">
           <h4>Total</h4>
-          <h4>৳ { total.price } - { total.weight } gm</h4>
+          <h4>৳ { total.price }</h4>
         </div>
       </header>
       <ul className="cart-product-list">
@@ -35,6 +53,10 @@ const Cart = ({
           )
         }
       </ul>
+      <div className="Cart-actions">
+        <Button label="Checkout"
+                onClick={ handleShowCheckout } />
+      </div>
     </div>
   )
 }

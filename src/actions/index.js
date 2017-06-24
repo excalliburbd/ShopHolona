@@ -8,6 +8,8 @@ import { categoryActionCreators } from './categoryActionCreators';
 import { imageUploaderActionCreators } from './imageUploaderActionCreators';
 import { cartActionCreators } from './cartActionCreators';
 import { serviceActionCreators } from './serviceActionCreators';
+import { orderActionCreators } from './orderActionCreators';
+import { paymentandaddressActionCreators } from './paymentandaddressActionCreators';
 
 export const userActions = createActions(userActionCreators);
 export const sidebarActions = createActions(sidebarActionCreators);
@@ -17,3 +19,5 @@ export const categoryActions = createActions(categoryActionCreators);
 export const imageUploaderActions = createActions(imageUploaderActionCreators);
 export const cartActions = createActions(cartActionCreators);
 export const serviceActions = createActions(serviceActionCreators);
+export const orderActions = createActions(orderActionCreators);
+export const paymentandaddressActions = createActions(paymentandaddressActionCreators);

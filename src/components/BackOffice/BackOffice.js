@@ -20,28 +20,24 @@ const BackOffice = ({
   return (
     <div className="Backoffice">
       <Switch>
-        {/*<Route exact path="/admin/orders" render={
-                    () => <TabList menu={ menuList.orders }
-                                  route="order"
-                                  dropdownOptions={
-                                                      menu.orders.filter(
-                                                        status => (status.label !== 'All')
-                                                      )
-                                                  }
-                                  handleDropdownChange={ setOrderStatus }
-                                  data={ data.orders }
-                                  tabIndex={ tabIndex.orders }
-                                  handleTabChange={ handleTabChange } />
-                                  } />*/}
+        <Route exact path="/admin/orders" render={
+                    () => <TabList  menu={ menu.orders }
+                                    route="orders"
+                                    data={ data.orders }
+                                    tabIndex={ tabIndex.orders }
+                                    handleTabChange={ handleTabChange }
+                                    handleShowProductDetails={ handleShowProductDetails }
+                                    vendor={ vendor }/>
+                                    } />
         <Route exact path="/admin/products" render={
-                    () => <TabList menu={ menu.products }
-                                  route="products"
-                                  data={ data.products }
-                                  tabIndex={ tabIndex.products }
-                                  handleTabChange={ handleTabChange }
-                                  handleShowProductDetails={ handleShowProductDetails }
-                                  vendor={ vendor }/>
-                                  } />
+                    () => <TabList  menu={ menu.products }
+                                    route="products"
+                                    data={ data.products }
+                                    tabIndex={ tabIndex.products }
+                                    handleTabChange={ handleTabChange }
+                                    handleShowProductDetails={ handleShowProductDetails }
+                                    vendor={ vendor }/>
+                                    } />
         <Route exact path="/admin/reports" component={ Reports } />
         <Redirect to="/not-found" />
       </Switch>

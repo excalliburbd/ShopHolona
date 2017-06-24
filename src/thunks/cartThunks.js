@@ -150,24 +150,31 @@ export const deleteCartItem = (id, token) => dispatch => {
   }
 }
 
-export const checkout = (token) => dispatch => {
+export const checkout = (total, cart, address, token) => dispatch => {
   if (token) {
+    const today = new Date();
+
     request('/me/orders/', getConfig(
               token,
               {
-                "to_address": "string",
-                "order_status": 1,
-                "total_price": 0,
-                "total_weight": 0,
-                "order_payment": {
-                  "amount_paid": 0,
-                  "date_paid": new Date(),
-                  "order_confirmation": "hoy nai",
-                  "payment_type": 0
+                to_address: 16,
+                order_status: 1,
+                total_price: total.price,
+                total_weight: total.weight,
+                additional_comments: 'no comment',
+                order_payment: {
+                  amount_paid: 0,
+                  date_paid: `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`,
+                  order_confirmation: 'confirmed?!',
+                  payment_type: 0
                 },
-                "carts_id": []
+                carts_id: cart.map( ({ id }) => id)
               },
               'POST'
-            ))
+            )).then(
+              res => {
+                console.log(res)
+              }
+            )
   }
 }

@@ -19,14 +19,16 @@
 }
 
 .Settings-info--address-group h2,
-.Settings-info--time-group h2 {
+.Settings-info--time-group h2,
+.Settings-info--licence-group h2 {
   color: #aaa;
   display: flex;
 }
 
 
 .Settings-info--address-group--inputs,
-.Settings-info--time-group--inputs {
+.Settings-info--time-group--inputs,
+.Settings-info--licence-group--inputs {
   padding: 0 2em;
 }
 

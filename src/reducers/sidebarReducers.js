@@ -51,7 +51,13 @@ export const SidebarUIReducer = handleActions({
         subType: 'CART_CHOOSE_PRODUCT',
         titleMsg: 'Shopping Cart'
     }),
-
+    [sidebarActions.sidebar.show.checkout]: (state, action) => ({
+       ...state,
+        show: true,
+        type: 'CART',
+        subType: 'CHECKOUT',
+        titleMsg: 'Shopping Cart'
+    }),
     [sidebarActions.sidebar.show.addProductUploading]: (state, action) => ({
           ...state,
           show: true,

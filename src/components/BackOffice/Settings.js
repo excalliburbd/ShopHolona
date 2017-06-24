@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 
 import Card from 'react-toolbox/lib/card/Card';
 import CardText from 'react-toolbox/lib/card/CardText';
@@ -21,6 +20,10 @@ const Settings = ({
   shop,
   token,
   handleSelect,
+  fcom,
+  banks,
+  bankUIValue,
+  handleSetValue,
 }) => {
 
   const {
@@ -90,14 +93,25 @@ const Settings = ({
                         />
             </div>
           </div>
-          <div className="Settings-info--licence-group">
-            <Input  label="Change trade license number"
-                    value={ license.number }
-                    onChange={
-                      val => updateValue(val, 'licenseNumber')
-                    } />
-            <div style={{ backgroundImage: `url(${license.img})`}} />
-          </div>
+          {
+            fcom &&
+              <div className="Settings-info--licence-group">
+                <h2><FontIcon value="account_balance" />License and TIN</h2>
+                 <div className="Settings-info--licence-group--inputs">
+                  <Input  label="Change trade license number"
+                          value={ license.number }
+                          onChange={
+                            val => updateValue(val, 'licenseNumber')
+                          } />
+                  <div style={{
+                                backgroundImage: `url(${license.img})`,
+                                backgroundColor: '#ccc',
+                                width: '100%',
+                                height: '10em'
+                              }} />
+                </div>
+              </div>
+          }
         </CardText>
         <CardActions>
           <Button label="reset"  />
@@ -108,12 +122,13 @@ const Settings = ({
         <Card>
           <CardTitle title="Shop Payment" />
 
-          {/*<CustomAutocomplete label="Bank Name"
-                              source={ bankNames }
-                              value={ bankName }
+          <CustomAutocomplete label="Bank Name"
+                              source={ banks }
+                              value={ bankUIValue }
                               selectionOnly
+                              handleSetValue={ text => handleSetValue('bank', text) }
                               onSelected={ id => handleSelect('bank', id) }
-                            />*/}
+                            />
               b. Bank Branch Name
               c. Account Number (Not Typeahead)
           <CardActions>

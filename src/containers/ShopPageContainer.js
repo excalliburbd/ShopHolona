@@ -26,12 +26,14 @@ import {
   getCategories,
   getProducts,
   getFeaturedProducts,
-  getVendor,
   getPhones,
   getAddress,
   getProductDetailsID,
   getProductDetailsIsFeaturedProduct,
 } from '../selectors/shopSelectors';
+import {
+  getVendor,
+} from '../selectors/userSelectors';
 
 const mapStateToProps = state => {
   return {

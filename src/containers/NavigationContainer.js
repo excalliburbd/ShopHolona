@@ -11,6 +11,8 @@ import {
 } from '../thunks/shopThunks';
 import { getMe } from '../thunks/userThunks';
 import { getCart } from '../thunks/cartThunks';
+import { getOrderList } from '../thunks/ordersThunks';
+import { getBanks } from '../thunks/paymentandaddressThunks';
 
 import {
   userActions,
@@ -18,8 +20,7 @@ import {
   shopActions,
 } from '../actions/';
 
-import { getVendor } from '../selectors/shopSelectors';
-import { getToken } from '../selectors/userSelectors';
+import { getVendor, getToken } from '../selectors/userSelectors';
 import { getPinState, getTitleMsg } from '../selectors/navigationSelectors';
 
 import Nav from '../components/Navigation/Navigation';
@@ -79,16 +80,21 @@ const mapDispatchToProps = dispatch => {
         payload: val,
       })
     },
-    hadleLoadData: (shop, token) => {
+    hadleLoadData: (shop, token, vendor) => {
       dispatch(getShop(shop));
       dispatch(getShopCategories(shop));
       dispatch(getAllProducts(shop));
       dispatch(getShopAddress(shop));
       dispatch(getFeaturedProduct(shop));
+      dispatch(getBanks());
 
       if (token) {
         dispatch(getCart(token, false));
         dispatch(getShopHours(shop, token));
+      }
+
+      if (vendor && token) {
+        dispatch(getOrderList(shop, token));
       }
     },
     handleGetMedia: () => {

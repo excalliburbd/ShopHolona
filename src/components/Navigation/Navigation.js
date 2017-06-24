@@ -36,10 +36,11 @@ class Nav extends Component {
       shopID,
       hadleLoadData,
       token,
+      vendor,
     } = nextProps;
 
     if(this.props.online !== online && online) {
-      shopID && hadleLoadData(shopID, token);
+      shopID && hadleLoadData(shopID, token, vendor);
     }
   }
 
