@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
-export const baseURL = 'https://shophobe-development.herokuapp.com/api';
+export const baseURL = 'http://127.0.0.1:8000/api';
 
 export const getConfig = ( token = null, body = null, method = 'GET', mode = 'cors') => {
   let config =  {

@@ -77,9 +77,16 @@ export const saveProduct = (obj, shop, token, editing) => dispatch => {
     const oldEditedAttr = editedAttributes.filter( ({ attrType }) => attrType === 'old');
     const newEditedAttr = editedAttributes.filter( ({ attrType }) => attrType === 'new');
 
-    const editedImages = obj.variances.filter( ({ imgEdit }) => imgEdit );
+    const editedImages = obj.variances.filter( ({ imgEdit }) => imgEdit )
+                                      .map(
+                                        variant => ({
+                                          id: variant.id,
+                                          images: variant.images.map(
+                                            image => image.id
+                                          ),
+                                        })
+                                      );
 
-    console.log(editedImages)
     const variances = obj.variances.map(
                         variant => ({
                           id: variant.id,
@@ -106,7 +113,7 @@ export const saveProduct = (obj, shop, token, editing) => dispatch => {
 
         switch(infoKey) {
           case 'name':
-            request(`/vendors/shops/${shop}/products/${id}`, getConfig(
+            request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
                       token,
                       {
                         name
@@ -126,7 +133,7 @@ export const saveProduct = (obj, shop, token, editing) => dispatch => {
                     );
             return returnArr;
           case 'desc':
-            request(`/vendors/shops/${shop}/products/${id}`, getConfig(
+            request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
                       token,
                       {
                         short_desc,
@@ -148,7 +155,7 @@ export const saveProduct = (obj, shop, token, editing) => dispatch => {
           case 'old_stock':
             oldEditedAttr.forEach(
               attr => {
-                request(`/vendors/shops/${shop}/products/${id}/variances/${attr.variantID}/attributes/${attr.attrID}`, getConfig(
+                request(`/vendors/shops/${shop}/products/${id}/variances/${attr.variantID}/attributes/${attr.attrID}/`, getConfig(
                         token,
                         {
                           type: attr.type.id,
@@ -203,7 +210,7 @@ export const saveProduct = (obj, shop, token, editing) => dispatch => {
                 variant.attributes.forEach(
                   ({ id: attrID, ...attr}) => {
                     if (attrID) {
-                      request(`/vendors/shops/${shop}/products/${id}/variances/${variantID}/attributes/${attrID}`, getConfig(
+                      request(`/vendors/shops/${shop}/products/${id}/variances/${variantID}/attributes/${attrID}/`, getConfig(
                         token,
                         {
                           weight: attr.weight,
@@ -227,15 +234,15 @@ export const saveProduct = (obj, shop, token, editing) => dispatch => {
             )
 
             return returnArr;
-          case 'images':
-            variances.forEach(
+          case 'image':
+            editedImages.forEach(
               variance => {
                 const {
                   id : varianceID,
                   images,
                 } = variance;
 
-                request(`/vendors/shops/${shop}/products/${id}/variances/${varianceID}`, getConfig(
+                request(`/vendors/shops/${shop}/products/${id}/variances/${varianceID}/`, getConfig(
                         token,
                         {
                           images
@@ -253,8 +260,6 @@ export const saveProduct = (obj, shop, token, editing) => dispatch => {
                     );
               }
             )
-            return returnArr;
-          case 'attributes':
             return returnArr;
           default:
             return returnArr;

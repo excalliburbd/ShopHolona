@@ -30,6 +30,13 @@ export const SidebarUIReducer = handleActions({
         subType: 'ADD_PRODUCT_IMAGES',
         titleMsg: 'Add Product Images'
       }),
+    [sidebarActions.sidebar.show.backToProductDetails]: (state, action) => ({
+        ...state,
+        show: true,
+        type: 'PRODUCT',
+        subType: 'SHOW_PRODUCT_DETAILS',
+        titleMsg: 'Edit Product'
+      }),
     [sidebarActions.sidebar.show.addProductDetails]: (state, action) => ({
         ...state,
         show: true,
@@ -37,7 +44,6 @@ export const SidebarUIReducer = handleActions({
         subType: 'SHOW_PRODUCT_DETAILS',
         titleMsg: 'Edit Product'
       }),
-
     [sidebarActions.sidebar.show.addToCart]: (state, action) => ({
        ...state,
         show: true,

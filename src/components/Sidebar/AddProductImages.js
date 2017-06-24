@@ -14,6 +14,7 @@ const AddProductImages = ({
   token,
   shop,
   showDone,
+  selectedProduct,
 }) => {
   //DISCLAIMER: VERY HACKY CODE. primaryAttributes is not always primaryAttributes
 
@@ -59,15 +60,15 @@ const AddProductImages = ({
                             {
                               images.map(
                                 ({ image }, iKey) => <div onClick={ () => handleRemoveImg(key, iKey, true) }
-                                                    key={ key }
-                                                    style={{
-                                                      backgroundImage: `url(${ image })`,
-                                                      backgroundSize: 'contain',
-                                                      backgroundRepeat: 'no-repeat',
-                                                      height: '5em',
-                                                      width: '5em',
-                                                      margin: '.5em',
-                                                    }} />
+                                                          key={ key }
+                                                          style={{
+                                                            backgroundImage: `url(${ image })`,
+                                                            backgroundSize: 'contain',
+                                                            backgroundRepeat: 'no-repeat',
+                                                            height: '5em',
+                                                            width: '5em',
+                                                            margin: '.5em',
+                                                          }} />
                               )
                             }
                           </div>
@@ -78,7 +79,7 @@ const AddProductImages = ({
           <Button icon="backspace"
                   label="go back"
                   onClick={
-                    () => handleShowRoute('EDITING', product)
+                    () => handleShowRoute('BACK_TO_EDITING', selectedProduct)
                   } />
         </div>
       </div>

@@ -393,7 +393,10 @@ export const ProductsUIReducer = handleActions({
             }
             return variance;
           }
-        )
+        ),
+        editing: (state.selectedProduct.editing.indexOf('image') === -1 ) ?
+                    [ ...state.selectedProduct.editing, 'image' ]:
+                    state.selectedProduct.editing,
       }
     }
   },

@@ -208,6 +208,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         case 'EDITING':
           dispatch(sidebarActions.sidebar.show.addProductDetails(ui));
           break;
+        case 'BACK_TO_EDITING':
+          dispatch(sidebarActions.sidebar.show.backToProductDetails(ui));
+          break;
         default:
          break;
       }

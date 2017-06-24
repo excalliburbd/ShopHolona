@@ -124,7 +124,8 @@ const ProductsSidebar = ({
                                 productName={ productName }
                                 token={ token }
                                 shop={ shop }
-                                showDone={ showDone } />
+                                showDone={ showDone }
+                                selectedProduct={ selectedProduct } />
     case 'SHOW_PRODUCT_DETAILS':
       return <AddProductDetails   handleManualInput={ handleManualInput }
                                   handleSaveProduct={handleSaveProduct}
