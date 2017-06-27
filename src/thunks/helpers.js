@@ -1,6 +1,8 @@
 import fetch from 'isomorphic-fetch';
 
-export const baseURL = 'http://127.0.0.1:8000/api';
+import config from '../config'
+
+export const baseURL = config.api;
 
 export const getConfig = ( token = null, body = null, method = 'GET', mode = 'cors') => {
   let config =  {

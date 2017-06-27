@@ -318,6 +318,13 @@ export const ProductsUIReducer = handleActions({
     }
   },
   [productActions.products.ui.set.variance]: (state, action) => {
+      if (state.selectedVariance === action.payload) {
+        return {
+          ...state,
+          selectedVariance: -1
+        }
+      }
+
       return {
         ...state,
         selectedVariance: action.payload
@@ -332,7 +339,7 @@ export const ProductsUIReducer = handleActions({
         price: '',
         fcomPrice: '',
         description: '',
-        selectedVariance: 0,
+        selectedVariance: -1,
         selectedProduct: {},
       }
   },
@@ -346,7 +353,7 @@ export const ProductsUIReducer = handleActions({
         price: '',
         fcomPrice: '',
         description: '',
-        selectedVariance: 0,
+        selectedVariance: -1,
         selectedProduct: {},
       }
   },
@@ -359,7 +366,7 @@ export const ProductsUIReducer = handleActions({
         price: '',
         fcomPrice: '',
         description: '',
-        selectedVariance: 0,
+        selectedVariance: -1,
         selectedProduct: {},
         pricingInfo: false,
   }),
@@ -373,7 +380,7 @@ export const ProductsUIReducer = handleActions({
         price: '',
         fcomPrice: '',
         description: '',
-        selectedVariance: 0,
+        selectedVariance: -1,
         selectedProduct: {},
       }
   },
@@ -415,7 +422,7 @@ export const ProductsUIReducer = handleActions({
   price: '',
   fcomPrice: '',
   description: '',
-  selectedVariance: 0,
+  selectedVariance: -1,
   selectedProduct: {},
   pricingInfo: false,
 });

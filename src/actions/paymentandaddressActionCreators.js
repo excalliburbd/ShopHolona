@@ -4,6 +4,8 @@ export const paymentandaddressActionCreators = {
     DONE: {
       GET: {
         BANK: payload => payload,
+        BRANCH: payload => payload,
+        BANK_BRANCH: payload => payload,
       },
       DELETE: payload => payload,
     },
@@ -11,6 +13,9 @@ export const paymentandaddressActionCreators = {
       SET: {
         BANK: payload => payload,
         BANK_ID: payload => payload,
+        BRANCH: payload => payload,
+        BRANCH_ID: payload => payload,
+        ACCOUNT: payload => payload,
       }
     }
   }

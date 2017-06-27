@@ -26,8 +26,6 @@ export const banksEntityReducer = handleActions({
         ...state
       }
 
-      console.log( action.payload)
-
       action.payload.forEach(
         bank => {
           if (banks[bank.id]) {
@@ -38,12 +36,22 @@ export const banksEntityReducer = handleActions({
           } else {
             banks[bank.id] = {
               ...bank,
+              branches: []
             }
           }
         }
       )
 
     return banks;
+  },
+  [paymentandaddressActions.paymentsAndAddresses.done.get.bankBranch]: (state, action) => {
+    return {
+      ...state,
+      [action.payload.id]: {
+        ...state[action.payload.id],
+        branches: action.payload.response,
+      }
+    }
   }
 }, {
 
@@ -61,8 +69,29 @@ export const paymentandaddressUIReducer = handleActions({
       ...state,
       bankID: action.payload
     }
+  },
+  [paymentandaddressActions.paymentsAndAddresses.ui.set.branch]: (state, action) => {
+    return {
+      ...state,
+      branch: action.payload
+    }
+  },
+  [paymentandaddressActions.paymentsAndAddresses.ui.set.branchId]: (state, action) => {
+    return {
+      ...state,
+      branchID: action.payload
+    }
+  },
+  [paymentandaddressActions.paymentsAndAddresses.ui.set.account]: (state, action) => {
+    return {
+      ...state,
+      account: action.payload
+    }
   }
 }, {
   bank: '',
   bankID: null,
+  branch: '',
+  branchID: null,
+  account: '',
 });

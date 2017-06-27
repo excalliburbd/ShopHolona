@@ -3,6 +3,7 @@ import Fuse from 'fuse.js';
 
 export const getBanksArray = state => state.banks;
 export const getBanksObj = state => state.entities.banks;
+export const getBankID = state => state.ui.paymentsAndAddresses.bankID;
 
 export const getAllbanks = createSelector(
   [getBanksArray, getBanksObj],
@@ -11,6 +12,17 @@ export const getAllbanks = createSelector(
       id => (banksObj[id])
     );
 
+    if (banks.length < 0 ) {
+      return null;
+    }
+
     return new Fuse(banks, { keys: ['name'] });
+  }
+);
+
+export const getAllBranches = createSelector(
+  [getBankID, getBanksObj],
+  (id, banksObj) => {
+    return id && new Fuse(banksObj[id].branches, { keys: ['name'] });
   }
 );

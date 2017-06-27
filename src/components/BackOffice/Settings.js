@@ -22,8 +22,14 @@ const Settings = ({
   handleSelect,
   fcom,
   banks,
+  branches,
   bankUIValue,
+  branchUIValue,
   handleSetValue,
+  accountNumberUIValue,
+  postBankInfo,
+  bankUIID,
+  branchUIID,
 }) => {
 
   const {
@@ -121,22 +127,42 @@ const Settings = ({
       <div className="Settings-payment-gourp">
         <Card>
           <CardTitle title="Shop Payment" />
-
-          <CustomAutocomplete label="Bank Name"
-                              source={ banks }
-                              value={ bankUIValue }
-                              selectionOnly
-                              handleSetValue={ text => handleSetValue('bank', text) }
-                              onSelected={ id => handleSelect('bank', id) }
-                            />
-              b. Bank Branch Name
-              c. Account Number (Not Typeahead)
+          <CardText>
+            {
+              banks ?
+                <CustomAutocomplete label="Bank Name"
+                                    source={ banks }
+                                    value={ bankUIValue }
+                                    selectionOnly
+                                    handleSetValue={ text => handleSetValue('bank', text) }
+                                    onSelected={ id => handleSelect('bank', id) }
+                                  /> :
+                <Input label="Bank Name"
+                      disabled={ true } />
+            }
+            {
+              branches ?
+                <CustomAutocomplete label="Branch Name"
+                                    source={ branches }
+                                    value={ branchUIValue }
+                                    selectionOnly
+                                    handleSetValue={ text => handleSetValue('branch', text) }
+                                    onSelected={ id => handleSelect('branch', id) }
+                                  /> :
+                <Input label="Branch Name"
+                      disabled={ true } />
+            }
+            <Input type="text"
+                  label="Account Name"
+                  value={ accountNumberUIValue }
+                  onChange={ text => handleSetValue('account', text) } />
+          </CardText>
           <CardActions>
             <Button label="reset"  />
-            <Button label="update" primary onClick={ () => postUpdates(info, shop, token) } />
+            <Button label="update" primary onClick={ () => postBankInfo(bankUIID, accountNumberUIValue, shop, token) } />
           </CardActions>
         </Card>
-        <Card>
+        {/*<Card>
           <CardTitle title="Shop Shipping" />
             Shipping Information:
             a. Pick up Address (Checkbox to write, same as shop address)
@@ -145,7 +171,7 @@ const Settings = ({
             <Button label="reset"  />
             <Button label="update" primary onClick={ () => postUpdates(info, shop, token) } />
           </CardActions>
-        </Card>
+        </Card>*/}
       </div>
     </div>
   );

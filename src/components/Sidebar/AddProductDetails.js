@@ -44,10 +44,10 @@ const AddProductDetails = ({
     <div className="ProductSidebar-details">
                 <div className="ProductSidebar-details--images">
                   {
-                    (productVariances[selectedVariance].images.length > 0) &&
+                    (productVariances[(selectedVariance === -1) ? 0 : selectedVariance].images.length > 0) &&
                       <Slider dots lazyLoad={ false }>
                         {
-                          productVariances[selectedVariance].images.map(
+                          productVariances[(selectedVariance === -1) ? 0 : selectedVariance].images.map(
                             ({image, alt_tag}) => <div>
                                                     <img src={ image } alt={ alt_tag } />
                                                   </div>
@@ -59,10 +59,14 @@ const AddProductDetails = ({
                 <div className="ProductSidebar-details--variance">
                   {
                     productVariances.map(
-                      ({ type }, key) => <IconButton  icon={
-                                                        (selectedVariance === key) ?
-                                                        'done' :
-                                                        <span />
+                      ({ type, attributes }, key) => <IconButton  icon={
+                                                        <span>{`${ attributes.reduce( (acc, curr) => {
+                                                              if (curr.stock !== '') {
+                                                                return curr.stock
+                                                              }
+
+                                                              return 0;
+                                                            }, 0) }`}</span>
                                                       }
                                                       onClick={
                                                         () => handleSelectVariance(key)
@@ -76,6 +80,11 @@ const AddProductDetails = ({
                     )
                   }
                 </div>
+                {
+                  (selectedVariance !== -1) && <EditVariance  product={ selectedProduct }
+                                                              variant={ selectedVariance }
+                                                              handleStockEdit={ handleStockEdit } />
+                }
                 <Button icon="photo_camera"
                         label="Edit product images"
                         onClick={
@@ -114,9 +123,6 @@ const AddProductDetails = ({
                           onChange={ value => handleManualInput('edit', 'desc', value) }
                           value={ productDetailDescription } />
                 </div>
-                <EditVariance product={ selectedProduct }
-                              variant={ selectedVariance }
-                              handleStockEdit={ handleStockEdit } />
                 {
                       featured ?
                         <Button icon="star_border"
