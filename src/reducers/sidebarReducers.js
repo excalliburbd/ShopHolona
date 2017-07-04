@@ -70,7 +70,7 @@ export const SidebarUIReducer = handleActions({
         show: false,
         type: null,
         subType: null,
-        radio: 'NONE',
+        radio: 'PRODUCT',
         titleMsg: '',
       }),
     [sidebarActions.sidebar.ui.set.radioValue]: (state, action) => ({

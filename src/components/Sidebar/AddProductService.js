@@ -59,9 +59,9 @@ const AddProductService = ({
 
   return (
     <div className="ProductsSidebar-add">
-                {/*{
+                {
                     <div className="ProductsSidebar-add--radio" >
-                      <Button icon={ <Icon size={ 32 } icon={ packageIcon } />}
+                      {/*<Button icon={ <Icon size={ 32 } icon={ packageIcon } />}
                               label='Product'
                               className={
                                 (radioValue === 'PRODUCT') ?
@@ -76,9 +76,9 @@ const AddProductService = ({
                                   'ProductSidebar-add-service ProductSidebar-add-service--active' :
                                   'ProductSidebar-add-service'
                               }
-                              onClick={ () => handleRadio('SERVICE') } />
+                              onClick={ () => handleRadio('SERVICE') } />*/}
                     </div>
-                }*/}
+                }
 
                   {/*(radioValue === 'PRODUCT' || radioValue === 'SERVICE') &&*/}
                 {
