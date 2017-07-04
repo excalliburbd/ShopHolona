@@ -61,12 +61,12 @@ const AddProductDetails = ({
                     productVariances.map(
                       ({ type, attributes }, key) => <IconButton  icon={
                                                         <span>{`${ attributes.reduce( (acc, curr) => {
-                                                              if (curr.stock !== '') {
-                                                                return curr.stock
-                                                              }
+                                                                      if (curr.stock !== '') {
+                                                                        return parseInt(curr.stock, 10) + acc;
+                                                                      }
 
-                                                              return 0;
-                                                            }, 0) }`}</span>
+                                                                      return 0 + acc;
+                                                                    }, 0) }`}</span>
                                                       }
                                                       onClick={
                                                         () => handleSelectVariance(key)
