@@ -24,12 +24,8 @@ export const getBranch = bank => dispatch => {
 }
 
 export const saveBankInfo = (branch, account, shop, token) => dispatch => {
-  console.log({
-              bank: branch,
-              account_name: account,
-              account_type: '1'
-            })
-  request(`/vendors/shops/${shop}/payments/`, getConfig(
+  if (token) {
+    request(`/vendors/shops/${shop}/payments/`, getConfig(
             token,
             {
               bank: branch,
@@ -41,5 +37,6 @@ export const saveBankInfo = (branch, account, shop, token) => dispatch => {
             response => {
               console.log(response)
             }
-         )
+         );
+  }
 }

@@ -321,6 +321,9 @@ export const ShopPageReducer = handleActions({
     },
     fcom: false,
     description: 'loading'
+  },
+  referral: {
+    code: 'loading'
   }
 })
 

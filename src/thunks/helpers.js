@@ -76,7 +76,8 @@ const handleErrors = response => {
           console.log(text)
         }
       )
-        throw Error(response.statusText);
+
+      throw Error(response.statusText);
     }
     return response;
 }
@@ -95,7 +96,7 @@ export const request = (url, options) => {
           return resolve(response);
         }
       }).catch(
-        err => reject( err )
-      );
+        err => reject(new Error(err))
+      )
   });
 }

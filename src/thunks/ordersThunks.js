@@ -4,7 +4,8 @@ import { orderActions } from '../actions';
 
 export const getOrderList = (shop, token) => dispatch => {
 
-  request(`/vendors/shops/${shop}/orders/`, getConfig(
+  if (token) {
+    request(`/vendors/shops/${shop}/orders/`, getConfig(
             token,
           )).then(
             res => {
@@ -13,4 +14,5 @@ export const getOrderList = (shop, token) => dispatch => {
               }
             }
           );
+  }
 }

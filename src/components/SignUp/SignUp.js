@@ -4,8 +4,6 @@ import Button from 'react-toolbox/lib/button/Button';
 
 import Input from 'react-toolbox/lib/input/Input';
 
-import GLogin from './GLogin';
-import FbLogin from './FbLogin';
 import './SignUp.css';
 
 const SignUp = ({

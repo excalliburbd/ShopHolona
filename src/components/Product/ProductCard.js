@@ -40,7 +40,6 @@ class ProductCard extends Component {
       addToCart,
       selectedVariant,
       selectedAttribute,
-      setVariant,
       token,
     } = this.props;
 
@@ -86,9 +85,9 @@ class ProductCard extends Component {
                      image={ productImages[this.state.selectedImage].image } />
             <div className="ProductCard-images--select">
               {
-              variances.map(
+              variances.forEach(
                 (variant, key) => {
-                  let style = {};
+                  {/*let style = {};
 
                   if (variant.type.name === 'Color') {
                     style = {
@@ -104,7 +103,7 @@ class ProductCard extends Component {
                         backgroundImage: '#ccc'
                       }
                     }
-                  }
+                  }*/}
 
                   {/*return <div className="ProductCard-images--select--circle"
                               onClick={ event => {

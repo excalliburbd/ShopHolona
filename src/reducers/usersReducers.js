@@ -44,6 +44,20 @@ export const UserReducer = handleActions({
       }
     }
   },
+  [userActions.user.done.get.authShop]: {
+    next(state, action) {
+      return {
+        ...state,
+        shopvendor: true
+      }
+    },
+    throw(state, action) {
+      return {
+        ...state,
+        shopvendor: false,
+      }
+    }
+  }
 }, {
   isLoggedIn: false,
   token: null,
@@ -56,6 +70,7 @@ export const UserReducer = handleActions({
   email: '',
   phone_verified: false,
   email_verified: false,
+  shopvendor: false,
 });
 
 export const UserUIReducer = handleActions({

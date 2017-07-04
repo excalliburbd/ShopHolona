@@ -25,6 +25,9 @@
   display: flex;
 }
 
+.Settings-info-gourp {
+  padding-right: 2em;
+}
 
 .Settings-info--address-group--inputs,
 .Settings-info--time-group--inputs,

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from'react-dom';
-import { render } from 'react-snapshot';
 import { Provider } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router'

@@ -8,7 +8,6 @@ import {
   sidebarActions,
   shopActions,
   imageUploaderActions,
-  cartActions,
   productActions,
 } from '../actions/';
 

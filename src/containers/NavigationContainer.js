@@ -9,7 +9,7 @@ import {
   getShopAddress,
   getShopHours,
 } from '../thunks/shopThunks';
-import { getMe } from '../thunks/userThunks';
+import { tryGetVendor } from '../thunks/userThunks';
 import { getCart } from '../thunks/cartThunks';
 import { getOrderList } from '../thunks/ordersThunks';
 import { getBanks } from '../thunks/paymentandaddressThunks';
@@ -34,7 +34,7 @@ const mapStateToProps = state => {
     sidebarType: state.ui.sidebar.type,
     shopID: state.shop.id,
     shopName: state.shop.shop_name,
-    refCode: state.user.referral.code,
+    refCode: state.shop.referral.code,
     pinned: getPinState(state),
     vendor: getVendor(state),
     profilePic: state.user.profile_pic,
@@ -81,6 +81,7 @@ const mapDispatchToProps = dispatch => {
       })
     },
     hadleLoadData: (shop, token, vendor) => {
+      dispatch(tryGetVendor(shop));
       dispatch(getShop(shop));
       dispatch(getShopCategories(shop));
       dispatch(getAllProducts(shop));
@@ -90,10 +91,11 @@ const mapDispatchToProps = dispatch => {
 
       if (token) {
         dispatch(getCart(token, false));
-        dispatch(getShopHours(shop, token));
+        dispatch(tryGetVendor(shop, token))
       }
 
       if (vendor && token) {
+        dispatch(getShopHours(shop, token));
         dispatch(getOrderList(shop, token));
       }
     },

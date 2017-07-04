@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import moment from 'moment';
 
-import { getProducts, getCategoriesEntities } from '../selectors/shopSelectors';
+import { getCategoriesEntities } from '../selectors/shopSelectors';
 import { getAllProducts } from '../selectors/productSelectors';
 
 export const getTabIndex = state => state.ui.backOffice.selectedIndexs;

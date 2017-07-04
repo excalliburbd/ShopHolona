@@ -54,7 +54,8 @@ export const postShopPageProfie = (image, shop, token, formData)  => dispatch =>
 
     formData.append('prof_pic', blob );
 
-    request(`/vendors/shops/${shop}/`, getConfig(
+    if (token) {
+      request(`/vendors/shops/${shop}/`, getConfig(
           token,
           formData,
           'PUT'
@@ -69,6 +70,7 @@ export const postShopPageProfie = (image, shop, token, formData)  => dispatch =>
             }
           }
         );
+    }
 
   });
 }
@@ -79,7 +81,8 @@ export const postShopPageCover = (image, shop, token, formData)  => dispatch => 
 
     formData.append('cover_photo', blob );
 
-    request(`/vendors/shops/${shop}/`, getConfig(
+    if (token) {
+      request(`/vendors/shops/${shop}/`, getConfig(
           token,
           formData,
           'PUT'
@@ -93,13 +96,15 @@ export const postShopPageCover = (image, shop, token, formData)  => dispatch => 
             }
           }
         );
+    }
 
   });
 }
 
 export const getShopHours = (shop, token) => dispatch => {
 
-  request(`/vendors/shops/${shop}/hours/`, getConfig(
+  if (token) {
+    request(`/vendors/shops/${shop}/hours/`, getConfig(
               token
             )).then(
               res => {
@@ -127,6 +132,7 @@ export const getShopHours = (shop, token) => dispatch => {
                 }
               }
             );
+  }
 }
 
 export const runShopInfoUpdate = (info, shop, token) => dispatch => {
@@ -139,128 +145,130 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
     description,
   } = info;
 
-  const edited = editing.reduce(
-    (arr, infoKey) => {
-      let returnArr = arr;
+  if (token) {
+    const edited = editing.reduce(
+      (arr, infoKey) => {
+        let returnArr = arr;
 
-      switch(infoKey) {
-        case 'name':
-          request(`/vendors/shops/${shop}/`, getConfig(
-                    token,
-                    {
-                      shop_name: name,
-                      fcom,
-                    },
-                    'PATCH'
-                  )).then(
-                    res => {
-                      if (res.id) {
-                        //do something
+        switch(infoKey) {
+          case 'name':
+            request(`/vendors/shops/${shop}/`, getConfig(
+                      token,
+                      {
+                        shop_name: name,
+                        fcom,
+                      },
+                      'PATCH'
+                    )).then(
+                      res => {
+                        if (res.id) {
+                          //do something
 
+                        }
                       }
-                    }
-                  ).catch(
-                    err => {
-                      returnArr = [ ...arr, infoKey ];
-                    }
-                  );
-          return returnArr;
-        case 'phone':
-          request(`/vendors/shops/${shop}/contacts/${phone.id}/`, getConfig(
-                    token,
-                    {
-                      type: 0,
-                      description: phone.number
-                    },
-                    'PUT'
-                  )).then(
-                    res => {
-                      if (res.type === 0) {
-                        dispatch(shopActions.shop.set.contactNumber({
-                          id: phone.id,
-                          value: res.description,
-                        }))
+                    ).catch(
+                      err => {
+                        returnArr = [ ...arr, infoKey ];
                       }
-                    }
-                  ).catch(
-                    err => {
-                      console.log(err)
-                      returnArr = [ ...arr, infoKey ];
-                    }
-                  );
-          return returnArr;
-        case 'from_hour':
-          request(`/vendors/shops/${shop}/hours/${hours.id}`, getConfig(
-                    token,
-                    {
-                      from_hour: `${hours.from_hour.getHours()}:${hours.from_hour.getMinutes()}`
-                    },
-                    'PATCH'
-                  )).then(
-                    res => {
-                      if (res.from_hour) {
-                        dispatch(shopActions.shop.set.fromHour({
-                          from_hour: res.from_hour,
-                        }))
+                    );
+            return returnArr;
+          case 'phone':
+            request(`/vendors/shops/${shop}/contacts/${phone.id}/`, getConfig(
+                      token,
+                      {
+                        type: 0,
+                        description: phone.number
+                      },
+                      'PUT'
+                    )).then(
+                      res => {
+                        if (res.type === 0) {
+                          dispatch(shopActions.shop.set.contactNumber({
+                            id: phone.id,
+                            value: res.description,
+                          }))
+                        }
                       }
-                    }
-                  ).catch(
-                    err => {
-                      console.log(err)
-                      returnArr = [ ...arr, infoKey ];
-                    }
-                  );
-          return returnArr;
-        case 'to_hour':
-          request(`/vendors/shops/${shop}/hours/${hours.id}`, getConfig(
-                    token,
-                    {
-                      to_hour: `${hours.to_hour.getHours()}:${hours.to_hour.getMinutes()}`
-                    },
-                    'PATCH'
-                  )).then(
-                    res => {
-                      if (res.to_hour) {
-                        dispatch(shopActions.shop.set.toHours({
-                          to_hour: res.to_hour,
-                        }))
+                    ).catch(
+                      err => {
+                        console.log(err)
+                        returnArr = [ ...arr, infoKey ];
                       }
-                    }
-                  ).catch(
-                    err => {
-                      console.log(err)
-                      returnArr = [ ...arr, infoKey ];
-                    }
-                  );
-          return returnArr;
-        case 'description':
-          request(`/vendors/shops/${shop}/`, getConfig(
-                    token,
-                    {
-                      short_descr: description,
-                      fcom,
-                    },
-                    'PATCH'
-                  )).then(
-                    res => {
-                      if (res.id) {
-                        //do something
-                        dispatch(shopActions.shop.set.editDesc(false));
-                        dispatch(getShop(shop));
+                    );
+            return returnArr;
+          case 'from_hour':
+            request(`/vendors/shops/${shop}/hours/${hours.id}`, getConfig(
+                      token,
+                      {
+                        from_hour: `${hours.from_hour.getHours()}:${hours.from_hour.getMinutes()}`
+                      },
+                      'PATCH'
+                    )).then(
+                      res => {
+                        if (res.from_hour) {
+                          dispatch(shopActions.shop.set.fromHour({
+                            from_hour: res.from_hour,
+                          }))
+                        }
                       }
-                    }
-                  ).catch(
-                    err => {
-                      returnArr = [ ...arr, infoKey ];
-                    }
-                  );
-          return returnArr;
-        default:
-          return [ ...arr, infoKey ]
-      }
-    }, []
-  );
+                    ).catch(
+                      err => {
+                        console.log(err)
+                        returnArr = [ ...arr, infoKey ];
+                      }
+                    );
+            return returnArr;
+          case 'to_hour':
+            request(`/vendors/shops/${shop}/hours/${hours.id}`, getConfig(
+                      token,
+                      {
+                        to_hour: `${hours.to_hour.getHours()}:${hours.to_hour.getMinutes()}`
+                      },
+                      'PATCH'
+                    )).then(
+                      res => {
+                        if (res.to_hour) {
+                          dispatch(shopActions.shop.set.toHours({
+                            to_hour: res.to_hour,
+                          }))
+                        }
+                      }
+                    ).catch(
+                      err => {
+                        console.log(err)
+                        returnArr = [ ...arr, infoKey ];
+                      }
+                    );
+            return returnArr;
+          case 'description':
+            request(`/vendors/shops/${shop}/`, getConfig(
+                      token,
+                      {
+                        short_descr: description,
+                        fcom,
+                      },
+                      'PATCH'
+                    )).then(
+                      res => {
+                        if (res.id) {
+                          //do something
+                          dispatch(shopActions.shop.set.editDesc(false));
+                          dispatch(getShop(shop));
+                        }
+                      }
+                    ).catch(
+                      err => {
+                        returnArr = [ ...arr, infoKey ];
+                      }
+                    );
+            return returnArr;
+          default:
+            return [ ...arr, infoKey ]
+        }
+      }, []
+    );
 
-  dispatch(shopActions.shop.set.editing(edited));
+    dispatch(shopActions.shop.set.editing(edited));
+  }
   dispatch(getShop(shop));
 }

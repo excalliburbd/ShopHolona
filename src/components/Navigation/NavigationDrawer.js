@@ -9,7 +9,6 @@ import FaTelevision from 'react-icons/lib/fa/television';
 import MdAddShoppingCart from 'react-icons/lib/md/add-shopping-cart';
 import FaCartArrowDown from 'react-icons/lib/fa/cart-arrow-down';
 import MdInsertChart from 'react-icons/lib/md/insert-chart';
-import MdRateReview from 'react-icons/lib/md/rate-review';
 import MdSettings from 'react-icons/lib/md/settings';
 
 import './NavigationDrawer.css';

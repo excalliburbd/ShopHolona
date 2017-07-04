@@ -7,6 +7,24 @@ import {
    sidebarActions,
 } from '../actions/';
 
+export const tryGetVendor = (shop, token) => dispatch => {
+  if (token) {
+    request(`/vendors/shops/${shop}`, getConfig(
+            token
+          )).then(
+            res => {
+              if( res.id ) {
+                dispatch(
+                  userActions.user.done.get.authShop()
+                )
+              }
+            }
+          ).catch(
+            err => userActions.user.done.get.authShop(new Error(err))
+          );
+  }
+}
+
 export const trySignInAsyncAction = (res, shop) => dispatch => {
 
   const credentials = {};
@@ -48,6 +66,8 @@ export const trySignInAsyncAction = (res, shop) => dispatch => {
 
                 dispatch(getShopCategories(shop));
 
+                dispatch(tryGetVendor(shop, res.token));
+
               }
             }
           ).catch(
@@ -58,7 +78,8 @@ export const trySignInAsyncAction = (res, shop) => dispatch => {
 }
 
 export const getMe = (token, shop) => dispatch => {
-    request('/me/', getConfig(
+    if (token) {
+      request('/me/', getConfig(
           token
         )).then(
           res => {
@@ -73,5 +94,6 @@ export const getMe = (token, shop) => dispatch => {
             dispatch(userActions.user.done.get.profile(new Error(err)));
             dispatch(sidebarActions.sidebar.show.signIn());
           }
-        )
+        );
+    }
 }

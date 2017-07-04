@@ -12,6 +12,7 @@ export const userActionCreators = {
       GET: {
         TOKEN: payload => payload,
         PROFILE: payload => payload,
+        AUTH_SHOP: payload => payload,
       }
     },
     MANUAL_SIGN_OUT: payload => payload

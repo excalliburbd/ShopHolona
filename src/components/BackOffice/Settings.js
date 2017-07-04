@@ -46,24 +46,26 @@ const Settings = ({
       <Card>
         <CardTitle title="Shop Information" />
         <CardText>
-          <Input  label="Change shop name"
-                  value={ name }
-                  icon="store"
-                  onChange={
-                    val => updateValue(val, 'name')
-                  } />
-          {/*<Input  label="Change shop domain"
-                  icon="link"
-                  value={ domain }
-                  onChange={
-                    val => updateValue(val, 'domain')
-                  } />*/}
-          <Input  label="Change shop contact number"
-                  icon="phone"
-                  value={ phone.number }
-                  onChange={
-                    val => updateValue(val, 'phone')
-                  } />
+          <div className="Settings-info-gourp">
+            <Input  label="Change shop name"
+                    value={ name }
+                    icon="store"
+                    onChange={
+                      val => updateValue(val, 'name')
+                    } />
+            {/*<Input  label="Change shop domain"
+                    icon="link"
+                    value={ domain }
+                    onChange={
+                      val => updateValue(val, 'domain')
+                    } />*/}
+            <Input  label="Change shop contact number"
+                    icon="phone"
+                    value={ phone.number }
+                    onChange={
+                      val => updateValue(val, 'phone')
+                    } />
+          </div>
           <div className="Settings-info--address-group">
             <h2><FontIcon value="location_on" /> Address</h2>
             <div className="Settings-info--address-group--inputs">

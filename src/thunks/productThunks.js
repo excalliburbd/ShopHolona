@@ -106,8 +106,8 @@ export const saveProduct = (obj, shop, token, editing) => dispatch => {
                           )
                         })
                       );
-
-    const edited = obj.editing.reduce(
+    if (token) {
+        const edited = obj.editing.reduce(
       (arr, infoKey) => {
         let returnArr = arr;
 
@@ -267,8 +267,10 @@ export const saveProduct = (obj, shop, token, editing) => dispatch => {
       }, []);
 
       dispatch(productActions.products.ui.set.editing(edited));
+    }
   } else {
-    request(`/vendors/shops/${shop}/products/`, getConfig(
+    if (token) {
+      request(`/vendors/shops/${shop}/products/`, getConfig(
             token,
             obj,
             'post'
@@ -278,12 +280,14 @@ export const saveProduct = (obj, shop, token, editing) => dispatch => {
               dispatch(getShopCategories(shop));
             }
           );
+    }
   }
 }
 
 export const deleteProduct = (id, shop, token) => dispatch => {
 
-  request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
+  if (token) {
+    request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
               token,
               null,
               'DELETE'
@@ -300,6 +304,7 @@ export const deleteProduct = (id, shop, token) => dispatch => {
                 dispatch(sidebarActions.sidebar.hide())
               }
           );
+  }
 }
 
 export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
@@ -313,7 +318,8 @@ export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
   apiRequest.append('image', obj.file);
   apiRequest.append('alt_tag', obj.tag);
 
-  request(`/vendors/shops/${shop}/images/`, getConfig(
+  if (token) {
+    request(`/vendors/shops/${shop}/images/`, getConfig(
             token,
             apiRequest,
             'post'
@@ -347,6 +353,7 @@ export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
               dispatch(categoryActions.categories.done.post.productImage( new Error(err), { id, key } ));
             }
           );
+  }
 }
 
 export const  requestAttribute = (
@@ -362,7 +369,8 @@ export const  requestAttribute = (
 )  => dispatch => {
 
   if (signal !== 'DONE_ALL') {
-        request(`/vendors/category/attributes/`, getConfig(
+    if (token) {
+      request(`/vendors/category/attributes/`, getConfig(
               token,
               {
                 name: name,
@@ -403,6 +411,7 @@ export const  requestAttribute = (
                 }
               }
             );
+    }
   } else {
       if (!customPrimary) {
         dispatch(categoryActions.categories.done.post.customAttr.primary())
@@ -426,7 +435,8 @@ export const getFeaturedProduct = shop => dispatch => {
 
 export const makeFeaturedProduct = (id, shop, token) => dispatch => {
 
-  request(`/vendors/shops/${shop}/featured-products/`, getConfig(
+  if (token) {
+    request(`/vendors/shops/${shop}/featured-products/`, getConfig(
             token,
             {
               product: `${id}`,
@@ -445,12 +455,14 @@ export const makeFeaturedProduct = (id, shop, token) => dispatch => {
 
               dispatch(sidebarActions.sidebar.hide());
             }
-          )
+          );
+  }
 }
 
 export const removeFromFeaturedProduct = (productID, featuredID, shop, token) => dispatch => {
 
-  request(`/vendors/shops/${shop}/featured-products/${featuredID}/`, getConfig(
+  if (token) {
+    request(`/vendors/shops/${shop}/featured-products/${featuredID}/`, getConfig(
             token,
             null,
             'DELETE'
@@ -461,4 +473,5 @@ export const removeFromFeaturedProduct = (productID, featuredID, shop, token) =>
               dispatch(sidebarActions.sidebar.hide());
             }
           )
+  }
 }

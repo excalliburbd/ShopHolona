@@ -31,7 +31,8 @@ export const updateCartItem = (cartID, id, quantity, token) => dispatch => {
 
   dispatch(cartActions.cart.update.item({id: cartID, quantity}));
 
-  request(`/me/carts/${cartID}/`, getConfig(
+  if (token) {
+    request(`/me/carts/${cartID}/`, getConfig(
             token,
             null,
             'DELETE'
@@ -63,6 +64,7 @@ export const updateCartItem = (cartID, id, quantity, token) => dispatch => {
                       );
             }
           );
+  }
 }
 
 export const addToCart = (id, token, productID) => (dispatch, getState) => {

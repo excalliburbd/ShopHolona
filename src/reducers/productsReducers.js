@@ -247,7 +247,6 @@ export const ProductsUIReducer = handleActions({
     const {
       response,
       id,
-      image
     } = action.payload;
 
     return {
