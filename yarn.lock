@@ -1664,7 +1664,7 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-create-react-class@^15.5.2, create-react-class@^15.5.3:
+create-react-class@^15.5.1, create-react-class@^15.5.2, create-react-class@^15.5.3:
   version "15.5.3"
   resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.5.3.tgz#fb0f7cae79339e9a179e194ef466efa3923820fe"
   dependencies:
@@ -6030,6 +6030,21 @@ react-motion@^0.5.0:
 react-mui-speeddial@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-mui-speeddial/-/react-mui-speeddial-0.0.6.tgz#072e0be07f3013d7d137f13d87c5ad7d3b77a107"
+
+react-notification-system-redux@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/react-notification-system-redux/-/react-notification-system-redux-1.1.3.tgz#85871cc36ad175f37bce4eb512d80c3fc425dc1a"
+  dependencies:
+    prop-types "^15.5.8"
+    react-notification-system "^0.2.x"
+
+react-notification-system@0.2.x, react-notification-system@^0.2.x:
+  version "0.2.14"
+  resolved "https://registry.yarnpkg.com/react-notification-system/-/react-notification-system-0.2.14.tgz#21f917f39feee145516864350875041433c4d5c0"
+  dependencies:
+    create-react-class "^15.5.1"
+    object-assign "^4.0.1"
+    prop-types "^15.5.6"
 
 react-redux@^5.0.3:
   version "5.0.5"

@@ -17,6 +17,7 @@ import AddButtonContainer from '../../containers/AddButtonContainer';
 import ProductsSidebarContainer from '../../containers/ProductsSidebarContainer';
 import ImageUploaderContainer from '../../containers/ImageUploaderContainer';
 import CartContainer from '../../containers/CartContainer';
+import NotificationContainer from '../../containers/NotificationContainer';
 
 import './Navigation.css';
 
@@ -135,51 +136,54 @@ class Nav extends Component {
     }
 
     return (
-      <Layout className="Navigation">
-        <Helmet>
-          <title>{ shopName }</title>
-        </Helmet>
-        <ImageUploaderContainer />
-        <AddButtonContainer vendor={ vendor } />
-        <NavigationDrawer pinned={ pinned } history={ history } location={ location }/>
-        <Panel className={ panelClass }>
-          <NavigationAppBar searchbar={ searchbar }
-                            history={ history }
-                            location={ location }
-                            shopName={ shopName }
-                            refCode={ refCode }
-                            hideSearchbar={ hideSearchbar }
-                            userLoggedIn={ userLoggedIn }
-                            handleSignOut={ handleSignOut }
-                            showSearchbar={ showSearchbar }
-                            handleSignIn={ handleSignIn }
-                            vendor={ vendor }
-                            profilePic={ profilePic }
-                            showCartSidebar={ showCartSidebar } />
-          <div className={
-                (location.pathname === '/') ?
-                  'Navigation-content-main' :
-                  'Navigation-content'
-              }>
-            <FilterBarContainer
-              show={ ('/' !== location.pathname) }
-              flat={ ('/dashboard' !== location.pathname)}
-              route={ location.pathname } />
-            { children }
-          </div>
-        </Panel>
-        <Sidebar pinned={ showSidebar } className="Navigation-sidebar" >
-          <div className="Navigation-sidebar-action">
-            <IconButton icon='close' onClick={ handleHideSidebar }/>
-            <h1>
-              { titleMsg }
-            </h1>
-          </div>
-          <div className="Navigation-sidebar-content">
-            <SidebarContent />
-          </div>
-        </Sidebar>
-      </Layout>
+      <div>
+        <NotificationContainer />
+        <Layout className="Navigation">
+          <Helmet>
+            <title>{ shopName }</title>
+          </Helmet>
+          <ImageUploaderContainer />
+          <AddButtonContainer vendor={ vendor } />
+          <NavigationDrawer pinned={ pinned } history={ history } location={ location }/>
+          <Panel className={ panelClass }>
+            <NavigationAppBar searchbar={ searchbar }
+                              history={ history }
+                              location={ location }
+                              shopName={ shopName }
+                              refCode={ refCode }
+                              hideSearchbar={ hideSearchbar }
+                              userLoggedIn={ userLoggedIn }
+                              handleSignOut={ handleSignOut }
+                              showSearchbar={ showSearchbar }
+                              handleSignIn={ handleSignIn }
+                              vendor={ vendor }
+                              profilePic={ profilePic }
+                              showCartSidebar={ showCartSidebar } />
+            <div className={
+                  (location.pathname === '/') ?
+                    'Navigation-content-main' :
+                    'Navigation-content'
+                }>
+              <FilterBarContainer
+                show={ ('/' !== location.pathname) }
+                flat={ ('/dashboard' !== location.pathname)}
+                route={ location.pathname } />
+              { children }
+            </div>
+          </Panel>
+          <Sidebar pinned={ showSidebar } className="Navigation-sidebar" >
+            <div className="Navigation-sidebar-action">
+              <IconButton icon='close' onClick={ handleHideSidebar }/>
+              <h1>
+                { titleMsg }
+              </h1>
+            </div>
+            <div className="Navigation-sidebar-content">
+              <SidebarContent />
+            </div>
+          </Sidebar>
+        </Layout>
+      </div>
     );
   }
 }

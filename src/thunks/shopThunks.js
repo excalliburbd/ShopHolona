@@ -1,3 +1,5 @@
+import Notifications from 'react-notification-system-redux';
+
 import { request, getConfig } from './helpers';
 
 import {
@@ -162,13 +164,26 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                     )).then(
                       res => {
                         if (res.id) {
-                          //do something
-
+                          dispatch(Notifications.success({
+                            title: 'Success',
+                            message: 'Successfull updated shop name',
+                            position: 'bl',
+                          }));
                         }
                       }
                     ).catch(
                       err => {
                         returnArr = [ ...arr, infoKey ];
+
+                        const info = JSON.parse(err);
+
+                        if (info.shop_name) {
+                          dispatch(Notifications.error({
+                            title: 'Error during shop update',
+                            message: info.shop_name[0],
+                            position: 'bl',
+                          }));
+                        }
                       }
                     );
             return returnArr;

@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import {reducer as responsive } from 'redux-mediaquery';
+import { reducer as notifications } from 'react-notification-system-redux';
 
 import { FilterUIReducer } from './filterUIReducers';
 import { ordersReducer, ordersEntityReducer } from './ordersReducers';
@@ -75,6 +76,7 @@ const RootReducer = combineReducers({
     service: servicesUIReducer,
     responsive,
     paymentsAndAddresses: paymentandaddressUIReducer,
+    notifications,
   }),
   cart: cartReducer,
 });

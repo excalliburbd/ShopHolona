@@ -47,39 +47,61 @@ export const getConfig = ( token = null, body = null, method = 'GET', mode = 'co
   return config;
 }
 
+const handleErrors = response => {
+  return new Promise((resolve, reject) => {
+    const res = response.clone()
+
+    if (!response.ok) {
+      response.text().then(
+        text => {
+          reject(text)
+        }
+      )
+    } else {
+      resolve(res);
+    }
+  });
+}
+
 const parseJSON = response => {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
+    const {
+      ok,
+      redirected,
+      status,
+      statusText,
+      type,
+      url,
+    } = response;
+
     response.text().then(
       text => {
         if (text) {
           resolve({
-            status: response.status,
-            ok: response.ok,
+            ok,
+            redirected,
+            status,
+            statusText,
+            type,
+            url,
             json: JSON.parse(text),
-          })
+          });
         } else {
           resolve({
+            ok,
+            redirected,
+            status,
+            statusText,
+            type,
+            url,
             empty: true,
-            status: response.status,
-          })
+          });
         }
       }
-    )
-
+    ).catch(
+      err => reject(err)
+    );
   });
-}
-
-const handleErrors = response => {
-    if (!response.ok) {
-      response.text().then(
-        text => {
-          console.log(text)
-        }
-      )
-
-      throw Error(response.statusText);
-    }
-    return response;
 }
 
 export const request = (url, options) => {
@@ -88,15 +110,13 @@ export const request = (url, options) => {
       .then(handleErrors)
       .then(parseJSON)
       .then((response) => {
-        if (response.ok) {
-          return resolve(response.json);
-        }
-
         if (response.empty) {
           return resolve(response);
+        } else {
+          return resolve(response.json);
         }
       }).catch(
-        err => reject(new Error(err))
+        err => reject(err)
       )
   });
 }
