@@ -15,10 +15,11 @@ class ProductUpload extends Component {
       shop,
       token,
       saveProduct,
+      demostore,
     } = this.props;
 
     if(progress.primary && progress.secondary) {
-       saveProduct(product, shop, token)
+       saveProduct(product, shop, token, false, shop === demostore)
     }
 
     return <div>

@@ -512,7 +512,70 @@ export const productsEntityReducer = handleActions({
           selectedAttribute: action.payload.key,
         }
       }
-    }
+    },
+    [productActions.products.ui.set.name]: (state, action) => {
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          name: action.payload.name,
+        }
+      }
+    },
+    [productActions.products.ui.set.desc]: (state, action) => {
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          short_desc: action.payload.desc,
+        }
+      }
+    },
+    [productActions.products.ui.set.attrbute]: (state, action) => {
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          variances: state[action.payload.id].map(
+            variant => {
+              if (variant.id === action.payload.variantID) {
+                return variant.attributes.map(
+                  attr => {
+                    if (attr.id === action.payload.attrID) {
+                      return {
+                        ...attr,
+                        ...action.payload.attr,
+                      }
+                    }
+                    return attr;
+                  }
+                )
+              }
+              return variant
+            }
+          )
+        }
+      }
+    },
+    [productActions.products.ui.set.variant]: (state, action) => {
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          variances: state[action.payload.id].map(
+            variant => {
+              if (variant.id === action.payload.variantID) {
+                return {
+                  ...variant,
+                  ...action.payload.variant
+                }
+              }
+              return variant
+            }
+          )
+        }
+      }
+    },
 }, {
 
 });

@@ -75,6 +75,7 @@ const ProductsSidebar = ({
   showInfo,
   togglePricingInfo,
   handleStockEdit,
+  demostore,
 }) => {
   switch(type) {
     case 'ADD_PRODUCT':
@@ -150,7 +151,8 @@ const ProductsSidebar = ({
                                   productDetailfcomPrice={ productDetailfcomPrice }
                                   showInfo={ showInfo }
                                   togglePricingInfo={ togglePricingInfo }
-                                  handleStockEdit={ handleStockEdit } />
+                                  handleStockEdit={ handleStockEdit }
+                                  demostore={ demostore } />
     case 'UPLOADING':
       return <ProductUpload className="ProductSidebar-upload"
                             makeProduct={ makeProduct }
@@ -158,7 +160,8 @@ const ProductsSidebar = ({
                             shop={ shop }
                             token={token}
                             saveProduct={ handleSaveProduct }
-                            progress={ progress } />
+                            progress={ progress }
+                            demostore={ demostore } />
 
     default:
       return <div className="ProductsSidebar-empty"/>

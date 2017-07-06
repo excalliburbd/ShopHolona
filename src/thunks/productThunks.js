@@ -1,3 +1,5 @@
+import Notifications from 'react-notification-system-redux';
+
 import { request, getConfig } from './helpers';
 
 import { getShopCategories } from './shopThunks';
@@ -33,29 +35,28 @@ export const getSubCategory = id => dispatch => {
 export const getSubSubCategory = (id, subID )=> dispatch => {
   request(`/references/categories/${id}/${subID}/`, getConfig() ).then(
             res => {
-              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
-
               dispatch(categoryActions.categories.done.get.subSubCategory(res));
             }
           );
 }
 
-export const getAllProducts = shop  => dispatch => {
+export const getAllProducts = (shop, demostore, id, token) => dispatch => {
 
   request(`/shops/${shop}/products/`, getConfig() ).then(
             res => {
-              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
-
-              dispatch({
-                type: 'DONE_API_GET_PRODUCT',
-              })
-
               dispatch(productActions.products.done.get.products(res));
+              if (demostore) {
+                request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
+                          token,
+                          null,
+                          'DELETE'
+                        ));
+              }
             }
           );
 }
 
-export const saveProduct = (obj, shop, token, editing) => dispatch => {
+export const saveProduct = (obj, shop, token, editing, demostore) => dispatch => {
   if (editing) {
 
     const {
@@ -107,102 +108,218 @@ export const saveProduct = (obj, shop, token, editing) => dispatch => {
                         })
                       );
     if (token) {
-        const edited = obj.editing.reduce(
+      const edited = obj.editing.reduce(
       (arr, infoKey) => {
         let returnArr = arr;
 
         switch(infoKey) {
           case 'name':
-            request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
-                      token,
-                      {
-                        name
-                      },
-                      'PATCH'
-                    )).then(
-                      res => {
-                        if (res.id) {
-                          //do something
-
-                        }
-                      }
-                    ).catch(
-                      err => {
-                        returnArr = [ ...arr, infoKey ];
-                      }
-                    );
-            return returnArr;
-          case 'desc':
-            request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
-                      token,
-                      {
-                        short_desc,
-                      },
-                      'PATCH'
-                    )).then(
-                      res => {
-                        if (res.id) {
-                          //do something
-
-                        }
-                      }
-                    ).catch(
-                      err => {
-                        returnArr = [ ...arr, infoKey ];
-                      }
-                    );
-            return returnArr;
-          case 'old_stock':
-            oldEditedAttr.forEach(
-              attr => {
-                request(`/vendors/shops/${shop}/products/${id}/variances/${attr.variantID}/attributes/${attr.attrID}/`, getConfig(
+            if (demostore) {
+              dispatch(productActions.products.ui.set.name({
+                id,
+                name
+              }));
+              dispatch(Notifications.success({
+                title: 'Success',
+                message: 'Successfull updated product name',
+                position: 'bl',
+              }));
+            } else {
+              request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
                         token,
                         {
-                          type: attr.type.id,
-                          description: attr.description,
-                          weight: attr.weight,
-                          price: attr.price,
-                          stock: attr.stock
+                          name
                         },
                         'PATCH'
                       )).then(
                         res => {
-                          console.log(res)
+                          if (res.id) {
+                            //do something
+                            dispatch(Notifications.success({
+                              title: 'Success',
+                              message: 'Successfull updated product name',
+                              position: 'bl',
+                            }));
+                          }
                         }
                       ).catch(
                         err => {
-                          console.log(err)
                           returnArr = [ ...arr, infoKey ];
+
+                          const info = JSON.parse(err);
+
+                          if (info.name) {
+                            dispatch(Notifications.error({
+                              title: 'Error during product update',
+                              message: info.name[0],
+                              position: 'bl',
+                            }));
+                          }
                         }
-                    );
+                      );
+            }
+            return returnArr;
+          case 'desc':
+            if (demostore) {
+              dispatch(productActions.products.ui.set.desc({
+                id,
+                desc: short_desc
+              }));
+              dispatch(Notifications.success({
+                title: 'Success',
+                message: 'Successfull updated product description',
+                position: 'bl',
+              }));
+            } else {
+              request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
+                        token,
+                        {
+                          short_desc,
+                        },
+                        'PATCH'
+                      )).then(
+                        res => {
+                          if (res.id) {
+                            //do something
+                            dispatch(Notifications.success({
+                              title: 'Success',
+                              message: 'Successfull updated product description',
+                              position: 'bl',
+                            }));
+                          }
+                        }
+                      ).catch(
+                        err => {
+                          returnArr = [ ...arr, infoKey ];
+
+                          const info = JSON.parse(err);
+
+                          if (info.short_desc) {
+                            dispatch(Notifications.error({
+                              title: 'Error during product update',
+                              message: info.short_desc[0],
+                              position: 'bl',
+                            }));
+                          }
+                        }
+                      );
+            }
+            return returnArr;
+          case 'old_stock':
+            oldEditedAttr.forEach(
+              attr => {
+                if (demostore) {
+                  dispatch(productActions.products.ui.set.attrbute({
+                    id,
+                    variantID: attr.variantID,
+                    attrID: attr.attrID,
+                    attr,
+                  }));
+                  dispatch(Notifications.success({
+                    uid: `${id}productstockupdate`,
+                    title: 'Success',
+                    message: 'Successfull updated product stock',
+                    position: 'bl',
+                  }));
+                } else {
+                  request(`/vendors/shops/${shop}/products/${id}/variances/${attr.variantID}/attributes/${attr.attrID}/`, getConfig(
+                          token,
+                          {
+                            type: attr.type.id,
+                            description: attr.description,
+                            weight: attr.weight,
+                            price: attr.price,
+                            stock: attr.stock
+                          },
+                          'PATCH'
+                        )).then(
+                          res => {
+                            dispatch(Notifications.success({
+                              uid: `${id}productstockupdate`,
+                              title: 'Success',
+                              message: 'Successfull updated product stock',
+                              position: 'bl',
+                            }));
+                          }
+                        ).catch(
+                          err => {
+                            returnArr = [ ...arr, infoKey ];
+
+                            const info = JSON.parse(err);
+
+                            console.log(info);
+                            //TODO:
+
+                            // if (info.??) {
+                              dispatch(Notifications.error({
+                                uid: `${id}productstockupdate`,
+                                title: 'Error during product update',
+                                message: 'Can not update stock',
+                                position: 'bl',
+                              }));
+                            // }
+                          }
+                      );
+                }
               }
             )
             return returnArr;
           case 'new_stock':
             newEditedAttr.forEach(
               attr => {
-                request(`/vendors/shops/${shop}/products/${id}/variances/${attr.variantID}/attributes/`, getConfig(
-                        token,
-                        {
-                          type: attr.type.id,
-                          description: attr.description,
-                          weight: attr.weight,
-                          price: attr.price,
-                          stock: attr.stock
-                        },
-                        'POST'
-                      )).then(
-                        res => {
-                          console.log(res)
-                        }
-                      ).catch(
-                        err => {
-                          console.log(err)
-                          returnArr = [ ...arr, infoKey ];
-                        }
-                    );
+                if (demostore) {
+                  dispatch(productActions.products.ui.set.attrbute({
+                    id,
+                    variantID: attr.variantID,
+                    attrID: attr.attrID,
+                    attr,
+                  }));
+                  dispatch(Notifications.success({
+                    uid: `${id}productstockupdate`,
+                    title: 'Success',
+                    message: 'Successfull updated product stock',
+                    position: 'bl',
+                  }));
+                } else {
+                  request(`/vendors/shops/${shop}/products/${id}/variances/${attr.variantID}/attributes/`, getConfig(
+                          token,
+                          {
+                            type: attr.type.id,
+                            description: attr.description,
+                            weight: attr.weight,
+                            price: attr.price,
+                            stock: attr.stock
+                          },
+                          'POST'
+                        )).then(
+                          res => {
+                            dispatch(Notifications.success({
+                              uid: `${id}productstockupdate`,
+                              title: 'Success',
+                              message: 'Successfull updated product stock',
+                              position: 'bl',
+                            }));
+                          }
+                        ).catch(
+                          err => {
+                            returnArr = [ ...arr, infoKey ];
+
+                            const info = JSON.parse(err);
+                            //TODO:
+
+                            // if (info.short_desc) {
+                              dispatch(Notifications.error({
+                                uid: `${id}productstockupdate`,
+                                title: 'Error during product update',
+                                message: 'Can not update stock',
+                                position: 'bl',
+                              }));
+                            // }
+                          }
+                      );
+                }
               }
-            )
+            );
             return returnArr;
           case 'price_weight':
             variances.forEach(
@@ -210,23 +327,54 @@ export const saveProduct = (obj, shop, token, editing) => dispatch => {
                 variant.attributes.forEach(
                   ({ id: attrID, ...attr}) => {
                     if (attrID) {
-                      request(`/vendors/shops/${shop}/products/${id}/variances/${variantID}/attributes/${attrID}/`, getConfig(
-                        token,
-                        {
-                          weight: attr.weight,
-                          price: attr.price,
-                        },
-                        'PATCH'
-                      )).then(
-                        res => {
-                          console.log(res)
-                        }
-                      ).catch(
-                        err => {
-                          console.log(err)
-                          returnArr = [ ...arr, infoKey ];
-                        }
-                    );
+                      if (demostore) {
+                        dispatch(productActions.products.ui.set.attrbute({
+                          id,
+                          variantID: attr.variantID,
+                          attrID: attr.attrID,
+                          attr,
+                        }));
+                        dispatch(Notifications.success({
+                          uid: `${id}productpriceweightupdate`,
+                          title: 'Success',
+                          message: 'Successfull updated product details',
+                          position: 'bl',
+                        }));
+                      } else {
+                        request(`/vendors/shops/${shop}/products/${id}/variances/${variantID}/attributes/${attrID}/`, getConfig(
+                                  token,
+                                  {
+                                    weight: attr.weight,
+                                    price: attr.price,
+                                  },
+                                  'PATCH'
+                                )).then(
+                                  res => {
+                                    dispatch(Notifications.success({
+                                      uid: `${id}productpriceweightupdate`,
+                                      title: 'Success',
+                                      message: 'Successfull updated product details',
+                                      position: 'bl',
+                                    }));
+                                  }
+                                ).catch(
+                                  err => {
+                                    returnArr = [ ...arr, infoKey ];
+
+                                    const info = JSON.parse(err);
+                                    //TODO:
+
+                                    // if (info.short_desc) {
+                                      dispatch(Notifications.error({
+                                        uid: `${id}productpriceweightupdate`,
+                                        title: 'Error during product update',
+                                        message: 'Can not update product details',
+                                        position: 'bl',
+                                      }));
+                                    // }
+                                  }
+                              );
+                      }
                     }
                   }
                 )
@@ -276,8 +424,15 @@ export const saveProduct = (obj, shop, token, editing) => dispatch => {
             'post'
           )).then(
             res => {
-              dispatch(getAllProducts(shop));
-              dispatch(getShopCategories(shop));
+              if (demostore) {
+                if (res.id) {
+                  dispatch(getAllProducts(shop, demostore, res.id, token));
+                  dispatch(getShopCategories(shop));
+                }
+              } else {
+                dispatch(getAllProducts(shop, false, null, null));
+                dispatch(getShopCategories(shop));
+              }
             }
           );
     }
@@ -293,7 +448,6 @@ export const deleteProduct = (id, shop, token) => dispatch => {
               'DELETE'
             )).then(
               res => {
-                dispatch({type: 'RESPONSE_API_DEBUG',payload:res})
 
                 dispatch(productActions.products.done.delete.product(id));
 

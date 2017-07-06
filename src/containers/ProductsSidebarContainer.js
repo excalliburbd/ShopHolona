@@ -101,6 +101,7 @@ const mapStateToProps = state => {
     isFcom: getIsFcom(state),
     productDetailfcomPrice: getProductDetailfcomPrice(state),
     showInfo: state.ui.product.pricingInfo,
+    demostore: state.shop.demostore,
   }
 }
 
@@ -327,11 +328,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }
       }
     },
-    handleSaveProduct: (obj, shop, token, editing) => {
+    handleSaveProduct: (obj, shop, token, editing, demostore) => {
       if (editing) {
-        dispatch(saveProduct(obj, shop, token, true));
+        dispatch(saveProduct(obj, shop, token, editing, demostore));
       } else {
-        dispatch(saveProduct(obj, shop, token));
+        dispatch(saveProduct(obj, shop, token, editing, demostore));
 
         dispatch(sidebarActions.sidebar.hide());
       }

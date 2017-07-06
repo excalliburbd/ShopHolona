@@ -55,7 +55,7 @@ const mapStateToProps = state => {
     selectedProductDetails: state.entities.products[getProductDetailsID(state)],
     productDetailstabIndex: state.ui.shopPage.detailsTab,
     featured: getProductDetailsIsFeaturedProduct(state),
-    editDesc: state.ui.shopPage.editDesc && getVendor(state)
+    editDesc: state.ui.shopPage.editDesc && getVendor(state),
   }
 }
 

@@ -27,6 +27,12 @@ export const productActionCreators = {
         PRODUCT_VARIANCE: payload => payload,
         PRODUCT_ATTRIBUTE: payload => payload,
         EDITING: payload => payload,
+        NAME: payload => payload,
+        WEIGHT: payload => payload,
+        PRICE: payload => payload,
+        DESC: payload => payload,
+        ATTRIBUTE: payload => payload,
+        VARIANT: payload => payload,
       },
       RESET: {
         CATEGORIES: payload => payload,
@@ -46,6 +52,6 @@ export const productActionCreators = {
         PRODUCTS: payload => payload,
         FEATURED_PRODUCTS: payload => payload,
       }
-    }
+    },
   }
 }

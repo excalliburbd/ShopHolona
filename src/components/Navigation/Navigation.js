@@ -38,10 +38,11 @@ class Nav extends Component {
       hadleLoadData,
       token,
       vendor,
+      demostore,
     } = nextProps;
 
     if(this.props.online !== online && online && shopID ) {
-      hadleLoadData(shopID, token, vendor);
+      hadleLoadData(shopID, token, (shopID === demostore)  || vendor);
     }
   }
 
@@ -51,6 +52,7 @@ class Nav extends Component {
       location,
       handleSetCredentials,
       handleGetMedia,
+      demostore,
     } = this.props;
 
 
@@ -74,15 +76,15 @@ class Nav extends Component {
         const idPart = searchParts[0].split('=');
 
         if (idPart[0] === '?shopId') {
-          handleSetCredentials(idPart[1]);
+          handleSetCredentials(idPart[1], null, idPart[1] === demostore);
         }
 
         history.replace('/');
       } else {
-        id && handleSetCredentials(id, null);
+        id && handleSetCredentials(id, null, id === demostore);
       }
     } else {
-      id && handleSetCredentials(id, null);
+      id && handleSetCredentials(id, null, id === demostore);
     }
   }
 

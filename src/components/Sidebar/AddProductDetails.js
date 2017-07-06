@@ -34,6 +34,7 @@ const AddProductDetails = ({
   togglePricingInfo,
   showInfo,
   handleStockEdit,
+  demostore,
 }) => {
 
   const infoClass = classNames('ProductsSidebar-add--products--info', {
@@ -129,13 +130,13 @@ const AddProductDetails = ({
                               label="Remove featured product"
                               accent
                               onClick={
-                                () => deleteFromFeaturedProduct(selectedProductId, featuredID, shop, token)
+                                () => deleteFromFeaturedProduct(selectedProductId, featuredID, shop, token, shop === demostore)
                               } /> :
                         <Button icon="start"
                               label="Add to featured product"
                               primary
                               onClick={
-                                () => makeFeaturedProduct(selectedProductId, shop, token)
+                                () => makeFeaturedProduct(selectedProductId, shop, token, shop === demostore)
                               } />
 
                 }
@@ -145,12 +146,12 @@ const AddProductDetails = ({
                             label="Delete"
                             accent
                             onClick={
-                              () => deleteSelectedProduct(selectedProductId, shop, token)
+                              () => deleteSelectedProduct(selectedProductId, shop, token, shop === demostore)
                             } />
                     <Button icon="save"
                             label="save"
                             onClick={
-                              () => handleSaveProduct(selectedProduct, shop, token, true)
+                              () => handleSaveProduct(selectedProduct, shop, token, true, shop === demostore)
                             } />
                   </div>
               </div>

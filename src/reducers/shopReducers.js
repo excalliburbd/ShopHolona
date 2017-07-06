@@ -4,6 +4,8 @@ import uuid from 'uuid';
 import { shopActions } from '../actions/';
 import { REHYDRATE } from 'redux-persist/constants';
 
+import config from '../config';
+
 export const ShopPageReducer = handleActions({
     [shopActions.shop.set.shop]: (state, action) => {
       if (state.information.editing.length === 0) {
@@ -281,7 +283,13 @@ export const ShopPageReducer = handleActions({
         editing: action.payload,
       }
     }
-  }
+  },
+  [shopActions.shop.set.name]: (state, action) => {
+    return {
+      ...state,
+      shop_name: action.payload
+    }
+  },
 }, {
   id: null,
   shop_name: 'Loading',
@@ -324,7 +332,8 @@ export const ShopPageReducer = handleActions({
   },
   referral: {
     code: 'loading'
-  }
+  },
+  demostore: config.demostore,
 })
 
 export const ShopPageUIReducer = handleActions({

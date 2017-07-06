@@ -42,7 +42,7 @@ const ImageUploader = ({
 
   if ( type === 'COVER') {
     width = 828;
-    height = 192;
+    height = 315;
   }
 
   if (type === 'PRODUCT') {

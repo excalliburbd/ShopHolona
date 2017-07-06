@@ -10,7 +10,7 @@ import {
   getShopAddress,
   getShopHours,
 } from '../thunks/shopThunks';
-import { tryGetVendor } from '../thunks/userThunks';
+import { tryGetVendor, trySignInAsyncAction } from '../thunks/userThunks';
 import { getCart } from '../thunks/cartThunks';
 import { getOrderList } from '../thunks/ordersThunks';
 import { getBanks } from '../thunks/paymentandaddressThunks';
@@ -26,6 +26,7 @@ import { getPinState, getTitleMsg } from '../selectors/navigationSelectors';
 
 import Nav from '../components/Navigation/Navigation';
 
+import config from '../config';
 
 const mapStateToProps = state => {
   return {
@@ -42,6 +43,7 @@ const mapStateToProps = state => {
     online: state.offline.online,
     token: getToken(state),
     titleMsg: getTitleMsg(state),
+    demostore: state.shop.demostore,
   }
 }
 
@@ -66,14 +68,20 @@ const mapDispatchToProps = dispatch => {
     handleSignOut: () => {
       dispatch(userActions.user.manualSignOut());
     },
-    handleSetCredentials: (shop, token) => {
+    handleSetCredentials: (shop, token, demostore) => {
       dispatch(shopActions.shop.set.id(shop));
-
+      token && dispatch(userActions.user.done.get.token(token));
       dispatch(getShop(shop));
       dispatch(getShopCategories(shop));
       dispatch(getAllProducts(shop));
       dispatch(getShopAddress(shop));
       dispatch(getFeaturedProduct(shop));
+
+      if (demostore) {
+        dispatch(
+          trySignInAsyncAction({ email: config.demouser, password: config.demopass}, shop)
+        )
+      }
     },
     handleSetSideDrawer: val => {
       dispatch({
