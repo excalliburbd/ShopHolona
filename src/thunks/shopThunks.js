@@ -1,4 +1,4 @@
-import Notifications from 'react-notification-system-redux';
+import { addNotification } from 'reapop';
 
 import { request, getConfig } from './helpers';
 
@@ -164,10 +164,11 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                     )).then(
                       res => {
                         if (res.id) {
-                          dispatch(Notifications.success({
+                          dispatch(addNotification({
                             title: 'Success',
                             message: 'Successfull updated shop name',
                             position: 'bl',
+                            status: 'success',
                           }));
                         }
                       }
@@ -178,10 +179,11 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                         const info = JSON.parse(err);
 
                         if (info.shop_name) {
-                          dispatch(Notifications.error({
+                          dispatch(addNotification({
                             title: 'Error during shop update',
                             message: info.shop_name[0],
                             position: 'bl',
+                            status: 'error',
                           }));
                         }
                       }

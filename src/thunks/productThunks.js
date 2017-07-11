@@ -1,6 +1,5 @@
-import Notifications from 'react-notification-system-redux';
-
 import { request, getConfig } from './helpers';
+import { addNotification } from 'reapop';
 
 import { getShopCategories } from './shopThunks';
 
@@ -119,10 +118,11 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                 id,
                 name
               }));
-              dispatch(Notifications.success({
+              dispatch(addNotification({
                 title: 'Success',
                 message: 'Successfull updated product name',
                 position: 'bl',
+                status: 'success',
               }));
             } else {
               request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
@@ -135,10 +135,11 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                         res => {
                           if (res.id) {
                             //do something
-                            dispatch(Notifications.success({
+                            dispatch(addNotification({
                               title: 'Success',
                               message: 'Successfull updated product name',
                               position: 'bl',
+                              status: 'success',
                             }));
                           }
                         }
@@ -149,10 +150,11 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           const info = JSON.parse(err);
 
                           if (info.name) {
-                            dispatch(Notifications.error({
+                            dispatch(addNotification({
                               title: 'Error during product update',
                               message: info.name[0],
                               position: 'bl',
+                              status: 'error',
                             }));
                           }
                         }
@@ -165,10 +167,11 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                 id,
                 desc: short_desc
               }));
-              dispatch(Notifications.success({
+              dispatch(addNotification({
                 title: 'Success',
                 message: 'Successfull updated product description',
                 position: 'bl',
+                status: 'success',
               }));
             } else {
               request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
@@ -181,10 +184,11 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                         res => {
                           if (res.id) {
                             //do something
-                            dispatch(Notifications.success({
+                            dispatch(addNotification({
                               title: 'Success',
                               message: 'Successfull updated product description',
                               position: 'bl',
+                              status: 'success',
                             }));
                           }
                         }
@@ -195,10 +199,11 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           const info = JSON.parse(err);
 
                           if (info.short_desc) {
-                            dispatch(Notifications.error({
+                            dispatch(addNotification({
                               title: 'Error during product update',
                               message: info.short_desc[0],
                               position: 'bl',
+                              status: 'error',
                             }));
                           }
                         }
@@ -215,11 +220,12 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                     attrID: attr.attrID,
                     attr,
                   }));
-                  dispatch(Notifications.success({
+                  dispatch(addNotification({
                     uid: `${id}productstockupdate`,
                     title: 'Success',
                     message: 'Successfull updated product stock',
                     position: 'bl',
+                    status: 'success',
                   }));
                 } else {
                   request(`/vendors/shops/${shop}/products/${id}/variances/${attr.variantID}/attributes/${attr.attrID}/`, getConfig(
@@ -234,11 +240,12 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           'PATCH'
                         )).then(
                           res => {
-                            dispatch(Notifications.success({
+                            dispatch(addNotification({
                               uid: `${id}productstockupdate`,
                               title: 'Success',
                               message: 'Successfull updated product stock',
                               position: 'bl',
+                              status: 'success',
                             }));
                           }
                         ).catch(
@@ -251,11 +258,12 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                             //TODO:
 
                             // if (info.??) {
-                              dispatch(Notifications.error({
+                              dispatch(addNotification({
                                 uid: `${id}productstockupdate`,
                                 title: 'Error during product update',
                                 message: 'Can not update stock',
                                 position: 'bl',
+                                status: 'error',
                               }));
                             // }
                           }
@@ -274,11 +282,12 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                     attrID: attr.attrID,
                     attr,
                   }));
-                  dispatch(Notifications.success({
+                  dispatch(addNotification({
                     uid: `${id}productstockupdate`,
                     title: 'Success',
                     message: 'Successfull updated product stock',
                     position: 'bl',
+                    status: 'success',
                   }));
                 } else {
                   request(`/vendors/shops/${shop}/products/${id}/variances/${attr.variantID}/attributes/`, getConfig(
@@ -293,11 +302,12 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           'POST'
                         )).then(
                           res => {
-                            dispatch(Notifications.success({
+                            dispatch(addNotification({
                               uid: `${id}productstockupdate`,
                               title: 'Success',
                               message: 'Successfull updated product stock',
                               position: 'bl',
+                              status: 'success',
                             }));
                           }
                         ).catch(
@@ -308,11 +318,12 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                             //TODO:
 
                             // if (info.short_desc) {
-                              dispatch(Notifications.error({
+                              dispatch(addNotification({
                                 uid: `${id}productstockupdate`,
                                 title: 'Error during product update',
                                 message: 'Can not update stock',
                                 position: 'bl',
+                                status: 'error',
                               }));
                             // }
                           }
@@ -334,11 +345,12 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           attrID: attr.attrID,
                           attr,
                         }));
-                        dispatch(Notifications.success({
+                        dispatch(addNotification({
                           uid: `${id}productpriceweightupdate`,
                           title: 'Success',
                           message: 'Successfull updated product details',
                           position: 'bl',
+                          status: 'success',
                         }));
                       } else {
                         request(`/vendors/shops/${shop}/products/${id}/variances/${variantID}/attributes/${attrID}/`, getConfig(
@@ -350,11 +362,12 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                                   'PATCH'
                                 )).then(
                                   res => {
-                                    dispatch(Notifications.success({
+                                    dispatch(addNotification({
                                       uid: `${id}productpriceweightupdate`,
                                       title: 'Success',
                                       message: 'Successfull updated product details',
                                       position: 'bl',
+                                      status: 'success',
                                     }));
                                   }
                                 ).catch(
@@ -365,11 +378,12 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                                     //TODO:
 
                                     // if (info.short_desc) {
-                                      dispatch(Notifications.error({
+                                      dispatch(addNotification({
                                         uid: `${id}productpriceweightupdate`,
                                         title: 'Error during product update',
                                         message: 'Can not update product details',
                                         position: 'bl',
+                                        status: 'error',
                                       }));
                                     // }
                                   }

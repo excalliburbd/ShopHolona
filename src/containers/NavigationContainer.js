@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { mediaQueryTracker } from 'redux-mediaquery';
-import Notifications from 'react-notification-system-redux';
 
 import { getAllProducts, getFeaturedProduct } from '../thunks/productThunks';
 import {

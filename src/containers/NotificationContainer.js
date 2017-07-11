@@ -1,17 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import NotificationsSystem from 'reapop';
+import theme from '../themes/reapop';
 
-import Notifications from 'react-notification-system-redux';
-
-const Notification = ({ notifications }) => {
+const Notification = () => {
   return (
-    <Notifications notifications={ notifications } />
+    <NotificationsSystem theme={ theme } />
   );
 }
 
 const mapStateToProps = state => {
   return {
-    notifications: state.ui.notifications
+    // notifications: state.ui.notifications
   }
 }
 

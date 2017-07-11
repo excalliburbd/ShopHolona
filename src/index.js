@@ -8,9 +8,9 @@ import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
 import registerServiceWorker from './registerServiceWorker';
 import store from './store/configureStore';
 import { history } from './store/configureStore';
-import theme from './react-toolbox/theme';
+import theme from './themes/react-toolbox/theme';
 
-import './react-toolbox/theme.css';
+import './themes/react-toolbox/theme.css';
 
 import NavigationContainer from './containers/NavigationContainer';
 import DashboardContainer from './containers/DashboardContainer';
