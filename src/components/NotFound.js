@@ -1,12 +1,17 @@
 import React from 'react';
 import {TransitionMotion, spring} from 'react-motion';
+import { withRouter } from 'react-router-dom';
+
 import Button from 'react-toolbox/lib/button/Button';
 import FaHandOLeft from 'react-icons/lib/fa/hand-o-left';
+
 import './NotFound.css';
+
+import config from '../config';
 
 const leavingSpringConfig = {stiffness: 60, damping: 15};
 
-export default class NotFound extends React.Component {
+class NotFound extends React.Component {
   constructor(props) {
     super(props);
     this.state = {mouse: [], now: 't' + 0};
@@ -68,7 +73,14 @@ export default class NotFound extends React.Component {
             <div className="not-found-container">
               <div className="not-found-title">404</div>
               <div className="not-found-text">Page Not Found</div>
-              <div><Button className="not-found-btn" icon={<FaHandOLeft/>} label='Go To Home Page' raised primary href="/"/></div>
+              <div>
+                <Button className="not-found-btn"
+                        icon={<FaHandOLeft/>}
+                        onClick={ () => this.props.history.push('/') }
+                        label='Go To Home Page'
+                        raised
+                        primary />
+              </div>
             </div>
           </div>
         }
@@ -77,3 +89,5 @@ export default class NotFound extends React.Component {
     );
   };
 }
+
+export default withRouter(NotFound);
