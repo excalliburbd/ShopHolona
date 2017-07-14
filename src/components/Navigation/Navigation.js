@@ -59,11 +59,6 @@ class Nav extends Component {
     handleGetMedia();
 
     const id = window.shopID;
-    const error = window.error;
-
-    if (error) {
-      history.replace('/notfound');
-    }
 
     if(location.search !== '') {
       const searchParts = location.search.split('&');
