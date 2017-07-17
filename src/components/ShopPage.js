@@ -58,6 +58,9 @@ const ShopPage = ({
   editDesc,
   handleShowEditDescription,
   info,
+  following,
+  handleFollowShop,
+  handlePromptSignIn,
 }) => {
 
   const detailsClass = classNames({
@@ -94,7 +97,36 @@ const ShopPage = ({
         }
       }
     }
-  )
+  );
+
+  const GetFollowingButton = ({
+    vendor,
+    following,
+    handleFollowShop,
+    handlePromptSignIn
+  }) => {
+
+    if ( vendor ) {
+      return null;
+    } else if (following) {
+      return <Button  raised
+                      disabled
+                      label="Unfollow"/>
+    }
+
+    return <Button  raised
+                    primary
+                    onClick={
+                      () => {
+                        if (token) {
+                          handleFollowShop(shop, token, shopName);
+                        } else {
+                          handlePromptSignIn(shopName);
+                        }
+                      }
+                    }
+                    label="Follow"/>
+  }
 
   return (
     <div className={ productDetailsClass }>
@@ -157,7 +189,10 @@ const ShopPage = ({
               )
             }
           </ul>
-          { !vendor && <Button raised primary label="Follow"/>}
+          <GetFollowingButton vendor={ vendor }
+                              following={ following }
+                              handleFollowShop={ handleFollowShop }
+                              handlePromptSignIn={ handlePromptSignIn }/>
         </div>
         <div className="ShopPage-details--text">
           {

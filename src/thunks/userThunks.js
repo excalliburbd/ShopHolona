@@ -1,3 +1,5 @@
+import { addNotification } from 'reapop';
+
 import { request, getConfig } from './helpers';
 
 import { getShopCategories } from './shopThunks';
@@ -21,6 +23,22 @@ export const tryGetVendor = (shop, token) => dispatch => {
             }
           ).catch(
             err => userActions.user.done.get.authShop(new Error(err))
+          );
+  }
+}
+
+export const getFollowingShop = (shop, token) => dispatch => {
+  if (token) {
+    request('/me/following-shops/', getConfig(
+            token
+          )).then(
+            res => {
+              if( res.length > 0 ) {
+                dispatch(userActions.user.done.get.followingShops(res));
+              }
+            }
+          ).catch(
+            err => console.log(err)
           );
   }
 }
@@ -51,7 +69,6 @@ export const trySignInAsyncAction = (res, shop) => dispatch => {
                 res.token
               )).then(
                 res => {
-                  dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
 
                   if (res.id) {
                     dispatch(userActions.user.done.get.profile(res));
@@ -61,13 +78,10 @@ export const trySignInAsyncAction = (res, shop) => dispatch => {
 
               if(res.token){
                 dispatch(userActions.user.done.get.token(res.token));
-
                 dispatch(sidebarActions.sidebar.hide());
-
                 dispatch(getShopCategories(shop));
-
                 dispatch(tryGetVendor(shop, res.token));
-
+                dispatch(getFollowingShop(shop, res.token));
               }
             }
           ).catch(
@@ -77,14 +91,12 @@ export const trySignInAsyncAction = (res, shop) => dispatch => {
           );
 }
 
-export const getMe = (token, shop) => dispatch => {
+export const getMe = token => dispatch => {
     if (token) {
       request('/me/', getConfig(
           token
         )).then(
           res => {
-            dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
-
             if (res.id) {
               dispatch(userActions.user.done.get.profile(res));
             }
@@ -92,8 +104,76 @@ export const getMe = (token, shop) => dispatch => {
         ).catch(
           err => {
             dispatch(userActions.user.done.get.profile(new Error(err)));
+            dispatch(addNotification({
+              title: 'Error during fetching profile',
+              message: err,
+              position: 'bl',
+              status: 'error',
+            }));
             dispatch(sidebarActions.sidebar.show.signIn());
           }
         );
     }
 }
+
+export const followShop = (shop, token, name) => dispatch => {
+  if (token) {
+    request('/me/following-shops/', getConfig(
+            token,
+            {
+              shop
+            },
+            'POST'
+          )).then(
+            res => {
+              if( res.id ) {
+                dispatch(userActions.user.set.followingShop(res));
+                dispatch(addNotification({
+                  title: 'Success',
+                  message: `You are now following ${ name }`,
+                  position: 'bl',
+                  status: 'success',
+                }));
+              }
+            }
+          ).catch(
+            err => {
+              dispatch(addNotification({
+                title: 'Error following shop',
+                message: err,
+                position: 'bl',
+                status: 'error',
+              }));
+            }
+          );
+  }
+}
+
+//ToDo: no delete api
+// export const unFollowShop = (shop, token, name) => dispatch => {
+//   if (token) {
+//     request('/me/following-shops/', getConfig(
+//             token
+//           )).then(
+//             res => {
+//               if( res.id ) {
+//                 dispatch(addNotification({
+//                   title: 'Success',
+//                   message: `You are now following ${ name }`,
+//                   position: 'bl',
+//                   status: 'success',
+//                 }));
+//               }
+//             }
+//           ).catch(
+//             err => {
+//                dispatch(addNotification({
+//                   title: 'Error following shop',
+//                   message: err,
+//                   position: 'bl',
+//                   status: 'success',
+//                 }));
+//             }
+//           );
+//   }
+// }

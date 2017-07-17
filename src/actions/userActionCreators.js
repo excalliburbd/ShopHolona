@@ -13,7 +13,11 @@ export const userActionCreators = {
         TOKEN: payload => payload,
         PROFILE: payload => payload,
         AUTH_SHOP: payload => payload,
+        FOLLOWING_SHOPS: payload => payload,
       }
+    },
+    SET: {
+      FOLLOWING_SHOP: payload => payload,
     },
     MANUAL_SIGN_OUT: payload => payload
   }

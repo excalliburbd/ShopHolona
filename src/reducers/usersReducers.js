@@ -1,26 +1,29 @@
 import { handleActions } from 'redux-actions';
 
 import { userActions } from '../actions/';
+import { REHYDRATE } from 'redux-persist/constants';
 
 export const UserReducer = handleActions({
   [userActions.user.manualSignOut]: (state, action) => ({
-        isLoggedIn: false,
-        token: null,
-        registered_as: null,
-        referral: {
-          code: 'loading'
-        },
-        last_login: null,
-        full_name: '',
-        email: '',
-        phone_verified: false,
-        email_verified: false,
-      }),
+    isLoggedIn: false,
+    token: null,
+    registered_as: null,
+    referral: {
+      code: 'loading'
+    },
+    last_login: null,
+    full_name: '',
+    email: '',
+    phone_verified: false,
+    email_verified: false,
+    shopvendor: false,
+    following: [],
+  }),
   [userActions.user.done.get.token]: (state, action) => ({
-        ...state,
-        isLoggedIn: true,
-        token: action.payload,
-      }),
+    ...state,
+    isLoggedIn: true,
+    token: action.payload,
+  }),
   [userActions.user.done.get.profile]: {
     next(state, action) {
       return {
@@ -41,6 +44,8 @@ export const UserReducer = handleActions({
         email: '',
         phone_verified: false,
         email_verified: false,
+        shopvendor: false,
+        following: [],
       }
     }
   },
@@ -57,7 +62,37 @@ export const UserReducer = handleActions({
         shopvendor: false,
       }
     }
-  }
+  },
+  [userActions.user.done.get.followingShops]: (state, action) => ({
+      ...state,
+      following: action.payload,
+  }),
+  [userActions.user.set.followingShop]: (state, action) => {
+    const exists = state.user.following.some( following => following.shop.id === action.payload.shop.id );
+
+    if (exists) {
+      return {
+        ...state,
+      }
+    }
+
+    return {
+      ...state,
+      following: [
+        ...state.following,
+        action.payload
+      ]
+    }
+  },
+  [REHYDRATE]: (state, action) => {
+      const incoming = action.payload.user;
+
+      return {
+        ...state,
+        ...incoming,
+        shopvendor: false,
+     }
+  },
 }, {
   isLoggedIn: false,
   token: null,
@@ -71,6 +106,7 @@ export const UserReducer = handleActions({
   phone_verified: false,
   email_verified: false,
   shopvendor: false,
+  following: [],
 });
 
 export const UserUIReducer = handleActions({

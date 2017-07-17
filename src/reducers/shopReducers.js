@@ -25,9 +25,12 @@ export const ShopPageReducer = handleActions({
             ...state.information,
             upToDate: true,
             name: shop_name,
-            phone: {
+            phone: (contacts[0]) ? {
               id: contacts[0].id,
               number:contacts[0].description,
+            } : {
+              id: null,
+              number: 'loading',
             },
             license: {
               number: trade_license_number,

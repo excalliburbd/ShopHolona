@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { addNotification } from 'reapop';
 
 import { getCategory } from '../thunks/productThunks';
 import { addToCart } from '../thunks/cartThunks';
@@ -18,6 +19,9 @@ import {
 import {
   runShopInfoUpdate
 } from '../thunks/shopThunks';
+import {
+  followShop,
+} from '../thunks/userThunks';
 
 import ShopPage from '../components/ShopPage';
 
@@ -32,6 +36,7 @@ import {
 } from '../selectors/shopSelectors';
 import {
   getVendor,
+  following,
 } from '../selectors/userSelectors';
 
 const mapStateToProps = state => {
@@ -56,6 +61,7 @@ const mapStateToProps = state => {
     productDetailstabIndex: state.ui.shopPage.detailsTab,
     featured: getProductDetailsIsFeaturedProduct(state),
     editDesc: state.ui.shopPage.editDesc && getVendor(state),
+    following: following(state),
   }
 }
 
@@ -114,6 +120,18 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     handleShowEditDescription: () => {
       dispatch(shopActions.shop.set.editDesc(true));
+    },
+    handleFollowShop: (shop, token, name) => {
+      dispatch(followShop(shop, token, name));
+    },
+    handlePromptSignIn: name => {
+      dispatch(addNotification({
+        title: 'Please Log In',
+        message: `Log In to follow ${name}`,
+        position: 'bl',
+        status: 'error',
+      }));
+      dispatch(sidebarActions.sidebar.show.signIn());
     }
   }
 }

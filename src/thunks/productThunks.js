@@ -221,7 +221,6 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                     attr,
                   }));
                   dispatch(addNotification({
-                    uid: `${id}productstockupdate`,
                     title: 'Success',
                     message: 'Successfull updated product stock',
                     position: 'bl',
@@ -241,7 +240,6 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                         )).then(
                           res => {
                             dispatch(addNotification({
-                              uid: `${id}productstockupdate`,
                               title: 'Success',
                               message: 'Successfull updated product stock',
                               position: 'bl',
@@ -259,7 +257,6 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
 
                             // if (info.??) {
                               dispatch(addNotification({
-                                uid: `${id}productstockupdate`,
                                 title: 'Error during product update',
                                 message: 'Can not update stock',
                                 position: 'bl',
@@ -283,7 +280,6 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                     attr,
                   }));
                   dispatch(addNotification({
-                    uid: `${id}productstockupdate`,
                     title: 'Success',
                     message: 'Successfull updated product stock',
                     position: 'bl',
@@ -303,7 +299,6 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                         )).then(
                           res => {
                             dispatch(addNotification({
-                              uid: `${id}productstockupdate`,
                               title: 'Success',
                               message: 'Successfull updated product stock',
                               position: 'bl',
@@ -319,7 +314,6 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
 
                             // if (info.short_desc) {
                               dispatch(addNotification({
-                                uid: `${id}productstockupdate`,
                                 title: 'Error during product update',
                                 message: 'Can not update stock',
                                 position: 'bl',
@@ -346,7 +340,6 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           attr,
                         }));
                         dispatch(addNotification({
-                          uid: `${id}productpriceweightupdate`,
                           title: 'Success',
                           message: 'Successfull updated product details',
                           position: 'bl',
@@ -363,7 +356,6 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                                 )).then(
                                   res => {
                                     dispatch(addNotification({
-                                      uid: `${id}productpriceweightupdate`,
                                       title: 'Success',
                                       message: 'Successfull updated product details',
                                       position: 'bl',
@@ -379,7 +371,6 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
 
                                     // if (info.short_desc) {
                                       dispatch(addNotification({
-                                        uid: `${id}productpriceweightupdate`,
                                         title: 'Error during product update',
                                         message: 'Can not update product details',
                                         position: 'bl',

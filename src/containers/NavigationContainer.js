@@ -9,7 +9,11 @@ import {
   getShopAddress,
   getShopHours,
 } from '../thunks/shopThunks';
-import { tryGetVendor, trySignInAsyncAction } from '../thunks/userThunks';
+import {
+  tryGetVendor,
+  trySignInAsyncAction,
+  getMe,
+  getFollowingShop, } from '../thunks/userThunks';
 import { getCart } from '../thunks/cartThunks';
 import { getOrderList } from '../thunks/ordersThunks';
 import { getBanks } from '../thunks/paymentandaddressThunks';
@@ -69,7 +73,13 @@ const mapDispatchToProps = dispatch => {
     },
     handleSetCredentials: (shop, token, demostore) => {
       dispatch(shopActions.shop.set.id(shop));
-      token && dispatch(userActions.user.done.get.token(token));
+
+      if (token) {
+        dispatch(userActions.user.done.get.token(token));
+        dispatch(getMe(token));
+        dispatch(getFollowingShop(shop, token));
+      }
+
       dispatch(getShop(shop));
       dispatch(getShopCategories(shop));
       dispatch(getAllProducts(shop));
@@ -82,12 +92,6 @@ const mapDispatchToProps = dispatch => {
         )
       }
     },
-    handleSetSideDrawer: val => {
-      dispatch({
-        type: 'SET_NAVIGATION_PIN_SIDEDRAWER',
-        payload: val,
-      })
-    },
     hadleLoadData: (shop, token, vendor) => {
       dispatch(tryGetVendor(shop));
       dispatch(getShop(shop));
@@ -99,13 +103,20 @@ const mapDispatchToProps = dispatch => {
 
       if (token) {
         dispatch(getCart(token, false));
-        dispatch(tryGetVendor(shop, token))
+        dispatch(tryGetVendor(shop, token));
+        dispatch(getFollowingShop(shop, token));
       }
 
       if (vendor && token) {
         dispatch(getShopHours(shop, token));
         dispatch(getOrderList(shop, token));
       }
+    },
+    handleSetSideDrawer: val => {
+      dispatch({
+        type: 'SET_NAVIGATION_PIN_SIDEDRAWER',
+        payload: val,
+      })
     },
     handleGetMedia: () => {
       dispatch(mediaQueryTracker({
