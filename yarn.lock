@@ -2912,7 +2912,7 @@ fuse.js@^3.0.1:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-3.0.3.tgz#d5913ccb1b1a87ddf448b1436412e1885a175519"
 
-gauge@~2.7.1, gauge@~2.7.3:
+gauge@~2.7.1:
   version "2.7.4"
   resolved "https://registry.yarnpkg.com/gauge/-/gauge-2.7.4.tgz#2c03405c7538c39d7eb37b317022e325fb018bf7"
   dependencies:
@@ -4570,25 +4570,7 @@ node-fetch@^1.0.1:
     encoding "^0.1.11"
     is-stream "^1.0.1"
 
-node-gyp@^3.3.1:
-  version "3.6.2"
-  resolved "https://registry.yarnpkg.com/node-gyp/-/node-gyp-3.6.2.tgz#9bfbe54562286284838e750eac05295853fa1c60"
-  dependencies:
-    fstream "^1.0.0"
-    glob "^7.0.3"
-    graceful-fs "^4.1.2"
-    minimatch "^3.0.2"
-    mkdirp "^0.5.0"
-    nopt "2 || 3"
-    npmlog "0 || 1 || 2 || 3 || 4"
-    osenv "0"
-    request "2"
-    rimraf "2"
-    semver "~5.3.0"
-    tar "^2.0.0"
-    which "1"
-
-node-gyp@~3.6.0:
+node-gyp@^3.3.1, node-gyp@~3.6.0:
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/node-gyp/-/node-gyp-3.6.1.tgz#19561067ff185464aded478212681f47fd578cbc"
   dependencies:
@@ -4875,22 +4857,13 @@ npm@^4.6.1:
     wrappy "~1.0.2"
     write-file-atomic "~1.3.3"
 
-"npmlog@0 || 1 || 2 || 3 || 4", "npmlog@2 || ^3.1.0 || ^4.0.0", npmlog@^4.0.2, npmlog@~4.0.2:
+"npmlog@0 || 1 || 2 || 3 || 4", "npmlog@2 || ^3.1.0 || ^4.0.0", npmlog@^4.0.0, npmlog@^4.0.2, npmlog@~4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/npmlog/-/npmlog-4.0.2.tgz#d03950e0e78ce1527ba26d2a7592e9348ac3e75f"
   dependencies:
     are-we-there-yet "~1.1.2"
     console-control-strings "~1.1.0"
     gauge "~2.7.1"
-    set-blocking "~2.0.0"
-
-npmlog@^4.0.0:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/npmlog/-/npmlog-4.1.2.tgz#08a7f2a8bf734604779a9efa4ad5cc717abb954b"
-  dependencies:
-    are-we-there-yet "~1.1.2"
-    console-control-strings "~1.1.0"
-    gauge "~2.7.3"
     set-blocking "~2.0.0"
 
 nth-check@~1.0.1:
@@ -6303,22 +6276,12 @@ react-toolbox@2.0.0-beta.10:
     react-style-proptype "^3.0.0"
     react-transition-group "^1.1.3"
 
-react-transition-group@^1.1.1, react-transition-group@^1.1.3:
+react-transition-group@^1.1.1, react-transition-group@^1.1.2, react-transition-group@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-1.1.3.tgz#5e02cf6e44a863314ff3c68a0c826c2d9d70b221"
   dependencies:
     chain-function "^1.0.0"
     dom-helpers "^3.2.0"
-    prop-types "^15.5.6"
-    warning "^3.0.0"
-
-react-transition-group@^1.1.2:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-1.2.0.tgz#b51fc921b0c3835a7ef7c571c79fc82c73e9204f"
-  dependencies:
-    chain-function "^1.0.0"
-    dom-helpers "^3.2.0"
-    loose-envify "^1.3.1"
     prop-types "^15.5.6"
     warning "^3.0.0"
 
@@ -6477,10 +6440,6 @@ realize-package-specifier@~3.0.3:
 reapop-theme-shophobe@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/reapop-theme-shophobe/-/reapop-theme-shophobe-0.4.1.tgz#7eb11a3069c9a77d2d0a0821fb24a9f1c1592366"
-
-reapop-theme-wybo@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/reapop-theme-wybo/-/reapop-theme-wybo-0.4.1.tgz#70356acd67f016c5f5411e32d2ec53f6ea492e2d"
 
 reapop@^1.1.1:
   version "1.1.1"
