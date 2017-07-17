@@ -32,7 +32,7 @@
     "react-sticky-el": "^1.0.3",
     "react-toolbox": "2.0.0-beta.10",
     "reapop": "^1.1.1",
-    "reapop-theme-wybo": "^0.4.1",
+    "reapop-theme-shophobe": "^0.4.1",
     "recharts": "^0.22.0",
     "redux": "^3.6.0",
     "redux-action-buffer": "^1.0.1",
@@ -60,7 +60,7 @@
     "toolbox": "react-toolbox-themr",
     "deploy": "yarn build && aws s3 cp build/ s3://demostore.shophobe.com/ --recursive",
     "stage": "yarn build && cp -a build/. /var/www/html/",
-    "build-reapop": "node-sass-chokidar src/themes/reapop/src/styles/ -o src/themes/reapop/lib/"
+    "build-reapop": "node-sass-chokidar reapop-theme-shophobe/src/styles/ -o reapop-theme-shophobe/lib/"
   },
   "eslintConfig": {
     "extends": "react-app"

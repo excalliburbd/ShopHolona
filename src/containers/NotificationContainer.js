@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import NotificationsSystem from 'reapop';
-import theme from '../themes/reapop';
+import theme from 'reapop-theme-shophobe';
 
 const Notification = () => {
   return (
