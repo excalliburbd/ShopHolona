@@ -149,13 +149,26 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     handleSelect: (key, id) => {
         dispatch(categoryActions.categories.ui.set.attr.selected({ id: key }));
-
         if (key === -1) {
           dispatch(categoryActions.categories.ui.unsetPrimaryAttr({ id }));
         }
     },
-    handleAttributeSelect: (selected, id) => {
-      dispatch(categoryActions.categories.ui.set.attr.selectSecondary({ selected, id }));
+    handleAttributeSelect: (selected, id, stock) => {
+      if (selected) {
+        if (parseInt(stock, 10) > 0) {
+          dispatch(categoryActions.categories.ui.update.stock({
+            value: '0',
+            id,
+            key: selected[0],
+          }));
+        } else {
+          dispatch(categoryActions.categories.ui.update.stock({
+            value: '1',
+            id,
+            key: selected[0],
+          }));
+        }
+      }
     },
     handleRadio: value => {
       dispatch(sidebarActions.sidebar.ui.set.radioValue(value));
@@ -187,7 +200,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     setAttributeDone: id => {
       dispatch(categoryActions.categories.ui.set.attr.selectPrimary({ id }));
-
       dispatch(categoryActions.categories.ui.set.attr.selected({ id: -1 }));
     },
     handleStockInputBlur: id => {

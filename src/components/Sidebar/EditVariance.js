@@ -57,7 +57,7 @@ const EditVariance = ({
         </Card>
       </div>
     </div>
-  )
+  );
 }
 
 export default EditVariance;

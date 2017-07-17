@@ -86,15 +86,15 @@ export const ProductsUIReducer = handleActions({
       let commissioned = price;
 
       if (price < 1000) {
-        commissioned = Math.round(price + (price * .06));
+        commissioned = Math.round(price/1.06);
       } else if(price < 5000) {
-        commissioned = Math.round(price + (price * .04));
+        commissioned = Math.round(price/1.04);
       } else if (price < 10000) {
-        commissioned = Math.round(price + (price * .03));
+        commissioned = Math.round(price/1.03);
       } else if (price < 20000) {
-        commissioned = Math.round(price + (price * .02));
+        commissioned = Math.round(price/1.02);
       } else {
-        commissioned = Math.round(price + (price * .01));
+        commissioned = Math.round(price/1.01);
       }
 
       return {
@@ -114,15 +114,15 @@ export const ProductsUIReducer = handleActions({
       let commissioned = price;
 
       if (price < 1000) {
-        commissioned = Math.round(price + (price * .06));
+        commissioned = Math.round(price/1.06);
       } else if(price < 5000) {
-        commissioned = Math.round(price + (price * .04));
+        commissioned = Math.round(price/1.04);
       } else if (price < 10000) {
-        commissioned = Math.round(price + (price * .03));
+        commissioned = Math.round(price/1.03);
       } else if (price < 20000) {
-        commissioned = Math.round(price + (price * .02));
+        commissioned = Math.round(price/1.02);
       } else {
-        commissioned = Math.round(price + (price * .01));
+        commissioned = Math.round(price/1.01);
       }
 
       const allAttr = action.payload.variances.map(
@@ -208,15 +208,15 @@ export const ProductsUIReducer = handleActions({
       let commissioned = price;
 
       if (price < 1000) {
-        commissioned = Math.round(price + (price * .06));
+        commissioned = Math.round(price/1.06);
       } else if(price < 5000) {
-        commissioned = Math.round(price + (price * .04));
+        commissioned = Math.round(price/1.04);
       } else if (price < 10000) {
-        commissioned = Math.round(price + (price * .03));
+        commissioned = Math.round(price/1.03);
       } else if (price < 20000) {
-        commissioned = Math.round(price + (price * .02));
+        commissioned = Math.round(price/1.02);
       } else {
-        commissioned = Math.round(price + (price * .01));
+        commissioned = Math.round(price/1.01);
       }
 
       return {

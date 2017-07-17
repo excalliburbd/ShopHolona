@@ -105,7 +105,7 @@ const AddProductDetails = ({
                           value={ Math.round(productDetailPrice) } />
                   { fcom &&
                       <p className="ProductSidebar-details--commission">
-                        Charged to customer: { productDetailfcomPrice } &#2547;
+                        Actual Price: { productDetailfcomPrice } &#2547;
                         <IconButton icon="info_outline"
                                     onClick={ togglePricingInfo } />
                       </p>

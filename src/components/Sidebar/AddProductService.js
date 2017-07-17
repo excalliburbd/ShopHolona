@@ -130,7 +130,7 @@ const AddProductService = ({
                           {
                             fcom &&
                               <p className="ProductSidebar-details--commission">
-                                Charged to customer: { fcomPrice } &#2547;
+                                Actual Price: { fcomPrice } &#2547;
                                 <IconButton icon="info_outline"
                                             onClick={ togglePricingInfo } />
                               </p>

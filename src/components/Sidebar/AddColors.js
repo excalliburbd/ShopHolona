@@ -70,9 +70,17 @@ const AddColors = ({
                 title={ primaryAttributes[selectedAttribute].value }
               />
             }
-            <Table selectable
+            <Table  selectable
                     className="ProductsSidebar-add-attributes--table"
-                    onRowSelect={ selected => handleAttributeSelect(selected, primaryAttributes[selectedAttribute].id) }>
+                    onRowSelect={ selected => {
+                      handleAttributeSelect(
+                        selected,
+                        primaryAttributes[selectedAttribute].id,
+                        secondaryAttributes[primaryAttributes[selectedAttribute].id].attributes[selected[0]] ?
+                          secondaryAttributes[primaryAttributes[selectedAttribute].id].attributes[selected[0]].stock :
+                          null
+                      )
+                    }}>
 
             <TableHead>
               <TableCell>Name</TableCell>
@@ -83,7 +91,7 @@ const AddColors = ({
             {
               secondaryAttributes[primaryAttributes[selectedAttribute].id].attributes.map(
                     (attribute, key) =>
-                          <TableRow key={key} selected={ attribute.selected }>
+                          <TableRow key={key} selected={ attribute.stock > 0 }>
                             <TableCell>{ attribute.name }</TableCell>
                             <TableCell>{ attribute.value }</TableCell>
                             <TableCell numeric className="ProductsSidebar-add-attributes--stock">
