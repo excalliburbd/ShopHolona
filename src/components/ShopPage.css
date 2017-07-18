@@ -118,13 +118,15 @@
 }
 
 .ShopPage-details--text-desc {
-    /*margin-top: 0.4em;
-    margin-bottom: 1em;
-    padding: 0em 1.1em;*/
-    padding: 1em 0;
-    font-size: 13px;
-    margin-left: 0.2em;
-    font-family: "Gotham Narrow Book";
+  /*margin-top: 0.4em;
+  margin-bottom: 1em;
+  padding: 0em 1.1em;*/
+  padding: 1em 0.51em;
+  font-size: 13px;
+  margin-left: 0.2em;
+  font-family: "Gotham Narrow Book";
+  color: dimgray;
+  font-size: 12px;
 }
 
 .ShopPage-details--show .ShopPage-details--text {
@@ -252,7 +254,7 @@
 
 .ShopPage-details--text-desc--update {
   display: flex;
-  align-items: center;
+  /*align-items: center;*/
 }
 
 .ShopPage-details--text-desc--update .lFVgC {
