@@ -270,6 +270,7 @@ export const getAllProducts = createSelector(
 export const getPrimaryAttributes = createSelector(
   [getProductPrimaryAttributes, getSelectedProductID, getSelectedProduct],
   (attr, id, product) => {
+    console.log('running', product)
     if (id) {
       return [ 'edit', product];
     }

@@ -2,9 +2,13 @@
 .ProductsSidebar-add--stock,
 .ProductsSidebar-img,
 .ProductSidebar-details,
-.ProductSidebar-upload{
+.ProductSidebar-upload {
   padding: 1em;
   padding-top: 0;
+}
+
+.ProductsSidebar-img {
+  padding-top: 1em;
 }
 
 .ProductsSidebar-add {

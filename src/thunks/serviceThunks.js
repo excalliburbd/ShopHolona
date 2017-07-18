@@ -125,7 +125,7 @@
 //                 }
 //               }
 
-//               if(status === 'DONE') {
+//               if(status === 'DONE') {//depricated
 //                 dispatch({
 //                   type: 'INVALIDATE_PRODUCT_IMGAES',
 //                   payload: { id, key }

@@ -22,7 +22,7 @@ const AddProductImages = ({
 
   if (edit) {
     const product = primaryAttributes[1];
-
+    console.log('changed', primaryAttributes);
     return (
       <div className="ProductsSidebar-img">
         <h3>Edit Product Images</h3>
@@ -60,7 +60,7 @@ const AddProductImages = ({
                             {
                               images.map(
                                 ({ image }, iKey) => <div onClick={ () => handleRemoveImg(key, iKey, true) }
-                                                          key={ key }
+                                                          key={ iKey }
                                                           style={{
                                                             backgroundImage: `url(${ image })`,
                                                             backgroundSize: 'contain',

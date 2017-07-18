@@ -467,11 +467,6 @@ export const deleteProduct = (id, shop, token) => dispatch => {
 }
 
 export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
-
-  dispatch({
-    type: 'POST_API_PRODUCT_IMGAE',
-  })
-
   const apiRequest = new FormData();
 
   apiRequest.append('image', obj.file);
@@ -484,26 +479,31 @@ export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
             'post'
           )).then(
             res => {
-              if (status === 'EDIT') {
-                dispatch(productActions.products.ui.set.edit.image({ response: res, id, image: obj.file.preview }))
-              } else {
-                dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
+              if(res.id){
+                if (status === 'EDIT') {
+                    dispatch(productActions.products.ui.set.edit.image({ response: res, id, image: obj.file.preview }));
+                    dispatch(addNotification({
+                      title: 'Successfully uploaded image',
+                      message: 'Image uploaded successfully. Please save product to make the update permanent',
+                      position: 'bl',
+                      status: 'success',
+                    }));
+                } else {
+                    dispatch(categoryActions.categories.done.post.productImage({ response: res, id, key }));
+                    dispatch(addNotification({
+                      title: 'Successfully uploaded image',
+                      message: 'Image uploaded successfully. Please save product to make the update permanent',
+                      position: 'bl',
+                      status: 'success',
+                    }));
+                    dispatch(imageUploaderActions.imageUploader.upload.inc());
+                    if (status === 'CROPED') {
+                      dispatch(imageUploaderActions.imageUploader.hide());
+                    }
 
-                if(res.id){
-                  dispatch(categoryActions.categories.done.post.productImage({ response: res, id, key }));
-
-                  dispatch(imageUploaderActions.imageUploader.upload.inc())
-
-                  if (status === 'CROPED') {
-                    dispatch(imageUploaderActions.imageUploader.hide());
+                  if(status === 'DONE') {
+                    console.log('this should do something')
                   }
-                }
-
-                if(status === 'DONE') {
-                  dispatch({
-                    type: 'INVALIDATE_PRODUCT_IMGAES',
-                    payload: { id, key }
-                  })
                 }
               }
             }
