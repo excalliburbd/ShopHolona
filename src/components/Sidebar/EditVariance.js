@@ -15,6 +15,7 @@ const EditVariance = ({
   product,
   variant,
   handleStockEdit,
+  handleSelectVariance,
 }) => {
   const variance = product.variances[variant];
   const attributes = variance.attributes;
@@ -22,38 +23,41 @@ const EditVariance = ({
   return (
     <div>
       <div className="ProductsSidebar-add--colors">
-        <CardTitle title={ variance.type.value }/>
         <Card className="ProductsSidebar-add-attributes--card" >
-          <Table  selectable
-                  className="ProductsSidebar-add-attributes--table"
-                  onRowSelect={ selected => null }>
+          <CardTitle title={ variance.type.value }/>
+            <Table  selectable
+                    className="ProductsSidebar-add-attributes--table"
+                    onRowSelect={ selected => null }>
 
             <TableHead>
-            <TableCell>Name</TableCell>
-            <TableCell>Value</TableCell>
-            <TableCell numeric>Stock</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Value</TableCell>
+              <TableCell numeric>Stock</TableCell>
             </TableHead>
 
             {
               attributes.map(
-                    (attribute, key) =>
-                      <TableRow key={key} selected={ attribute.stock > 0 }>
-                        <TableCell>{ attribute.type.name }</TableCell>
-                        <TableCell>{ attribute.type.value }</TableCell>
-                        <TableCell numeric className="ProductsSidebar-add-attributes--stock">
-                        <Input value={ attribute.stock }
-                                type="number"
-                                onBlur={
-                                  () => null
-                                }
-                                onChange={
-                                  value => handleStockEdit(variant, key, value)
-                                } />
-                        </TableCell>
-                      </TableRow>
-                )
-              }
+                (attribute, key) =>
+                  <TableRow key={key} selected={ attribute.stock > 0 }>
+                    <TableCell>{ attribute.type.name }</TableCell>
+                    <TableCell>{ attribute.type.value }</TableCell>
+                    <TableCell numeric className="ProductsSidebar-add-attributes--stock">
+                    <Input  value={ attribute.stock }
+                            type="number"
+                            onBlur={
+                            () => null
+                            }
+                            onChange={
+                            value => handleStockEdit(variant, key, value)
+                            } />
+                    </TableCell>
+                  </TableRow>
+              )
+            }
             </Table>
+          <CardActions>
+            <Button icon="done" label="done" onClick={ () => handleSelectVariance(-1) } />
+          </CardActions>
         </Card>
       </div>
     </div>

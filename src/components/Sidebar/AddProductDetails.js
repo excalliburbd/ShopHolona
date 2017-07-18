@@ -84,7 +84,8 @@ const AddProductDetails = ({
                 {
                   (selectedVariance !== -1) && <EditVariance  product={ selectedProduct }
                                                               variant={ selectedVariance }
-                                                              handleStockEdit={ handleStockEdit } />
+                                                              handleStockEdit={ handleStockEdit }
+                                                              handleSelectVariance={ handleSelectVariance } />
                 }
                 <Button icon="photo_camera"
                         label="Edit product images"
