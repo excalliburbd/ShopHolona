@@ -18,9 +18,8 @@
   width: auto;
 }
 .NavigationAppBar-logo {
-  /*box-shadow: 0px 0px 14px -1px rgba(0, 0, 0, 0.55);*/
-  /*box-shadow: var(--shadow-4p);*/
   height: 3rem;
+  width: 3rem;
   vertical-align: middle;
   border-radius: 50%;
   box-shadow: 0px 0px 68px -16px rgba(38, 36, 35, 0.70);

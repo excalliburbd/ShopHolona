@@ -18,6 +18,7 @@ import ProductsSidebarContainer from '../../containers/ProductsSidebarContainer'
 import ImageUploaderContainer from '../../containers/ImageUploaderContainer';
 import CartContainer from '../../containers/CartContainer';
 import NotificationContainer from '../../containers/NotificationContainer';
+import TourContainer from '../../containers/TourContainer';
 
 import './Navigation.css';
 
@@ -139,6 +140,7 @@ class Nav extends Component {
 
     return (
       <div>
+        <TourContainer />
         <NotificationContainer />
         <Layout className="Navigation">
           <Helmet>
