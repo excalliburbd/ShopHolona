@@ -141,8 +141,8 @@ const AddColors = ({
                               }/>
                     </TableCell>
                   </TableRow>
-                :
-                    null                                   }
+                : null
+              }
             </Table>
           <CardActions>
             <Button icon="close" label="cancel" onClick={ () => handleSelect(-1, primaryAttributes[selectedAttribute].id) }/>
