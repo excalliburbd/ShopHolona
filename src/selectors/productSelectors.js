@@ -82,13 +82,13 @@ export const getShowAddColors = createSelector(
     Object.keys(product).forEach(
       name => {
         // this is not possible due to server limitation
-        // if(name !== 'description' &&  product[name] === '') {
-        //   show = false;
-        // }
-
-        if (product[name] === '') {
+        if(name !== 'description' &&  product[name] === '') {
           show = false;
         }
+
+        // if (product[name] === '') {
+        //   show = false;
+        // }
       }
     )
 
@@ -157,6 +157,10 @@ export const getFinishedProduct = createSelector(
     getFcomPrice,
   ],
   (name, description, weight, price, primary, secondary, id, progress, fcom, fprice) => {
+    if (description.trim() === '') {
+      description = 'No description'
+    }
+
     if (!progress.primary && !progress.secondary) {
       return {
         name: name,

@@ -271,11 +271,23 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                           //do something
                           dispatch(shopActions.shop.set.editDesc(false));
                           dispatch(getShop(shop));
+                          dispatch(addNotification({
+                            title: 'Successfully updated shop description',
+                            message: 'Store: Your Store Description has been updated',
+                            position: 'bl',
+                            status: 'success',
+                          }));
                         }
                       }
                     ).catch(
                       err => {
                         returnArr = [ ...arr, infoKey ];
+                        dispatch(addNotification({
+                            title: 'Error updating shop description',
+                            message: err,
+                            position: 'bl',
+                            status: 'error',
+                          }));
                       }
                     );
             return returnArr;

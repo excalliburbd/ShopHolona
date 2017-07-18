@@ -132,7 +132,20 @@ const NavigationAppBar = ({
                         }
                         <MenuItem  value='profile'
                                     icon='account_circle'
-                                    caption='Profile' />
+                                    caption='Profile'
+                                    onClick={
+                                      () => {
+                                        const urlParts = window.location.hostname.split('.');
+
+                                        if (urlParts.lentght < 3) {
+                                          window.open('http://www.shophobe.cf');
+                                        } else if (urlParts[2] === 'com') {
+                                          window.open('http://www.shophobe.com');
+                                        } else {
+                                          window.open('http://www.shophobe.cf');
+                                        }
+                                      }
+                                    } />
                         <MenuItem value='settings'
                                   icon='settings'
                                   caption='Settings'
