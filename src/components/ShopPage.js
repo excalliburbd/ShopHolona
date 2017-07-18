@@ -129,9 +129,9 @@ const ShopPage = ({
   }
 
   return (
-    <div className={ productDetailsClass }>
+    <div className={ productDetailsClass } >
       <div className="ShopPage-banner" style={{ backgroundImage: `url(${coverPhoto})`}}/>
-      <div className={ detailsClass }>
+      <div className={ detailsClass } data-tour="details-sidebar" >
         <div className="ShopPage-banner">
           <div className="ShopPage-details-img" style={{ backgroundImage: `url(${proficePic})` }}>
             { vendor && <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') }/> }
@@ -148,7 +148,7 @@ const ShopPage = ({
         <IconButton icon={ (details) ? 'close' :'keyboard_arrow_down'}
                     className="ShopPage-details--toggle"
                     onClick={ toggleDetails }/>
-        <div className="ShopPage-details-img" style={{ backgroundImage: `url(${proficePic})` }}>
+        <div className="ShopPage-details-img" style={{ backgroundImage: `url(${proficePic})` }} data-tour="shop-profile" >
           { vendor && <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') }/> }
         </div>
 
