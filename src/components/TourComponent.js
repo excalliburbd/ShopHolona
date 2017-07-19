@@ -23,7 +23,7 @@ class TourComponent extends Component {
       request(`/shops/${shop}/products/`, getConfig() ).then(
         res => {
           if (res.length === 0) {
-            handleSetTour(true);
+            !this.state.done && handleSetTour(true);//the gate feels hacky. find another way
           }
         }
       );
