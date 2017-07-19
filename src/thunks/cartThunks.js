@@ -15,11 +15,24 @@ export const getCart = (token, show) => dispatch => {
               // Cart fetching successful
               dispatch(cartActions.cart.done.get(res));
               show && dispatch(sidebarActions.sidebar.show.addToCart());
+              dispatch(addNotification({
+                title: 'Success',
+                message: 'Successfull updated product name',
+                position: 'bl',
+                status: 'success',
+              }));
             }
           ).catch(
             err => {
               // Fetching error details
               dispatch(cartActions.cart.done.get(new Error(err)));
+              dispatch(addNotification({
+                title: 'Error during shop update',
+                message: info.shop_name[0],
+                position: 'bl',
+                status: 'error',
+              }));
+               
             }
           );
   }
@@ -55,11 +68,24 @@ export const updateCartItem = (cartID, id, quantity, token) => dispatch => {
                             id: cartID,
                             response: res,
                           }));
+                          dispatch(addNotification({
+                            title: 'Success',
+                            message: 'Successfull updated product name',
+                            position: 'bl',
+                            status: 'success',
+                          }));
                         }
                       ).catch(
                         err => {
                           console.log(err)
                           dispatch(cartActions.cart.update.item(cartID, quantity-1))
+                          dispatch(addNotification({
+                            title: 'Error during shop update',
+                            message: info.shop_name[0],
+                            position: 'bl',
+                            status: 'error',
+                          }));
+                          
                         }
                       );
             }
@@ -128,6 +154,12 @@ export const addToCart = (id, token, productID) => (dispatch, getState) => {
                   id: newCartItem.id,
                   response: res,
                 }));
+                dispatch(addNotification({
+                  title: 'Success',
+                  message: 'Successfull updated product name',
+                  position: 'bl',
+                  status: 'success',
+                }));
               }
             );
     }
@@ -147,6 +179,12 @@ export const deleteCartItem = (id, token) => dispatch => {
             res => {
               // successful
               dispatch(cartActions.cart.done.delete(id))
+              dispatch(addNotification({
+                title: 'Success',
+                message: 'Successfull updated product name',
+                position: 'bl',
+                status: 'success',
+              }));
             }
           );
   }
@@ -176,6 +214,12 @@ export const checkout = (total, cart, address, token) => dispatch => {
             )).then(
               res => {
                 console.log(res)
+                dispatch(addNotification({
+                  title: 'Success',
+                  message: 'Successfull updated product name',
+                  position: 'bl',
+                  status: 'success',
+                }));
               }
             )
   }

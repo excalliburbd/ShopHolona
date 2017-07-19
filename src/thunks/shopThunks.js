@@ -16,6 +16,12 @@ export const getShopCategories = shop  => dispatch => {
 
                 if(res.length > 0) {
                   dispatch(categoryActions.categories.done.get.shopCategory(res));
+                    dispatch(addNotification({
+                    title: 'Success',
+                    message: 'Successfull updated product name',
+                    position: 'bl',
+                    status: 'success',
+                  }));
                 }
               }
             );
@@ -30,6 +36,12 @@ export const getShopAddress = shop  => dispatch => {
 
                 if(res.length > 0) {
                   dispatch(shopActions.shop.set.address(res));
+                  dispatch(addNotification({
+                    title: 'Success',
+                    message: 'Successfull updated product name',
+                    position: 'bl',
+                    status: 'success',
+                  }));
                 }
               }
             );
@@ -44,6 +56,12 @@ export const getShop = shop  => dispatch => {
 
               if(res.id) {
                 dispatch(shopActions.shop.set.shop(res))
+                dispatch(addNotification({
+                  title: 'Success',
+                  message: 'Successfull updated product name',
+                  position: 'bl',
+                  status: 'success',
+                }));
               }
             }
           );
@@ -69,6 +87,12 @@ export const postShopPageProfie = (image, shop, token, formData)  => dispatch =>
               dispatch(imageUploaderActions.imageUploader.hide());
 
               dispatch(getShop(shop));
+              dispatch(addNotification({
+                  title: 'Success',
+                  message: 'Successfull updated product name',
+                  position: 'bl',
+                  status: 'success',
+              }));
             }
           }
         );
@@ -95,6 +119,12 @@ export const postShopPageCover = (image, shop, token, formData)  => dispatch => 
               dispatch(imageUploaderActions.imageUploader.hide());
 
               dispatch(getShop(shop));
+              dispatch(addNotification({
+                  title: 'Success',
+                  message: 'Successfull updated product name',
+                  position: 'bl',
+                  status: 'success',
+                }));
             }
           }
         );
@@ -204,6 +234,12 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                             id: phone.id,
                             value: res.description,
                           }))
+                          dispatch(addNotification({
+                            title: 'Success',
+                            message: 'Successfull updated product name',
+                            position: 'bl',
+                            status: 'success',
+                          }));
                         }
                       }
                     ).catch(
@@ -226,12 +262,24 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                           dispatch(shopActions.shop.set.fromHour({
                             from_hour: res.from_hour,
                           }))
+                          dispatch(addNotification({
+                            title: 'Success',
+                            message: 'Successfull updated product name',
+                            position: 'bl',
+                            status: 'success',
+                          }));
                         }
                       }
                     ).catch(
                       err => {
                         console.log(err)
                         returnArr = [ ...arr, infoKey ];
+                        dispatch(addNotification({
+                          title: 'Error during shop update',
+                          message: info.shop_name[0],
+                          position: 'bl',
+                          status: 'error',
+                        }));
                       }
                     );
             return returnArr;
@@ -248,12 +296,24 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                           dispatch(shopActions.shop.set.toHours({
                             to_hour: res.to_hour,
                           }))
+                          dispatch(addNotification({
+                            title: 'Success',
+                            message: 'Successfull updated product name',
+                            position: 'bl',
+                            status: 'success',
+                          }));
                         }
                       }
                     ).catch(
                       err => {
                         console.log(err)
                         returnArr = [ ...arr, infoKey ];
+                        dispatch(addNotification({
+                          title: 'Error during shop update',
+                          message: info.shop_name[0],
+                          position: 'bl',
+                          status: 'error',
+                        }));
                       }
                     );
             return returnArr;
@@ -287,7 +347,7 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                             message: err,
                             position: 'bl',
                             status: 'error',
-                          }));
+                        }));
                       }
                     );
             return returnArr;

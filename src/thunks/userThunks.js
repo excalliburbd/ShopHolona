@@ -17,8 +17,13 @@ export const tryGetVendor = (shop, token) => dispatch => {
             res => {
               if( res.id ) {
                 dispatch(
-                  userActions.user.done.get.authShop()
-                )
+                  userActions.user.done.get.authShop())
+                dispatch(addNotification({
+                  title: 'Success',
+                  message: 'Successfull updated product name',
+                  position: 'bl',
+                  status: 'success',
+                }));
               }
             }
           ).catch(
@@ -35,10 +40,24 @@ export const getFollowingShop = (shop, token) => dispatch => {
             res => {
               if( res.length > 0 ) {
                 dispatch(userActions.user.done.get.followingShops(res));
+                dispatch(addNotification({
+                  title: 'Success',
+                  message: 'Successfull updated product name',
+                  position: 'bl',
+                  status: 'success',
+                }));
               }
             }
           ).catch(
-            err => console.log(err)
+            err => {
+              console.log(err)
+              dispatch(addNotification({
+                  title: 'Error during shop update',
+                  message: info.shop_name[0],
+                  position: 'bl',
+                  status: 'error',
+              }));
+            }
           );
   }
 }
@@ -72,6 +91,12 @@ export const trySignInAsyncAction = (res, shop) => dispatch => {
 
                   if (res.id) {
                     dispatch(userActions.user.done.get.profile(res));
+                    dispatch(addNotification({
+                    title: 'Success',
+                    message: 'Successfull updated product name',
+                    position: 'bl',
+                    status: 'success',
+                }));
                   }
                 }
               )
@@ -87,6 +112,12 @@ export const trySignInAsyncAction = (res, shop) => dispatch => {
           ).catch(
             err => {
               dispatch(userActions.user.ui.email(new Error(err)))
+              dispatch(addNotification({
+                title: 'Error during shop update',
+                message: info.shop_name[0],
+                position: 'bl',
+                status: 'error',
+              }));
             }
           );
 }
@@ -99,6 +130,12 @@ export const getMe = token => dispatch => {
           res => {
             if (res.id) {
               dispatch(userActions.user.done.get.profile(res));
+              dispatch(addNotification({
+                  title: 'Success',
+                  message: 'Successfull updated product name',
+                  position: 'bl',
+                  status: 'success',
+              }));
             }
           }
         ).catch(

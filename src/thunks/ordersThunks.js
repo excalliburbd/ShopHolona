@@ -11,6 +11,12 @@ export const getOrderList = (shop, token) => dispatch => {
             res => {
               if (res.length > 0) {
                 dispatch(orderActions.orders.done.get.all(res));
+                dispatch(addNotification({
+                  title: 'Success',
+                  message: 'Successfull updated product name',
+                  position: 'bl',
+                  status: 'success',
+                }));
               }
             }
           );
