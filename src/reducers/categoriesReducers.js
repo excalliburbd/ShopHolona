@@ -9,7 +9,7 @@ import {
 const getDecrement = stock => {
   const decrement = parseInt(stock, 10) - 1;
 
-  if(decrement < 0) {
+  if (decrement < 0) {
     return 0;
   }
 
@@ -89,7 +89,12 @@ export const CategoriesUIReducer = handleActions({
 
       action.payload.attributes.forEach(
         attribute => {
-          secondary.push({ ...attribute, selected: false, stock: 0, custom: false });
+          secondary.push({
+            ...attribute,
+            selected: false,
+            stock: 0,
+            custom: false
+          });
         }
       )
 
@@ -268,7 +273,8 @@ export const CategoriesUIReducer = handleActions({
               attributes: state.attributes.secondary[action.payload.id].attributes.map(
                                 (attribute, key) => ({
                                   ...attribute,
-                                  stock: (key === action.payload.key ) ? action.payload.value : attribute.stock
+                                  stock: (key === action.payload.key ) ? action.payload.value : attribute.stock,
+                                  selected: (key === action.payload.key ) ? (action.payload.value > 0) : attribute.selected,
                                 })
                               )
             }
@@ -288,7 +294,8 @@ export const CategoriesUIReducer = handleActions({
               attributes: state.attributes.secondary[action.payload.id].attributes.map(
                                 (attribute, key) => ({
                                   ...attribute,
-                                  stock: (attribute.stock < 0 ) ? 0 : attribute.stock
+                                  stock: (attribute.stock < 0 ) ? 0 : attribute.stock,
+                                  selected: (attribute.stock < 0 ) ? false : attribute.selected,
                                 })
                               )
             }
@@ -308,7 +315,8 @@ export const CategoriesUIReducer = handleActions({
               attributes: state.attributes.secondary[action.payload.id].attributes.map(
                                 (attribute, key) => ({
                                   ...attribute,
-                                  stock: (key === action.payload.key ) ? ( parseInt(attribute.stock, 10) + 1) : attribute.stock
+                                  stock: (key === action.payload.key ) ? (parseInt(attribute.stock, 10) + 1) : attribute.stock,
+                                  selected: (key === action.payload.key ) ? ((parseInt(attribute.stock, 10) + 1) > 0) : attribute.selected,
                                 })
                               )
             }
@@ -328,9 +336,8 @@ export const CategoriesUIReducer = handleActions({
               attributes: state.attributes.secondary[action.payload.id].attributes.map(
                                 (attribute, key) => ({
                                   ...attribute,
-                                  stock: (key === action.payload.key ) ?
-                                            getDecrement(attribute.stock)
-                                          : attribute.stock
+                                  stock: (key === action.payload.key ) ? getDecrement(attribute.stock) : attribute.stock,
+                                  selected: (key === action.payload.key ) ? (getDecrement(attribute.stock) > 0) : attribute.selected,
                                 })
                               )
             }
@@ -578,31 +585,6 @@ export const CategoriesUIReducer = handleActions({
         subSubCategories,
       }
   },
-  // [categoryActions.categories]: (state, action) => {
-  //   // case 'REMOVE_SUB_SUB_CATEGORIES':
-  //     return {
-  //       ...state,
-  //       subSubCategories: {}
-  //     }
-  // },
-  // [categoryActions.categories]: (state, action) => {
-    // case 'SET_API_SUB_SUB_CATEGORIES':
-    //   const apiSubSubCategories = {};
-
-    //   action.payload.sub_categories.forEach(
-    //     category => {
-    //       apiSubSubCategories[category.id] = category;
-    //     }
-    //   )
-
-    //   return {
-    //     ...state,
-    //     subSubCategories : {
-    //       ...state.subSubCategories,
-    //       ...apiSubSubCategories
-    //     }
-    //   }
-  // },
   [productActions.products.ui.reset.subSubCategories]: (state, action) => {
       return {
         ...state,
