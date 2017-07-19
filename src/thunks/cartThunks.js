@@ -27,8 +27,8 @@ export const getCart = (token, show) => dispatch => {
               // Fetching error details
               dispatch(cartActions.cart.done.get(new Error(err)));
               dispatch(addNotification({
-                title: 'Error during shop update',
-                message: info.shop_name[0],
+                title: 'Error during cart update',
+                message: err,
                 position: 'bl',
                 status: 'error',
               }));
@@ -70,7 +70,7 @@ export const updateCartItem = (cartID, id, quantity, token) => dispatch => {
                           }));
                           dispatch(addNotification({
                             title: 'Success',
-                            message: 'Successfull updated product name',
+                            message: 'Successfully updated car item',
                             position: 'bl',
                             status: 'success',
                           }));
@@ -80,7 +80,7 @@ export const updateCartItem = (cartID, id, quantity, token) => dispatch => {
                           console.log(err)
                           dispatch(cartActions.cart.update.item(cartID, quantity-1))
                           dispatch(addNotification({
-                            title: 'Error during shop update',
+                            title: 'Error during cart item update',
                             message: info.shop_name[0],
                             position: 'bl',
                             status: 'error',
@@ -156,7 +156,7 @@ export const addToCart = (id, token, productID) => (dispatch, getState) => {
                 }));
                 dispatch(addNotification({
                   title: 'Success',
-                  message: 'Successfull updated product name',
+                  message: 'Successfully added into cart',
                   position: 'bl',
                   status: 'success',
                 }));
@@ -181,7 +181,7 @@ export const deleteCartItem = (id, token) => dispatch => {
               dispatch(cartActions.cart.done.delete(id))
               dispatch(addNotification({
                 title: 'Success',
-                message: 'Successfull updated product name',
+                message: 'Successfully deleted cart item',
                 position: 'bl',
                 status: 'success',
               }));
@@ -216,7 +216,7 @@ export const checkout = (total, cart, address, token) => dispatch => {
                 console.log(res)
                 dispatch(addNotification({
                   title: 'Success',
-                  message: 'Successfull updated product name',
+                  message: 'Successfully deleted cart item',
                   position: 'bl',
                   status: 'success',
                 }));

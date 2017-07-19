@@ -18,7 +18,7 @@ export const getShopCategories = shop  => dispatch => {
                   dispatch(categoryActions.categories.done.get.shopCategory(res));
                     dispatch(addNotification({
                     title: 'Success',
-                    message: 'Successfull updated product name',
+                    message: 'Successfully updated shop category',
                     position: 'bl',
                     status: 'success',
                   }));
@@ -38,7 +38,7 @@ export const getShopAddress = shop  => dispatch => {
                   dispatch(shopActions.shop.set.address(res));
                   dispatch(addNotification({
                     title: 'Success',
-                    message: 'Successfull updated product name',
+                    message: 'Successfully updated shop address',
                     position: 'bl',
                     status: 'success',
                   }));
@@ -58,7 +58,7 @@ export const getShop = shop  => dispatch => {
                 dispatch(shopActions.shop.set.shop(res))
                 dispatch(addNotification({
                   title: 'Success',
-                  message: 'Successfull updated product name',
+                  message: 'Successfully recieved shop name',
                   position: 'bl',
                   status: 'success',
                 }));
@@ -89,7 +89,7 @@ export const postShopPageProfie = (image, shop, token, formData)  => dispatch =>
               dispatch(getShop(shop));
               dispatch(addNotification({
                   title: 'Success',
-                  message: 'Successfull updated product name',
+                  message: 'Successfully updated shop page',
                   position: 'bl',
                   status: 'success',
               }));
@@ -121,7 +121,7 @@ export const postShopPageCover = (image, shop, token, formData)  => dispatch => 
               dispatch(getShop(shop));
               dispatch(addNotification({
                   title: 'Success',
-                  message: 'Successfull updated product name',
+                  message: 'Successfully updated shop page cover',
                   position: 'bl',
                   status: 'success',
                 }));
@@ -196,7 +196,7 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                         if (res.id) {
                           dispatch(addNotification({
                             title: 'Success',
-                            message: 'Successfull updated shop name',
+                            message: 'Successfully updated shop info',
                             position: 'bl',
                             status: 'success',
                           }));
@@ -210,7 +210,7 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
 
                         if (info.shop_name) {
                           dispatch(addNotification({
-                            title: 'Error during shop update',
+                            title: 'Error during shop info update',
                             message: info.shop_name[0],
                             position: 'bl',
                             status: 'error',
@@ -236,7 +236,7 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                           }))
                           dispatch(addNotification({
                             title: 'Success',
-                            message: 'Successfull updated product name',
+                            message: 'Successfully updated phone number',
                             position: 'bl',
                             status: 'success',
                           }));
@@ -264,7 +264,7 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                           }))
                           dispatch(addNotification({
                             title: 'Success',
-                            message: 'Successfull updated product name',
+                            message: 'Successfully updated hour',
                             position: 'bl',
                             status: 'success',
                           }));
@@ -275,7 +275,7 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                         console.log(err)
                         returnArr = [ ...arr, infoKey ];
                         dispatch(addNotification({
-                          title: 'Error during shop update',
+                          title: 'Error during hour update',
                           message: info.shop_name[0],
                           position: 'bl',
                           status: 'error',
@@ -298,7 +298,7 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                           }))
                           dispatch(addNotification({
                             title: 'Success',
-                            message: 'Successfull updated product name',
+                            message: 'successfully updated to_hour',
                             position: 'bl',
                             status: 'success',
                           }));

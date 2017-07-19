@@ -680,7 +680,7 @@ export const removeFromFeaturedProduct = (productID, featuredID, shop, token) =>
               dispatch(sidebarActions.sidebar.hide());
               dispatch(addNotification({
                 title: 'Success',
-                message: 'Successfull updated product name',
+                message: 'Successfully removed from featured product',
                 position: 'bl',
                 status: 'success',
               }));
