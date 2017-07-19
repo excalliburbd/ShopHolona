@@ -20,7 +20,7 @@ export const tryGetVendor = (shop, token) => dispatch => {
                   userActions.user.done.get.authShop())
                 dispatch(addNotification({
                   title: 'Success',
-                  message: 'Successfull updated product name',
+                  message: 'Successfully updated vendor name',
                   position: 'bl',
                   status: 'success',
                 }));
@@ -42,7 +42,7 @@ export const getFollowingShop = (shop, token) => dispatch => {
                 dispatch(userActions.user.done.get.followingShops(res));
                 dispatch(addNotification({
                   title: 'Success',
-                  message: 'Successfull updated product name',
+                  message: 'Successfully followed shop',
                   position: 'bl',
                   status: 'success',
                 }));
@@ -52,8 +52,8 @@ export const getFollowingShop = (shop, token) => dispatch => {
             err => {
               console.log(err)
               dispatch(addNotification({
-                  title: 'Error during shop update',
-                  message: info.shop_name[0],
+                  title: 'Error during following shop',
+                  message: err,
                   position: 'bl',
                   status: 'error',
               }));
@@ -93,7 +93,7 @@ export const trySignInAsyncAction = (res, shop) => dispatch => {
                     dispatch(userActions.user.done.get.profile(res));
                     dispatch(addNotification({
                     title: 'Success',
-                    message: 'Successfull updated product name',
+                    message: 'Successfully updated sign in',
                     position: 'bl',
                     status: 'success',
                 }));
@@ -114,7 +114,7 @@ export const trySignInAsyncAction = (res, shop) => dispatch => {
               dispatch(userActions.user.ui.email(new Error(err)))
               dispatch(addNotification({
                 title: 'Error during shop update',
-                message: info.shop_name[0],
+                message: err,
                 position: 'bl',
                 status: 'error',
               }));
@@ -132,7 +132,7 @@ export const getMe = token => dispatch => {
               dispatch(userActions.user.done.get.profile(res));
               dispatch(addNotification({
                   title: 'Success',
-                  message: 'Successfull updated product name',
+                  message: 'Successfully updated product Getme',
                   position: 'bl',
                   status: 'success',
               }));

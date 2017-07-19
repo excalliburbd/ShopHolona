@@ -1,4 +1,5 @@
 import uuid from "uuid";
+import { addNotification } from 'reapop';
 
 import { request, getConfig } from './helpers';
 
@@ -17,7 +18,7 @@ export const getCart = (token, show) => dispatch => {
               show && dispatch(sidebarActions.sidebar.show.addToCart());
               dispatch(addNotification({
                 title: 'Success',
-                message: 'Successfull updated product name',
+                message: 'Successfully updated product name',
                 position: 'bl',
                 status: 'success',
               }));
@@ -81,7 +82,7 @@ export const updateCartItem = (cartID, id, quantity, token) => dispatch => {
                           dispatch(cartActions.cart.update.item(cartID, quantity-1))
                           dispatch(addNotification({
                             title: 'Error during cart item update',
-                            message: info.shop_name[0],
+                            message: err,
                             position: 'bl',
                             status: 'error',
                           }));

@@ -1,6 +1,7 @@
 import { request, getConfig } from './helpers';
 
 import { paymentandaddressActions } from '../actions';
+import { addNotification } from 'reapop';
 
 export const getBanks = () => dispatch => {
   request('/banks/', getConfig()).then(
@@ -9,7 +10,7 @@ export const getBanks = () => dispatch => {
                 dispatch(paymentandaddressActions.paymentsAndAddresses.done.get.bank(res));
                 dispatch(addNotification({
                   title: 'Success',
-                  message: 'Successfull updated product name',
+                  message: 'Successfully updated product name',
                   position: 'bl',
                   status: 'success',
                 }));
@@ -26,7 +27,7 @@ export const getBranch = bank => dispatch => {
                 dispatch(paymentandaddressActions.paymentsAndAddresses.done.get.bankBranch({id: bank, response}));
                 dispatch(addNotification({
                   title: 'Success',
-                  message: 'Successfull updated product name',
+                  message: 'Successfully recieved branch name',
                   position: 'bl',
                   status: 'success',
                 }));
@@ -51,7 +52,7 @@ export const saveBankInfo = (branch, account, shop, token) => dispatch => {
               console.log(response)
               dispatch(addNotification({
                 title: 'Success',
-                message: 'Successfull updated product name',
+                message: 'Successfully saved bankinfo',
                 position: 'bl',
                 status: 'success',
               }));

@@ -200,7 +200,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
 
                           if (info.short_desc) {
                             dispatch(addNotification({
-                              title: 'Error during product update',
+                              title: 'Error during description update',
                               message: info.short_desc[0],
                               position: 'bl',
                               status: 'error',
@@ -222,7 +222,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                   }));
                   dispatch(addNotification({
                     title: 'Success',
-                    message: 'Successfull updated product stock',
+                    message: 'Successfully updated product stock',
                     position: 'bl',
                     status: 'success',
                   }));
@@ -241,7 +241,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           res => {
                             dispatch(addNotification({
                               title: 'Success',
-                              message: 'Successfull updated product stock',
+                              message: 'Successfully updated product stock',
                               position: 'bl',
                               status: 'success',
                             }));
@@ -281,7 +281,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                   }));
                   dispatch(addNotification({
                       title: 'Success',
-                      message: 'Successfull updated product stock',
+                      message: 'Successfully updated product stock',
                       position: 'bl',
                       status: 'success',
                   }));
@@ -300,7 +300,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           res => {
                             dispatch(addNotification({
                                 title: 'Success',
-                                message: 'Successfull updated product stock',
+                                message: 'Successfully updated product stock',
                                 position: 'bl',
                                 status: 'success',
                             }));
@@ -341,7 +341,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                         }));
                         dispatch(addNotification({
                             title: 'Success',
-                            message: 'Successfull updated product details',
+                            message: 'Successfully updated product details',
                             position: 'bl',
                             status: 'success',
                         }));
@@ -357,7 +357,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                                   res => {
                                     dispatch(addNotification({
                                       title: 'Success',
-                                      message: 'Successfull updated product details',
+                                      message: 'Successfully updated price weight',
                                       position: 'bl',
                                       status: 'success',
                                     }));
@@ -371,8 +371,8 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
 
                                     // if (info.short_desc) {
                                       dispatch(addNotification({
-                                        title: 'Error during product update',
-                                        message: 'Can not update product details',
+                                        title: 'Error during upadating price weight',
+                                        message: 'Can not update price weight',
                                         position: 'bl',
                                         status: 'error',
                                       }));
@@ -406,7 +406,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           console.log(res)
                           dispatch(addNotification({
                             title: 'Success',
-                            message: 'Successfull updated product name',
+                            message: 'Successfully updated product name',
                             position: 'bl',
                             status: 'success',
                           }));
@@ -416,7 +416,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           console.log(err)
                            dispatch(addNotification({
                               title: 'Success',
-                              message: 'Successfull updated product name',
+                              message: 'Successfully updated product name',
                               position: 'bl',
                               status: 'success',
                           }));
@@ -447,7 +447,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                   dispatch(getShopCategories(shop));
                   dispatch(addNotification({
                     title: 'Success',
-                    message: 'Successfull updated product name',
+                    message: 'Successfully updated product name',
                     position: 'bl',
                     status: 'success',
                   }));
@@ -457,7 +457,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                 dispatch(getShopCategories(shop));
                 dispatch(addNotification({
                   title: 'Success',
-                  message: 'Successfull updated product name',
+                  message: 'Successfully updated product name',
                   position: 'bl',
                   status: 'success',
                 }));
@@ -487,7 +487,7 @@ export const deleteProduct = (id, shop, token) => dispatch => {
                 dispatch(sidebarActions.sidebar.hide())
                 dispatch(addNotification({
                     title: 'Success',
-                    message: 'Successfull updated product name',
+                    message: 'Successfully deleted product',
                     position: 'bl',
                     status: 'success',
                 }));
@@ -541,8 +541,8 @@ export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
             err => {
               dispatch(categoryActions.categories.done.post.productImage( new Error(err), { id, key } ));
               dispatch(addNotification({
-                  title: 'Error during shop update',
-                  message: info.shop_name[0],
+                  title: 'Error during uploading image',
+                  message: err,
                   position: 'bl',
                   status: 'error',
               }));
@@ -626,7 +626,7 @@ export const getFeaturedProduct = shop => dispatch => {
               dispatch(productActions.products.done.get.featuredProducts(res));
               dispatch(addNotification({
                 title: 'Success',
-                message: 'Successfull updated product name',
+                message: 'Successfully recieved feature product name',
                 position: 'bl',
                 status: 'success',
               }));
@@ -657,7 +657,7 @@ export const makeFeaturedProduct = (id, shop, token) => dispatch => {
               dispatch(sidebarActions.sidebar.hide());
               dispatch(addNotification({
                 title: 'Success',
-                message: 'Successfull updated product name',
+                message: 'Successfully made featured product ',
                 position: 'bl',
                 status: 'success',
               }));
