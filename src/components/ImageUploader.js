@@ -42,7 +42,7 @@ const ImageUploader = ({
 
   if ( type === 'COVER') {
     width = 828;
-    height = 315;
+    height = 192;
   }
 
   if (type === 'PRODUCT') {
@@ -68,6 +68,7 @@ const ImageUploader = ({
 
   return (
     <Dialog
+      className="ImageUploader-dialog"
       actions={[
         { label: 'close', onClick: handleClose },
         { label: 'done', onClick: doneFunc },

@@ -16,7 +16,7 @@ const Checkout = ({
     <div className="Checkout">
       <ul>
         <li>Total Price: &#2547; { total.price }</li>
-        <li>Totla Weight: { total.weight }</li>
+        <li>Total Weight: { total.weight } g</li>
       </ul>
       <Input type="text"
              label="To Address"
