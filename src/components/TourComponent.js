@@ -3,6 +3,10 @@ import Tour from 'reactour';
 
 import { request, getConfig } from '../thunks/helpers';
 
+import tourbg from '../assets/images/Background.png'
+import tourMascot from '../assets/images/Mascot.png'
+import './TourComponent.css';
+
 class TourComponent extends Component {
   constructor(props) {
     super(props);
@@ -39,12 +43,13 @@ class TourComponent extends Component {
       handleSetStep,
     } = this.props;
 
-    const defaultConfig = {
-
-    }
+    // const defaultConfig = {
+    //
+    // }
 
     return (
       <Tour isOpen={ isOpen }
+            className="tour-body"
             onRequestClose={
               () => {
                 handleSetTour(false);
@@ -61,11 +66,16 @@ class TourComponent extends Component {
                   content: ({ goTo, inDOM, step }) => {
                     handleSetStep(step);
                     return (
-                      <div>
-                        <h3><span role="img" aria-label="horray" >🎉 🎉 🎉</span> Hello!!!</h3>
-                        <p>
-                          Welcome to your store! We will take you on a step by step journey to getting full control of your store.
-                        </p>
+                      <div className="tour-container">
+                        <div className="tour-header">
+                          <img src={tourbg} alt="" className="tour-header-bg"/>
+                          <h1>Hello!</h1>
+                          <img src={tourMascot} alt="" className="tour-header-mascot"/>
+                        </div>
+                        <div className="tour-guide">
+                          <p>Welcome to your store!</p>
+                          <p>Let's go on a tour of your new store!</p>
+                        </div>
                       </div>
                     );
                   },
