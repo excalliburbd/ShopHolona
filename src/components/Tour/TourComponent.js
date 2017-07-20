@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import Tour from 'reactour';
 
-import { request, getConfig } from '../thunks/helpers';
+import { request, getConfig } from '../../thunks/helpers';
 
-import tourbg from '../assets/images/Background.png'
-import tourMascot from '../assets/images/Mascot.png'
-import './TourComponent.css';
+import TourWrapper from './TourWrapper';
 
 class TourComponent extends Component {
   constructor(props) {
@@ -66,17 +64,10 @@ class TourComponent extends Component {
                   content: ({ goTo, inDOM, step }) => {
                     handleSetStep(step);
                     return (
-                      <div className="tour-container">
-                        <div className="tour-header">
-                          <img src={tourbg} alt="" className="tour-header-bg"/>
-                          <h1>Hello!</h1>
-                          <img src={tourMascot} alt="" className="tour-header-mascot"/>
-                        </div>
-                        <div className="tour-guide">
-                          <p>Welcome to your store!</p>
-                          <p>Let's go on a tour of your new store!</p>
-                        </div>
-                      </div>
+                      <TourWrapper title="Hello!!" >
+                        <p>Welcome to your store!</p>
+                        <p>Let's go on a tour of your new store!</p>
+                      </TourWrapper>
                     );
                   },
                 },
@@ -85,8 +76,7 @@ class TourComponent extends Component {
                   content: ({ goTo, inDOM, step }) => {
                     handleSetStep(step);
                     return (
-                      <div>
-                        <h3>First impressions matter!</h3>
+                      <TourWrapper title="First impressions matter!" >
                         <p>
                           This Side bar shows your customer your identity.
                         </p>
@@ -97,7 +87,7 @@ class TourComponent extends Component {
                           <li>Store Description</li>
                           <li>Your Store Logo</li>
                         </ul>
-                      </div>
+                      </TourWrapper>
                     );
                   },
                 },
@@ -106,24 +96,11 @@ class TourComponent extends Component {
                   content: ({ goTo, inDOM, step }) => {
                     handleSetStep(step);
                     return (
-                      <div>
+                      <TourWrapper title="First impressions matter!" >
                         <p>
                           Start off by pressing on the ‘Camera’ button in the middle and change your store’s logo. Save it and press next when done!
                         </p>
-                      </div>
-                    )
-                  },
-                },
-                {
-                  selector: '[data-tour="shop-profile"]',
-                  content: ({ goTo, inDOM, step }) => {
-                    handleSetStep(step);
-                    return (
-                      <div>
-                        <p>
-                          Start off by pressing on the ‘Camera’ button in the middle and change your store’s logo. Save it and press next when done!
-                        </p>
-                      </div>
+                      </TourWrapper>
                     )
                   },
                 },

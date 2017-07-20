@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 
-import TourComponent from '../components/TourComponent';
+import TourComponent from '../components/Tour/TourComponent';
 
 import { tourActions } from '../actions/';
 
