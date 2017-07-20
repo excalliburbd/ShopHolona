@@ -31,7 +31,8 @@ const AddButton = ({
     <Button icon='add'
             floating
             onClick={ handleAddProduct }
-            className="addbutton" />
+            className="addbutton"
+            data-tour="add-product"/>
   );
 }
 

@@ -35,8 +35,15 @@ export const tourUIReducer = handleActions({
       }
     }
   },
+  [tourActions.tour.set.done]: (state, action) => {
+    return {
+      ...state,
+      done: action.payload,
+    }
+  }
 }, {
   isOpen: false,
+  done: false,
   steps: {
     past: [],
     present: 0,

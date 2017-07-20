@@ -4,6 +4,7 @@ export const tourActionCreators = {
     SET: {
       OPEN: payload => payload,
       HISTORY: payload => payload,
+      DONE: payload => payload,
     }
   }
 }

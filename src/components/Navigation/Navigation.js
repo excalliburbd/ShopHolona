@@ -167,12 +167,14 @@ class Nav extends Component {
                   (location.pathname === '/') ?
                     'Navigation-content-main' :
                     'Navigation-content'
-                }>
+                } >
               <FilterBarContainer
                 show={ ('/' !== location.pathname) }
                 flat={ ('/dashboard' !== location.pathname)}
                 route={ location.pathname } />
-              { children }
+                <div data-tour="navigation-content" >
+                  { children }
+                </div>
             </div>
           </Panel>
           <Sidebar pinned={ showSidebar } className="Navigation-sidebar" >

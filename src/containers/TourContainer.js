@@ -1,4 +1,5 @@
 import {connect} from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import TourComponent from '../components/Tour/TourComponent';
 
@@ -13,6 +14,8 @@ const mapStateToProps = state => {
     shop: getShopID(state),
     loggedIn: getLoggedIn(state),
     uploader: state.ui.uploader.active,
+    steps: state.ui.tour.steps,
+    done: state.ui.tour.done,
   }
 }
 
@@ -27,9 +30,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleSetStep: step => {
       dispatch(tourActions.tour.set.history(step));
     },
+    handleSetDone: done => {
+      dispatch(tourActions.tour.set.done(true));
+    }
   }
 }
 
-const TourContainer = connect(mapStateToProps, mapDispatchToProps)(TourComponent);
+const TourContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(TourComponent));
 
 export default TourContainer;

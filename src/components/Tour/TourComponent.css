@@ -1,5 +1,7 @@
 .tour-body {
-  padding: 0;
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
   border-radius: 6px;
   box-shadow: var(--shadow-4p);
 }
@@ -57,4 +59,10 @@
 .tour-body nav>button.MkPVP {
   background-color: #FFCC33;
   color: #FFC400;
+}
+
+.tour-container-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

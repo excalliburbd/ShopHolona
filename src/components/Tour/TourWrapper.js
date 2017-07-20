@@ -1,4 +1,10 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import { tourActions } from '../../actions/';
+
+import Button from 'react-toolbox/lib/button/Button';
 
 import './TourComponent.css';
 
@@ -7,6 +13,10 @@ import tourMascot from '../../assets/images/Mascot.png';
 
 const TourWrapper = ({
   title,
+  goTo,
+  step,
+  currentStep,
+  handleSkip,
   children,
 }) => {
   return (
@@ -21,6 +31,16 @@ const TourWrapper = ({
           children
         }
       </div>
+      <div className="tour-container-actions">
+        <Button onClick={
+                  handleSkip
+                }>Skip</Button>
+        <Button onClick={
+                  () => {
+                    goTo(step);
+                  }
+                }>Next</Button>
+      </div>
     </div>
   )
 }
@@ -30,4 +50,22 @@ TourWrapper.proptypes = {
   children: PropTypes.element.isRequired,
 }
 
-export default TourWrapper
+const mapStateToProps = state => {
+  return {
+    isOpen: state.ui.tour.isOpen,
+    currentStep: state.ui.tour.steps.present,
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    handleSkip: () => {
+      dispatch(tourActions.tour.set.done(true));
+      dispatch(tourActions.tour.set.open(false));
+    },
+  }
+}
+
+const ConnectedTourWrapper = connect(mapStateToProps, mapDispatchToProps)(TourWrapper);
+
+export default ConnectedTourWrapper;
