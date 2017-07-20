@@ -5,6 +5,8 @@ import { request, getConfig } from '../../thunks/helpers';
 
 import TourWrapper from './TourWrapper';
 
+import config from '../../config';
+
 class TourComponent extends Component {
   constructor(props) {
     super(props);
@@ -28,6 +30,8 @@ class TourComponent extends Component {
         res => {
           if (res.length === 0) {
             !done && handleSetTour(true);//the gate feels hacky. find another way
+          } else if (shop === config.demostore) {
+            !done && handleSetTour(true);
           }
         }
       );

@@ -1,6 +1,6 @@
 let config = {
   api: 'localhost:8000/api',
-  demostore: 4,
+  demostore: 21,
   demouser: 'vendor@shophobe.com',
   demopass: '123',
   home: 'shophobe.com',
