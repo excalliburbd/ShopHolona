@@ -6,7 +6,10 @@ import TourComponent from '../components/Tour/TourComponent';
 import { tourActions } from '../actions/';
 
 import { getShopID } from '../selectors/shopSelectors';
-import { getLoggedIn } from '../selectors/userSelectors';
+import {
+  getLoggedIn,
+  getVendor,
+} from '../selectors/userSelectors';
 
 const mapStateToProps = state => {
   return {
@@ -16,6 +19,7 @@ const mapStateToProps = state => {
     uploader: state.ui.uploader.active,
     steps: state.ui.tour.steps,
     done: state.ui.tour.done,
+    vendor: getVendor(state),
   }
 }
 
@@ -32,7 +36,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     handleSetDone: done => {
       dispatch(tourActions.tour.set.done(true));
-    }
+    },
+    handleSetLastStep: step => {
+      dispatch(tourActions.tour.set.lastStep(step));
+    },
   }
 }
 

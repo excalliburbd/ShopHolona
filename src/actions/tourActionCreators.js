@@ -5,6 +5,7 @@ export const tourActionCreators = {
       OPEN: payload => payload,
       HISTORY: payload => payload,
       DONE: payload => payload,
+      LAST_STEP: payload => payload,
     }
   }
 }

@@ -40,7 +40,13 @@ export const tourUIReducer = handleActions({
       ...state,
       done: action.payload,
     }
-  }
+  },
+  [tourActions.tour.set.lastStep]: (state, action) => {
+    return {
+      ...state,
+      lastStep: action.payload,
+    }
+  },
 }, {
   isOpen: false,
   done: false,
@@ -48,5 +54,6 @@ export const tourUIReducer = handleActions({
     past: [],
     present: 0,
     future: [],
-  }
+  },
+  lastStep: null,
 });

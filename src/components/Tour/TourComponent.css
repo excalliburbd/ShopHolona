@@ -81,9 +81,6 @@
   background-color: #003366;
   border-radius: 4px;
 }
-.tour-container-actions>button:nth-child(2)._2CPs4:not([disabled])._1jWAQ, ._2CPs4:not([disabled]).hC5Z2 {
-  color: white;
-}
 
 .tour-container-actions>button:nth-child(2)._2CPs4:not([disabled])._1jWAQ:hover {
   background-color: rgba(0, 51, 102, 0.9);
@@ -93,9 +90,7 @@
   background-color: #FFCC33;
   border-radius: 4px;
 }
-.tour-container-actions>button:nth-child(1)._2CPs4:not([disabled])._1jWAQ, ._2CPs4:not([disabled]).hC5Z2 {
-  color: white;
-}
+
 .tour-container-actions>button:nth-child(1)._2CPs4:not([disabled])._1jWAQ:hover {
   background-color: rgba(255, 204, 51, 0.9);
 }
@@ -104,4 +99,8 @@
   margin: 0 0.5rem;
   font-weight: 600;
   font-family: NeueKabel;
+}
+
+.tour-container-actions > ._2Agdx._1jWAQ._2Agdx._2GH_L._2CPs4{
+  color: white;
 }

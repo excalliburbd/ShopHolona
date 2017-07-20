@@ -16,7 +16,10 @@ const TourWrapper = ({
   goTo,
   step,
   currentStep,
+  lastStep,
   handleSkip,
+  onNext,
+  onPrevious,
   children,
 }) => {
   return (
@@ -32,14 +35,30 @@ const TourWrapper = ({
         }
       </div>
       <div className="tour-container-actions">
-        <Button onClick={
-                  handleSkip
-                }>Skip</Button>
-        <Button onClick={
-                  () => {
-                    goTo(step);
-                  }
-                }>Next</Button>
+        {
+          (currentStep === 0) ?
+            <Button style={{
+                      visibility: 'hidden',
+                    }}>Back</Button> :
+            <Button onClick={
+                      () => {
+                        goTo(step - 2);
+                        onPrevious && onPrevious();
+                      }
+                    }>Back</Button>
+        }
+        {
+          (currentStep === lastStep) ?
+            <Button onClick={
+                      handleSkip
+                    }>Finish</Button> :
+            <Button onClick={
+                      () => {
+                        goTo(step);
+                        onNext && onNext();
+                      }
+                    }>Next</Button>
+        }
       </div>
     </div>
   )
@@ -54,6 +73,7 @@ const mapStateToProps = state => {
   return {
     isOpen: state.ui.tour.isOpen,
     currentStep: state.ui.tour.steps.present,
+    lastStep: state.ui.tour.lastStep,
   }
 }
 
