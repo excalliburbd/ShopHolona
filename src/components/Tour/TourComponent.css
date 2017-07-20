@@ -2,7 +2,8 @@
   padding-top: 0;
   padding-left: 0;
   padding-right: 0;
-  border-radius: 6px;
+  padding-bottom: 0.8rem;
+  border-radius: 8px;
   box-shadow: var(--shadow-4p);
 }
 .tour-body>.eTpeTG {
@@ -13,6 +14,8 @@
 .tour-body>.hpUgzh {
   margin-top: 0;
   justify-content: center;
+  position: relative;
+  top: -2.15rem;
 }
 
 .tour-container {
@@ -41,6 +44,8 @@
   font-weight: 600;
   width: 75%;
   padding-left: 1rem;
+  position: relative;
+  top: 4px;
 }
 .tour-header-mascot {
   height: 4rem;
@@ -49,6 +54,7 @@
 
 .tour-guide {
   padding: 1.5rem 1rem;
+  padding-bottom: 2rem;
 }
 .tour-guide p {
   font-family: NeueKabel;
@@ -65,4 +71,37 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: absolute;
+  bottom: 0.5rem;
+  height: 2rem;
+  width: 100%;
+}
+
+.tour-container-actions>button:nth-child(2) {
+  background-color: #003366;
+  border-radius: 4px;
+}
+.tour-container-actions>button:nth-child(2)._2CPs4:not([disabled])._1jWAQ, ._2CPs4:not([disabled]).hC5Z2 {
+  color: white;
+}
+
+.tour-container-actions>button:nth-child(2)._2CPs4:not([disabled])._1jWAQ:hover {
+  background-color: rgba(0, 51, 102, 0.9);
+}
+
+.tour-container-actions>button:nth-child(1) {
+  background-color: #FFCC33;
+  border-radius: 4px;
+}
+.tour-container-actions>button:nth-child(1)._2CPs4:not([disabled])._1jWAQ, ._2CPs4:not([disabled]).hC5Z2 {
+  color: white;
+}
+.tour-container-actions>button:nth-child(1)._2CPs4:not([disabled])._1jWAQ:hover {
+  background-color: rgba(255, 204, 51, 0.9);
+}
+
+.tour-container-actions button {
+  margin: 0 0.5rem;
+  font-weight: 600;
+  font-family: NeueKabel;
 }
