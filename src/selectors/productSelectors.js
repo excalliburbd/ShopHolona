@@ -255,11 +255,21 @@ export const getSelectedFeturedPrductID = createSelector(
   }
 );
 
-export const getShowDone = createSelector(
-  [getUploadCount, getDoneUploadCount],
-  (upload, done) => {
-    return (upload === done)
+export const getGetImageCount = createSelector(
+  [getProductPrimaryAttributes],
+  attr => {
+    return attr.filter( attribute => attribute.selected )
+               .reduce(
+                 (acc, curr) => {
+                  return acc + curr.files.length;
+                 }, 0
+               );
   }
+)
+
+export const getShowDone = createSelector(
+  [getUploadCount, getDoneUploadCount, getGetImageCount],
+  (upload, done, count) =>  (upload === done && count > 0)
 );
 
 export const getAllProducts = createSelector(
@@ -274,7 +284,6 @@ export const getAllProducts = createSelector(
 export const getPrimaryAttributes = createSelector(
   [getProductPrimaryAttributes, getSelectedProductID, getSelectedProduct],
   (attr, id, product) => {
-    console.log('running', product)
     if (id) {
       return [ 'edit', product];
     }
