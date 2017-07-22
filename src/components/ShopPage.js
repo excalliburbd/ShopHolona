@@ -145,9 +145,10 @@ const ShopPage = ({
                                 icon="add_a_photo"
                                 onClick={ () => handleShowImageUploader('COVER') }/>
         }
-        <IconButton icon={ (details) ? 'close' :'keyboard_arrow_down'}
+        {/* ToDo: remove associated logic
+            <IconButton icon={ (details) ? 'close' :'keyboard_arrow_down'}
                     className="ShopPage-details--toggle"
-                    onClick={ toggleDetails }/>
+                    onClick={ toggleDetails }/> */}
         <div className="ShopPage-details-img" style={{ backgroundImage: `url(${proficePic})` }} >
           { vendor && <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') }/> }
         </div>
