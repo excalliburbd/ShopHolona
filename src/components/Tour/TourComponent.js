@@ -191,7 +191,8 @@ class TourComponent extends Component {
         },
         action: () => {
           handleSetStep(6);
-        }
+          (location.pathname !== '/') ? history.push('/') : null
+        },
       },
       {
         selector: '[data-tour="navigation-content"]',
@@ -217,7 +218,8 @@ class TourComponent extends Component {
         },
         action: () => {
           handleSetStep(7);
-        }
+          (location.pathname !== '/dashboard') ? history.push('/dashboard') : null
+        },
       },
       {
         selector: '[data-tour="navigation-content"]',
@@ -245,6 +247,7 @@ class TourComponent extends Component {
         },
         action: () => {
           handleSetStep(8);
+          (location.pathname !== '/admin/orders') ? history.push('/admin/orders') : null
         }
       },
       {
@@ -273,6 +276,7 @@ class TourComponent extends Component {
         },
         action: () => {
           handleSetStep(9);
+          (location.pathname !== '/admin/products') ? history.push('/admin/products') : null
         }
       },
       {
@@ -299,6 +303,7 @@ class TourComponent extends Component {
         },
         action: () => {
           handleSetStep(10);
+          (location.pathname !== '/admin/reports') ? history.push('/admin/reports') : null
         }
       },
       {
@@ -322,6 +327,7 @@ class TourComponent extends Component {
         },
         action: () => {
           handleSetStep(11);
+          (location.pathname !== '/settings') ? history.push('/settings') : null
         }
       },
     ];
@@ -339,6 +345,7 @@ class TourComponent extends Component {
             }
             showNumber={ false }
             showButtons={ false }
+            maskSpace={ 0 }
             steps={
               tourSteps
             } />
