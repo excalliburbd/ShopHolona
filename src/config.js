@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === 'production') {
   config = {
     ...config,
     demostore: 2,
-    api: '//backend.shophobe.com/api',
+    api: 'https://backenddev.shophobe.com/api',
     vendor: 'shophobe.com'
   }
 }
@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'production') {
 if (process.env.NODE_ENV === 'development') {
   config = {
     ...config,
-    api: '//backenddev.shophobe.com/api',
+    api: 'https://backenddev.shophobe.com/api',
   }
 }
 
