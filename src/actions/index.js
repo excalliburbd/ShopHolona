@@ -10,6 +10,7 @@ import { cartActionCreators } from './cartActionCreators';
 import { serviceActionCreators } from './serviceActionCreators';
 import { orderActionCreators } from './orderActionCreators';
 import { paymentandaddressActionCreators } from './paymentandaddressActionCreators';
+import { tourActionCreators } from './tourActionCreators';
 
 export const userActions = createActions(userActionCreators);
 export const sidebarActions = createActions(sidebarActionCreators);
@@ -21,3 +22,4 @@ export const cartActions = createActions(cartActionCreators);
 export const serviceActions = createActions(serviceActionCreators);
 export const orderActions = createActions(orderActionCreators);
 export const paymentandaddressActions = createActions(paymentandaddressActionCreators);
+export const tourActions = createActions(tourActionCreators);

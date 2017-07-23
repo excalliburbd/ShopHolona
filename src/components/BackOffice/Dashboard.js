@@ -122,7 +122,7 @@ const Dashboard = ({
         },
         {
           caption: 'Orders',
-          path: '/admin/order',
+          path: '/admin/orders',
           icon: MdAddShoppingCart,
           status: ordersStatus
         },

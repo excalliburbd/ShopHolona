@@ -1,0 +1,110 @@
+.tour-body.tour-body {
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0.8rem;
+  border-radius: 8px;
+  border: 0.2px solid rgba(49, 49, 49, 0.5);
+  box-shadow: var(--shadow-4p);
+}
+.tour-body>.eTpeTG {
+  top: 8px;
+  right: 10px;
+  color: #eeeeee;
+}
+.tour-body>.hpUgzh {
+  margin-top: 0;
+  justify-content: center;
+  position: relative;
+  top: -2.15rem;
+}
+
+.tour-container {
+  display: flex;
+  width: 20rem;
+  flex-direction: column;
+}
+
+.tour-header {
+  height: 5rem;
+  width: 100%;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.67);
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.tour-header-bg {
+  position: absolute;
+  width: 100%;
+  height: 5rem;
+  z-index: -1;
+}
+.tour-header h1 {
+  color: white;
+  font-family: NeueKabel;
+  font-weight: 600;
+  width: 75%;
+  padding-left: 1rem;
+  position: relative;
+  top: 4px;
+}
+.tour-header-mascot {
+  height: 4rem;
+  margin-right: 1rem;
+}
+
+.tour-guide {
+  padding: 1.5rem 1rem;
+  padding-bottom: 2rem;
+}
+.tour-guide p {
+  font-family: NeueKabel;
+  margin-bottom: 0.5em;
+  margin-top: 0;
+}
+
+.tour-body nav>button.MkPVP {
+  background-color: #FFCC33;
+  color: #FFC400;
+}
+
+.tour-container-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 0.5rem;
+  height: 2rem;
+  width: 100%;
+}
+
+.tour-container-actions>button:nth-child(2) {
+  background-color: #003366;
+  border-radius: 4px;
+}
+
+.tour-container-actions>button:nth-child(2)._2CPs4:not([disabled])._1jWAQ:hover {
+  background-color: rgba(0, 51, 102, 0.9);
+}
+
+.tour-container-actions>button:nth-child(1) {
+  background-color: #FFCC33;
+  border-radius: 4px;
+}
+
+.tour-container-actions>button:nth-child(1)._2CPs4:not([disabled])._1jWAQ:hover {
+  background-color: rgba(255, 204, 51, 0.9);
+}
+
+.tour-container-actions button {
+  margin: 0 0.5rem;
+  font-weight: 600;
+  font-family: NeueKabel;
+}
+
+.tour-container-actions > ._2Agdx._1jWAQ._2Agdx._2GH_L._2CPs4{
+  color: white;
+}

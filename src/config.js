@@ -1,6 +1,6 @@
 let config = {
   api: 'localhost:8000/api',
-  demostore: 4,
+  demostore: 21,
   demouser: 'vendor@shophobe.com',
   demopass: '123',
   home: 'shophobe.com',
@@ -10,7 +10,8 @@ let config = {
 if (process.env.NODE_ENV === 'production') {
   config = {
     ...config,
-    api: 'http://li1449-144.members.linode.com/api',
+    demostore: 2,
+    api: 'https://backenddev.shophobe.com/api',
     vendor: 'shophobe.com'
   }
 }
@@ -18,7 +19,7 @@ if (process.env.NODE_ENV === 'production') {
 if (process.env.NODE_ENV === 'development') {
   config = {
     ...config,
-    api: 'http://li1449-144.members.linode.com/api',
+    api: 'https://backenddev.shophobe.com/api',
   }
 }
 

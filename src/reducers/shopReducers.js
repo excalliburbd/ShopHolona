@@ -275,7 +275,8 @@ export const ShopPageReducer = handleActions({
           },
           fcom: false,
           description: 'loading',
-        }
+        },
+        demostore: config.demostore,
       }
     },
   [shopActions.shop.set.editing]: (state, action) => {

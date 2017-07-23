@@ -129,11 +129,11 @@ const ShopPage = ({
   }
 
   return (
-    <div className={ productDetailsClass }>
+    <div className={ productDetailsClass } >
       <div className="ShopPage-banner" style={{ backgroundImage: `url(${coverPhoto})`}}/>
-      <div className={ detailsClass }>
+      <div className={ detailsClass } data-tour="details-sidebar" >
         <div className="ShopPage-banner">
-          <div className="ShopPage-details-img" style={{ backgroundImage: `url(${proficePic})` }}>
+          <div className="ShopPage-details-img" style={{ backgroundImage: `url(${proficePic})` }} data-tour="shop-profile" >
             { vendor && <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') }/> }
           </div>
         </div>
@@ -145,10 +145,11 @@ const ShopPage = ({
                                 icon="add_a_photo"
                                 onClick={ () => handleShowImageUploader('COVER') }/>
         }
-        <IconButton icon={ (details) ? 'close' :'keyboard_arrow_down'}
+        {/* ToDo: remove associated logic
+            <IconButton icon={ (details) ? 'close' :'keyboard_arrow_down'}
                     className="ShopPage-details--toggle"
-                    onClick={ toggleDetails }/>
-        <div className="ShopPage-details-img" style={{ backgroundImage: `url(${proficePic})` }}>
+                    onClick={ toggleDetails }/> */}
+        <div className="ShopPage-details-img" style={{ backgroundImage: `url(${proficePic})` }} >
           { vendor && <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') }/> }
         </div>
 
@@ -194,7 +195,7 @@ const ShopPage = ({
                               handleFollowShop={ handleFollowShop }
                               handlePromptSignIn={ handlePromptSignIn }/>
         </div>
-        <div className="ShopPage-details--text">
+        <div className="ShopPage-details--text" data-tour="shop-description">
           {
               (editDesc) ? <div className="ShopPage-details--text-desc--update">
                 <Input  label="Edit Shop Description"
@@ -250,7 +251,7 @@ const ShopPage = ({
                                                 ) }/>
                 </div>,
                 <div className="ShopPage-products--container" key="arr-layout-2">
-                  <div className="ShopPage-products--container-scroll-div">
+                  <div className="ShopPage-products--container-scroll-div" data-tour="shop-banner" >
                     {
                       vendor && <IconButton className="ShopPage-banner--icon"
                                 icon="add_a_photo"
@@ -274,7 +275,7 @@ const ShopPage = ({
                     }
                   </div>
                   <div className="ShopPage-products--content">
-                    <div className="ShopPage-products--list">
+                    <div className="ShopPage-products--list" >
                       {
                         (vendor) && <ProductCard  addProductCard
                                                   vendor={ vendor }
@@ -283,7 +284,8 @@ const ShopPage = ({
                                                   handleShowCustomerDetails={ handleAddProduct }
                                                   key="AddProductKey"
                                                   addToCart={ handleAddToCart }
-                                                  setVariant={ handleSetVariant } />
+                                                  setVariant={ handleSetVariant }
+                                                  data-tour="add-product" />
                       }
                       {
                         products[selectedChip].products.map(

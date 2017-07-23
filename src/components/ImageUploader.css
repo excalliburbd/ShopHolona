@@ -4,6 +4,10 @@
   background: #ccc;
 }
 
+.ImageUploader-dialog {
+  width: 905px;
+}
+
 .ImageUploader-dropzone {
   border: #ccc dotted;
   height: 10em;

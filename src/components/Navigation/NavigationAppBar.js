@@ -43,7 +43,7 @@ const NavigationAppBar = ({
   return (
     <AppBar className="NavigationAppBar"
             title={
-                <span className={ navTitleClass }>
+                <span className={ navTitleClass } data-tour="welcome" >
                   <span  className="NavigationAppBar-title--shopname" >{ shopName }</span> <br />
                   {/*<span  className="NavigationAppBar-title--ref" >{ refCode }</span>*/}
                   <span  className="NavigationAppBar-title--ref" >{ refCode || 'REF: CZ-001'}</span>
@@ -53,24 +53,11 @@ const NavigationAppBar = ({
                 !searchbar && <img className="NavigationAppBar-logo" src={logo} alt="Shop logo"/>
               }
             onLeftIconClick={
-                () => windowLocation.assign('http://demo.shophobe.com/')
+                () => windowLocation.assign('https://shophobe.com/')
               }
-            fixed>
-      {/*<Autocomplete
-       className={
-       searchbarClass
-       }
-       placeholder="Search"
-       id="search"
-       value={''} >
-       <IconButton
-       icon='clear'
-       onClick={ () => hideSearchbar() }
-       className="NavigationAppBar-searchbar--close" />
-       </Autocomplete>*/}
-
-      <Searchbar searchbar={ searchbar }
-                 hideSearchbar={ hideSearchbar }/>
+            fixed >
+            <Searchbar searchbar={ searchbar }
+                      hideSearchbar={ hideSearchbar }/>
 
             {
               !searchbar && <Navigation type="horizontal" className="NavigationAppBar-right-comp">
@@ -83,25 +70,19 @@ const NavigationAppBar = ({
                   }
                   icon='search'
                 />
-                {/*<div className="NavigationAppBar-rewards">
-                  <h2>Money 0.00</h2>
-                </div>
-                <IconMenu icon="card_giftcard" className="NavigationAppBar-GiftPoint">
-                  <MenuItem value='money' caption='Money 0.00' />
-                </IconMenu>*/}
                 {
                   (location.pathname === '/') ?
                     <span>
                     {
                       vendor ?
                         <IconButton className="NavigationAppBar-icon"
-                                    // icon={ <Icon className="NavigationAppBar-dashboard-icon" icon={DashboardIcon} /> }
                                     icon={
-                                      <img className="NavigationAppBar-dashboard-icon"
-                                          src={ DashboardIcon }
-                                          alt="Dashboard Icon"/>
+                                      <img  className="NavigationAppBar-dashboard-icon"
+                                            src={ DashboardIcon }
+                                            alt="Dashboard Icon"/>
                                     }
-                                    onClick={ () => history.push('/dashboard') }/> :
+                                    onClick={ () => history.push('/dashboard') }
+                                    data-tour="click-dashboard" /> :
                         <IconButton className="NavigationAppBar-icon" icon='shopping_cart' onClick={showCartSidebar}/>
                     }
                     </span> :
@@ -140,7 +121,7 @@ const NavigationAppBar = ({
                                         if (urlParts.lentght < 3) {
                                           window.open('http://www.shophobe.cf');
                                         } else if (urlParts[2] === 'com') {
-                                          window.open('http://www.shophobe.com');
+                                          window.open('https://www.shophobe.com');
                                         } else {
                                           window.open('http://www.shophobe.cf');
                                         }

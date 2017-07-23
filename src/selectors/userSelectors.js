@@ -3,6 +3,7 @@ import { createSelector } from 'reselect';
 
 import { getShopID } from './shopSelectors';
 
+export const getLoggedIn = state => state.user.isLoggedIn && state.user.token;
 export const getToken = state => state.user.token;
 export const getUserDetails = state => state.user;
 export const getShopVendor = state => state.user.shopvendor;

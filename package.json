@@ -31,6 +31,7 @@
     "react-slick": "^0.14.11",
     "react-sticky-el": "^1.0.3",
     "react-toolbox": "2.0.0-beta.10",
+    "reactour": "^1.4.1",
     "reapop": "^1.1.1",
     "reapop-theme-shophobe": "^0.4.1",
     "recharts": "^0.22.0",
@@ -58,7 +59,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "toolbox": "react-toolbox-themr",
-    "deploy": "yarn build && aws s3 cp build/ s3://demostore.shophobe.com/ --recursive",
+    "deploy-dev": "yarn build && rm build/static/css/*.map && rm build/static/js/*.map && chmod -R 777 build/ && scp -r build/. imtiaz@45.118.132.85:/usr/src/app/vendor/ && rm -rf build/",
+    "deploy-prod": "yarn build && rm build/static/css/*.map && rm build/static/js/*.map && chmod -R 777 build/ && scp -r build/. imtiaz@172.104.61.239:/usr/src/app/vendor/ && rm -rf build/",
     "stage": "yarn build && cp -a build/. /var/www/html/",
     "build-reapop": "node-sass-chokidar reapop-theme-shophobe/src/styles/ -o reapop-theme-shophobe/lib/"
   },
