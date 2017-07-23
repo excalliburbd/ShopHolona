@@ -134,7 +134,6 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                       )).then(
                         res => {
                           if (res.id) {
-                            //do something
                             dispatch(addNotification({
                               title: 'Success',
                               message: 'Successfull updated product name',
@@ -309,7 +308,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           err => {
                             returnArr = [ ...arr, infoKey ];
 
-                            const info = JSON.parse(err);
+                            // const info = JSON.parse(err);
                             //TODO:
 
                             // if (info.short_desc) {
@@ -366,7 +365,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                                   err => {
                                     returnArr = [ ...arr, infoKey ];
 
-                                    const info = JSON.parse(err);
+                                    // const info = JSON.parse(err);
                                     //TODO:
 
                                     // if (info.short_desc) {
@@ -447,7 +446,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                   dispatch(getShopCategories(shop));
                   dispatch(addNotification({
                     title: 'Success',
-                    message: 'Successfully updated product name',
+                    message: 'Successfully uploaded product',
                     position: 'bl',
                     status: 'success',
                   }));
@@ -457,11 +456,20 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                 dispatch(getShopCategories(shop));
                 dispatch(addNotification({
                   title: 'Success',
-                  message: 'Successfully updated product name',
+                  message: 'Successfully uploaded product',
                   position: 'bl',
                   status: 'success',
                 }));
               }
+            }
+          ).catch(
+            err => {
+              dispatch(addNotification({
+                  title: 'Error uploaded product',
+                  message: err,
+                  position: 'bl',
+                  status: 'error',
+                }));
             }
           );
     }
@@ -469,7 +477,6 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
 }
 
 export const deleteProduct = (id, shop, token) => dispatch => {
-
   if (token) {
     request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
               token,
@@ -477,13 +484,9 @@ export const deleteProduct = (id, shop, token) => dispatch => {
               'DELETE'
             )).then(
               res => {
-
                 dispatch(productActions.products.done.delete.product(id));
-
                 dispatch(shopActions.shop.updateChip(0));
-
                 dispatch(getShopCategories(shop));
-
                 dispatch(sidebarActions.sidebar.hide())
                 dispatch(addNotification({
                     title: 'Success',
@@ -492,6 +495,15 @@ export const deleteProduct = (id, shop, token) => dispatch => {
                     status: 'success',
                 }));
               }
+          ).catch(
+            err => {
+              dispatch(addNotification({
+                  title: 'Error deleting product',
+                  message: err,
+                  position: 'bl',
+                  status: 'error',
+                }));
+            }
           );
   }
 }
@@ -551,6 +563,7 @@ export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
   }
 }
 
+//ToDo: figure out error reporting and notifications for this
 export const  requestAttribute = (
   token,
   name,
@@ -624,12 +637,6 @@ export const getFeaturedProduct = shop => dispatch => {
           ).then(
             res => {
               dispatch(productActions.products.done.get.featuredProducts(res));
-              dispatch(addNotification({
-                title: 'Success',
-                message: 'Successfully recieved feature product name',
-                position: 'bl',
-                status: 'success',
-              }));
             }
           )
 }
@@ -645,19 +652,12 @@ export const makeFeaturedProduct = (id, shop, token) => dispatch => {
             'post'
           )).then(
             res => {
-              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
-
-              dispatch({
-                type: 'DONE_API_MAKE_FEATURED_PRODUCT',
-                payload: res,
-              });
-
               dispatch(getFeaturedProduct(shop));
 
               dispatch(sidebarActions.sidebar.hide());
               dispatch(addNotification({
                 title: 'Success',
-                message: 'Successfully made featured product ',
+                message: 'Successfully featured product',
                 position: 'bl',
                 status: 'success',
               }));
@@ -676,7 +676,6 @@ export const removeFromFeaturedProduct = (productID, featuredID, shop, token) =>
           )).then(
             res => {
               dispatch(productActions.products.done.delete.featuredProduct(productID));
-
               dispatch(sidebarActions.sidebar.hide());
               dispatch(addNotification({
                 title: 'Success',

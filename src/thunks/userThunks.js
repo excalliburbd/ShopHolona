@@ -16,14 +16,7 @@ export const tryGetVendor = (shop, token) => dispatch => {
           )).then(
             res => {
               if( res.id ) {
-                dispatch(
-                  userActions.user.done.get.authShop())
-                dispatch(addNotification({
-                  title: 'Success',
-                  message: 'Successfully updated vendor name',
-                  position: 'bl',
-                  status: 'success',
-                }));
+                dispatch(userActions.user.done.get.authShop());
               }
             }
           ).catch(
@@ -40,23 +33,17 @@ export const getFollowingShop = (shop, token) => dispatch => {
             res => {
               if( res.length > 0 ) {
                 dispatch(userActions.user.done.get.followingShops(res));
-                dispatch(addNotification({
-                  title: 'Success',
-                  message: 'Successfully followed shop',
-                  position: 'bl',
-                  status: 'success',
-                }));
               }
             }
           ).catch(
             err => {
               console.log(err)
-              dispatch(addNotification({
-                  title: 'Error during following shop',
-                  message: err,
-                  position: 'bl',
-                  status: 'error',
-              }));
+              // dispatch(addNotification({
+              //     title: 'Error during fetching following shop',
+              //     message: err,
+              //     position: 'bl',
+              //     status: 'error',
+              // }));
             }
           );
   }
@@ -82,8 +69,6 @@ export const trySignInAsyncAction = (res, shop) => dispatch => {
             'POST'
           )).then(
             res => {
-              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
-
               request('/me/', getConfig(
                 res.token
               )).then(
@@ -92,11 +77,11 @@ export const trySignInAsyncAction = (res, shop) => dispatch => {
                   if (res.id) {
                     dispatch(userActions.user.done.get.profile(res));
                     dispatch(addNotification({
-                    title: 'Success',
-                    message: 'Successfully updated sign in',
-                    position: 'bl',
-                    status: 'success',
-                }));
+                        title: 'Success',
+                        message: 'Successfully signed in',
+                        position: 'bl',
+                        status: 'success',
+                    }));
                   }
                 }
               )
@@ -130,12 +115,6 @@ export const getMe = token => dispatch => {
           res => {
             if (res.id) {
               dispatch(userActions.user.done.get.profile(res));
-              dispatch(addNotification({
-                  title: 'Success',
-                  message: 'Successfully updated product Getme',
-                  position: 'bl',
-                  status: 'success',
-              }));
             }
           }
         ).catch(

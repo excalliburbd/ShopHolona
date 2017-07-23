@@ -16,24 +16,11 @@ export const getCart = (token, show) => dispatch => {
               // Cart fetching successful
               dispatch(cartActions.cart.done.get(res));
               show && dispatch(sidebarActions.sidebar.show.addToCart());
-              dispatch(addNotification({
-                title: 'Success',
-                message: 'Successfully updated product name',
-                position: 'bl',
-                status: 'success',
-              }));
             }
           ).catch(
             err => {
               // Fetching error details
               dispatch(cartActions.cart.done.get(new Error(err)));
-              dispatch(addNotification({
-                title: 'Error during cart update',
-                message: err,
-                position: 'bl',
-                status: 'error',
-              }));
-               
             }
           );
   }
@@ -42,7 +29,6 @@ export const getCart = (token, show) => dispatch => {
 export const updateCartItem = (cartID, id, quantity, token) => dispatch => {
   // starting address update
   dispatch(cartActions.cart.set.loading);
-
   dispatch(cartActions.cart.update.item({id: cartID, quantity}));
 
   if (token) {
@@ -71,7 +57,7 @@ export const updateCartItem = (cartID, id, quantity, token) => dispatch => {
                           }));
                           dispatch(addNotification({
                             title: 'Success',
-                            message: 'Successfully updated car item',
+                            message: 'Successfully updated cart item',
                             position: 'bl',
                             status: 'success',
                           }));
@@ -81,12 +67,12 @@ export const updateCartItem = (cartID, id, quantity, token) => dispatch => {
                           console.log(err)
                           dispatch(cartActions.cart.update.item(cartID, quantity-1))
                           dispatch(addNotification({
-                            title: 'Error during cart item update',
+                            title: 'Error Updating Cart Item',
                             message: err,
                             position: 'bl',
                             status: 'error',
                           }));
-                          
+
                         }
                       );
             }
@@ -122,6 +108,12 @@ export const addToCart = (id, token, productID) => (dispatch, getState) => {
         (cart[cartItem].quantity + 1),
         token
       ));
+      dispatch(addNotification({
+        title: 'Success',
+        message: 'Successfully added to cart',
+        position: 'bl',
+        status: 'success',
+      }));
     }
   } else {
     const newCartItem = {
@@ -157,7 +149,7 @@ export const addToCart = (id, token, productID) => (dispatch, getState) => {
                 }));
                 dispatch(addNotification({
                   title: 'Success',
-                  message: 'Successfully added into cart',
+                  message: 'Successfully added to cart. Login to save changes.',
                   position: 'bl',
                   status: 'success',
                 }));
@@ -215,12 +207,6 @@ export const checkout = (total, cart, address, token) => dispatch => {
             )).then(
               res => {
                 console.log(res)
-                dispatch(addNotification({
-                  title: 'Success',
-                  message: 'Successfully deleted cart item',
-                  position: 'bl',
-                  status: 'success',
-                }));
               }
             )
   }

@@ -8,12 +8,6 @@ export const getBanks = () => dispatch => {
             res => {
               if (res.length > 0) {
                 dispatch(paymentandaddressActions.paymentsAndAddresses.done.get.bank(res));
-                dispatch(addNotification({
-                  title: 'Success',
-                  message: 'Successfully updated product name',
-                  position: 'bl',
-                  status: 'success',
-                }));
               }
             }
           );
@@ -25,13 +19,6 @@ export const getBranch = bank => dispatch => {
               console.log(response)
               if (response.length > 0) {
                 dispatch(paymentandaddressActions.paymentsAndAddresses.done.get.bankBranch({id: bank, response}));
-                dispatch(addNotification({
-                  title: 'Success',
-                  message: 'Successfully recieved branch name',
-                  position: 'bl',
-                  status: 'success',
-                }));
-                
               }
             }
          )
@@ -52,9 +39,19 @@ export const saveBankInfo = (branch, account, shop, token) => dispatch => {
               console.log(response)
               dispatch(addNotification({
                 title: 'Success',
-                message: 'Successfully saved bankinfo',
+                message: 'Successfully saved bank information',
                 position: 'bl',
                 status: 'success',
+              }));
+            }
+         ).catch(
+            err => {
+              console.log(err);
+              dispatch(addNotification({
+                title: 'Error Saving Bank Information',
+                message: err,
+                position: 'bl',
+                status: 'error',
               }));
             }
          );
