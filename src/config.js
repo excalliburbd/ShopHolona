@@ -10,7 +10,8 @@ let config = {
 if (process.env.NODE_ENV === 'production') {
   config = {
     ...config,
-    api: 'http://li1449-144.members.linode.com/api',
+    demostore: 2,
+    api: '//backend.shophobe.com/api',
     vendor: 'shophobe.com'
   }
 }
@@ -18,7 +19,7 @@ if (process.env.NODE_ENV === 'production') {
 if (process.env.NODE_ENV === 'development') {
   config = {
     ...config,
-    api: 'http://li1449-144.members.linode.com/api',
+    api: '//backenddev.shophobe.com/api',
   }
 }
 
