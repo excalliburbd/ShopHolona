@@ -131,6 +131,8 @@ class ProductCard extends Component {
               <Stars rating={ rating } />
             </div>
           </div>
+
+
         </div>
         {
           vendor ?

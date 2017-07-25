@@ -1,5 +1,5 @@
 .ProductCard {
-  display: inline-block;
+  display: inline-flex;
   position: relative;
   width: 11em;
   margin: 1em 0.5em;
