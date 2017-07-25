@@ -591,17 +591,15 @@ export const  requestAttribute = (
 
                 if (obj.id) {
                   if (primary) {
-                    dispatch(categoryActions.categories.done.post.customAttr.idPrimary(
-                      {
+                    dispatch(categoryActions.categories.done.post.customAttr.idPrimary({
                         newID: obj.id,
                         oldID: id
-                      }));
+                    }));
                   } else {
-                    dispatch(categoryActions.categories.done.post.customAttr.idSecondary(
-                      {
-                        newID: obj.id,
-                        oldID: id, primaryID,
-                      }));
+                    dispatch(categoryActions.categories.done.post.customAttr.idSecondary({
+                      newID: obj.id,
+                      oldID: id, primaryID,
+                    }));
                   }
                 } else {
                   dispatch({

@@ -50,7 +50,7 @@ export const categoryActionCreators = {
           meta => meta,
         ],
         CUSTOM_ATTR: {
-          ID_PRIMAY: payload => payload,
+          ID_PRIMARY: payload => payload,
           ID_SECONDARY: payload => payload,
           PRIMARY: payload => payload,
           SECONDARY: payload => payload,
