@@ -94,38 +94,6 @@ const ProductDetailsMain = ({
         <p>{ weight } kg al </p>
       </div>
 
-      <div className="details-action">
-        {
-          vendor ?
-            (
-              featured ?
-                <Button icon="star_border"
-                      label="Remove featured product"
-                      accent
-                      onClick={
-                        () => deleteFromFeaturedProduct(id, featuredID, shop, token)
-                      } /> :
-                <Button icon="start"
-                      label="Add to featured product"
-                      primary
-                      onClick={
-                        () => makeFeaturedProduct(id, shop, token)
-                      } />
-            ) :
-              <Button className="details-action-cart"
-                      onClick={
-                                () => addToCart(
-                                        variances[selectedVariant].attributes[selectedAttribute].id,
-                                        token,
-                                        id
-                                      )
-                              }
-                      label='Add to cart'
-                      raised
-                      primary />
-          }
-      </div>
-
     </div>
   );
 

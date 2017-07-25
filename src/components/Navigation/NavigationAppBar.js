@@ -41,8 +41,17 @@ const NavigationAppBar = ({
   const windowLocation = window.location;
 
   return (
-    <AppBar className="NavigationAppBar"
-            title={
+    <div className="NavigationAppBar-container">
+      <div className="NavigationAppBar-mini">
+        <button onClick={
+          () => {
+            window.open(`https://www.messenger.com/t/Shophobe`)
+          }
+        }>Contact ShopHobe: +8801847275780
+        </button>
+      </div>
+      <AppBar className="NavigationAppBar"
+              title={
                 <span className={ navTitleClass } data-tour="welcome" >
                   <span  className="NavigationAppBar-title--shopname" >{ shopName }</span> <br />
                   {/*<span  className="NavigationAppBar-title--ref" >{ refCode }</span>*/}
@@ -52,27 +61,27 @@ const NavigationAppBar = ({
               leftIcon={
                 !searchbar && <img className="NavigationAppBar-logo" src={logo} alt="Shop logo"/>
               }
-            onLeftIconClick={
+              onLeftIconClick={
                 () => windowLocation.assign('http://demo.shophobe.com/')
               }
-            fixed >
-            <Searchbar searchbar={ searchbar }
-                      hideSearchbar={ hideSearchbar }/>
+              fixed >
+        <Searchbar searchbar={ searchbar }
+                   hideSearchbar={ hideSearchbar }/>
 
+        {
+          !searchbar && <Navigation type="horizontal" className="NavigationAppBar-right-comp">
+            {/*<IconButton*/}
+              {/*className="NavigationAppBar-search--button"*/}
+              {/*onClick={*/}
+                {/*() => {*/}
+                  {/*showSearchbar();*/}
+                {/*}*/}
+              {/*}*/}
+              {/*icon='search'*/}
+            {/*/>*/}
             {
-              !searchbar && <Navigation type="horizontal" className="NavigationAppBar-right-comp">
-                <IconButton
-                  className="NavigationAppBar-search--button"
-                  onClick={
-                    () => {
-                      showSearchbar();
-                    }
-                  }
-                  icon='search'
-                />
-                {
-                  (location.pathname === '/') ?
-                    <span>
+              (location.pathname === '/') ?
+                <span>
                     {
                       vendor ?
                         <IconButton className="NavigationAppBar-icon"
@@ -86,72 +95,73 @@ const NavigationAppBar = ({
                         <IconButton className="NavigationAppBar-icon" icon='shopping_cart' onClick={showCartSidebar}/>
                     }
                     </span> :
-                    <IconButton className="NavigationAppBar-icon"
-                                icon='store'
-                                onClick={ () => history.push('/') }/>
-                }
-                <IconMenu icon={
-                            (profilePic) ?
-                              <Avatar className="NavigationAppBar-user-profile-icon" title="user image" image={ profilePic }/> :
-                              'account_circle'
-                          }
-                          position='topRight'
-                          className="NavigationAppBar-profile-menu"
-                          iconRipple={ false }
-                          menuRipple={ false } >
-                  {
-                    (userLoggedIn) ?
-                      <div className="NavigationAppBar-profile-menuitem">
-                        {
-                          (location.pathname === '/') ?
-                            <MenuItem value='dashboard'
-                                      icon="dashboard"
-                                      onClick={() => history.push('/dashboard')} caption='Dashboard' /> :
-                            <MenuItem value='dashboard'
-                                      icon="store"
-                                      onClick={() => history.push('/')} caption='Home' />
-                        }
-                        <MenuItem  value='profile'
-                                    icon='account_circle'
-                                    caption='Profile'
-                                    onClick={
-                                      () => {
-                                        const urlParts = window.location.hostname.split('.');
-
-                                        if (urlParts.lentght < 3) {
-                                          window.open('http://www.shophobe.cf');
-                                        } else if (urlParts[2] === 'com') {
-                                          window.open('http://www.shophobe.com');
-                                        } else {
-                                          window.open('http://www.shophobe.cf');
-                                        }
-                                      }
-                                    } />
-                        <MenuItem value='settings'
-                                  icon='settings'
-                                  caption='Settings'
-                                  onClick={() => history.push('/settings')} />
-                        <MenuDivider />
-                        <MenuItem value='signout'
-                          icon='power_settings_new'
-                          onClick={ () => {
-                            handleSignOut();
-                            history.push('/');
-                          }}
-                          caption='Sign Out' />
-                      </div > :
-                      <div className="NavigationAppBar-profile-menuitem">
-                        <MenuItem value='signin'
-                                  icon='account_circle'
-                                  onClick={ handleSignIn }
-                                  caption='Sign In/Sign Up' />
-                      </div>
-
-                  }
-                </IconMenu>
-              </Navigation>
+                <IconButton className="NavigationAppBar-icon"
+                            icon='store'
+                            onClick={ () => history.push('/') }/>
             }
+            <IconMenu icon={
+              (profilePic) ?
+                <Avatar className="NavigationAppBar-user-profile-icon" title="user image" image={ profilePic }/> :
+                'account_circle'
+            }
+                      position='topRight'
+                      className="NavigationAppBar-profile-menu"
+                      iconRipple={ false }
+                      menuRipple={ false } >
+              {
+                (userLoggedIn) ?
+                  <div className="NavigationAppBar-profile-menuitem">
+                    {
+                      (location.pathname === '/') ?
+                        <MenuItem value='dashboard'
+                                  icon="dashboard"
+                                  onClick={() => history.push('/dashboard')} caption='Dashboard' /> :
+                        <MenuItem value='dashboard'
+                                  icon="store"
+                                  onClick={() => history.push('/')} caption='Home' />
+                    }
+                    <MenuItem  value='profile'
+                               icon='account_circle'
+                               caption='Profile'
+                               onClick={
+                                 () => {
+                                   const urlParts = window.location.hostname.split('.');
+
+                                   if (urlParts.lentght < 3) {
+                                     window.open('http://www.shophobe.cf');
+                                   } else if (urlParts[2] === 'com') {
+                                     window.open('http://www.shophobe.com');
+                                   } else {
+                                     window.open('http://www.shophobe.cf');
+                                   }
+                                 }
+                               } />
+                    <MenuItem value='settings'
+                              icon='settings'
+                              caption='Settings'
+                              onClick={() => history.push('/settings')} />
+                    <MenuDivider />
+                    <MenuItem value='signout'
+                              icon='power_settings_new'
+                              onClick={ () => {
+                                handleSignOut();
+                                history.push('/');
+                              }}
+                              caption='Sign Out' />
+                  </div > :
+                  <div className="NavigationAppBar-profile-menuitem">
+                    <MenuItem value='signin'
+                              icon='account_circle'
+                              onClick={ handleSignIn }
+                              caption='Sign In/Sign Up' />
+                  </div>
+
+              }
+            </IconMenu>
+          </Navigation>
+        }
       </AppBar>
+    </div>
   );
 }
 

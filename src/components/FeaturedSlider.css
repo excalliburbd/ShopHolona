@@ -40,9 +40,10 @@
   }
 }
 
+
 @media screen and (min-width: 800px) {
   .FeaturedSlider {
-    height: calc(100vh - 4em);
+    height: calc(100vh - 4em - 20px);
     padding: 0.4em 0.6em;
   }
 

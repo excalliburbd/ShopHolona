@@ -14,8 +14,8 @@
 
 .Navigation-content-main {
   width: initial;
-  /*height: calc(100vh - 4em);*/
   padding-top: 4rem;
+  margin-top: 20px;
 }
 
 .Navigation ._2FBCh {

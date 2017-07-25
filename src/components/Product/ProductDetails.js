@@ -4,6 +4,7 @@ import ImageGallery from 'react-image-gallery';
 
 import Tab from 'react-toolbox/lib/tabs/Tab';
 import Tabs from 'react-toolbox/lib/tabs/Tabs';
+import Button from 'react-toolbox/lib/button/Button';
 import IconButton from 'react-toolbox/lib/button/IconButton';
 import Sticky from 'react-sticky-el';
 
@@ -15,6 +16,10 @@ import './ProductDetails.css';
 
 const ProductDetails = ({
   toggleDetails,
+  id,
+  variances,
+  selectedVariant,
+  selectedAttribute,
   product,
   addToCart,
   setVariant,
@@ -27,6 +32,7 @@ const ProductDetails = ({
   shop,
   deleteFromFeaturedProduct,
   makeFeaturedProduct,
+  featuredID,
 }) => {
 
   const images = product.variances[product.selectedVariant].images.map(
@@ -59,6 +65,38 @@ const ProductDetails = ({
             showBullets={true}
             showNav={false}
           />
+        </div>
+
+        <div className="details-action">
+          {
+            vendor ?
+              (
+                featured ?
+                  <Button icon="star_border"
+                          label="Remove featured product"
+                          accent
+                          onClick={
+                            () => deleteFromFeaturedProduct(id, featuredID, shop, token)
+                          } /> :
+                  <Button icon="start"
+                          label="Add to featured product"
+                          primary
+                          onClick={
+                            () => makeFeaturedProduct(id, shop, token)
+                          } />
+              ) :
+              <Button className="details-action--cart"
+                      onClick={
+                        () => addToCart(
+                          variances[selectedVariant].attributes[selectedAttribute].id,
+                          token,
+                          id
+                        )
+                      }
+                      label='Add to cart'
+                      raised
+                      primary />
+          }
         </div>
 
       </div>
