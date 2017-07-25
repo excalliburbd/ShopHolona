@@ -142,6 +142,18 @@ export const getShopHours = (shop, token) => dispatch => {
   }
 }
 
+export const getShopPayments = (shop, token) => dispatch => {
+  request(`/vendors/shops/${shop}/payments/`, getConfig(
+                      token
+                    )).then(
+                      res => {
+                        if (res.length > 0) {
+                          dispatch(shopActions.shop.set.payments(res));
+                        }
+                      }
+                    )
+}
+
 export const runShopInfoUpdate = (info, shop, token) => dispatch => {
   const {
     name,

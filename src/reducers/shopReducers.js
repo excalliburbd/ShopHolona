@@ -291,7 +291,21 @@ export const ShopPageReducer = handleActions({
   [shopActions.shop.set.name]: (state, action) => {
     return {
       ...state,
-      shop_name: action.payload
+      shop_name: action.payload,
+      information: {
+        ...state.information,
+        name: action.payload,
+      },
+    }
+  },
+  [shopActions.shop.set.payments]: (state, action) => {
+    return {
+      ...state,
+      payments: action.payload,
+      information: {
+        ...state.information,
+        payments: action.payload,
+      },
     }
   },
 }, {
@@ -303,6 +317,18 @@ export const ShopPageReducer = handleActions({
   contacts: [],
   address: {
 
+  },
+  payments: {
+    id: null,
+    bank: {
+        id: null,
+        name: 'loading',
+        bank_name: null
+    },
+    account_name: 'asf',
+    account_type: 0,
+    account_number: null,
+    bkash_num: ''
   },
   information: {
     upToDate: false,
@@ -330,6 +356,18 @@ export const ShopPageReducer = handleActions({
     },
     bank: {
 
+    },
+    payments: {
+      id: null,
+      bank: {
+          id: null,
+          name: 'loading',
+          bank_name: null
+      },
+      account_name: 'loading',
+      account_type: 0,
+      account_number: null,
+      bkash_num: ''
     },
     fcom: false,
     description: 'loading'

@@ -8,6 +8,7 @@ import {
   getShop,
   getShopAddress,
   getShopHours,
+  getShopPayments,
 } from '../thunks/shopThunks';
 import {
   tryGetVendor,
@@ -86,6 +87,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(getShopAddress(shop));
       dispatch(getFeaturedProduct(shop));
 
+      token && dispatch(userActions.user.done.get.token(token));
+
       if (demostore) {
         dispatch(
           trySignInAsyncAction({ email: config.demouser, password: config.demopass}, shop)
@@ -99,7 +102,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(getAllProducts(shop));
       dispatch(getShopAddress(shop));
       dispatch(getFeaturedProduct(shop));
-      dispatch(getBanks());
+
 
       if (token) {
         dispatch(getCart(token, false));
@@ -110,6 +113,8 @@ const mapDispatchToProps = dispatch => {
       if (vendor && token) {
         dispatch(getShopHours(shop, token));
         dispatch(getOrderList(shop, token));
+        dispatch(getShopPayments(shop, token));
+        dispatch(getBanks());
       }
     },
     handleSetSideDrawer: val => {
@@ -128,7 +133,7 @@ const mapDispatchToProps = dispatch => {
     },
     showCartSidebar: () => {
       dispatch(sidebarActions.sidebar.show.addToCart());
-    }
+    },
   }
 }
 

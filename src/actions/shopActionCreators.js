@@ -18,6 +18,7 @@ export const shopActionCreators = {
       TO_HOUR: payload => payload,
       // LICENSE_NUMBER: payload => payload,
       // DESCRIPTION: payload => payload,
+      PAYMENTS: payload => payload,
     },
     EDIT: {
       NAME: payload => payload,

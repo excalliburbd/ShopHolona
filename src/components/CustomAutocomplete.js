@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Input from 'react-toolbox/lib/input/Input';
@@ -11,7 +12,7 @@ class CustomAutocomplete  extends Component {
 
     this.state = {
       suggestions: false,
-      list: this.props.source.list,
+      list: props.source.list,
       error: false,
       errMsg: 'You must select a catagory from the list',
       fromList: false,
@@ -22,11 +23,17 @@ class CustomAutocomplete  extends Component {
 
     const {
       label,
+      type,
+      source,
+      handleSetValue,
+      value,
+      selectionOnly,
+      onSelected
     } = this.props;
 
     const autoObj = classNames('CustomAutocomplete _07g5 ', {
       '_3qQkg' : this.state.suggestions
-    })
+    });
 
     return (
       <div className={ autoObj }>
@@ -37,22 +44,22 @@ class CustomAutocomplete  extends Component {
               onChange={
                 input => {
                   this.setState({
-                    list: this.props.source.search(input),
+                    list: source.search(input),
                     fromList: false,
                   })
 
-                  this.props.handleSetValue(input);
+                  handleSetValue(input);
                 }
               }
-              value={ this.props.value }
+              value={ value }
               onBlur={ () => {
-                if (this.props.selectionOnly && !this.state.fromList) {
+                if (selectionOnly && !this.state.fromList) {
                   this.setState({
                     suggestions: false,
                     error: true,
                     value: ''
                   })
-                  this.props.handleSetValue('');
+                  handleSetValue('');
                 } else {
                   this.setState({
                     suggestions: false,
@@ -62,23 +69,23 @@ class CustomAutocomplete  extends Component {
               onFocus={ () => {
                 this.setState({
                   suggestions: true,
-                  list: this.props.source.list,
+                  list: source.list,
                 })
               }} />
         <ul className="CustomAutocomplete _3-Nb6">
           {
             this.state.list.map(
-              (category, key) =>  <li className="_1erPE" key={ key }
+              (item, key) =>  <li className="_1erPE" key={ key }
                                       onMouseDown={ () => {
                                         this.setState({
-                                          value: category.name,
+                                          value: item.name,
                                           fromList: true,
                                           error: false,
                                         });
-                                        this.props.handleSetValue(category.name);
-                                        this.props.onSelected(category.id, category);
+                                        handleSetValue(item.name);
+                                        onSelected(item.id, item);
                                       }}>
-                                      { category.name }
+                                      { item.name }
                                   </li>
             )
           }
@@ -86,6 +93,20 @@ class CustomAutocomplete  extends Component {
       </div>
     )
   }
+}
+
+CustomAutocomplete.propTypes = {
+  source: PropTypes.shape({
+    list: PropTypes.arrayOf(
+               PropTypes.shape({
+              name: PropTypes.oneOfType([
+                      PropTypes.string,
+                      PropTypes.number,
+                    ]),
+              id: PropTypes.number,
+            })
+          ).isRequired,
+  }),
 }
 
 export default CustomAutocomplete;

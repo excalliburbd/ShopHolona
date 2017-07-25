@@ -32,6 +32,7 @@ const offlineConfig = {
       'router',
       'offline',
       'cart',
+      'banks',
     ]
   }
 }
