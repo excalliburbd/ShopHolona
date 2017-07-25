@@ -16,9 +16,7 @@ export const tryGetVendor = (shop, token) => dispatch => {
           )).then(
             res => {
               if( res.id ) {
-                dispatch(
-                  userActions.user.done.get.authShop()
-                )
+                dispatch(userActions.user.done.get.authShop());
               }
             }
           ).catch(
@@ -38,7 +36,15 @@ export const getFollowingShop = (shop, token) => dispatch => {
               }
             }
           ).catch(
-            err => console.log(err)
+            err => {
+              console.log(err)
+              // dispatch(addNotification({
+              //     title: 'Error during fetching following shop',
+              //     message: err,
+              //     position: 'bl',
+              //     status: 'error',
+              // }));
+            }
           );
   }
 }
@@ -63,8 +69,6 @@ export const trySignInAsyncAction = (res, shop) => dispatch => {
             'POST'
           )).then(
             res => {
-              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
-
               request('/me/', getConfig(
                 res.token
               )).then(
@@ -72,6 +76,12 @@ export const trySignInAsyncAction = (res, shop) => dispatch => {
 
                   if (res.id) {
                     dispatch(userActions.user.done.get.profile(res));
+                    dispatch(addNotification({
+                        title: 'Success',
+                        message: 'Successfully signed in',
+                        position: 'bl',
+                        status: 'success',
+                    }));
                   }
                 }
               )
@@ -87,6 +97,12 @@ export const trySignInAsyncAction = (res, shop) => dispatch => {
           ).catch(
             err => {
               dispatch(userActions.user.ui.email(new Error(err)))
+              dispatch(addNotification({
+                title: 'Error during shop update',
+                message: err,
+                position: 'bl',
+                status: 'error',
+              }));
             }
           );
 }

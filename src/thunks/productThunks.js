@@ -134,7 +134,6 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                       )).then(
                         res => {
                           if (res.id) {
-                            //do something
                             dispatch(addNotification({
                               title: 'Success',
                               message: 'Successfull updated product name',
@@ -168,10 +167,10 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                 desc: short_desc
               }));
               dispatch(addNotification({
-                title: 'Success',
-                message: 'Successfull updated product description',
-                position: 'bl',
-                status: 'success',
+                  title: 'Success',
+                  message: 'Successfull updated product description',
+                  position: 'bl',
+                  status: 'success',
               }));
             } else {
               request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
@@ -200,7 +199,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
 
                           if (info.short_desc) {
                             dispatch(addNotification({
-                              title: 'Error during product update',
+                              title: 'Error during description update',
                               message: info.short_desc[0],
                               position: 'bl',
                               status: 'error',
@@ -222,7 +221,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                   }));
                   dispatch(addNotification({
                     title: 'Success',
-                    message: 'Successfull updated product stock',
+                    message: 'Successfully updated product stock',
                     position: 'bl',
                     status: 'success',
                   }));
@@ -241,7 +240,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           res => {
                             dispatch(addNotification({
                               title: 'Success',
-                              message: 'Successfull updated product stock',
+                              message: 'Successfully updated product stock',
                               position: 'bl',
                               status: 'success',
                             }));
@@ -280,10 +279,10 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                     attr,
                   }));
                   dispatch(addNotification({
-                    title: 'Success',
-                    message: 'Successfull updated product stock',
-                    position: 'bl',
-                    status: 'success',
+                      title: 'Success',
+                      message: 'Successfully updated product stock',
+                      position: 'bl',
+                      status: 'success',
                   }));
                 } else {
                   request(`/vendors/shops/${shop}/products/${id}/variances/${attr.variantID}/attributes/`, getConfig(
@@ -299,17 +298,17 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                         )).then(
                           res => {
                             dispatch(addNotification({
-                              title: 'Success',
-                              message: 'Successfull updated product stock',
-                              position: 'bl',
-                              status: 'success',
+                                title: 'Success',
+                                message: 'Successfully updated product stock',
+                                position: 'bl',
+                                status: 'success',
                             }));
                           }
                         ).catch(
                           err => {
                             returnArr = [ ...arr, infoKey ];
 
-                            const info = JSON.parse(err);
+                            // const info = JSON.parse(err);
                             //TODO:
 
                             // if (info.short_desc) {
@@ -340,10 +339,10 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           attr,
                         }));
                         dispatch(addNotification({
-                          title: 'Success',
-                          message: 'Successfull updated product details',
-                          position: 'bl',
-                          status: 'success',
+                            title: 'Success',
+                            message: 'Successfully updated product details',
+                            position: 'bl',
+                            status: 'success',
                         }));
                       } else {
                         request(`/vendors/shops/${shop}/products/${id}/variances/${variantID}/attributes/${attrID}/`, getConfig(
@@ -357,7 +356,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                                   res => {
                                     dispatch(addNotification({
                                       title: 'Success',
-                                      message: 'Successfull updated product details',
+                                      message: 'Successfully updated price weight',
                                       position: 'bl',
                                       status: 'success',
                                     }));
@@ -366,13 +365,13 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                                   err => {
                                     returnArr = [ ...arr, infoKey ];
 
-                                    const info = JSON.parse(err);
+                                    // const info = JSON.parse(err);
                                     //TODO:
 
                                     // if (info.short_desc) {
                                       dispatch(addNotification({
-                                        title: 'Error during product update',
-                                        message: 'Can not update product details',
+                                        title: 'Error during upadating price weight',
+                                        message: 'Can not update price weight',
                                         position: 'bl',
                                         status: 'error',
                                       }));
@@ -404,10 +403,22 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                       )).then(
                         res => {
                           console.log(res)
+                          dispatch(addNotification({
+                            title: 'Success',
+                            message: 'Successfully updated product name',
+                            position: 'bl',
+                            status: 'success',
+                          }));
                         }
                       ).catch(
                         err => {
                           console.log(err)
+                           dispatch(addNotification({
+                              title: 'Success',
+                              message: 'Successfully updated product name',
+                              position: 'bl',
+                              status: 'success',
+                          }));
                           returnArr = [ ...arr, infoKey ];
                         }
                     );
@@ -433,11 +444,32 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                 if (res.id) {
                   dispatch(getAllProducts(shop, demostore, res.id, token));
                   dispatch(getShopCategories(shop));
+                  dispatch(addNotification({
+                    title: 'Success',
+                    message: 'Successfully uploaded product',
+                    position: 'bl',
+                    status: 'success',
+                  }));
                 }
               } else {
                 dispatch(getAllProducts(shop, false, null, null));
                 dispatch(getShopCategories(shop));
+                dispatch(addNotification({
+                  title: 'Success',
+                  message: 'Successfully uploaded product',
+                  position: 'bl',
+                  status: 'success',
+                }));
               }
+            }
+          ).catch(
+            err => {
+              dispatch(addNotification({
+                  title: 'Error uploaded product',
+                  message: err,
+                  position: 'bl',
+                  status: 'error',
+                }));
             }
           );
     }
@@ -445,7 +477,6 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
 }
 
 export const deleteProduct = (id, shop, token) => dispatch => {
-
   if (token) {
     request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
               token,
@@ -453,15 +484,26 @@ export const deleteProduct = (id, shop, token) => dispatch => {
               'DELETE'
             )).then(
               res => {
-
                 dispatch(productActions.products.done.delete.product(id));
-
                 dispatch(shopActions.shop.updateChip(0));
-
                 dispatch(getShopCategories(shop));
-
                 dispatch(sidebarActions.sidebar.hide())
+                dispatch(addNotification({
+                    title: 'Success',
+                    message: 'Successfully deleted product',
+                    position: 'bl',
+                    status: 'success',
+                }));
               }
+          ).catch(
+            err => {
+              dispatch(addNotification({
+                  title: 'Error deleting product',
+                  message: err,
+                  position: 'bl',
+                  status: 'error',
+                }));
+            }
           );
   }
 }
@@ -483,18 +525,18 @@ export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
                 if (status === 'EDIT') {
                     dispatch(productActions.products.ui.set.edit.image({ response: res, id, image: obj.file.preview }));
                     dispatch(addNotification({
-                      title: 'Successfully uploaded image',
-                      message: 'Image uploaded successfully. Please save product to make the update permanent',
-                      position: 'bl',
-                      status: 'success',
+                        title: 'Successfully uploaded image',
+                        message: 'Image uploaded successfully. Please save product to make the update permanent',
+                        position: 'bl',
+                        status: 'success',
                     }));
                 } else {
                     dispatch(categoryActions.categories.done.post.productImage({ response: res, id, key }));
                     dispatch(addNotification({
-                      title: 'Successfully uploaded image',
-                      message: 'Image uploaded successfully. Please save product to make the update permanent',
-                      position: 'bl',
-                      status: 'success',
+                        title: 'Successfully uploaded image',
+                        message: 'Image uploaded successfully. Please save product to make the update permanent',
+                        position: 'bl',
+                        status: 'success',
                     }));
                     dispatch(imageUploaderActions.imageUploader.upload.inc());
                     if (status === 'CROPED') {
@@ -510,11 +552,18 @@ export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
           ).catch(
             err => {
               dispatch(categoryActions.categories.done.post.productImage( new Error(err), { id, key } ));
+              dispatch(addNotification({
+                  title: 'Error during uploading image',
+                  message: err,
+                  position: 'bl',
+                  status: 'error',
+              }));
             }
           );
   }
 }
 
+//ToDo: figure out error reporting and notifications for this
 export const  requestAttribute = (
   token,
   name,
@@ -542,17 +591,15 @@ export const  requestAttribute = (
 
                 if (obj.id) {
                   if (primary) {
-                    dispatch(categoryActions.categories.done.post.customAttr.idPrimary(
-                      {
+                    dispatch(categoryActions.categories.done.post.customAttr.idPrimary({
                         newID: obj.id,
                         oldID: id
-                      }));
+                    }));
                   } else {
-                    dispatch(categoryActions.categories.done.post.customAttr.idSecondary(
-                      {
-                        newID: obj.id,
-                        oldID: id, primaryID,
-                      }));
+                    dispatch(categoryActions.categories.done.post.customAttr.idSecondary({
+                      newID: obj.id,
+                      oldID: id, primaryID,
+                    }));
                   }
                 } else {
                   dispatch({
@@ -603,16 +650,15 @@ export const makeFeaturedProduct = (id, shop, token) => dispatch => {
             'post'
           )).then(
             res => {
-              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
-
-              dispatch({
-                type: 'DONE_API_MAKE_FEATURED_PRODUCT',
-                payload: res,
-              });
-
               dispatch(getFeaturedProduct(shop));
 
               dispatch(sidebarActions.sidebar.hide());
+              dispatch(addNotification({
+                title: 'Success',
+                message: 'Successfully featured product',
+                position: 'bl',
+                status: 'success',
+              }));
             }
           );
   }
@@ -628,8 +674,13 @@ export const removeFromFeaturedProduct = (productID, featuredID, shop, token) =>
           )).then(
             res => {
               dispatch(productActions.products.done.delete.featuredProduct(productID));
-
               dispatch(sidebarActions.sidebar.hide());
+              dispatch(addNotification({
+                title: 'Success',
+                message: 'Successfully removed from featured product',
+                position: 'bl',
+                status: 'success',
+              }));
             }
           )
   }

@@ -61,8 +61,8 @@ const NavigationAppBar = ({
               leftIcon={
                 !searchbar && <img className="NavigationAppBar-logo" src={logo} alt="Shop logo"/>
               }
-              onLeftIconClick={
-                () => windowLocation.assign('http://demo.shophobe.com/')
+            onLeftIconClick={
+                () => windowLocation.assign('https://shophobe.com/')
               }
               fixed >
         <Searchbar searchbar={ searchbar }
@@ -127,34 +127,34 @@ const NavigationAppBar = ({
                                  () => {
                                    const urlParts = window.location.hostname.split('.');
 
-                                   if (urlParts.lentght < 3) {
-                                     window.open('http://www.shophobe.cf');
-                                   } else if (urlParts[2] === 'com') {
-                                     window.open('http://www.shophobe.com');
-                                   } else {
-                                     window.open('http://www.shophobe.cf');
-                                   }
-                                 }
-                               } />
-                    <MenuItem value='settings'
-                              icon='settings'
-                              caption='Settings'
-                              onClick={() => history.push('/settings')} />
-                    <MenuDivider />
-                    <MenuItem value='signout'
-                              icon='power_settings_new'
-                              onClick={ () => {
-                                handleSignOut();
-                                history.push('/');
-                              }}
-                              caption='Sign Out' />
-                  </div > :
-                  <div className="NavigationAppBar-profile-menuitem">
-                    <MenuItem value='signin'
-                              icon='account_circle'
-                              onClick={ handleSignIn }
-                              caption='Sign In/Sign Up' />
-                  </div>
+                                        if (urlParts.lentght < 3) {
+                                          window.open('http://www.shophobe.cf');
+                                        } else if (urlParts[2] === 'com') {
+                                          window.open('https://www.shophobe.com');
+                                        } else {
+                                          window.open('http://www.shophobe.cf');
+                                        }
+                                      }
+                                    } />
+                        <MenuItem value='settings'
+                                  icon='settings'
+                                  caption='Settings'
+                                  onClick={() => history.push('/settings')} />
+                        <MenuDivider />
+                        <MenuItem value='signout'
+                          icon='power_settings_new'
+                          onClick={ () => {
+                            handleSignOut();
+                            history.push('/');
+                          }}
+                          caption='Sign Out' />
+                      </div > :
+                      <div className="NavigationAppBar-profile-menuitem">
+                        <MenuItem value='signin'
+                                  icon='account_circle'
+                                  onClick={ handleSignIn }
+                                  caption='Sign In/Sign Up' />
+                      </div>
 
               }
             </IconMenu>

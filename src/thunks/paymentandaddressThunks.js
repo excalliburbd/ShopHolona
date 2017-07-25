@@ -1,6 +1,7 @@
 import { request, getConfig } from './helpers';
 
 import { paymentandaddressActions } from '../actions';
+import { addNotification } from 'reapop';
 
 export const getBanks = () => dispatch => {
   request('/banks/', getConfig()).then(
@@ -36,6 +37,22 @@ export const saveBankInfo = (branch, account, shop, token) => dispatch => {
           )).then(
             response => {
               console.log(response)
+              dispatch(addNotification({
+                title: 'Success',
+                message: 'Successfully saved bank information',
+                position: 'bl',
+                status: 'success',
+              }));
+            }
+         ).catch(
+            err => {
+              console.log(err);
+              dispatch(addNotification({
+                title: 'Error Saving Bank Information',
+                message: err,
+                position: 'bl',
+                status: 'error',
+              }));
             }
          );
   }
