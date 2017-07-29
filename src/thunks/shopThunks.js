@@ -243,7 +243,7 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                     );
             return returnArr;
           case 'from_hour':
-            request(`/vendors/shops/${shop}/hours/${hours.id}`, getConfig(
+            request(`/vendors/shops/${shop}/hours/${hours.id}/`, getConfig(
                       token,
                       {
                         from_hour: `${hours.from_hour.getHours()}:${hours.from_hour.getMinutes()}`
@@ -277,7 +277,7 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                     );
             return returnArr;
           case 'to_hour':
-            request(`/vendors/shops/${shop}/hours/${hours.id}`, getConfig(
+            request(`/vendors/shops/${shop}/hours/${hours.id}/`, getConfig(
                       token,
                       {
                         to_hour: `${hours.to_hour.getHours()}:${hours.to_hour.getMinutes()}`

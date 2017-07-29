@@ -11,17 +11,17 @@ import {
 
 export const tryGetVendor = (shop, token) => dispatch => {
   if (token) {
-    request(`/vendors/shops/${shop}`, getConfig(
-            token
-          )).then(
-            res => {
-              if( res.id ) {
-                dispatch(userActions.user.done.get.authShop());
+    request(`/vendors/shops/${shop}/`, getConfig(
+              token
+            )).then(
+              res => {
+                if( res.id ) {
+                  dispatch(userActions.user.done.get.authShop());
+                }
               }
-            }
-          ).catch(
-            err => userActions.user.done.get.authShop(new Error(err))
-          );
+            ).catch(
+              err => userActions.user.done.get.authShop(new Error(err))
+            );
   }
 }
 
