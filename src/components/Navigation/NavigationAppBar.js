@@ -112,7 +112,7 @@ const NavigationAppBar = ({
                 (userLoggedIn) ?
                   <div className="NavigationAppBar-profile-menuitem">
                     {
-                      (location.pathname === '/') ?
+                      (location.pathname === '/' && vendor) ?
                         <MenuItem value='dashboard'
                                   icon="dashboard"
                                   onClick={() => history.push('/dashboard')} caption='Dashboard' /> :
