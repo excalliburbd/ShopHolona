@@ -91,7 +91,7 @@ const ProductDetailsMain = ({
 
       <div className="details-main-weight">
         <h4 className="details-main-subtitle">Weight</h4>
-        <p>{ weight } kg al </p>
+        <p>{ weight } kg</p>
       </div>
 
     </div>
