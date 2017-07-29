@@ -251,6 +251,9 @@
 .ShopPage-products--category {
   margin-bottom: .5em;
 }
+.ShopPage-products--category span {
+  color: dimgray;
+}
 
 .ShopPage-details--text-desc--update {
   display: flex;
@@ -348,7 +351,7 @@
   .ShopPage-details {
     background-color: white;
     width: 17vw;
-    height: calc(100vh - 4em);
+    height: calc(100vh - 4em - 20px);
     color: dimgrey;
   }
 
@@ -363,12 +366,12 @@
 
   .ShopPage-featured {
     order: 1;
-    height: calc(100vh - 4em);
+    height: calc(100vh - 4em - 20px);
     width: 20vw;
   }
 
   .ShopPage-products--container {
-    height: calc(100vh - 4em);
+    height: calc(100vh - 4em - 20px);
     width: 63vw;
   }
 
@@ -430,6 +433,7 @@
     position: fixed;
     top: 4em;
     width: calc(100% - 37vw - .375em);
+    margin-top: 20px;
   }
 
   .ShopPage-products--categories,

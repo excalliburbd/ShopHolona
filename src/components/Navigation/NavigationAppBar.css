@@ -1,5 +1,49 @@
+.NavigationAppBar-container {
+  height: calc(4rem + 20px);
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  z-index: 200;
+}
+
+.NavigationAppBar-mini {
+  position: fixed;
+  top: 0;
+  height: 20px;
+  width: 100vw;
+  background-color: #e33939;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.NavigationAppBar-mini button {
+  position: relative;
+  right: 2.5rem;
+  color: ghostwhite;
+  vertical-align: text-top;
+  background-color: #b41616;
+  font-size: 11.5px;
+  padding: 0px 1rem;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  font-family: Century_Gothic;
+  text-decoration: none;
+  border: 0px;
+}
+
+.NavigationAppBar-mini button:hover {
+  color: ghostwhite;
+  background-color: rgba(180, 22, 22, 0.9);
+  cursor: pointer;
+}
+.NavigationAppBar-mini button:focus {
+  outline-width: 0;
+}
+
 .NavigationAppBar {
   background-color: #CC3333;
+  margin-top: 20px;
 }
 
 .NavigationAppBar-title {
@@ -118,9 +162,12 @@
   margin-right: .5em;
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 480px) {
   .NavigationAppBar-title {
     display: none;
+  }
+  .NavigationAppBar-mini button {
+    right: 0.5rem;
   }
 }
 

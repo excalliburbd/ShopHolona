@@ -1,7 +1,7 @@
 .product-details-container {
   width: 100vw;
   padding-left: 2em;
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 4rem - 20px);
   overflow-y: scroll;
   color: #4D4D4D;
   display: flex;
@@ -141,6 +141,18 @@
 .ProductDetails--toggle .material-icons {
   color: #FFC400;
   font-size: 2em;
+}
+
+.details-action {
+  text-align: center;
+  width:20rem;
+  margin-top: 1rem;
+}
+.details-action--cart._3tTAW:not([disabled])._221ic, ._3tTAW:not([disabled])._3IRMZ {
+  background-color: #FFCC33;
+  color: #3c3b2b;
+  font-family: "Harmonia Regular";
+  font-weight: 600;
 }
 
 /*for mobile*/

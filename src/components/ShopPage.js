@@ -224,6 +224,7 @@ const ShopPage = ({
           {
             (productDetails) ?
               <ProductDetails toggleDetails={ handleToggleProductDetails }
+                              { ...selectedProductDetails }
                               product={ selectedProductDetails }
                               token={ token }
                               addToCart={ handleAddToCart }

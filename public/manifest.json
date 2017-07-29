@@ -3,7 +3,7 @@
   "name": "Shop Hobe vendor app",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "logo",
       "sizes": "192x192",
       "type": "image/png"
     }

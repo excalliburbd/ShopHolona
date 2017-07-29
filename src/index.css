@@ -66,6 +66,11 @@
   src: url('../src/assets/fonts/SpecialElite.ttf') format("truetype");
 }
 
+@font-face {
+  font-family: "Century_Gothic";
+  src: url('../src/assets/fonts/century-gothic.ttf') format("truetype");
+}
+
 body {
   margin: 0;
 }

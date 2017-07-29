@@ -41,8 +41,17 @@ const NavigationAppBar = ({
   const windowLocation = window.location;
 
   return (
-    <AppBar className="NavigationAppBar"
-            title={
+    <div className="NavigationAppBar-container">
+      <div className="NavigationAppBar-mini">
+        <button onClick={
+          () => {
+            window.open(`https://www.messenger.com/t/Shophobe`)
+          }
+        }>Contact ShopHobe: +8801847275780
+        </button>
+      </div>
+      <AppBar className="NavigationAppBar"
+              title={
                 <span className={ navTitleClass } data-tour="welcome" >
                   <span  className="NavigationAppBar-title--shopname" >{ shopName }</span> <br />
                   {/*<span  className="NavigationAppBar-title--ref" >{ refCode }</span>*/}
@@ -55,24 +64,24 @@ const NavigationAppBar = ({
             onLeftIconClick={
                 () => windowLocation.assign('https://shophobe.com/')
               }
-            fixed >
-            <Searchbar searchbar={ searchbar }
-                      hideSearchbar={ hideSearchbar }/>
+              fixed >
+        <Searchbar searchbar={ searchbar }
+                   hideSearchbar={ hideSearchbar }/>
 
+        {
+          !searchbar && <Navigation type="horizontal" className="NavigationAppBar-right-comp">
+            {/*<IconButton*/}
+              {/*className="NavigationAppBar-search--button"*/}
+              {/*onClick={*/}
+                {/*() => {*/}
+                  {/*showSearchbar();*/}
+                {/*}*/}
+              {/*}*/}
+              {/*icon='search'*/}
+            {/*/>*/}
             {
-              !searchbar && <Navigation type="horizontal" className="NavigationAppBar-right-comp">
-                <IconButton
-                  className="NavigationAppBar-search--button"
-                  onClick={
-                    () => {
-                      showSearchbar();
-                    }
-                  }
-                  icon='search'
-                />
-                {
-                  (location.pathname === '/') ?
-                    <span>
+              (location.pathname === '/') ?
+                <span>
                     {
                       vendor ?
                         <IconButton className="NavigationAppBar-icon"
@@ -86,37 +95,37 @@ const NavigationAppBar = ({
                         <IconButton className="NavigationAppBar-icon" icon='shopping_cart' onClick={showCartSidebar}/>
                     }
                     </span> :
-                    <IconButton className="NavigationAppBar-icon"
-                                icon='store'
-                                onClick={ () => history.push('/') }/>
-                }
-                <IconMenu icon={
-                            (profilePic) ?
-                              <Avatar className="NavigationAppBar-user-profile-icon" title="user image" image={ profilePic }/> :
-                              'account_circle'
-                          }
-                          position='topRight'
-                          className="NavigationAppBar-profile-menu"
-                          iconRipple={ false }
-                          menuRipple={ false } >
-                  {
-                    (userLoggedIn) ?
-                      <div className="NavigationAppBar-profile-menuitem">
-                        {
-                          (location.pathname === '/') ?
-                            <MenuItem value='dashboard'
-                                      icon="dashboard"
-                                      onClick={() => history.push('/dashboard')} caption='Dashboard' /> :
-                            <MenuItem value='dashboard'
-                                      icon="store"
-                                      onClick={() => history.push('/')} caption='Home' />
-                        }
-                        <MenuItem  value='profile'
-                                    icon='account_circle'
-                                    caption='Profile'
-                                    onClick={
-                                      () => {
-                                        const urlParts = window.location.hostname.split('.');
+                <IconButton className="NavigationAppBar-icon"
+                            icon='store'
+                            onClick={ () => history.push('/') }/>
+            }
+            <IconMenu icon={
+              (profilePic) ?
+                <Avatar className="NavigationAppBar-user-profile-icon" title="user image" image={ profilePic }/> :
+                'account_circle'
+            }
+                      position='topRight'
+                      className="NavigationAppBar-profile-menu"
+                      iconRipple={ false }
+                      menuRipple={ false } >
+              {
+                (userLoggedIn) ?
+                  <div className="NavigationAppBar-profile-menuitem">
+                    {
+                      (location.pathname === '/') ?
+                        <MenuItem value='dashboard'
+                                  icon="dashboard"
+                                  onClick={() => history.push('/dashboard')} caption='Dashboard' /> :
+                        <MenuItem value='dashboard'
+                                  icon="store"
+                                  onClick={() => history.push('/')} caption='Home' />
+                    }
+                    <MenuItem  value='profile'
+                               icon='account_circle'
+                               caption='Profile'
+                               onClick={
+                                 () => {
+                                   const urlParts = window.location.hostname.split('.');
 
                                         if (urlParts.lentght < 3) {
                                           window.open('http://www.shophobe.cf');
@@ -147,11 +156,12 @@ const NavigationAppBar = ({
                                   caption='Sign In/Sign Up' />
                       </div>
 
-                  }
-                </IconMenu>
-              </Navigation>
-            }
+              }
+            </IconMenu>
+          </Navigation>
+        }
       </AppBar>
+    </div>
   );
 }
 
