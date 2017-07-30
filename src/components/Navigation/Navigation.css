@@ -8,7 +8,7 @@
 
 .Navigation-content {
   width: calc(100vw - 4em);
-  padding-top: 4rem;
+  padding-top: 5rem;
   padding-bottom: 5.8em;
 }
 
@@ -91,7 +91,11 @@
 
 /*for tablet*/
 @media screen and (min-width: 600px) {
-  .Navigation-content,
+  .Navigation-content {
+    width: auto;
+    padding-top: 5rem;
+  }
+
   .Navigation-content-main {
     width: auto;
     padding-top: 4rem;
