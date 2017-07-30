@@ -20,7 +20,7 @@ const SignUp = ({
   shop
 }) => {
   const getType = string => {
-    const phone = new RegExp(/^(?:\+88|01|1)?(?:\d{11}|\d{13}|\d{10})$/);
+    const phone = new RegExp(/^(?:\+88|88|1)?(?:\d{11}|\d{10})$/);
     const email = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 
     if (phone.test(string)) {
@@ -32,6 +32,40 @@ const SignUp = ({
     }
 
     return 'none';
+  }
+
+  const postCredentials = () => {
+    const type = getType(email);//'email' can either be email/phone. quick hack change later
+    if (type !== 'none') {
+      if (type === 'phone' && email.length >= 10) {
+        if (email.slice(0,1) === '+' && email.length === 14) {
+          handleTrySignIn({
+            phone: email,
+            password: emailPassword
+          }, shop);
+        } else if(email.slice(0,1) === '8' && email.length === 13) {
+          handleTrySignIn({
+            phone: `+${email}`,
+            password: emailPassword
+          }, shop);
+        } else if(email.slice(0,1) === '0' && email.length === 11) {
+          handleTrySignIn({
+            phone: `+88${email}`,
+            password: emailPassword
+          }, shop);
+        } else if(email.slice(0,1) === '1' && email.length === 10) {
+          handleTrySignIn({
+            phone: `+880${email}`,
+            password: emailPassword
+          }, shop);
+        }
+      } else {
+        handleTrySignIn({
+          email: email,
+          password: emailPassword
+        }, shop)
+      }
+    }
   }
   return (
     <div className="SignUp">
@@ -62,57 +96,15 @@ const SignUp = ({
               onChange={ handleEmailPasswordValue }
               onKeyPress={
                 event => {
-                  if(event.which === 13) {
-                    const type = getType(email);//'email' can either be email/phone. quick hack change later
-                    if (type !== 'none') {
-                      if (type === 'phone' && email.length < 13) {
-                        if (email.slice(0,1) === '0') {
-                          handleTrySignIn({
-                            phone: `+88${email}`,
-                            password: emailPassword
-                          }, shop);
-                        } else {
-                          handleTrySignIn({
-                            phone: `+880${email}`,
-                            password: emailPassword
-                          }, shop);
-                        }
-                      } else {
-                        handleTrySignIn({
-                          email: email,
-                          password: emailPassword
-                        }, shop)
-                      }
-                    }
+                  if (event.which === 13) {
+                    postCredentials()
                   }
                 }
               }
               icon='vpn_key' />
         <Button icon="forward"
                 label="login"
-                onClick={ () => {
-                            const type = getType(email);//'email' can either be email/phone. quick hack change later
-                            if (type !== 'none') {
-                              if (type === 'phone' && email.length < 13) {
-                                if (email.slice(0,1) === '0') {
-                                  handleTrySignIn({
-                                    phone: `+88${email}`,
-                                    password: emailPassword
-                                  }, shop);
-                                } else {
-                                  handleTrySignIn({
-                                    phone: `+880${email}`,
-                                    password: emailPassword
-                                  }, shop);
-                                }
-                              } else {
-                                handleTrySignIn({
-                                  email: email,
-                                  password: emailPassword
-                                }, shop)
-                              }
-                            }
-                        }} />
+                onClick={ () => postCredentials() }/>
       {/*<div>
         <p>Or</p>
       </div>

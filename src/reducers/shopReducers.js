@@ -312,8 +312,8 @@ export const ShopPageReducer = handleActions({
   id: null,
   shop_name: 'Loading',
   short_descr: 'Loading',
-  prof_pic: 'https://unsplash.it/160/160',
-  cover_photo: 'https://unsplash.it/1200/700',
+  prof_pic: null,
+  cover_photo: null,
   contacts: [],
   address: {
 

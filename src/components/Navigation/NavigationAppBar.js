@@ -13,6 +13,7 @@ import Searchbar from './Searchbar';
 
 import logo from '../../assets/images/logo/logo.png';
 import DashboardIcon from '../../assets/svg/dashboard.svg';
+import user1 from '../../assets/images/demo_user1_male.png';
 
 import './NavigationAppBar.css';
 
@@ -39,6 +40,10 @@ const NavigationAppBar = ({
   });
 
   const windowLocation = window.location;
+
+  if (!profilePic || profilePic.split('/').slice(-1)[0] === 'no_images.jpg') {
+    profilePic = user1
+  }
 
   return (
     <div className="NavigationAppBar-container">
@@ -100,7 +105,7 @@ const NavigationAppBar = ({
                             onClick={ () => history.push('/') }/>
             }
             <IconMenu icon={
-              (profilePic) ?
+              (profilePic && userLoggedIn) ?
                 <Avatar className="NavigationAppBar-user-profile-icon" title="user image" image={ profilePic }/> :
                 'account_circle'
             }

@@ -17,7 +17,8 @@ import FeaturedSlider from './FeaturedSlider';
 import { female } from 'react-icons-kit/ionicons/female';
 import { male } from 'react-icons-kit/ionicons/male';
 
-
+import store1 from '../assets/images/demo_store1.png';
+import cover_night from '../assets/images/demo_store_cover_night.png';
 
 import './ShopPage.css'
 
@@ -34,7 +35,7 @@ const ShopPage = ({
   handleAddProduct,
   featuredProducts,
   handleShowImageUploader,
-  proficePic,
+  profilePic,
   coverPhoto,
   shopPhones,
   shopAddress,
@@ -99,6 +100,14 @@ const ShopPage = ({
     }
   );
 
+  if (!profilePic || profilePic.split('/').slice(-1)[0] === 'no_images.jpg') {
+    profilePic = store1
+  }
+
+  if (!coverPhoto || coverPhoto.split('/').slice(-1)[0] === 'no_images.jpg') {
+    coverPhoto = cover_night
+  }
+
   const GetFollowingButton = ({
     vendor,
     following,
@@ -133,7 +142,7 @@ const ShopPage = ({
       <div className="ShopPage-banner" style={{ backgroundImage: `url(${coverPhoto})`}}/>
       <div className={ detailsClass } data-tour="details-sidebar" >
         <div className="ShopPage-banner">
-          <div className="ShopPage-details-img" style={{ backgroundImage: `url(${proficePic})` }} data-tour="shop-profile" >
+          <div className="ShopPage-details-img" style={{ backgroundImage: `url(${profilePic})` }} data-tour="shop-profile" >
             { vendor && <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') }/> }
           </div>
         </div>
@@ -149,7 +158,7 @@ const ShopPage = ({
             <IconButton icon={ (details) ? 'close' :'keyboard_arrow_down'}
                     className="ShopPage-details--toggle"
                     onClick={ toggleDetails }/> */}
-        <div className="ShopPage-details-img" style={{ backgroundImage: `url(${proficePic})` }} >
+        <div className="ShopPage-details-img" style={{ backgroundImage: `url(${profilePic})` }} >
           { vendor && <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') }/> }
         </div>
 
