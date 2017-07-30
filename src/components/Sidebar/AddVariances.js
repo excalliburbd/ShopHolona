@@ -64,6 +64,8 @@ const AddVariances = ({
                   <Table selectable
                           className="ProductsSidebar-add-attributes--table"
                           onRowSelect={ selected => {
+                            primaryAttributes[selectedAttribute] &&
+                            secondaryAttributes[primaryAttributes[selectedAttribute].id] &&
                             handleAttributeSelect(
                               selected,
                               primaryAttributes[selectedAttribute].id,

@@ -155,10 +155,36 @@ export const getFinishedProduct = createSelector(
     getProgress,
     getIsFcom,
     getFcomPrice,
+    getCategoryID,
+    getSubCategoryID,
+    getProductSubSubCategory
   ],
-  (name, description, weight, price, primary, secondary, id, progress, fcom, fprice) => {
+  (
+    name,
+    description,
+    weight,
+    price,
+    primary,
+    secondary,
+    id,
+    progress,
+    fcom,
+    fprice,
+    category,
+    subCategory,
+    subSubCategoryName,
+  ) => {
     if (description.trim() === '') {
       description = 'No description'
+    }
+
+    if (!id) {
+      id = {
+        custom: true,
+        category,
+        subCategory,
+        name: subSubCategoryName,
+      }
     }
 
     if (!progress.primary && !progress.secondary) {

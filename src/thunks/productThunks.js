@@ -434,15 +434,90 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
     }
   } else {
     if (token) {
-      request(`/vendors/shops/${shop}/products/`, getConfig(
-            token,
-            obj,
-            'post'
-          )).then(
-            res => {
-              if (demostore) {
-                if (res.id) {
-                  dispatch(getAllProducts(shop, demostore, res.id, token));
+      if (obj.category.custom) {
+        request(`/vendors/category/${obj.category.category}/${obj.category.subCategory}/subcategories/`, getConfig(
+                  token,
+                  {
+                    name: obj.name,
+                    bang_name: 'custom_category'
+                  },
+                  'POST'
+                )).then(
+                  res => {
+                    if (res.id) {
+                      request(`/vendors/shops/${shop}/products/`, getConfig(
+                                token,
+                                {
+                                  ...obj,
+                                  category: res.id
+                                },
+                                'POST'
+                              )).then(
+                                res => {
+                                  if (demostore) {
+                                    if (res.id) {
+                                      dispatch(getAllProducts(shop, demostore, res.id, token));
+                                      dispatch(getShopCategories(shop));
+                                      dispatch(addNotification({
+                                        title: 'Success',
+                                        message: 'Successfully uploaded product',
+                                        position: 'bl',
+                                        status: 'success',
+                                      }));
+                                    }
+                                  } else {
+                                    dispatch(getAllProducts(shop, false, null, null));
+                                    dispatch(getShopCategories(shop));
+                                    dispatch(addNotification({
+                                      title: 'Success',
+                                      message: 'Successfully uploaded product',
+                                      position: 'bl',
+                                      status: 'success',
+                                    }));
+                                  }
+                                }
+                              ).catch(
+                                err => {
+                                  dispatch(addNotification({
+                                      title: 'Error uploaded product',
+                                      message: err,
+                                      position: 'bl',
+                                      status: 'error',
+                                    }));
+                                }
+                              );
+                    }
+                  }
+                ).catch(
+                  err => {
+                     dispatch(addNotification({
+                        title: 'Error Creating Custom Category',
+                        message: err,
+                        position: 'bl',
+                        status: 'error',
+                      }));
+                  }
+                )
+      } else {
+          request(`/vendors/shops/${shop}/products/`, getConfig(
+              token,
+              obj,
+              'POST'
+            )).then(
+              res => {
+                if (demostore) {
+                  if (res.id) {
+                    dispatch(getAllProducts(shop, demostore, res.id, token));
+                    dispatch(getShopCategories(shop));
+                    dispatch(addNotification({
+                      title: 'Success',
+                      message: 'Successfully uploaded product',
+                      position: 'bl',
+                      status: 'success',
+                    }));
+                  }
+                } else {
+                  dispatch(getAllProducts(shop, false, null, null));
                   dispatch(getShopCategories(shop));
                   dispatch(addNotification({
                     title: 'Success',
@@ -451,27 +526,18 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                     status: 'success',
                   }));
                 }
-              } else {
-                dispatch(getAllProducts(shop, false, null, null));
-                dispatch(getShopCategories(shop));
-                dispatch(addNotification({
-                  title: 'Success',
-                  message: 'Successfully uploaded product',
-                  position: 'bl',
-                  status: 'success',
-                }));
               }
-            }
-          ).catch(
-            err => {
-              dispatch(addNotification({
-                  title: 'Error uploaded product',
-                  message: err,
-                  position: 'bl',
-                  status: 'error',
-                }));
-            }
-          );
+            ).catch(
+              err => {
+                dispatch(addNotification({
+                    title: 'Error uploaded product',
+                    message: err,
+                    position: 'bl',
+                    status: 'error',
+                  }));
+              }
+            );
+      }
     }
   }
 }
@@ -518,7 +584,7 @@ export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
     request(`/vendors/shops/${shop}/images/`, getConfig(
             token,
             apiRequest,
-            'post'
+            'POST'
           )).then(
             res => {
               if(res.id){
@@ -647,7 +713,7 @@ export const makeFeaturedProduct = (id, shop, token) => dispatch => {
             {
               product: `${id}`,
             },
-            'post'
+            'POST'
           )).then(
             res => {
               dispatch(getFeaturedProduct(shop));
