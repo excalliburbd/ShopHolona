@@ -46,7 +46,31 @@ export const CategoriesEntityReducer = handleActions({
   }
 }, {
 
-})
+});
+
+const initialCategoriesUiState = {
+  categoryID: null,
+  subCategoryID: null,
+  subSubCategoryID: null,
+  categories: {},
+  subCategories: {},
+  subSubCategories: {},
+  attributes: {
+    primary: [],
+    secondary: {},
+    selected: -1,
+    all: {}
+  },
+  temporaryAttribute: {
+    key: '',
+    value: ''
+  },
+  uploadProgress: {
+    primary: false,
+    secondary: false,
+
+  },
+}
 
 export const CategoriesUIReducer = handleActions({
   [categoryActions.categories.ui.set.category]: (state, action) => {
@@ -240,26 +264,7 @@ export const CategoriesUIReducer = handleActions({
   },
   [sidebarActions.sidebar.hide]: (state, action) => ({
         ...state,
-        categoryID: null,
-        subCategoryID: null,
-        subSubCategoryID: null,
-        categories: {},
-        subCategories: {},
-        subSubCategories: {},
-        attributes: {
-          primary: [],
-          secondary: {},
-          selected: -1,
-        },
-        temporaryAttribute: {
-          key: '',
-          value: ''
-        },
-        uploadProgress: {
-          primary: false,
-          secondary: false,
-
-        },
+        ...initialCategoriesUiState,
   }),
   [categoryActions.categories.ui.update.stock]: (state, action) => {
       return {
@@ -587,68 +592,26 @@ export const CategoriesUIReducer = handleActions({
   },
   [productActions.products.ui.reset.subSubCategories]: (state, action) => {
       return {
-        ...state,
-        subSubCategoryID: null,
-        attributes: {
-          primary: [],
-          secondary: {},
-          selected: -1,
-        },
-        temporaryAttribute: {
-          key: '',
-          value: ''
-        },
-        uploadProgress: {
-          primary: false,
-          secondary: false,
-
-        },
+        ...initialCategoriesUiState,
+        categoryID: state.categoryID,
+        subCategoryID: state.subCategoryID,
+        categories: state.categories,
+        subCategories: state.subCategories,
+        subSubCategories: state.subSubCategories,
       }
   },
   [productActions.products.ui.reset.subCategories]: (state, action) => {
       return {
-        ...state,
-        subCategoryID: null,
-        subSubCategoryID: null,
-        subSubCategories: {},
-        attributes: {
-          primary: [],
-          secondary: {},
-          selected: -1,
-        },
-        temporaryAttribute: {
-          key: '',
-          value: ''
-        },
-        uploadProgress: {
-          primary: false,
-          secondary: false,
-
-        },
+        ...initialCategoriesUiState,
+        categoryID: state.categoryID,
+        categories: state.categories,
+        subCategories: state.subCategories,
       }
   },
   [productActions.products.ui.reset.categories]: (state, action) => {
       return {
-        ...state,
-        categoryID: null,
-        subCategoryID: null,
-        subSubCategoryID: null,
-        subCategories: {},
-        subSubCategories: {},
-        attributes: {
-          primary: [],
-          secondary: {},
-          selected: -1,
-        },
-        temporaryAttribute: {
-          key: '',
-          value: ''
-        },
-        uploadProgress: {
-          primary: false,
-          secondary: false,
-
-        },
+        ...initialCategoriesUiState,
+        categories: state.categories,
       }
   },
   [categoryActions.categories.done.post.customAttr.primary]: (state, action) => {
@@ -668,26 +631,13 @@ export const CategoriesUIReducer = handleActions({
           secondary: true,
         },
       }
+  },
+  [productActions.products.done.get.attributes]: (state, action) => {
+    return {
+      ...state,
+      attributes: {
+        all: action.payload,
+      }
+    }
   }
-}, {
-  categoryID: null,
-  subCategoryID: null,
-  subSubCategoryID: null,
-  categories: {},
-  subCategories: {},
-  subSubCategories: {},
-  attributes: {
-    primary: [],
-    secondary: {},
-    selected: -1,
-  },
-  temporaryAttribute: {
-    key: '',
-    value: ''
-  },
-  uploadProgress: {
-    primary: false,
-    secondary: false,
-
-  },
-})
+}, initialCategoriesUiState )

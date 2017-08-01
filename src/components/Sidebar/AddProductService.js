@@ -152,18 +152,18 @@ const AddProductService = ({
                           {
                             showAddColors
                               && <AddColors productSubCategory={ productSubCategory }
-                                                        primaryAttributes={ primaryAttributes }
-                                                        secondaryAttributes={ secondaryAttributes }
-                                                        handleSelect={ handleSelect }
-                                                        handleAttributeSelect={ handleAttributeSelect }
-                                                        handleStockUpdate={ handleStockUpdate }
-                                                        selectedAttribute={ selectedAttribute }
-                                                        setAttributeDone={ setAttributeDone }
-                                                        handleStockInputBlur={ handleStockInputBlur }
-                                                        handleAddVairace={ handleAddVairace }
-                                                        temporaryAttribute={ temporaryAttribute }
-                                                        handleSetTemporaryAttribute={ handleSetTemporaryAttribute }
-                                                        type={ type } />
+                                            primaryAttributes={ primaryAttributes }
+                                            secondaryAttributes={ secondaryAttributes }
+                                            handleSelect={ handleSelect }
+                                            handleAttributeSelect={ handleAttributeSelect }
+                                            handleStockUpdate={ handleStockUpdate }
+                                            selectedAttribute={ selectedAttribute }
+                                            setAttributeDone={ setAttributeDone }
+                                            handleStockInputBlur={ handleStockInputBlur }
+                                            handleAddVairace={ handleAddVairace }
+                                            temporaryAttribute={ temporaryAttribute }
+                                            handleSetTemporaryAttribute={ handleSetTemporaryAttribute }
+                                            type={ type } />
                           }
                           {
                             showAddVariances

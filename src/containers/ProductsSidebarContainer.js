@@ -111,30 +111,20 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       switch(type) {
         case 'CATEGORY':
           dispatch(categoryActions.categories.ui.set.category(id));
-
           dispatch(productActions.products.ui.reset.subCategories());
-
           dispatch(productActions.products.ui.reset.subSubCategories());
-
           dispatch(productActions.products.ui.set.add.subCategory(''));
-
           dispatch(productActions.products.ui.set.add.subSubCategory(''));
-
           dispatch(getSubCategory(id));
           break;
         case 'SUB_CATEGORY':
           dispatch(categoryActions.categories.ui.set.subCategory(id));
-
           dispatch(productActions.products.ui.reset.subSubCategories());
-
           dispatch(productActions.products.ui.set.add.subSubCategory(''));
-
           dispatch(getSubSubCategory(id, subID));
           break;
         case 'SUB_SUB_CATEGORY':
           dispatch(categoryActions.categories.ui.set.subSubCategory(id));
-
-          dispatch({type: 'RESET_UI_PRODUCT_ADD_VALUES'});
           break;
         default:
       }
@@ -310,7 +300,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       }
     },
     handleManualInput: (uiType, fieldType, value) => {
-
       if(uiType === 'add') {
         dispatch(productActions.products.ui.set[uiType][fieldType](value));
       }
