@@ -28,8 +28,16 @@ class CustomAutocomplete  extends Component {
       handleSetValue,
       value,
       selectionOnly,
-      onSelected
+      onSelected,
     } = this.props;
+
+    let {
+      keyname
+    } = this.props;
+
+    if (!keyname) {
+      keyname = 'name'
+    }
 
     const autoObj = classNames('CustomAutocomplete _07g5 ', {
       '_3qQkg' : this.state.suggestions
@@ -78,14 +86,14 @@ class CustomAutocomplete  extends Component {
               (item, key) =>  <li className="_1erPE" key={ key }
                                       onMouseDown={ () => {
                                         this.setState({
-                                          value: item.name,
+                                          value: item[keyname],
                                           fromList: true,
                                           error: false,
                                         });
-                                        handleSetValue(item.name);
+                                        handleSetValue(item[keyname]);
                                         onSelected(item.id, item);
                                       }}>
-                                      { item.name }
+                                      { item[keyname] }
                                   </li>
             )
           }

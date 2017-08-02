@@ -11,6 +11,8 @@ import CardActions from 'react-toolbox/lib/card/CardActions';
 import Input from 'react-toolbox/lib/input/Input';
 import Button from 'react-toolbox/lib/button/Button';
 
+import CustomAutocomplete from '../CustomAutocomplete';
+
 const AddColors = ({
   productSubCategory,
   primaryAttributes,
@@ -21,10 +23,14 @@ const AddColors = ({
   selectedAttribute,
   setAttributeDone,
   handleStockInputBlur,
-  handleAddVairace,
+  handleAddVairance,
   temporaryAttribute,
   handleSetTemporaryAttribute,
-  type
+  type,
+  fusedAttributes,
+  rawAttributes,
+  handleFieldSelect,
+  handleManualInput,
 }) => {
   return (
     <div>
@@ -52,7 +58,7 @@ const AddColors = ({
         <IconButton   icon="add"
                       style={{ background: "#ccc"}}
                       onClick={
-                        () => handleAddVairace(productSubCategory)
+                        () => handleAddVairance(productSubCategory)
                       }
                       className="ProductsSidebar-add--color" />
       </div>
@@ -62,9 +68,12 @@ const AddColors = ({
           <Card className="ProductsSidebar-add-attributes--card">
             {
               secondaryAttributes[primaryAttributes[selectedAttribute].id].custom ?
-              <Input label="Change variant name"
-                      value={ primaryAttributes[selectedAttribute].value }
-                      />
+                      <CustomAutocomplete label="Change variant name"
+                                          source={ fusedAttributes }
+                                          value={ primaryAttributes[selectedAttribute].value }
+                                          keyname="value"
+                                          onSelected={ id => handleFieldSelect('ATTRIBUTE_PRIMARY', {id, primary: primaryAttributes[selectedAttribute].id}, null, rawAttributes) }
+                                          handleSetValue={ value => handleManualInput('select', 'attribute', {primary: primaryAttributes[selectedAttribute].id, value})} />
               :
               <CardTitle
                 title={ primaryAttributes[selectedAttribute].value }
@@ -110,7 +119,8 @@ const AddColors = ({
                   )
             }
             {
-              secondaryAttributes[primaryAttributes[selectedAttribute].id].custom ?
+              (secondaryAttributes[primaryAttributes[selectedAttribute].id].custom ||
+               secondaryAttributes[primaryAttributes[selectedAttribute].id].fromList ) ?
                   <TableRow>
                     <TableCell>
                       <Input  value={ temporaryAttribute.key }

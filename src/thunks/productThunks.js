@@ -326,6 +326,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
             );
             return returnArr;
           case 'price_weight':
+            console.log('case triggered', demostore)
             variances.forEach(
               ({ id: variantID, ...variant }) => {
                 variant.attributes.forEach(
@@ -749,5 +750,19 @@ export const removeFromFeaturedProduct = (productID, featuredID, shop, token) =>
               }));
             }
           )
+  }
+}
+
+export const getAllAttributes = () => (dispatch, getState) => {
+  const token = getState().user.token;
+
+  if (token) {
+      request(`/vendors/category/attributes/`, getConfig(
+                token
+              )).then(
+                res => {
+                  (res.length > 0) && dispatch(productActions.products.done.get.attributes(res));
+                }
+            )
   }
 }

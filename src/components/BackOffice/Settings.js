@@ -138,6 +138,7 @@ const Settings = ({
                                     source={ banks }
                                     value={ (!editing && bankInfo[payments.bank.bank_name]) ? bankInfo[payments.bank.bank_name].name : bankUIValue }
                                     selectionOnly
+                                    keyname="name"
                                     handleSetValue={ text => handleSetValue('bank', text) }
                                     onSelected={ id => handleSelect('bank', id) }
                                     editing={ editing }
@@ -151,6 +152,7 @@ const Settings = ({
                                     source={ branches }
                                     value={ branchUIValue }
                                     selectionOnly
+                                    keyname="name"
                                     handleSetValue={ text => handleSetValue('branch', text) }
                                     onSelected={ id => handleSelect('branch', id) }
                                     editing={ editing }

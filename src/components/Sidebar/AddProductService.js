@@ -38,7 +38,7 @@ const AddProductService = ({
   selectedAttribute,
   setAttributeDone,
   handleStockInputBlur,
-  handleAddVairace,
+  handleAddVairance,
   temporaryAttribute,
   handleSetTemporaryAttribute,
   type,
@@ -51,6 +51,8 @@ const AddProductService = ({
   fcomPrice,
   showInfo,
   togglePricingInfo,
+  fusedAttributes,
+  rawAttributes,
 }) => {
 
   const infoClass = classNames('ProductsSidebar-add--products--info', {
@@ -83,34 +85,28 @@ const AddProductService = ({
                   {/*(radioValue === 'PRODUCT' || radioValue === 'SERVICE') &&*/}
                 {
                     <div className="ProductsSidebar-add--products">
-                      <CustomAutocomplete
-                        label={`Enter ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Class`}
-                        source={ categories }
-                        value={ productCategory }
-                        selectionOnly
-                        onSelected={ id => handleFieldSelect('CATEGORY', id) }
-                        handleSetValue={ value => handleManualInput('add', 'category', value)}
-                      />
-                      <CustomAutocomplete
-                        label={`Enter ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Category`}
-                        source={ subCategories }
-                        value={ productSubCategory }
-                        selectionOnly
-                        onSelected={ id => handleFieldSelect('SUB_CATEGORY', categoryID, id) }
-                        handleSetValue={ value => handleManualInput('add', 'subCategory', value)}
-                      />
-                      <CustomAutocomplete
-                        label={`Enter type of ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' }`}
-                        source={ subSubCategories }
-                        value={ productSubSubCategory }
-                        onSelected={
-                          (id, categoryObj ) => {
-                            handleFieldSelect('SUB_SUB_CATEGORY', id);
-                            handleCategoryObj(categoryObj);
-                          }
-                        }
-                        handleSetValue={ value => handleManualInput('add', 'subSubCategory', value)}
-                      />
+                      <CustomAutocomplete label={`Enter ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Class`}
+                                          source={ categories }
+                                          value={ productCategory }
+                                          selectionOnly
+                                          onSelected={ id => handleFieldSelect('CATEGORY', id) }
+                                          handleSetValue={ value => handleManualInput('add', 'category', value)} />
+                      <CustomAutocomplete label={`Enter ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Category`}
+                                          source={ subCategories }
+                                          value={ productSubCategory }
+                                          selectionOnly
+                                          onSelected={ id => handleFieldSelect('SUB_CATEGORY', categoryID, id) }
+                                          handleSetValue={ value => handleManualInput('add', 'subCategory', value)} />
+                      <CustomAutocomplete label={`Enter type of ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' }`}
+                                          source={ subSubCategories }
+                                          value={ productSubSubCategory }
+                                          onSelected={
+                                            (id, categoryObj ) => {
+                                              handleFieldSelect('SUB_SUB_CATEGORY', id);
+                                              handleCategoryObj(categoryObj);
+                                            }
+                                          }
+                                          handleSetValue={ value => handleManualInput('add', 'subSubCategory', value)} />
                      {
                         showProductDetails && <div>
                           <Input label={'Enter Your Product Name'}
@@ -160,10 +156,14 @@ const AddProductService = ({
                                             selectedAttribute={ selectedAttribute }
                                             setAttributeDone={ setAttributeDone }
                                             handleStockInputBlur={ handleStockInputBlur }
-                                            handleAddVairace={ handleAddVairace }
+                                            handleAddVairance={ handleAddVairance }
                                             temporaryAttribute={ temporaryAttribute }
                                             handleSetTemporaryAttribute={ handleSetTemporaryAttribute }
-                                            type={ type } />
+                                            type={ type }
+                                            fusedAttributes={ fusedAttributes }
+                                            rawAttributes={ rawAttributes }
+                                            handleFieldSelect={ handleFieldSelect }
+                                            handleManualInput={ handleManualInput } />
                           }
                           {
                             showAddVariances
@@ -176,10 +176,14 @@ const AddProductService = ({
                                                 selectedAttribute={ selectedAttribute }
                                                 setAttributeDone={ setAttributeDone }
                                                 handleStockInputBlur={ handleStockInputBlur }
-                                                handleAddVairace={ handleAddVairace }
+                                                handleAddVairance={ handleAddVairance }
                                                 temporaryAttribute={ temporaryAttribute }
                                                 handleSetTemporaryAttribute={ handleSetTemporaryAttribute }
-                                                type={ type } />
+                                                type={ type }
+                                                fusedAttributes={ fusedAttributes }
+                                                rawAttributes={ rawAttributes }
+                                                handleFieldSelect={ handleFieldSelect }
+                                                handleManualInput={ handleManualInput } />
                           }
                         </div>
                      }

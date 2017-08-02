@@ -11,6 +11,8 @@ import CardActions from 'react-toolbox/lib/card/CardActions';
 import Input from 'react-toolbox/lib/input/Input';
 import Button from 'react-toolbox/lib/button/Button';
 
+import CustomAutocomplete from '../CustomAutocomplete';
+
 const AddVariances = ({
   productSubCategory,
   primaryAttributes,
@@ -21,10 +23,14 @@ const AddVariances = ({
   selectedAttribute,
   setAttributeDone,
   handleStockInputBlur,
-  handleAddVairace,
+  handleAddVairance,
   temporaryAttribute,
   handleSetTemporaryAttribute,
-  type
+  type,
+  fusedAttributes,
+  rawAttributes,
+  handleFieldSelect,
+  handleManualInput,
 }) => {
   return (
     <div>
@@ -36,28 +42,31 @@ const AddVariances = ({
                   <Card className="ProductsSidebar-add-attributes--card" key={ key }>
                   {
                     secondaryAttributes[obj.id].custom ?
-                      <Input label="Change variant name"
-                              value={ obj.value }
-                              />
+                      <CustomAutocomplete label="Change variant name"
+                                          source={ fusedAttributes }
+                                          value={ obj.value }
+                                          keyname="value"
+                                          onSelected={ id => handleFieldSelect('ATTRIBUTE_PRIMARY', {id, primary: obj.id}, null, rawAttributes) }
+                                          handleSetValue={ value => handleManualInput('select', 'attribute', {primary: obj.id, value})} />
                       :
                       <CardTitle
                         title={ obj.value }
                         avatar={
                           <IconButton  icon={
-                                      (obj.selected) ?
-                                        'done' :
-                                        <span />
-                                    }
-                                    onClick={
-                                      () => handleSelect(key)
-                                    }
-                                    style={{
-                                      background: (obj.value && (obj.value.split(' ')[0] !== 'Color')) &&
-                                                  (obj.value && (obj.value.split(' ')[0] !== 'Custom')) ?
-                                                    obj.value.toLowerCase() : '#ccc'
-                                    }}
-                                    key={ obj.id }
-                                    className="ProductsSidebar-add--color" />
+                                        (obj.selected) ?
+                                            'done' :
+                                            <span />
+                                        }
+                                        onClick={
+                                          () => handleSelect(key)
+                                        }
+                                        style={{
+                                          background: (obj.value && (obj.value.split(' ')[0] !== 'Color')) &&
+                                                      (obj.value && (obj.value.split(' ')[0] !== 'Custom')) ?
+                                                        obj.value.toLowerCase() : '#ccc'
+                                        }}
+                                        key={ obj.id }
+                                        className="ProductsSidebar-add--color" />
                         }
                       />
                   }
@@ -102,7 +111,8 @@ const AddVariances = ({
                         )
                   }
                   {
-                    secondaryAttributes[obj.id].custom ?
+                    (secondaryAttributes[obj.id].custom ||
+                     secondaryAttributes[obj.id].fromList ) ?
                         <TableRow>
                           <TableCell>
                             <Input  value={ temporaryAttribute.key }
@@ -145,15 +155,15 @@ const AddVariances = ({
         }
         <Card className="ProductsSidebar-add-attributes--card"
               onClick={
-                () => handleAddVairace(productSubCategory)
+                () => handleAddVairance(productSubCategory)
               }>
-                    <CardTitle
-                      title="Add Custom Variance"
-                      avatar={
-                        <IconButton   icon="add"
-                                      style={{ background: "#ccc"}} />
-                      }
-                    />
+                <CardTitle
+                  title="Add Custom Variance"
+                  avatar={
+                    <IconButton   icon="add"
+                                  style={{ background: "#ccc"}} />
+                  }
+                />
         </Card>
       </div>
     </div>

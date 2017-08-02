@@ -51,6 +51,7 @@ export const productActionCreators = {
       GET: {
         PRODUCTS: payload => payload,
         FEATURED_PRODUCTS: payload => payload,
+        ATTRIBUTES: payload => payload,
       }
     },
   }
