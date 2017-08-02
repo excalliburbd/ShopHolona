@@ -49,7 +49,7 @@ const AddProductDetails = ({
                       <Slider dots lazyLoad={ false }>
                         {
                           productVariances[(selectedVariance === -1) ? 0 : selectedVariance].images.map(
-                            ({image, alt_tag}) => <div>
+                            ({image, alt_tag}, key) => <div key={ key }>
                                                     <img src={ image } alt={ alt_tag } />
                                                   </div>
                           )
@@ -103,10 +103,10 @@ const AddProductDetails = ({
                   <Input  label="Price"
                           type="number"
                           onChange={ value => handleManualInput('edit', 'price', value) }
-                          value={ Math.round(productDetailPrice) } />
+                          value={ Math.round(productDetailfcomPrice) } />
                   { fcom &&
                       <p className="ProductSidebar-details--commission">
-                        Actual Price: { productDetailfcomPrice } &#2547;
+                        Actual Price: { Math.round(productDetailPrice) } &#2547;
                         <IconButton icon="info_outline"
                                     onClick={ togglePricingInfo } />
                       </p>
@@ -126,19 +126,19 @@ const AddProductDetails = ({
                           value={ productDetailDescription } />
                 </div>
                 {
-                      featured ?
-                        <Button icon="star_border"
-                              label="Remove featured product"
-                              accent
-                              onClick={
-                                () => deleteFromFeaturedProduct(selectedProductId, featuredID, shop, token, shop === demostore)
-                              } /> :
-                        <Button icon="start"
-                              label="Add to featured product"
-                              primary
-                              onClick={
-                                () => makeFeaturedProduct(selectedProductId, shop, token, shop === demostore)
-                              } />
+                  featured ?
+                    <Button icon="star_border"
+                          label="Remove featured product"
+                          accent
+                          onClick={
+                            () => deleteFromFeaturedProduct(selectedProductId, featuredID, shop, token, shop === demostore)
+                          } /> :
+                    <Button icon="start"
+                          label="Add to featured product"
+                          primary
+                          onClick={
+                            () => makeFeaturedProduct(selectedProductId, shop, token, shop === demostore)
+                          } />
 
                 }
 

@@ -204,19 +204,19 @@ export const ProductsUIReducer = handleActions({
       }
   },
   [productActions.products.ui.set.edit.price]: (state, action) => {
-      const price = Math.round(action.payload);
+      let price = Math.round(action.payload);
       let commissioned = price;
 
       if (price < 1000) {
-        commissioned = Math.round(price/1.06);
+        price = Math.round(price/1.06);
       } else if(price < 5000) {
-        commissioned = Math.round(price/1.04);
+        price = Math.round(price/1.04);
       } else if (price < 10000) {
-        commissioned = Math.round(price/1.03);
+        price = Math.round(price/1.03);
       } else if (price < 20000) {
-        commissioned = Math.round(price/1.02);
+        price = Math.round(price/1.02);
       } else {
-        commissioned = Math.round(price/1.01);
+        price = Math.round(price/1.01);
       }
 
       return {

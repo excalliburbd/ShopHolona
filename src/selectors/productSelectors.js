@@ -31,6 +31,7 @@ export const getProductsObj = state => state.entities.products;
 export const getUploadCount = state => state.ui.uploader.uploadCount;
 export const getDoneUploadCount = state => state.ui.uploader.doneUploadCount;
 export const getProductDetailfcomPrice = state => state.ui.product.selectedProduct.fcomPrice;
+export const getAllAttributesArray = state => state.ui.categories.attributes.all;
 
 export const getFusedCategories = createSelector(
   [getCategoriesObj],
@@ -316,4 +317,11 @@ export const getPrimaryAttributes = createSelector(
 
     return attr
   }
-)
+);
+
+export const getFusedAttributesList = createSelector(
+  [getAllAttributesArray],
+  attributes => {
+    return new Fuse(attributes, { keys: ['value'] });
+  }
+);

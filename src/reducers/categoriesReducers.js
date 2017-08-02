@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions';
+import uuid from 'uuid';
 
 import {
   categoryActions,
@@ -46,7 +47,31 @@ export const CategoriesEntityReducer = handleActions({
   }
 }, {
 
-})
+});
+
+const initialCategoriesUiState = {
+  categoryID: null,
+  subCategoryID: null,
+  subSubCategoryID: null,
+  categories: {},
+  subCategories: {},
+  subSubCategories: {},
+  attributes: {
+    primary: [],
+    secondary: {},
+    selected: -1,
+    all: {}
+  },
+  temporaryAttribute: {
+    key: '',
+    value: ''
+  },
+  uploadProgress: {
+    primary: false,
+    secondary: false,
+
+  },
+}
 
 export const CategoriesUIReducer = handleActions({
   [categoryActions.categories.ui.set.category]: (state, action) => {
@@ -180,6 +205,7 @@ export const CategoriesUIReducer = handleActions({
       }
   },
   [categoryActions.categories.ui.addPrimaryAttribute]: (state, action) => {
+      const customID = `custom.${state.attributes.primary.length + 1}.${uuid.v4()}`;
       return {
         ...state,
         attributes: {
@@ -187,7 +213,7 @@ export const CategoriesUIReducer = handleActions({
           primary: [
             ...state.attributes.primary,
             {
-              id: `custom${state.attributes.primary.length + 1}`,
+              id: customID,
               name: `Custom Variance ${state.attributes.primary.length + 1}`,
               value: (action.payload === 'Clothing') ?
                       `Color ${state.attributes.primary.length + 1}` :
@@ -199,8 +225,63 @@ export const CategoriesUIReducer = handleActions({
           ],
           secondary: {
             ...state.attributes.secondary,
-            [`custom${state.attributes.primary.length + 1}`]: {
-              id: `custom${state.attributes.primary.length + 1}`,
+            [customID]: {
+              id: customID,
+              custom: true,
+              attributes: []
+            }
+          },
+          selected: state.attributes.primary.length,
+        }
+      }
+  },
+  [categoryActions.categories.ui.set.attr.fromList.primary]: (state, action) => {
+      const secondaryAttributes = {
+        ...state.attributes.secondary
+      }
+
+      if (state.attributes.secondary.hasOwnProperty(action.payload.id.id)) {
+        const key = state.attributes.primary.findIndex(
+                      attr => attr.id === action.payload.id.id
+                    )
+
+        delete secondaryAttributes[action.payload.id.primary];
+        return {
+          ...state,
+          attributes: {
+            ...state.attributes,
+            primary: state.attributes.primary.filter( attr => attr.id !== action.payload.id.primary),
+            secondary: secondaryAttributes,
+            selected: key
+          }
+        }
+      }
+
+      const attribute = action.payload.attributes.find(
+                      obj => (obj.id === action.payload.id.id)
+                    );
+
+      delete secondaryAttributes[action.payload.id.primary];
+
+      return {
+        ...state,
+        attributes: {
+          ...state.attributes,
+          primary: state.attributes.primary.map(
+            attr => {
+              if (attr.id === action.payload.id.primary) {
+                return {
+                  ...attribute,
+                  custom: false,
+                }
+              }
+              return attr;
+            }
+          ),
+          secondary: {
+            ...secondaryAttributes,
+            [action.payload.id.id]: {
+              id: action.payload.id.id,
               custom: true,
               attributes: []
             }
@@ -208,7 +289,64 @@ export const CategoriesUIReducer = handleActions({
         }
       }
   },
+  [categoryActions.categories.ui.set.attr.fromList.secondary]: (state, action) => {
+      // const attr = action.payload.attributes.find(
+      //                 obj => (obj.id === action.payload.id.id)
+      //               );
+
+      // const secondaryAttributes = {
+      //   ...state.attributes.secondary
+      // }
+
+      // delete secondaryAttributes[action.payload.id.primary];
+
+      // return {
+      //   ...state,
+      //   attributes: {
+      //     ...state.attributes,
+      //     primary: state.attributes.primary.map(
+      //       attr => {
+      //         if (attr.id === action.payload.id.primary) {
+      //           return {
+      //             ...attr,
+      //             custom: false
+      //           }
+      //         }
+      //         return attr;
+      //       }
+      //     ),
+      //     secondary: {
+      //       ...secondaryAttributes,
+      //       [action.payload.id.id]: {
+      //         id: action.payload.id.id,
+      //         custom: false,
+      //         attributes: []
+      //       }
+      //     }
+      //   }
+      // }
+  },
+  [categoryActions.categories.ui.set.attr.custom]: (state, action) => {
+      return {
+        ...state,
+        attributes: {
+          ...state.attributes,
+          primary: state.attributes.primary.map(
+            attr => {
+              if (attr.id === action.payload.primary) {
+                return {
+                  ...attr,
+                  value: action.payload.value,
+                }
+              }
+              return attr;
+            }
+          )
+        }
+      }
+  },
   [categoryActions.categories.ui.set.attr.temp.attribute]: (state, action) => {
+      const customID = `custom.${state.attributes.secondary[action.payload].attributes.length}.${uuid.v4()}`;
       return {
         ...state,
         attributes: {
@@ -220,7 +358,7 @@ export const CategoriesUIReducer = handleActions({
               attributes: [
                 ...state.attributes.secondary[action.payload].attributes,
                 {
-                  id: `custom${state.attributes.secondary[action.payload].attributes.length}`,
+                  id: customID,
                   name: state.temporaryAttribute.key,
                   value: state.temporaryAttribute.value,
                   selected: true,
@@ -240,26 +378,7 @@ export const CategoriesUIReducer = handleActions({
   },
   [sidebarActions.sidebar.hide]: (state, action) => ({
         ...state,
-        categoryID: null,
-        subCategoryID: null,
-        subSubCategoryID: null,
-        categories: {},
-        subCategories: {},
-        subSubCategories: {},
-        attributes: {
-          primary: [],
-          secondary: {},
-          selected: -1,
-        },
-        temporaryAttribute: {
-          key: '',
-          value: ''
-        },
-        uploadProgress: {
-          primary: false,
-          secondary: false,
-
-        },
+        ...initialCategoriesUiState,
   }),
   [categoryActions.categories.ui.update.stock]: (state, action) => {
       return {
@@ -587,68 +706,26 @@ export const CategoriesUIReducer = handleActions({
   },
   [productActions.products.ui.reset.subSubCategories]: (state, action) => {
       return {
-        ...state,
-        subSubCategoryID: null,
-        attributes: {
-          primary: [],
-          secondary: {},
-          selected: -1,
-        },
-        temporaryAttribute: {
-          key: '',
-          value: ''
-        },
-        uploadProgress: {
-          primary: false,
-          secondary: false,
-
-        },
+        ...initialCategoriesUiState,
+        categoryID: state.categoryID,
+        subCategoryID: state.subCategoryID,
+        categories: state.categories,
+        subCategories: state.subCategories,
+        subSubCategories: state.subSubCategories,
       }
   },
   [productActions.products.ui.reset.subCategories]: (state, action) => {
       return {
-        ...state,
-        subCategoryID: null,
-        subSubCategoryID: null,
-        subSubCategories: {},
-        attributes: {
-          primary: [],
-          secondary: {},
-          selected: -1,
-        },
-        temporaryAttribute: {
-          key: '',
-          value: ''
-        },
-        uploadProgress: {
-          primary: false,
-          secondary: false,
-
-        },
+        ...initialCategoriesUiState,
+        categoryID: state.categoryID,
+        categories: state.categories,
+        subCategories: state.subCategories,
       }
   },
   [productActions.products.ui.reset.categories]: (state, action) => {
       return {
-        ...state,
-        categoryID: null,
-        subCategoryID: null,
-        subSubCategoryID: null,
-        subCategories: {},
-        subSubCategories: {},
-        attributes: {
-          primary: [],
-          secondary: {},
-          selected: -1,
-        },
-        temporaryAttribute: {
-          key: '',
-          value: ''
-        },
-        uploadProgress: {
-          primary: false,
-          secondary: false,
-
-        },
+        ...initialCategoriesUiState,
+        categories: state.categories,
       }
   },
   [categoryActions.categories.done.post.customAttr.primary]: (state, action) => {
@@ -668,26 +745,14 @@ export const CategoriesUIReducer = handleActions({
           secondary: true,
         },
       }
+  },
+  [productActions.products.done.get.attributes]: (state, action) => {
+    return {
+      ...state,
+      attributes: {
+        ...state.attributes,
+        all: action.payload,
+      }
+    }
   }
-}, {
-  categoryID: null,
-  subCategoryID: null,
-  subSubCategoryID: null,
-  categories: {},
-  subCategories: {},
-  subSubCategories: {},
-  attributes: {
-    primary: [],
-    secondary: {},
-    selected: -1,
-  },
-  temporaryAttribute: {
-    key: '',
-    value: ''
-  },
-  uploadProgress: {
-    primary: false,
-    secondary: false,
-
-  },
-})
+}, initialCategoriesUiState )

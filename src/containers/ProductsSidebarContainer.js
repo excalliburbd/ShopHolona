@@ -9,6 +9,7 @@ import {
   requestAttribute,
   makeFeaturedProduct,
   removeFromFeaturedProduct,
+  getAllAttributes,
 } from '../thunks/productThunks';
 
 import {
@@ -48,6 +49,7 @@ import {
   getShowDone,
   getFcomPrice,
   getProductDetailfcomPrice,
+  getFusedAttributesList,
 } from '../selectors/productSelectors';
 
 import {
@@ -102,39 +104,36 @@ const mapStateToProps = state => {
     productDetailfcomPrice: getProductDetailfcomPrice(state),
     showInfo: state.ui.product.pricingInfo,
     demostore: state.shop.demostore,
+    fusedAttributes: getFusedAttributesList(state),
+    rawAttributes: state.ui.categories.attributes.all,
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    handleFieldSelect: (type, id, subID) => {
+    handleFieldSelect: (type, id, subID, attributes) => {
+      console.log(type, id, subID, attributes)
       switch(type) {
         case 'CATEGORY':
           dispatch(categoryActions.categories.ui.set.category(id));
-
           dispatch(productActions.products.ui.reset.subCategories());
-
           dispatch(productActions.products.ui.reset.subSubCategories());
-
           dispatch(productActions.products.ui.set.add.subCategory(''));
-
           dispatch(productActions.products.ui.set.add.subSubCategory(''));
-
           dispatch(getSubCategory(id));
           break;
         case 'SUB_CATEGORY':
           dispatch(categoryActions.categories.ui.set.subCategory(id));
-
           dispatch(productActions.products.ui.reset.subSubCategories());
-
           dispatch(productActions.products.ui.set.add.subSubCategory(''));
-
           dispatch(getSubSubCategory(id, subID));
           break;
         case 'SUB_SUB_CATEGORY':
           dispatch(categoryActions.categories.ui.set.subSubCategory(id));
-
-          dispatch({type: 'RESET_UI_PRODUCT_ADD_VALUES'});
+          dispatch(getAllAttributes());
+          break;
+        case 'ATTRIBUTE_PRIMARY':
+          dispatch(categoryActions.categories.ui.set.attr.fromList.primary({id, attributes}));
           break;
         default:
       }
@@ -310,7 +309,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       }
     },
     handleManualInput: (uiType, fieldType, value) => {
-
+      console.log(uiType, fieldType, value)
       if(uiType === 'add') {
         dispatch(productActions.products.ui.set[uiType][fieldType](value));
       }
@@ -321,6 +320,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
       if (uiType === 'edit') {
         dispatch(productActions.products.ui.set[uiType][fieldType](value))
+      }
+
+      if (uiType === 'select') {
+        dispatch(categoryActions.categories.ui.set.attr.custom(value))
       }
 
       if(value === '') {
@@ -358,7 +361,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         payload: id,
       })
     },
-    handleAddVairace: category => {
+    handleAddVairance: category => {
       dispatch(categoryActions.categories.ui.addPrimaryAttribute(category));
     },
     handleSetTemporaryAttribute: (type, value, attributes) => {

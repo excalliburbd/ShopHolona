@@ -57,7 +57,7 @@ const ProductsSidebar = ({
   selectedProductId,
   deleteSelectedProduct,
   showProductDetails,
-  handleAddVairace,
+  handleAddVairance,
   temporaryAttribute,
   handleSetTemporaryAttribute,
   makeProduct,
@@ -76,6 +76,8 @@ const ProductsSidebar = ({
   togglePricingInfo,
   handleStockEdit,
   demostore,
+  fusedAttributes,
+  rawAttributes,
 }) => {
   switch(type) {
     case 'ADD_PRODUCT':
@@ -109,14 +111,16 @@ const ProductsSidebar = ({
                                 productDescription={ productDescription }
                                 handleManualInput={ handleManualInput }
                                 showProductDetails={ showProductDetails }
-                                handleAddVairace={ handleAddVairace }
+                                handleAddVairance={ handleAddVairance }
                                 temporaryAttribute={ temporaryAttribute }
                                 handleSetTemporaryAttribute={ handleSetTemporaryAttribute }
                                 showAddVariances={ showAddVariances }
                                 fcom={ isFcom }
                                 fcomPrice={ fcomPrice }
                                 showInfo={ showInfo }
-                                togglePricingInfo={ togglePricingInfo } />
+                                togglePricingInfo={ togglePricingInfo }
+                                fusedAttributes={ fusedAttributes }
+                                rawAttributes={ rawAttributes } />
     case 'ADD_PRODUCT_IMAGES':
       return <AddProductImages  primaryAttributes={ primaryAttributes }
                                 handleShowRoute={ handleShowRoute }

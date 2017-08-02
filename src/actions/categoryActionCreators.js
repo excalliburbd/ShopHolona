@@ -13,6 +13,11 @@ export const categoryActionCreators = {
           SELECTED: payload => payload,
           SELECT_PRIMARY: payload => payload,
           SELECT_SECONDARY: payload => payload,
+          CUSTOM: payload => payload,
+          FROM_LIST: {
+            PRIMARY: payload => payload,
+            SECONDARY: payload => payload,
+          },
           TEMP: {
             ATTRIBUTE: payload => payload,
             KEY: payload => payload,
