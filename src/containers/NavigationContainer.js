@@ -86,6 +86,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(getAllProducts(shop));
       dispatch(getShopAddress(shop));
       dispatch(getFeaturedProduct(shop));
+      dispatch(getBanks());
 
       token && dispatch(userActions.user.done.get.token(token));
 
@@ -102,7 +103,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(getAllProducts(shop));
       dispatch(getShopAddress(shop));
       dispatch(getFeaturedProduct(shop));
-
+      dispatch(getBanks());
 
       if (token) {
         dispatch(getCart(token, false));
@@ -114,7 +115,6 @@ const mapDispatchToProps = dispatch => {
         dispatch(getShopHours(shop, token));
         dispatch(getOrderList(shop, token));
         dispatch(getShopPayments(shop, token));
-        dispatch(getBanks());
       }
     },
     handleSetSideDrawer: val => {

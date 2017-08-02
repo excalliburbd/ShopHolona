@@ -60,7 +60,7 @@ const initialCategoriesUiState = {
     primary: [],
     secondary: {},
     selected: -1,
-    all: {}
+    all: []
   },
   temporaryAttribute: {
     key: '',
@@ -271,7 +271,9 @@ export const CategoriesUIReducer = handleActions({
             attr => {
               if (attr.id === action.payload.id.primary) {
                 return {
+                  ...attr,
                   ...attribute,
+                  id: action.payload.id.id,
                   custom: false,
                 }
               }

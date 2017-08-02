@@ -15,6 +15,7 @@ import {
 import {
   makeFeaturedProduct,
   removeFromFeaturedProduct,
+  getAllAttributes,
 } from '../thunks/productThunks';
 import {
   runShopInfoUpdate
@@ -83,6 +84,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleAddProduct: () => {
       dispatch(sidebarActions.sidebar.show.addProduct());
       dispatch(getCategory());
+      dispatch(getAllAttributes());
     },
     handleShowImageUploader: type => {
       dispatch(imageUploaderActions.imageUploader.show.uploader(type));
