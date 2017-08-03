@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import Fuse from 'fuse.js';
 
 export const getBanksArray = state => state.banks;
-export const getBanksObj = state => state.entities.banks;
+export const getBanksObj = state => state.cachedEntities.banks;
 export const getBankID = state => state.ui.paymentsAndAddresses.bankID;
 
 export const getAllbankInfo = createSelector(
@@ -34,6 +34,10 @@ export const getAllbanks = createSelector(
 export const getAllBranches = createSelector(
   [getBankID, getBanksObj],
   (id, banksObj) => {
+    if (banksObj[id] && !banksObj[id].branches) {
+      return null;
+    }
+
     return id && new Fuse(banksObj[id].branches, { keys: ['name'] });
   }
 );

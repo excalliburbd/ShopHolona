@@ -1,7 +1,13 @@
-import { handleActions } from 'redux-actions';
+import {
+  handleActions,
+  combineActions,
+} from 'redux-actions';
 import uuid from 'uuid';
 
-import { shopActions } from '../actions/';
+import {
+  shopActions,
+  paymentandaddressActions
+} from '../actions/';
 import { REHYDRATE } from 'redux-persist/constants';
 
 import config from '../config';
@@ -243,6 +249,53 @@ export const ShopPageReducer = handleActions({
         }
       }
     },
+    [shopActions.shop.set.editing]: (state, action) => {
+      return {
+        ...state,
+        information: {
+          ...state.information,
+          editing: action.payload,
+        }
+      }
+    },
+    [shopActions.shop.set.name]: (state, action) => {
+      return {
+        ...state,
+        shop_name: action.payload,
+        information: {
+          ...state.information,
+          name: action.payload,
+        },
+      }
+    },
+    [shopActions.shop.set.payments]: (state, action) => {
+      return {
+        ...state,
+        payments: action.payload,
+        information: {
+          ...state.information,
+          payments: action.payload,
+        },
+      }
+    },
+    [combineActions(
+      paymentandaddressActions.paymentsAndAddresses.ui.set.bank,
+      paymentandaddressActions.paymentsAndAddresses.ui.set.bankId,
+      paymentandaddressActions.paymentsAndAddresses.ui.set.branch,
+      paymentandaddressActions.paymentsAndAddresses.ui.set.branchId,
+      paymentandaddressActions.paymentsAndAddresses.ui.set.account.name,
+      paymentandaddressActions.paymentsAndAddresses.ui.set.account.number
+    )]: (state, action) => {
+      return {
+        ...state,
+        information: {
+          ...state.information,
+          editing: (state.information.editing.indexOf('payments') === -1 ) ?
+                    [ ...state.information.editing, 'payments' ]:
+                    state.information.editing,
+        }
+      }
+    },
     [REHYDRATE]: (state, action) => {
       const incoming = action.payload.shop;
 
@@ -275,39 +328,24 @@ export const ShopPageReducer = handleActions({
           },
           fcom: false,
           description: 'loading',
+          payments: [
+            {
+              id: null,
+              bank: {
+                  id: null,
+                  name: 'loading',
+                  bank_name: null
+              },
+              account_name: 'loading',
+              account_type: 0,
+              account_number: null,
+              bkash_num: ''
+            }
+          ],
         },
         demostore: config.demostore,
       }
     },
-  [shopActions.shop.set.editing]: (state, action) => {
-    return {
-      ...state,
-      information: {
-        ...state.information,
-        editing: action.payload,
-      }
-    }
-  },
-  [shopActions.shop.set.name]: (state, action) => {
-    return {
-      ...state,
-      shop_name: action.payload,
-      information: {
-        ...state.information,
-        name: action.payload,
-      },
-    }
-  },
-  [shopActions.shop.set.payments]: (state, action) => {
-    return {
-      ...state,
-      payments: action.payload,
-      information: {
-        ...state.information,
-        payments: action.payload,
-      },
-    }
-  },
 }, {
   id: null,
   shop_name: 'Loading',
@@ -318,18 +356,20 @@ export const ShopPageReducer = handleActions({
   address: {
 
   },
-  payments: {
-    id: null,
-    bank: {
-        id: null,
-        name: 'loading',
-        bank_name: null
-    },
-    account_name: 'asf',
-    account_type: 0,
-    account_number: null,
-    bkash_num: ''
-  },
+  payments: [
+    {
+      id: null,
+      bank: {
+          id: null,
+          name: 'loading',
+          bank_name: null
+      },
+      account_name: '',
+      account_type: 0,
+      account_number: null,
+      bkash_num: ''
+    }
+  ],
   information: {
     upToDate: false,
     editing: [],
@@ -357,18 +397,20 @@ export const ShopPageReducer = handleActions({
     bank: {
 
     },
-    payments: {
-      id: null,
-      bank: {
-          id: null,
-          name: 'loading',
-          bank_name: null
-      },
-      account_name: 'loading',
-      account_type: 0,
-      account_number: null,
-      bkash_num: ''
-    },
+    payments: [
+      {
+        id: null,
+        bank: {
+            id: null,
+            name: 'loading',
+            bank_name: null
+        },
+        account_name: 'loading',
+        account_type: 0,
+        account_number: null,
+        bkash_num: ''
+      }
+    ],
     fcom: false,
     description: 'loading'
   },

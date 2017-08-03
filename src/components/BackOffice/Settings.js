@@ -26,6 +26,7 @@ const Settings = ({
   bankUIValue,
   branchUIValue,
   handleSetValue,
+  accountNameUIValue,
   accountNumberUIValue,
   postBankInfo,
   bankUIID,
@@ -133,10 +134,10 @@ const Settings = ({
           <CardTitle title="Shop Payment" />
           <CardText>
             {
-              banks && banks[0] ?
+              banks && banks.list[0] ?
                 <CustomAutocomplete label="Bank Name"
                                     source={ banks }
-                                    value={ (!editing && bankInfo[payments.bank.bank_name]) ? bankInfo[payments.bank.bank_name].name : bankUIValue }
+                                    value={ (!editing && payments.bank && bankInfo[payments.bank.bank_name]) ? bankInfo[payments.bank.bank_name].name : bankUIValue }
                                     selectionOnly
                                     keyname="name"
                                     handleSetValue={ text => handleSetValue('bank', text) }
@@ -147,7 +148,7 @@ const Settings = ({
                        disabled={ true } />
             }
             {
-              editing ?
+              branches ?
                 <CustomAutocomplete label="Branch Name"
                                     source={ branches }
                                     value={ branchUIValue }
@@ -161,14 +162,18 @@ const Settings = ({
                        disabled={ true }
                        value={ payments.bank && payments.bank.name } />
             }
-            <Input type="text"
-                  label="Account Name"
-                  value={ editing ? accountNumberUIValue : payments.account_name }
-                  onChange={ text => handleSetValue('account', text) } />
+            <Input  type="text"
+                    label="Account Name"
+                    value={ editing ? accountNameUIValue : payments.account_name }
+                    onChange={ text => handleSetValue('account_name', text) } />
+            <Input  type="text"
+                    label="Account Number"
+                    value={ editing ? accountNumberUIValue : payments.account_number }
+                    onChange={ text => handleSetValue('account_number', text) } />
           </CardText>
           <CardActions>
             <Button label="reset"  />
-            <Button label="update" primary onClick={ () => postBankInfo(branchUIID, accountNumberUIValue, shop, token) } />
+            <Button label="update" primary onClick={ () => postBankInfo(bankUIID, branchUIID, accountNameUIValue, accountNumberUIValue, shop, token) } />
           </CardActions>
         </Card>
         {/*<Card>

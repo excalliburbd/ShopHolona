@@ -62,6 +62,8 @@ const RootReducer = combineReducers({
     categories: CategoriesEntityReducer,
     cart: cartEntitiesReducer,
     orders: ordersEntityReducer,
+  }),
+  cachedEntities: combineReducers({
     banks: banksEntityReducer,
   }),
   ui: combineReducers({

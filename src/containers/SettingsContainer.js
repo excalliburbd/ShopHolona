@@ -46,8 +46,9 @@ const mapStateToProps = state => {
     bankUIID: state.ui.paymentsAndAddresses.bankID,
     branchUIID: state.ui.paymentsAndAddresses.branchID,
     branches: getAllBranches(state),
-    accountNumberUIValue: state.ui.paymentsAndAddresses.account,
-    payments: state.shop.payments,
+    accountNameUIValue: state.ui.paymentsAndAddresses.accountName,
+    accountNumberUIValue: state.ui.paymentsAndAddresses.accountNumber,
+    payments: state.shop.payments[0],
     editing: state.shop.information.editing.length > 0,
     vendor: getVendor(state),
   }
@@ -70,8 +71,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         case 'branch':
           dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.branch(value));
           break;
-        case 'account':
-          dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.account(value));
+        case 'account_name':
+          dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.account.name(value));
+          break;
+        case 'account_number':
+          dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.account.number(value));
           break;
         default:
           break;
@@ -90,8 +94,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           break;
       }
     },
-    postBankInfo: (branch, accont, shop, token) => {
-      dispatch(saveBankInfo(branch, accont, shop, token));
+    postBankInfo: (bank, branch, accountName, accountNumber, shop, token) => {
+      dispatch(saveBankInfo(bank, branch, accountName, accountNumber, shop, token));
     },
     loadData: () => {
       getBanks();

@@ -15,7 +15,10 @@ export const paymentandaddressActionCreators = {
         BANK_ID: payload => payload,
         BRANCH: payload => payload,
         BRANCH_ID: payload => payload,
-        ACCOUNT: payload => payload,
+        ACCOUNT: {
+          NAME: payload => payload,
+          NUMBER: payload => payload,
+        }
       }
     }
   }

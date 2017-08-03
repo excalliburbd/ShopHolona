@@ -61,31 +61,37 @@ export const paymentandaddressUIReducer = handleActions({
   [paymentandaddressActions.paymentsAndAddresses.ui.set.bank]: (state, action) => {
     return {
       ...state,
-      bank: action.payload
+      bank: action.payload,
     }
   },
   [paymentandaddressActions.paymentsAndAddresses.ui.set.bankId]: (state, action) => {
     return {
       ...state,
-      bankID: action.payload
+      bankID: action.payload,
     }
   },
   [paymentandaddressActions.paymentsAndAddresses.ui.set.branch]: (state, action) => {
     return {
       ...state,
-      branch: action.payload
+      branch: action.payload,
     }
   },
   [paymentandaddressActions.paymentsAndAddresses.ui.set.branchId]: (state, action) => {
     return {
       ...state,
-      branchID: action.payload
+      branchID: action.payload,
     }
   },
-  [paymentandaddressActions.paymentsAndAddresses.ui.set.account]: (state, action) => {
+  [paymentandaddressActions.paymentsAndAddresses.ui.set.account.name]: (state, action) => {
     return {
       ...state,
-      account: action.payload
+      accountName: action.payload,
+    }
+  },
+  [paymentandaddressActions.paymentsAndAddresses.ui.set.account.number]: (state, action) => {
+    return {
+      ...state,
+      accountNumber: action.payload,
     }
   }
 }, {
@@ -93,5 +99,6 @@ export const paymentandaddressUIReducer = handleActions({
   bankID: null,
   branch: '',
   branchID: null,
-  account: '',
+  accountName: '',
+  accountNumber: '',
 });

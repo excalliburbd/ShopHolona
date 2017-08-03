@@ -3,6 +3,9 @@ import { addNotification } from 'reapop';
 import { request, getConfig } from './helpers';
 
 import { getShopCategories } from './shopThunks';
+import {
+  getShopPayments,
+} from '../thunks/shopThunks';
 
 import {
    userActions,
@@ -92,6 +95,7 @@ export const trySignInAsyncAction = (res, shop) => dispatch => {
                 dispatch(getShopCategories(shop));
                 dispatch(tryGetVendor(shop, res.token));
                 dispatch(getFollowingShop(shop, res.token));
+                dispatch(getShopPayments(shop, res.token));
               }
             }
           ).catch(

@@ -8,6 +8,10 @@ import {
   imageUploaderActions,
 } from '../actions/';
 
+import {
+  getBranch,
+} from '../thunks/paymentandaddressThunks';
+
 export const getShopCategories = shop  => dispatch => {
   request(`/shops/${shop}/categories/`, getConfig()
             ).then(
@@ -44,10 +48,8 @@ export const getShopAddress = shop  => dispatch => {
 
 export const getShop = shop  => dispatch => {
   request(`/shops/${shop}/`, getConfig(
-
           )).then(
             res => {
-
               if(res.id) {
                 dispatch(shopActions.shop.set.shop(res));
               }
@@ -149,6 +151,7 @@ export const getShopPayments = (shop, token) => dispatch => {
                       res => {
                         if (res.length > 0) {
                           dispatch(shopActions.shop.set.payments(res));
+                          res[0].bank.id && getBranch(res[0].bank.id);
                         }
                       }
                     )
