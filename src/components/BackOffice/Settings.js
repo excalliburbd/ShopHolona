@@ -44,6 +44,10 @@ const Settings = ({
     license,
   } = info;
 
+  const activeBank = bankInfo.find(
+                      bank => bank.id === payments.bank.bank_name
+                   );
+
   return (
     <div className="Settings">
       <Card>
@@ -125,7 +129,6 @@ const Settings = ({
           }
         </CardText>
         <CardActions>
-          <Button label="reset"  />
           <Button label="update" primary onClick={ () => postUpdates(info, shop, token) } />
         </CardActions>
       </Card>
@@ -137,7 +140,7 @@ const Settings = ({
               banks && banks.list[0] ?
                 <CustomAutocomplete label="Bank Name"
                                     source={ banks }
-                                    value={ (!editing && payments.bank && bankInfo[payments.bank.bank_name]) ? bankInfo[payments.bank.bank_name].name : bankUIValue }
+                                    value={ !editing ? activeBank && activeBank.name : bankUIValue }
                                     selectionOnly
                                     keyname="name"
                                     handleSetValue={ text => handleSetValue('bank', text) }
@@ -156,10 +159,8 @@ const Settings = ({
                                     keyname="name"
                                     handleSetValue={ text => handleSetValue('branch', text) }
                                     onSelected={ id => handleSelect('branch', id) }
-                                    editing={ editing }
                                   /> :
                 <Input label="Branch Name"
-                       disabled={ true }
                        value={ payments.bank && payments.bank.name } />
             }
             <Input  type="text"
@@ -172,7 +173,6 @@ const Settings = ({
                     onChange={ text => handleSetValue('account_number', text) } />
           </CardText>
           <CardActions>
-            <Button label="reset"  />
             <Button label="update" primary onClick={ () => postBankInfo(bankUIID, branchUIID, accountNameUIValue, accountNumberUIValue, shop, token) } />
           </CardActions>
         </Card>
