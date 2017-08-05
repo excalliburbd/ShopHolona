@@ -58,7 +58,7 @@ const mapStateToProps = state => {
     featuredProducts: getFeaturedProducts(state),
     selectedChip: state.ui.shopPage.chip,
     vendor: getVendor(state),
-    proficePic: state.shop.prof_pic,
+    profilePic: state.shop.prof_pic,
     coverPhoto: state.shop.cover_photo,
     shopPhones: getPhones(state),
     shopAddress: getAddress(state),
