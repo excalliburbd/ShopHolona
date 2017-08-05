@@ -3,7 +3,7 @@ import Tour from 'reactour';
 
 import { request, getConfig } from '../../thunks/helpers';
 
-import TourWrapper from './TourWrapper';
+import TourWrapperContainer from '../../containers/TourWrapperContainer';
 
 import config from '../../config';
 
@@ -17,15 +17,13 @@ class TourComponent extends Component {
 
   componentWillReceiveProps(nextProps) {
     const {
-      isOpen,
       shop,
       done,
       handleSetTour,
-      loggedIn,
-      vendor,
+      tourOnStartup,
     } = nextProps;
 
-    if (!done && !isOpen && shop && loggedIn && vendor) {
+    if (tourOnStartup) {
       request(`/shops/${shop}/products/`, getConfig() ).then(
         res => {
           if (res.length === 0) {
@@ -57,12 +55,12 @@ class TourComponent extends Component {
         content: ({ goTo, inDOM, step }) => {
           this.goTo = goTo;
           return (
-            <TourWrapper title="Hello!!"
+            <TourWrapperContainer title="Hello!!"
                           goTo={ goTo }
                           step={ step } >
               <p>Welcome to your store!</p>
               <p>Let's go on a tour of your new store!</p>
-            </TourWrapper>
+            </TourWrapperContainer>
           );
         },
         action: () => {
@@ -74,7 +72,7 @@ class TourComponent extends Component {
         content: ({ goTo, inDOM, step }) => {
           this.goTo = goTo;
           return (
-            <TourWrapper title="Hello!!"
+            <TourWrapperContainer title="Hello!!"
                           goTo={ goTo }
                           step={ step } >
               <h3>First impressions matter!</h3>
@@ -88,7 +86,7 @@ class TourComponent extends Component {
                 <li>Store Description</li>
                 <li>Your Store Logo</li>
               </ul>
-            </TourWrapper>
+            </TourWrapperContainer>
           );
         },
         action: () => {
@@ -100,13 +98,13 @@ class TourComponent extends Component {
         content: ({ goTo, inDOM, step }) => {
           this.goTo = goTo;
           return (
-            <TourWrapper title="Profile Picture"
+            <TourWrapperContainer title="Profile Picture"
                           goTo={ goTo }
                           step={ step } >
               <p>
                 Start off by pressing on the ‘Camera’ button in the middle and change your store’s logo. Save it and press next when done!
               </p>
-            </TourWrapper>
+            </TourWrapperContainer>
           );
         },
         action: () => {
@@ -118,13 +116,13 @@ class TourComponent extends Component {
         content: ({ goTo, inDOM, step }) => {
           this.goTo = goTo;
           return (
-            <TourWrapper title="Store Description"
+            <TourWrapperContainer title="Store Description"
                           goTo={ goTo }
                           step={ step } >
               <p>
                 Change your store’s description right from here! Press on the edit button and change the description. Save it and press next when done!
               </p>
-            </TourWrapper>
+            </TourWrapperContainer>
           );
         },
         action: () => {
@@ -136,14 +134,14 @@ class TourComponent extends Component {
         content: ({ goTo, inDOM, step }) => {
           this.goTo = goTo;
           return (
-            <TourWrapper title="Cover Photo"
+            <TourWrapperContainer title="Cover Photo"
                           goTo={ goTo }
                           step={ step } >
               <h3>The background is just as important as your logo!</h3>
               <p>
                 photo of your store by pressing on the ‘Camera’ button on the top left hand corner!
               </p>
-            </TourWrapper>
+            </TourWrapperContainer>
           );
         },
         action: () => {
@@ -155,13 +153,13 @@ class TourComponent extends Component {
         content: ({ goTo, inDOM, step }) => {
           this.goTo = goTo;
           return (
-            <TourWrapper title="Add New Products"
+            <TourWrapperContainer title="Add New Products"
                           goTo={ goTo }
                           step={ step } >
               <p>
                 Add your first products to the store. Click on the ‘+’ button to start adding.
               </p>
-            </TourWrapper>
+            </TourWrapperContainer>
           );
         },
         action: () => {
@@ -173,7 +171,7 @@ class TourComponent extends Component {
         content: ({ goTo, inDOM, step }) => {
           this.goTo = goTo;
           return (
-            <TourWrapper title="Dashboard"
+            <TourWrapperContainer title="Dashboard"
                           goTo={ goTo }
                           step={ step }
                           onNext={
@@ -186,7 +184,7 @@ class TourComponent extends Component {
               </p>
               <p>This contains everything you need to know about how your store is running! </p>
               <p>Click here to go to dashboard.</p>
-            </TourWrapper>
+            </TourWrapperContainer>
           );
         },
         action: () => {
@@ -199,7 +197,7 @@ class TourComponent extends Component {
         content: ({ goTo, inDOM, step }) => {
           this.goTo = goTo;
           return (
-            <TourWrapper  title="Overview"
+            <TourWrapperContainer  title="Overview"
                           goTo={ goTo }
                           step={ step }
                           onNext={
@@ -213,7 +211,7 @@ class TourComponent extends Component {
                             }
                           } >
               <p>This is where you see all your important statistics. Press any of these boxes to be taken into those sections. </p>
-            </TourWrapper>
+            </TourWrapperContainer>
           );
         },
         action: () => {
@@ -226,7 +224,7 @@ class TourComponent extends Component {
         content: ({ goTo, inDOM, step }) => {
           this.goTo = goTo;
           return (
-            <TourWrapper title="Orders"
+            <TourWrapperContainer title="Orders"
                           goTo={ goTo }
                           step={ step }
                           onNext={
@@ -242,7 +240,7 @@ class TourComponent extends Component {
               <p>
                 As soon as you have an order for your product, it will be displayed on this page. Press the export button bubble to export the data in your preferred format!
               </p>
-            </TourWrapper>
+            </TourWrapperContainer>
           );
         },
         action: () => {
@@ -255,7 +253,7 @@ class TourComponent extends Component {
         content: ({ goTo, inDOM, step }) => {
           this.goTo = goTo;
           return (
-            <TourWrapper title="Products"
+            <TourWrapperContainer title="Products"
                           goTo={ goTo }
                           step={ step }
                           onNext={
@@ -271,7 +269,7 @@ class TourComponent extends Component {
               <p>
                 All your product details in one page. We call this the boring way to manage your products! Press the export button bubble to export the data in your preferred format!
               </p>
-            </TourWrapper>
+            </TourWrapperContainer>
           );
         },
         action: () => {
@@ -284,7 +282,7 @@ class TourComponent extends Component {
         content: ({ goTo, inDOM, step }) => {
           this.goTo = goTo;
           return (
-            <TourWrapper title="Reports"
+            <TourWrapperContainer title="Reports"
                           goTo={ goTo }
                           step={ step }
                           onNext={
@@ -298,12 +296,14 @@ class TourComponent extends Component {
                             }
                           } >
               <p>Here you can see the data for your store.</p>
-            </TourWrapper>
+            </TourWrapperContainer>
           );
         },
         action: () => {
           handleSetStep(10);
-          (location.pathname !== '/admin/reports') ? history.push('/admin/reports') : null
+          if (location.pathname !== '/admin/reports') {
+            history.push('/admin/reports');
+          }
         }
       },
       {
@@ -311,7 +311,7 @@ class TourComponent extends Component {
         content: ({ goTo, inDOM, step }) => {
           this.goTo = goTo;
           return (
-            <TourWrapper title="Settings"
+            <TourWrapperContainer title="Settings"
                           goTo={ goTo }
                           step={ step }
                           onPrevious={
@@ -322,12 +322,14 @@ class TourComponent extends Component {
               <p>
                 The most important part of your store. Please ensure all the information here are inserted correctly as this is what we will be reviewing your store on!
               </p>
-            </TourWrapper>
+            </TourWrapperContainer>
           );
         },
         action: () => {
           handleSetStep(11);
-          (location.pathname !== '/settings') ? history.push('/settings') : null
+          if (location.pathname !== '/settings') {
+            history.push('/settings');
+          }
         }
       },
     ];

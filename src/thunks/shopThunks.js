@@ -58,7 +58,7 @@ export const getShop = shop  => dispatch => {
 }
 
 
-export const postShopPageProfie = (image, shop, token, formData)  => dispatch => {
+export const postShopPageProfie = (image, shop, token, formData, predicate, action, step)  => dispatch => {
   image.toBlob( blob => {
     formData.append('prof_pic', blob );
     if (token) {
@@ -77,15 +77,15 @@ export const postShopPageProfie = (image, shop, token, formData)  => dispatch =>
                   position: 'bl',
                   status: 'success',
               }));
+              predicate && action(step);
             }
           }
         );
     }
-
   });
 }
 
-export const postShopPageCover = (image, shop, token, formData)  => dispatch => {
+export const postShopPageCover = (image, shop, token, formData, predicate, action, step)  => dispatch => {
   image.toBlob( blob => {
     formData.append('cover_photo', blob );
     if (token) {
@@ -104,6 +104,7 @@ export const postShopPageCover = (image, shop, token, formData)  => dispatch => 
                   position: 'bl',
                   status: 'success',
                 }));
+              predicate && action(step);
             }
           }
         );

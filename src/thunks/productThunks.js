@@ -406,7 +406,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           console.log(res)
                           dispatch(addNotification({
                             title: 'Success',
-                            message: 'Successfully updated product name',
+                            message: 'Successfully updated product',
                             position: 'bl',
                             status: 'success',
                           }));
@@ -416,7 +416,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           console.log(err)
                            dispatch(addNotification({
                               title: 'Success',
-                              message: 'Successfully updated product name',
+                              message: 'Successfully updated product',
                               position: 'bl',
                               status: 'success',
                           }));

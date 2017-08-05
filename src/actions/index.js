@@ -11,6 +11,7 @@ import { serviceActionCreators } from './serviceActionCreators';
 import { orderActionCreators } from './orderActionCreators';
 import { paymentandaddressActionCreators } from './paymentandaddressActionCreators';
 import { tourActionCreators } from './tourActionCreators';
+import { confirmActionCreators } from './confirmActionCreators';
 
 export const userActions = createActions(userActionCreators);
 export const sidebarActions = createActions(sidebarActionCreators);
@@ -23,3 +24,4 @@ export const serviceActions = createActions(serviceActionCreators);
 export const orderActions = createActions(orderActionCreators);
 export const paymentandaddressActions = createActions(paymentandaddressActionCreators);
 export const tourActions = createActions(tourActionCreators);
+export const confirmActions = createActions(confirmActionCreators);

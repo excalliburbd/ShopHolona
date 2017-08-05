@@ -2,15 +2,16 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { addNotification } from 'reapop';
 
-import { getCategory } from '../thunks/productThunks';
-import { addToCart } from '../thunks/cartThunks';
+import ShopPage from '../components/ShopPage';
 
 import {
   sidebarActions,
   shopActions,
   imageUploaderActions,
   productActions,
+  tourActions,
 } from '../actions/';
+
 
 import {
   makeFeaturedProduct,
@@ -23,8 +24,8 @@ import {
 import {
   followShop,
 } from '../thunks/userThunks';
-
-import ShopPage from '../components/ShopPage';
+import { getCategory } from '../thunks/productThunks';
+import { addToCart } from '../thunks/cartThunks';
 
 import {
   getCategories,
@@ -39,6 +40,10 @@ import {
   getVendor,
   following,
 } from '../selectors/userSelectors';
+import {
+  getTourIsOpen,
+  getCurrentStep,
+} from '../selectors/tourSelectors';
 
 const mapStateToProps = state => {
   return {
@@ -63,6 +68,8 @@ const mapStateToProps = state => {
     featured: getProductDetailsIsFeaturedProduct(state),
     editDesc: state.ui.shopPage.editDesc && getVendor(state),
     following: following(state),
+    tourIsOpen: getTourIsOpen(state),
+    tourCurrentStep: getCurrentStep(state),
   }
 }
 
@@ -86,7 +93,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(getCategory());
       dispatch(getAllAttributes());
     },
-    handleShowImageUploader: type => {
+    handleShowImageUploader: (type, tourIsOpen, tourCurrentStep) => {
+      if (tourIsOpen && (tourCurrentStep === 2|| tourCurrentStep === 4)) {
+        dispatch(tourActions.tour.set.interrupt({ state: true, step: tourCurrentStep}));
+        dispatch(imageUploaderActions.imageUploader.set.tourInterrupt(true));
+        dispatch(tourActions.tour.set.open(false));
+      }
       dispatch(imageUploaderActions.imageUploader.show.uploader(type));
     },
     handleEditContactNumber: (id, value) => {

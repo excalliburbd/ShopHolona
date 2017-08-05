@@ -19,6 +19,7 @@ import ImageUploaderContainer from '../../containers/ImageUploaderContainer';
 import CartContainer from '../../containers/CartContainer';
 import NotificationContainer from '../../containers/NotificationContainer';
 import TourContainer from '../../containers/TourContainer';
+import Confirm from '../../containers/ConfirmContainer';
 
 import './Navigation.css';
 
@@ -147,6 +148,7 @@ class Nav extends Component {
             <title>{ shopName }</title>
           </Helmet>
           <ImageUploaderContainer />
+          <Confirm />
           <AddButtonContainer vendor={ vendor } />
           <NavigationDrawer pinned={ pinned } history={ history } location={ location }/>
           <Panel className={ panelClass }>

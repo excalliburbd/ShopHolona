@@ -2,13 +2,22 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { createSelector } from 'reselect';
 
+import ImageUploader from '../components/ImageUploader';
+
 import { postShopPageProfie, postShopPageCover } from '../thunks/shopThunks';
 import { postImage } from '../thunks/productThunks';
 
-import { imageUploaderActions } from '../actions/';
+import {
+  imageUploaderActions,
+  tourActions,
+} from '../actions/';
 
 import { getResponsive } from '../selectors/uiSelectors';
-import ImageUploader from '../components/ImageUploader';
+import {
+  getTourIsOpen,
+  getCurrentStep,
+  getTourInterruptStep,
+} from '../selectors/tourSelectors';
 
 const getShop = state => state.shop;
 
@@ -50,7 +59,10 @@ const mapStateToProps = state => {
     formData: makeFormData(state),
     type: state.ui.uploader.type,
     productID: state.ui.uploader.productID,
-    responsive: getResponsive(state)
+    responsive: getResponsive(state),
+    tourIsOpen: getTourIsOpen(state),
+    tourCurrentStep: getCurrentStep(state),
+    tourInterruptStep: getTourInterruptStep(state),
   }
 }
 
@@ -65,14 +77,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleSliderValue: value => {
       dispatch(imageUploaderActions.imageUploader.updateSlider(value));
     },
-    handleDone: (type, image, shop, token, formData, id, file) => {
+    handleDone: (type, image, shop, token, formData, id, file, predicate, action, step) => {
 
       if (type === 'PROFILE') {
-       dispatch(postShopPageProfie(image, shop, token, formData));
+       dispatch(postShopPageProfie(image, shop, token, formData, predicate, action, step));
       }
 
       if (type === 'COVER') {
-       dispatch(postShopPageCover(image, shop, token, formData));
+       dispatch(postShopPageCover(image, shop, token, formData, predicate, action, step));
       }
 
       if (type === 'PRODUCT') {
@@ -89,6 +101,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           )
         })
       }
+    },
+    handleContinueTour: currentstep => {
+      dispatch(tourActions.tour.set.interrupt({ state: false }));
+      dispatch(imageUploaderActions.imageUploader.set.tourInterrupt(false));
+      dispatch(tourActions.tour.set.open(true));
     }
   }
 }

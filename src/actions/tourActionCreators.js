@@ -6,6 +6,7 @@ export const tourActionCreators = {
       HISTORY: payload => payload,
       DONE: payload => payload,
       LAST_STEP: payload => payload,
+      INTERRUPT: payload => payload,
     }
   }
 }

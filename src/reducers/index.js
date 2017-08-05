@@ -27,6 +27,7 @@ import { imageUploaderUIReducer } from './imageUploaderReducers';
 import { servicesUIReducer } from './serviceReducers';
 import { cartReducer, cartEntitiesReducer } from './cartReducers';
 import { tourUIReducer } from './tourReducers';
+import { confirmDialougReducers } from './confirmDialougReducers';
 
 const NavigationUIReducer = (
   state = {
@@ -80,6 +81,7 @@ const RootReducer = combineReducers({
     responsive,
     paymentsAndAddresses: paymentandaddressUIReducer,
     tour: tourUIReducer,
+    confirm: confirmDialougReducers,
   }),
   cart: cartReducer,
   notifications: notificationsReducer(),

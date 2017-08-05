@@ -1,8 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-
-import { tourActions } from '../../actions/';
 
 import Button from 'react-toolbox/lib/button/Button';
 
@@ -69,23 +66,4 @@ TourWrapper.proptypes = {
   children: PropTypes.element.isRequired,
 }
 
-const mapStateToProps = state => {
-  return {
-    isOpen: state.ui.tour.isOpen,
-    currentStep: state.ui.tour.steps.present,
-    lastStep: state.ui.tour.lastStep,
-  }
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    handleSkip: () => {
-      dispatch(tourActions.tour.set.done(true));
-      dispatch(tourActions.tour.set.open(false));
-    },
-  }
-}
-
-const ConnectedTourWrapper = connect(mapStateToProps, mapDispatchToProps)(TourWrapper);
-
-export default ConnectedTourWrapper;
+export default TourWrapper;

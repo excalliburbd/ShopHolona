@@ -23,14 +23,12 @@ const ImageUploader = ({
   type,
   productID,
   responsive,
+  tourInterruptStep,
+  handleContinueTour,
+  tourCurrentStep,
 }) => {
 
   let editorRef = null;
-
-  const doneFunc = () => {
-    handleDone( type , editorRef ? editorRef.getImageScaledToCanvas() : null, shop, token, formData, productID, droppedImage);
-  }
-
   let border = 12.5;
   let radius = 0;
   let width= 250;
@@ -50,34 +48,48 @@ const ImageUploader = ({
   }
 
   if (!HTMLCanvasElement.prototype.toBlob) {
-      Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
-        value: function (callback, type, quality) {
+    Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
+      value: function (callback, type, quality) {
 
-          var binStr = atob( this.toDataURL(type, quality).split(',')[1] ),
-              len = binStr.length,
-              arr = new Uint8Array(len);
+        var binStr = atob( this.toDataURL(type, quality).split(',')[1] ),
+            len = binStr.length,
+            arr = new Uint8Array(len);
 
-          for (var i = 0; i < len; i++ ) {
-          arr[i] = binStr.charCodeAt(i);
-          }
-
-          callback( new Blob( [arr], {type: type || 'image/png'} ) );
+        for (var i = 0; i < len; i++ ) {
+        arr[i] = binStr.charCodeAt(i);
         }
-      });
-    }
+
+        callback( new Blob( [arr], {type: type || 'image/png'} ) );
+      }
+    });
+  }
+
+  const doneFunc = (predicate, action, step) => {
+    handleDone( type , editorRef ? editorRef.getImageScaledToCanvas() : null, shop, token, formData, productID, droppedImage, predicate, action, step);
+  }
 
   return (
-    <Dialog
-      className="ImageUploader-dialog"
-      actions={[
-        { label: 'close', onClick: handleClose },
-        { label: 'done', onClick: doneFunc },
-      ]}
-      active={ active }
-      onEscKeyDown={ handleClose }
-      onOverlayClick={ handleClose }
-      title='Upload Image'
-    >
+    <Dialog className="ImageUploader-dialog"
+            actions={[
+              {
+                label: 'close',
+                onClick: () => {
+                  handleClose();
+                  (tourCurrentStep === 2 || tourCurrentStep === 4) && handleContinueTour(tourCurrentStep);
+                }
+              },
+              {
+                label: 'done',
+                onClick: () => {
+                  doneFunc(tourCurrentStep === 2 || tourCurrentStep === 4, handleContinueTour, tourCurrentStep);
+                }
+              },
+            ]}
+            active={ active }
+            onEscKeyDown={ handleClose }
+            onOverlayClick={ handleClose }
+            title='Upload Image'
+          >
       <div className="ImageUploader-content">
         {
           dropped ?

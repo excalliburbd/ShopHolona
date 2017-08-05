@@ -62,6 +62,9 @@ const ShopPage = ({
   following,
   handleFollowShop,
   handlePromptSignIn,
+  tourIsOpen,
+  tourCurrentStep,
+  handleTourInterrupt,
 }) => {
 
   const detailsClass = classNames({
@@ -143,7 +146,7 @@ const ShopPage = ({
       <div className={ detailsClass } data-tour="details-sidebar" >
         <div className="ShopPage-banner">
           <div className="ShopPage-details-img" style={{ backgroundImage: `url(${profilePic})` }} data-tour="shop-profile" >
-            { vendor && <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') }/> }
+            { vendor && <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE', tourIsOpen, tourCurrentStep) }/> }
           </div>
         </div>
         <div className="ShopPage-banner-divider">
@@ -152,14 +155,14 @@ const ShopPage = ({
         {
           vendor && <IconButton className="ShopPage-add-banner"
                                 icon="add_a_photo"
-                                onClick={ () => handleShowImageUploader('COVER') }/>
+                                onClick={ () => handleShowImageUploader('COVER', tourIsOpen, tourCurrentStep) }/>
         }
         {/* ToDo: remove associated logic
             <IconButton icon={ (details) ? 'close' :'keyboard_arrow_down'}
                     className="ShopPage-details--toggle"
                     onClick={ toggleDetails }/> */}
         <div className="ShopPage-details-img" style={{ backgroundImage: `url(${profilePic})` }} >
-          { vendor && <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE') }/> }
+          { vendor && <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader('PROFILE', tourIsOpen, tourCurrentStep) }/> }
         </div>
 
         <div className="ShopPage-details-description">
@@ -265,7 +268,7 @@ const ShopPage = ({
                     {
                       vendor && <IconButton className="ShopPage-banner--icon"
                                 icon="add_a_photo"
-                                onClick={ () => handleShowImageUploader('COVER') } />
+                                onClick={ () => handleShowImageUploader('COVER', tourIsOpen, tourCurrentStep) } />
                     }
                  </div>
                   <div className="ShopPage-products--categories">

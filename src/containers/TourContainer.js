@@ -6,20 +6,21 @@ import TourComponent from '../components/Tour/TourComponent';
 import { tourActions } from '../actions/';
 
 import { getShopID } from '../selectors/shopSelectors';
+
 import {
-  getLoggedIn,
-  getVendor,
-} from '../selectors/userSelectors';
+  getTourIsOpen,
+  getTourSteps,
+  getTourDone,
+  getShowTourOnStartUp,
+} from '../selectors/tourSelectors';
 
 const mapStateToProps = state => {
   return {
-    isOpen: state.ui.tour.isOpen,
+    isOpen: getTourIsOpen(state),
     shop: getShopID(state),
-    loggedIn: getLoggedIn(state),
-    uploader: state.ui.uploader.active,
-    steps: state.ui.tour.steps,
-    done: state.ui.tour.done,
-    vendor: getVendor(state),
+    steps: getTourSteps(state),
+    done: getTourDone(state),
+    tourOnStartup: getShowTourOnStartUp(state),
   }
 }
 

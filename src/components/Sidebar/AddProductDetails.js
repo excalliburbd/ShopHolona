@@ -147,7 +147,7 @@ const AddProductDetails = ({
                             label="Delete"
                             accent
                             onClick={
-                              () => deleteSelectedProduct(selectedProductId, shop, token, shop === demostore)
+                              () => deleteSelectedProduct(selectedProductId, shop, token, shop === demostore, productDetailName)
                             } />
                     <Button icon="save"
                             label="save"

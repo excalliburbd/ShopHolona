@@ -2,6 +2,19 @@ import { handleActions } from 'redux-actions';
 
 import { tourActions } from '../actions/';
 
+const tourInitialState = {
+  isOpen: false,
+  done: false,
+  interrupt: false,
+  interrruptStep: null,
+  steps: {
+    past: [],
+    present: 0,
+    future: [],
+  },
+  lastStep: null,
+};
+
 export const tourUIReducer = handleActions({
   [tourActions.tour.set.open]: (state, action) => {
     return {
@@ -47,13 +60,11 @@ export const tourUIReducer = handleActions({
       lastStep: action.payload,
     }
   },
-}, {
-  isOpen: false,
-  done: false,
-  steps: {
-    past: [],
-    present: 0,
-    future: [],
+  [tourActions.tour.set.interrupt]: (state, action) => {
+    return {
+      ...state,
+      interrupt: action.payload.state,
+      interrruptStep: action.payload.step,
+    }
   },
-  lastStep: null,
-});
+}, tourInitialState);

@@ -13,6 +13,9 @@ export const imageUploaderActionCreators = {
       DONE: payload => payload,
       INC: payload => payload,
       DEC: payload => payload,
+    },
+    SET: {
+      TOUR_INTERRUPT: payload => payload,
     }
   }
 }

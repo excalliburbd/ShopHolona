@@ -17,7 +17,8 @@ import {
   productActions,
   categoryActions,
   serviceActions,
-  imageUploaderActions
+  imageUploaderActions,
+  confirmActions,
 } from '../actions/';
 
 import ProductsSidebar from '../components/Sidebar/ProductsSidebar';
@@ -384,8 +385,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           break;
       }
     },
-    deleteSelectedProduct: (id, shop, token) => {
-      dispatch(deleteProduct(id, shop, token));
+    deleteSelectedProduct: (id, shop, token, demostore, name) => {
+      dispatch(confirmActions.confirmDialoug.show(() => dispatch(deleteProduct(id, shop, token))));
+      dispatch(confirmActions.confirmDialoug.set.title('Deleting Product'));
+      dispatch(confirmActions.confirmDialoug.set.statement(`delete ${name}`));
     },
     makeProduct: (product, token) => {
       let customPrimary = false;
