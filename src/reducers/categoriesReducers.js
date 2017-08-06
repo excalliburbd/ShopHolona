@@ -329,6 +329,10 @@ export const CategoriesUIReducer = handleActions({
       // }
   },
   [categoryActions.categories.ui.set.attr.custom]: (state, action) => {
+    if (action.payload.value === '') {
+      const customID = `custom.${state.attributes.primary.length + 1}.${uuid.v4()}`;
+
+      delete state.attributes.secondary[action.payload.primary];
       return {
         ...state,
         attributes: {
@@ -338,14 +342,44 @@ export const CategoriesUIReducer = handleActions({
               if (attr.id === action.payload.primary) {
                 return {
                   ...attr,
+                  id: customID,
+                  name: `Custom Variance ${state.attributes.primary.length + 1}`,
+                  custom: true,
                   value: action.payload.value,
                 }
               }
               return attr;
             }
-          )
+          ),
+          secondary: {
+            ...state.attributes.secondary,
+            [customID]: {
+               id: customID,
+              custom: true,
+              attributes: []
+            }
+          }
         }
       }
+    }
+
+    return {
+      ...state,
+      attributes: {
+        ...state.attributes,
+        primary: state.attributes.primary.map(
+          attr => {
+            if (attr.id === action.payload.primary) {
+              return {
+                ...attr,
+                value: action.payload.value,
+              }
+            }
+            return attr;
+          }
+        )
+      }
+    }
   },
   [categoryActions.categories.ui.set.attr.temp.attribute]: (state, action) => {
       const customID = `custom.${state.attributes.secondary[action.payload].attributes.length}.${uuid.v4()}`;

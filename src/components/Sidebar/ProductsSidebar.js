@@ -160,7 +160,7 @@ const ProductsSidebar = ({
     case 'UPLOADING':
       return <ProductUpload className="ProductSidebar-upload"
                             makeProduct={ makeProduct }
-                            product={finishedProduct}
+                            product={ finishedProduct }
                             shop={ shop }
                             token={token}
                             saveProduct={ handleSaveProduct }

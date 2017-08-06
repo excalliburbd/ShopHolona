@@ -413,7 +413,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
           primaryObj.attributes.forEach(
             (secondaryObj, secondaryKey) => {
-
               if(secondaryObj.custom) {
                 customSecondary = true;
 
