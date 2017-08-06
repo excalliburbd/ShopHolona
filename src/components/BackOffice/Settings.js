@@ -101,6 +101,7 @@ const Settings = ({
                           onChange={ val => updateValue(val, 'fromHour') }
                           value={ hours.from_hour }
                         />
+              <span className="Settings-info--time-group--divider">&mdash;</span>
               <TimePicker label="hours to"
                           format="ampm"
                           onChange={ val => updateValue(val, 'toHour') }
@@ -119,7 +120,8 @@ const Settings = ({
                             val => updateValue(val, 'licenseNumber')
                           } />
                   <div style={{
-                                backgroundImage: `url(${license.img})`,
+                                backgroundImage: `url(${license.image})`,
+                                backgroundSize: 'contain',
                                 backgroundColor: '#ccc',
                                 width: '100%',
                                 height: '10em'

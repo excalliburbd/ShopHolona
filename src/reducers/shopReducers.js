@@ -12,6 +12,80 @@ import { REHYDRATE } from 'redux-persist/constants';
 
 import config from '../config';
 
+const shopInitialState = {
+  id: null,
+  shop_name: 'Loading',
+  short_descr: 'Loading',
+  prof_pic: null,
+  cover_photo: null,
+  contacts: [],
+  address: {
+
+  },
+  payments: [
+    {
+      id: null,
+      bank: {
+          id: null,
+          name: 'loading',
+          bank_name: null
+      },
+      account_name: '',
+      account_type: 0,
+      account_number: null,
+      bkash_num: ''
+    }
+  ],
+  information: {
+    upToDate: false,
+    editing: [],
+    name: 'loading',
+    domain: 'loading',
+    address: {
+      body: 'loading',
+      city: 'loading',
+      postal: 'loading'
+    },
+    hours: {
+      id: uuid.v4(),
+      weekday: 1,
+      from_hour: new Date('1993-04-19 09:00:00'),
+      to_hour: new Date('1993-04-19 21:00:00'),
+    },
+    phone: {
+      id: null,
+      number: 'loading',
+    },
+    license: {
+      number: 'loading',
+      img: 'https://unsplash.it/480/480'
+    },
+    bank: {
+
+    },
+    payments: [
+      {
+        id: null,
+        bank: {
+            id: null,
+            name: 'loading',
+            bank_name: null
+        },
+        account_name: 'loading',
+        account_type: 0,
+        account_number: null,
+        bkash_num: ''
+      }
+    ],
+    fcom: false,
+    description: 'loading'
+  },
+  referral: {
+    code: 'loading'
+  },
+  demostore: config.demostore,
+}
+
 export const ShopPageReducer = handleActions({
     [shopActions.shop.set.shop]: (state, action) => {
       if (state.information.editing.length === 0) {
@@ -233,7 +307,10 @@ export const ShopPageReducer = handleActions({
           editing: (state.information.editing.indexOf('license') === -1 ) ?
                     [ ...state.information.editing, 'license' ]:
                     state.information.editing,
-          licenseNumber: action.payload,
+          license: {
+            ...state.information.license,
+            number: action.payload,
+          },
         }
       }
     },
@@ -346,79 +423,7 @@ export const ShopPageReducer = handleActions({
         demostore: config.demostore,
       }
     },
-}, {
-  id: null,
-  shop_name: 'Loading',
-  short_descr: 'Loading',
-  prof_pic: null,
-  cover_photo: null,
-  contacts: [],
-  address: {
-
-  },
-  payments: [
-    {
-      id: null,
-      bank: {
-          id: null,
-          name: 'loading',
-          bank_name: null
-      },
-      account_name: '',
-      account_type: 0,
-      account_number: null,
-      bkash_num: ''
-    }
-  ],
-  information: {
-    upToDate: false,
-    editing: [],
-    name: 'loading',
-    domain: 'loading',
-    address: {
-      body: 'loading',
-      city: 'loading',
-      postal: 'loading'
-    },
-    hours: {
-      id: uuid.v4(),
-      weekday: 1,
-      from_hour: new Date('1993-04-19 09:00:00'),
-      to_hour: new Date('1993-04-19 21:00:00'),
-    },
-    phone: {
-      id: null,
-      number: 'loading',
-    },
-    license: {
-      number: 'loading',
-      img: 'https://unsplash.it/480/480'
-    },
-    bank: {
-
-    },
-    payments: [
-      {
-        id: null,
-        bank: {
-            id: null,
-            name: 'loading',
-            bank_name: null
-        },
-        account_name: 'loading',
-        account_type: 0,
-        account_number: null,
-        bkash_num: ''
-      }
-    ],
-    fcom: false,
-    description: 'loading'
-  },
-  referral: {
-    code: 'loading'
-  },
-  demostore: config.demostore,
-})
+}, shopInitialState );
 
 export const ShopPageUIReducer = handleActions({
     [shopActions.shop.toggleDetails]: (state, action) => ({

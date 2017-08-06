@@ -55,6 +55,19 @@
   }
 }
 
+.Settings-info--time-group--inputs {
+  display: flex;
+  align-items: center;
+}
+
+.Settings-info--time-group--inputs .lFVgC._2APuy._2APuy{
+  width: 5em;
+}
+
+.Settings-info--time-group--divider {
+  padding: 0 1em;
+}
+
 @media screen and (min-width: 800px) {
 
 }
