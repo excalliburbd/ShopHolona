@@ -128,14 +128,23 @@ export const getShowAddVariances = createSelector(
 );
 
 export const getShowAddImages = createSelector(
-  [getProductPrimaryAttributes],
-  (primary) => {
+  [getProductPrimaryAttributes, getSecondaryAttributes],
+  (primary, secondary) => {
     let show = true;
 
     primary.forEach(
       obj => {
         if(obj.selected === true) {
           show = false;
+        }
+      }
+    );
+
+    primary.filter(({ selected }) => selected).forEach(
+      ({ id })=> {
+        console.log(secondary[id])
+        if (secondary[id].attributes.length === 0) {
+          show = true;
         }
       }
     )

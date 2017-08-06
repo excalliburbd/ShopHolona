@@ -113,7 +113,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     handleFieldSelect: (type, id, subID, attributes) => {
-      console.log(type, id, subID, attributes)
       switch(type) {
         case 'CATEGORY':
           dispatch(categoryActions.categories.ui.set.category(id));
@@ -310,7 +309,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       }
     },
     handleManualInput: (uiType, fieldType, value) => {
-      console.log(uiType, fieldType, value)
       if(uiType === 'add') {
         dispatch(productActions.products.ui.set[uiType][fieldType](value));
       }

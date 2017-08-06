@@ -59,6 +59,8 @@ const AddProductService = ({
     'ProductsSidebar-add--products--info--show': showInfo,
   });
 
+  console.log(showAddImages)
+
   return (
     <div className="ProductsSidebar-add">
                 {
@@ -209,7 +211,7 @@ const AddProductService = ({
                               onClick={
                                 () => handleShowRoute('ADD_IMAGES')
                               }
-                                disabled={ showAddImages } />
+                              disabled={ showAddImages } />
                       </div>
                     </div>
                 }
