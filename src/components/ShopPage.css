@@ -177,6 +177,10 @@
   margin: 0.5em 0.5em auto;
 }
 
+.ShopPage-products--list.ShopPage-products--list--empty {
+  padding-top: 1.2em;
+}
+
 .ShopPage-products--categories {
   background-color: white;
   padding: 1em;

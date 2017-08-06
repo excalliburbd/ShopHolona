@@ -288,7 +288,7 @@ const ShopPage = ({
                     }
                   </div>
                   <div className="ShopPage-products--content">
-                    <div className="ShopPage-products--list" >
+                    <div className={ `ShopPage-products--list ${ products[selectedChip].products.length === 0 ? 'ShopPage-products--list--empty': null }` } >
                       {
                         (vendor) && <ProductCard  addProductCard
                                                   vendor={ vendor }
