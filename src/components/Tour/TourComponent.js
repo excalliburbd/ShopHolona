@@ -15,6 +15,8 @@ class TourComponent extends Component {
     }
   }
 
+  tourSteps = []
+
   componentWillReceiveProps(nextProps) {
     const {
       shop,
@@ -37,19 +39,21 @@ class TourComponent extends Component {
 
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    nextProps.handleSetLastStep(this.tourSteps.length - 1);
+  }
+
   render() {
     const {
       isOpen,
-      // steps,
       handleSetTour,
       handleSetStep,
       handleSetDone,
-      handleSetLastStep,
       history,
       location,
     } = this.props;
 
-    const tourSteps = [
+    this.tourSteps = [
       {
         selector: '[data-tour="welcome"]',
         content: ({ goTo, inDOM, step }) => {
@@ -342,8 +346,6 @@ class TourComponent extends Component {
       },
     ];
 
-    handleSetLastStep(tourSteps.length - 1);
-
     return (
       <Tour isOpen={ isOpen }
             className="tour-body"
@@ -357,7 +359,7 @@ class TourComponent extends Component {
             showButtons={ false }
             maskSpace={ 0 }
             steps={
-              tourSteps
+              this.tourSteps
             } />
     );
   }
