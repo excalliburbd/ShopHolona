@@ -142,7 +142,6 @@ export const getShowAddImages = createSelector(
 
     primary.filter(({ selected }) => selected).forEach(
       ({ id })=> {
-        console.log(secondary[id])
         if (secondary[id].attributes.length === 0) {
           show = true;
         }

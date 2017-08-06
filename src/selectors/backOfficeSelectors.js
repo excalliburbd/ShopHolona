@@ -11,7 +11,6 @@ export const getOrders = state => state.entities.orders;
 export const getallOrders = createSelector(
   [getOrdersArray, getOrders],
   (ordersArr, ordersObj) => {
-    console.log(ordersArr, ordersObj)
     return ordersArr.map(
       id => ordersObj[id]
     );

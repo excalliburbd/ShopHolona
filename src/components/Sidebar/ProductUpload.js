@@ -18,7 +18,6 @@ class ProductUpload extends Component {
       demostore,
     } = this.props;
 
-    console.log(product)
     if(progress.primary && progress.secondary) {
        saveProduct(product, shop, token, false, shop === demostore)
     }

@@ -26,8 +26,6 @@ export const ordersEntityReducer = handleActions({
         ...state
       }
 
-      console.log( action.payload)
-
       action.payload.forEach(
         order => {
           if (orders[order.id]) {
