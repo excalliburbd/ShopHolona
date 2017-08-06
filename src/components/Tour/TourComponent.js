@@ -40,7 +40,7 @@ class TourComponent extends Component {
   render() {
     const {
       isOpen,
-      steps,
+      // steps,
       handleSetTour,
       handleSetStep,
       handleSetDone,
@@ -189,7 +189,9 @@ class TourComponent extends Component {
         },
         action: () => {
           handleSetStep(6);
-          (location.pathname !== '/') ? history.push('/') : null
+          if (location.pathname !== '/') {
+            history.push('/')
+          }
         },
       },
       {
@@ -216,7 +218,9 @@ class TourComponent extends Component {
         },
         action: () => {
           handleSetStep(7);
-          (location.pathname !== '/dashboard') ? history.push('/dashboard') : null
+          if (location.pathname !== '/dashboard') {
+            history.push('/dashboard')
+          }
         },
       },
       {
@@ -245,7 +249,9 @@ class TourComponent extends Component {
         },
         action: () => {
           handleSetStep(8);
-          (location.pathname !== '/admin/orders') ? history.push('/admin/orders') : null
+          if (location.pathname !== '/admin/orders') {
+            history.push('/admin/orders')
+          }
         }
       },
       {
@@ -274,7 +280,9 @@ class TourComponent extends Component {
         },
         action: () => {
           handleSetStep(9);
-          (location.pathname !== '/admin/products') ? history.push('/admin/products') : null
+          if (location.pathname !== '/admin/products') {
+            history.push('/admin/products')
+          }
         }
       },
       {

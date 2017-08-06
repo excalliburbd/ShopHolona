@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Button from 'react-toolbox/lib/button/Button';
+// import Button from 'react-toolbox/lib/button/Button';
 import { CirclePicker } from 'react-color';
 
 import './ProductDetailsMain.css'

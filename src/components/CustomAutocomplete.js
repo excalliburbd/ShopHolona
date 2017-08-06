@@ -23,7 +23,7 @@ class CustomAutocomplete  extends Component {
 
     const {
       label,
-      type,
+      // type,
       source,
       handleSetValue,
       value,

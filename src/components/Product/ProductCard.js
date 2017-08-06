@@ -84,10 +84,10 @@ class ProductCard extends Component {
             <CardMedia aspectRatio="square"
                      image={ productImages[this.state.selectedImage].image } />
             <div className="ProductCard-images--select">
-              {
+              {/*
               variances.forEach(
                 (variant, key) => {
-                  {/*let style = {};
+                  let style = {};
 
                   if (variant.type.name === 'Color') {
                     style = {
@@ -103,18 +103,18 @@ class ProductCard extends Component {
                         backgroundImage: '#ccc'
                       }
                     }
-                  }*/}
+                  }
 
-                  {/*return <div className="ProductCard-images--select--circle"
+                  return <div className="ProductCard-images--select--circle"
                               onClick={ event => {
                                 event.stopPropagation();
                                 setVariant(id, key);
                               }}
                               style={ style }
-                              key={ key } />*/}
+                              key={ key } />
                 }
               )
-            }
+            */}
             </div>
           </div>
           <div className="ProductCard-price">

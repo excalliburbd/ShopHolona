@@ -7,7 +7,7 @@ import FaHandOLeft from 'react-icons/lib/fa/hand-o-left';
 
 import './NotFound.css';
 
-import config from '../config';
+// import config from '../config';
 
 const leavingSpringConfig = {stiffness: 60, damping: 15};
 
