@@ -55,15 +55,18 @@ class TourComponent extends Component {
 
     this.tourSteps = [
       {
-        selector: '[data-tour="welcome"]',
+        selector: '[data-tour=""]',
+        style: {
+          transform: 'translate(522px, 155.203125px)',
+        },
         content: ({ goTo, inDOM, step }) => {
           this.goTo = goTo;
           return (
-            <TourWrapperContainer title="Hello!!"
-                          goTo={ goTo }
-                          step={ step } >
-              <p>Welcome to your store!</p>
-              <p>Let's go on a tour of your new store!</p>
+            <TourWrapperContainer title="Hello!"
+                                  goTo={ goTo }
+                                  step={ step } >
+              <p>Welcome!</p>
+              <p>Let’s go on a tour of your new store!</p>
             </TourWrapperContainer>
           );
         },
@@ -72,29 +75,45 @@ class TourComponent extends Component {
         }
       },
       {
-        selector: '[data-tour="details-sidebar"]',
+        selector: '[data-tour="welcome"]',
         content: ({ goTo, inDOM, step }) => {
           this.goTo = goTo;
           return (
-            <TourWrapperContainer title="Hello!!"
+            <TourWrapperContainer title="Your Store’s Identity"
                           goTo={ goTo }
                           step={ step } >
-              <h3>First impressions matter!</h3>
-              <p>
-                This Side bar shows your customer your identity.
-              </p>
-              <p>It contains the following:</p>
-              <ul>
-                <li>Your Store Name.</li>
-                <li>Your Store’s address</li>
-                <li>Store Description</li>
-                <li>Your Store Logo</li>
-              </ul>
+              <p>These are your store’s name and reference code.</p>
+              <p>Keep the reference code noted. You’ll need it a lot in the future!</p>
             </TourWrapperContainer>
           );
         },
         action: () => {
           handleSetStep(1);
+        }
+      },
+      {
+        selector: '[data-tour="details-sidebar"]',
+        content: ({ goTo, inDOM, step }) => {
+          this.goTo = goTo;
+          return (
+            <TourWrapperContainer title="First impressions matter!"
+                          goTo={ goTo }
+                          step={ step } >
+              <p>
+                This Side bar shows your customer your essential information.
+              </p>
+              <p>It contains the following:</p>
+              <ul>
+                <li>Your Store Logo</li>
+                <li>Your Store Name</li>
+                <li>Your Store’s Address</li>
+                <li>Store Description</li>
+              </ul>
+            </TourWrapperContainer>
+          );
+        },
+        action: () => {
+          handleSetStep(2);
         }
       },
       {
@@ -112,7 +131,7 @@ class TourComponent extends Component {
           );
         },
         action: () => {
-          handleSetStep(2);
+          handleSetStep(3);
         }
       },
       {
@@ -130,7 +149,7 @@ class TourComponent extends Component {
           );
         },
         action: () => {
-          handleSetStep(3);
+          handleSetStep(4);
         }
       },
       {
@@ -143,13 +162,13 @@ class TourComponent extends Component {
                           step={ step } >
               <h3>The background is just as important as your logo!</h3>
               <p>
-                photo of your store by pressing on the ‘Camera’ button on the top left hand corner!
+                Change the cover photo of your store by pressing on the ‘Camera’ button on the top left hand corner!
               </p>
             </TourWrapperContainer>
           );
         },
         action: () => {
-          handleSetStep(4);
+          handleSetStep(5);
         }
       },
       {
@@ -161,13 +180,13 @@ class TourComponent extends Component {
                           goTo={ goTo }
                           step={ step } >
               <p>
-                Add your first products to the store. Click on the ‘+’ button to start adding.
+                Add your first products to the store. Click on the ‘+’ button to start adding products!
               </p>
             </TourWrapperContainer>
           );
         },
         action: () => {
-          handleSetStep(5);
+          handleSetStep(6);
         }
       },
       {
@@ -186,13 +205,12 @@ class TourComponent extends Component {
               <p>
                 Now that you have added your first product, you should check out your dashboard!
               </p>
-              <p>This contains everything you need to know about how your store is running! </p>
-              <p>Click here to go to dashboard.</p>
+              <p>This contains everything you need to know about how your store is running!</p>
             </TourWrapperContainer>
           );
         },
         action: () => {
-          handleSetStep(6);
+          handleSetStep(7);
           if (location.pathname !== '/') {
             history.push('/')
           }
@@ -216,12 +234,12 @@ class TourComponent extends Component {
                               history.push('/');
                             }
                           } >
-              <p>This is where you see all your important statistics. Press any of these boxes to be taken into those sections. </p>
+              <p>This is where you see all your important statistics. Press any of these boxes to be taken into those sections.</p>
             </TourWrapperContainer>
           );
         },
         action: () => {
-          handleSetStep(7);
+          handleSetStep(8);
           if (location.pathname !== '/dashboard') {
             history.push('/dashboard')
           }
@@ -246,13 +264,16 @@ class TourComponent extends Component {
                             }
                           } >
               <p>
-                As soon as you have an order for your product, it will be displayed on this page. Press the export button bubble to export the data in your preferred format!
+                As soon as you have an order for your product, it will be displayed on this page.
+              </p>
+              <p>
+                Press the export button bubble to export the data in your preferred format!
               </p>
             </TourWrapperContainer>
           );
         },
         action: () => {
-          handleSetStep(8);
+          handleSetStep(9);
           if (location.pathname !== '/admin/orders') {
             history.push('/admin/orders')
           }
@@ -277,13 +298,16 @@ class TourComponent extends Component {
                             }
                           } >
               <p>
-                All your product details in one page. We call this the boring way to manage your products! Press the export button bubble to export the data in your preferred format!
+                All your product details in one page. We call this the boring way to manage your  products!
+              </p>
+              <p>
+                Press the export button bubble to export the data in your preferred format!
               </p>
             </TourWrapperContainer>
           );
         },
         action: () => {
-          handleSetStep(9);
+          handleSetStep(10);
           if (location.pathname !== '/admin/products') {
             history.push('/admin/products')
           }
@@ -294,7 +318,7 @@ class TourComponent extends Component {
         content: ({ goTo, inDOM, step }) => {
           this.goTo = goTo;
           return (
-            <TourWrapperContainer title="Reports"
+            <TourWrapperContainer title="Reviews"
                           goTo={ goTo }
                           step={ step }
                           onNext={
@@ -307,12 +331,12 @@ class TourComponent extends Component {
                               history.push('/admin/products');
                             }
                           } >
-              <p>Here you can see the data for your store.</p>
+              <p>Your product reviews are kept in this page. Reply to your reviews to keep your customers happy!</p>
             </TourWrapperContainer>
           );
         },
         action: () => {
-          handleSetStep(10);
+          handleSetStep(11);
           if (location.pathname !== '/admin/reports') {
             history.push('/admin/reports');
           }
@@ -330,6 +354,11 @@ class TourComponent extends Component {
                             () => {
                               history.push('/admin/reports');
                             }
+                          }
+                          onNext={
+                            () => {
+                              history.push('/');
+                            }
                           } >
               <p>
                 The most important part of your store. Please ensure all the information here are inserted correctly as this is what we will be reviewing your store on!
@@ -338,7 +367,7 @@ class TourComponent extends Component {
           );
         },
         action: () => {
-          handleSetStep(11);
+          handleSetStep(12);
           if (location.pathname !== '/settings') {
             history.push('/settings');
           }

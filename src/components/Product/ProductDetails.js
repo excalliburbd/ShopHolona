@@ -44,7 +44,7 @@ const ProductDetails = ({
 
   return (
     <div className="product-details-container">
-      <IconButton icon="close"
+      <IconButton icon="arrow_back"
                   className="ProductDetails--toggle"
                   onClick={ () => toggleDetails(null) }
         />

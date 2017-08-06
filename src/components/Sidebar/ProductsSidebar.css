@@ -46,6 +46,27 @@
   margin-left: auto;
 }
 
+.ProductsSidebar-add-attributes--table>thead>tr>.gfcPv {
+  font-weight: 600;
+  color: #2e2e2e;
+}
+.ProductsSidebar-add-attributes--table>thead>tr>._2yhwA>._2jVLS>._1CXAo {
+  border-color: #2e2e2e;
+}
+.ProductsSidebar-add-attributes--table tr {
+  width: 100%;
+}
+.ProductsSidebar-add-attributes--table tr th,
+.ProductsSidebar-add-attributes--table tr td {
+  width: calc(100% / 4);
+  text-align: center;
+  padding: 12px 10px 12px 10px;
+}
+.ProductsSidebar-add-attributes--table tr th._18bqN:first-of-type, .gfcPv:first-of-type,
+.ProductsSidebar-add-attributes--table tr td._18bqN:first-of-type, .gfcPv:first-of-type {
+  padding-left: 12px;
+}
+
 .ProductsSidebar-add--products,
 .ProductsSidebar-add--stock,
 .ProductsSidebar-img,

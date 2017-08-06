@@ -64,7 +64,7 @@ const NavigationAppBar = ({
                 </span>
               }
               leftIcon={
-                !searchbar && <img className="NavigationAppBar-logo" src={logo} alt="Shop logo"/>
+                !searchbar && <img className="NavigationAppBar-logo" data-tour="logo" src={logo} alt="Shop logo"/>
               }
             onLeftIconClick={
                 () => windowLocation.assign('https://shophobe.com/')

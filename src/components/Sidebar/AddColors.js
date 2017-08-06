@@ -92,8 +92,8 @@ const AddColors = ({
                     }}>
 
             <TableHead>
-              <TableCell>Name</TableCell>
-              <TableCell>Value</TableCell>
+              <TableCell>Attribute<br/><p style={{margin: '0', color: 'grey', fontWeight: '300', marginTop: '-0.5rem',}}>e.g. size</p></TableCell>
+              <TableCell>Value<br/><p style={{margin: '0', color: 'grey', fontWeight: '300', marginTop: '-0.5rem',}}>(e.g. S, M, L)</p></TableCell>
               <TableCell numeric>Stock</TableCell>
             </TableHead>
 

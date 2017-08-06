@@ -106,7 +106,7 @@ const AddProductDetails = ({
                           value={ Math.round(productDetailfcomPrice) } />
                   { fcom &&
                       <p className="ProductSidebar-details--commission">
-                        Actual Price: { Math.round(productDetailPrice) } &#2547;
+                        Payable from ShopHobe: &#2547; { Math.round(productDetailPrice) }
                         <IconButton icon="info_outline"
                                     onClick={ togglePricingInfo } />
                       </p>

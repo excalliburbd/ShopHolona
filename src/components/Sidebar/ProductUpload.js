@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Uploader from '../../assets/reactSVG/uploader'
+
 class ProductUpload extends Component {
   componentDidMount() {
     this.props.makeProduct(
@@ -22,11 +24,14 @@ class ProductUpload extends Component {
        saveProduct(product, shop, token, false, shop === demostore)
     }
 
-    return <div>
+    return (
+      <div className="product-upload" style={{textAlign: 'center', marginTop: '3rem'}}>
+        {Uploader}
         <h2>
-          Uploading... don't close sidebar
+          Please wait . . .
         </h2>
       </div>
+    )
   }
 }
 

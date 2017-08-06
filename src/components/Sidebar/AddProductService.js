@@ -128,7 +128,7 @@ const AddProductService = ({
                           {
                             fcom &&
                               <p className="ProductSidebar-details--commission">
-                                Actual Price: { fcomPrice } &#2547;
+                                Payable from ShopHobe: &#2547; { fcomPrice }
                                 <IconButton icon="info_outline"
                                             onClick={ togglePricingInfo } />
                               </p>
