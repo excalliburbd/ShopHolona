@@ -79,6 +79,7 @@ const mapDispatchToProps = dispatch => {
         dispatch(userActions.user.done.get.token(token));
         dispatch(getMe(token));
         dispatch(getFollowingShop(shop, token));
+        dispatch(getShopPayments(shop, token));
       }
 
       dispatch(getShop(shop));
