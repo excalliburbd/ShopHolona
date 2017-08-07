@@ -15,6 +15,9 @@ const AddProductImages = ({
   shop,
   showDone,
   selectedProduct,
+  saveProduct,
+  demostore,
+  product,
 }) => {
   //DISCLAIMER: VERY HACKY CODE. primaryAttributes is not always primaryAttributes
 
@@ -22,7 +25,6 @@ const AddProductImages = ({
 
   if (edit) {
     const product = primaryAttributes[1];
-    console.log('changed', primaryAttributes);
     return (
       <div className="ProductsSidebar-img">
         <h3>Edit Product Images</h3>
@@ -146,7 +148,7 @@ const AddProductImages = ({
                 disabled={ !showDone }
                 onClick={
                   () => {
-                    handleShowRoute('UPLOADING');
+                    saveProduct(product, shop, token, false, shop === demostore);
                   }
                 } />
       </div>

@@ -59,6 +59,7 @@ export const categoryActionCreators = {
           ID_SECONDARY: payload => payload,
           PRIMARY: payload => payload,
           SECONDARY: payload => payload,
+          ALL: payload => payload,
         },
       }
     },

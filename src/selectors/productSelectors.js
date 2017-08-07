@@ -196,78 +196,43 @@ export const getFinishedProduct = createSelector(
       }
     }
 
-    if (!progress.primary && !progress.secondary) {
-      return {
-        name: name,
-        short_desc: description,
-        category: id,
-        variances: primary
-                  .filter(
-                    ({ selected }) => selected
-                  )
-                  .map(
-                    obj => ({
-                      type: obj.id,
-                      key: obj.name,
-                      value: obj.value,
-                      images: obj.files
-                              .filter( ({ apiError }) => !apiError )
-                              .map(
-                                ({ apiID }) => apiID
-                              ),
-                      custom: obj.custom,
-                      attributes: secondary[obj.id].attributes
-                                                    .filter( ({ selected }) => selected )
-                                                    .map(
-                                                      obj => ({
-                                                        type: obj.id,
-                                                        description,
-                                                        weight,
-                                                        price: fcom ? fprice : price,
-                                                        stock: obj.stock,
-                                                        key: obj.name,
-                                                        value: obj.value,
-                                                        custom: obj.custom
-                                                      })
-                                                    )
-                    })
-                  ),
-        status: 3,
-
-      }
-    } else {
-      return {
-        name: name,
-        short_desc: description,
-        category: id,
-        variances: primary
-                  .filter(
-                    ({ selected }) => selected
-                  )
-                  .map(
-                    obj => ({
-                      type: obj.id,
-                      images: obj.files
-                              .filter( ({ apiError }) => !apiError )
-                              .map(
-                                ({ apiID }) => apiID
-                              ),
-                      attributes: secondary[obj.id].attributes
-                                                    .filter( ({ selected }) => selected )
-                                                    .map(
-                                                      obj => ({
-                                                        type: obj.id,
-                                                        description,
-                                                        weight,
-                                                        price: fcom ? fprice : price,
-                                                        stock: obj.stock,
-                                                      })
-                                                    )
-                    })
-                  ),
+    return {
+      name: name,
+      short_desc: description,
+      category: id,
+      variances: primary
+                .filter(
+                  ({ selected }) => selected
+                )
+                .map(
+                  obj => ({
+                    type: obj.id,
+                    key: obj.name,
+                    value: obj.value,
+                    images: obj.files
+                            .filter( ({ apiError }) => !apiError )
+                            .map(
+                              ({ apiID }) => apiID
+                            ),
+                    custom: obj.custom,
+                    attributes: secondary[obj.id].attributes
+                                                  .filter( ({ selected }) => selected )
+                                                  .map(
+                                                    obj => ({
+                                                      type: obj.id,
+                                                      description,
+                                                      weight,
+                                                      price: fcom ? fprice : price,
+                                                      stock: obj.stock,
+                                                      key: obj.name,
+                                                      value: obj.value,
+                                                      custom: obj.custom
+                                                    })
+                                                  )
+                  })
+                ),
       status: 3,
 
-      }
     }
   }
 );
