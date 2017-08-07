@@ -75,13 +75,13 @@ const ImageUploader = ({
                 label: 'close',
                 onClick: () => {
                   handleClose();
-                  (tourCurrentStep === 2 || tourCurrentStep === 4) && handleContinueTour(tourCurrentStep);
+                  (tourCurrentStep === 3 || tourCurrentStep === 5) && handleContinueTour(tourCurrentStep);
                 }
               },
               {
                 label: 'done',
                 onClick: () => {
-                  doneFunc(tourCurrentStep === 2 || tourCurrentStep === 4, handleContinueTour, tourCurrentStep);
+                  doneFunc(tourCurrentStep === 3 || tourCurrentStep === 5, handleContinueTour, tourCurrentStep);
                 }
               },
             ]}

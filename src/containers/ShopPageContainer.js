@@ -94,7 +94,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(getAllAttributes());
     },
     handleShowImageUploader: (type, tourIsOpen, tourCurrentStep) => {
-      if (tourIsOpen && (tourCurrentStep === 2|| tourCurrentStep === 4)) {
+      if (tourIsOpen && (tourCurrentStep === 3|| tourCurrentStep === 5)) {
         dispatch(tourActions.tour.set.interrupt({ state: true, step: tourCurrentStep}));
         dispatch(imageUploaderActions.imageUploader.set.tourInterrupt(true));
         dispatch(tourActions.tour.set.open(false));
