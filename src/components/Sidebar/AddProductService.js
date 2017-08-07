@@ -59,8 +59,6 @@ const AddProductService = ({
     'ProductsSidebar-add--products--info--show': showInfo,
   });
 
-  console.log(showAddImages)
-
   return (
     <div className="ProductsSidebar-add">
                 {

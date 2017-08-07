@@ -3,7 +3,6 @@ import React from 'react';
 import AddProductService from './AddProductService';
 import AddProductImages from './AddProductImages';
 import AddProductDetails from './AddProductDetails';
-import ProductUpload from './ProductUpload';
 
 
 import 'slick-carousel/slick/slick.css';
@@ -78,6 +77,7 @@ const ProductsSidebar = ({
   demostore,
   fusedAttributes,
   rawAttributes,
+  doneAllCustomAttr,
 }) => {
   switch(type) {
     case 'ADD_PRODUCT':
@@ -130,7 +130,9 @@ const ProductsSidebar = ({
                                 token={ token }
                                 shop={ shop }
                                 showDone={ showDone }
-                                selectedProduct={ selectedProduct } />
+                                selectedProduct={ selectedProduct }
+                                saveProduct={ handleSaveProduct }
+                                product={ finishedProduct } />
     case 'SHOW_PRODUCT_DETAILS':
       return <AddProductDetails   handleManualInput={ handleManualInput }
                                   handleSaveProduct={handleSaveProduct}
@@ -157,15 +159,6 @@ const ProductsSidebar = ({
                                   togglePricingInfo={ togglePricingInfo }
                                   handleStockEdit={ handleStockEdit }
                                   demostore={ demostore } />
-    case 'UPLOADING':
-      return <ProductUpload className="ProductSidebar-upload"
-                            makeProduct={ makeProduct }
-                            product={ finishedProduct }
-                            shop={ shop }
-                            token={token}
-                            saveProduct={ handleSaveProduct }
-                            progress={ progress }
-                            demostore={ demostore } />
 
     default:
       return <div className="ProductsSidebar-empty"/>

@@ -163,7 +163,8 @@ export const ProductsUIReducer = handleActions({
         ...state,
         selectedProduct: {
           ...action.payload,
-          fcomPrice: commissioned,
+          price: commissioned,
+          fcomPrice: action.payload.price,
           editing: [],
           variances: allAttr,
         },

@@ -6,10 +6,10 @@ import {
   saveProduct,
   postImage,
   deleteProduct,
-  requestAttribute,
   makeFeaturedProduct,
   removeFromFeaturedProduct,
   getAllAttributes,
+  requestAttribute,
 } from '../thunks/productThunks';
 
 import {
@@ -107,6 +107,7 @@ const mapStateToProps = state => {
     demostore: state.shop.demostore,
     fusedAttributes: getFusedAttributesList(state),
     rawAttributes: state.ui.categories.attributes.all,
+    doneAllCustomAttr: state.ui.categories.attributes.doneAll,
   }
 }
 
@@ -343,13 +344,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       }
     },
     handleSaveProduct: (obj, shop, token, editing, demostore) => {
-      if (editing) {
-        dispatch(saveProduct(obj, shop, token, editing, demostore));
-      } else {
-        dispatch(saveProduct(obj, shop, token, editing, demostore));
-
-        dispatch(sidebarActions.sidebar.hide());
-      }
+      dispatch(saveProduct(obj, shop, token, editing, demostore));
     },
     handleSelectVariance: key => {
       dispatch(productActions.products.ui.set.variance(key));
@@ -387,66 +382,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(confirmActions.confirmDialoug.show(() => dispatch(deleteProduct(id, shop, token))));
       dispatch(confirmActions.confirmDialoug.set.title('Deleting Product'));
       dispatch(confirmActions.confirmDialoug.set.statement(`delete ${name}`));
-    },
-    makeProduct: (product, token) => {
-      let customPrimary = false;
-      let customSecondary = false;
-
-      product.variances.forEach(
-        (primaryObj, primaryKey) => {
-
-          if(primaryObj.custom) {
-            customPrimary = true;
-
-            const primaryProgress = ((product.variances.length - 1) === primaryKey) ? 'DONE_PRIMARY' : 'PRIMARY_ONGOING';
-
-            dispatch(requestAttribute(
-              token,
-              primaryObj.key,
-              primaryObj.value,
-              primaryObj.type,
-              true,
-              null,
-              primaryProgress,
-            ));
-          }
-
-          primaryObj.attributes.forEach(
-            (secondaryObj, secondaryKey) => {
-              if(secondaryObj.custom) {
-                customSecondary = true;
-
-                const secondaryProgress = ((primaryObj.attributes.length - 1) === secondaryKey) ? 'DONE_SECONDARY' : 'SECONDARY_ONGOING';
-
-                // if(primaryKey === (product.variances.lenght-1) && secondaryKey === (primaryObj.attributes.lenght-1)) {
-                  dispatch(requestAttribute(
-                    token,
-                    secondaryObj.key,
-                    secondaryObj.value,
-                    secondaryObj.type,
-                    false,
-                    primaryObj.type,
-                    secondaryProgress
-                  ));
-                // }
-              }
-
-            }
-          )
-        }
-      )
-
-      dispatch(requestAttribute(
-                    null,
-                    null,
-                    null,
-                    null,
-                    false,
-                    null,
-                    'DONE_ALL',
-                    customPrimary,
-                    customSecondary
-                  ));
     },
     makeFeaturedProduct: (id, shop, token) => {
       dispatch(makeFeaturedProduct(id, shop, token));

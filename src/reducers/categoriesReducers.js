@@ -60,7 +60,8 @@ const initialCategoriesUiState = {
     primary: [],
     secondary: {},
     selected: -1,
-    all: []
+    all: [],
+    doneAll: false,
   },
   temporaryAttribute: {
     key: '',
@@ -232,6 +233,7 @@ export const CategoriesUIReducer = handleActions({
             }
           },
           selected: state.attributes.primary.length,
+          doneAll: false,
         }
       }
   },
@@ -287,7 +289,8 @@ export const CategoriesUIReducer = handleActions({
               custom: true,
               attributes: []
             }
-          }
+          },
+          doneAll: false,
         }
       }
   },
@@ -354,11 +357,12 @@ export const CategoriesUIReducer = handleActions({
           secondary: {
             ...state.attributes.secondary,
             [customID]: {
-               id: customID,
+              id: customID,
               custom: true,
               attributes: []
             }
-          }
+          },
+          doneAll: false,
         }
       }
     }
@@ -403,7 +407,8 @@ export const CategoriesUIReducer = handleActions({
                 }
               ]
             }
-          }
+          },
+          doneAll: false,
         },
         temporaryAttribute: {
           key: '',
@@ -501,42 +506,39 @@ export const CategoriesUIReducer = handleActions({
       }
   },
   [categoryActions.categories.done.post.customAttr.idPrimary]: (state, action) => {
-      return {
-        ...state,
-        attributes: {
-          ...state.attributes,
-          primary: state.attributes.primary.map(
-            (obj, key) => {
-              if(obj.id === action.payload.oldID ) {
-                return {
-                  ...obj,
-                  id: action.payload.newID,
-                  custom: false,
-                }
+    const newAttributes = { ...state.attributes };
+    const newSecondary = {
+      ...newAttributes.secondary[action.payload.oldID],
+      id: action.payload.newID,
+      custom: false,
+    }
+
+    delete newAttributes.secondary[action.payload.oldID];
+    return {
+      ...state,
+      attributes: {
+        ...newAttributes,
+        primary: newAttributes.primary.map(
+          (obj, key) => {
+            if(obj.id === action.payload.oldID ) {
+              return {
+                ...obj,
+                id: action.payload.newID,
+                custom: false,
               }
-              return obj;
             }
-          ),
-          secondary: {
-            ...state.attributes.secondary,
-            [action.payload.newID]: {
-              ...state.attributes.secondary[action.payload.oldID],
-              id: action.payload.newID,
-              custom: false,
-            },
-            [action.payload.oldID]: {
-              ...state.attributes.secondary[action.payload.oldID],
-              depricated: true,
-              redirect: action.payload.newID,
-            }
+            return obj;
           }
+        ),
+        secondary: {
+          ...newAttributes.secondary,
+          [action.payload.newID]: newSecondary
         }
       }
+    }
   },
   [categoryActions.categories.done.post.customAttr.idSecondary]: (state, action) => {
-      const id = (state.attributes.secondary[action.payload.primaryID].depricated) ?
-                  state.attributes.secondary[action.payload.primaryID].redirect :
-                  action.payload.primaryID;
+      const id = action.payload.primaryID;
       return {
         ...state,
         attributes: {
@@ -788,6 +790,14 @@ export const CategoriesUIReducer = handleActions({
       attributes: {
         ...state.attributes,
         all: action.payload,
+      }
+    }
+  },
+  [categoryActions.categories.done.post.customAttr.all]: (state, action) => {
+    return {
+      ...state,
+      attributes: {
+        doneAll: true,
       }
     }
   }
