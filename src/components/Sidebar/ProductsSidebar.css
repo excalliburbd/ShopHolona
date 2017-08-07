@@ -50,6 +50,15 @@
   font-weight: 600;
   color: #2e2e2e;
 }
+.ProductsSidebar-add-attributes--headerhint {
+  margin: -0.5rem 0px 0px;
+  color: grey;
+  font-weight: 300;
+  font-size: 11px;
+}
+.ProductsSidebar-add-attributes--table>thead>tr>._2yhwA {
+  visibility: hidden;
+}
 .ProductsSidebar-add-attributes--table>thead>tr>._2yhwA>._2jVLS>._1CXAo {
   border-color: #2e2e2e;
 }
@@ -65,6 +74,11 @@
 .ProductsSidebar-add-attributes--table tr th._18bqN:first-of-type, .gfcPv:first-of-type,
 .ProductsSidebar-add-attributes--table tr td._18bqN:first-of-type, .gfcPv:first-of-type {
   padding-left: 12px;
+}
+.ProductsSidebar-add-attributes--table tr th._18bqN:last-of-type, .gfcPv:last-of-type,
+.ProductsSidebar-add-attributes--table tr td._18bqN:last-of-type, .gfcPv:last-of-type {
+  padding-right: 12px;
+  text-align: center;
 }
 
 .ProductsSidebar-add--products,
@@ -152,6 +166,10 @@
 
 .ProductsSidebar-add-attributes--stock>.lFVgC {
   padding-top: 0px;
+  text-align: center;
+}
+.ProductsSidebar-add-attributes--stock>.lFVgC>input {
+  text-align: center;
 }
 
 .ProductSidebar-add-product.ProductSidebar-add-product--active,
@@ -179,7 +197,13 @@
 .ProductSidebar-details--commission {
   margin: 0;
 }
-
+.ProductSidebar-details--commission {
+  font-size: 0.8rem;
+}
+.ProductSidebar-details--commission>button {
+  position: relative;
+  top: -2px;
+}
 .ProductsSidebar-add--products--info p {
   margin-bottom: .5em;
 }

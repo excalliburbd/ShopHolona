@@ -59,7 +59,7 @@
 
 .Navigation-sidebar-action button .material-icons {
   font-size: 2.2em;
-  color: white;
+  color: #2e2e2e;
   font-weight: 900;
 }
 .Navigation-sidebar-action button {
@@ -71,7 +71,7 @@
   width: 100%;
   padding-top: 0.2em;
   padding-left: 0.4em;
-  color: white;
+  color: #2e2e2e;
   font-family: "Gotham Narrow Book";
   font-weight: 900;
 }

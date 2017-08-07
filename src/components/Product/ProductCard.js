@@ -63,7 +63,7 @@ class ProductCard extends Component {
               <img className="addicon" src={addProductIcon} alt="Add icon"/>
             </div>
             <h3 className="ProductCard-details-name ProductCard--addProduct-details-content">
-              Add A New Product / Service
+              Add A New Product
             </h3>
             <h3 className="ProductCard-details-name ProductCard--addProduct-details-name">
               Add Products

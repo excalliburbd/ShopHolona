@@ -91,7 +91,7 @@ const SignUp = ({
               icon='email' />
         <Input type='password'
               required
-              label='Enter your password'
+              label='Enter password'
               value={ emailPassword }
               onChange={ handleEmailPasswordValue }
               onKeyPress={

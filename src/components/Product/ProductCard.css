@@ -41,7 +41,7 @@
   width: 100%;
   padding: 0px 0.6em;
   text-align: center;
-  color: dimgray;
+  color: #666666;
 }
 
 .ProductCard--addProduct-rating, .ProductCard--addProduct-button, .ProductCard--addProduct-details-name {
@@ -82,7 +82,7 @@
   align-items: center;
   font-family: "Harmonia Regular";
   font-weight: 500;
-  color: #3c3b2b;
+  color: #666666;
 }
 
 .ProductCard-details .ProductCard-details-stars{

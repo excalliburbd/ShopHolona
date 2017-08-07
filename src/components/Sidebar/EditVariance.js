@@ -30,8 +30,8 @@ const EditVariance = ({
                     onRowSelect={ selected => null }>
 
             <TableHead>
-              <TableCell>Attribute<br/><p style={{margin: '0', color: 'grey', fontWeight: '300', marginTop: '-0.5rem',}}>e.g. size</p></TableCell>
-              <TableCell>Value<br/><p style={{margin: '0', color: 'grey', fontWeight: '300', marginTop: '-0.5rem',}}>(e.g. S, M, L)</p></TableCell>
+              <TableCell>Attribute<br/><p className="ProductsSidebar-add-attributes--headerhint">e.g. size</p></TableCell>
+              <TableCell>Value<br/><p className="ProductsSidebar-add-attributes--headerhint">e.g. S, XL</p></TableCell>
               <TableCell numeric>Stock</TableCell>
             </TableHead>
 

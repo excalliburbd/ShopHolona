@@ -24,6 +24,7 @@ class CustomAutocomplete  extends Component {
     const {
       label,
       // type,
+      hint,
       source,
       handleSetValue,
       value,
@@ -48,6 +49,7 @@ class CustomAutocomplete  extends Component {
         <Input type='text'
               required
               label={ label }
+              hint={ hint }
               error={ this.state.error && this.state.errMsg }
               onChange={
                 input => {

@@ -88,18 +88,21 @@ const AddProductService = ({
                 {
                     <div className="ProductsSidebar-add--products">
                       <CustomAutocomplete label={`Enter ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Class`}
+                                          hint={`${ (radioValue === 'PRODUCT') ? 'e.g. Men’s, Women’s, Electronics, etc.' : '' }`}
                                           source={ categories }
                                           value={ productCategory }
                                           selectionOnly
                                           onSelected={ id => handleFieldSelect('CATEGORY', id) }
                                           handleSetValue={ value => handleManualInput('add', 'category', value)} />
                       <CustomAutocomplete label={`Enter ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' } Category`}
+                                          hint={`${ (radioValue === 'PRODUCT') ? 'e.g. Clothing, Accessories, etc.' : '' }`}
                                           source={ subCategories }
                                           value={ productSubCategory }
                                           selectionOnly
                                           onSelected={ id => handleFieldSelect('SUB_CATEGORY', categoryID, id) }
                                           handleSetValue={ value => handleManualInput('add', 'subCategory', value)} />
                       <CustomAutocomplete label={`Enter type of ${ (radioValue === 'PRODUCT') ? 'Product' : 'Service' }`}
+                                          hint={`${ (radioValue === 'PRODUCT') ? 'e.g. T-Shirts, Stitched Kameez, etc.' : '' }`}
                                           source={ subSubCategories }
                                           value={ productSubSubCategory }
                                           onSelected={
@@ -111,16 +114,16 @@ const AddProductService = ({
                                           handleSetValue={ value => handleManualInput('add', 'subSubCategory', value)} />
                      {
                         showProductDetails && <div>
-                          <Input label={'Enter Your Product Name'}
+                          <Input label={'Enter Product Name'}
                                 required
                                 onChange={ value => handleManualInput('add', 'name', value) }
                                 value={ productName } />
-                          <Input label={'Enter Your Product Weight(in grams)'}
+                          <Input label={'Enter Product Weight(in grams)'}
                               required
                               type="number"
                               onChange={ value => handleManualInput('add', 'weight', value) }
                               value={ productWeight } />
-                          <Input label={'Enter Your Product Price'}
+                          <Input label={'Enter Product Price'}
                                 type="number"
                                 required
                                 onChange={ value => handleManualInput('add', 'price', value) }
@@ -143,7 +146,7 @@ const AddProductService = ({
                               <li>BDT 20,000+ : 1%</li>
                             </ul>
                           </div>
-                          <Input label={'Enter Your Product Description'}
+                          <Input label={'Enter Product Description'}
                                 onChange={ value => handleManualInput('add', 'desc', value) }
                                 value={ productDescription } />
 
@@ -191,16 +194,16 @@ const AddProductService = ({
                      }
                      {
                        showServiceDetails && <div>
-                         <Input label={'Enter Your service title'}
+                         <Input label={'Enter service title'}
                                 required
                                 onChange={ value => handleManualInput('service', 'title', value) }
                                 value={ serviceTitle } />
-                         <Input label={'Enter Your service fee'}
+                         <Input label={'Enter service fee'}
                                 type="number"
                                 required
                                 onChange={ value => handleManualInput('service', 'fee', value) }
                                 value={ serviceFee } />
-                          <Input label={'Enter Your service description'}
+                          <Input label={'Enter service description'}
                                 onChange={ value => handleManualInput('service', 'desc', value) }
                                 value={ serviceDescription } />
                        </div>

@@ -120,7 +120,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
               }));
               dispatch(addNotification({
                 title: 'Success',
-                message: 'Successfull updated product name',
+                message: 'Successfully updated product name',
                 position: 'bl',
                 status: 'success',
               }));
@@ -136,7 +136,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           if (res.id) {
                             dispatch(addNotification({
                               title: 'Success',
-                              message: 'Successfull updated product name',
+                              message: 'Successfully updated product name',
                               position: 'bl',
                               status: 'success',
                             }));
@@ -168,7 +168,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
               }));
               dispatch(addNotification({
                   title: 'Success',
-                  message: 'Successfull updated product description',
+                  message: 'Successfully updated product description',
                   position: 'bl',
                   status: 'success',
               }));
@@ -185,7 +185,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                             //do something
                             dispatch(addNotification({
                               title: 'Success',
-                              message: 'Successfull updated product description',
+                              message: 'Successfully updated product description',
                               position: 'bl',
                               status: 'success',
                             }));
