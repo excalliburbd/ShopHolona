@@ -43,7 +43,12 @@ export const getAllProducts = (shop, demostore, id, token) => dispatch => {
 
   request(`/shops/${shop}/products/`, getConfig() ).then(
             res => {
-              dispatch(productActions.products.done.get.products(res));
+
+              dispatch(productActions.products.done.get.products(
+                res.filter(
+                  product => product.variances.length > 0 && product.variances[0].attributes.length > 0
+                )
+              ));
               if (demostore) {
                 request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
                           token,
