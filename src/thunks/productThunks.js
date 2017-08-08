@@ -167,6 +167,10 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                       )).then(
                         res => {
                           if (res.id) {
+                            dispatch(productActions.products.ui.set.name({
+                              id: res.id,
+                              name
+                            }));
                             dispatch(addNotification({
                               title: 'Success',
                               message: 'Successfully updated product name',
@@ -215,7 +219,10 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                       )).then(
                         res => {
                           if (res.id) {
-                            //do something
+                            dispatch(productActions.products.ui.set.desc({
+                              id: res.id,
+                              desc: short_desc
+                            }));
                             dispatch(addNotification({
                               title: 'Success',
                               message: 'Successfully updated product description',
@@ -271,6 +278,12 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           'PATCH'
                         )).then(
                           res => {
+                            dispatch(productActions.products.ui.set.attrbute({
+                              id,
+                              variantID: attr.variantID,
+                              attrID: attr.attrID,
+                              attr,
+                            }));
                             dispatch(addNotification({
                               title: 'Success',
                               message: 'Successfully updated product stock',
@@ -330,6 +343,12 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           'POST'
                         )).then(
                           res => {
+                            dispatch(productActions.products.ui.set.attrbute({
+                              id,
+                              variantID: attr.variantID,
+                              attrID: attr.attrID,
+                              attr,
+                            }));
                             dispatch(addNotification({
                                 title: 'Success',
                                 message: 'Successfully updated product stock',

@@ -127,10 +127,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           dispatch(productActions.products.ui.reset.subSubCategories());
           dispatch(productActions.products.ui.set.add.subSubCategory(''));
           dispatch(getSubSubCategory(id, subID));
+          dispatch(getAllAttributes());
           break;
         case 'SUB_SUB_CATEGORY':
           dispatch(categoryActions.categories.ui.set.subSubCategory(id));
-          dispatch(getAllAttributes());
           break;
         case 'ATTRIBUTE_PRIMARY':
           dispatch(categoryActions.categories.ui.set.attr.fromList.primary({id, attributes}));
