@@ -49,6 +49,7 @@
 .ProductsSidebar-add-attributes--table>thead>tr>.gfcPv {
   font-weight: 600;
   color: #2e2e2e;
+  vertical-align: top;
 }
 .ProductsSidebar-add-attributes--headerhint {
   margin: -0.5rem 0px 0px;
