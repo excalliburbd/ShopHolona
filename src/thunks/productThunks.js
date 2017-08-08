@@ -97,6 +97,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
       short_desc,
     } = obj;
     const price = Math.round(obj.price);
+    const sh_price = Math.round(obj.sh_price);
     const weight = Math.round(obj.weight);
 
     const editedAttributes = obj.variances.map(
@@ -132,8 +133,9 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                               id: attr.id,
                               type: attr.type.id,
                               description: attr.description,
-                              weight: weight,
-                              price: price,
+                              weight,
+                              price,
+                              sh_price,
                               stock: attr.stock,
                             })
                           )
@@ -273,6 +275,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                             description: attr.description,
                             weight: attr.weight,
                             price: attr.price,
+                            sh_price: attr.sh_price,
                             stock: attr.stock
                           },
                           'PATCH'
@@ -338,6 +341,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                             description: attr.description,
                             weight: attr.weight,
                             price: attr.price,
+                            sh_price: attr.sh_price,
                             stock: attr.stock
                           },
                           'POST'
@@ -403,6 +407,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                                   {
                                     weight: attr.weight,
                                     price: attr.price,
+                                    sh_price: attr.sh_price,
                                   },
                                   'PATCH'
                                 )).then(
@@ -544,6 +549,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                                                   description: attr.description,
                                                   weight: attr.weight,
                                                   price: attr.price,
+                                                  sh_price: attr.sh_price,
                                                   stock: attr.stock,
                                               }
 
@@ -576,6 +582,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                                                   description: attr.description,
                                                   weight: attr.weight,
                                                   price: attr.price,
+                                                  sh_price: attr.sh_price,
                                                   stock: attr.stock,
                                               }
 

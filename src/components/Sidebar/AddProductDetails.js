@@ -30,7 +30,7 @@ const AddProductDetails = ({
   featuredID,
   handleShowRoute,
   fcom,
-  productDetailfcomPrice,
+  productDetailSHPrice,
   togglePricingInfo,
   showInfo,
   handleStockEdit,
@@ -103,10 +103,10 @@ const AddProductDetails = ({
                   <Input  label="Price"
                           type="number"
                           onChange={ value => handleManualInput('edit', 'price', value) }
-                          value={ Math.round(productDetailfcomPrice) } />
+                          value={ Math.round(productDetailPrice) } />
                   { fcom &&
                       <p className="ProductSidebar-details--commission">
-                        Payable from ShopHobe: &#2547; { Math.round(productDetailPrice) }
+                        Payable from ShopHobe: &#2547; { Math.round(productDetailSHPrice) }
                         <IconButton icon="info_outline"
                                     onClick={ togglePricingInfo } />
                       </p>

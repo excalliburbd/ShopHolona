@@ -47,8 +47,8 @@ import {
   getShowProductDetails,
   getSelectedFeturedPrductID,
   getShowDone,
-  getFcomPrice,
-  getProductDetailfcomPrice,
+  getSHPrice,
+  getProductDetailSHPrice,
   getFusedAttributesList,
 } from '../selectors/productSelectors';
 
@@ -76,7 +76,7 @@ const mapStateToProps = state => {
     productName: getProductName(state),
     productWeight: getProductWeight(state),
     productPrice: getProductPrice(state),
-    fcomPrice: getFcomPrice(state),
+    sh_price: getSHPrice(state),
     productDescription: getProductDescription(state),
     finishedProduct: getFinishedProduct(state),
     token: state.user.token,
@@ -101,7 +101,7 @@ const mapStateToProps = state => {
     serviceDescription: state.ui.service.desc,
     showAddVariances: getShowAddVariances(state),
     isFcom: getIsFcom(state),
-    productDetailfcomPrice: getProductDetailfcomPrice(state),
+    productDetailSHPrice: getProductDetailSHPrice(state),
     showInfo: state.ui.product.pricingInfo,
     demostore: state.shop.demostore,
     fusedAttributes: getFusedAttributesList(state),

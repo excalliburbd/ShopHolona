@@ -48,7 +48,7 @@ const AddProductService = ({
   serviceDescription,
   showAddVariances,
   fcom,
-  fcomPrice,
+  sh_price,
   showInfo,
   togglePricingInfo,
   fusedAttributes,
@@ -129,7 +129,7 @@ const AddProductService = ({
                           {
                             fcom &&
                               <p className="ProductSidebar-details--commission">
-                                Payable from ShopHobe: &#2547; { fcomPrice }
+                                Payable from ShopHobe: &#2547; { sh_price }
                                 <IconButton icon="info_outline"
                                             onClick={ togglePricingInfo } />
                               </p>

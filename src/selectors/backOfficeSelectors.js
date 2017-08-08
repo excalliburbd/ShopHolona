@@ -134,7 +134,7 @@ export const getTablistData = createSelector(
                                   return {
                                     field,
                                     value: (product.variances && product.variances[0].attributes[0]) ?
-                                      product.variances[0].attributes[0].price : 0
+                                      product.variances[0].attributes[0].sh_price : 0
                                   }
                                 case 'Stock':
                                   return {

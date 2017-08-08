@@ -69,8 +69,8 @@ const ProductsSidebar = ({
   showDone,
   showAddVariances,
   isFcom,
-  fcomPrice,
-  productDetailfcomPrice,
+  sh_price,
+  productDetailSHPrice,
   showInfo,
   togglePricingInfo,
   handleStockEdit,
@@ -116,7 +116,7 @@ const ProductsSidebar = ({
                                 handleSetTemporaryAttribute={ handleSetTemporaryAttribute }
                                 showAddVariances={ showAddVariances }
                                 fcom={ isFcom }
-                                fcomPrice={ fcomPrice }
+                                sh_price={ sh_price }
                                 showInfo={ showInfo }
                                 togglePricingInfo={ togglePricingInfo }
                                 fusedAttributes={ fusedAttributes }
@@ -154,7 +154,7 @@ const ProductsSidebar = ({
                                   selectedProduct={ selectedProduct }
                                   featuredID={ featuredID }
                                   fcom={ isFcom }
-                                  productDetailfcomPrice={ productDetailfcomPrice }
+                                  productDetailSHPrice={ productDetailSHPrice }
                                   showInfo={ showInfo }
                                   togglePricingInfo={ togglePricingInfo }
                                   handleStockEdit={ handleStockEdit }

@@ -86,11 +86,11 @@ export const ProductsUIReducer = handleActions({
       let commissioned = price;
 
       if (price < 1000) {
-        commissioned = Math.round(price/1.06);
+        commissioned = Math.round(price/1.08);
       } else if(price < 5000) {
-        commissioned = Math.round(price/1.04);
+        commissioned = Math.round(price/1.06);
       } else if (price < 10000) {
-        commissioned = Math.round(price/1.03);
+        commissioned = Math.round(price/1.04);
       } else if (price < 20000) {
         commissioned = Math.round(price/1.02);
       } else {
@@ -99,8 +99,8 @@ export const ProductsUIReducer = handleActions({
 
       return {
         ...state,
-        price,
-        fcomPrice: commissioned,
+        price: commissioned,
+        sh_price: price,
       }
   },
   [productActions.products.ui.set.add.desc]: (state, action) => {
@@ -110,22 +110,7 @@ export const ProductsUIReducer = handleActions({
     }
   },
   [sidebarActions.sidebar.show.addProductDetails]: (state, action) => {
-      const price = Math.round(action.payload.price);
-      let commissioned = price;
-
-      if (price < 1000) {
-        commissioned = Math.round(price/1.06);
-      } else if(price < 5000) {
-        commissioned = Math.round(price/1.04);
-      } else if (price < 10000) {
-        commissioned = Math.round(price/1.03);
-      } else if (price < 20000) {
-        commissioned = Math.round(price/1.02);
-      } else {
-        commissioned = Math.round(price/1.01);
-      }
-
-      const allAttr = action.payload.variances.map(
+    const allAttr = action.payload.variances.map(
                         variance => {
                           return {
                             ...variance,
@@ -149,6 +134,7 @@ export const ProductsUIReducer = handleActions({
                                                 description: '',
                                                 weight: action.payload.weight,
                                                 price: action.payload.price,
+                                                sh_price: action.payload.sh_price,
                                                 stock: '',
                                                 edited: false,
                                                 attrType: 'new',
@@ -158,13 +144,13 @@ export const ProductsUIReducer = handleActions({
                             edited: false,
                           }
                         }
-                      )
+                      );
       return {
         ...state,
         selectedProduct: {
           ...action.payload,
-          price: commissioned,
-          fcomPrice: action.payload.price,
+          price: action.payload.price,
+          sh_price: action.payload.sh_price,
           editing: [],
           variances: allAttr,
         },
@@ -224,8 +210,8 @@ export const ProductsUIReducer = handleActions({
         ...state,
         selectedProduct: {
           ...state.selectedProduct,
-          price,
-          fcomPrice: commissioned,
+          price: commissioned,
+          sh_price: price,
           editing: (state.selectedProduct.editing.indexOf('price_weight') === -1 ) ?
                     [ ...state.selectedProduct.editing, 'price_weight' ]:
                     state.selectedProduct.editing,
@@ -337,7 +323,7 @@ export const ProductsUIReducer = handleActions({
         name: '',
         weight: '',
         price: '',
-        fcomPrice: '',
+        sh_price: '',
         description: '',
         selectedVariance: -1,
         selectedProduct: {},
@@ -351,7 +337,7 @@ export const ProductsUIReducer = handleActions({
         name: '',
         weight: '',
         price: '',
-        fcomPrice: '',
+        sh_price: '',
         description: '',
         selectedVariance: -1,
         selectedProduct: {},
@@ -364,7 +350,7 @@ export const ProductsUIReducer = handleActions({
         name: '',
         weight: '',
         price: '',
-        fcomPrice: '',
+        sh_price: '',
         description: '',
         selectedVariance: -1,
         selectedProduct: {},
@@ -378,7 +364,7 @@ export const ProductsUIReducer = handleActions({
         name: '',
         weight: '',
         price: '',
-        fcomPrice: '',
+        sh_price: '',
         description: '',
         selectedVariance: -1,
         selectedProduct: {},
@@ -420,7 +406,7 @@ export const ProductsUIReducer = handleActions({
   name: '',
   weight: '',
   price: '',
-  fcomPrice: '',
+  sh_price: '',
   description: '',
   selectedVariance: -1,
   selectedProduct: {},
@@ -445,6 +431,7 @@ export const productsEntityReducer = handleActions({
               ...product,
               weight: product.variances[0].attributes[0].weight,
               price: product.variances[0].attributes[0].price,
+              sh_price: product.variances[0].attributes[0].sh_price,
               selectedVariant: 0,
               selectedAttribute: 0,
             }
@@ -480,6 +467,7 @@ export const productsEntityReducer = handleActions({
               featuredID: id,
               weight: product.variances[0].attributes[0].weight,
               price: product.variances[0].attributes[0].price,
+              sh_price: product.variances[0].attributes[0].sh_price,
               selectedVariant: 0,
               selectedAttribute: 0,
             }

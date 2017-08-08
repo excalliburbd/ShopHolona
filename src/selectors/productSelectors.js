@@ -17,7 +17,7 @@ export const getProductSubSubCategory = state => state.ui.product.subSubCategory
 export const getProductName = state => state.ui.product.name;
 export const getProductWeight = state => state.ui.product.weight;
 export const getProductPrice = state => state.ui.product.price;
-export const getFcomPrice = state => state.ui.product.fcomPrice;
+export const getSHPrice = state => state.ui.product.sh_price;
 export const getProductDescription = state => state.ui.product.description;
 export const getSubSubCategoryID = state => state.ui.categories.subSubCategoryID;
 export const getCategoryID = state => state.ui.categories.categoryID;
@@ -30,7 +30,7 @@ export const getProductsArray = state => state.products;
 export const getProductsObj = state => state.entities.products;
 export const getUploadCount = state => state.ui.uploader.uploadCount;
 export const getDoneUploadCount = state => state.ui.uploader.doneUploadCount;
-export const getProductDetailfcomPrice = state => state.ui.product.selectedProduct.fcomPrice;
+export const getProductDetailSHPrice = state => state.ui.product.selectedProduct.sh_price;
 export const getAllAttributesArray = state => state.ui.categories.attributes.all;
 
 export const getFusedCategories = createSelector(
@@ -163,7 +163,7 @@ export const getFinishedProduct = createSelector(
     getSubSubCategoryID,
     getProgress,
     getIsFcom,
-    getFcomPrice,
+    getSHPrice,
     getCategoryID,
     getSubCategoryID,
     getProductSubSubCategory
@@ -178,7 +178,7 @@ export const getFinishedProduct = createSelector(
     id,
     progress,
     fcom,
-    fprice,
+    sh_price,
     category,
     subCategory,
     subSubCategoryName,
@@ -222,7 +222,8 @@ export const getFinishedProduct = createSelector(
                                                       type: obj.id,
                                                       description,
                                                       weight,
-                                                      price: fcom ? fprice : price,
+                                                      price,
+                                                      sh_price,
                                                       stock: obj.stock,
                                                       key: obj.name,
                                                       value: obj.value,
