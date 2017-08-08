@@ -10,7 +10,7 @@ let config = {
 if (process.env.NODE_ENV === 'production') {
   config = {
     ...config,
-    demostore: 2,
+    demostore: 21,
     api: 'https://backenddev.shophobe.com/api',
     vendor: 'shophobe.com'
   }

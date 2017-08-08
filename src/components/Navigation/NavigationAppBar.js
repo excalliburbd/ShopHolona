@@ -32,6 +32,7 @@ const NavigationAppBar = ({
   vendor,
   profilePic,
   showCartSidebar,
+  demostore,
 }) => {
 
   const navTitleClass = classNames({
@@ -152,6 +153,7 @@ const NavigationAppBar = ({
                             handleSignOut();
                             history.push('/');
                           }}
+                          disabled={ demostore }
                           caption='Sign Out' />
                       </div > :
                       <div className="NavigationAppBar-profile-menuitem">

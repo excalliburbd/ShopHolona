@@ -48,6 +48,7 @@ const mapStateToProps = state => {
     token: getToken(state),
     titleMsg: getTitleMsg(state),
     demostore: state.shop.demostore,
+    isDemostore: state.shop.demostore === state.shop.id,
   }
 }
 
@@ -74,14 +75,6 @@ const mapDispatchToProps = dispatch => {
     },
     handleSetCredentials: (shop, token, demostore) => {
       dispatch(shopActions.shop.set.id(shop));
-
-      if (token) {
-        dispatch(userActions.user.done.get.token(token));
-        dispatch(getMe(token));
-        dispatch(getFollowingShop(shop, token));
-        dispatch(getShopPayments(shop, token));
-      }
-
       dispatch(getShop(shop));
       dispatch(getShopCategories(shop));
       dispatch(getAllProducts(shop));
@@ -89,11 +82,16 @@ const mapDispatchToProps = dispatch => {
       dispatch(getFeaturedProduct(shop));
       dispatch(getBanks());
 
-      token && dispatch(userActions.user.done.get.token(token));
+      if (token && !demostore) {
+        dispatch(userActions.user.done.get.token(token));
+        dispatch(getMe(token));
+        dispatch(getFollowingShop(shop, token));
+        dispatch(getShopPayments(shop, token));
+      }
 
       if (demostore) {
         dispatch(
-          trySignInAsyncAction({ email: config.demouser, password: config.demopass}, shop)
+          trySignInAsyncAction({ email: config.demouser, password: config.demopass}, shop, demostore)
         )
       }
     },

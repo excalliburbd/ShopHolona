@@ -52,7 +52,7 @@ export const getFollowingShop = (shop, token) => dispatch => {
   }
 }
 
-export const trySignInAsyncAction = (res, shop) => dispatch => {
+export const trySignInAsyncAction = (res, shop, demostore) => dispatch => {
 
   const credentials = {};
 
@@ -79,7 +79,7 @@ export const trySignInAsyncAction = (res, shop) => dispatch => {
 
                   if (res.id) {
                     dispatch(userActions.user.done.get.profile(res));
-                    dispatch(addNotification({
+                    !demostore && dispatch(addNotification({
                         title: 'Success',
                         message: 'Successfully signed in',
                         position: 'bl',

@@ -57,7 +57,6 @@ class Nav extends Component {
       demostore,
     } = this.props;
 
-
     handleGetMedia();
 
     const id = window.shopID;
@@ -70,7 +69,7 @@ class Nav extends Component {
           const tokenPart = searchParts[1].split('=');
 
           if (idPart[0] === '?shopId' && tokenPart[0] === 'accessToken') {
-            handleSetCredentials(idPart[1], tokenPart[1]);
+            handleSetCredentials(idPart[1], tokenPart[1], parseInt(idPart[1], 10) === demostore);
           }
 
           history.replace('/');
@@ -78,7 +77,7 @@ class Nav extends Component {
         const idPart = searchParts[0].split('=');
 
         if (idPart[0] === '?shopId') {
-          handleSetCredentials(idPart[1], null, idPart[1] === demostore);
+          handleSetCredentials(idPart[1], null, parseInt(idPart[1], 10) === demostore);
         }
 
         history.replace('/');
@@ -110,6 +109,7 @@ class Nav extends Component {
       profilePic,
       showCartSidebar,
       titleMsg,
+      isDemostore,
       children,
     } = this.props;
 
@@ -164,7 +164,8 @@ class Nav extends Component {
                               handleSignIn={ handleSignIn }
                               vendor={ vendor }
                               profilePic={ profilePic }
-                              showCartSidebar={ showCartSidebar } />
+                              showCartSidebar={ showCartSidebar }
+                              demostore={ isDemostore } />
             <div className={
                   (location.pathname === '/') ?
                     'Navigation-content-main' :
