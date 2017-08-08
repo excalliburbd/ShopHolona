@@ -55,6 +55,34 @@ export const getAllProducts = (shop, demostore, id, token) => dispatch => {
           );
 }
 
+//ToDo: figure out error reporting and notifications for this
+export const  requestAttribute = (
+  token,
+  name,
+  value,
+  id,
+  primary,
+  primaryID
+)  => dispatch => {
+  if (token) {
+   return request(`/vendors/category/attributes/`, getConfig(
+                    token,
+                    {
+                      name: name,
+                      value: value,
+                    },
+                    'POST'
+                  )).then(
+                    obj => ({
+                      ...obj,
+                      type: id,
+                      primary,
+                      primaryID
+                    })
+                  )
+  }
+}
+
 export const saveProduct = (obj, shop, token, editing, demostore) => dispatch => {
   if (editing) {
 
@@ -434,30 +462,154 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
       dispatch(productActions.products.ui.set.editing(edited));
     }
   } else {
-    if (token) {
-      if (obj.category.custom) {
-        request(`/vendors/category/${obj.category.category}/${obj.category.subCategory}/subcategories/`, getConfig(
+    const requestPool = [];
+
+    obj.variances.forEach(
+        (primaryObj, primaryKey) => {
+          if(primaryObj.custom) {
+            requestPool.push(dispatch(requestAttribute(
+              token,
+              primaryObj.key,
+              primaryObj.value,
+              primaryObj.type,
+              true,
+              null
+            )));
+          }
+          primaryObj.attributes.forEach(
+            (secondaryObj, secondaryKey) => {
+              if (secondaryObj.custom) {
+                requestPool.push(dispatch(requestAttribute(
                   token,
-                  {
-                    name: obj.name,
-                    bang_name: 'custom_category'
-                  },
-                  'POST'
-                )).then(
-                  res => {
-                    if (res.id) {
-                      request(`/vendors/shops/${shop}/products/`, getConfig(
-                                token,
-                                {
-                                  ...obj,
-                                  category: res.id
-                                },
-                                'POST'
-                              )).then(
-                                res => {
-                                  if (demostore) {
-                                    if (res.id) {
-                                      dispatch(getAllProducts(shop, demostore, res.id, token));
+                  secondaryObj.key,
+                  secondaryObj.value,
+                  secondaryObj.type,
+                  false,
+                  primaryObj.type
+                )));
+              }
+
+            }
+          )
+    });
+
+    Promise.all(requestPool).then(
+      res => {
+        const finalProduct = {
+            name: obj.name,
+            short_desc: obj.short_desc,
+            category: obj.category,
+            variances: obj.variances.map(
+                        variant => {
+                          const variantMatch = res.find(
+                            primary => primary.type === variant.type
+                          );
+
+                          if (variantMatch && variantMatch.id) {
+                            return {
+                              type: variantMatch.id,
+                              images: variant.images,
+                              attributes: variant.attributes
+                                          .map(
+                                            attr => {
+                                              const attrMatch = res.find(
+                                                secondary => secondary.type === attr.type
+                                              );
+
+                                              const common = {
+                                                  description: attr.description,
+                                                  weight: attr.weight,
+                                                  price: attr.price,
+                                                  stock: attr.stock,
+                                              }
+
+                                              if (attrMatch && attrMatch.id) {
+                                                return {
+                                                  type: attrMatch.id,
+                                                  ...common,
+                                                }
+                                              }
+
+                                              return {
+                                                  type: attr.type,
+                                                  ...common,
+                                              }
+                                            }
+                                          )
+                            }
+                          }
+
+                          return {
+                              type: variant.type,
+                              images: variant.images,
+                              attributes: variant.attributes
+                                          .map(
+                                            attr => {
+                                              const attrMatch = res.find(
+                                                secondary => secondary.type === attr.type
+                                              );
+                                              const common = {
+                                                  description: attr.description,
+                                                  weight: attr.weight,
+                                                  price: attr.price,
+                                                  stock: attr.stock,
+                                              }
+
+                                              if (attrMatch && attrMatch.id) {
+                                                return {
+                                                  type: attrMatch.id,
+                                                  ...common,
+                                                }
+                                              }
+
+                                              return {
+                                                  type: attr.type,
+                                                  ...common,
+                                              }
+                                            }
+                                          )
+                            }
+                        }),
+          status: 3,
+        }
+
+        console.log(finalProduct)
+
+        if (finalProduct.category.custom) {
+          request(`/vendors/category/${finalProduct.category.category}/${finalProduct.category.subCategory}/subcategories/`, getConfig(
+                    token,
+                    {
+                      name: finalProduct.name,
+                      bang_name: 'custom_category'
+                    },
+                    'POST'
+                  )).then(
+                    res => {
+                      if (res.id) {
+                        request(`/vendors/shops/${shop}/products/`, getConfig(
+                                  token,
+                                  {
+                                    ...finalProduct,
+                                    category: res.id
+                                  },
+                                  'POST'
+                                )).then(
+                                  res => {
+                                    if (demostore) {
+                                      if (res.id) {
+                                        dispatch(sidebarActions.sidebar.hide());
+                                        dispatch(getAllProducts(shop, demostore, res.id, token));
+                                        dispatch(getShopCategories(shop));
+                                        dispatch(addNotification({
+                                          title: 'Success',
+                                          message: 'Successfully uploaded product',
+                                          position: 'bl',
+                                          status: 'success',
+                                        }));
+                                      }
+                                    } else {
+                                      dispatch(sidebarActions.sidebar.hide());
+                                      dispatch(getAllProducts(shop, false, null, null));
                                       dispatch(getShopCategories(shop));
                                       dispatch(addNotification({
                                         title: 'Success',
@@ -466,49 +618,51 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                                         status: 'success',
                                       }));
                                     }
-                                  } else {
-                                    dispatch(getAllProducts(shop, false, null, null));
-                                    dispatch(getShopCategories(shop));
-                                    dispatch(addNotification({
-                                      title: 'Success',
-                                      message: 'Successfully uploaded product',
-                                      position: 'bl',
-                                      status: 'success',
-                                    }));
                                   }
-                                }
-                              ).catch(
-                                err => {
-                                  dispatch(addNotification({
-                                      title: 'Error uploaded product',
-                                      message: err,
-                                      position: 'bl',
-                                      status: 'error',
-                                    }));
-                                }
-                              );
+                                ).catch(
+                                  err => {
+                                    dispatch(addNotification({
+                                        title: 'Error uploaded product',
+                                        message: err,
+                                        position: 'bl',
+                                        status: 'error',
+                                      }));
+                                  }
+                                );
+                      }
                     }
-                  }
-                ).catch(
-                  err => {
-                     dispatch(addNotification({
-                        title: 'Error Creating Custom Category',
-                        message: err,
-                        position: 'bl',
-                        status: 'error',
-                      }));
-                  }
-                )
-      } else {
+                  ).catch(
+                    err => {
+                      dispatch(addNotification({
+                          title: 'Error Creating Custom Category',
+                          message: err,
+                          position: 'bl',
+                          status: 'error',
+                        }));
+                    }
+                  )
+        } else {
           request(`/vendors/shops/${shop}/products/`, getConfig(
-              token,
-              obj,
-              'POST'
-            )).then(
-              res => {
-                if (demostore) {
-                  if (res.id) {
-                    dispatch(getAllProducts(shop, demostore, res.id, token));
+                token,
+                finalProduct,
+                'POST'
+              )).then(
+                res => {
+                  if (demostore) {
+                    if (res.id) {
+                      dispatch(sidebarActions.sidebar.hide());
+                      dispatch(getAllProducts(shop, demostore, res.id, token));
+                      dispatch(getShopCategories(shop));
+                      dispatch(addNotification({
+                        title: 'Success',
+                        message: 'Successfully uploaded product',
+                        position: 'bl',
+                        status: 'success',
+                      }));
+                    }
+                  } else {
+                    dispatch(sidebarActions.sidebar.hide());
+                    dispatch(getAllProducts(shop, false, null, null));
                     dispatch(getShopCategories(shop));
                     dispatch(addNotification({
                       title: 'Success',
@@ -517,29 +671,30 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                       status: 'success',
                     }));
                   }
-                } else {
-                  dispatch(getAllProducts(shop, false, null, null));
-                  dispatch(getShopCategories(shop));
-                  dispatch(addNotification({
-                    title: 'Success',
-                    message: 'Successfully uploaded product',
-                    position: 'bl',
-                    status: 'success',
-                  }));
                 }
-              }
-            ).catch(
-              err => {
-                dispatch(addNotification({
-                    title: 'Error uploaded product',
-                    message: err,
-                    position: 'bl',
-                    status: 'error',
-                  }));
-              }
-            );
+              ).catch(
+                err => {
+                  dispatch(addNotification({
+                      title: 'Error uploaded product',
+                      message: err,
+                      position: 'bl',
+                      status: 'error',
+                    }));
+                }
+              );
+        }
       }
-    }
+    ).catch(
+      err => {
+        console.log(err)
+        dispatch(addNotification({
+                  title: 'Error saving product',
+                  message: 'lol',
+                  position: 'bl',
+                  status: 'error',
+                }));
+      }
+    );
   }
 }
 
@@ -627,72 +782,6 @@ export const postImage = (token, shop, obj, id, key, status)  => dispatch => {
               }));
             }
           );
-  }
-}
-
-//ToDo: figure out error reporting and notifications for this
-export const  requestAttribute = (
-  token,
-  name,
-  value,
-  id,
-  primary,
-  primaryID,
-  signal,
-  customPrimary,
-  customSecondary
-)  => dispatch => {
-
-  if (signal !== 'DONE_ALL') {
-    if (token) {
-      request(`/vendors/category/attributes/`, getConfig(
-              token,
-              {
-                name: name,
-                value: value,
-              },
-              'POST'
-            )).then(
-              obj => {
-                dispatch({type: 'RESPONSE_API_DEBUG',payload:obj});
-
-                if (obj.id) {
-                  if (primary) {
-                    dispatch(categoryActions.categories.done.post.customAttr.idPrimary({
-                        newID: obj.id,
-                        oldID: id
-                    }));
-                  } else {
-                    dispatch(categoryActions.categories.done.post.customAttr.idSecondary({
-                      newID: obj.id,
-                      oldID: id, primaryID,
-                    }));
-                  }
-                } else {
-                  dispatch({
-                    type: 'ERROR_SET_CUSTOM_ATTRIBUTE',
-                    payload: obj,
-                  })
-                }
-
-                if (signal === 'DONE_PRIMARY') {
-                  dispatch(categoryActions.categories.done.post.customAttr.primary());
-                }
-
-                if (signal === 'DONE_SECONDARY') {
-                  dispatch(categoryActions.categories.done.post.customAttr.secondary())
-                }
-              }
-            );
-    }
-  } else {
-      if (!customPrimary) {
-        dispatch(categoryActions.categories.done.post.customAttr.primary())
-      }
-
-      if (!customSecondary) {
-        dispatch(categoryActions.categories.done.post.customAttr.secondary())
-      }
   }
 }
 
