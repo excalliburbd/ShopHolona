@@ -110,20 +110,20 @@ export const ProductsUIReducer = handleActions({
 
     if (fcom && !physicalStore) {
       if (price < 1080) {
-        userPrice = Math.round(price/1.08);
+        userPrice = Math.round(price * (1 - .08));
       } else if(price < 5300) {
-        userPrice = Math.round(price/1.06);
+        userPrice = Math.round(price * (1 - .06));
       } else if (price < 10400) {
-        userPrice = Math.round(price/1.04);
+        userPrice = Math.round(price * (1 - .04));
       } else if (price < 20400) {
-        userPrice = Math.round(price/1.02);
+        userPrice = Math.round(price * (1 - .02));
       } else {
-        userPrice = Math.round(price/1.01);
+        userPrice = Math.round(price * (1 - .01));
       }
     }
 
     if (physicalStore) {
-      userPrice = Math.round(price/1.015);
+      userPrice = Math.round(price * (1 - .015));
     }
 
     return {
@@ -233,20 +233,20 @@ export const ProductsUIReducer = handleActions({
 
     if (fcom && !physicalStore) {
       if (price < 1080) {
-        userPrice = Math.round(price/1.08);
+        userPrice = Math.round(price * (1 - .08));
       } else if(price < 5300) {
-        userPrice = Math.round(price/1.06);
+        userPrice = Math.round(price * (1 - .06));
       } else if (price < 10400) {
-        userPrice = Math.round(price/1.04);
+        userPrice = Math.round(price * (1 - .04));
       } else if (price < 20400) {
-        userPrice = Math.round(price/1.02);
+        userPrice = Math.round(price * (1 - .02));
       } else {
-        userPrice = Math.round(price/1.01);
+        userPrice = Math.round(price * (1 - .01));
       }
     }
 
     if (physicalStore) {
-      userPrice = Math.round(price/1.015);
+      userPrice = Math.round(price * (1 - .015));
     }
 
 
