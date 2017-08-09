@@ -173,6 +173,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                               id: res.id,
                               name
                             }));
+                            dispatch(productActions.products.ui.reset.product(res));
                             dispatch(addNotification({
                               title: 'Success',
                               message: 'Successfully updated product name',
@@ -225,6 +226,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                               id: res.id,
                               desc: short_desc
                             }));
+                            dispatch(productActions.products.ui.reset.product(res));
                             dispatch(addNotification({
                               title: 'Success',
                               message: 'Successfully updated product description',
@@ -255,7 +257,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
             oldEditedAttr.forEach(
               attr => {
                 if (demostore) {
-                  dispatch(productActions.products.ui.set.attrbute({
+                  dispatch(productActions.products.ui.set.attribute({
                     id,
                     variantID: attr.variantID,
                     attrID: attr.attrID,
@@ -281,7 +283,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           'PATCH'
                         )).then(
                           res => {
-                            dispatch(productActions.products.ui.set.attrbute({
+                            dispatch(productActions.products.ui.set.attribute({
                               id,
                               variantID: attr.variantID,
                               attrID: attr.attrID,
@@ -298,15 +300,13 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           err => {
                             returnArr = [ ...arr, infoKey ];
 
-                            const info = JSON.parse(err);
-
-                            console.log(info);
+                            console.log(err);
                             //TODO:
 
                             // if (info.??) {
                               dispatch(addNotification({
                                 title: 'Error during product update',
-                                message: 'Can not update stock',
+                                message: 'error',
                                 position: 'bl',
                                 status: 'error',
                               }));
@@ -321,7 +321,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
             newEditedAttr.forEach(
               attr => {
                 if (demostore) {
-                  dispatch(productActions.products.ui.set.attrbute({
+                  dispatch(productActions.products.ui.set.attribute({
                     id,
                     variantID: attr.variantID,
                     attrID: attr.attrID,
@@ -347,7 +347,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           'POST'
                         )).then(
                           res => {
-                            dispatch(productActions.products.ui.set.attrbute({
+                            dispatch(productActions.products.ui.set.attribute({
                               id,
                               variantID: attr.variantID,
                               attrID: attr.attrID,
@@ -382,14 +382,13 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
             );
             return returnArr;
           case 'price_weight':
-            console.log('case triggered', demostore)
             variances.forEach(
               ({ id: variantID, ...variant }) => {
                 variant.attributes.forEach(
                   ({ id: attrID, ...attr}) => {
                     if (attrID) {
                       if (demostore) {
-                        dispatch(productActions.products.ui.set.attrbute({
+                        dispatch(productActions.products.ui.set.attribute({
                           id,
                           variantID: attr.variantID,
                           attrID: attr.attrID,
@@ -460,7 +459,6 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                         'PATCH'
                       )).then(
                         res => {
-                          console.log(res)
                           dispatch(addNotification({
                             title: 'Success',
                             message: 'Successfully updated product',

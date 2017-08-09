@@ -1,4 +1,7 @@
-import { handleActions } from 'redux-actions';
+import {
+  handleActions,
+  combineActions,
+} from 'redux-actions';
 
 import {
   productActions,
@@ -49,6 +52,20 @@ export const featuredProductsReducer = handleActions({
 }, [
 
 ]);
+
+const productUIInitialState = {
+  category: '',
+  subCategory: '',
+  subSubCategory: '',
+  name: '',
+  weight: '',
+  price: '',
+  sh_price: '',
+  description: '',
+  selectedVariance: -1,
+  selectedProduct: {},
+  pricingInfo: false,
+}
 
 export const ProductsUIReducer = handleActions({
   [productActions.products.ui.set.add.category]: (state, action) => {
@@ -126,33 +143,35 @@ export const ProductsUIReducer = handleActions({
                         variance => {
                           return {
                             ...variance,
-                            attributes: action.payload.category.secondary_attr.map(
+                            attributes: [
+                              ...variance.attributes.map(
+                                attribute => ({
+                                            ...attribute,
+                                            edited: false,
+                                            attrType: 'old',
+                                          })
+                              ),
+                              ...action.payload.category.secondary_attr.filter(
                                             attribute => {
-
                                               const found = variance.attributes.find(
                                                 attr => attr.type.id === attribute.id
                                               );
-
-                                              if (found) {
-                                                return {
-                                                  ...found,
-                                                  edited: false,
-                                                  attrType: 'old',
-                                                }
-                                              }
-
-                                              return {
-                                                type: attribute,
-                                                description: '',
-                                                weight: action.payload.weight,
-                                                price: action.payload.price,
-                                                sh_price: action.payload.sh_price,
-                                                stock: '',
-                                                edited: false,
-                                                attrType: 'new',
-                                              }
+                                              return !found;
                                             }
+                                        ).map(
+                                          attribute => ({
+                                            id: null,
+                                            type: attribute,
+                                            description: '',
+                                            weight: action.payload.weight,
+                                            price: action.payload.price,
+                                            sh_price: action.payload.sh_price,
+                                            stock: '',
+                                            edited: false,
+                                            attrType: 'new',
+                                          })
                                         ),
+                            ],
                             edited: false,
                           }
                         }
@@ -343,58 +362,23 @@ export const ProductsUIReducer = handleActions({
   },
   [productActions.products.ui.reset.subSubCategories]: (state, action) => {
       return {
-        ...state,
-        subSubCategory: '',
-        name: '',
-        weight: '',
-        price: '',
-        sh_price: '',
-        description: '',
-        selectedVariance: -1,
-        selectedProduct: {},
+        ...productUIInitialState,
+        category: state.category,
+        subCategory: state.subCategory,
       }
   },
   [productActions.products.ui.reset.subCategories]: (state, action) => {
       return {
-        ...state,
-        subCategory: '',
-        subSubCategory: '',
-        name: '',
-        weight: '',
-        price: '',
-        sh_price: '',
-        description: '',
-        selectedVariance: -1,
-        selectedProduct: {},
+        ...productUIInitialState,
+        category: state.category,
       }
   },
-  [sidebarActions.sidebar.hide]: (state, action) => ({
-        category: '',
-        subCategory: '',
-        subSubCategory: '',
-        name: '',
-        weight: '',
-        price: '',
-        sh_price: '',
-        description: '',
-        selectedVariance: -1,
-        selectedProduct: {},
-        pricingInfo: false,
+  [combineActions(
+    sidebarActions.sidebar.hide,
+    productActions.products.ui.reset.categories
+  )]: (state, action) => ({
+    ...productUIInitialState
   }),
-  [productActions.products.ui.reset.categories]: (state, action) => {
-      return {
-        category: '',
-        subCategory: '',
-        subSubCategory: '',
-        name: '',
-        weight: '',
-        price: '',
-        sh_price: '',
-        description: '',
-        selectedVariance: -1,
-        selectedProduct: {},
-      }
-  },
   [productActions.products.ui.set.delete.image]: (state, action) => {
     return {
       ...state,
@@ -424,19 +408,7 @@ export const ProductsUIReducer = handleActions({
       pricingInfo: !state.pricingInfo,
     }
   }
-}, {
-  category: '',
-  subCategory: '',
-  subSubCategory: '',
-  name: '',
-  weight: '',
-  price: '',
-  sh_price: '',
-  description: '',
-  selectedVariance: -1,
-  selectedProduct: {},
-  pricingInfo: false,
-});
+}, productUIInitialState );
 
 export const productsEntityReducer = handleActions({
     [productActions.products.done.get.products]: (state, action) => {
@@ -590,6 +562,26 @@ export const productsEntityReducer = handleActions({
         }
       }
     },
+    [productActions.products.ui.reset.product]: (state, action) => {
+      const product = action.payload;
+      console.log(product)
+
+      if ((product.variances && product.variances.length > 0) && (product.variances[0].attributes && product.variances[0].attributes.length > 0)) {
+        return {
+          ...state,
+          [product.id]: {
+            ...product,
+            weight: product.variances[0].attributes[0].weight,
+            price: product.variances[0].attributes[0].price,
+            sh_price: product.variances[0].attributes[0].sh_price,
+            selectedVariant: 0,
+            selectedAttribute: 0,
+          }
+        }
+      }
+
+      return state[product.id];
+    }
 }, {
 
 });

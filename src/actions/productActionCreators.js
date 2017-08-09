@@ -38,6 +38,7 @@ export const productActionCreators = {
         CATEGORIES: payload => payload,
         SUB_SUB_CATEGORIES: payload => payload,
         SUB_CATEGORIES: payload => payload,
+        PRODUCT: payload => payload,
       },
       TOGGLE: {
         INFO: payload => payload,
