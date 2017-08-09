@@ -69,6 +69,7 @@ const ProductsSidebar = ({
   showDone,
   showAddVariances,
   isFcom,
+  isPhysicalStore,
   sh_price,
   productDetailSHPrice,
   showInfo,
@@ -116,6 +117,7 @@ const ProductsSidebar = ({
                                 handleSetTemporaryAttribute={ handleSetTemporaryAttribute }
                                 showAddVariances={ showAddVariances }
                                 fcom={ isFcom }
+                                physicalStore={ isPhysicalStore }
                                 sh_price={ sh_price }
                                 showInfo={ showInfo }
                                 togglePricingInfo={ togglePricingInfo }
@@ -154,6 +156,7 @@ const ProductsSidebar = ({
                                   selectedProduct={ selectedProduct }
                                   featuredID={ featuredID }
                                   fcom={ isFcom }
+                                  physicalStore={ isPhysicalStore }
                                   productDetailSHPrice={ productDetailSHPrice }
                                   showInfo={ showInfo }
                                   togglePricingInfo={ togglePricingInfo }

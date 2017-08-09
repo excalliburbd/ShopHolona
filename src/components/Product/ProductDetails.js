@@ -53,7 +53,7 @@ const ProductDetails = ({
         <Sticky stickyClassName="product-details-info-sticky">
           <h1 className="product-details-title">{ product.name }</h1>
           <div className="product-details-price-title">
-            <h2 className="product-details-price">Price: &#2547; { product.price }</h2>
+            <h2 className="product-details-price">Price: &#2547; { product.sh_price }</h2>
             <Stars rating={ 3 } />
           </div>
         </Sticky>

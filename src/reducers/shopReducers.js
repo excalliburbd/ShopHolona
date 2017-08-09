@@ -78,6 +78,7 @@ const shopInitialState = {
       }
     ],
     fcom: false,
+    physical_store: false,
     description: 'loading'
   },
   referral: {
@@ -96,6 +97,7 @@ export const ShopPageReducer = handleActions({
           trade_license_image,
           fcom,
           short_descr,
+          physical_store,
         } = action.payload;
 
         return {
@@ -117,6 +119,7 @@ export const ShopPageReducer = handleActions({
               image: trade_license_image,
             },
             fcom,
+            physical_store,
             description: short_descr,
           }
         }
@@ -404,6 +407,7 @@ export const ShopPageReducer = handleActions({
             img: 'https://unsplash.it/480/480'
           },
           fcom: false,
+          physical_store: false,
           description: 'loading',
           payments: [
             {

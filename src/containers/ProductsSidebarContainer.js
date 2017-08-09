@@ -53,7 +53,8 @@ import {
 } from '../selectors/productSelectors';
 
 import {
-  getIsFcom
+  getIsFcom,
+  getIsPhysicalStore,
 } from '../selectors/shopSelectors';
 
 const mapStateToProps = state => {
@@ -101,6 +102,7 @@ const mapStateToProps = state => {
     serviceDescription: state.ui.service.desc,
     showAddVariances: getShowAddVariances(state),
     isFcom: getIsFcom(state),
+    isPhysicalStore: getIsPhysicalStore(state),
     productDetailSHPrice: getProductDetailSHPrice(state),
     showInfo: state.ui.product.pricingInfo,
     demostore: state.shop.demostore,

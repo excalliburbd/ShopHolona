@@ -35,6 +35,7 @@ const AddProductDetails = ({
   showInfo,
   handleStockEdit,
   demostore,
+  physicalStore,
 }) => {
 
   const infoClass = classNames('ProductsSidebar-add--products--info', {
@@ -102,24 +103,31 @@ const AddProductDetails = ({
                           value={ Math.round(productDetailWeight) } />
                   <Input  label="Price"
                           type="number"
-                          onChange={ value => handleManualInput('edit', 'price', value) }
-                          value={ Math.round(productDetailPrice) } />
+                          onChange={ value => handleManualInput('edit', 'price', {value, fcom, physicalStore}) }
+                          value={ Math.round(productDetailSHPrice) } />
                   { fcom &&
                       <p className="ProductSidebar-details--commission">
-                        Payable from ShopHobe: &#2547; { Math.round(productDetailSHPrice) }
+                        Payable from ShopHobe: &#2547; { Math.round(productDetailPrice) }
                         <IconButton icon="info_outline"
                                     onClick={ togglePricingInfo } />
                       </p>
                   }
                   <div className={ infoClass }>
                     <p>We charge a minimum commission per product for insurance and so that you don't lose the competitive edge:</p>
-                    <ul>
-                      <li>BDT 1 - BDT 999 : 8%</li>
-                      <li>BDT 1000 - BDT 4999 : 6%</li>
-                      <li>BDT 5000 - BDT 9,999 : 4%</li>
-                      <li>BDT 10,000 - BDT 19,999 : 2%</li>
-                      <li>BDT 20,000+ : 1%</li>
-                    </ul>
+                    {
+                      (fcom && !physicalStore) && <ul>
+                        <li>BDT 1 - BDT 999 : 8%</li>
+                        <li>BDT 1000 - BDT 4999 : 6%</li>
+                        <li>BDT 5000 - BDT 9,999 : 4%</li>
+                        <li>BDT 10,000 - BDT 19,999 : 2%</li>
+                        <li>BDT 20,000+ : 1%</li>
+                      </ul>
+                    }
+                    {
+                      physicalStore && <ul>
+                        <li>All Price Range: 1.5%</li>
+                      </ul>
+                    }
                   </div>
                   <Input  label="Description"
                           onChange={ value => handleManualInput('edit', 'desc', value) }

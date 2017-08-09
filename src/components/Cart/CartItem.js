@@ -101,8 +101,8 @@ const CartItem = ({
               />
             </div>
             <div className="cart-product-price">
-              <h3>৳ { attribute.price * cartItem.quantity }</h3>
-              <h5>৳ { attribute.price } each</h5>
+              <h3>৳ { attribute.sh_price * cartItem.quantity }</h3>
+              <h5>৳ { attribute.sh_price } each</h5>
             </div>
           </div>
           <IconButton className="cart-product-delete"

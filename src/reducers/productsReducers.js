@@ -82,26 +82,38 @@ export const ProductsUIReducer = handleActions({
     }
   },
   [productActions.products.ui.set.add.price]: (state, action) => {
-      const price = Math.round(action.payload);
-      let commissioned = price;
+    const {
+      value,
+      fcom,
+      physicalStore
+    } = action.payload;
 
-      if (price < 1000) {
-        commissioned = Math.round(price/1.08);
-      } else if(price < 5000) {
-        commissioned = Math.round(price/1.06);
-      } else if (price < 10000) {
-        commissioned = Math.round(price/1.04);
-      } else if (price < 20000) {
-        commissioned = Math.round(price/1.02);
+    const price = Math.round(value);
+    let userPrice = price;
+
+    if (fcom && !physicalStore) {
+      if (price < 1080) {
+        userPrice = Math.round(price/1.08);
+      } else if(price < 5300) {
+        userPrice = Math.round(price/1.06);
+      } else if (price < 10400) {
+        userPrice = Math.round(price/1.04);
+      } else if (price < 20400) {
+        userPrice = Math.round(price/1.02);
       } else {
-        commissioned = Math.round(price/1.01);
+        userPrice = Math.round(price/1.01);
       }
+    }
 
-      return {
-        ...state,
-        price: commissioned,
-        sh_price: price,
-      }
+    if (physicalStore) {
+      userPrice = Math.round(price/1.015);
+    }
+
+    return {
+      ...state,
+      price: userPrice,
+      sh_price: price,
+    }
   },
   [productActions.products.ui.set.add.desc]: (state, action) => {
     return {
@@ -191,32 +203,45 @@ export const ProductsUIReducer = handleActions({
       }
   },
   [productActions.products.ui.set.edit.price]: (state, action) => {
-      let price = Math.round(action.payload);
-      let commissioned = price;
+      const {
+      value,
+      fcom,
+      physicalStore
+    } = action.payload;
 
-      if (price < 1000) {
-        price = Math.round(price/1.06);
-      } else if(price < 5000) {
-        price = Math.round(price/1.04);
-      } else if (price < 10000) {
-        price = Math.round(price/1.03);
-      } else if (price < 20000) {
-        price = Math.round(price/1.02);
+    const price = Math.round(value);
+    let userPrice = price;
+
+    if (fcom && !physicalStore) {
+      if (price < 1080) {
+        userPrice = Math.round(price/1.08);
+      } else if(price < 5300) {
+        userPrice = Math.round(price/1.06);
+      } else if (price < 10400) {
+        userPrice = Math.round(price/1.04);
+      } else if (price < 20400) {
+        userPrice = Math.round(price/1.02);
       } else {
-        price = Math.round(price/1.01);
+        userPrice = Math.round(price/1.01);
       }
+    }
 
-      return {
-        ...state,
-        selectedProduct: {
-          ...state.selectedProduct,
-          price: commissioned,
-          sh_price: price,
-          editing: (state.selectedProduct.editing.indexOf('price_weight') === -1 ) ?
-                    [ ...state.selectedProduct.editing, 'price_weight' ]:
-                    state.selectedProduct.editing,
-        }
+    if (physicalStore) {
+      userPrice = Math.round(price/1.015);
+    }
+
+
+    return {
+      ...state,
+      selectedProduct: {
+        ...state.selectedProduct,
+        price: userPrice,
+        sh_price: price,
+        editing: (state.selectedProduct.editing.indexOf('price_weight') === -1 ) ?
+                  [ ...state.selectedProduct.editing, 'price_weight' ]:
+                  state.selectedProduct.editing,
       }
+    }
   },
   [productActions.products.ui.set.edit.desc]: (state, action) => {
       return {

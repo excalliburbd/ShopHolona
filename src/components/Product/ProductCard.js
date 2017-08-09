@@ -45,10 +45,10 @@ class ProductCard extends Component {
 
     let {
       productImages = ['https://unsplash.it/480/480'],
-      price = '10000',
+      sh_price = '10000',
     } = this.props;
 
-    price = Math.round(price)
+    sh_price = Math.round(sh_price)
 
     if (variances) {
       productImages = variances[selectedVariant].images;
@@ -121,7 +121,7 @@ class ProductCard extends Component {
             {/*<img className="price-tag" src={PriceTag} alt="Price Tag" width="50" height="50"/>*/}
             <div className="price-tag"  >
               <h2 className="product-price">
-                &#2547; { price }
+                &#2547; { sh_price }
               </h2>
             </div>
           </div>
