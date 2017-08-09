@@ -45,7 +45,7 @@ const Settings = ({
   } = info;
 
   const activeBank = bankInfo.find(
-                      bank => bank.id === payments.bank.bank_name
+                      bank => bank && payments && payments.bank && bank.id === payments.bank.bank_name
                    );
 
   return (
