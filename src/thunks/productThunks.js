@@ -289,6 +289,15 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                               attrID: attr.attrID,
                               attr,
                             }));
+                            request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
+                                      token,
+                                    )).then(
+                                      res => {
+                                        if (res.id) {
+                                          dispatch(productActions.products.ui.reset.product(res));
+                                        }
+                                      }
+                                    );
                             dispatch(addNotification({
                               title: 'Success',
                               message: 'Successfully updated product stock',
@@ -353,6 +362,15 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                               attrID: attr.attrID,
                               attr,
                             }));
+                            request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
+                                      token,
+                                    )).then(
+                                      res => {
+                                        if (res.id) {
+                                          dispatch(productActions.products.ui.reset.product(res));
+                                        }
+                                      }
+                                    );
                             dispatch(addNotification({
                                 title: 'Success',
                                 message: 'Successfully updated product stock',
@@ -411,6 +429,15 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                                   'PATCH'
                                 )).then(
                                   res => {
+                                    request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
+                                      token,
+                                    )).then(
+                                      res => {
+                                        if (res.id) {
+                                          dispatch(productActions.products.ui.reset.product(res));
+                                        }
+                                      }
+                                    );
                                     dispatch(addNotification({
                                       title: 'Success',
                                       message: 'Successfully updated price weight',
@@ -459,6 +486,15 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                         'PATCH'
                       )).then(
                         res => {
+                          request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
+                                      token,
+                                    )).then(
+                                      res => {
+                                        if (res.id) {
+                                          dispatch(productActions.products.ui.reset.product(res));
+                                        }
+                                      }
+                                    );
                           dispatch(addNotification({
                             title: 'Success',
                             message: 'Successfully updated product',
