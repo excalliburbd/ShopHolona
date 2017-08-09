@@ -42,6 +42,21 @@ const AddProductDetails = ({
     'ProductsSidebar-add--products--info--show': showInfo,
   });
 
+  const validTextColor = (stringToTest) => {
+      //Alter the following conditions according to your need.
+      if (stringToTest === "") { return false; }
+      if (stringToTest === "inherit") { return false; }
+      if (stringToTest === "transparent") { return false; }
+
+      var image = document.createElement("img");
+      image.style.color = "rgb(0, 0, 0)";
+      image.style.color = stringToTest;
+      if (image.style.color !== "rgb(0, 0, 0)") { return true; }
+      image.style.color = "rgb(255, 255, 255)";
+      image.style.color = stringToTest;
+      return image.style.color !== "rgb(255, 255, 255)";
+  }
+
   return (
     <div className="ProductSidebar-details">
                 <div className="ProductSidebar-details--images">
@@ -61,7 +76,7 @@ const AddProductDetails = ({
                 <div className="ProductSidebar-details--variance">
                   {
                     productVariances.map(
-                      ({ type, attributes }, key) => <IconButton  icon={
+                      ({ type, attributes, images }, key) => <IconButton  icon={
                                                         <span>{`${ attributes.reduce( (acc, curr) => {
                                                                       if (curr.stock !== '') {
                                                                         return parseInt(curr.stock, 10) + acc;
@@ -74,8 +89,10 @@ const AddProductDetails = ({
                                                         () => handleSelectVariance(key)
                                                       }
                                                       style={{
-                                                        background: (type.value) ?
-                                                                    type.value.toLowerCase() : null
+                                                        background: type.value && validTextColor(type.value.toLowerCase()) ? type.value.toLowerCase() : null,
+                                                        backgroundImage: images[0] && !validTextColor(type.value.toLowerCase()) ? `url(${images[0].image})` : null,
+                                                        backgroundSize: 'contain',
+                                                        backgroundRepeat: 'no-repeat',
                                                       }}
                                                       key={ type.id }
                                                       className="ProductsSidebar-add--color" />
