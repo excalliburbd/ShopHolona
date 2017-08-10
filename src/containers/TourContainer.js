@@ -6,7 +6,6 @@ import TourComponent from '../components/Tour/TourComponent';
 import { tourActions } from '../actions/';
 
 import { getShopID } from '../selectors/shopSelectors';
-
 import {
   getTourIsOpen,
   getTourSteps,

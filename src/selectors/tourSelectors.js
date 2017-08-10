@@ -4,7 +4,8 @@ import {
   getLoggedIn,
   getVendor,
 } from '../selectors/userSelectors';
-import { getShopID } from '../selectors/shopSelectors';
+import { getShopID } from './shopSelectors';
+import { getMediaPhone } from './uiSelectors';
 
 export const getTourIsOpen = state => state.ui.tour.isOpen;
 export const getCurrentStep = state => state.ui.tour.steps.present;
@@ -15,8 +16,8 @@ export const getTourInterrupt = state => state.ui.tour.interrupt;
 export const getTourInterruptStep = state => state.ui.tour.interruptStep;
 
 export const getShowTourOnStartUp = createSelector(
-  [getTourDone, getTourIsOpen, getTourInterrupt, getShopID, getLoggedIn, getVendor],
-  (done, isOpen, interrupt, shop, loggedIn, vendor) => {
-    return !done && !isOpen && !interrupt && shop && loggedIn && vendor
+  [getTourDone, getTourIsOpen, getTourInterrupt, getShopID, getLoggedIn, getVendor, getMediaPhone],
+  (done, isOpen, interrupt, shop, loggedIn, vendor, phone) => {
+    return !done && !isOpen && !interrupt && shop && loggedIn && vendor && !phone;
   }
 )
