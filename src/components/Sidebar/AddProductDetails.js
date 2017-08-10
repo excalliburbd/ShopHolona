@@ -196,7 +196,7 @@ const AddProductDetails = ({
 
                 }
 
-                <div className="ProductsSidebar-add-actions">
+                 <div className="ProductsSidebar-add-actions">
                     <Button icon="delete"
                             label="Delete"
                             accent
@@ -209,6 +209,7 @@ const AddProductDetails = ({
                               () => handleSaveProduct(selectedProduct, shop, token, true, shop === demostore)
                             } />
                   </div>
+                  <div style={{ height: '3em'}}/>
               </div>
   )
 }

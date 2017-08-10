@@ -224,7 +224,8 @@ const AddProductService = ({
                       </div>
                     </div>
                 }
-            </div>
+      <div style={{ height: '3em'}}/>
+    </div>
   )
 }
 

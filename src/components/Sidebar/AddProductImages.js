@@ -148,6 +148,7 @@ const AddProductImages = ({
                   }
                 } />
       </div>
+      <div style={{ height: '3em'}}/>
     </div>
   )
 }
