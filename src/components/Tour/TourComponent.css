@@ -51,7 +51,9 @@
   padding-left: 1rem;
   position: relative;
   top: 4px;
+  font-size: 1.8rem;
 }
+
 .tour-header-mascot {
   height: 4rem;
   margin-right: 1rem;

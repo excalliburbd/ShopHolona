@@ -76,26 +76,55 @@ const AddProductDetails = ({
                 <div className="ProductSidebar-details--variance">
                   {
                     productVariances.map(
-                      ({ type, attributes, images }, key) => <IconButton  icon={
-                                                        <span>{`${ attributes.reduce( (acc, curr) => {
-                                                                      if (curr.stock !== '') {
-                                                                        return parseInt(curr.stock, 10) + acc;
-                                                                      }
+                      ({ type, attributes, images }, key) => <div className="ProductSidebar-details--variance-btn">
+                        <div style={{
+                          backgroundColor: !validTextColor(type.value.toLowerCase()) ? '#2e2e2e' : null,
+                          height: '3rem',
+                          width: '3rem',
+                          position: 'absolute',
+                          borderRadius: '50%',
+                          zIndex: '2',
+                          margin: '6px',
+                          opacity: '0.2',
+                        }}>
 
-                                                                      return 0 + acc;
-                                                                    }, 0) }`}</span>
-                                                      }
-                                                      onClick={
-                                                        () => handleSelectVariance(key)
-                                                      }
-                                                      style={{
-                                                        background: type.value && validTextColor(type.value.toLowerCase()) ? type.value.toLowerCase() : null,
-                                                        backgroundImage: images[0] && !validTextColor(type.value.toLowerCase()) ? `url(${images[0].image})` : null,
-                                                        backgroundSize: 'contain',
-                                                        backgroundRepeat: 'no-repeat',
-                                                      }}
-                                                      key={ type.id }
-                                                      className="ProductsSidebar-add--color" />
+                        </div>
+                        <span style={{
+                          position: 'absolute',
+                          height: '100%',
+                          width: '100%',
+                          zIndex: '5',
+                          justifyContent: 'center',
+                          display: 'flex',
+                          alignItems: 'center',
+                          color: 'white',
+                          textShadow: '0 0 1px grey',
+                          }}>
+                            {`${ attributes.reduce( (acc, curr) => {
+                            if (curr.stock !== '') {
+                              return parseInt(curr.stock, 10) + acc;
+                            }
+
+                            return 0 + acc;
+                          }, 0) }`}
+                        </span>
+                        <IconButton
+                                     onClick={
+                                       () => handleSelectVariance(key)
+                                     }
+                                     style={{
+                                       height: '3rem',
+                                       width: '3rem',
+                                       background: type.value && validTextColor(type.value.toLowerCase()) ? type.value.toLowerCase() : null,
+                                       backgroundImage: images[0] && !validTextColor(type.value.toLowerCase()) ? `url(${images[0].image})` : null,
+                                       backgroundSize: 'cover',
+                                       backgroundRepeat: 'no-repeat',
+                                       backgroundPosition: 'center',
+                                       margin: '6px',
+                                     }}
+                                     key={ type.id }
+                                     className="ProductsSidebar-add--color" />
+                      </div>
                     )
                   }
                 </div>

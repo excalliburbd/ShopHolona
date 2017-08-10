@@ -61,16 +61,14 @@ const AddProductImages = ({
                             </Dropzone>
                             {
                               images.map(
-                                ({ image }, iKey) => <div onClick={ () => handleRemoveImg(key, iKey, true) }
+                                ({ image }, iKey) => <div className="ProductsSidebar-img-variants--content-img"
+                                                          onClick={ () => handleRemoveImg(key, iKey, true) }
                                                           key={ iKey }
                                                           style={{
                                                             backgroundImage: `url(${ image })`,
-                                                            backgroundSize: 'contain',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            height: '5em',
-                                                            width: '5em',
-                                                            margin: '.5em',
-                                                          }} />
+                                                          }} >
+                                  <FontIcon className="ProductsSidebar-img-variants--content-del-btn" value='add_circle' />
+                                </div>
                               )
                             }
                           </div>
@@ -130,7 +128,9 @@ const AddProductImages = ({
                                                         height: '5em',
                                                         width: '5em',
                                                         margin: '.5em',
-                                                      }} />
+                                                      }} >
+                                    <FontIcon className="ProductsSidebar-img-variants--content-del-btn" value='add_circle' />
+                                  </div>
                                 )
                               }
                             </div>

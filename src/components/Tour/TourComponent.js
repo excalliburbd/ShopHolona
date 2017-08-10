@@ -96,7 +96,8 @@ class TourComponent extends Component {
         content: ({ goTo, inDOM, step }) => {
           this.goTo = goTo;
           return (
-            <TourWrapperContainer title="First impressions matter!"
+            <TourWrapperContainer
+                          title="First impressions matter!"
                           goTo={ goTo }
                           step={ step } >
               <p>
