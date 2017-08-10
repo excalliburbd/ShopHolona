@@ -117,7 +117,7 @@ const ProductDetails = ({
                                   deleteFromFeaturedProduct={ deleteFromFeaturedProduct } />
             </small>
           </Tab>
-          <Tab label='Specifications'><small>Product Specifications Not Available</small></Tab>
+          {/*<Tab label='Specifications'><small>Product Specifications Not Available</small></Tab>*/}
         </Tabs>
       </div>
 

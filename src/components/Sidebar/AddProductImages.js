@@ -119,15 +119,11 @@ const AddProductImages = ({
                               </Dropzone>
                               {
                                 obj.files.map(
-                                  (file, key) => <div onClick={ () => handleRemoveImg(obj.id, key) }
+                                  (file, key) => <div className="ProductsSidebar-img-variants--content-img"
+                                                      onClick={ () => handleRemoveImg(obj.id, key) }
                                                       key={ key }
                                                       style={{
                                                         backgroundImage: `url(${ file.preview })`,
-                                                        backgroundSize: 'contain',
-                                                        backgroundRepeat: 'no-repeat',
-                                                        height: '5em',
-                                                        width: '5em',
-                                                        margin: '.5em',
                                                       }} >
                                     <FontIcon className="ProductsSidebar-img-variants--content-del-btn" value='add_circle' />
                                   </div>
