@@ -10,7 +10,7 @@
 
 .ProductCard--addProduct {
   position: relative;
-  top: -1.5em;
+  top: -1em;
 }
 .ProductCard--addProduct:hover {
   background-color: #ededed;
@@ -77,7 +77,7 @@
 .ProductCard-details-name {
   margin: 0;
   font-size: 1.2em;
-  height: 2.4em;
+  max-height: 3.6em;
   display: flex;
   align-items: center;
   font-family: "Harmonia Regular";
