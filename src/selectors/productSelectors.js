@@ -130,25 +130,35 @@ export const getShowAddVariances = createSelector(
 export const getShowAddImages = createSelector(
   [getProductPrimaryAttributes, getSecondaryAttributes],
   (primary, secondary) => {
-    let show = true;
+    let show = false;
 
     primary.forEach(
       obj => {
         if(obj.selected === true) {
-          show = false;
+          show = true;
         }
       }
     );
 
     primary.filter(({ selected }) => selected).forEach(
       ({ id })=> {
+        show = secondary[id].attributes.reduce(
+          (acc, curr) => {
+            if (curr.value.trim() === '' || curr.name.trim() === '') {
+              return false;
+            }
+
+            return true;
+          }
+        );
+
         if (secondary[id].attributes.length === 0) {
-          show = true;
+          show = false;
         }
       }
     )
 
-    return show;
+    return !show;
   }
 );
 

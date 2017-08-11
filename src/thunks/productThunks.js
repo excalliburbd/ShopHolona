@@ -638,8 +638,6 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
           status: 3,
         }
 
-        console.log(finalProduct)
-
         if (finalProduct.category.custom) {
           request(`/vendors/category/${finalProduct.category.category}/${finalProduct.category.subCategory}/subcategories/`, getConfig(
                     token,

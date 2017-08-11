@@ -64,6 +64,7 @@ const AddProductDetails = ({
                   {
                     productVariances.map(
                       ({ type, attributes, images }, key) => <div className="ProductSidebar-details--variance-btn"
+                                                                  key={ key }
                                                                   onClick={
                                                                     () => handleSelectVariance(key)
                                                                   }>
