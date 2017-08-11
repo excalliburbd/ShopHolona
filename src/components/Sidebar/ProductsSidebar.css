@@ -103,6 +103,7 @@
 
 .ProductSidebar-details--variance-btn {
   position: relative;
+  cursor: pointer;
 }
 
 .ProductsSidebar-img-dropzone {

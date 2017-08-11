@@ -117,7 +117,7 @@
     left: 10em;
   }
   ._1sAOY.Navigation-sidebar {
-    width: 30vw;
+    width: 40vw;
     padding-top: 4em;
     background-color: white;
     box-shadow: -3px 0px 14px 0px rgba(50, 50, 50, 0.80);
@@ -132,5 +132,12 @@
 @media screen and (min-width: 800px) {
   ._1sAOY.Navigation-sidebar {
     width: 22.5vw;
+  }
+}
+
+/* ipad pro */
+@media screen and (width: 1024px) and (height: 1366px) {
+  ._1sAOY.Navigation-sidebar {
+    width: 30vw;
   }
 }

@@ -25,7 +25,7 @@ const ProductsSidebar = ({
   handleAttributeSelect,
   radioValue,
   handleRadio,
-  handleStockUpdate,
+  handleSecondaryAttributeUpdate,
   selectedAttribute,
   setAttributeDone,
   showAddColors,
@@ -96,7 +96,7 @@ const ProductsSidebar = ({
                                 handleAttributeSelect={ handleAttributeSelect }
                                 radioValue={ radioValue }
                                 handleRadio={ handleRadio }
-                                handleStockUpdate={ handleStockUpdate }
+                                handleSecondaryAttributeUpdate={ handleSecondaryAttributeUpdate }
                                 selectedAttribute={ selectedAttribute }
                                 setAttributeDone={ setAttributeDone }
                                 showAddColors={ showAddColors }

@@ -9,6 +9,8 @@ import Slider from 'react-slick';
 
 import EditVariance from './EditVariance';
 
+import { validColorText } from '../helpers';
+
 const AddProductDetails = ({
   handleManualInput,
   handleSaveProduct,
@@ -42,21 +44,6 @@ const AddProductDetails = ({
     'ProductsSidebar-add--products--info--show': showInfo,
   });
 
-  const validTextColor = (stringToTest) => {
-      //Alter the following conditions according to your need.
-      if (stringToTest === "") { return false; }
-      if (stringToTest === "inherit") { return false; }
-      if (stringToTest === "transparent") { return false; }
-
-      var image = document.createElement("img");
-      image.style.color = "rgb(0, 0, 0)";
-      image.style.color = stringToTest;
-      if (image.style.color !== "rgb(0, 0, 0)") { return true; }
-      image.style.color = "rgb(255, 255, 255)";
-      image.style.color = stringToTest;
-      return image.style.color !== "rgb(255, 255, 255)";
-  }
-
   return (
     <div className="ProductSidebar-details">
                 <div className="ProductSidebar-details--images">
@@ -76,9 +63,12 @@ const AddProductDetails = ({
                 <div className="ProductSidebar-details--variance">
                   {
                     productVariances.map(
-                      ({ type, attributes, images }, key) => <div className="ProductSidebar-details--variance-btn">
+                      ({ type, attributes, images }, key) => <div className="ProductSidebar-details--variance-btn"
+                                                                  onClick={
+                                                                    () => handleSelectVariance(key)
+                                                                  }>
                         <div style={{
-                          backgroundColor: !validTextColor(type.value.toLowerCase()) ? '#2e2e2e' : null,
+                          backgroundColor: !validColorText(type.value.toLowerCase()) ? '#2e2e2e' : null,
                           height: '3rem',
                           width: '3rem',
                           position: 'absolute',
@@ -108,15 +98,11 @@ const AddProductDetails = ({
                             return 0 + acc;
                           }, 0) }`}
                         </span>
-                        <IconButton
-                                     onClick={
-                                       () => handleSelectVariance(key)
-                                     }
-                                     style={{
+                        <IconButton  style={{
                                        height: '3rem',
                                        width: '3rem',
-                                       background: type.value && validTextColor(type.value.toLowerCase()) ? type.value.toLowerCase() : null,
-                                       backgroundImage: images[0] && !validTextColor(type.value.toLowerCase()) ? `url(${images[0].image})` : null,
+                                       background: type.value && validColorText(type.value.toLowerCase()) ? type.value.toLowerCase() : null,
+                                       backgroundImage: images[0] && !validColorText(type.value.toLowerCase()) ? `url(${images[0].image})` : null,
                                        backgroundSize: 'cover',
                                        backgroundRepeat: 'no-repeat',
                                        backgroundPosition: 'center',

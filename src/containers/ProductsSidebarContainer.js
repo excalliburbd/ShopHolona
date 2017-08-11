@@ -142,11 +142,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     handleCategoryObj: obj => {
       dispatch(categoryActions.categories.ui.set.attr.primary({
-          attributes: obj.primary_attr,
-        }));
+        primary: obj.primary_attr,
+        secondary: obj.secondary_attr,
+      }));
       dispatch(categoryActions.categories.ui.set.attr.secondary({
-          attributes: obj.secondary_attr,
-        }));
+        primary: obj.primary_attr,
+        secondary: obj.secondary_attr,
+      }));
     },
     handleSelect: (key, id) => {
         dispatch(categoryActions.categories.ui.set.attr.selected({ id: key }));
@@ -174,9 +176,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleRadio: value => {
       dispatch(sidebarActions.sidebar.ui.set.radioValue(value));
     },
-    handleStockUpdate: (type, value, id, key) => {
+    handleSecondaryAttributeUpdate: (type, value, id, key) => {
       switch(type){
-        case 'VALUE':
+        case 'STOCK':
           dispatch(categoryActions.categories.ui.update.stock({
               value,
               id,
@@ -191,6 +193,20 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           break;
         case 'DEC':
           dispatch(categoryActions.categories.ui.update.stockDec({
+              id,
+              key,
+            }));
+          break;
+        case 'NAME':
+          dispatch(categoryActions.categories.ui.update.name({
+              value,
+              id,
+              key,
+            }));
+          break;
+        case 'VALUE':
+          dispatch(categoryActions.categories.ui.update.value({
+              value,
               id,
               key,
             }));
@@ -359,25 +375,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleAddVairance: category => {
       dispatch(categoryActions.categories.ui.addPrimaryAttribute(category));
     },
-    handleSetTemporaryAttribute: (type, value, attributes) => {
-      switch(type){
-        case 'KEY':
-          dispatch(categoryActions.categories.ui.set.attr.temp.key(value));
-          break;
-        case 'VALUE':
-          dispatch(categoryActions.categories.ui.set.attr.temp.value(value));
-          break;
-        case 'STOCK':
-          dispatch(categoryActions.categories.ui.set.attr.temp.stock(value));
-          break;
-        case 'ADD':
-          if( attributes.key !== '' && attributes.value !== '') {
-            dispatch(categoryActions.categories.ui.set.attr.temp.attribute(value));
-          }
-          break;
-        default:
-          break;
-      }
+    handleSetTemporaryAttribute: (value, attributes) => {
+      dispatch(categoryActions.categories.ui.set.attr.temp.attribute(value));
     },
     deleteSelectedProduct: (id, shop, token, demostore, name) => {
       dispatch(confirmActions.confirmDialoug.show(() => dispatch(deleteProduct(id, shop, token))));

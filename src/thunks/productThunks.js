@@ -754,7 +754,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
         console.log(err)
         dispatch(addNotification({
                   title: 'Error saving product',
-                  message: 'lol',
+                  message: err,
                   position: 'bl',
                   status: 'error',
                 }));

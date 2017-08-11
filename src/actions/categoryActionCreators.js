@@ -35,6 +35,8 @@ export const categoryActionCreators = {
         STOCK: payload => payload,
         STOCK_INC: payload => payload,
         STOCK_DEC: payload => payload,
+        VALUE: payload => payload,
+        NAME: payload => payload,
       },
       VALIDATE_STOCK: payload => payload,
       UNSET_PRIMARY_ATTR: payload => payload,

@@ -13,13 +13,15 @@ import Button from 'react-toolbox/lib/button/Button';
 
 import CustomAutocomplete from '../CustomAutocomplete';
 
+import { validColorText } from '../helpers';
+
 const AddColors = ({
   productSubCategory,
   primaryAttributes,
   secondaryAttributes,
   handleSelect,
   handleAttributeSelect,
-  handleStockUpdate,
+  handleSecondaryAttributeUpdate,
   selectedAttribute,
   setAttributeDone,
   handleStockInputBlur,
@@ -47,8 +49,7 @@ const AddColors = ({
                                     () => handleSelect(key)
                                   }
                                   style={{
-                                    background: (obj.value && (obj.value.split(' ')[0] !== 'Color')) &&
-                                                (obj.value && (obj.value.split(' ')[0] !== 'Custom')) ?
+                                    background: obj.value && validColorText(obj.value.toLowerCase()) ?
                                                   obj.value.toLowerCase() : '#ccc'
                                   }}
                                   key={ obj.id }
@@ -82,6 +83,8 @@ const AddColors = ({
             <Table  selectable
                     className="ProductsSidebar-add-attributes--table"
                     onRowSelect={ selected => {
+                      primaryAttributes[selectedAttribute] &&
+                      secondaryAttributes[primaryAttributes[selectedAttribute].id] &&
                       handleAttributeSelect(
                         selected,
                         primaryAttributes[selectedAttribute].id,
@@ -101,8 +104,30 @@ const AddColors = ({
               secondaryAttributes[primaryAttributes[selectedAttribute].id].attributes.map(
                     (attribute, key) =>
                           <TableRow key={key} selected={ attribute.stock > 0 }>
-                            <TableCell>{ attribute.name }</TableCell>
-                            <TableCell>{ attribute.value }</TableCell>
+                            <TableCell>
+                              {
+                                (secondaryAttributes[primaryAttributes[selectedAttribute].id].custom ||
+                                  secondaryAttributes[primaryAttributes[selectedAttribute].id].fromList||
+                                  !secondaryAttributes[primaryAttributes[selectedAttribute].id].hasInitalValue) ?
+                                    <Input  value={ attribute.name }
+                                            onChange={
+                                              value => handleSecondaryAttributeUpdate( 'NAME', value, primaryAttributes[selectedAttribute].id, key)
+                                            } /> :
+                                    `${attribute.name}`
+                              }
+                            </TableCell>
+                            <TableCell>
+                              {
+                                (secondaryAttributes[primaryAttributes[selectedAttribute].id].custom ||
+                                  secondaryAttributes[primaryAttributes[selectedAttribute].id].fromList||
+                                  !secondaryAttributes[primaryAttributes[selectedAttribute].id].hasInitalValue) ?
+                                    <Input  value={ attribute.value }
+                                            onChange={
+                                              value => handleSecondaryAttributeUpdate( 'VALUE', value, primaryAttributes[selectedAttribute].id, key)
+                                            } /> :
+                                    `${attribute.value}`
+                              }
+                            </TableCell>
                             <TableCell numeric className="ProductsSidebar-add-attributes--stock">
                                 <Input value={ attribute.stock }
                                         type="number"
@@ -112,52 +137,41 @@ const AddColors = ({
                                           }
                                         }
                                         onChange={
-                                          value => handleStockUpdate( 'VALUE', value, primaryAttributes[selectedAttribute].id, key)
+                                          value => handleSecondaryAttributeUpdate( 'STOCK', value, primaryAttributes[selectedAttribute].id, key)
                                         } />
                             </TableCell>
                           </TableRow>
-                  )
-            }
-            {
-              (secondaryAttributes[primaryAttributes[selectedAttribute].id].custom ||
-               secondaryAttributes[primaryAttributes[selectedAttribute].id].fromList ) ?
-                  <TableRow>
-                    <TableCell>
-                      <Input  value={ temporaryAttribute.key }
-                              onChange={
-                                value => handleSetTemporaryAttribute( 'KEY', value)
-                              }/>
-                    </TableCell>
-                    <TableCell>
-                      <Input  value={ temporaryAttribute.value }
-                              onChange={
-                                value => handleSetTemporaryAttribute( 'VALUE', value)
-                              }/>
-                    </TableCell>
-                    <TableCell>
-                      <Input  value={ temporaryAttribute.stock }
-                              onBlur={
-                                () => {
-                                  handleSetTemporaryAttribute(
-                                    'ADD',
-                                    primaryAttributes[selectedAttribute].id,
-                                    temporaryAttribute
-                                  )
+                      )
+                }
+              </Table>
+              {
+                (secondaryAttributes[primaryAttributes[selectedAttribute].id].custom ||
+                secondaryAttributes[primaryAttributes[selectedAttribute].id].fromList ||
+                !secondaryAttributes[primaryAttributes[selectedAttribute].id].hasInitalValue ) &&
+                  <Button icon="add"
+                          raised
+                          disabled={
+                            secondaryAttributes[primaryAttributes[selectedAttribute].id].attributes.slice(-1)[0] &&
+                            (
+                              secondaryAttributes[primaryAttributes[selectedAttribute].id].attributes.slice(-1)[0].name === '' ||
+                              secondaryAttributes[primaryAttributes[selectedAttribute].id].attributes.slice(-1)[0].value === ''
+                            )
+                          }
+                          onClick={ () => {
+                            handleSetTemporaryAttribute(
+                                primaryAttributes[selectedAttribute].id,
+                                {
+                                  key: '',
+                                  value: '',
+                                  stock: ''
                                 }
-                              }
-                              type="number"
-                              onChange={
-                                value => handleSetTemporaryAttribute( 'STOCK', value)
-                              }/>
-                    </TableCell>
-                  </TableRow>
-                : null
+                              ) }
+                            } />
               }
-            </Table>
-          <CardActions>
-            <Button icon="close" label="cancel" onClick={ () => handleSelect(-1, primaryAttributes[selectedAttribute].id) }/>
-            <Button icon="done" label="done" onClick={ () => setAttributeDone(primaryAttributes[selectedAttribute].id) } />
-          </CardActions>
+        <CardActions>
+          <Button icon="close" label="cancel" onClick={ () => handleSelect(-1, primaryAttributes[selectedAttribute].id) }/>
+          <Button icon="done" label="done" onClick={ () => setAttributeDone(primaryAttributes[selectedAttribute].id) } />
+        </CardActions>
       </Card>
       }
       </div>

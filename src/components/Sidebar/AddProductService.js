@@ -34,7 +34,7 @@ const AddProductService = ({
   secondaryAttributes,
   handleSelect,
   handleAttributeSelect,
-  handleStockUpdate,
+  handleSecondaryAttributeUpdate,
   selectedAttribute,
   setAttributeDone,
   handleStockInputBlur,
@@ -163,7 +163,7 @@ const AddProductService = ({
                                             secondaryAttributes={ secondaryAttributes }
                                             handleSelect={ handleSelect }
                                             handleAttributeSelect={ handleAttributeSelect }
-                                            handleStockUpdate={ handleStockUpdate }
+                                            handleSecondaryAttributeUpdate={ handleSecondaryAttributeUpdate }
                                             selectedAttribute={ selectedAttribute }
                                             setAttributeDone={ setAttributeDone }
                                             handleStockInputBlur={ handleStockInputBlur }
@@ -183,7 +183,7 @@ const AddProductService = ({
                                                 secondaryAttributes={ secondaryAttributes }
                                                 handleSelect={ handleSelect }
                                                 handleAttributeSelect={ handleAttributeSelect }
-                                                handleStockUpdate={ handleStockUpdate }
+                                                handleSecondaryAttributeUpdate={ handleSecondaryAttributeUpdate }
                                                 selectedAttribute={ selectedAttribute }
                                                 setAttributeDone={ setAttributeDone }
                                                 handleStockInputBlur={ handleStockInputBlur }

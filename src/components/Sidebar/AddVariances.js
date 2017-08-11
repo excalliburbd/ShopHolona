@@ -19,7 +19,7 @@ const AddVariances = ({
   secondaryAttributes,
   handleSelect,
   handleAttributeSelect,
-  handleStockUpdate,
+  handleSecondaryAttributeUpdate,
   selectedAttribute,
   setAttributeDone,
   handleStockInputBlur,
@@ -93,59 +93,67 @@ const AddVariances = ({
                     secondaryAttributes[obj.id].attributes.map(
                           (attribute, key) =>
                                 <TableRow key={key} selected={ attribute.stock > 0 }>
-                                  <TableCell>{ attribute.name }</TableCell>
-                                  <TableCell>{ attribute.value }</TableCell>
+                                  <TableCell>
+                                    {
+                                      (secondaryAttributes[obj.id].custom ||
+                                      secondaryAttributes[obj.id].fromList ) ?
+                                          <Input  value={ attribute.name }
+                                                  onChange={
+                                                    value => handleSecondaryAttributeUpdate( 'NAME', value, primaryAttributes[selectedAttribute].id, key)
+                                                  } /> :
+                                          `${attribute.name}`
+                                    }
+                                  </TableCell>
+                                  <TableCell>
+                                    {
+                                      (secondaryAttributes[obj.id].custom ||
+                                      secondaryAttributes[obj.id].fromList ) ?
+                                          <Input  value={ attribute.value }
+                                                  onChange={
+                                                    value => handleSecondaryAttributeUpdate( 'VALUE', value, primaryAttributes[selectedAttribute].id, key)
+                                                  } /> :
+                                          `${attribute.value}`
+                                    }
+                                  </TableCell>
                                   <TableCell numeric className="ProductsSidebar-add-attributes--stock">
                                       <Input value={ attribute.stock }
                                               type="number"
                                               onBlur={
                                                 () => {
-                                                  handleStockInputBlur(obj.id)
+                                                  handleStockInputBlur(primaryAttributes[selectedAttribute].id)
                                                 }
                                               }
                                               onChange={
-                                                value => handleStockUpdate( 'VALUE', value, obj.id, key)
+                                                value => handleSecondaryAttributeUpdate( 'STOCK', value, primaryAttributes[selectedAttribute].id, key)
                                               } />
                                   </TableCell>
                                 </TableRow>
                         )
                   }
+                  </Table>
                   {
                     (secondaryAttributes[obj.id].custom ||
-                     secondaryAttributes[obj.id].fromList ) ?
-                        <TableRow>
-                          <TableCell>
-                            <Input  value={ temporaryAttribute.key }
-                                    onChange={
-                                      value => handleSetTemporaryAttribute( 'KEY', value)
-                                    }/>
-                          </TableCell>
-                          <TableCell>
-                            <Input  value={ temporaryAttribute.value }
-                                    onChange={
-                                      value => handleSetTemporaryAttribute( 'VALUE', value)
-                                    }/>
-                          </TableCell>
-                          <TableCell>
-                            <Input  value={ temporaryAttribute.stock }
-                                    onBlur={
-                                      () => {
-                                        handleSetTemporaryAttribute(
-                                          'ADD',
-                                          obj.id,
-                                          temporaryAttribute
-                                        )
-                                      }
+                    secondaryAttributes[obj.id].fromList ) &&
+                      <Button icon="add"
+                              raised
+                              disabled={
+                                secondaryAttributes[obj.id].attributes.slice(-1)[0] &&
+                                (
+                                  secondaryAttributes[obj.id].attributes.slice(-1)[0].name === '' ||
+                                  secondaryAttributes[obj.id].attributes.slice(-1)[0].value === ''
+                                )
+                              }
+                              onClick={ () => {
+                                handleSetTemporaryAttribute(
+                                    primaryAttributes[selectedAttribute].id,
+                                    {
+                                      key: '',
+                                      value: '',
+                                      stock: ''
                                     }
-                                    type="number"
-                                    onChange={
-                                      value => handleSetTemporaryAttribute( 'STOCK', value)
-                                    }/>
-                          </TableCell>
-                        </TableRow>
-                      : null
+                                  ) }
+                                } />
                     }
-                  </Table>
                 <CardActions>
                   <Button icon="close" label="cancel" onClick={ () => handleSelect(-1, obj.id) }/>
                   <Button icon="done" label="done" onClick={ () => setAttributeDone(obj.id) } />

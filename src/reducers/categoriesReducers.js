@@ -96,7 +96,7 @@ export const CategoriesUIReducer = handleActions({
   [categoryActions.categories.ui.set.attr.primary]: (state, action) => {
       const primary = [];
 
-      action.payload.attributes.forEach(
+      action.payload.primary.forEach(
         attribute => {
           primary.push({ ...attribute, selected: false, files: [], custom: false });
         }
@@ -113,7 +113,7 @@ export const CategoriesUIReducer = handleActions({
   [categoryActions.categories.ui.set.attr.secondary]: (state, action) => {
       const secondary = [];
 
-      action.payload.attributes.forEach(
+      action.payload.secondary.forEach(
         attribute => {
           secondary.push({
             ...attribute,
@@ -131,6 +131,7 @@ export const CategoriesUIReducer = handleActions({
               id: obj.id,
               custom: false,
               attributes: secondary,
+              hasInitial: secondary.length > 0,
             })
           ).forEach(
             obj => {
@@ -421,6 +422,46 @@ export const CategoriesUIReducer = handleActions({
         ...state,
         ...initialCategoriesUiState,
   }),
+  [categoryActions.categories.ui.update.name]: (state, action) => {
+      return {
+        ...state,
+        attributes: {
+          ...state.attributes,
+          secondary: {
+            ...state.attributes.secondary,
+            [action.payload.id]: {
+              ...state.attributes.secondary[action.payload.id],
+              attributes: state.attributes.secondary[action.payload.id].attributes.map(
+                                (attribute, key) => ({
+                                  ...attribute,
+                                  name: (key === action.payload.key ) ? action.payload.value : attribute.name,
+                                })
+                              )
+            }
+          }
+        }
+      }
+  },
+  [categoryActions.categories.ui.update.value]: (state, action) => {
+      return {
+        ...state,
+        attributes: {
+          ...state.attributes,
+          secondary: {
+            ...state.attributes.secondary,
+            [action.payload.id]: {
+              ...state.attributes.secondary[action.payload.id],
+              attributes: state.attributes.secondary[action.payload.id].attributes.map(
+                                (attribute, key) => ({
+                                  ...attribute,
+                                  value: (key === action.payload.key ) ? action.payload.value : attribute.value,
+                                })
+                              )
+            }
+          }
+        }
+      }
+  },
   [categoryActions.categories.ui.update.stock]: (state, action) => {
       return {
         ...state,
