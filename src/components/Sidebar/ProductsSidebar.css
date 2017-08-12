@@ -235,4 +235,7 @@
 .ProductsSidebar-add--products--info p {
   margin-bottom: .5em;
 }
+.ProductSidebar-details {
+  height: 100%;
+}
 
