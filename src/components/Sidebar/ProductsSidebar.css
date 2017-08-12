@@ -80,6 +80,7 @@
 .ProductsSidebar-add-attributes--table tr td._18bqN:last-of-type, .gfcPv:last-of-type {
   padding-right: 12px;
   text-align: center;
+  vertical-align: bottom;
 }
 
 .ProductsSidebar-add--products,

@@ -204,7 +204,7 @@ class TourComponent extends Component {
                             }
                           } >
               <p>
-                Now that you have added your first product, you should check out your dashboard!
+                This is the dashboard.
               </p>
               <p>This contains everything you need to know about how your store is running!</p>
             </TourWrapperContainer>
