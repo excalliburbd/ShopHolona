@@ -1,4 +1,8 @@
-import { request, getConfig } from './helpers';
+import {
+  request,
+  getConfig,
+  fromState,
+} from './helpers';
 import { addNotification } from 'reapop';
 
 import { getShopCategories } from './shopThunks';
@@ -14,8 +18,6 @@ import {
 export const getCategory = () => dispatch => {
   request('/references/categories/', getConfig() ).then(
             res => {
-              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
-
               dispatch(categoryActions.categories.done.get.category(res));
             }
           );
@@ -24,8 +26,6 @@ export const getCategory = () => dispatch => {
 export const getSubCategory = id => dispatch => {
   request(`/references/categories/${id}/`, getConfig() ).then(
             res => {
-              dispatch({type: 'RESPONSE_API_DEBUG',payload:res});
-
               dispatch(categoryActions.categories.done.get.subCategory(res));
             }
           );
@@ -39,7 +39,11 @@ export const getSubSubCategory = (id, subID )=> dispatch => {
           );
 }
 
-export const getAllProducts = (shop, demostore, id, token) => dispatch => {
+export const getAllProducts = (shop, token, id) => (dispatch, getState) => {
+  const {
+    demostore,
+  } = fromState(getState);
+
 
   request(`/shops/${shop}/products/`, getConfig() ).then(
             res => {
@@ -49,7 +53,8 @@ export const getAllProducts = (shop, demostore, id, token) => dispatch => {
                   product => product.variances.length > 0 && product.variances[0].attributes.length > 0
                 )
               ));
-              if (demostore) {
+
+              if (demostore && id) {
                 request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
                           token,
                           null,
@@ -88,9 +93,12 @@ export const  requestAttribute = (
   }
 }
 
-export const saveProduct = (obj, shop, token, editing, demostore) => dispatch => {
-  if (editing) {
+export const saveProduct = (obj, shop, token, editing) => (dispatch, getState) => {
+  const {
+    demostore,
+  } = fromState(getState);
 
+  if (editing) {
     const {
       id,
       name,
@@ -470,7 +478,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
             )
 
             return returnArr;
-          case 'image':
+          case 'image'://not impleamented
             editedImages.forEach(
               variance => {
                 const {
@@ -478,6 +486,14 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                   images,
                 } = variance;
 
+              if (demostore) {
+                dispatch(addNotification({
+                    title: 'Success',
+                    message: 'Successfully updated product',
+                    position: 'bl',
+                    status: 'success',
+                }));
+              } else {
                 request(`/vendors/shops/${shop}/products/${id}/variances/${varianceID}/`, getConfig(
                         token,
                         {
@@ -505,7 +521,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                       ).catch(
                         err => {
                           console.log(err)
-                           dispatch(addNotification({
+                          dispatch(addNotification({
                               title: 'Success',
                               message: 'Successfully updated product',
                               position: 'bl',
@@ -514,6 +530,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                           returnArr = [ ...arr, infoKey ];
                         }
                     );
+                }
               }
             )
             return returnArr;
@@ -661,7 +678,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                                     if (demostore) {
                                       if (res.id) {
                                         dispatch(sidebarActions.sidebar.hide());
-                                        dispatch(getAllProducts(shop, demostore, res.id, token));
+                                        dispatch(getAllProducts(shop, token, res.id));
                                         dispatch(getShopCategories(shop));
                                         dispatch(addNotification({
                                           title: 'Success',
@@ -672,7 +689,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                                       }
                                     } else {
                                       dispatch(sidebarActions.sidebar.hide());
-                                      dispatch(getAllProducts(shop, false, null, null));
+                                      dispatch(getAllProducts(shop, null, null));
                                       dispatch(getShopCategories(shop));
                                       dispatch(addNotification({
                                         title: 'Success',
@@ -714,7 +731,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                   if (demostore) {
                     if (res.id) {
                       dispatch(sidebarActions.sidebar.hide());
-                      dispatch(getAllProducts(shop, demostore, res.id, token));
+                      dispatch(getAllProducts(shop, token, res.id));
                       dispatch(getShopCategories(shop));
                       dispatch(addNotification({
                         title: 'Success',
@@ -725,7 +742,7 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
                     }
                   } else {
                     dispatch(sidebarActions.sidebar.hide());
-                    dispatch(getAllProducts(shop, false, null, null));
+                    dispatch(getAllProducts(shop, null, null));
                     dispatch(getShopCategories(shop));
                     dispatch(addNotification({
                       title: 'Success',
@@ -761,35 +778,50 @@ export const saveProduct = (obj, shop, token, editing, demostore) => dispatch =>
   }
 }
 
-export const deleteProduct = (id, shop, token) => dispatch => {
-  if (token) {
-    request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
-              token,
-              null,
-              'DELETE'
-            )).then(
-              res => {
-                dispatch(productActions.products.done.delete.product(id));
-                dispatch(shopActions.shop.updateChip(0));
-                dispatch(getShopCategories(shop));
-                dispatch(sidebarActions.sidebar.hide())
+export const deleteProduct = (id, shop, token) => (dispatch, getState) => {
+  const {
+    demostore,
+  } = fromState(getState);
+
+  if (demostore) {
+    dispatch(productActions.products.done.delete.product(id));
+    dispatch(sidebarActions.sidebar.hide());
+    dispatch(addNotification({
+        title: 'Success',
+        message: 'Successfully deleted product',
+        position: 'bl',
+        status: 'success',
+    }));
+  } else {
+    if (token) {
+      request(`/vendors/shops/${shop}/products/${id}/`, getConfig(
+                token,
+                null,
+                'DELETE'
+              )).then(
+                res => {
+                  dispatch(productActions.products.done.delete.product(id));
+                  dispatch(shopActions.shop.updateChip(0));
+                  dispatch(getShopCategories(shop));
+                  dispatch(sidebarActions.sidebar.hide());
+                  dispatch(addNotification({
+                      title: 'Success',
+                      message: 'Successfully deleted product',
+                      position: 'bl',
+                      status: 'success',
+                  }));
+                }
+            ).catch(
+              err => {
                 dispatch(addNotification({
-                    title: 'Success',
-                    message: 'Successfully deleted product',
+                    title: 'Error deleting product',
+                    message: err,
                     position: 'bl',
-                    status: 'success',
-                }));
+                    status: 'error',
+                  }));
               }
-          ).catch(
-            err => {
-              dispatch(addNotification({
-                  title: 'Error deleting product',
-                  message: err,
-                  position: 'bl',
-                  status: 'error',
-                }));
-            }
-          );
+            );
+    }
   }
 }
 
@@ -858,50 +890,77 @@ export const getFeaturedProduct = shop => dispatch => {
           )
 }
 
-export const makeFeaturedProduct = (id, shop, token) => dispatch => {
+export const makeFeaturedProduct = (id, shop, token) => (dispatch, getState) => {
+  const {
+    demostore,
+  } = fromState(getState);
 
-  if (token) {
-    request(`/vendors/shops/${shop}/featured-products/`, getConfig(
-            token,
-            {
-              product: `${id}`,
-            },
-            'POST'
-          )).then(
-            res => {
-              dispatch(getFeaturedProduct(shop));
-
-              dispatch(sidebarActions.sidebar.hide());
-              dispatch(addNotification({
-                title: 'Success',
-                message: 'Successfully featured product',
-                position: 'bl',
-                status: 'success',
-              }));
-            }
-          );
+  if (demostore) {
+    dispatch(productActions.products.ui.set.featuredProduct({ remove: false, id }));
+    dispatch(sidebarActions.sidebar.hide());
+    dispatch(addNotification({
+      title: 'Success',
+      message: 'Successfully featured product',
+      position: 'bl',
+      status: 'success',
+    }));
+  } else {
+    if (token) {
+      request(`/vendors/shops/${shop}/featured-products/`, getConfig(
+              token,
+              {
+                product: `${id}`,
+              },
+              'POST'
+            )).then(
+              res => {
+                dispatch(getFeaturedProduct(shop));
+                dispatch(sidebarActions.sidebar.hide());
+                dispatch(addNotification({
+                  title: 'Success',
+                  message: 'Successfully featured product',
+                  position: 'bl',
+                  status: 'success',
+                }));
+              }
+            );
+    }
   }
 }
 
-export const removeFromFeaturedProduct = (productID, featuredID, shop, token) => dispatch => {
+export const removeFromFeaturedProduct = (productID, featuredID, shop, token) => (dispatch, getState) => {
+  const {
+    demostore,
+  } = fromState(getState);
 
-  if (token) {
-    request(`/vendors/shops/${shop}/featured-products/${featuredID}/`, getConfig(
-            token,
-            null,
-            'DELETE'
-          )).then(
-            res => {
-              dispatch(productActions.products.done.delete.featuredProduct(productID));
-              dispatch(sidebarActions.sidebar.hide());
-              dispatch(addNotification({
-                title: 'Success',
-                message: 'Successfully removed from featured product',
-                position: 'bl',
-                status: 'success',
-              }));
-            }
-          )
+  if (demostore) {
+    dispatch(productActions.products.ui.set.featuredProduct({ remove: true, id: productID }));
+    dispatch(sidebarActions.sidebar.hide());
+    dispatch(addNotification({
+      title: 'Success',
+      message: 'Successfully featured product',
+      position: 'bl',
+      status: 'success',
+    }));
+  } else {
+    if (token) {
+      request(`/vendors/shops/${shop}/featured-products/${featuredID}/`, getConfig(
+              token,
+              null,
+              'DELETE'
+            )).then(
+              res => {
+                dispatch(productActions.products.done.delete.featuredProduct(productID));
+                dispatch(sidebarActions.sidebar.hide());
+                dispatch(addNotification({
+                  title: 'Success',
+                  message: 'Successfully removed from featured product',
+                  position: 'bl',
+                  status: 'success',
+                }));
+              }
+            )
+    }
   }
 }
 

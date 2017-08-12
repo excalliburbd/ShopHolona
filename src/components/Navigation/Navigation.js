@@ -40,11 +40,11 @@ class Nav extends Component {
       hadleLoadData,
       token,
       vendor,
-      demostore,
+      isDemostore,
     } = nextProps;
 
     if(this.props.online !== online && online && shopID ) {
-      hadleLoadData(shopID, token, (shopID === demostore) || vendor);
+      hadleLoadData(shopID, token, isDemostore || vendor);
     }
   }
 
@@ -109,7 +109,6 @@ class Nav extends Component {
       profilePic,
       showCartSidebar,
       titleMsg,
-      isDemostore,
       children,
     } = this.props;
 
@@ -164,8 +163,7 @@ class Nav extends Component {
                               handleSignIn={ handleSignIn }
                               vendor={ vendor }
                               profilePic={ profilePic }
-                              showCartSidebar={ showCartSidebar }
-                              demostore={ isDemostore } />
+                              showCartSidebar={ showCartSidebar } />
             <div className={
                   (location.pathname === '/') ?
                     'Navigation-content-main' :

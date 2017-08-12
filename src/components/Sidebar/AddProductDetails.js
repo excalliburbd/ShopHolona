@@ -172,13 +172,13 @@ const AddProductDetails = ({
                           label="Remove featured product"
                           accent
                           onClick={
-                            () => deleteFromFeaturedProduct(selectedProductId, featuredID, shop, token, shop === demostore)
+                            () => deleteFromFeaturedProduct(selectedProductId, featuredID, shop, token, demostore)
                           } /> :
                     <Button icon="start"
                           label="Add to featured product"
                           primary
                           onClick={
-                            () => makeFeaturedProduct(selectedProductId, shop, token, shop === demostore)
+                            () => makeFeaturedProduct(selectedProductId, shop, token, demostore)
                           } />
 
                 }
@@ -188,12 +188,12 @@ const AddProductDetails = ({
                             label="Delete"
                             accent
                             onClick={
-                              () => deleteSelectedProduct(selectedProductId, shop, token, shop === demostore, productDetailName)
+                              () => deleteSelectedProduct(selectedProductId, shop, token, demostore, productDetailName)
                             } />
                     <Button icon="save"
                             label="save"
                             onClick={
-                              () => handleSaveProduct(selectedProduct, shop, token, true, shop === demostore)
+                              () => handleSaveProduct(selectedProduct, shop, token, true, demostore)
                             } />
                   </div>
                   <div style={{ height: '3em'}}/>

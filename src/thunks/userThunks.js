@@ -1,6 +1,6 @@
 import { addNotification } from 'reapop';
 
-import { request, getConfig } from './helpers';
+import { request, getConfig, fromState } from './helpers';
 
 import { getShopCategories } from './shopThunks';
 import {
@@ -52,21 +52,33 @@ export const getFollowingShop = (shop, token) => dispatch => {
   }
 }
 
-export const trySignInAsyncAction = (res, shop, demostore) => dispatch => {
+export const trySignInAsyncAction = (res, shop) =>  (dispatch, getState) => {
+  const {
+    demostore,
+  } = fromState(getState);
 
-  const credentials = {};
+  if (demostore) {
+    dispatch(addNotification({
+        title: 'Sorry for the confustion',
+        message: 'You shouldn\'t login to the demostore',
+        position: 'bl',
+        status: 'warning',
+    }));
+  } else {
+    const credentials = {};
 
-  if(res.email && res.password) {
-    credentials.email = res.email;
-    credentials.password = res.password;
-  }
+    if(res.email && res.password) {
+      credentials.email = res.email;
+      credentials.password = res.password;
+    }
 
-  if(res.phone && res.password) {
-    credentials.phone = res.phone;
-    credentials.password = res.password;
-  }
+    if(res.phone && res.password) {
+      credentials.phone = res.phone;
+      credentials.password = res.password;
+    }
 
-  request('/auth/login/', getConfig(
+    request('/auth/login/', getConfig(
+
             null,
             credentials,
             'POST'
@@ -79,7 +91,7 @@ export const trySignInAsyncAction = (res, shop, demostore) => dispatch => {
 
                   if (res.id) {
                     dispatch(userActions.user.done.get.profile(res));
-                    !demostore && dispatch(addNotification({
+                    demostore && dispatch(addNotification({
                         title: 'Success',
                         message: 'Successfully signed in',
                         position: 'bl',
@@ -109,6 +121,7 @@ export const trySignInAsyncAction = (res, shop, demostore) => dispatch => {
               }));
             }
           );
+  }
 }
 
 export const getMe = token => dispatch => {

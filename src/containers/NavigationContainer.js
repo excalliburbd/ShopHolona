@@ -14,7 +14,8 @@ import {
   tryGetVendor,
   trySignInAsyncAction,
   getMe,
-  getFollowingShop, } from '../thunks/userThunks';
+  getFollowingShop,
+} from '../thunks/userThunks';
 import { getCart } from '../thunks/cartThunks';
 import { getOrderList } from '../thunks/ordersThunks';
 import { getBanks } from '../thunks/paymentandaddressThunks';
@@ -27,6 +28,10 @@ import {
 
 import { getVendor, getToken } from '../selectors/userSelectors';
 import { getPinState, getTitleMsg } from '../selectors/navigationSelectors';
+import {
+  getDemostore,
+  getIsDemostore,
+} from '../selectors/shopSelectors';
 
 import Nav from '../components/Navigation/Navigation';
 
@@ -47,8 +52,8 @@ const mapStateToProps = state => {
     online: state.offline.online,
     token: getToken(state),
     titleMsg: getTitleMsg(state),
-    demostore: state.shop.demostore,
-    isDemostore: state.shop.demostore === state.shop.id,
+    demostore: getDemostore(state),
+    isDemostore: getIsDemostore(state),
   }
 }
 
@@ -77,7 +82,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(shopActions.shop.set.id(shop));
       dispatch(getShop(shop));
       dispatch(getShopCategories(shop));
-      dispatch(getAllProducts(shop));
+      dispatch(getAllProducts(shop, null, null));
       dispatch(getShopAddress(shop));
       dispatch(getFeaturedProduct(shop));
       dispatch(getBanks());
@@ -91,7 +96,7 @@ const mapDispatchToProps = dispatch => {
 
       if (demostore) {
         dispatch(
-          trySignInAsyncAction({ email: config.demouser, password: config.demopass}, shop, demostore)
+          trySignInAsyncAction({ email: config.demouser, password: config.demopass}, shop)
         )
       }
     },
@@ -99,7 +104,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(tryGetVendor(shop));
       dispatch(getShop(shop));
       dispatch(getShopCategories(shop));
-      dispatch(getAllProducts(shop));
+      dispatch(getAllProducts(shop, null, null));
       dispatch(getShopAddress(shop));
       dispatch(getFeaturedProduct(shop));
       dispatch(getBanks());

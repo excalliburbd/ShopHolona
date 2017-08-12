@@ -144,7 +144,7 @@ const AddProductImages = ({
                 disabled={ !showDone }
                 onClick={
                   () => {
-                    saveProduct(product, shop, token, false, shop === demostore);
+                    saveProduct(product, shop, token, false, demostore);
                   }
                 } />
       </div>

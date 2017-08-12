@@ -31,24 +31,31 @@ export const productsReducer = handleActions({
 
 export const featuredProductsReducer = handleActions({
   [productActions.products.done.get.featuredProducts]: (state, action) => {
-      const products = state;
+    const products = state;
 
-      action.payload.forEach(
-        ({ product }) => {
-          if(products.indexOf(product.id) === -1) {
-            products.unshift(product.id)
-          }
+    action.payload.forEach(
+      ({ product }) => {
+        if(products.indexOf(product.id) === -1) {
+          products.unshift(product.id)
         }
-      )
+      }
+    )
 
-      return products;
-    },
-    [productActions.products.done.delete.product]: (state, action) => {
-      return state.filter( id => (id !== action.payload));
-    },
-    [productActions.products.done.delete.featuredProduct]: (state, action) => {
-      return state.filter( id => (id !== action.payload));
+    return products;
+  },
+  [productActions.products.done.delete.product]: (state, action) => {
+    return state.filter( id => (id !== action.payload));
+  },
+  [productActions.products.done.delete.featuredProduct]: (state, action) => {
+    return state.filter( id => (id !== action.payload));
+  },
+  [productActions.products.ui.set.featuredProduct]: (state, action) => {
+    if (action.payload.remove) {
+      return state.filter( id => id !== action.payload.id);
     }
+
+    return [ action.payload.id, ...state ];
+  },
 }, [
 
 ]);
@@ -522,7 +529,7 @@ export const productsEntityReducer = handleActions({
         ...state,
         [action.payload.id]: {
           ...state[action.payload.id],
-          variances: state[action.payload.id].map(
+          variances: state[action.payload.id].variances.map(
             variant => {
               if (variant.id === action.payload.variantID) {
                 return variant.attributes.map(
@@ -548,7 +555,7 @@ export const productsEntityReducer = handleActions({
         ...state,
         [action.payload.id]: {
           ...state[action.payload.id],
-          variances: state[action.payload.id].map(
+          variances: state[action.payload.id].variances.map(
             variant => {
               if (variant.id === action.payload.variantID) {
                 return {

@@ -33,6 +33,8 @@ export const productActionCreators = {
         DESC: payload => payload,
         ATTRIBUTE: payload => payload,
         VARIANT: payload => payload,
+        IMAGE: payload => payload,
+        FEATURED_PRODUCT: payload => payload,
       },
       RESET: {
         CATEGORIES: payload => payload,

@@ -25,6 +25,8 @@ export const getIsPhysicalStore = state => state.shop.physical_store;
 export const getFacebook = state => state.shop.fb_link;
 export const getProductDetailsID = state => state.ui.shopPage.product;
 export const getProductDetailsIsFeaturedProduct = state => (getFeaturedProcutsArray(state).indexOf(getProductDetailsID(state)) !== -1)
+export const getDemostore = state => state.shop.demostore;
+export const getIsDemostore = state => state.shop.demostore === state.shop.id;
 
 export const getCategories = createSelector(
   [getCategoriesArray, getCategoriesEntities],
@@ -93,12 +95,3 @@ export const getAddress = createSelector(
     return addressArr[0];
   }
 );
-
-// export const getAllAddresses = createSelector(
-//   [getAddresses],
-//   addressObj => {
-//     return Object.keys(addressObj).map(
-//       id => addressObj[id]
-//     )
-//   }
-// );

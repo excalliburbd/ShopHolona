@@ -80,11 +80,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleDone: (type, image, shop, token, formData, id, file, predicate, action, step) => {
 
       if (type === 'PROFILE') {
-       dispatch(postShopPageProfie(image, shop, token, formData, predicate, action, step));
+       dispatch(postShopPageProfie(image, shop, token, formData, predicate, action, step, file));
       }
 
       if (type === 'COVER') {
-       dispatch(postShopPageCover(image, shop, token, formData, predicate, action, step));
+       dispatch(postShopPageCover(image, shop, token, formData, predicate, action, step, file));
       }
 
       if (type === 'PRODUCT') {

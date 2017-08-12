@@ -427,6 +427,18 @@ export const ShopPageReducer = handleActions({
         demostore: config.demostore,
       }
     },
+    [shopActions.shop.set.demo.profPic]: (state, action) => {
+      return {
+        ...state,
+        prof_pic: action.payload,
+      }
+    },
+    [shopActions.shop.set.demo.cover]: (state, action) => {
+      return {
+        ...state,
+        cover_photo: action.payload,
+      }
+    },
 }, shopInitialState );
 
 export const ShopPageUIReducer = handleActions({

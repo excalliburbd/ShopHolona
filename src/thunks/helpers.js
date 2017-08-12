@@ -120,3 +120,14 @@ export const request = (url, options) => {
       )
   });
 }
+
+export const fromState = getState => {
+  const state = getState();
+  const payments = state.shop.payments[0];
+  const demostore = state.shop.id === state.shop.demostore;
+
+  return {
+    demostore,
+    payments,
+  }
+}

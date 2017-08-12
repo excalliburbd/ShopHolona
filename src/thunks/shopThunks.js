@@ -1,6 +1,6 @@
 import { addNotification } from 'reapop';
 
-import { request, getConfig } from './helpers';
+import { request, getConfig, fromState } from './helpers';
 
 import {
   shopActions,
@@ -58,59 +58,91 @@ export const getShop = shop  => dispatch => {
 }
 
 
-export const postShopPageProfie = (image, shop, token, formData, predicate, action, step)  => dispatch => {
-  image.toBlob( blob => {
-    formData.append('prof_pic', blob );
-    if (token) {
-      request(`/vendors/shops/${shop}/`, getConfig(
-          token,
-          formData,
-          'PUT'
-        )).then(
-          res => {
-            if(res.id) {
-              dispatch(imageUploaderActions.imageUploader.hide());
-              dispatch(getShop(shop));
-              dispatch(addNotification({
-                  title: 'Success',
-                  message: 'Successfully updated shop profile',
-                  position: 'bl',
-                  status: 'success',
-              }));
-              predicate && action(step);
+export const postShopPageProfie = (image, shop, token, formData, predicate, action, step, file)  => (dispatch, getState) => {
+  const {
+    demostore,
+  } = fromState(getState);
+
+  if (demostore) {
+    dispatch(shopActions.shop.set.demo.profPic(file.preview));
+    dispatch(imageUploaderActions.imageUploader.hide());
+    dispatch(addNotification({
+        title: 'Success',
+        message: 'Successfully updated shop profile',
+        position: 'bl',
+        status: 'success',
+    }));
+    predicate && action(step);
+  } else {
+    image.toBlob( blob => {
+      formData.append('prof_pic', blob );
+      if (token) {
+        request(`/vendors/shops/${shop}/`, getConfig(
+            token,
+            formData,
+            'PUT'
+          )).then(
+            res => {
+              if(res.id) {
+                dispatch(imageUploaderActions.imageUploader.hide());
+                dispatch(getShop(shop));
+                dispatch(addNotification({
+                    title: 'Success',
+                    message: 'Successfully updated shop profile',
+                    position: 'bl',
+                    status: 'success',
+                }));
+                predicate && action(step);
+              }
             }
-          }
-        );
-    }
-  });
+          );
+      }
+    });
+  }
 }
 
-export const postShopPageCover = (image, shop, token, formData, predicate, action, step)  => dispatch => {
-  image.toBlob( blob => {
-    formData.append('cover_photo', blob );
-    if (token) {
-      request(`/vendors/shops/${shop}/`, getConfig(
-          token,
-          formData,
-          'PUT'
-        )).then(
-          res => {
-            if(res.id) {
-              dispatch(imageUploaderActions.imageUploader.hide());
-              dispatch(getShop(shop));
-              dispatch(addNotification({
-                  title: 'Success',
-                  message: 'Successfully updated shop cover',
-                  position: 'bl',
-                  status: 'success',
-                }));
-              predicate && action(step);
-            }
-          }
-        );
-    }
+export const postShopPageCover = (image, shop, token, formData, predicate, action, step, file)  => (dispatch, getState) => {
+  const {
+    demostore,
+  } = fromState(getState);
 
-  });
+  if (demostore) {
+    dispatch(shopActions.shop.set.demo.cover(file.preview));
+    dispatch(imageUploaderActions.imageUploader.hide());
+    dispatch(addNotification({
+        title: 'Success',
+        message: 'Successfully updated shop cover',
+        position: 'bl',
+        status: 'success',
+      }));
+    predicate && action(step);
+  } else {
+    image.toBlob( blob => {
+      formData.append('cover_photo', blob );
+      if (token) {
+        request(`/vendors/shops/${shop}/`, getConfig(
+            token,
+            formData,
+            'PUT'
+          )).then(
+            res => {
+              if(res.id) {
+                dispatch(imageUploaderActions.imageUploader.hide());
+                dispatch(getShop(shop));
+                dispatch(addNotification({
+                    title: 'Success',
+                    message: 'Successfully updated shop cover',
+                    position: 'bl',
+                    status: 'success',
+                  }));
+                predicate && action(step);
+              }
+            }
+          );
+      }
+
+    });
+  }
 }
 
 export const getShopHours = (shop, token) => dispatch => {
@@ -158,7 +190,11 @@ export const getShopPayments = (shop, token) => dispatch => {
                     )
 }
 
-export const runShopInfoUpdate = (info, shop, token) => dispatch => {
+export const runShopInfoUpdate = (info, shop, token) => (dispatch, getState) => {
+  const {
+    demostore,
+  } = fromState(getState);
+
   const {
     name,
     fcom,
@@ -176,7 +212,15 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
 
         switch(infoKey) {
           case 'name':
-            request(`/vendors/shops/${shop}/`, getConfig(
+            if (demostore) {
+              dispatch(addNotification({
+                            title: 'Success',
+                            message: 'Successfully updated shop name',
+                            position: 'bl',
+                            status: 'success',
+                          }));
+            } else {
+               request(`/vendors/shops/${shop}/`, getConfig(
                       token,
                       {
                         shop_name: name,
@@ -210,9 +254,19 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                         }
                       }
                     );
+
+            }
             return returnArr;
           case 'phone':
-            request(`/vendors/shops/${shop}/contacts/${phone.id}/`, getConfig(
+            if (demostore) {
+                dispatch(addNotification({
+                            title: 'Success',
+                            message: 'Successfully updated phone number',
+                            position: 'bl',
+                            status: 'success',
+                          }));
+            } else {
+              request(`/vendors/shops/${shop}/contacts/${phone.id}/`, getConfig(
                       token,
                       {
                         type: 0,
@@ -246,142 +300,179 @@ export const runShopInfoUpdate = (info, shop, token) => dispatch => {
                         }));
                       }
                     );
+            }
             return returnArr;
           case 'from_hour':
-            request(`/vendors/shops/${shop}/hours/${hours.id}/`, getConfig(
-                      token,
-                      {
-                        from_hour: `${hours.from_hour.getHours()}:${hours.from_hour.getMinutes()}`
-                      },
-                      'PATCH'
-                    )).then(
-                      res => {
-                        if (res.from_hour) {
-                          dispatch(shopActions.shop.set.fromHour({
-                            from_hour: res.from_hour,
-                          }))
+            if (demostore) {
+                  dispatch(addNotification({
+                              title: 'Success',
+                              message: 'Successfully updated hour',
+                              position: 'bl',
+                              status: 'success',
+                            }));
+              } else {
+                request(`/vendors/shops/${shop}/hours/${hours.id}/`, getConfig(
+                        token,
+                        {
+                          from_hour: `${hours.from_hour.getHours()}:${hours.from_hour.getMinutes()}`
+                        },
+                        'PATCH'
+                      )).then(
+                        res => {
+                          if (res.from_hour) {
+                            dispatch(shopActions.shop.set.fromHour({
+                              from_hour: res.from_hour,
+                            }))
+                            dispatch(addNotification({
+                              title: 'Success',
+                              message: 'Successfully updated hour',
+                              position: 'bl',
+                              status: 'success',
+                            }));
+                          }
+                        }
+                      ).catch(
+                        err => {
+                          console.log(err)
+                          returnArr = [ ...arr, infoKey ];
                           dispatch(addNotification({
-                            title: 'Success',
-                            message: 'Successfully updated hour',
+                            title: 'Error during hour update',
+                            message: err,
                             position: 'bl',
-                            status: 'success',
+                            status: 'error',
                           }));
                         }
-                      }
-                    ).catch(
-                      err => {
-                        console.log(err)
-                        returnArr = [ ...arr, infoKey ];
-                        dispatch(addNotification({
-                          title: 'Error during hour update',
-                          message: err,
-                          position: 'bl',
-                          status: 'error',
-                        }));
-                      }
-                    );
+                      );
+              }
             return returnArr;
           case 'to_hour':
-            request(`/vendors/shops/${shop}/hours/${hours.id}/`, getConfig(
-                      token,
-                      {
-                        to_hour: `${hours.to_hour.getHours()}:${hours.to_hour.getMinutes()}`
-                      },
-                      'PATCH'
-                    )).then(
-                      res => {
-                        if (res.to_hour) {
-                          dispatch(shopActions.shop.set.toHours({
-                            to_hour: res.to_hour,
-                          }))
+            if (demostore) {
+                    dispatch(addNotification({
+                              title: 'Success',
+                              message: 'successfully updated to_hour',
+                              position: 'bl',
+                              status: 'success',
+                            }));
+            } else {
+              request(`/vendors/shops/${shop}/hours/${hours.id}/`, getConfig(
+                        token,
+                        {
+                          to_hour: `${hours.to_hour.getHours()}:${hours.to_hour.getMinutes()}`
+                        },
+                        'PATCH'
+                      )).then(
+                        res => {
+                          if (res.to_hour) {
+                            dispatch(shopActions.shop.set.toHours({
+                              to_hour: res.to_hour,
+                            }))
+                            dispatch(addNotification({
+                              title: 'Success',
+                              message: 'successfully updated to_hour',
+                              position: 'bl',
+                              status: 'success',
+                            }));
+                          }
+                        }
+                      ).catch(
+                        err => {
+                          console.log(err)
+                          returnArr = [ ...arr, infoKey ];
                           dispatch(addNotification({
-                            title: 'Success',
-                            message: 'successfully updated to_hour',
+                            title: 'Error during shop update',
+                            message: err,
                             position: 'bl',
-                            status: 'success',
+                            status: 'error',
                           }));
                         }
-                      }
-                    ).catch(
-                      err => {
-                        console.log(err)
-                        returnArr = [ ...arr, infoKey ];
-                        dispatch(addNotification({
-                          title: 'Error during shop update',
-                          message: err,
-                          position: 'bl',
-                          status: 'error',
-                        }));
-                      }
-                    );
+                      );
+            }
             return returnArr;
           case 'description':
-            request(`/vendors/shops/${shop}/`, getConfig(
-                      token,
-                      {
-                        short_descr: description,
-                        fcom,
-                      },
-                      'PATCH'
-                    )).then(
-                      res => {
-                        if (res.id) {
-                          //do something
-                          dispatch(shopActions.shop.set.editDesc(false));
-                          dispatch(getShop(shop));
+            if (demostore) {
+              dispatch(addNotification({
+                              title: 'Successfully updated shop description',
+                              message: 'Store: Your Store Description has been updated',
+                              position: 'bl',
+                              status: 'success',
+                            }));
+            } else {
+              request(`/vendors/shops/${shop}/`, getConfig(
+                        token,
+                        {
+                          short_descr: description,
+                          fcom,
+                        },
+                        'PATCH'
+                      )).then(
+                        res => {
+                          if (res.id) {
+                            //do something
+                            dispatch(shopActions.shop.set.editDesc(false));
+                            dispatch(getShop(shop));
+                            dispatch(addNotification({
+                              title: 'Successfully updated shop description',
+                              message: 'Store: Your Store Description has been updated',
+                              position: 'bl',
+                              status: 'success',
+                            }));
+                          }
+                        }
+                      ).catch(
+                        err => {
+                          returnArr = [ ...arr, infoKey ];
                           dispatch(addNotification({
-                            title: 'Successfully updated shop description',
-                            message: 'Store: Your Store Description has been updated',
-                            position: 'bl',
-                            status: 'success',
+                              title: 'Error updating shop description',
+                              message: err,
+                              position: 'bl',
+                              status: 'error',
                           }));
                         }
-                      }
-                    ).catch(
-                      err => {
-                        returnArr = [ ...arr, infoKey ];
-                        dispatch(addNotification({
-                            title: 'Error updating shop description',
-                            message: err,
-                            position: 'bl',
-                            status: 'error',
-                        }));
-                      }
-                    );
+                      );
+            }
             return returnArr;
           case 'license':
-            request(`/vendors/shops/${shop}/`, getConfig(
-                      token,
-                      {
-                        trade_license_number: license.number,
-                        fcom,
-                      },
-                      'PATCH'
-                    )).then(
-                      res => {
-                        if (res.id) {
-                          //do something
-                          dispatch(shopActions.shop.set.editDesc(false));
-                          dispatch(getShop(shop));
+            if (demostore) {
+              dispatch(addNotification({
+                              title: 'Successfully updated shop description',
+                              message: 'Store: Your Store Description has been updated',
+                              position: 'bl',
+                              status: 'success',
+                            }));
+            } else {
+              request(`/vendors/shops/${shop}/`, getConfig(
+                        token,
+                        {
+                          trade_license_number: license.number,
+                          fcom,
+                        },
+                        'PATCH'
+                      )).then(
+                        res => {
+                          if (res.id) {
+                            //do something
+                            dispatch(shopActions.shop.set.editDesc(false));
+                            dispatch(getShop(shop));
+                            dispatch(addNotification({
+                              title: 'Successfully updated shop description',
+                              message: 'Store: Your Store Description has been updated',
+                              position: 'bl',
+                              status: 'success',
+                            }));
+                          }
+                        }
+                      ).catch(
+                        err => {
+                          returnArr = [ ...arr, infoKey ];
                           dispatch(addNotification({
-                            title: 'Successfully updated shop description',
-                            message: 'Store: Your Store Description has been updated',
-                            position: 'bl',
-                            status: 'success',
+                              title: 'Error updating shop description',
+                              message: err,
+                              position: 'bl',
+                              status: 'error',
                           }));
                         }
-                      }
-                    ).catch(
-                      err => {
-                        returnArr = [ ...arr, infoKey ];
-                        dispatch(addNotification({
-                            title: 'Error updating shop description',
-                            message: err,
-                            position: 'bl',
-                            status: 'error',
-                        }));
-                      }
-                    );
+                      );
+            }
             return returnArr;
           default:
             return [ ...arr, infoKey ]

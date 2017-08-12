@@ -19,6 +19,10 @@ export const shopActionCreators = {
       // LICENSE_NUMBER: payload => payload,
       // DESCRIPTION: payload => payload,
       PAYMENTS: payload => payload,
+      DEMO: {
+        PROF_PIC: payload => payload,
+        COVER: payload => payload,
+      }
     },
     EDIT: {
       NAME: payload => payload,
