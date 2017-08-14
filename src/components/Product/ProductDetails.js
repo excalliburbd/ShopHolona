@@ -54,7 +54,7 @@ const ProductDetails = ({
           <h1 className="product-details-title">{ product.name }</h1>
           <div className="product-details-price-title">
             <h2 className="product-details-price">Price: &#2547; { product.sh_price }</h2>
-            <Stars rating={ 3 } />
+            <Stars rating={ 0 } />
           </div>
         </Sticky>
         <div className="product-details-slider">

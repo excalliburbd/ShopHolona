@@ -9,23 +9,23 @@ import MdInsertChart from 'react-icons/lib/md/insert-chart';
 import './Reports.css';
 
 const ordersData = [
-  {name: 'date1', Orders: 24},
-  {name: 'date2', Orders: 13},
-  {name: 'date3', Orders: 98},
-  {name: 'date4', Orders: 39},
-  {name: 'date5', Orders: 48},
-  {name: 'date6', Orders: 38},
-  {name: 'date7', Orders: 43},
+  {name: 'date1', Orders: 0},
+  {name: 'date2', Orders: 0},
+  {name: 'date3', Orders: 0},
+  {name: 'date4', Orders: 0},
+  {name: 'date5', Orders: 0},
+  {name: 'date6', Orders: 0},
+  {name: 'date7', Orders: 0},
 ];
 
 const revenueData = [
-  {name: 'date1', revenue: 2400},
-  {name: 'date2', revenue: 1300},
-  {name: 'date3', revenue: 800},
-  {name: 'date4', revenue: 3900},
-  {name: 'date5', revenue: 4800},
-  {name: 'date6', revenue: 3800},
-  {name: 'date7', revenue: 4300},
+  {name: 'date1', revenue: 0},
+  {name: 'date2', revenue: 0},
+  {name: 'date3', revenue: 0},
+  {name: 'date4', revenue: 0},
+  {name: 'date5', revenue: 0},
+  {name: 'date6', revenue: 0},
+  {name: 'date7', revenue: 0},
 ];
 
 const CustomizedDot = (props) => {

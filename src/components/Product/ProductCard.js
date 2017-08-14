@@ -29,7 +29,8 @@ class ProductCard extends Component {
 
   render() {
     const {
-      rating = this.getRandomInt(3, 5),
+      // rating = this.getRandomInt(3, 5),
+      rating = '0',
       name = 'Product Name',
       handleShowVendorDetails,
       handleShowCustomerDetails,

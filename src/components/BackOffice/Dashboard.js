@@ -25,11 +25,11 @@ import {
 import './Dashboard.css';
 
 const data = [
-  {name: 'January', Orders: 24},
-  {name: 'February', Orders: 13},
-  {name: 'March', Orders: 98},
-  {name: 'April', Orders: 39},
-  {name: 'May', Orders: 48},
+  {name: 'January', Orders: 0},
+  {name: 'February', Orders: 0},
+  {name: 'March', Orders: 0},
+  {name: 'April', Orders: 0},
+  {name: 'May', Orders: 0},
   {name: 'June', Orders: 0},
   {name: 'July', Orders: 0},
 ];
@@ -60,13 +60,13 @@ const Dashboard = ({
 }) => {
 
   const revenueData = [
-    {name: 'January', revenue: 2400},
-    {name: 'February', revenue: 1300},
-    {name: 'March', revenue: 800},
-    {name: 'April', revenue: 3900},
-    {name: 'May', revenue: 4800},
-    {name: 'June', revenue: 3800},
-    {name: 'July', revenue: 4300},
+    {name: 'January', revenue: 0},
+    {name: 'February', revenue: 0},
+    {name: 'March', revenue: 0},
+    {name: 'April', revenue: 0},
+    {name: 'May', revenue: 0},
+    {name: 'June', revenue: 0},
+    {name: 'July', revenue: 0},
   ];
 
   return (

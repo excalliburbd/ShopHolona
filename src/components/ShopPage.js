@@ -167,7 +167,7 @@ const ShopPage = ({
 
         <div className="ShopPage-details-description">
           <h2 className="ShopPage-details--title">{ shopName }</h2>
-          <Stars rating="4" />
+          <Stars rating="0" />
           {
             shopAddress &&
             <p className="ShopPage-details--address">
