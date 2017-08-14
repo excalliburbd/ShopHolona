@@ -16,12 +16,16 @@ import {
 } from '../selectors/shopSelectors';
 import { getVendor, getToken } from '../selectors/userSelectors';
 import {
-  getIsFcom
+  getIsFcom,
+  getIsPhysicalStore,
 } from '../selectors/shopSelectors';
 import {
   getAllbanks,
   getAllBranches,
   getAllbankInfo,
+  getFusedDistricts,
+  getFusedCities,
+  getFusedThanas,
 } from '../selectors/paymentandaddressSelectors';
 
 import {
@@ -31,6 +35,8 @@ import {
   getBanks,
   getBranch,
   saveBankInfo,
+  getCities,
+  getThanas,
 } from '../thunks/paymentandaddressThunks';
 
 const mapStateToProps = state => {
@@ -51,6 +57,16 @@ const mapStateToProps = state => {
     payments: state.shop.payments[0],
     editing: state.shop.information.editing.length > 0,
     vendor: getVendor(state),
+    physicalStore: getIsPhysicalStore(state),
+    districts: getFusedDistricts(state),
+    districtUIValue: state.ui.paymentsAndAddresses.district,
+    districtUIID: state.ui.paymentsAndAddresses.districtID,
+    cities: getFusedCities(state),
+    cityUIValue: state.ui.paymentsAndAddresses.city,
+    cityUIID: state.ui.paymentsAndAddresses.cityID,
+    thanas: getFusedThanas(state),
+    thanaUIValue: state.ui.paymentsAndAddresses.thana,
+    thanaUIID: state.ui.paymentsAndAddresses.thanaID,
   }
 }
 
@@ -66,7 +82,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       switch (type) {
         case 'bank':
           dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.bank(value));
-
           break;
         case 'branch':
           dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.branch(value));
@@ -76,6 +91,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           break;
         case 'account_number':
           dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.account.number(value));
+          break;
+        case 'district':
+          dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.district(value));
+          break;
+        case 'city':
+          dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.city(value));
+          break;
+        case 'thana':
+          dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.thana(value));
           break;
         default:
           break;
@@ -89,6 +113,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           break;
         case 'branch':
           dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.branchId(value));
+          break;
+        case 'district':
+          dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.districtId(value));
+          dispatch(getCities(value));
+          break;
+        case 'city':
+          dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.cityId(value));
+          dispatch(getThanas(value));
+          break;
+        case 'thana':
+          dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.thanaId(value));
           break;
         default:
           break;

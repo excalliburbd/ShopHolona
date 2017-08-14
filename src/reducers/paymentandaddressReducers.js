@@ -57,6 +57,31 @@ export const banksEntityReducer = handleActions({
 
 });
 
+export const addressesEntityReducer = handleActions({
+  [paymentandaddressActions.paymentsAndAddresses.done.get.districts]: (state, action) => {
+    return {
+      ...state,
+      districts: action.payload,
+    }
+  },
+  [paymentandaddressActions.paymentsAndAddresses.done.get.cities]: (state, action) => {
+    return {
+      ...state,
+      cities: action.payload,
+    }
+  },
+  [paymentandaddressActions.paymentsAndAddresses.done.get.thanas]: (state, action) => {
+    return {
+      ...state,
+      thanas: action.payload,
+    }
+  },
+}, {
+  districts: [],
+  cities: [],
+  thanas: [],
+});
+
 export const paymentandaddressUIReducer = handleActions({
   [paymentandaddressActions.paymentsAndAddresses.ui.set.bank]: (state, action) => {
     return {
@@ -93,6 +118,42 @@ export const paymentandaddressUIReducer = handleActions({
       ...state,
       accountNumber: action.payload,
     }
+  },
+  [paymentandaddressActions.paymentsAndAddresses.ui.set.district]: (state, action) => {
+    return {
+      ...state,
+      district: action.payload,
+    }
+  },
+  [paymentandaddressActions.paymentsAndAddresses.ui.set.districtId]: (state, action) => {
+    return {
+      ...state,
+      districtID: action.payload,
+    }
+  },
+  [paymentandaddressActions.paymentsAndAddresses.ui.set.city]: (state, action) => {
+    return {
+      ...state,
+      city: action.payload,
+    }
+  },
+  [paymentandaddressActions.paymentsAndAddresses.ui.set.cityId]: (state, action) => {
+    return {
+      ...state,
+      cityID: action.payload,
+    }
+  },
+  [paymentandaddressActions.paymentsAndAddresses.ui.set.thana]: (state, action) => {
+    return {
+      ...state,
+      thana: action.payload,
+    }
+  },
+  [paymentandaddressActions.paymentsAndAddresses.ui.set.thanaId]: (state, action) => {
+    return {
+      ...state,
+      thanaID: action.payload,
+    }
   }
 }, {
   bank: '',
@@ -101,4 +162,10 @@ export const paymentandaddressUIReducer = handleActions({
   branchID: null,
   accountName: '',
   accountNumber: '',
+  district: '',
+  districtID: null,
+  city: '',
+  cityID: null,
+  thana: '',
+  thanaID: null,
 });

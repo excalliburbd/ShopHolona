@@ -4,7 +4,12 @@ import { reducer as notificationsReducer } from 'reapop';
 
 import { FilterUIReducer } from './filterUIReducers';
 import { ordersReducer, ordersEntityReducer } from './ordersReducers';
-import { banksReducer, banksEntityReducer, paymentandaddressUIReducer } from './paymentandaddressReducers';
+import {
+  banksReducer,
+  banksEntityReducer,
+  paymentandaddressUIReducer,
+  addressesEntityReducer,
+} from './paymentandaddressReducers';
 import {
   UserReducer,
   UserUIReducer,
@@ -66,6 +71,7 @@ const RootReducer = combineReducers({
   }),
   cachedEntities: combineReducers({
     banks: banksEntityReducer,
+    addresses: addressesEntityReducer,
   }),
   ui: combineReducers({
     filter: FilterUIReducer,

@@ -34,6 +34,15 @@ const Settings = ({
   payments,
   editing,
   bankInfo,
+  physicalStore,
+  districts,
+  districtUIValue,
+  cities,
+  cityUIValue,
+  cityUIID,
+  thanas,
+  thanaUIValue,
+  thanaUIID,
 }) => {
 
   const {
@@ -60,12 +69,6 @@ const Settings = ({
                     onChange={
                       val => updateValue(val, 'name')
                     } />
-            {/*<Input  label="Change shop domain"
-                    icon="link"
-                    value={ domain }
-                    onChange={
-                      val => updateValue(val, 'domain')
-                    } />*/}
             <Input  label="Change shop contact number"
                     icon="phone"
                     value={ phone.number }
@@ -81,12 +84,49 @@ const Settings = ({
                       onChange={
                         val => updateValue(val, 'address')
                       } />
-              <Input  label="Change city"
-                      value={ address.city }
-                      onChange={
-                        val => updateValue(val, 'city')
-                      } />
-              <Input  label="Change thana"
+              {
+                districts && districts.list[0] ?
+                  <CustomAutocomplete label="District"
+                                      source={ districts }
+                                      value={ !editing ? address && address.district : districtUIValue }
+                                      selectionOnly
+                                      keyname="name"
+                                      handleSetValue={ text => handleSetValue('district', text) }
+                                      onSelected={ id => handleSelect('district', id) }
+                                      editing={ editing }
+                                    /> :
+                  <Input label="District"
+                      disabled={ true } />
+              }
+              {
+                cities && cities.list[0] ?
+                  <CustomAutocomplete label="City"
+                                      source={ cities }
+                                      value={ !editing ? address && address.city : cityUIValue }
+                                      selectionOnly
+                                      keyname="name"
+                                      handleSetValue={ text => handleSetValue('city', text) }
+                                      onSelected={ id => handleSelect('city', id) }
+                                      editing={ editing }
+                                    /> :
+                  <Input label="City"
+                      disabled={ true } />
+              }
+              {
+                thanas && thanas.list[0] ?
+                  <CustomAutocomplete label="Thana"
+                                      source={ thanas }
+                                      value={ !editing ? address && address.city : thanaUIValue }
+                                      selectionOnly
+                                      keyname="name"
+                                      handleSetValue={ text => handleSetValue('thana', text) }
+                                      onSelected={ id => handleSelect('thana', id) }
+                                      editing={ editing }
+                                    /> :
+                  <Input label="Thana"
+                      disabled={ true } />
+              }
+              <Input  label="Change postal code"
                       value={ address.postal }
                       onChange={
                         val => updateValue(val, 'postal')
@@ -110,7 +150,7 @@ const Settings = ({
             </div>
           </div>
           {
-            fcom &&
+            physicalStore &&
               <div className="Settings-info--licence-group">
                 <h2><FontIcon value="account_balance" />License and TIN</h2>
                  <div className="Settings-info--licence-group--inputs">

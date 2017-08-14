@@ -198,6 +198,8 @@ export const runShopInfoUpdate = (info, shop, token) => (dispatch, getState) => 
   const {
     name,
     fcom,
+    services,
+    physical_store,
     editing,
     phone,
     hours,
@@ -225,6 +227,8 @@ export const runShopInfoUpdate = (info, shop, token) => (dispatch, getState) => 
                       {
                         shop_name: name,
                         fcom,
+                        services,
+                        physical_store,
                       },
                       'PATCH'
                     )).then(
@@ -402,6 +406,8 @@ export const runShopInfoUpdate = (info, shop, token) => (dispatch, getState) => 
                         {
                           short_descr: description,
                           fcom,
+                          services,
+                          physical_store,
                         },
                         'PATCH'
                       )).then(
@@ -445,6 +451,8 @@ export const runShopInfoUpdate = (info, shop, token) => (dispatch, getState) => 
                         {
                           trade_license_number: license.number,
                           fcom,
+                          services,
+                          physical_store,
                         },
                         'PATCH'
                       )).then(

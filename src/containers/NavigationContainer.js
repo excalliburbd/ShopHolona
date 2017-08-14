@@ -18,7 +18,10 @@ import {
 } from '../thunks/userThunks';
 import { getCart } from '../thunks/cartThunks';
 import { getOrderList } from '../thunks/ordersThunks';
-import { getBanks } from '../thunks/paymentandaddressThunks';
+import {
+  getBanks,
+  getDistricts,
+} from '../thunks/paymentandaddressThunks';
 
 import {
   userActions,
@@ -86,6 +89,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(getShopAddress(shop));
       dispatch(getFeaturedProduct(shop));
       dispatch(getBanks());
+      dispatch(getDistricts());
 
       if (token && !demostore) {
         dispatch(userActions.user.done.get.token(token));
@@ -108,6 +112,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(getShopAddress(shop));
       dispatch(getFeaturedProduct(shop));
       dispatch(getBanks());
+      dispatch(getDistricts());
 
       if (token) {
         dispatch(getCart(token, false));

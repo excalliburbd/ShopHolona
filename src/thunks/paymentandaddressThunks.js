@@ -110,3 +110,33 @@ export const saveBankInfo = (bank, branch, accountName, accountNumber, shop, tok
     }
   }
 }
+
+export const getDistricts = () => dispatch => {
+  request('/address/districts/', getConfig()).then(
+            res => {
+              if (res.length > 0) {
+                dispatch(paymentandaddressActions.paymentsAndAddresses.done.get.districts(res));
+              }
+            }
+          );
+}
+
+export const getCities = district => dispatch => {
+  request(`/address/cities/?district=${district}`, getConfig()).then(
+            res => {
+              if (res.length > 0) {
+                dispatch(paymentandaddressActions.paymentsAndAddresses.done.get.cities(res));
+              }
+            }
+          );
+}
+
+export const getThanas = city => dispatch => {
+  request(`/address/thana/?city=${city}`, getConfig()).then(
+            res => {
+              if (res.length > 0) {
+                dispatch(paymentandaddressActions.paymentsAndAddresses.done.get.thanas(res));
+              }
+            }
+          );
+}

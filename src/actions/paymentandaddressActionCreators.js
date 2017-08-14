@@ -6,6 +6,9 @@ export const paymentandaddressActionCreators = {
         BANK: payload => payload,
         BRANCH: payload => payload,
         BANK_BRANCH: payload => payload,
+        DISTRICTS: payload => payload,
+        CITIES: payload => payload,
+        THANAS: payload => payload,
       },
       DELETE: payload => payload,
     },
@@ -18,7 +21,13 @@ export const paymentandaddressActionCreators = {
         ACCOUNT: {
           NAME: payload => payload,
           NUMBER: payload => payload,
-        }
+        },
+        DISTRICT: payload => payload,
+        DISTRICT_ID: payload => payload,
+        CITY: payload => payload,
+        CITY_ID: payload => payload,
+        THANA: payload => payload,
+        THANA_ID: payload => payload,
       }
     }
   }
