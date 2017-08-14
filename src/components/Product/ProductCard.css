@@ -34,7 +34,7 @@
   font-size: 3em;
   color: #666;
 }
-.ProductCard--addProduct-details-content {
+.ProductCard-details-name.ProductCard--addProduct-details-content {
   position: absolute;
   bottom: 15%;
   left: 0px;
@@ -42,6 +42,7 @@
   padding: 0px 0.6em;
   text-align: center;
   color: #666666;
+
 }
 
 .ProductCard--addProduct-rating, .ProductCard--addProduct-button, .ProductCard--addProduct-details-name {
@@ -60,6 +61,7 @@
 
 .ProductCard-details {
   padding: 0px 0.5em;
+  margin: 4px 0;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -77,12 +79,16 @@
 .ProductCard-details-name {
   margin: 0;
   font-size: 1.2em;
-  max-height: 3.6em;
+  max-height: 2.4em;
+  height: 2.4em;
   display: flex;
   align-items: center;
   font-family: "Harmonia Regular";
   font-weight: 500;
   color: #666666;
+  text-align: right;
+  display: block;
+  overflow: hidden;
 }
 
 .ProductCard-details .ProductCard-details-stars{
