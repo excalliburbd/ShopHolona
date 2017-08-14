@@ -319,7 +319,7 @@ class TourComponent extends Component {
         content: ({ goTo, inDOM, step }) => {
           this.goTo = goTo;
           return (
-            <TourWrapperContainer title="Reviews"
+            <TourWrapperContainer title="Reports"
                           goTo={ goTo }
                           step={ step }
                           onNext={
@@ -332,7 +332,7 @@ class TourComponent extends Component {
                               history.push('/admin/products');
                             }
                           } >
-              <p>Your product reviews are kept in this page. Reply to your reviews to keep your customers happy!</p>
+              <p>These are your reports of your store. Find all the data you could ever need to run your store to it's full potential right here (coming soon).</p>
             </TourWrapperContainer>
           );
         },
