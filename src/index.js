@@ -20,6 +20,7 @@ import SettingsContainer from './containers/SettingsContainer';
 
 import './index.css';
 import 'trmix/dist/trmix.min.js';
+import './variables.css';
 
 ReactDOM.render(
   <Provider store={store}>

@@ -131,7 +131,7 @@ const Settings = ({
           }
         </CardText>
         <CardActions>
-          <Button label="update" primary onClick={ () => postUpdates(info, shop, token) } />
+          <Button className="sh-btn--yellow" label="update" onClick={ () => postUpdates(info, shop, token) } />
         </CardActions>
       </Card>
       <div className="Settings-payment-gourp">
@@ -175,7 +175,7 @@ const Settings = ({
                     onChange={ text => handleSetValue('account_number', text) } />
           </CardText>
           <CardActions>
-            <Button label="update" primary onClick={ () => postBankInfo(bankUIID, branchUIID, accountNameUIValue, accountNumberUIValue, shop, token) } />
+            <Button className="sh-btn--yellow" label="update" onClick={ () => postBankInfo(bankUIID, branchUIID, accountNameUIValue, accountNumberUIValue, shop, token) } />
           </CardActions>
         </Card>
         {/*<Card>
