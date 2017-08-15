@@ -659,7 +659,7 @@ export const saveProduct = (obj, shop, token, editing) => (dispatch, getState) =
           request(`/vendors/category/${finalProduct.category.category}/${finalProduct.category.subCategory}/subcategories/`, getConfig(
                     token,
                     {
-                      name: finalProduct.name,
+                      name: finalProduct.category.name,
                       bang_name: 'custom_category'
                     },
                     'POST'
