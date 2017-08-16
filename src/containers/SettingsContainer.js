@@ -1,13 +1,11 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { addNotification } from 'reapop';
 
 import Settings from '../components/BackOffice/Settings';
 
 import {
   shopActions,
   paymentandaddressActions,
-  sidebarActions,
 } from '../actions/';
 
 import {
@@ -32,7 +30,6 @@ import {
   runShopInfoUpdate
 } from '../thunks/shopThunks';
 import {
-  getBanks,
   getBranch,
   saveBankInfo,
   getCities,
@@ -132,18 +129,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     postBankInfo: (bank, branch, accountName, accountNumber, shop, token) => {
       dispatch(saveBankInfo(bank, branch, accountName, accountNumber, shop, token));
     },
-    loadData: () => {
-      getBanks();
-    },
-    logInToGetBanks: () => {
-      dispatch(addNotification({
-                title: 'info',
-                message: 'Please Log In again',
-                position: 'bl',
-                status: 'success',
-              }));
-      dispatch(sidebarActions.sidebar.show.signIn());
-    }
   }
 }
 

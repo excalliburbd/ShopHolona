@@ -92,7 +92,10 @@ const Settings = ({
                                       selectionOnly
                                       keyname="name"
                                       handleSetValue={ text => handleSetValue('district', text) }
-                                      onSelected={ id => handleSelect('district', id) }
+                                      onSelected={ id => {
+                                        handleSelect('district', id);
+                                        updateValue(address.body, 'address');
+                                      }}
                                       editing={ editing }
                                     /> :
                   <Input label="District"
@@ -105,8 +108,13 @@ const Settings = ({
                                       value={ !editing ? address && address.city : cityUIValue }
                                       selectionOnly
                                       keyname="name"
-                                      handleSetValue={ text => handleSetValue('city', text) }
-                                      onSelected={ id => handleSelect('city', id) }
+                                      handleSetValue={ text => {
+                                        handleSetValue('city', text);
+                                      }}
+                                      onSelected={ id => {
+                                        updateValue(address.body, 'address');
+                                        handleSelect('city', id);
+                                      }}
                                       editing={ editing }
                                     /> :
                   <Input label="City"
@@ -120,7 +128,10 @@ const Settings = ({
                                       selectionOnly
                                       keyname="name"
                                       handleSetValue={ text => handleSetValue('thana', text) }
-                                      onSelected={ id => handleSelect('thana', id) }
+                                      onSelected={ id => {
+                                        updateValue(address.body, 'address');
+                                        handleSelect('thana', id);
+                                      }}
                                       editing={ editing }
                                     /> :
                   <Input label="Thana"
