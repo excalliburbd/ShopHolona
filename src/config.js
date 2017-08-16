@@ -1,5 +1,5 @@
 let config = {
-  api: 'backend.shophobe.com',
+  api: 'https://backend.shophobe.com/api',
   demostore: 22,
   demouser: 'vendor@shophobe.com',
   demopass: '123',
