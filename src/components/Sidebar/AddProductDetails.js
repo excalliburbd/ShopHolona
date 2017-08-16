@@ -103,7 +103,7 @@ const AddProductDetails = ({
                                        height: '3rem',
                                        width: '3rem',
                                        background: type.value && validColorText(type.value.toLowerCase()) ? type.value.toLowerCase() : null,
-                                       backgroundImage: images[0] && !validColorText(type.value.toLowerCase()) ? `url(${images[0].image})` : null,
+                                       backgroundImage: images[0] && `url(${images[0].image})`,
                                        backgroundSize: 'cover',
                                        backgroundRepeat: 'no-repeat',
                                        backgroundPosition: 'center',
