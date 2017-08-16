@@ -127,7 +127,7 @@ class ProductCard extends Component {
             </div>
           </div>
           <div className="ProductCard-details">
-            <h3 className="ProductCard-details-name">{ name }</h3>
+            <h3 className="ProductCard-details-name" title={name}>{ name }</h3>
             <div className="ProductCard-details-stars">
               <Stars rating={ rating } />
             </div>
