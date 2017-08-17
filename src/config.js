@@ -7,19 +7,20 @@ let config = {
   vendor: 'localhost:3000'
 }
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.REACT_APP_ENV === 'production') {
   config = {
     ...config,
-    demostore: 21,
+    demostore: 22,
     api: 'https://backend.shophobe.com/api',
     vendor: 'shophobe.com'
   }
 }
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.REACT_APP_ENV === 'development') {
   config = {
     ...config,
-    api: 'https://backend.shophobe.com/api',
+    demostore: 21,
+    api: 'https://backenddev.shophobe.com/api',
   }
 }
 
