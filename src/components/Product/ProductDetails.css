@@ -139,8 +139,12 @@
 }
 
 .ProductDetails--toggle .material-icons {
-  color: #FFC400;
+  color:grey;
   font-size: 2em;
+  box-shadow: 2px 2px 8px grey;
+  border-radius: 50%;
+  height: 2.3rem;
+  width: 2.3rem;
 }
 
 .details-action {
@@ -209,7 +213,7 @@
   .ProductDetails--toggle {
     position: relative;
     top: 8px;
-    left: 4px;
+    left: 15px;
   }
 
   .product-details-right {
@@ -217,5 +221,5 @@
     width: 100%;
     padding: 0em 1em;
   }
-
+  
 }
