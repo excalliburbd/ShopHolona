@@ -8,13 +8,13 @@
   display: flex;
   flex-direction: row;
 }
-.product-details-container::-webkit-scrollbar {
-  width: 5px;
-  background-color: #F5F5F5;
-}
-.product-details-container::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #F5F5F5, #F5F5F5, #666, #F5F5F5, #F5F5F5);
-}
+/*.product-details-container::-webkit-scrollbar {*/
+  /*width: 5px;*/
+  /*background-color: #F5F5F5;*/
+/*}*/
+/*.product-details-container::-webkit-scrollbar-thumb:hover {*/
+  /*background: linear-gradient(180deg, #F5F5F5, #F5F5F5, #666, #F5F5F5, #F5F5F5);*/
+/*}*/
 
 .product-details-left {
   width: 35%;

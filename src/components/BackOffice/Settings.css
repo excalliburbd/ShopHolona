@@ -4,6 +4,12 @@
   flex-direction: column;
 }
 
+.Settings .ZoLIG {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 10px 16px;
+} /*settings button*/
+
 .Settings ._8pay8 {
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   margin-bottom: .5em;

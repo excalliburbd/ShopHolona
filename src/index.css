@@ -79,6 +79,17 @@ body {
   font-family: "Gotham Narrow Book", Arial, sans-serif;
 }
 
+*::-webkit-scrollbar {
+  width: 5px;
+  background-color: #F5F5F5;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  /*background: linear-gradient(180deg, #F5F5F5, #F5F5F5, #666, #F5F5F5, #F5F5F5);*/
+  background: #9e9e9e;
+  border-radius: 90px;
+}
+
 h1 {
   font-family: "Gotham Narrow Black", Arial, sans-serif;
   font-weight: 300;
@@ -98,3 +109,4 @@ h2,h3,h4,h5,h6 {
 [role=input] {
   box-shadow: none;
 }
+
