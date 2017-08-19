@@ -62,7 +62,8 @@
     "deploy-dev": "yarn build && rm build/static/css/*.map && rm build/static/js/*.map && chmod -R 777 build/ && scp -r build/. imtiaz@45.118.132.85:/usr/src/app/vendor/ && rm -rf build/",
     "deploy-prod": "yarn build && rm build/static/css/*.map && rm build/static/js/*.map && chmod -R 777 build/ && scp -r build/. imtiaz@172.104.61.239:/usr/src/app/vendor/ && rm -rf build/",
     "stage": "yarn build && cp -a build/. /var/www/html/",
-    "build-reapop": "node-sass-chokidar reapop-theme-shophobe/src/styles/ -o reapop-theme-shophobe/lib/"
+    "build-reapop": "node-sass-chokidar reapop-theme-shophobe/src/styles/ -o reapop-theme-shophobe/lib/",
+    "analyze": "source-map-explorer build/static/js/main.*"
   },
   "eslintConfig": {
     "extends": "react-app"

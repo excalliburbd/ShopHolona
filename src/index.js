@@ -5,7 +5,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router'
 import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
 
-import registerServiceWorker from './registerServiceWorker';
+import { unregister } from './registerServiceWorker';
 import store from './store/configureStore';
 import { history } from './store/configureStore';
 import theme from './themes/react-toolbox/theme';
@@ -41,4 +41,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-registerServiceWorker();
+unregister();

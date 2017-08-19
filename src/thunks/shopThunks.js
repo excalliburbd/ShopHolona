@@ -193,6 +193,7 @@ export const getShopPayments = (shop, token) => dispatch => {
 export const runShopInfoUpdate = (info, shop, token) => (dispatch, getState) => {
   const {
     demostore,
+    updatedAddress,
   } = fromState(getState);
 
   const {
@@ -480,6 +481,54 @@ export const runShopInfoUpdate = (info, shop, token) => (dispatch, getState) => 
                           }));
                         }
                       );
+            }
+            return returnArr;
+          case 'address':
+            if (demostore) {
+              dispatch(addNotification({
+                            title: 'Success',
+                            message: 'Successfully updated shop address',
+                            position: 'bl',
+                            status: 'success',
+                          }));
+            } else {
+              const {
+                id : addressID,
+                ...addressObj,
+              } = updatedAddress;
+
+              request(`/vendors/shops/${shop}/address/${addressID}/`, getConfig(
+                      token,
+                      addressObj,
+                      'PATCH'
+                    )).then(
+                      res => {
+                        if (res.city || res.district) {
+                          dispatch(addNotification({
+                            title: 'Success',
+                            message: 'Successfully updated shop address',
+                            position: 'bl',
+                            status: 'success',
+                          }));
+                        }
+                      }
+                    ).catch(
+                      err => {
+                        returnArr = [ ...arr, infoKey ];
+
+                        const info = JSON.parse(err);
+
+                        if (info.shop_name) {
+                          dispatch(addNotification({
+                            title: 'Error during shop informationupdate',
+                            message: info.shop_name[0],
+                            position: 'bl',
+                            status: 'error',
+                          }));
+                        }
+                      }
+                    );
+
             }
             return returnArr;
           default:

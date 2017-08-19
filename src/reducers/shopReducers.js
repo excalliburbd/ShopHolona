@@ -19,9 +19,35 @@ const shopInitialState = {
   prof_pic: null,
   cover_photo: null,
   contacts: [],
-  address: {
-
-  },
+  address: [{
+    id: null,
+    city: {
+      id: null,
+      district: null,
+      country: 'Loading',
+      name: 'Loading',
+      bang_country: '',
+      bang_name: ''
+    },
+    thana: {
+      id: null,
+      city: null,
+      name: 'Loading'
+    },
+    district: {
+      id: null,
+      name: 'Loading'
+    },
+    address_title: 'Loading',
+    details: 'Loading',
+    postal_code: 'Loading',
+    long: 0.00000000,
+    lat: 0.00000000,
+    bang_title: 'Loading',
+    bang_details: 'Loading',
+    primary: true,
+    pickup_address: false
+  }],
   payments: [
     {
       id: null,
@@ -41,11 +67,35 @@ const shopInitialState = {
     editing: [],
     name: 'loading',
     domain: 'loading',
-    address: {
-      body: 'loading',
-      city: 'loading',
-      postal: 'loading'
-    },
+    address: [{
+      id: null,
+      city: {
+        id: null,
+        district: null,
+        country: 'Loading',
+        name: 'Loading',
+        bang_country: '',
+        bang_name: ''
+      },
+      thana: {
+        id: null,
+        city: null,
+        name: 'Loading'
+      },
+      district: {
+        id: null,
+        name: 'Loading'
+      },
+      address_title: 'Loading',
+      details: 'Loading',
+      postal_code: 'Loading',
+      long: 0.00000000,
+      lat: 0.00000000,
+      bang_title: 'Loading',
+      bang_details: 'Loading',
+      primary: true,
+      pickup_address: false
+    }],
     hours: {
       id: uuid.v4(),
       weekday: 1,
@@ -147,19 +197,12 @@ export const ShopPageReducer = handleActions({
         )
       }),
     [shopActions.shop.set.address]: (state, action) => {
-
-      const address = action.payload[0]
-
       return {
         ...state,
         address: action.payload,
         information: {
           ...state.information,
-          address: {
-            body: address.details,
-            city: address.city.city,
-            postal: address.postal_code
-          }
+          address: action.payload,
         }
       }
     },
@@ -235,25 +278,10 @@ export const ShopPageReducer = handleActions({
           editing: (state.information.editing.indexOf('address') === -1 ) ?
                     [ ...state.information.editing, 'address' ]:
                     state.information.editing,
-          address: {
-            ...state.information.address,
-            body: action.payload,
-          },
-        }
-      }
-    },
-    [shopActions.shop.edit.city]: (state, action) => {
-      return {
-        ...state,
-        information: {
-          ...state.information,
-          editing: (state.information.editing.indexOf('city') === -1 ) ?
-                    [ ...state.information.editing, 'city' ]:
-                    state.information.editing,
-          address: {
-            ...state.information.address,
-            city: action.payload,
-          },
+          address: [{
+            ...state.information.address[0],
+            details: action.payload,
+          }],
         }
       }
     },
@@ -262,13 +290,13 @@ export const ShopPageReducer = handleActions({
         ...state,
         information: {
           ...state.information,
-          editing: (state.information.editing.indexOf('postal') === -1 ) ?
-                    [ ...state.information.editing, 'postal' ]:
+          editing: (state.information.editing.indexOf('address') === -1 ) ?
+                    [ ...state.information.editing, 'address' ]:
                     state.information.editing,
-          address: {
-            ...state.information.address,
-            postal: action.payload
-          },
+          address: [{
+            ...state.information.address[0],
+            postal_code: action.payload,
+          }],
         }
       }
     },
@@ -382,48 +410,7 @@ export const ShopPageReducer = handleActions({
       return {
         ...state,
         ...incoming,
-        information: {
-          upToDate: false,
-          editing: [],
-          name: 'loading',
-          domain: 'loading',
-          address: {
-            body: 'loading',
-            city: 'loading',
-            postal: 'loading'
-          },
-          hours: {
-            id: uuid.v4(),
-            weekday: 1,
-            from_hour: new Date('1993-04-19 09:00:00'),
-            to_hour: new Date('1993-04-19 21:00:00'),
-          },
-          phone: {
-            id: null,
-            number: 'loading',
-          },
-          license: {
-            number: 'loading',
-            img: 'https://unsplash.it/480/480'
-          },
-          fcom: false,
-          physical_store: false,
-          description: 'loading',
-          payments: [
-            {
-              id: null,
-              bank: {
-                  id: null,
-                  name: 'loading',
-                  bank_name: null
-              },
-              account_name: 'loading',
-              account_type: 0,
-              account_number: null,
-              bkash_num: ''
-            }
-          ],
-        },
+        information: shopInitialState.information,
         demostore: config.demostore,
       }
     },

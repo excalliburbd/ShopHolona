@@ -47,11 +47,12 @@ const Settings = ({
 
   const {
     name,
-    address,
     phone,
     hours,
     license,
   } = info;
+
+  const address = info.address[0];
 
   const activeBank = bankInfo.find(
                       bank => bank && payments && payments.bank && bank.id === payments.bank.bank_name
@@ -80,7 +81,7 @@ const Settings = ({
             <h2><FontIcon value="location_on" /> Address</h2>
             <div className="Settings-info--address-group--inputs">
               <Input  label="Change shop address"
-                      value={ address.body }
+                      value={ address.details }
                       onChange={
                         val => updateValue(val, 'address')
                       } />
@@ -88,57 +89,57 @@ const Settings = ({
                 districts && districts.list[0] ?
                   <CustomAutocomplete label="District"
                                       source={ districts }
-                                      value={ !editing ? address && address.district : districtUIValue }
+                                      value={ !editing ? address && address.district && address.district.name : districtUIValue }
                                       selectionOnly
                                       keyname="name"
                                       handleSetValue={ text => handleSetValue('district', text) }
                                       onSelected={ id => {
                                         handleSelect('district', id);
-                                        updateValue(address.body, 'address');
+                                        updateValue(address.details, 'address');
                                       }}
                                       editing={ editing }
                                     /> :
                   <Input label="District"
-                      disabled={ true } />
+                         value={ address && address.district && address.district.name } />
               }
               {
                 cities && cities.list[0] ?
                   <CustomAutocomplete label="City"
                                       source={ cities }
-                                      value={ !editing ? address && address.city : cityUIValue }
+                                      value={ !editing ? address && address.city && address.city.name : cityUIValue }
                                       selectionOnly
                                       keyname="name"
                                       handleSetValue={ text => {
                                         handleSetValue('city', text);
                                       }}
                                       onSelected={ id => {
-                                        updateValue(address.body, 'address');
+                                        updateValue(address.details, 'address');
                                         handleSelect('city', id);
                                       }}
                                       editing={ editing }
                                     /> :
                   <Input label="City"
-                      disabled={ true } />
+                         value={ address && address.city && address.city.name } />
               }
               {
                 thanas && thanas.list[0] ?
                   <CustomAutocomplete label="Thana"
                                       source={ thanas }
-                                      value={ !editing ? address && address.city : thanaUIValue }
+                                      value={ !editing ? address && address.thana && address.thana.name : thanaUIValue }
                                       selectionOnly
                                       keyname="name"
                                       handleSetValue={ text => handleSetValue('thana', text) }
                                       onSelected={ id => {
-                                        updateValue(address.body, 'address');
+                                        updateValue(address.details, 'address');
                                         handleSelect('thana', id);
                                       }}
                                       editing={ editing }
                                     /> :
                   <Input label="Thana"
-                      disabled={ true } />
+                         value={ address && address.thana && address.thana.name } />
               }
               <Input  label="Change postal code"
-                      value={ address.postal }
+                      value={ address.postal_code }
                       onChange={
                         val => updateValue(val, 'postal')
                       } />
@@ -201,7 +202,7 @@ const Settings = ({
                                     editing={ editing }
                                   /> :
                 <Input label="Bank Name"
-                       disabled={ true } />
+                       value={ activeBank && activeBank.name } />
             }
             {
               branches ?
@@ -233,7 +234,7 @@ const Settings = ({
           <CardTitle title="Shop Shipping" />
             Shipping Information:
             a. Pick up Address (Checkbox to write, same as shop address)
-            b. Preferred pick up time slo
+            b. Preferred pick up time slot
           <CardActions>
             <Button label="reset"  />
             <Button label="update" primary onClick={ () => postUpdates(info, shop, token) } />

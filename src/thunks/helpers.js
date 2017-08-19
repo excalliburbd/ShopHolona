@@ -125,9 +125,17 @@ export const fromState = getState => {
   const state = getState();
   const payments = state.shop.payments[0];
   const demostore = state.shop.id === state.shop.demostore;
+  const address = state.shop.information.address[0];
+  const updatedAddress = {
+    ...address,
+    city: state.ui.paymentsAndAddresses.cityID,
+    thana: state.ui.paymentsAndAddresses.thanakID,
+    district: state.ui.paymentsAndAddresses.districtID,
+  }
 
   return {
     demostore,
     payments,
+    updatedAddress,
   }
 }
