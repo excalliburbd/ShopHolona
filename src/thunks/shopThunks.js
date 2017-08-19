@@ -145,6 +145,47 @@ export const postShopPageCover = (image, shop, token, formData, predicate, actio
   }
 }
 
+export const postShopTINImage = (image, shop, token, formData, file)  => (dispatch, getState) => {
+  const {
+    demostore,
+  } = fromState(getState);
+
+  if (demostore) {
+    dispatch(shopActions.shop.set.demo.tin(file.preview));
+    dispatch(imageUploaderActions.imageUploader.hide());
+    dispatch(addNotification({
+        title: 'Success',
+        message: 'Successfully updated licence image',
+        position: 'bl',
+        status: 'success',
+      }));
+  } else {
+    image.toBlob( blob => {
+      formData.append('trade_license_image', blob );
+      if (token) {
+        request(`/vendors/shops/${shop}/`, getConfig(
+            token,
+            formData,
+            'PUT'
+          )).then(
+            res => {
+              if(res.id) {
+                dispatch(imageUploaderActions.imageUploader.hide());
+                dispatch(getShop(shop));
+                dispatch(addNotification({
+                    title: 'Success',
+                    message: 'Successfully updated licence image',
+                    position: 'bl',
+                    status: 'success',
+                  }));
+              }
+            }
+          );
+      }
+
+    });
+  }
+}
 export const getShopHours = (shop, token) => dispatch => {
   if (token) {
     request(`/vendors/shops/${shop}/hours/`, getConfig(

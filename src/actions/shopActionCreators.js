@@ -22,6 +22,7 @@ export const shopActionCreators = {
       DEMO: {
         PROF_PIC: payload => payload,
         COVER: payload => payload,
+        TIN: payload => payload,
       }
     },
     EDIT: {

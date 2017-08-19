@@ -47,6 +47,11 @@ const ImageUploader = ({
     border = 0;
   }
 
+  if (type === 'TIN') {
+    width = 828;
+    height = 192;
+  }
+
   if (!HTMLCanvasElement.prototype.toBlob) {
     Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
       value: function (callback, type, quality) {

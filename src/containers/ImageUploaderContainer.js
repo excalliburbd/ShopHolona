@@ -4,7 +4,11 @@ import { createSelector } from 'reselect';
 
 import ImageUploader from '../components/ImageUploader';
 
-import { postShopPageProfie, postShopPageCover } from '../thunks/shopThunks';
+import {
+  postShopPageProfie,
+  postShopPageCover,
+  postShopTINImage,
+} from '../thunks/shopThunks';
 import { postImage } from '../thunks/productThunks';
 
 import {
@@ -100,6 +104,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             )
           )
         })
+      }
+
+      if (type === 'TIN') {
+        dispatch(postShopTINImage(image, shop, token, formData, file));
       }
     },
     handleContinueTour: currentstep => {

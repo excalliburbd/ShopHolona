@@ -6,6 +6,7 @@ import Settings from '../components/BackOffice/Settings';
 import {
   shopActions,
   paymentandaddressActions,
+  imageUploaderActions,
 } from '../actions/';
 
 import {
@@ -129,6 +130,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     postBankInfo: (bank, branch, accountName, accountNumber, shop, token) => {
       dispatch(saveBankInfo(bank, branch, accountName, accountNumber, shop, token));
     },
+    handleShowImageUploader: () => {
+      dispatch(imageUploaderActions.imageUploader.show.uploader('TIN'));
+    }
   }
 }
 

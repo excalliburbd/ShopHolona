@@ -8,6 +8,7 @@ import Input from 'react-toolbox/lib/input/Input';
 import Button from 'react-toolbox/lib/button/Button';
 import FontIcon from 'react-toolbox/lib/font_icon/FontIcon';
 import TimePicker from 'react-toolbox/lib/time_picker/TimePicker';
+import IconButton from 'react-toolbox/lib/button/IconButton';
 
 import CustomAutocomplete from '../CustomAutocomplete';
 
@@ -43,6 +44,7 @@ const Settings = ({
   thanas,
   thanaUIValue,
   thanaUIID,
+  handleShowImageUploader,
 }) => {
 
   const {
@@ -171,6 +173,7 @@ const Settings = ({
                           onChange={
                             val => updateValue(val, 'licenseNumber')
                           } />
+                  <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader() }/>
                   <div style={{
                                 backgroundImage: `url(${license.image})`,
                                 backgroundSize: 'contain',
