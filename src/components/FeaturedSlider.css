@@ -47,14 +47,14 @@
     padding: 0.4em 0.6em;
   }
 
-  .FeaturedSlider-products::-webkit-scrollbar {
-    width: 8px;
-    background-color: #F5F5F5;
-  }
+  /*.FeaturedSlider-products::-webkit-scrollbar {*/
+    /*width: 8px;*/
+    /*background-color: #F5F5F5;*/
+  /*}*/
 
-  .FeaturedSlider-products::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #F5F5F5, #F5F5F5, #666, #F5F5F5, #F5F5F5);
-  }
+  /*.FeaturedSlider-products::-webkit-scrollbar-thumb:hover {*/
+    /*background: linear-gradient(180deg, #F5F5F5, #F5F5F5, #666, #F5F5F5, #F5F5F5);*/
+  /*}*/
   .FeaturedSlider-products {
     height: 100%;
     flex-wrap: wrap;

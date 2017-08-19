@@ -379,14 +379,14 @@
     width: 63vw;
   }
 
-  .ShopPage-products--container::-webkit-scrollbar {
-    width: 5px;
-    background-color: #F5F5F5;
-  }
+  /*.ShopPage-products--container::-webkit-scrollbar {*/
+    /*width: 5px;*/
+    /*background-color: #F5F5F5;*/
+  /*}*/
 
-  .ShopPage-products--container::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #F5F5F5, #F5F5F5, #666, #F5F5F5, #F5F5F5);
-  }
+  /*.ShopPage-products--container::-webkit-scrollbar-thumb:hover {*/
+    /*background: linear-gradient(180deg, #F5F5F5, #F5F5F5, #666, #F5F5F5, #F5F5F5);*/
+  /*}*/
 
   .ShopPage-products--container>.ShopPage-banner {
     display: block;
