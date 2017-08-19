@@ -41,10 +41,6 @@
   padding: 0 2em;
 }
 
-.Settings .ZoLIG [data-react-toolbox=button]:first-child {
-  margin-left: auto;
-}
-
 @media screen and (min-width: 600px) {
   .Settings {
     flex-direction: row;
