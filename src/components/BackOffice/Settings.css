@@ -41,6 +41,17 @@
   padding: 0 2em;
 }
 
+.settings-district, .settings-city, .settings-thana, .settings-postalcode {
+  width: 50%;
+  display: inline-block;
+}
+.settings-district, .settings-thana {
+  padding-right: 1rem;
+}
+.settings-city, .settings-postalcode {
+  padding-left: 1rem;
+}
+
 @media screen and (min-width: 600px) {
   .Settings {
     flex-direction: row;

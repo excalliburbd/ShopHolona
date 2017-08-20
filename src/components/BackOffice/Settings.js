@@ -87,64 +87,72 @@ const Settings = ({
                       onChange={
                         val => updateValue(val, 'address')
                       } />
-              {
-                districts && districts.list[0] ?
-                  <CustomAutocomplete label="District"
-                                      source={ districts }
-                                      value={ !editing ? address && address.district && address.district.name : districtUIValue }
-                                      selectionOnly
-                                      keyname="name"
-                                      handleSetValue={ text => handleSetValue('district', text) }
-                                      onSelected={ id => {
-                                        handleSelect('district', id);
-                                        updateValue(address.details, 'address');
-                                      }}
-                                      editing={ editing }
-                                    /> :
-                  <Input label="District"
-                         value={ address && address.district && address.district.name } />
-              }
-              {
-                cities && cities.list[0] ?
-                  <CustomAutocomplete label="City"
-                                      source={ cities }
-                                      value={ !editing ? address && address.city && address.city.name : cityUIValue }
-                                      selectionOnly
-                                      keyname="name"
-                                      handleSetValue={ text => {
-                                        handleSetValue('city', text);
-                                      }}
-                                      onSelected={ id => {
-                                        updateValue(address.details, 'address');
-                                        handleSelect('city', id);
-                                      }}
-                                      editing={ editing }
-                                    /> :
-                  <Input label="City"
-                         value={ address && address.city && address.city.name } />
-              }
-              {
-                thanas && thanas.list[0] ?
-                  <CustomAutocomplete label="Thana"
-                                      source={ thanas }
-                                      value={ !editing ? address && address.thana && address.thana.name : thanaUIValue }
-                                      selectionOnly
-                                      keyname="name"
-                                      handleSetValue={ text => handleSetValue('thana', text) }
-                                      onSelected={ id => {
-                                        updateValue(address.details, 'address');
-                                        handleSelect('thana', id);
-                                      }}
-                                      editing={ editing }
-                                    /> :
-                  <Input label="Thana"
-                         value={ address && address.thana && address.thana.name } />
-              }
-              <Input  label="Change postal code"
-                      value={ address.postal_code }
-                      onChange={
-                        val => updateValue(val, 'postal')
-                      } />
+              <div className="settings-district">
+                {
+                  districts && districts.list[0] ?
+                    <CustomAutocomplete label="District"
+                                        source={ districts }
+                                        value={ !editing ? address && address.district && address.district.name : districtUIValue }
+                                        selectionOnly
+                                        keyname="name"
+                                        handleSetValue={ text => handleSetValue('district', text) }
+                                        onSelected={ id => {
+                                          handleSelect('district', id);
+                                          updateValue(address.details, 'address');
+                                        }}
+                                        editing={ editing }
+                    /> :
+                    <Input label="District"
+                           value={ address && address.district && address.district.name } />
+                }
+              </div>
+              <div className="settings-city">
+                {
+                  cities && cities.list[0] ?
+                    <CustomAutocomplete label="City"
+                                        source={ cities }
+                                        value={ !editing ? address && address.city && address.city.name : cityUIValue }
+                                        selectionOnly
+                                        keyname="name"
+                                        handleSetValue={ text => {
+                                          handleSetValue('city', text);
+                                        }}
+                                        onSelected={ id => {
+                                          updateValue(address.details, 'address');
+                                          handleSelect('city', id);
+                                        }}
+                                        editing={ editing }
+                    /> :
+                    <Input label="City"
+                           value={ address && address.city && address.city.name } />
+                }
+              </div>
+              <div className="settings-thana">
+                {
+                  thanas && thanas.list[0] ?
+                    <CustomAutocomplete label="Thana"
+                                        source={ thanas }
+                                        value={ !editing ? address && address.thana && address.thana.name : thanaUIValue }
+                                        selectionOnly
+                                        keyname="name"
+                                        handleSetValue={ text => handleSetValue('thana', text) }
+                                        onSelected={ id => {
+                                          updateValue(address.details, 'address');
+                                          handleSelect('thana', id);
+                                        }}
+                                        editing={ editing }
+                    /> :
+                    <Input label="Thana"
+                           value={ address && address.thana && address.thana.name } />
+                }
+              </div>
+              <div className="settings-postalcode">
+                <Input  label="Change postal code"
+                        value={ address.postal_code }
+                        onChange={
+                          val => updateValue(val, 'postal')
+                        } />
+              </div>
               </div>
           </div>
           <div className="Settings-info--time-group">
