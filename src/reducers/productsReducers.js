@@ -571,7 +571,6 @@ export const productsEntityReducer = handleActions({
     },
     [productActions.products.ui.reset.product]: (state, action) => {
       const product = action.payload;
-      console.log(product)
 
       if ((product.variances && product.variances.length > 0) && (product.variances[0].attributes && product.variances[0].attributes.length > 0)) {
         return {
