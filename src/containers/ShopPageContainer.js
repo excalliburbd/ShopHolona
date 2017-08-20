@@ -23,6 +23,7 @@ import {
 } from '../thunks/shopThunks';
 import {
   followShop,
+  unfollowShop,
 } from '../thunks/userThunks';
 import { getCategory } from '../thunks/productThunks';
 import { addToCart } from '../thunks/cartThunks';
@@ -137,6 +138,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     handleFollowShop: (shop, token, name) => {
       dispatch(followShop(shop, token, name));
+    },
+    handleUnfollowShop: (shop, token, name) => {
+      dispatch(unfollowShop(shop, token, name));
     },
     handlePromptSignIn: name => {
       dispatch(addNotification({

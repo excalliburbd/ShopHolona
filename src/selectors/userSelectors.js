@@ -1,4 +1,3 @@
-
 import { createSelector } from 'reselect';
 
 import { getShopID } from './shopSelectors';

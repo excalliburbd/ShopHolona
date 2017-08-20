@@ -59,7 +59,7 @@ export const trySignInAsyncAction = (res, shop) =>  (dispatch, getState) => {
 
   if (demostore) {
     dispatch(addNotification({
-        title: 'Sorry for the confustion',
+        title: 'Sorry for the confusion',
         message: 'You shouldn\'t login to the demostore',
         position: 'bl',
         status: 'warning',
@@ -88,7 +88,6 @@ export const trySignInAsyncAction = (res, shop) =>  (dispatch, getState) => {
                 res.token
               )).then(
                 res => {
-
                   if (res.id) {
                     dispatch(userActions.user.done.get.profile(res));
                     demostore && dispatch(addNotification({
@@ -163,7 +162,7 @@ export const followShop = (shop, token, name) => dispatch => {
                 dispatch(userActions.user.set.followingShop(res));
                 dispatch(addNotification({
                   title: 'Success',
-                  message: `You are now following ${ name }`,
+                  message: `You are now following ${ name }!`,
                   position: 'bl',
                   status: 'success',
                 }));
@@ -172,7 +171,7 @@ export const followShop = (shop, token, name) => dispatch => {
           ).catch(
             err => {
               dispatch(addNotification({
-                title: 'Error following shop',
+                title: 'Error following shop!',
                 message: err,
                 position: 'bl',
                 status: 'error',
@@ -182,31 +181,48 @@ export const followShop = (shop, token, name) => dispatch => {
   }
 }
 
-//ToDo: no delete api
-// export const unFollowShop = (shop, token, name) => dispatch => {
-//   if (token) {
-//     request('/me/following-shops/', getConfig(
-//             token
-//           )).then(
-//             res => {
-//               if( res.id ) {
-//                 dispatch(addNotification({
-//                   title: 'Success',
-//                   message: `You are now following ${ name }`,
-//                   position: 'bl',
-//                   status: 'success',
-//                 }));
-//               }
-//             }
-//           ).catch(
-//             err => {
-//                dispatch(addNotification({
-//                   title: 'Error following shop',
-//                   message: err,
-//                   position: 'bl',
-//                   status: 'success',
-//                 }));
-//             }
-//           );
-//   }
-// }
+export const unfollowShop = (shop, token, name) => dispatch => {
+  if (token) {
+    request('/me/unfollow-shops/', getConfig(
+      token,
+      {
+        shop
+      },
+      'POST'
+    )).then(
+      res => {
+        if( res.id ) {
+          console.log(res.id);
+          request(`/me/unfollow-shops/${res.id}`, getConfig(
+            token,
+            {shop},
+            'DELETE'
+          )).then(
+            res => {
+              // dispatch(userActions.user.set.followingShop(res));
+              dispatch(addNotification({
+                title: 'Success',
+                message: `You unfollowed ${ name }!`,
+                position: 'bl',
+                status: 'success',
+              }));
+            }
+          ).catch(
+            err => {
+              dispatch(addNotification({
+                title: 'Error!',
+                message: err,
+                position: 'bl',
+                status: 'error',
+              }));
+            }
+          );
+        }
+      }
+    ).catch(
+      err => {
+        console.log("error")
+      }
+    );
+  }
+}

@@ -61,6 +61,7 @@ const ShopPage = ({
   info,
   following,
   handleFollowShop,
+  handleUnfollowShop,
   handlePromptSignIn,
   tourIsOpen,
   tourCurrentStep,
@@ -115,6 +116,7 @@ const ShopPage = ({
     vendor,
     following,
     handleFollowShop,
+    handleUnfollowShop,
     handlePromptSignIn
   }) => {
 
@@ -122,8 +124,15 @@ const ShopPage = ({
       return null;
     } else if (following) {
       return <Button  raised
-                      disabled
-                      label="Unfollow"/>
+                      label="Unfollow"
+                      onClick={
+                        () => {
+                          if (token) {
+                            handleUnfollowShop(shop, token, shopName);
+                          }
+                        }
+                      }
+             />
     }
 
     return <Button  raised
@@ -205,6 +214,7 @@ const ShopPage = ({
           <GetFollowingButton vendor={ vendor }
                               following={ following }
                               handleFollowShop={ handleFollowShop }
+                              handleUnfollowShop={ handleUnfollowShop }
                               handlePromptSignIn={ handlePromptSignIn }/>
         </div>
         <div className="ShopPage-details--text" data-tour="shop-description">
