@@ -251,6 +251,7 @@ export const runShopInfoUpdate = (info, shop, token) => (dispatch, getState) => 
     hours,
     description,
     license,
+    social,
   } = info;
 
   if (token) {
@@ -296,7 +297,7 @@ export const runShopInfoUpdate = (info, shop, token) => (dispatch, getState) => 
 
                         if (info.shop_name) {
                           dispatch(addNotification({
-                            title: 'Error during shop informationupdate',
+                            title: 'Error during shop information update',
                             message: info.shop_name[0],
                             position: 'bl',
                             status: 'error',
@@ -574,6 +575,58 @@ export const runShopInfoUpdate = (info, shop, token) => (dispatch, getState) => 
                       }
                     );
 
+            }
+            return returnArr;
+          case 'social':
+            if (demostore) {
+              dispatch(addNotification({
+                            title: 'Success',
+                            message: 'Successfully updated social links',
+                            position: 'bl',
+                            status: 'success',
+                          }));
+            } else {
+              request(`/vendors/shops/${shop}/`, getConfig(
+                token,
+                {
+                  fcom,
+                  services,
+                  physical_store,
+                  fb_link: social.fb_link,
+                  twitter_link: social.twitter_link,
+                  google_plus: social.google_plus,
+                  instagram: social.instagram,
+                  linkedin: social.linkedin,
+                },
+                'PATCH'
+              )).then(
+                res => {
+                  if (res.id) {
+                    dispatch(addNotification({
+                      title: 'Success',
+                      message: 'Successfully updated social links',
+                      position: 'bl',
+                      status: 'success',
+                    }));
+                    dispatch(getShop(shop));
+                  }
+                }
+              ).catch(
+                err => {
+                  returnArr = [ ...arr, infoKey ];
+
+                  const info = JSON.parse(err);
+
+                  if (info.shop_name) {
+                    dispatch(addNotification({
+                      title: 'Error during shop information update',
+                      message: info.shop_name[0],
+                      position: 'bl',
+                      status: 'error',
+                    }));
+                  }
+                }
+              );
             }
             return returnArr;
           default:

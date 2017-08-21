@@ -35,6 +35,7 @@ export const shopActionCreators = {
       TO_HOUR: payload => payload,
       LICENSE_NUMBER: payload => payload,
       DESCRIPTION: payload => payload,
+      SOCIAL: payload => payload,
     },
     TOGGLE: {
       PRODUCT_DETAILS:  payload => payload,

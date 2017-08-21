@@ -18,6 +18,11 @@ const shopInitialState = {
   short_descr: 'Loading',
   prof_pic: null,
   cover_photo: null,
+  fb_link: '',
+  twitter_link:'',
+  google_plus:'',
+  instagram:'',
+  linkedin:'',
   contacts: [],
   address: [{
     id: null,
@@ -129,7 +134,14 @@ const shopInitialState = {
     ],
     fcom: false,
     physical_store: false,
-    description: 'loading'
+    description: 'loading',
+    social: {
+      fb_link: '',
+      twitter_link:'',
+      google_plus:'',
+      instagram:'',
+      linkedin:'',
+    }
   },
   referral: {
     code: 'loading'
@@ -148,6 +160,11 @@ export const ShopPageReducer = handleActions({
           fcom,
           short_descr,
           physical_store,
+          fb_link,
+          twitter_link,
+          google_plus,
+          instagram,
+          linkedin,
         } = action.payload;
 
         return {
@@ -171,6 +188,13 @@ export const ShopPageReducer = handleActions({
             fcom,
             physical_store,
             description: short_descr,
+            social: {
+              fb_link,
+              twitter_link,
+              google_plus,
+              instagram,
+              linkedin,
+            }
           }
         }
       }
@@ -357,6 +381,24 @@ export const ShopPageReducer = handleActions({
         }
       }
     },
+    [shopActions.shop.edit.social]: (state, action) => {
+      return {
+        ...state,
+        information: {
+          ...state.information,
+          editing: (state.information.editing.indexOf('social') === -1 ) ?
+                    [ ...state.information.editing, 'social' ]:
+                    state.information.editing,
+          social: {
+            fb_link: (action.payload.type === 'facebook') ? action.payload.value : state.information.social.fb_link,
+            twitter_link:(action.payload.type === 'twitter') ? action.payload.value : state.information.social.twitter_link,
+            google_plus:(action.payload.type === 'plus') ? action.payload.value : state.information.social.google_plus,
+            instagram:(action.payload.type === 'instagram') ? action.payload.value : state.information.social.instagram,
+            linkedin:(action.payload.type === 'linkedin') ? action.payload.value : state.information.social.linkedin,
+          }
+        }
+      }
+    },
     [shopActions.shop.set.editing]: (state, action) => {
       return {
         ...state,
@@ -404,16 +446,6 @@ export const ShopPageReducer = handleActions({
         }
       }
     },
-    [REHYDRATE]: (state, action) => {
-      const incoming = action.payload.shop;
-
-      return {
-        ...state,
-        ...incoming,
-        information: shopInitialState.information,
-        demostore: config.demostore,
-      }
-    },
     [shopActions.shop.set.demo.profPic]: (state, action) => {
       return {
         ...state,
@@ -424,6 +456,16 @@ export const ShopPageReducer = handleActions({
       return {
         ...state,
         cover_photo: action.payload,
+      }
+    },
+    [REHYDRATE]: (state, action) => {
+      const incoming = action.payload.shop;
+
+      return {
+        ...state,
+        ...incoming,
+        information: shopInitialState.information,
+        demostore: config.demostore,
       }
     },
 }, shopInitialState );
