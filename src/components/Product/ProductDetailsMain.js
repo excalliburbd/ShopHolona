@@ -1,9 +1,10 @@
 import React from 'react';
 
 // import Button from 'react-toolbox/lib/button/Button';
-import { CirclePicker } from 'react-color';
 
-import './ProductDetailsMain.css'
+import VarianceSelector from './VarianceSelector';
+
+import './ProductDetailsMain.css';
 
 const ProductDetailsMain = ({
   id,
@@ -31,7 +32,7 @@ const ProductDetailsMain = ({
 
   if (colorsArray.length < variances.length) {
     for(let i=0; i<(variances.length - colorsArray.length); i++) {
-      colorsArray.puah('#ccc');
+      colorsArray.push('#ccc');
     }
   }
 
@@ -40,21 +41,26 @@ const ProductDetailsMain = ({
   return (
     <div className="details-main-container">
       <div className="details-main-primay">
-        <h4 className="details-main-subtitle">{ variances[0].type.name }</h4>
-        <CirclePicker
-          colors={ colorsArray }
-          width= "80%"
-          color={ colorsArray[selectedVariant] }
-          onChangeComplete={ (color) => {
-            let key = colorsArray.indexOf(color.hex);
-
-            if (key === -1) {
-              key = 0;
-            }
-
-            select(id, key);
-          }}
+        {/*<h4 className="details-main-subtitle">{ variances[0].type.name }</h4>*/}
+        <h4 className="details-main-subtitle">Variances</h4>
+        <VarianceSelector
+          selectedVariant= { selectedVariant }
+          variances= { variances }
         />
+        {/*<CirclePicker*/}
+          {/*colors={ colorsArray }*/}
+          {/*width= "80%"*/}
+          {/*color={ colorsArray[selectedVariant] }*/}
+          {/*onChangeComplete={ (color) => {*/}
+            {/*let key = colorsArray.indexOf(color.hex);*/}
+
+            {/*if (key === -1) {*/}
+              {/*key = 0;*/}
+            {/*}*/}
+
+            {/*select(id, key);*/}
+          {/*}}*/}
+        {/*/>*/}
       </div>
 
       <div className="details-main-secondary">
