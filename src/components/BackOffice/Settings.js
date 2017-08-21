@@ -64,6 +64,7 @@ const Settings = ({
 
   return (
     <div className="Settings">
+      <div className="settings-info-group-container">
       <Card>
         <CardTitle title="Shop Information" />
         <CardText>
@@ -175,14 +176,18 @@ const Settings = ({
                           onChange={
                             val => updateValue(val, 'licenseNumber')
                           } />
-                  <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader() }/>
+                  <IconButton
+                   icon="add_a_photo"
+                   className="settings-info-camera-btn" 
+                   onClick={ () => handleShowImageUploader() }
+                  />
                   <div style={{
                                 backgroundImage: `url(${license.image})`,
-                                backgroundSize: 'contain',
                                 backgroundColor: '#ccc',
                                 width: '100%',
                                 height: '10em'
-                              }} />
+                          
+                              }} className="settings-set-image" />
                 </div>
               </div>
           }
@@ -191,6 +196,8 @@ const Settings = ({
           <Button className="sh-btn--yellow" label="update" onClick={ () => postUpdates(info, shop, token) } />
         </CardActions>
       </Card>
+      </div>
+      <div className="settings-payment-group-container">
       <div className="Settings-payment-gourp">
         <Card>
           <CardTitle title="Social Links" />
@@ -285,6 +292,7 @@ const Settings = ({
             <Button label="update" primary onClick={ () => postUpdates(info, shop, token) } />
           </CardActions>
         </Card>*/}
+      </div>
       </div>
     </div>
   );
