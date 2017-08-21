@@ -131,11 +131,13 @@ export const fromState = getState => {
     city: state.ui.paymentsAndAddresses.cityID,
     thana: state.ui.paymentsAndAddresses.thanakID,
     district: state.ui.paymentsAndAddresses.districtID,
-  }
+  };
+  const bankName = payments && state.cachedEntities.banks[payments.bank.bank_name] && state.cachedEntities.banks[payments.bank.bank_name].name;
 
   return {
     demostore,
     payments,
     updatedAddress,
+    bankName,
   }
 }

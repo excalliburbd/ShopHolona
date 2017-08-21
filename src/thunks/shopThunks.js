@@ -218,13 +218,17 @@ export const getShopHours = (shop, token) => dispatch => {
   }
 }
 
-export const getShopPayments = (shop, token) => dispatch => {
+export const getShopPayments = (shop, token) => (dispatch, getState) => {
   request(`/vendors/shops/${shop}/payments/`, getConfig(
                       token
                     )).then(
                       res => {
                         if (res.length > 0) {
                           dispatch(shopActions.shop.set.payments(res));
+                          const {
+                            bankName,
+                          } = fromState(getState);
+                          dispatch(shopActions.shop.set.payments([{ ...res[0], bank: { ...res[0].bank, bankName }}]));
                           res[0].bank.id && getBranch(res[0].bank.id);
                         }
                       }

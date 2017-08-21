@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 
-import { paymentandaddressActions } from '../actions';
+import { paymentandaddressActions, shopActions } from '../actions';
 
 export const banksReducer = handleActions({
   [paymentandaddressActions.paymentsAndAddresses.done.get.bank]: (state, action) => {
@@ -154,7 +154,39 @@ export const paymentandaddressUIReducer = handleActions({
       ...state,
       thanaID: action.payload,
     }
-  }
+  },
+  [shopActions.shop.set.address]: (state, action) => {
+    if (action.payload[0] && action.payload[0].city && action.payload[0].thana && action.payload[0].district ) {
+      const addressResponse = action.payload[0];
+
+      return {
+        ...state,
+        district: addressResponse.district.name,
+        districtID: addressResponse.district.id,
+        city: addressResponse.city.name,
+        cityID: addressResponse.city.id,
+        thana: addressResponse.thana.name,
+        thanaID: addressResponse.thana.id,
+      }
+    }
+
+    return state;
+  },
+  [shopActions.shop.set.payments]: (state, action ) => {
+    if (action.payload[0] && action.payload[0].bank) {
+      return {
+        ...state,
+        bank: action.payload[0].bank.bankName,
+        bankID: action.payload[0].bank.bank_name,
+        branch: action.payload[0].bank.name,
+        branchID: action.payload[0].bank.id,
+        accountName: action.payload[0].account_name,
+        accountNumber: action.payload[0].account_number,
+      }
+    }
+
+    return state;
+  },
 }, {
   bank: '',
   bankID: null,
