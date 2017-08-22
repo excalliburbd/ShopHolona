@@ -17,6 +17,9 @@ const VarianceSelector = (
             <div  className="variances"
                   style={{backgroundImage: `url(${images[0].image})`}}
                   key={ key }
+                  // onClick={
+                  //   () =>
+                  // }
             >
               {console.log(images[0].image)}
             </div>
