@@ -66,6 +66,7 @@ const ShopPage = ({
   tourIsOpen,
   tourCurrentStep,
   handleTourInterrupt,
+  selectVariance,
 }) => {
 
   const detailsClass = classNames({
@@ -258,7 +259,8 @@ const ShopPage = ({
                               featured={ featured }
                               shop={ shop }
                               makeFeaturedProduct={ makeFeaturedProduct }
-                              deleteFromFeaturedProduct={ deleteFromFeaturedProduct } />:
+                              deleteFromFeaturedProduct={ deleteFromFeaturedProduct }
+                              selectVariance={ selectVariance } />:
               [
                 <div className="ShopPage-featured" key="arr-layout-1">
                   <FeaturedSlider vendor={ vendor }

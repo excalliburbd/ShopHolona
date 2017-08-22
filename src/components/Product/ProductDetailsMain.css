@@ -1,6 +1,7 @@
 .details-main-subtitle {
   font-family: "Gotham Narrow Book";
   font-weight: 600;
+  width: 5rem;
 }
 
 .details-main-secondary {
@@ -20,8 +21,7 @@
   border-radius: 8px;
   cursor: pointer;
   transition: border 200ms linear;
-  padding: 8px;
-  /*box-shadow: 0 0 3px 1px #cccccc;*/
+  padding: 6px 1.2rem;
   box-shadow: var(--shadow-2p);
 }
 .details-main-secondary-size--selected {

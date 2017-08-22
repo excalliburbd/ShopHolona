@@ -6285,9 +6285,11 @@ react-snapshot@^1.1.0:
     react "^15.3.0"
     react-dom "^15.3.0"
 
-react-sticky-el@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-sticky-el/-/react-sticky-el-1.0.3.tgz#0d1710fb4a68b062d4c8debebbd1ab4aa016d18e"
+react-sticky-el@^1.0.13:
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/react-sticky-el/-/react-sticky-el-1.0.13.tgz#835463eb050804956724f5d0362ad75363953129"
+  dependencies:
+    prop-types "^15.5.10"
 
 react-style-proptype@^3.0.0:
   version "3.0.0"
