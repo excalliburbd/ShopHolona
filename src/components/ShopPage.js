@@ -122,13 +122,13 @@ const ShopPage = ({
 
     if ( vendor ) {
       return null;
-    } else if (following) {
+    } else if (following.status) {
       return <Button  raised
                       label="Unfollow"
                       onClick={
                         () => {
                           if (token) {
-                            handleUnfollowShop(shop, token, shopName);
+                            handleUnfollowShop(shop, token, shopName, following.id);
                           }
                         }
                       }

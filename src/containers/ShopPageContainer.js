@@ -39,7 +39,7 @@ import {
 } from '../selectors/shopSelectors';
 import {
   getVendor,
-  following,
+  getFollowing,
 } from '../selectors/userSelectors';
 import {
   getTourIsOpen,
@@ -68,7 +68,7 @@ const mapStateToProps = state => {
     productDetailstabIndex: state.ui.shopPage.detailsTab,
     featured: getProductDetailsIsFeaturedProduct(state),
     editDesc: state.ui.shopPage.editDesc && getVendor(state),
-    following: following(state),
+    following: getFollowing(state),
     tourIsOpen: getTourIsOpen(state),
     tourCurrentStep: getCurrentStep(state),
   }
@@ -139,8 +139,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleFollowShop: (shop, token, name) => {
       dispatch(followShop(shop, token, name));
     },
-    handleUnfollowShop: (shop, token, name) => {
-      dispatch(unfollowShop(shop, token, name));
+    handleUnfollowShop: (shop, token, name, id) => {
+      dispatch(unfollowShop(shop, token, name, id));
     },
     handlePromptSignIn: name => {
       dispatch(addNotification({

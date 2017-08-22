@@ -68,9 +68,9 @@ export const UserReducer = handleActions({
       following: action.payload,
   }),
   [userActions.user.set.followingShop]: (state, action) => {
-    const exists = state.user.following.some( following => following.shop.id === action.payload.shop.id );
+    const exists = state.following.some( following => following.shop.id === action.payload.shop.id );
 
-    if (exists) {
+    if (exists.lenght > 0) {
       return {
         ...state,
       }
@@ -82,6 +82,12 @@ export const UserReducer = handleActions({
         ...state.following,
         action.payload
       ]
+    }
+  },
+  [userActions.user.delete.followingShop]: (state, action) => {
+    return {
+      ...state,
+      following: state.following.filter( shop => shop.id !== action.payload),
     }
   },
   [REHYDRATE]: (state, action) => {

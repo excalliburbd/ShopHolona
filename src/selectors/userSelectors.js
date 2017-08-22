@@ -8,12 +8,22 @@ export const getUserDetails = state => state.user;
 export const getShopVendor = state => state.user.shopvendor;
 export const followingShops = state => state.user.following;
 
-export const following = createSelector(
+export const  getFollowing = createSelector(
   [getShopID, followingShops],
   (thisShop, followingShops) => {
     const filtered = followingShops.filter( following => following.shop.id === thisShop);
 
-    return filtered.length > 0 && filtered[0].shop.id === thisShop;
+    if (filtered.length > 0 && filtered[0].shop.id === thisShop) {
+      return {
+        status: true,
+        id: filtered[0].id,
+      }
+    }
+
+    return {
+      status: false,
+      id: null,
+    }
   }
 )
 

@@ -186,25 +186,16 @@ export const followShop = (shop, token, name) => dispatch => {
   }
 }
 
-export const unfollowShop = (shop, token, name) => dispatch => {
+export const unfollowShop = (shop, token, name, id) => dispatch => {
+  console.log(shop, token, name, id)
   if (token) {
-    request('/me/unfollow-shops/', getConfig(
-      token,
-      {
-        shop
-      },
-      'POST'
-    )).then(
-      res => {
-        if( res.id ) {
-          console.log(res.id);
-          request(`/me/unfollow-shops/${res.id}`, getConfig(
+    request(`/me/unfollow-shops/${id}`, getConfig(
             token,
-            {shop},
+            null,
             'DELETE'
           )).then(
             res => {
-              // dispatch(userActions.user.set.followingShop(res));
+              dispatch(userActions.user.delete.followingShop(id));
               dispatch(addNotification({
                 title: 'Success',
                 message: `You unfollowed ${ name }!`,
@@ -222,12 +213,5 @@ export const unfollowShop = (shop, token, name) => dispatch => {
               }));
             }
           );
-        }
-      }
-    ).catch(
-      err => {
-        console.log("error")
-      }
-    );
   }
 }
