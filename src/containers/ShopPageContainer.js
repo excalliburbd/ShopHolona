@@ -146,6 +146,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         status: 'error',
       }));
       dispatch(sidebarActions.sidebar.show.signIn());
+    },
+    selectVariance: (id, key) => {
+      dispatch(productActions.products.ui.set.productVariance({ id, key }));
     }
   }
 }

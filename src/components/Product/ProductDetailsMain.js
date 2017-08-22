@@ -23,6 +23,7 @@ const ProductDetailsMain = ({
   deleteFromFeaturedProduct,
   makeFeaturedProduct,
   featuredID,
+  selectVariance,
 }) => {
   if ( shortDesc === '' ) {
     shortDesc = 'No description available';
@@ -46,21 +47,9 @@ const ProductDetailsMain = ({
         <VarianceSelector
           selectedVariant= { selectedVariant }
           variances= { variances }
+          handleSelectVariance={ selectVariance }
+          productID={ id }
         />
-        {/*<CirclePicker*/}
-          {/*colors={ colorsArray }*/}
-          {/*width= "80%"*/}
-          {/*color={ colorsArray[selectedVariant] }*/}
-          {/*onChangeComplete={ (color) => {*/}
-            {/*let key = colorsArray.indexOf(color.hex);*/}
-
-            {/*if (key === -1) {*/}
-              {/*key = 0;*/}
-            {/*}*/}
-
-            {/*select(id, key);*/}
-          {/*}}*/}
-        {/*/>*/}
       </div>
 
       <div className="details-main-secondary">

@@ -33,6 +33,7 @@ const ProductDetails = ({
   deleteFromFeaturedProduct,
   makeFeaturedProduct,
   featuredID,
+  selectVariance,
 }) => {
 
   const images = product.variances[product.selectedVariant].images.map(
@@ -44,7 +45,7 @@ const ProductDetails = ({
 
   return (
     <div className="product-details-container">
-      <IconButton 
+      <IconButton
                   title="Back to Store"
                   icon="arrow_back"
                   className="ProductDetails--toggle"
@@ -116,7 +117,8 @@ const ProductDetails = ({
                                   featured={ featured }
                                   shop={ shop }
                                   makeFeaturedProduct={ makeFeaturedProduct }
-                                  deleteFromFeaturedProduct={ deleteFromFeaturedProduct } />
+                                  deleteFromFeaturedProduct={ deleteFromFeaturedProduct }
+                                  selectVariance={ selectVariance } />
             </small>
           </Tab>
           {/*<Tab label='Specifications'><small>Product Specifications Not Available</small></Tab>*/}
