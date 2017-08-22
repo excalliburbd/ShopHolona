@@ -7,7 +7,6 @@ import {
   getShopCategories,
   getShop,
   getShopAddress,
-  getShopHours,
   getShopPayments,
 } from '../thunks/shopThunks';
 import {
@@ -17,7 +16,6 @@ import {
   getFollowingShop,
 } from '../thunks/userThunks';
 import { getCart } from '../thunks/cartThunks';
-import { getOrderList } from '../thunks/ordersThunks';
 import {
   getBanks,
   getDistricts,
@@ -94,6 +92,7 @@ const mapDispatchToProps = dispatch => {
       if (token && !demostore) {
         dispatch(userActions.user.done.get.token(token));
         dispatch(getMe(token));
+        dispatch(tryGetVendor(shop, token));
         dispatch(getFollowingShop(shop, token));
         dispatch(getShopPayments(shop, token));
       }
@@ -101,11 +100,15 @@ const mapDispatchToProps = dispatch => {
       if (demostore) {
         dispatch(
           trySignInAsyncAction({ email: config.demouser, password: config.demopass}, shop)
-        )
+        );
+        dispatch(userActions.user.done.get.token(token));
+        dispatch(getMe(token));
+        dispatch(tryGetVendor(shop, token));
+        dispatch(getFollowingShop(shop, token));
+        dispatch(getShopPayments(shop, token));
       }
     },
     hadleLoadData: (shop, token, vendor) => {
-      dispatch(tryGetVendor(shop));
       dispatch(getShop(shop));
       dispatch(getShopCategories(shop));
       dispatch(getAllProducts(shop, null, null));
@@ -118,12 +121,6 @@ const mapDispatchToProps = dispatch => {
         dispatch(getCart(token, false));
         dispatch(tryGetVendor(shop, token));
         dispatch(getFollowingShop(shop, token));
-      }
-
-      if (vendor && token) {
-        dispatch(getShopHours(shop, token));
-        dispatch(getOrderList(shop, token));
-        dispatch(getShopPayments(shop, token));
       }
     },
     handleSetSideDrawer: val => {

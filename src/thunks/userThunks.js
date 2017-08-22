@@ -2,10 +2,12 @@ import { addNotification } from 'reapop';
 
 import { request, getConfig, fromState } from './helpers';
 
-import { getShopCategories } from './shopThunks';
 import {
+  getShopCategories,
+  getShopHours,
   getShopPayments,
 } from '../thunks/shopThunks';
+import { getOrderList } from '../thunks/ordersThunks';
 
 import {
    userActions,
@@ -19,7 +21,10 @@ export const tryGetVendor = (shop, token) => dispatch => {
             )).then(
               res => {
                 if( res.id ) {
+                  dispatch(getShopPayments(shop, token));
                   dispatch(userActions.user.done.get.authShop());
+                  dispatch(getShopHours(shop, token));
+                  dispatch(getOrderList(shop, token));
                 }
               }
             ).catch(

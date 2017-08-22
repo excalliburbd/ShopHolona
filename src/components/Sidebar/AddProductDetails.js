@@ -138,7 +138,7 @@ const AddProductDetails = ({
                           type="number"
                           onChange={ value => handleManualInput('edit', 'price', {value, fcom, physicalStore}) }
                           value={ Math.round(productDetailSHPrice) } />
-                  { fcom &&
+                  { (fcom || physicalStore) &&
                       <p className="ProductSidebar-details--commission">
                         Payable from ShopHobe: &#2547; { Math.round(productDetailPrice) }
                         <IconButton icon="info_outline"

@@ -165,6 +165,9 @@
 .ShopPage-products--container {
   background-color: whitesmoke;
 }
+.ShopPage-banner--icon {
+  color: #eaeaea !important;
+}
 
 .ShopPage-products--content {
   /*display: inline-block;*/

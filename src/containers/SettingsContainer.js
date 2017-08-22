@@ -132,6 +132,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     handleShowImageUploader: () => {
       dispatch(imageUploaderActions.imageUploader.show.uploader('TIN'));
+    },
+    editSocial: (type, value) => {
+      dispatch(shopActions.shop.edit.social({type, value}));
     }
   }
 }

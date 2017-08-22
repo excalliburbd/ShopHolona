@@ -45,6 +45,7 @@ const Settings = ({
   thanaUIValue,
   thanaUIID,
   handleShowImageUploader,
+  editSocial,
 }) => {
 
   const {
@@ -52,6 +53,7 @@ const Settings = ({
     phone,
     hours,
     license,
+    social,
   } = info;
 
   const address = info.address[0];
@@ -62,6 +64,7 @@ const Settings = ({
 
   return (
     <div className="Settings">
+      <div className="settings-info-group-container">
       <Card>
         <CardTitle title="Shop Information" />
         <CardText>
@@ -181,14 +184,18 @@ const Settings = ({
                           onChange={
                             val => updateValue(val, 'licenseNumber')
                           } />
-                  <IconButton icon="add_a_photo" onClick={ () => handleShowImageUploader() }/>
+                  <IconButton
+                   icon="add_a_photo"
+                   className="settings-info-camera-btn" 
+                   onClick={ () => handleShowImageUploader() }
+                  />
                   <div style={{
                                 backgroundImage: `url(${license.image})`,
-                                backgroundSize: 'contain',
                                 backgroundColor: '#ccc',
                                 width: '100%',
                                 height: '10em'
-                              }} />
+                          
+                              }} className="settings-set-image" />
                 </div>
               </div>
           }
@@ -197,6 +204,48 @@ const Settings = ({
           <Button className="sh-btn--yellow" label="update" onClick={ () => postUpdates(info, shop, token) } />
         </CardActions>
       </Card>
+      </div>
+      <div className="settings-payment-group-container">
+      <div className="Settings-payment-gourp">
+        <Card>
+          <CardTitle title="Social Links" />
+          <CardText>
+            <Input icon="watch_later"
+                   label="Facebook"
+                   onChange={
+                     value => editSocial('facebook', value)
+                   }
+                   value={ social.fb_link } />
+            <Input icon="watch_later"
+                   label="Twitter"
+                   onChange={
+                     value => editSocial('twitter', value)
+                   }
+                   value={ social.twitter_link } />
+            <Input icon="watch_later"
+                   label="Google Plus"
+                   onChange={
+                     value => editSocial('plus', value)
+                   }
+                   value={ social.google_plus } />
+            <Input icon="watch_later"
+                   label="Instagram"
+                   onChange={
+                     value => editSocial('instagram', value)
+                   }
+                   value={ social.instagram } />
+            <Input icon="watch_later"
+                   label="LinkedIn"
+                   onChange={
+                     value => editSocial('linkedin', value)
+                   }
+                   value={ social.linkedin } />
+          </CardText>
+          <CardActions>
+            <Button className="sh-btn--yellow" label="update" onClick={ () => postUpdates(info, shop, token) } />
+          </CardActions>
+        </Card>
+      </div>
       <div className="Settings-payment-gourp">
         <Card>
           <CardTitle title="Shop Payment" />
@@ -251,6 +300,7 @@ const Settings = ({
             <Button label="update" primary onClick={ () => postUpdates(info, shop, token) } />
           </CardActions>
         </Card>*/}
+      </div>
       </div>
     </div>
   );
