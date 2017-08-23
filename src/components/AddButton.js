@@ -21,7 +21,7 @@ const AddButton = ({
                     onClick={
                      () => {
                        const page = facebook.split('/')
-                       window.open(`https://www.messenger.com/t/${page[page.length - 1]}`);
+                       window.open(`https://www.messenger.com/t/${page[page.length - 1] && page[page.length -1].length > 0 ? page[page.length - 1] : page[page.length - 2]}`);
                      }
                     }
                     className="addbutton addbutton-social" />
