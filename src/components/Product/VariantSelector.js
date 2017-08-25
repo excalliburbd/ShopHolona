@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './VarianceSelector.css'
+import './VariantSelector.css'
 
-const VarianceSelector = (
+const VariantSelector = (
   {
     selectedVariant,
     variances,
@@ -12,18 +12,21 @@ const VarianceSelector = (
   ) => {
 
   return (
-    <div className="variance-list">
+    <div className="variant-list">
       {
         variances.map(
           ({images}, key) => (
-            <div  className="variances"
+            <div  className={
+                    (key === selectedVariant) ?
+                      'variant variant--selected' :
+                      'variant'
+                  }
                   style={{backgroundImage: `url(${images[0].image})`}}
                   key={ key }
                   onClick={
                      () => handleSelectVariance(productID, key)
                   }
             >
-              {console.log(images[0].image)}
             </div>
           )
         )
@@ -34,4 +37,4 @@ const VarianceSelector = (
 
 }
 
-export default VarianceSelector;
+export default VariantSelector;

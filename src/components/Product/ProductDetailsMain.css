@@ -8,7 +8,14 @@
   display: flex;
   flex-direction: row;
 }
-.details-main-secondary-size {
+
+.details-main-stock {
+  display: flex;
+  align-items: center;
+  padding-left: 40px;
+}
+
+.details-main-secondary-size,  .details-main-stock--value {
   display: inline-flex;
   align-items: center;
   font-weight: 900;
@@ -24,6 +31,13 @@
   padding: 6px 1.2rem;
   box-shadow: var(--shadow-2p);
 }
+
+.details-main-stock--value {
+  border: 1px solid #898989;
+  background-color: #898989;
+  color: white;
+}
+
 .details-main-secondary-size--selected {
   border: 1px solid #898989;
   background-color: #898989;

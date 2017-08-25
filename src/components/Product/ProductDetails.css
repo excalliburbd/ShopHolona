@@ -127,6 +127,14 @@
 
 .product-details-right {
   width: 65%;
+  overflow: auto;
+}
+
+.product-details-tabs ._3oZmF {
+  position: sticky;
+  top: 0rem;
+  background: white;
+  z-index: 100;
 }
 
 .product-details-tabs ._26SP9 {
@@ -223,5 +231,5 @@
     width: 100%;
     padding: 0em 1em;
   }
-  
+
 }

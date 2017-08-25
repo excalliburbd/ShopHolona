@@ -92,12 +92,13 @@ const AddProductDetails = ({
                           textShadow: '0 0 1px grey',
                           }}>
                             {`${ attributes.reduce( (acc, curr) => {
-                            if (curr.stock !== '') {
-                              return parseInt(curr.stock, 10) + acc;
-                            }
+                              if (curr.stock !== '') {
+                                return parseInt(curr.stock, 10) + acc;
+                              }
 
-                            return 0 + acc;
-                          }, 0) }`}
+                              return 0 + acc;
+                              }, 0) }`
+                            }
                         </span>
                         <IconButton  style={{
                                        height: '3rem',
