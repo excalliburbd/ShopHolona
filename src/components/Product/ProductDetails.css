@@ -53,8 +53,16 @@
   width: 20rem;
 }
 
+.product-details-left--img-main>div>img {
+  box-shadow: var(--shadow-4p);
+  width: 20rem !important;
+  height: 20rem !important;
+  object-fit: contain;
+}
+
 .image-gallery-slide-wrapper {
   box-shadow: var(--shadow-4p);
+  display: none;
 }
 
 .image-gallery-image img {
