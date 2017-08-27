@@ -9,6 +9,8 @@ import IconButton from 'react-toolbox/lib/button/IconButton';
 import Sticky from 'react-sticky-el';
 import ReactImageZoom from 'react-image-zoom';
 
+// import ReactZoomify from './ImageZoom';
+
 import ProductDetailsMain from './ProductDetailsMain';
 import Stars from '../Stars';
 
@@ -73,6 +75,17 @@ const ProductDetails = ({
         <div className="product-details-left--img-main">
           <ReactImageZoom {...zoomImg} />
         </div>
+
+        {/*<div className="img-main">*/}
+          {/*<ReactZoomify*/}
+            {/*width={320}*/}
+            {/*src={images[0].original}*/}
+            {/*s={100}*/}
+            {/*magnification={4}*/}
+            {/*zoomedImgLeft={700}*/}
+            {/*zoomedImgTop={100}*/}
+          {/*/>*/}
+        {/*</div>*/}
 
         <div className="product-details-slider">
           <ImageGallery

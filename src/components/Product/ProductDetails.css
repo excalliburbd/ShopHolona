@@ -177,7 +177,7 @@
 }
 
 /*for mobile*/
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 750px) {
   .ShopPage-product-details .ShopPage-details {
     display: none;
   }
@@ -239,5 +239,7 @@
     width: 100%;
     padding: 0em 1em;
   }
-
+  .product-details-left--img-main>div>div {
+    display: none !important;
+  }
 }
