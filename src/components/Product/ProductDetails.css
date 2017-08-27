@@ -55,8 +55,8 @@
 
 .product-details-left--img-main>div>img {
   box-shadow: var(--shadow-4p);
-  width: 20rem !important;
-  height: 20rem !important;
+  /* width: 20rem !important; */
+  /* height: 20rem !important; */
   object-fit: contain;
 }
 
@@ -241,5 +241,10 @@
   }
   .product-details-left--img-main>div>div {
     display: none !important;
+  }
+  .product-details-left--img-main>div>img  {
+    width: 18rem;
+    height: 18rem;
+
   }
 }

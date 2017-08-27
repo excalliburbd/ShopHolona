@@ -35,7 +35,7 @@ const ProductDetailsMain = ({
     <div className="details-main-container">
       <div className="details-main-primay">
         {/*<h4 className="details-main-subtitle">{ variances[0].type.name }</h4>*/}
-        <h4 className="details-main-subtitle">Variants</h4>
+        <h4 className="details-main-subtitle" style={{width: '80px'}}>Variants</h4>
         <VariantSelector
           selectedVariant= { selectedVariant }
           variances= { variances }
