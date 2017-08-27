@@ -27,3 +27,16 @@
   transition: all 200ms linear;
   transform: scale(1);
 }
+@media screen and (max-width: 750px) {
+  .variant {
+        margin: .6em .5em;
+  }
+  .variant-list {
+    flex-wrap: wrap;
+    justify-content: row;
+    align-items: flex-start;
+    padding-left: 0;
+    margin-left: 1em;
+  }
+
+}

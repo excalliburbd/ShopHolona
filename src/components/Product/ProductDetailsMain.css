@@ -68,7 +68,7 @@
 /*for mobile*/
 @media screen and (max-width: 600px) {
   .details-sizes {
-    padding-left: 1.5em;
+    padding-left: .5em;
   }
   .details-main-primay .circle-picker {
     margin-left: 1.5em;
@@ -78,5 +78,15 @@
   .details-main-weight p {
     padding-left: 1.5em;
   }
+  .details-main-secondary-size {
+    margin: .7em .5em;
+  }
+  .details-main-stock {
+    padding: 0;
+    padding-left: .4em;
+  }
+  .product-details-right {
+    padding: 0em .2em;
+}
 
 }
