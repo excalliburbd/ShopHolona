@@ -30,6 +30,7 @@
     "react-router-dom": "^4.0.0",
     "react-slick": "^0.14.11",
     "react-sticky-el": "^1.0.13",
+    "react-test-renderer": "^15.6.1",
     "react-toolbox": "2.0.0-beta.10",
     "reactour": "^1.4.1",
     "reapop": "^1.1.1",
@@ -47,8 +48,10 @@
     "uuid": "^3.1.0"
   },
   "devDependencies": {
+    "enzyme": "^2.9.1",
     "gh-pages": "^1.0.0",
     "maybe-you-meant": "^0.1.1",
+    "react-addons-test-utils": "^15.6.0",
     "react-scripts": "^1.0.3",
     "react-snapshot": "^1.1.0",
     "react-toolbox-themr": "^1.0.2"

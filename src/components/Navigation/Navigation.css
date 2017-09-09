@@ -45,7 +45,8 @@
 }
 
 .Navigation-sidebar-action {
-  position: absolute;
+  position: sticky;
+  z-index: 300;
   top: 0em;
   height: 4rem;
   display: flex;
@@ -118,7 +119,6 @@
   }
   ._1sAOY.Navigation-sidebar {
     width: 40vw;
-    padding-top: 4em;
     background-color: white;
     box-shadow: -3px 0px 14px 0px rgba(50, 50, 50, 0.80);
   }

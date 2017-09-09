@@ -4,8 +4,11 @@ import Input from 'react-toolbox/lib/input/Input';
 import Dropdown from 'react-toolbox/lib/dropdown/Dropdown';
 import Card from 'react-toolbox/lib/card/Card';
 import IconButton from 'react-toolbox/lib/button/IconButton';
+import FontIcon from 'react-toolbox/lib/font_icon/FontIcon';
 
 import MdClose from 'react-icons/lib/md/close';
+
+import './CartItem.css'
 
 const customItem  = item => (
   <div className="cart-attributes-color" style={{
@@ -56,58 +59,50 @@ const CartItem = ({
         </div>
         <div className="cart-item-details">
           <div className="cart-item-name">
-            <h4>{ product.name }</h4>
+            <div className="cart-item-name--title">{ product.name }</div>
           </div>
-          <div className="cart-product-attributes">
-            <div className="cart-product-quantity">
-              <span className="cart-attributes-title">Quantity</span>
-              <div className="cart-product-quantity-body">
+          <div className="cart-item-info">
+            <div className="cart-product-attributes">
+              <div className="cart-variant-name">{ primary[product.selectedVariant].label }</div>
+
+              <div className="cart-variant-size">{ secondary[product.selectedVariant].label }</div>
+
+              <div className="cart-product-quantity">
+                <span className="cart-attributes-title">Quantity</span>
+                <div className="cart-product-quantity-body">
                 <span onClick={
-                        () => updateCartItem(
-                                cartItem.id,
-                                attribute.id,
-                                cartItem.quantity + 1,
-                                token
-                              )
-                     }>+</span>
-                <Input className="cart-quantity-input"
-                       type='text'
-                       name='name'
-                       value={ cartItem.quantity } />
-                <span onClick={
-                        () => updateCartItem(
-                                cartItem.id,
-                                attribute,
-                                cartItem.quantity - 1,
-                                token
-                              )
-                     }>-</span>
+                  () => updateCartItem(
+                    cartItem.id,
+                    attribute.id,
+                    cartItem.quantity + 1,
+                    token
+                  )
+                }>+</span>
+                  <Input className="cart-quantity-input"
+                         type='text'
+                         name='name'
+                         value={ cartItem.quantity } />
+                  <span onClick={
+                    () => updateCartItem(
+                      cartItem.id,
+                      attribute,
+                      cartItem.quantity - 1,
+                      token
+                    )
+                  }>-</span>
+                </div>
               </div>
-            </div>
-            <div className="cart-dropdown-attribute-colors">
-              <span className="cart-attributes-title">Color</span>
-              <Dropdown className="cart-dropdown-colors"
-                        auto={false}
-                        source={ primary }
-                        template={ customItem }
-                        value={ variant.type.value }
-              />
-            </div>
-            <div className="cart-dropdown-attribute-others">
-              <span className="cart-attributes-title">Size</span>
-              <Dropdown className="cart-dropdown-others"
-                        source={ secondary }
-                        value={ attribute.type.value }
-              />
             </div>
             <div className="cart-product-price">
               <h3>৳ { attribute.sh_price * cartItem.quantity }</h3>
               <h5>৳ { attribute.sh_price } each</h5>
             </div>
           </div>
-          <IconButton className="cart-product-delete"
-                      icon={<MdClose />}
-                      onClick={ () => deleteCartItem(cartItem.id, token) } />
+          <FontIcon
+            className="cart-product-delete"
+            value="add_circle"
+            onClick={ () => deleteCartItem(cartItem.id, token) }
+          />
         </div>
       </Card>
     </li>
