@@ -4018,6 +4018,10 @@ js-cookie@^2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-2.1.4.tgz#da4ec503866f149d164cf25f579ef31015025d8d"
 
+js-image-zoom@^0.4.0:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/js-image-zoom/-/js-image-zoom-0.4.1.tgz#87508d4dc08a45db538ebcc518ca68e4e7996394"
+
 js-tokens@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.1.tgz#08e9f132484a2c45a30907e9dc4d5567b7f114d7"
@@ -4349,7 +4353,7 @@ lodash.without@~4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.without/-/lodash.without-4.4.0.tgz#3cd4574a00b67bae373a94b748772640507b7aac"
 
-"lodash@>=3.5 <5", lodash@^4.0.0, lodash@^4.0.1, lodash@^4.1.0, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.4, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@~4.17.4:
+"lodash@>=3.5 <5", lodash@^4.0.0, lodash@^4.1.0, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.4, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@~4.17.4:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -4410,10 +4414,6 @@ makeerror@1.0.x:
 map-obj@^1.0.0, map-obj@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/map-obj/-/map-obj-1.0.1.tgz#d933ceb9205d82bdcf4886f6742bdc2b4dea146d"
-
-material-colors@^1.2.1:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/material-colors/-/material-colors-1.2.5.tgz#5292593e6754cb1bcc2b98030e4e0d6a3afc9ea1"
 
 math-expression-evaluator@^1.2.14:
   version "1.2.17"
@@ -6029,16 +6029,6 @@ react-avatar-editor@^9.1.1:
   dependencies:
     prop-types "^15.5.8"
 
-react-color@^2.12.0:
-  version "2.12.0"
-  resolved "https://registry.yarnpkg.com/react-color/-/react-color-2.12.0.tgz#54bf93e51bb8dc2c76282ac127f85b34b86cd734"
-  dependencies:
-    lodash "^4.0.1"
-    material-colors "^1.2.1"
-    prop-types "^15.5.4"
-    reactcss "^1.2.0"
-    tinycolor2 "^1.1.2"
-
 react-css-themr@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/react-css-themr/-/react-css-themr-2.1.2.tgz#e017514e471c232f43a754a55b49d81faf5dafb8"
@@ -6143,6 +6133,13 @@ react-image-gallery@^0.8.0:
     lodash.throttle "^4.1.1"
     prop-types "^15.5.8"
     react-swipeable "^4.0.0"
+
+react-image-zoom@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/react-image-zoom/-/react-image-zoom-0.6.1.tgz#18b242d34707e42dac9eb3ab1c140df9fa2dffa8"
+  dependencies:
+    js-image-zoom "^0.4.0"
+    prop-types "^15.5.6"
 
 react-motion@^0.5.0:
   version "0.5.0"
@@ -6348,12 +6345,6 @@ react@^15.3.0, react@^15.6.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
     prop-types "^15.5.7"
-
-reactcss@^1.2.0:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/reactcss/-/reactcss-1.2.2.tgz#41b0ef43e01d54880357c34b11ac1531209350ef"
-  dependencies:
-    lodash "^4.0.1"
 
 reactour@^1.4.1:
   version "1.4.1"
@@ -7472,10 +7463,6 @@ timers-browserify@^2.0.2:
   resolved "https://registry.yarnpkg.com/timers-browserify/-/timers-browserify-2.0.2.tgz#ab4883cf597dcd50af211349a00fbca56ac86b86"
   dependencies:
     setimmediate "^1.0.4"
-
-tinycolor2@^1.1.2:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.1.tgz#f4fad333447bc0b07d4dc8e9209d8f39a8ac77e8"
 
 tmp@^0.0.31:
   version "0.0.31"

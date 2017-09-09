@@ -7,6 +7,9 @@ import Tabs from 'react-toolbox/lib/tabs/Tabs';
 import Button from 'react-toolbox/lib/button/Button';
 import IconButton from 'react-toolbox/lib/button/IconButton';
 import Sticky from 'react-sticky-el';
+import ReactImageZoom from 'react-image-zoom';
+
+// import ReactZoomify from './ImageZoom';
 
 import ProductDetailsMain from './ProductDetailsMain';
 import Stars from '../Stars';
@@ -15,26 +18,26 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 import './ProductDetails.css';
 
 const ProductDetails = ({
-  toggleDetails,
-  id,
-  variances,
-  selectedVariant,
-  selectedAttribute,
-  product,
-  addToCart,
-  setVariant,
-  tabIndex,
-  tabChange,
-  setAttribute,
-  token,
-  vendor,
-  featured,
-  shop,
-  deleteFromFeaturedProduct,
-  makeFeaturedProduct,
-  featuredID,
-  selectVariance,
-}) => {
+                          toggleDetails,
+                          id,
+                          variances,
+                          selectedVariant,
+                          selectedAttribute,
+                          product,
+                          addToCart,
+                          setVariant,
+                          tabIndex,
+                          tabChange,
+                          setAttribute,
+                          token,
+                          vendor,
+                          featured,
+                          shop,
+                          deleteFromFeaturedProduct,
+                          makeFeaturedProduct,
+                          featuredID,
+                          selectVariance,
+                        }) => {
 
   const images = product.variances[product.selectedVariant].images.map(
     ({ image }) => ({
@@ -43,14 +46,22 @@ const ProductDetails = ({
     })
   )
 
+  const zoomImg = {
+    width: 320,
+    offset: {vertical: 0, horizontal: 10},
+    zoomWidth: 320,
+    img: `${images[0].original}`
+  };
+
+
   return (
     <div className="product-details-container">
       <IconButton
-                  title="Back to Store"
-                  icon="arrow_back"
-                  className="ProductDetails--toggle"
-                  onClick={ () => toggleDetails(null) }
-        />
+        title="Back to Store"
+        icon="arrow_back"
+        className="ProductDetails--toggle"
+        onClick={ () => toggleDetails(null) }
+      />
 
       <div className="product-details-left">
         <Sticky stickyClassName="product-details-info-sticky">
@@ -60,6 +71,22 @@ const ProductDetails = ({
             <Stars rating={ 0 } />
           </div>
         </Sticky>
+
+        <div className="product-details-left--img-main">
+          <ReactImageZoom {...zoomImg} />
+        </div>
+
+        {/*<div className="img-main">*/}
+          {/*<ReactZoomify*/}
+            {/*width={320}*/}
+            {/*src={images[0].original}*/}
+            {/*s={100}*/}
+            {/*magnification={4}*/}
+            {/*zoomedImgLeft={700}*/}
+            {/*zoomedImgTop={100}*/}
+          {/*/>*/}
+        {/*</div>*/}
+
         <div className="product-details-slider">
           <ImageGallery
             items={images}
