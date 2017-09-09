@@ -7,6 +7,7 @@
 .details-main-secondary {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .details-main-stock {
@@ -28,7 +29,7 @@
   border-radius: 8px;
   cursor: pointer;
   transition: border 200ms linear;
-  padding: 6px 1.2rem;
+  padding: 14px 1.2rem 12px ;
   box-shadow: var(--shadow-2p);
 }
 

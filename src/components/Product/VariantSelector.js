@@ -15,13 +15,14 @@ const VariantSelector = (
     <div className="variant-list">
       {
         variances.map(
-          ({images}, key) => (
+          ({images, type}, key) => (
             <div  className={
                     (key === selectedVariant) ?
                       'variant variant--selected' :
                       'variant'
                   }
                   style={{backgroundImage: `url(${images[0].image})`}}
+                  title={type.value}
                   key={ key }
                   onClick={
                      () => handleSelectVariance(productID, key)

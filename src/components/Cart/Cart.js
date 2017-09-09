@@ -21,6 +21,8 @@ const Cart = ({
   handleAddress,
 }) => {
 
+  console.log(products)
+
   if (sidebarType === 'CHECKOUT') {
     return <Checkout total={ total }
                      cartItems={ cartItems }
