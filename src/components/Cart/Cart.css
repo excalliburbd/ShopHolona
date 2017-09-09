@@ -9,35 +9,6 @@
   color: dimgray;
 }
 
-.cart-header, .cart-header-text, .cart-header-total {
-  display: flex;
-  flex-direction: row;
-}
-
-.cart-header {
-  position: relative;
-  padding-left: 1em;
-}
-
-.cart-header-text {
-  margin-top: 0.4em;
-}
-
-.cart-header-total {
-  position: absolute;
-  right: 1.2em;
-}
-
-.cart-header-total h4:nth-child(1) {
-  align-items: center;
-  display: flex;
-  padding-top: 0.4em;
-  font-family: "Gotham Narrow Book";
-  font-size: 0.8em;
-  margin-right: 1.8em;
-
-}
-
 .cart-product-list {
   list-style: none;
   padding-left: 0px;

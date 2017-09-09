@@ -3,6 +3,7 @@ import React from 'react';
 import Button from 'react-toolbox/lib/button/Button';
 
 import CartItem from './CartItem';
+import CartTotal from './CartTotal';
 import Checkout from './Checkout';
 
 import './Cart.css';
@@ -21,8 +22,6 @@ const Cart = ({
   handleAddress,
 }) => {
 
-  console.log(products)
-
   if (sidebarType === 'CHECKOUT') {
     return <Checkout total={ total }
                      cartItems={ cartItems }
@@ -34,15 +33,8 @@ const Cart = ({
 
   return (
     <div className="cart-container">
-      <header className="cart-header">
-        <div className="cart-header-text">
-          <h4>{ cartItems.length } items</h4>
-        </div>
-        <div className="cart-header-total">
-          <h4>Total</h4>
-          <h4>৳ { total.price }</h4>
-        </div>
-      </header>
+      <CartTotal total={ total }
+                  cartItems={ cartItems }/>
       <ul className="cart-product-list">
         {
           cartItems.map(
