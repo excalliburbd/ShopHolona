@@ -7,7 +7,7 @@ const CartTotal = ({
     total,
   }) => {
   return (
-    <header className="cart-header">
+    <div className="cart-header">
       <div className="cart-header-text">
         <h4>{ cartItems.length } items</h4>
       </div>
@@ -15,7 +15,7 @@ const CartTotal = ({
         <h4>Total</h4>
         <h4>৳ { total.price }</h4>
       </div>
-    </header>
+    </div>
   )
 }
 
