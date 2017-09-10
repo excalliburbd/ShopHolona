@@ -10,7 +10,7 @@ import defaultConfig from 'redux-offline/lib/defaults';
 import { createBrowserHistory } from 'history'
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 
-import {REHYDRATE} from 'redux-persist/constants';
+import { REHYDRATE } from 'redux-persist/constants';
 import createActionBuffer from 'redux-action-buffer';
 
 import RootReducer from '../reducers';
@@ -37,8 +37,19 @@ const offlineConfig = {
   }
 }
 
+let store = connectRouter(history)(RootReducer);
+
+if (process.env.NODE_ENV !== "production") {
+  console.log("inside block")
+  if (module.hot) {
+    module.hot.accept('../reducers', () => {
+      store.replaceReducer(connectRouter(history)(RootReducer));
+    })
+  }
+}
+
 export default offline(offlineConfig)(createStore)(
-  connectRouter(history)(RootReducer),
+  store,
   composeWithDevTools(
     applyMiddleware(
       thunk,
