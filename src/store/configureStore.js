@@ -40,7 +40,6 @@ const offlineConfig = {
 let store = connectRouter(history)(RootReducer);
 
 if (process.env.NODE_ENV !== "production") {
-  console.log("inside block")
   if (module.hot) {
     module.hot.accept('../reducers', () => {
       store.replaceReducer(connectRouter(history)(RootReducer));

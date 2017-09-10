@@ -6,8 +6,6 @@ import { unregister } from './registerServiceWorker';
 import store from './store/configureStore';
 import App from './App';
 
-// console.log(store);
-
 ReactDOM.render(
   <Provider store={store}>
     <App />
