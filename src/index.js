@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import { Provider } from 'react-redux';
+
 import { unregister } from './registerServiceWorker';
 
 import store from './store/configureStore';
@@ -11,7 +13,8 @@ ReactDOM.render(
     <App />
   </Provider>,
   document.getElementById('root')
-)
+);
+
 if (module.hot) {
   module.hot.accept('./App', () => {
     ReactDOM.render(
@@ -20,7 +23,7 @@ if (module.hot) {
       </Provider>,
       document.getElementById('root')
     )
-  })
-};
+  });
+}
 
 unregister();
