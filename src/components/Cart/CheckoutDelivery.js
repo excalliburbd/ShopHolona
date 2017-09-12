@@ -14,6 +14,13 @@ const CheckoutDelivery = ({
       <div className="checkout-delivery">
         <div className="checkout-delivery-body">
           <h2 className="checkout-delivery-title">Delivery Address Details</h2>
+          <Button className="checkout-delivery-address--btn-add" icon='add' label='Bookmark' raised />
+          <div className="checkout-delivery-address--view">
+            <div className="checkout-delivery-address--card">
+              <div className="checkout-delivery-address--card-title">Home</div>
+              <div className="checkout-delivery-address--card-content">1/9, Block-B, Lalmatia, Dhaka-1207</div>
+            </div>
+          </div>
         </div>
         <div className="checkout-footer">
           <div className="checkout-footer--info">

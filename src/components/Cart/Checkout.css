@@ -12,6 +12,7 @@
 .checkout-body {
   height: calc(100% - var(--footer-height));
   overflow-y: auto;
+  /*background: green;*/
 }
 
 .checkout-body--steps {
@@ -49,6 +50,7 @@
   left: 0;
   right: 0;
   height: var(--footer-height);
+  /*background-color: red;*/
 }
 
 .checkout-footer--info {
