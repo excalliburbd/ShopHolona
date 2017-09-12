@@ -2,7 +2,7 @@
   padding: .5em;
   padding-top: 0px;
   position: relative;
-  min-height: calc(100vh - 6em);
+  min-height: calc(100vh - 5em);
 }
 
 .cart-container * {
@@ -16,18 +16,10 @@
   flex-direction: column;
 }
 
-.Cart-actions {
+.cart-actions {
   position: absolute;
   bottom: 0;
   width: calc(100% - 1em);
   display: flex;
   flex-direction: column;
-}
-
-.Checkout {
-  padding: 1em;
-}
-
-.Checkout li {
-  list-style: none;
 }

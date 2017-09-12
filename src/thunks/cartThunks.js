@@ -149,7 +149,7 @@ export const addToCart = (id, token, productID) => (dispatch, getState) => {
                 }));
                 dispatch(addNotification({
                   title: 'Success',
-                  message: 'Successfully added to cart. Login to save changes.',
+                  message: 'Successfully added to cart.',
                   position: 'bl',
                   status: 'success',
                 }));

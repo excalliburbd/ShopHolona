@@ -59,7 +59,7 @@ const CartItem = ({
         </div>
         <div className="cart-item-details">
           <div className="cart-item-name">
-            <div className="cart-item-name--title">{ product.name }</div>
+            <div className="cart-item-name--title" title={product.name}>{ product.name }</div>
           </div>
           <div className="cart-item-info">
             <div className="cart-product-attributes">

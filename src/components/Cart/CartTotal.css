@@ -1,23 +1,23 @@
-.cart-header, .cart-header-text, .cart-header-total {
+.cart-total, .cart-total-text, .cart-total-amount {
   display: flex;
   flex-direction: row;
 }
 
-.cart-header {
+.cart-total {
   position: relative;
-  padding-left: 1em;
+  padding: 0 1rem;
 }
 
-.cart-header-text {
+.cart-total-text {
   margin-top: 0.4em;
 }
 
-.cart-header-total {
+.cart-total-amount {
   position: absolute;
   right: 1.2em;
 }
 
-.cart-header-total h4:nth-child(1) {
+.cart-total-amount h4:nth-child(1) {
   align-items: center;
   display: flex;
   padding-top: 0.4em;
