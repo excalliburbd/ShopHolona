@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import {reducer as responsive } from 'redux-mediaquery';
 import { reducer as notificationsReducer } from 'reapop';
+// import { createForms } from 'react-redux-form';
 
 import { FilterUIReducer } from './filterUIReducers';
 import { ordersReducer, ordersEntityReducer } from './ordersReducers';
@@ -91,6 +92,9 @@ const RootReducer = combineReducers({
   }),
   cart: cartReducer,
   notifications: notificationsReducer(),
+  // forms: createForms({
+
+  // }, 'forms'),
 });
 
 export default RootReducer;

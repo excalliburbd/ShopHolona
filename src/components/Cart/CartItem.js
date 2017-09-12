@@ -1,23 +1,23 @@
 import React from 'react';
 
 import Input from 'react-toolbox/lib/input/Input';
-import Dropdown from 'react-toolbox/lib/dropdown/Dropdown';
+// import Dropdown from 'react-toolbox/lib/dropdown/Dropdown';
 import Card from 'react-toolbox/lib/card/Card';
-import IconButton from 'react-toolbox/lib/button/IconButton';
+// import IconButton from 'react-toolbox/lib/button/IconButton';
 import FontIcon from 'react-toolbox/lib/font_icon/FontIcon';
 
-import MdClose from 'react-icons/lib/md/close';
+// import MdClose from 'react-icons/lib/md/close';
 
 import './CartItem.css'
 
-const customItem  = item => (
-  <div className="cart-attributes-color" style={{
-    backgroundColor: item.color,
-    width: "1.4em",
-    height: "1.4em",
-    borderRadius: "50%"
-  }}></div>
-);
+// const customItem  = item => (
+//   <div className="cart-attributes-color" style={{
+//     backgroundColor: item.color,
+//     width: "1.4em",
+//     height: "1.4em",
+//     borderRadius: "50%"
+//   }}></div>
+// );
 
 const CartItem = ({
   cartItem,
