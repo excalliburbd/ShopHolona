@@ -23,4 +23,15 @@
   margin: 0.8rem 0;
   padding: 0.8rem;
   width: 50%;
+  box-shadow: var(--shadow-6p);
+  border: 1px solid #cccccc;
+}
+.checkout-delivery-address--card:active {
+  box-shadow: var(--shadow-2p);
+}
+.checkout-delivery-address--card:nth-child(odd) {
+  margin-right: 0.5rem;
+}
+.checkout-delivery-address--card:nth-child(even) {
+  margin-left: 0.5rem;
 }

@@ -33,7 +33,7 @@ const Checkout = ({
           </div>
           <div className="checkout-stepper">
             <CheckoutDelivery total={ total }
-                              cartItems={ cartItems } />
+                                cartItems={ cartItems } />
           </div>
         </div>
       </div>
