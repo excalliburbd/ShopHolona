@@ -1,32 +1,53 @@
-import React from 'react'
+import React, { Component } from 'react';
 
 import Button from 'react-toolbox/lib/button/Button';
 
+import AddDeliveryAddress from './CheckoutDeliveryAddress';
 import CartTotal from './CartTotal'
 
 import './CheckoutDelivery.css'
 
-const CheckoutDelivery = ({
-  cartItems,
-  total
-}) => {
-  const addresses = [
-    {
-      id: 1,
-      title: "Home",
-      details: "1/9, Block-B, Lalmatia, Dhaka-1207"
-    },
-    {
-      id: 2,
-      title: "Office",
-      details: "lamatia, dhaka"
+class CheckoutDelivery extends Component {
+  constructor (props) {
+    super (props);
+
+    this.state = {
+      add_new: false
     }
-  ]
-  return (
+  }
+
+  handleAddNewAddress () {
+    this.setState((prevState) => {
+      return { add_new: !prevState.add_new }
+    })
+  }
+
+
+  render () {
+    const addresses = [
+      {
+        id: 1,
+        title: "Home",
+        details: "1/9, Block-B, Lalmatia, Dhaka-1207"
+      },
+      {
+        id: 2,
+        title: "Office",
+        details: "lamatia, dhaka"
+      }
+    ]
+
+
+    return (
       <div className="checkout-delivery">
         <div className="checkout-delivery-body">
           <h2 className="checkout-delivery-title">Delivery Address Details</h2>
-          <Button className="checkout-delivery-address--btn-add" icon='add' label='Bookmark' raised />
+          <Button className="checkout-delivery-address--btn-add" icon='add' label='Add Delivery Address' raised onClick={ ()=>this.handleAddNewAddress() } />
+
+          {
+            this.state.add_new ? <AddDeliveryAddress /> : ''
+          }
+
           <div className="checkout-delivery-address--view">
             {
               Array.isArray(addresses) && addresses.map((address) => {
@@ -44,15 +65,15 @@ const CheckoutDelivery = ({
           <div className="checkout-footer--info">
             <p>Calculated Delivery Fee</p>
           </div>
-          <CartTotal total={ total }
-                     cartItems={ cartItems }/>
+          <CartTotal total={ this.props.total }
+                     cartItems={ this.props.cartItems }/>
           <Button label="Next"
                   raised
                   className="checkout-footer--btn sh-btn--yellow"/>
         </div>
       </div>
-
     )
+  }
 }
 
 export default CheckoutDelivery
