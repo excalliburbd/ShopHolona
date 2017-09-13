@@ -187,7 +187,6 @@ export const followShop = (shop, token, name) => dispatch => {
 }
 
 export const unfollowShop = (shop, token, name, id) => dispatch => {
-  console.log(shop, token, name, id)
   if (token) {
     request(`/me/unfollow-shops/${id}`, getConfig(
             token,
