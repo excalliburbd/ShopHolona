@@ -1,0 +1,7 @@
+.add-delivery-address--dual {
+  display: flex;
+  justify-content: space-between;
+}
+.add-delivery-address--dual [data-react-toolbox="input"] {
+  width: 48%;
+}

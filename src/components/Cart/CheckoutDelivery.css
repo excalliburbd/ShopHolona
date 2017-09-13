@@ -6,6 +6,7 @@
 
 .checkout-delivery-address--btn-add {
   width: 100%;
+  border: 1px solid #cccccc;
 }
 .checkout-delivery-address--btn-add > span{
   position: absolute;
@@ -25,6 +26,14 @@
   width: 50%;
   box-shadow: var(--shadow-6p);
   border: 1px solid #cccccc;
+}
+.checkout-delivery-address--card-title {
+  text-align: center;
+  font-weight: 600;
+}
+.checkout-delivery-address--card-content {
+  font-size: 0.8rem;
+  padding-top: 0.5rem;
 }
 .checkout-delivery-address--card:active {
   box-shadow: var(--shadow-2p);
