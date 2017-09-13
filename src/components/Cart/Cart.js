@@ -54,7 +54,7 @@ const Cart = ({
         <Button label="Checkout"
                 raised
                 className="cart-action-checkout--btn sh-btn--yellow"
-                onClick={ handleShowCheckout } />
+                onClick={ () => handleShowCheckout(token) } />
       </div>
     </div>
   )

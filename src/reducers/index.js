@@ -92,7 +92,7 @@ const RootReducer = combineReducers({
   }),
   cart: cartReducer,
   notifications: notificationsReducer(),
-  // forms: createForms({
+  // forms: combineFormscle({
 
   // }, 'forms'),
 });

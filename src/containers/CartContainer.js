@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { addNotification } from 'reapop';
 
 import {
   cartActions,
@@ -42,8 +43,18 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(cartActions.cart.done.delete(id))
       }
     },
-    handleShowCheckout: () => {
-      dispatch(sidebarActions.sidebar.show.checkout());
+    handleShowCheckout: (token) => {
+      if (!token) {
+        dispatch(addNotification({
+          title: 'Please Log In',
+          message: `Log In or Sign Up to checkout`,
+          position: 'bl',
+          status: 'error',
+        }));
+        dispatch(sidebarActions.sidebar.show.signIn());
+      } else {
+        dispatch(sidebarActions.sidebar.show.checkout());
+      }
     },
     handleCheckout: (total, cart, address, token) => {
       dispatch(checkout(total, cart, address, token));
