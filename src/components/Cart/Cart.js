@@ -4,7 +4,8 @@ import Button from 'react-toolbox/lib/button/Button';
 
 import CartItem from './CartItem';
 import CartTotal from './CartTotal';
-import Checkout from './Checkout'
+// import Checkout from './Checkout';
+import CheckoutDelivery from './CheckoutDelivery';
 
 import './Cart.css';
 
@@ -20,18 +21,22 @@ const Cart = ({
   handleCheckout,
   address,
   handleAddress,
+  handleNoItemsInCartNotification,
+  handleShowCheckoutAddress,
 }) => {
 
-  if (sidebarType === 'CHECKOUT') {
+  if (sidebarType === 'CHECKOUT_ADDRESS') {
     // return <Checkout total={ total }
     //                  cartItems={ cartItems }
     //                  handleCheckout={ handleCheckout }
     //                  token={ token }
     //                  address={ address }
     //                  handleAddress={ handleAddress } />
-    return  <Checkout total={ total }
-                       cartItems={ cartItems }
-            />
+    // return  <Checkout total={ total }
+    //                    cartItems={ cartItems }
+    //         />
+    return <CheckoutDelivery total={ total }
+                             cartItems={ cartItems } />
   }
 
   return (
@@ -54,7 +59,13 @@ const Cart = ({
         <Button label="Checkout"
                 raised
                 className="cart-action-checkout--btn sh-btn--yellow"
-                onClick={ () => handleShowCheckout(token) } />
+                onClick={ () => {
+                  if (cartItems.length < 1) {
+                    handleNoItemsInCartNotification();
+                  } else {
+                    handleShowCheckoutAddress(token);
+                  }
+                } } />
       </div>
     </div>
   )

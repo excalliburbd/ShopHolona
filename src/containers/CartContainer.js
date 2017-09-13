@@ -43,7 +43,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(cartActions.cart.done.delete(id))
       }
     },
-    handleShowCheckout: (token) => {
+    handleShowCheckout: () => {
+
+    },
+    handleShowCheckoutAddress: (token) => {
       if (!token) {
         dispatch(addNotification({
           title: 'Please Log In',
@@ -53,7 +56,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }));
         dispatch(sidebarActions.sidebar.show.signIn());
       } else {
-        dispatch(sidebarActions.sidebar.show.checkout());
+        dispatch(sidebarActions.sidebar.show.checkoutAddress());
       }
     },
     handleCheckout: (total, cart, address, token) => {
@@ -62,6 +65,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleAddress: value => {
       dispatch(userActions.user.ui.address(value));
     },
+    handleNoItemsInCartNotification: () => {
+      dispatch(addNotification({
+        title: 'No items in cart!',
+        message: 'Please add a few items first',
+        position: 'bl',
+        status: 'warning',
+      }));
+    }
   }
 }
 
