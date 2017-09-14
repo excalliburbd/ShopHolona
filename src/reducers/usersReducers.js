@@ -90,6 +90,12 @@ export const UserReducer = handleActions({
       following: state.following.filter( shop => shop.id !== action.payload),
     }
   },
+  [userActions.user.set.address]: (state, action) => {
+    return {
+      ...state,
+      address: action.payload,
+    }
+  },
   [REHYDRATE]: (state, action) => {
       const incoming = action.payload.user;
 
@@ -113,6 +119,7 @@ export const UserReducer = handleActions({
   email_verified: false,
   shopvendor: false,
   following: [],
+  addresses: [],
 });
 
 export const UserUIReducer = handleActions({

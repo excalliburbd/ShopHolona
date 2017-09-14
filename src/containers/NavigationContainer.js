@@ -14,6 +14,7 @@ import {
   trySignInAsyncAction,
   getMe,
   getFollowingShop,
+  getUserAddress,
 } from '../thunks/userThunks';
 import { getCart } from '../thunks/cartThunks';
 import {
@@ -95,6 +96,7 @@ const mapDispatchToProps = dispatch => {
         dispatch(tryGetVendor(shop, token));
         dispatch(getFollowingShop(shop, token));
         dispatch(getShopPayments(shop, token));
+        dispatch(getUserAddress(token));
       }
 
       if (demostore) {
@@ -121,6 +123,7 @@ const mapDispatchToProps = dispatch => {
         dispatch(getCart(token, false));
         dispatch(tryGetVendor(shop, token));
         dispatch(getFollowingShop(shop, token));
+        dispatch(getUserAddress(token));
       }
     },
     handleSetSideDrawer: val => {

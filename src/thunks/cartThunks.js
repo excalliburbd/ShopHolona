@@ -190,7 +190,7 @@ export const checkout = (total, cart, address, token) => dispatch => {
     request('/me/orders/', getConfig(
               token,
               {
-                to_address: 16,
+                to_address: address,
                 order_status: 1,
                 total_price: total.price,
                 total_weight: total.weight,
@@ -206,7 +206,15 @@ export const checkout = (total, cart, address, token) => dispatch => {
               'POST'
             )).then(
               res => {
-                console.log(res)
+                if (res.id) {
+                  dispatch(sidebarActions.sidebar.hide());
+                  dispatch(addNotification({
+                    title: 'Successfully Checked Out',
+                    message: 'Your order has been placed!',
+                    position: 'bl',
+                    status: 'success',
+                  }));
+                }
               }
             )
   }

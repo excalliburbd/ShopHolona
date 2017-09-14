@@ -19,7 +19,7 @@ const Cart = ({
   sidebarType,
   handleShowCheckout,
   handleCheckout,
-  address,
+  addresses,
   handleAddress,
   handleNoItemsInCartNotification,
   handleShowCheckoutAddress,
@@ -36,7 +36,10 @@ const Cart = ({
     //                    cartItems={ cartItems }
     //         />
     return <CheckoutDelivery total={ total }
-                             cartItems={ cartItems } />
+                             cartItems={ cartItems }
+                             addresses={ addresses }
+                             handleCheckout={ handleCheckout }
+                             token={ token } />
   }
 
   return (

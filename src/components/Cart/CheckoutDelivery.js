@@ -24,19 +24,13 @@ class CheckoutDelivery extends Component {
 
 
   render () {
-    const addresses = [
-      {
-        id: 1,
-        title: "Home",
-        details: "1/9, Block-B, Lalmatia, Dhaka-1207"
-      },
-      {
-        id: 2,
-        title: "Office",
-        details: "lamatia, dhaka"
-      }
-    ]
-
+    const {
+      addresses,
+      total,
+      cartItems,
+      handleCheckout,
+      token,
+    } = this.props;
 
     return (
       <div className="checkout-delivery">
@@ -52,7 +46,9 @@ class CheckoutDelivery extends Component {
             {
               Array.isArray(addresses) && addresses.map((address) => {
                 return (
-                  <div className="checkout-delivery-address--card" key={address.id}>
+                  <div className="checkout-delivery-address--card"
+                       key={address.id}
+                       onClick={ () => handleCheckout(total, cartItems, address.id, token)}>
                     <div className="checkout-delivery-address--card-title">{address.title}</div>
                     <div className="checkout-delivery-address--card-content">{address.details}</div>
                   </div>
@@ -67,9 +63,6 @@ class CheckoutDelivery extends Component {
           </div>
           <CartTotal total={ this.props.total }
                      cartItems={ this.props.cartItems }/>
-          <Button label="Next"
-                  raised
-                  className="checkout-footer--btn sh-btn--yellow"/>
         </div>
       </div>
     )

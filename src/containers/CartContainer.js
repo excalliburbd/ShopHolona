@@ -10,7 +10,7 @@ import {
 
 import { getTotal, getCartItems } from '../selectors/cartSelectors';
 import { getProductsObj } from '../selectors/productSelectors';
-import { getToken } from '../selectors/userSelectors';
+import { getToken, getUserAddresses } from '../selectors/userSelectors';
 
 import { deleteCartItem, updateCartItem, checkout } from '../thunks/cartThunks';
 
@@ -23,7 +23,7 @@ const mapStateToProps = state => {
     products: getProductsObj(state),
     token: getToken(state),
     sidebarType: state.ui.sidebar.subType,
-    address: state.ui.user.address,
+    addresses: getUserAddresses(state),
   }
 }
 
