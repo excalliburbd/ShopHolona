@@ -83,12 +83,20 @@ const CartItem = ({
                          name='name'
                          value={ cartItem.quantity } />
                   <span onClick={
-                    () => updateCartItem(
-                      cartItem.id,
-                      attribute,
-                      cartItem.quantity - 1,
-                      token
-                    )
+                    () => {
+                      if (cartItem.quantity > 1) {
+                        updateCartItem(
+                          cartItem.id,
+                          attribute.id,
+                          cartItem.quantity - 1,
+                          token
+                        )
+                      }
+
+                      if (cartItem.quantity === 1) {
+                        deleteCartItem(cartItem.id, token);
+                      }
+                    }
                   }>-</span>
                 </div>
               </div>

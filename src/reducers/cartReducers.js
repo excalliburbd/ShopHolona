@@ -36,7 +36,7 @@ export const cartReducer = handleActions({
         ...state,
         loading: false,
         items: [],
-        error: action.payload,
+        error: action.error,
       }
     }
   },
@@ -56,6 +56,15 @@ export const cartReducer = handleActions({
       loading: false,
       error: null,
       items: state.items.filter(item => item !== action.payload)
+    }
+  },
+  [cartActions.cart.undo.delete]: (state, action) => {
+    return {
+      ...state,
+      items: [
+        ...state.items,
+        action.payload
+      ]
     }
   },
   [userActions.user.manualSignOut]: (state, action) => {
@@ -165,13 +174,13 @@ export const cartEntitiesReducer = handleActions({
       }
     }
   },
-  [cartActions.cart.done.delete]: (state, action) => {
-    const cart = { ...state };
+  // [cartActions.cart.done.delete]: (state, action) => { see if this is necessary
+  //   const cart = { ...state };
 
-    delete cart[action.payload];
+  //   delete cart[action.payload];
 
-    return cart;
-  },
+  //   return cart;
+  // },
   [cartActions.cart.update.item]: (state, action) => {
     const {
       id,

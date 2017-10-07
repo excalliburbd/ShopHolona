@@ -45,7 +45,7 @@ const Cart = ({
   return (
     <div className="cart-container">
       <CartTotal total={ total }
-                  cartItems={ cartItems }/>
+                 cartItems={ cartItems }/>
       <ul className="cart-product-list">
         {
           cartItems.map(

@@ -37,11 +37,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       }
     },
     deleteCartItem: (id, token) => {
-      if (token) {
-        dispatch(deleteCartItem(id, token))
-      } else {
-        dispatch(cartActions.cart.done.delete(id))
-      }
+      dispatch(deleteCartItem(id, token));
     },
     handleShowCheckout: () => {
 

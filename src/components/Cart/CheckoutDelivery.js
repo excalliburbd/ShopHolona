@@ -69,4 +69,4 @@ class CheckoutDelivery extends Component {
   }
 }
 
-export default CheckoutDelivery
+export default CheckoutDelivery;

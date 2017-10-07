@@ -8,7 +8,10 @@ import {
   getShopPayments,
 } from '../thunks/shopThunks';
 import { getOrderList } from '../thunks/ordersThunks';
-import { getCart } from '../thunks/cartThunks';
+import {
+  getCart,
+  validateCart,
+} from '../thunks/cartThunks';
 
 import {
    userActions,
@@ -113,6 +116,7 @@ export const trySignInAsyncAction = (res, shop) =>  (dispatch, getState) => {
                 dispatch(tryGetVendor(shop, res.token));
                 dispatch(getFollowingShop(shop, res.token));
                 dispatch(getShopPayments(shop, res.token));
+                dispatch(validateCart(res.token));
                 dispatch(getCart(res.token, false));
               }
             }

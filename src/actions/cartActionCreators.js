@@ -15,6 +15,9 @@ export const cartActionCreators = {
     SET:{
       LOADING: payload => payload,
     },
+    UNDO: {
+      DELETE: payload => payload,
+    },
     ERROR: payload => payload,
     HIDE: payload => payload,
   }

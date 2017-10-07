@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-import CheckoutDelivery from './CheckoutDelivery'
+import CheckoutDelivery from './CheckoutDelivery';
 
-import './Checkout.css'
+import './Checkout.css';
 
 const Checkout = ({
     cartItems,
