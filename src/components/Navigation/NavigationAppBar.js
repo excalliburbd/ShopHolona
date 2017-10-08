@@ -141,10 +141,13 @@ const NavigationAppBar = ({
                                         }
                                       }
                                     } />
-                        <MenuItem value='settings'
-                                  icon='settings'
-                                  caption='Settings'
-                                  onClick={() => history.push('/settings')} />
+                    {
+                      vendor &&
+                      <MenuItem value='settings'
+                                icon='settings'
+                                caption='Settings'
+                                onClick={() => history.push('/settings')} />
+                    }
                         <MenuDivider />
                         <MenuItem value='signout'
                           icon='power_settings_new'

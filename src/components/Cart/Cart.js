@@ -5,6 +5,7 @@ import Button from 'react-toolbox/lib/button/Button';
 import CartItem from './CartItem';
 import CartTotal from './CartTotal';
 import Checkout from './Checkout';
+import Loader from '../Loader';
 
 import './Cart.css';
 
@@ -33,24 +34,32 @@ const Cart = ({
 
   return (
     <div className="cart-container">
-      <CartTotal total={ total }
-                  cartItems={ cartItems }/>
-      <ul className="cart-product-list">
-        {
-          cartItems.map(
-            (cartItem, key) =>  <CartItem cartItem={ cartItem }
-                                          key={ key }
-                                          token={ token }
-                                          product={ products[cartItem.product.id] }
-                                          updateCartItem={ updateCartItem }
-                                          deleteCartItem={ deleteCartItem }/>
-          )
-        }
-      </ul>
-      <div className="Cart-actions">
-        <Button label="Checkout"
-                onClick={ handleShowCheckout } />
+    {
+      cartItems.length > 0
+      ?
+      <div>
+        <CartTotal total={ total }
+                    cartItems={ cartItems }/>
+        <ul className="cart-product-list">
+          {
+            cartItems.map(
+              (cartItem, key) =>  <CartItem cartItem={ cartItem }
+                                            key={ key }
+                                            token={ token }
+                                            product={ products[cartItem.product.id] }
+                                            updateCartItem={ updateCartItem }
+                                            deleteCartItem={ deleteCartItem }/>
+            )
+          }
+        </ul>
+        <div className="Cart-actions">
+          <Button label="Checkout"
+                  onClick={ handleShowCheckout } />
+        </div>
       </div>
+      :
+      <Loader />
+    }
     </div>
   )
 }

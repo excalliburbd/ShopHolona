@@ -65,6 +65,9 @@
   display: flex;
   flex-direction: row;
   margin-top: 0.5em;
+  position: relative;
+  bottom: 8px;
+  left: 6px;
 }
 
 .cart-product-quantity-body span {
