@@ -8,6 +8,10 @@ import {
   getShopPayments,
 } from '../thunks/shopThunks';
 import { getOrderList } from '../thunks/ordersThunks';
+import {
+  getCart,
+  validateCart,
+} from '../thunks/cartThunks';
 
 import {
    userActions,
@@ -112,6 +116,8 @@ export const trySignInAsyncAction = (res, shop) =>  (dispatch, getState) => {
                 dispatch(tryGetVendor(shop, res.token));
                 dispatch(getFollowingShop(shop, res.token));
                 dispatch(getShopPayments(shop, res.token));
+                dispatch(validateCart(res.token));
+                dispatch(getCart(res.token, false));
               }
             }
           ).catch(
@@ -212,5 +218,19 @@ export const unfollowShop = (shop, token, name, id) => dispatch => {
               }));
             }
           );
+  }
+}
+
+export const getUserAddress = token  => dispatch => {
+  if (token) {
+    request(`/me/address/`, getConfig(
+              token
+            )).then(
+                res => {
+                  if(res.length > 0) {
+                    dispatch(userActions.user.set.address(res));
+                  }
+                }
+              );
   }
 }

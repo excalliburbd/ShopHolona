@@ -1,9 +1,11 @@
 .sh-btn--yellow {
-  background-color: #ffcc33;
-  color: #2e2e2e !important;
+  background-color: var(--sh-yellow) !important;
+  color: var(--btn-color) !important;
   font-weight: 600;
+  font-family: var(--btn-font);
 }
 
 .sh-btn--yellow:hover {
   background-color: rgba(255, 204, 51, 0.9) !important;
 }
+

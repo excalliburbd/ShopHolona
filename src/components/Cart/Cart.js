@@ -4,8 +4,10 @@ import Button from 'react-toolbox/lib/button/Button';
 
 import CartItem from './CartItem';
 import CartTotal from './CartTotal';
-import Checkout from './Checkout';
+
 import Loader from '../Loader';
+// import Checkout from './Checkout';
+import CheckoutDelivery from './CheckoutDelivery';
 
 import './Cart.css';
 
@@ -19,17 +21,27 @@ const Cart = ({
   sidebarType,
   handleShowCheckout,
   handleCheckout,
-  address,
+  addresses,
   handleAddress,
+  handleNoItemsInCartNotification,
+  handleShowCheckoutAddress,
 }) => {
 
-  if (sidebarType === 'CHECKOUT') {
-    return <Checkout total={ total }
-                     cartItems={ cartItems }
-                     handleCheckout={ handleCheckout }
-                     token={ token }
-                     address={ address }
-                     handleAddress={ handleAddress } />
+  if (sidebarType === 'CHECKOUT_ADDRESS') {
+    // return <Checkout total={ total }
+    //                  cartItems={ cartItems }
+    //                  handleCheckout={ handleCheckout }
+    //                  token={ token }
+    //                  address={ address }
+    //                  handleAddress={ handleAddress } />
+    // return  <Checkout total={ total }
+    //                    cartItems={ cartItems }
+    //         />
+    return <CheckoutDelivery total={ total }
+                             cartItems={ cartItems }
+                             addresses={ addresses }
+                             handleCheckout={ handleCheckout }
+                             token={ token } />
   }
 
   return (
@@ -37,9 +49,9 @@ const Cart = ({
     {
       cartItems.length > 0
       ?
-      <div>
+      <div> 
         <CartTotal total={ total }
-                    cartItems={ cartItems }/>
+                  cartItems={ cartItems }/>
         <ul className="cart-product-list">
           {
             cartItems.map(
@@ -52,9 +64,17 @@ const Cart = ({
             )
           }
         </ul>
-        <div className="Cart-actions">
+        <div className="cart-actions">
           <Button label="Checkout"
-                  onClick={ handleShowCheckout } />
+                  raised
+                  className="cart-action-checkout--btn sh-btn--yellow"
+                  onClick={ () => {
+                    if (cartItems.length < 1) {
+                      handleNoItemsInCartNotification();
+                    } else {
+                      handleShowCheckoutAddress(token);
+                    }
+                  } } />
         </div>
       </div>
       :

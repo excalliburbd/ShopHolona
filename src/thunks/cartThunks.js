@@ -1,7 +1,7 @@
 import uuid from "uuid";
 import { addNotification } from 'reapop';
 
-import { request, getConfig } from './helpers';
+import { request, getConfig, fromState } from './helpers';
 
 import { cartActions, sidebarActions } from '../actions/';
 
@@ -34,47 +34,29 @@ export const updateCartItem = (cartID, id, quantity, token) => dispatch => {
   if (token) {
     request(`/me/carts/${cartID}/`, getConfig(
             token,
-            null,
-            'DELETE'
+            {
+              quantity
+            },
+            'PATCH'
           )).then(
             res => {
-              // successful
-              // dispatch(cartActions.cart.done.delete(cartID));
-
-              request(`/me/carts/`, getConfig(
-                        token,
-                        {
-                          product_variance_attribute: id,
-                          quantity,
-                        },
-                        'POST',
-                      )).then(
-                        res => {
-                          // successful
-                          dispatch(cartActions.cart.update.itemByVariant({
-                            id: cartID,
-                            response: res,
-                          }));
-                          dispatch(addNotification({
-                            title: 'Success',
-                            message: 'Successfully updated cart item',
-                            position: 'bl',
-                            status: 'success',
-                          }));
-                        }
-                      ).catch(
-                        err => {
-                          console.log(err)
-                          dispatch(cartActions.cart.update.item(cartID, quantity-1))
-                          dispatch(addNotification({
-                            title: 'Error Updating Cart Item',
-                            message: err,
-                            position: 'bl',
-                            status: 'error',
-                          }));
-
-                        }
-                      );
+              (res.quantity === quantity) && dispatch(addNotification({
+                title: 'Success',
+                message: 'Successfully updated cart item',
+                position: 'bl',
+                status: 'success',
+              }));
+            }
+          ).catch(
+            err => {
+              console.log(err)
+              dispatch(cartActions.cart.update.item(cartID, quantity-1))
+              dispatch(addNotification({
+                title: 'Error Updating Cart Item',
+                message: err,
+                position: 'bl',
+                status: 'error',
+              }));
             }
           );
   }
@@ -84,9 +66,10 @@ export const addToCart = (id, token, productID) => (dispatch, getState) => {
   dispatch(cartActions.cart.set.loading);
 
   const cart = getState().entities.cart;
+  const cartItems = getState().cart.items;
   const product = productID ? getState().entities.products[productID] : productID;
 
-  const cartItem = Object.keys(cart).find(
+  const cartItem = cartItems.find(
     item => (cart[item].product_variance_attribute.id === id)
   );
 
@@ -149,7 +132,7 @@ export const addToCart = (id, token, productID) => (dispatch, getState) => {
                 }));
                 dispatch(addNotification({
                   title: 'Success',
-                  message: 'Successfully added to cart. Login to save changes.',
+                  message: 'Successfully added to cart.',
                   position: 'bl',
                   status: 'success',
                 }));
@@ -162,6 +145,7 @@ export const addToCart = (id, token, productID) => (dispatch, getState) => {
 export const deleteCartItem = (id, token) => dispatch => {
   // starting address delete
   dispatch(cartActions.cart.set.loading);
+  dispatch(cartActions.cart.done.delete(id));
 
   if (token) {
     request(`/me/carts/${id}/`, getConfig(
@@ -171,7 +155,6 @@ export const deleteCartItem = (id, token) => dispatch => {
           )).then(
             res => {
               // successful
-              dispatch(cartActions.cart.done.delete(id))
               dispatch(addNotification({
                 title: 'Success',
                 message: 'Successfully deleted cart item',
@@ -179,7 +162,59 @@ export const deleteCartItem = (id, token) => dispatch => {
                 status: 'success',
               }));
             }
+          ).catch(
+            err => {
+              dispatch(cartActions.cart.undo.delete(id));
+              dispatch(addNotification({
+                title: 'Error',
+                message: 'Error deleting cart item',
+                position: 'bl',
+                status: 'error',
+              }))
+            }
           );
+  }
+}
+
+export const validateCart = token => (dispatch, getState) => {
+  // starting address delete
+  dispatch(cartActions.cart.set.loading);
+
+  const {
+    cart
+  } = fromState(getState);
+
+  if (token) {
+    cart.list.forEach(
+      id => {
+        const item = cart.items[id];
+
+        if (!item.user) {
+          request('/me/carts/', getConfig(
+            token,
+            {
+              product_variance_attribute: item.product_variance_attribute.id,
+              quantity: item.quantity,
+            },
+            'POST'
+          )).then(
+            res => {
+              // success
+              dispatch(cartActions.cart.update.itemByVariant({
+                id: item.id,
+                response: res,
+              }));
+              dispatch(addNotification({
+                title: 'Success',
+                message: 'Successfully added to cart.',
+                position: 'bl',
+                status: 'success',
+              }));
+            }
+          );
+        }
+      }
+    )
   }
 }
 
@@ -190,7 +225,7 @@ export const checkout = (total, cart, address, token) => dispatch => {
     request('/me/orders/', getConfig(
               token,
               {
-                to_address: 16,
+                to_address: address,
                 order_status: 1,
                 total_price: total.price,
                 total_weight: total.weight,
@@ -206,7 +241,15 @@ export const checkout = (total, cart, address, token) => dispatch => {
               'POST'
             )).then(
               res => {
-                console.log(res)
+                if (res.id) {
+                  dispatch(sidebarActions.sidebar.hide());
+                  dispatch(addNotification({
+                    title: 'Successfully Checked Out',
+                    message: 'Your order has been placed!',
+                    position: 'bl',
+                    status: 'success',
+                  }));
+                }
               }
             )
   }

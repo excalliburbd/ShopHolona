@@ -1,36 +1,43 @@
 import React from 'react';
 
-import Input from 'react-toolbox/lib/input/Input';
-import Button from 'react-toolbox/lib/button/Button';
+import CheckoutDelivery from './CheckoutDelivery';
+
+import './Checkout.css';
 
 const Checkout = ({
-  cartItems,
-  total,
-  handleCheckout,
-  token,
-  address,
-  handleAddress,
-}) => {
+    cartItems,
+    total
+  }) => {
 
-  return (
-    <div className="Checkout">
-      <ul>
-        <li>Total Price: &#2547; { total.price }</li>
-        <li>Total Weight: { total.weight } g</li>
-      </ul>
-      <Input type="text"
-             label="To Address"
-             value={ address }
-             onChange={ handleAddress }/>
-
-      <div className="Checkout--actions">
-        <Button label="Place Order"
-                accent
-                raised
-                onClick={ () => handleCheckout(total, cartItems, address, token) } />
+    return (
+      <div className="checkout-container">
+        <div className="checkout-body">
+          {/*<div className="checkout-body--steps">*/}
+            {/*<div className="checkout-body--step">*/}
+              {/*<img src="http://lorempixel.com/400/200/transport" alt=""/>*/}
+              {/*<p>Customer Verification</p>*/}
+            {/*</div>*/}
+            {/*<div className="checkout-body--step">*/}
+              {/*<img src="http://lorempixel.com/400/200/transport" alt=""/>*/}
+              {/*<p>Delivery Details</p>*/}
+            {/*</div>*/}
+            {/*<div className="checkout-body--step">*/}
+              {/*<img src="http://lorempixel.com/400/200/transport" alt=""/>*/}
+              {/*<p>Payment Method</p>*/}
+            {/*</div>*/}
+            {/*<div className="checkout-body--step">*/}
+              {/*<img src="http://lorempixel.com/400/200/transport" alt=""/>*/}
+              {/*<p>Finale</p>*/}
+            {/*</div>*/}
+          {/*</div>*/}
+          <div className="checkout-stepper">
+            <CheckoutDelivery total={ total }
+                                cartItems={ cartItems } />
+          </div>
+        </div>
       </div>
-    </div>
-  )
+
+    )
 }
 
 export default Checkout;

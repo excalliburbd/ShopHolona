@@ -17,6 +17,7 @@ export const userActionCreators = {
     },
     SET: {
       FOLLOWING_SHOP: payload => payload,
+      ADDRESS: payload => payload,
     },
     DELETE: {
       FOLLOWING_SHOP: payload => payload,

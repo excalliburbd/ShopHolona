@@ -7,6 +7,7 @@ export const getToken = state => state.user.token;
 export const getUserDetails = state => state.user;
 export const getShopVendor = state => state.user.shopvendor;
 export const followingShops = state => state.user.following;
+export const getUserAddresses = state => state.user.address;
 
 export const  getFollowing = createSelector(
   [getShopID, followingShops],

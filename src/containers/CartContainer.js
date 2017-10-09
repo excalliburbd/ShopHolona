@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { addNotification } from 'reapop';
 
 import {
   cartActions,
@@ -9,7 +10,7 @@ import {
 
 import { getTotal, getCartItems } from '../selectors/cartSelectors';
 import { getProductsObj } from '../selectors/productSelectors';
-import { getToken } from '../selectors/userSelectors';
+import { getToken, getUserAddresses } from '../selectors/userSelectors';
 
 import { deleteCartItem, updateCartItem, checkout } from '../thunks/cartThunks';
 
@@ -22,7 +23,7 @@ const mapStateToProps = state => {
     products: getProductsObj(state),
     token: getToken(state),
     sidebarType: state.ui.sidebar.subType,
-    address: state.ui.user.address,
+    addresses: getUserAddresses(state),
   }
 }
 
@@ -36,14 +37,23 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       }
     },
     deleteCartItem: (id, token) => {
-      if (token) {
-        dispatch(deleteCartItem(id, token))
-      } else {
-        dispatch(cartActions.cart.done.delete(id))
-      }
+      dispatch(deleteCartItem(id, token));
     },
     handleShowCheckout: () => {
-      dispatch(sidebarActions.sidebar.show.checkout());
+
+    },
+    handleShowCheckoutAddress: (token) => {
+      if (!token) {
+        dispatch(addNotification({
+          title: 'Please Log In',
+          message: `Log In or Sign Up to checkout`,
+          position: 'bl',
+          status: 'error',
+        }));
+        dispatch(sidebarActions.sidebar.show.signIn());
+      } else {
+        dispatch(sidebarActions.sidebar.show.checkoutAddress());
+      }
     },
     handleCheckout: (total, cart, address, token) => {
       dispatch(checkout(total, cart, address, token));
@@ -51,6 +61,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleAddress: value => {
       dispatch(userActions.user.ui.address(value));
     },
+    handleNoItemsInCartNotification: () => {
+      dispatch(addNotification({
+        title: 'No items in cart!',
+        message: 'Please add a few items first',
+        position: 'bl',
+        status: 'warning',
+      }));
+    }
   }
 }
 

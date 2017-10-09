@@ -68,62 +68,69 @@ const SignUp = ({
     }
   }
   return (
-    <div className="SignUp">
-      <div className="SignUp-header">
-        <h1>ShopHobe</h1>
-      </div>
-      {/*<div className="SignUp-social">
-        <FbLogin disabled handleOnLogin={
-          handleTrySignIn
-        } />
-        <GLogin disabled handleOnLogin={
-          handleTrySignIn
-        } />
-      </div>
-      <div>
-        <p>Or</p>
-      </div>*/}
+    <div>
+      <div className="SignUp">
+        <div className="SignUp-header">
+          <h1>ShopHobe</h1>
+        </div>
+        {/*<div className="SignUp-social">
+         <FbLogin disabled handleOnLogin={
+         handleTrySignIn
+         } />
+         <GLogin disabled handleOnLogin={
+         handleTrySignIn
+         } />
+         </div>
+         <div>
+         <p>Or</p>
+         </div>*/}
         <Input label='Enter email or phone number'
-              required
-              value={ email }
-              onChange={ handleEmailValue }
-              error={ error && "Error with Email/Phone" }
-              icon='email' />
+               required
+               value={ email }
+               onChange={ handleEmailValue }
+               error={ error && "Error with Email/Phone" }
+               icon='email' />
         <Input type='password'
-              required
-              label='Enter password'
-              value={ emailPassword }
-              onChange={ handleEmailPasswordValue }
-              onKeyPress={
-                event => {
-                  if (event.which === 13) {
-                    postCredentials()
-                  }
-                }
-              }
-              icon='vpn_key' />
-        <Button icon="forward"
+               required
+               label='Enter password'
+               value={ emailPassword }
+               onChange={ handleEmailPasswordValue }
+               onKeyPress={
+                 event => {
+                   if (event.which === 13) {
+                     postCredentials()
+                   }
+                 }
+               }
+               icon='vpn_key' />
+        <Button className="SignUp--btn"
+                icon="forward"
                 label="login"
                 onClick={ () => postCredentials() }/>
-      {/*<div>
-        <p>Or</p>
+        {/*<div>
+         <p>Or</p>
+         </div>
+         <Input type='tel'
+         label='Using phone number'
+         name='phone'
+         required
+         value={ phone }
+         onChange={ handlePhoneValue }
+         disabled
+         icon='local_phone' />
+         <Input type='password'
+         required
+         label='Enter your password'
+         value={ phonePassword }
+         onChange={ handlePhonePasswordValue }
+         disabled
+         icon='vpn_key' />
+         <Button icon="forward" label="login" onClick={ handleTrySignIn } />*/}
       </div>
-      <Input type='tel'
-              label='Using phone number'
-              name='phone'
-              required
-              value={ phone }
-              onChange={ handlePhoneValue }
-              disabled
-              icon='local_phone' />
-      <Input type='password'
-              required
-              label='Enter your password'
-              value={ phonePassword }
-              onChange={ handlePhonePasswordValue }
-              disabled
-              icon='vpn_key' />
-      <Button icon="forward" label="login" onClick={ handleTrySignIn } />*/}
+      <div className="signup-account">
+        <div className="signup-account--text">Don't have an account?</div>
+        <Button className="signup-account--btn" href="https://www.shophobe.com" target="_blank" label="Create a new account" />
+      </div>
     </div>
   );
 }

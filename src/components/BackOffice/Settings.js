@@ -156,7 +156,7 @@ const Settings = ({
                           val => updateValue(val, 'postal')
                         } />
               </div>
-              </div>
+            </div>
           </div>
           <div className="Settings-info--time-group">
             <h2><FontIcon value="watch_later" />Hours</h2>
@@ -186,7 +186,7 @@ const Settings = ({
                           } />
                   <IconButton
                    icon="add_a_photo"
-                   className="settings-info-camera-btn" 
+                   className="settings-info-camera-btn"
                    onClick={ () => handleShowImageUploader() }
                   />
                   <div style={{
@@ -194,7 +194,7 @@ const Settings = ({
                                 backgroundColor: '#ccc',
                                 width: '100%',
                                 height: '10em'
-                          
+
                               }} className="settings-set-image" />
                 </div>
               </div>

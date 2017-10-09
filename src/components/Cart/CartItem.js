@@ -59,7 +59,7 @@ const CartItem = ({
         </div>
         <div className="cart-item-details">
           <div className="cart-item-name">
-            <div className="cart-item-name--title">{ product.name }</div>
+            <div className="cart-item-name--title" title={product.name}>{ product.name }</div>
           </div>
           <div className="cart-item-info">
             <div className="cart-product-attributes">
@@ -83,12 +83,20 @@ const CartItem = ({
                          name='name'
                          value={ cartItem.quantity } />
                   <span onClick={
-                    () => updateCartItem(
-                      cartItem.id,
-                      attribute,
-                      cartItem.quantity - 1,
-                      token
-                    )
+                    () => {
+                      if (cartItem.quantity > 1) {
+                        updateCartItem(
+                          cartItem.id,
+                          attribute.id,
+                          cartItem.quantity - 1,
+                          token
+                        )
+                      }
+
+                      if (cartItem.quantity === 1) {
+                        deleteCartItem(cartItem.id, token);
+                      }
+                    }
                   }>-</span>
                 </div>
               </div>

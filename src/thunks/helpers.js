@@ -133,11 +133,16 @@ export const fromState = getState => {
     district: state.ui.paymentsAndAddresses.districtID,
   };
   const bankName = payments && state.cachedEntities.banks[payments.bank.bank_name] && state.cachedEntities.banks[payments.bank.bank_name].name;
+  const cart = {
+    list: state.cart.items,
+    items: state.entities.cart,
+  }
 
   return {
     demostore,
     payments,
     updatedAddress,
     bankName,
+    cart
   }
 }
