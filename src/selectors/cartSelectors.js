@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 
 const getCartArray = state => state.cart.items;
 const getCartObjects = state => state.entities.cart;
+export const getCartLoading = state => state.cart.loading;
 
 export const getTotal = createSelector(
   [getCartArray, getCartObjects],
