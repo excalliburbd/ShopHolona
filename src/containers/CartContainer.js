@@ -68,6 +68,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         position: 'bl',
         status: 'warning',
       }));
+    },
+    handleMinimumItemsInCartNotification: () => {
+      dispatch(addNotification({
+        title: 'Quantity cannot go below one!',
+        message: 'If you want to remove the card, press the cross button in the top right conrner',
+        position: 'bl',
+        status: 'warning',
+      }));
     }
   }
 }

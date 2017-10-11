@@ -24,6 +24,7 @@ const CartItem = ({
   product,
   updateCartItem,
   deleteCartItem,
+  handleMinimumItemsInCartNotification,
   token,
 }) => {
 
@@ -63,26 +64,14 @@ const CartItem = ({
           </div>
           <div className="cart-item-info">
             <div className="cart-product-attributes">
-              <div className="cart-variant-name">{ primary[product.selectedVariant].label }</div>
+              <div className="cart-variant-name">Color : { primary[product.selectedVariant].label }</div>
 
-              <div className="cart-variant-size">{ secondary[product.selectedVariant].label }</div>
+              <div className="cart-variant-size">Size : { secondary[product.selectedVariant].label }</div>
 
               <div className="cart-product-quantity">
                 <span className="cart-attributes-title">Quantity</span>
                 <div className="cart-product-quantity-body">
-                <span onClick={
-                  () => updateCartItem(
-                    cartItem.id,
-                    attribute.id,
-                    cartItem.quantity + 1,
-                    token
-                  )
-                }>+</span>
-                  <Input className="cart-quantity-input"
-                         type='text'
-                         name='name'
-                         value={ cartItem.quantity } />
-                  <span onClick={
+                <span className="minus" onClick={
                     () => {
                       if (cartItem.quantity > 1) {
                         updateCartItem(
@@ -94,16 +83,30 @@ const CartItem = ({
                       }
 
                       if (cartItem.quantity === 1) {
-                        deleteCartItem(cartItem.id, token);
+                        // deleteCartItem(cartItem.id, token);
+                        handleMinimumItemsInCartNotification();
                       }
                     }
                   }>-</span>
+                  <Input className="cart-quantity-input"
+                         type='text'
+                         name='name'
+                         value={ cartItem.quantity } />
+                  
+                  <span className="plus" onClick={
+                  () => updateCartItem(
+                    cartItem.id,
+                    attribute.id,
+                    cartItem.quantity + 1,
+                    token
+                  )
+                }>+</span>
                 </div>
               </div>
             </div>
             <div className="cart-product-price">
               <h3>৳ { attribute.sh_price * cartItem.quantity }</h3>
-              <h5>৳ { attribute.sh_price } each</h5>
+              <h5>(TK { attribute.sh_price } each)</h5>
             </div>
           </div>
           <FontIcon

@@ -25,6 +25,7 @@ const Cart = ({
   handleAddress,
   handleNoItemsInCartNotification,
   handleShowCheckoutAddress,
+  handleMinimumItemsInCartNotification
 }) => {
 
   if (sidebarType === 'CHECKOUT_ADDRESS') {
@@ -60,7 +61,8 @@ const Cart = ({
                                             token={ token }
                                             product={ products[cartItem.product.id] }
                                             updateCartItem={ updateCartItem }
-                                            deleteCartItem={ deleteCartItem }/>
+                                            deleteCartItem={ deleteCartItem }
+                                            handleMinimumItemsInCartNotification={ handleMinimumItemsInCartNotification }/>
             )
           }
         </ul>

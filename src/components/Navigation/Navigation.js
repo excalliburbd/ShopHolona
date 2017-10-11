@@ -10,6 +10,7 @@ import IconButton from 'react-toolbox/lib/button/IconButton';
 import NavigationDrawer from './NavigationDrawer';
 import NavigationAppBar from './NavigationAppBar';
 import NotFound from '../NotFound';
+import CartIcon from '../Cart/CartIcon';
 
 import FilterBarContainer from '../../containers/FilterBarContainer';
 import SignUpContainer from '../../containers/SignUpContainer';
@@ -185,6 +186,7 @@ class Nav extends Component {
                 { titleMsg }
               </h1>
             </div>
+            <CartIcon />
             <div className="Navigation-sidebar-content">
               <SidebarContent />
             </div>
