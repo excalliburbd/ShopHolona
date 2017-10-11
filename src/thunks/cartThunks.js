@@ -6,7 +6,7 @@ import { request, getConfig, fromState } from './helpers';
 import { cartActions, sidebarActions } from '../actions/';
 
 export const getCart = (token, show) => dispatch => {
-  dispatch(cartActions.cart.set.loading);
+  dispatch(cartActions.cart.set.loading(true));
 
   if (token) {
     request(`/me/carts/`, getConfig(
@@ -16,11 +16,13 @@ export const getCart = (token, show) => dispatch => {
               // Cart fetching successful
               dispatch(cartActions.cart.done.get(res));
               show && dispatch(sidebarActions.sidebar.show.addToCart());
+              dispatch(cartActions.cart.set.loading(false));
             }
           ).catch(
             err => {
               // Fetching error details
               dispatch(cartActions.cart.done.get(new Error(err)));
+              dispatch(cartActions.cart.set.loading(false));
             }
           );
   }
@@ -28,7 +30,6 @@ export const getCart = (token, show) => dispatch => {
 
 export const updateCartItem = (cartID, id, quantity, token) => dispatch => {
   // starting address update
-  dispatch(cartActions.cart.set.loading);
   dispatch(cartActions.cart.update.item({id: cartID, quantity}));
 
   if (token) {
@@ -63,7 +64,6 @@ export const updateCartItem = (cartID, id, quantity, token) => dispatch => {
 }
 
 export const addToCart = (id, token, productID) => (dispatch, getState) => {
-  dispatch(cartActions.cart.set.loading);
 
   const cart = getState().entities.cart;
   const cartItems = getState().cart.items;
@@ -144,7 +144,6 @@ export const addToCart = (id, token, productID) => (dispatch, getState) => {
 
 export const deleteCartItem = (id, token) => dispatch => {
   // starting address delete
-  dispatch(cartActions.cart.set.loading);
   dispatch(cartActions.cart.done.delete(id));
 
   if (token) {
@@ -178,7 +177,6 @@ export const deleteCartItem = (id, token) => dispatch => {
 
 export const validateCart = token => (dispatch, getState) => {
   // starting address delete
-  dispatch(cartActions.cart.set.loading);
 
   const {
     cart

@@ -25,6 +25,7 @@ const Cart = ({
   handleAddress,
   handleNoItemsInCartNotification,
   handleShowCheckoutAddress,
+  loading,
 }) => {
 
   if (sidebarType === 'CHECKOUT_ADDRESS') {
@@ -47,9 +48,11 @@ const Cart = ({
   return (
     <div className="cart-container">
     {
-      cartItems.length > 0
+      loading
       ?
-      <div> 
+      <Loader />
+      :
+      <div>
         <CartTotal total={ total }
                   cartItems={ cartItems }/>
         <ul className="cart-product-list">
@@ -77,8 +80,6 @@ const Cart = ({
                   } } />
         </div>
       </div>
-      :
-      <Loader />
     }
     </div>
   )

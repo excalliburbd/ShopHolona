@@ -9,7 +9,7 @@ export const cartReducer = handleActions({
   [cartActions.cart.set.loading]: (state, action) => {
     return {
       ...state,
-      loading: true
+      loading: action.payload,
     }
   },
   [cartActions.cart.done.get]: {

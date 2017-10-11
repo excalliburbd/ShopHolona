@@ -8,7 +8,7 @@ import {
   userActions,
 } from '../actions/';
 
-import { getTotal, getCartItems } from '../selectors/cartSelectors';
+import { getTotal, getCartItems, getCartLoading } from '../selectors/cartSelectors';
 import { getProductsObj } from '../selectors/productSelectors';
 import { getToken, getUserAddresses } from '../selectors/userSelectors';
 
@@ -24,6 +24,7 @@ const mapStateToProps = state => {
     token: getToken(state),
     sidebarType: state.ui.sidebar.subType,
     addresses: getUserAddresses(state),
+    loading: getCartLoading(state),
   }
 }
 
