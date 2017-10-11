@@ -8,6 +8,7 @@ import CartTotal from './CartTotal';
 import Loader from '../Loader';
 // import Checkout from './Checkout';
 import CheckoutDelivery from './CheckoutDelivery';
+import CheckoutAddPhone from './CheckoutAddPhone';
 
 import './Cart.css';
 
@@ -26,23 +27,19 @@ const Cart = ({
   handleNoItemsInCartNotification,
   handleShowCheckoutAddress,
   loading,
+  handleShowNext,
 }) => {
 
   if (sidebarType === 'CHECKOUT_ADDRESS') {
-    // return <Checkout total={ total }
-    //                  cartItems={ cartItems }
-    //                  handleCheckout={ handleCheckout }
-    //                  token={ token }
-    //                  address={ address }
-    //                  handleAddress={ handleAddress } />
-    // return  <Checkout total={ total }
-    //                    cartItems={ cartItems }
-    //         />
     return <CheckoutDelivery total={ total }
                              cartItems={ cartItems }
                              addresses={ addresses }
                              handleCheckout={ handleCheckout }
                              token={ token } />
+  }
+
+  if (sidebarType === 'CHECKOUT_PHONE') {
+    return <CheckoutAddPhone />
   }
 
   return (
@@ -75,7 +72,7 @@ const Cart = ({
                     if (cartItems.length < 1) {
                       handleNoItemsInCartNotification();
                     } else {
-                      handleShowCheckoutAddress(token);
+                      handleShowNext('PHONE');
                     }
                   } } />
         </div>

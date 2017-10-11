@@ -69,6 +69,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         position: 'bl',
         status: 'warning',
       }));
+    },
+    handleShowNext: type => {
+      switch (type) {
+        case 'PHONE':
+          dispatch(sidebarActions.sidebar.show.checkoutPhone());
+          break;
+        default:
+          break;
+      }
     }
   }
 }

@@ -12,6 +12,7 @@ export const sidebarActionCreators = {
       BACK_TO_PRODUCT_DETAILS: payload => payload,
       CHECKOUT: payload => payload,
       CHECKOUT_ADDRESS: payload => payload,
+      CHECKOUT_PHONE: payload => payload,
     },
     UI: {
       SET: {
