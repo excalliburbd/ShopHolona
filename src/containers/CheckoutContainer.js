@@ -8,6 +8,7 @@ const mapStateToProps = state => {
   return {
     cartItems: getCartItems(state),
     total: getTotal(state),
+    sidebarType: state.ui.sidebar.subType,
   }
 }
 

@@ -21,7 +21,6 @@ const mapStateToProps = state => {
     total: getTotal(state),
     products: getProductsObj(state),
     token: getToken(state),
-    sidebarType: state.ui.sidebar.subType,
     addresses: getUserAddresses(state),
     loading: getCartLoading(state),
   }
