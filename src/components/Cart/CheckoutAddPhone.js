@@ -2,9 +2,11 @@ import React from 'react';
 
 import './CheckoutAddPhone.css';
 
+import PhoneSignInSignUp from '../SignUp/PhoneSignInSignUp';
+
 const CheckoutAddPhone = () => {
   return <div className="CheckoutAddPhone">
-    add phone
+    <PhoneSignInSignUp title="Checkout With Phone Number" />
   </div>
 }
 
