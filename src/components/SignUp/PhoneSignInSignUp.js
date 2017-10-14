@@ -8,7 +8,7 @@ const PhoneSignInSignUp = ({
   title,
 }) => {
   return <div className="PhoneSignInSignUp">
-    <div> { title }</div>
+    <div className="sign-up-number"> { title }</div>
     <Input label='Enter Your Phone Number'
            required
            onChange={ () => null } />

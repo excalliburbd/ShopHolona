@@ -1,6 +1,11 @@
 .CheckoutAddPhone {
-  padding-top: 5em;
   display: flex;
   align-items: center;
-  margin: 0 auto;
+  margin: 0 auto; 
+  width: 90%;
+}
+.PhoneSignInSignUp {
+  border: 3px solid #ffcc33;
+  border-radius: 1em;
+  width: 100%;
 }
