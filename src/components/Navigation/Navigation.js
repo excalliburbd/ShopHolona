@@ -21,6 +21,7 @@ import CartContainer from '../../containers/CartContainer';
 import NotificationContainer from '../../containers/NotificationContainer';
 import TourContainer from '../../containers/TourContainer';
 import Confirm from '../../containers/ConfirmContainer';
+import CheckoutContainer from '../../containers/CheckoutContainer';
 
 import './Navigation.css';
 
@@ -125,6 +126,8 @@ class Nav extends Component {
           return <ProductsSidebarContainer />
         case 'CART':
           return <CartContainer />
+        case 'CHECKOUT':
+          return <CheckoutContainer />
         default:
           return null;
       }

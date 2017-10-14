@@ -6,9 +6,6 @@ import CartItem from './CartItem';
 import CartTotal from './CartTotal';
 
 import Loader from '../Loader';
-// import Checkout from './Checkout';
-import CheckoutDelivery from './CheckoutDelivery';
-import CheckoutAddPhone from './CheckoutAddPhone';
 
 import './Cart.css';
 
@@ -19,29 +16,11 @@ const Cart = ({
   updateCartItem,
   deleteCartItem,
   token,
-  sidebarType,
-  handleShowCheckout,
-  handleCheckout,
-  addresses,
-  handleAddress,
   handleNoItemsInCartNotification,
-  handleShowCheckoutAddress,
   handleMinimumItemsInCartNotification,
   loading,
-  handleShowNext,
+  handleShowCheckout,
 }) => {
-
-  if (sidebarType === 'CHECKOUT_ADDRESS') {
-    return <CheckoutDelivery total={ total }
-                             cartItems={ cartItems }
-                             addresses={ addresses }
-                             handleCheckout={ handleCheckout }
-                             token={ token } />
-  }
-
-  if (sidebarType === 'CHECKOUT_PHONE') {
-    return <CheckoutAddPhone />
-  }
 
   return (
     <div className="cart-container">
@@ -74,7 +53,7 @@ const Cart = ({
                     if (cartItems.length < 1) {
                       handleNoItemsInCartNotification();
                     } else {
-                      handleShowNext('PHONE');
+                      handleShowCheckout();
                     }
                   } } />
         </div>

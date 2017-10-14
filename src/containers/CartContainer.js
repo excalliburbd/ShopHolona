@@ -5,14 +5,13 @@ import { addNotification } from 'reapop';
 import {
   cartActions,
   sidebarActions,
-  userActions,
 } from '../actions/';
 
 import { getTotal, getCartItems, getCartLoading } from '../selectors/cartSelectors';
 import { getProductsObj } from '../selectors/productSelectors';
 import { getToken, getUserAddresses } from '../selectors/userSelectors';
 
-import { deleteCartItem, updateCartItem, checkout } from '../thunks/cartThunks';
+import { deleteCartItem, updateCartItem } from '../thunks/cartThunks';
 
 import Cart from '../components/Cart/Cart';
 
@@ -40,28 +39,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     deleteCartItem: (id, token) => {
       dispatch(deleteCartItem(id, token));
     },
-    handleShowCheckout: () => {
-
-    },
-    handleShowCheckoutAddress: (token) => {
-      if (!token) {
-        dispatch(addNotification({
-          title: 'Please Log In',
-          message: `Log In or Sign Up to checkout`,
-          position: 'bl',
-          status: 'error',
-        }));
-        dispatch(sidebarActions.sidebar.show.signIn());
-      } else {
-        dispatch(sidebarActions.sidebar.show.checkoutAddress());
-      }
-    },
-    handleCheckout: (total, cart, address, token) => {
-      dispatch(checkout(total, cart, address, token));
-    },
-    handleAddress: value => {
-      dispatch(userActions.user.ui.address(value));
-    },
     handleNoItemsInCartNotification: () => {
       dispatch(addNotification({
         title: 'No items in cart!',
@@ -78,14 +55,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         status: 'warning',
       }));
     },
-    handleShowNext: type => {
-      switch (type) {
-        case 'PHONE':
-          dispatch(sidebarActions.sidebar.show.checkoutPhone());
-          break;
-        default:
-          break;
-      }
+    handleShowCheckout: () => {
+      dispatch(sidebarActions.sidebar.show.checkoutPhone());
     }
   }
 }
