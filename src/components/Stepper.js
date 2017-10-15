@@ -11,7 +11,7 @@ const Stepper = ({
     {
       steps.map(
         ({ icon, text }) => <div className="checkout-body--step">
-          <img src={icon} alt=""/>
+          <img className="step-image" src={icon} alt=""/>
           <p>{ text }</p>
         </div>
       )

@@ -1,10 +1,9 @@
 import React from 'react';
 
-// import CheckoutDelivery from './CheckoutDelivery';
 import Stepper from '../Stepper';
-// import Checkout from './Checkout';
 import CheckoutDelivery from './CheckoutDelivery';
 import CheckoutAddPhone from './CheckoutAddPhone';
+import CartTotal from './CartTotal';
 
 
 import './Checkout.css';
@@ -19,7 +18,7 @@ const Checkout = ({
 
   return (
     <div className={ `checkout-container ${ sidebarType === 'PHONE' ? 'checkout-background' : null}` }>
-      {/* <Stepper  steps={[
+      <Stepper  steps={[
                   {
                     icon: 'http://lorempixel.com/400/200/transport',
                     text: 'le'
@@ -29,8 +28,8 @@ const Checkout = ({
                     text: 'lelelel'
                   }
                 ]}
-                hide={ sidebarType === 'PHONE' }  /> */}
-      {/* <div className="checkout-main">
+                hide={ sidebarType === 'PHONE' }  />
+      <div className="checkout-main">
         {
           sidebarType === 'PHONE' && <CheckoutAddPhone />
         }
@@ -41,8 +40,17 @@ const Checkout = ({
                                                           handleCheckout={ () => null }
                                                           token={ token }  />
         }
-      </div> */}
-      <CheckoutAddPhone />
+
+      </div>
+      {
+        sidebarType !=='PHONE' && <div className="checkout-footer">
+          <div className="checkout-footer--info">
+            <p>Calculated Delivery Fee</p>
+          </div>
+          <CartTotal total={ total }
+                     cartItems={ cartItems }/>
+        </div>
+      }
     </div>
   )
 }
