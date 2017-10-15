@@ -8,8 +8,11 @@
   position: relative;
   width: 100%;
   display: flex;
+}
+
+.checkout-background {
   background: url('../../assets/images/checkout-background.png');
-  background-size: cover;     
+  background-size: cover;
 }
 
 .checkout-stepper {

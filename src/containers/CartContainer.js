@@ -9,7 +9,7 @@ import {
 
 import { getTotal, getCartItems, getCartLoading } from '../selectors/cartSelectors';
 import { getProductsObj } from '../selectors/productSelectors';
-import { getToken, getUserAddresses } from '../selectors/userSelectors';
+import { getToken } from '../selectors/userSelectors';
 
 import { deleteCartItem, updateCartItem } from '../thunks/cartThunks';
 
@@ -21,7 +21,6 @@ const mapStateToProps = state => {
     total: getTotal(state),
     products: getProductsObj(state),
     token: getToken(state),
-    addresses: getUserAddresses(state),
     loading: getCartLoading(state),
   }
 }
@@ -55,7 +54,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       }));
     },
     handleShowCheckout: () => {
-      dispatch(sidebarActions.sidebar.show.checkoutPhone());
+      dispatch(sidebarActions.sidebar.show.checkoutAddress());
     }
   }
 }

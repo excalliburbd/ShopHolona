@@ -12,7 +12,7 @@ class CheckoutDelivery extends Component {
     super (props);
 
     this.state = {
-      add_new: false
+      add_new: this.props.addresses.length < 1,
     }
   }
 

@@ -93,7 +93,7 @@ export const UserReducer = handleActions({
   [userActions.user.set.address]: (state, action) => {
     return {
       ...state,
-      address: action.payload,
+      addresses: action.payload,
     }
   },
   [REHYDRATE]: (state, action) => {
