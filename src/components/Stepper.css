@@ -2,6 +2,7 @@
   display: flex;
   border-bottom: 1px solid var(--border-color);
   margin-top: 5px;
+  height: auto;
 }
 
 .Stepper-hidden {
@@ -19,8 +20,19 @@
   height: 1rem;
   width: 1rem;
   border-radius: 50%;
-  box-shadow: 0 0 3px 2px #757575;
+  box-shadow: 1px 1px 2px 1px #2e2e2e;
 }
+
+.checkout-body--step .step-image::after {
+  content: "";
+  background: #2e2e2e;
+  height: 2px;
+  width: 25vw;
+  top: 50%;
+  left: 100%;
+  position: absolute;
+}
+
 .checkout-body--step p {
   font-size: 10px;
   margin: 5px;

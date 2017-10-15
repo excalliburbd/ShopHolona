@@ -1,5 +1,8 @@
 import React from 'react';
 
+import Button from 'react-toolbox/lib/button/Button';
+import express from '../../assets/images/express-delivery-icon.svg'
+import standard from '../../assets/images/standard-delivery-icon.svg'
 // import CheckoutDelivery from './CheckoutDelivery';
 import Stepper from '../Stepper';
 // import Checkout from './Checkout';
@@ -41,6 +44,15 @@ const Checkout = ({
                                                           handleCheckout={ () => null }
                                                           token={ token }  />
         }
+        <div>
+          <div className="checkout--btn-title-container">
+            <p className="checkout--delivery-title">Choose Your Delivery Option</p>
+            <div className="checkout--btn-container">
+              <Button className="checkout--exprs-btn" ><img src={express}/>Express</Button>             
+              <Button className="checkout--std-btn sh-btn--yellow"><img src={standard}/>Standard</Button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )

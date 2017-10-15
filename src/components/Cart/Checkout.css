@@ -8,6 +8,7 @@
   position: relative;
   width: 100%;
   display: flex;
+  flex-direction: column;
 }
 
 .checkout-background {
@@ -21,7 +22,6 @@
 
 .checkout-footer {
   position: absolute;
-  margin: 1rem 0.5rem;
   bottom: 0;
   left: 0;
   right: 0;
@@ -42,5 +42,39 @@
 .checkout-footer--btn {
   width: 100%;
 }
-
-
+.checkout--btn-title-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+.checkout--btn-container {
+  height: 3.8rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.checkout--btn-container Button {
+  height: 100%;
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .7em;
+}
+.checkout--exprs-btn {
+  background: #e33939;
+}
+.checkout--delivery-title {
+  font-size: 1em;
+  font-weight: bold;  
+}
+.checkout-main {
+  width: 100%;
+  height: auto;
+}
+.checkout--btn-container Button img {
+  height: 1.8rem;
+  width: 1.8rem;
+}
