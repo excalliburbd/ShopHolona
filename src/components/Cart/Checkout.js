@@ -19,7 +19,7 @@ const Checkout = ({
 
   return (
     <div className={ `checkout-container ${ sidebarType === 'PHONE' ? 'checkout-background' : null}` }>
-      <Stepper  steps={[
+      {/* <Stepper  steps={[
                   {
                     icon: 'http://lorempixel.com/400/200/transport',
                     text: 'le'
@@ -29,8 +29,8 @@ const Checkout = ({
                     text: 'lelelel'
                   }
                 ]}
-                hide={ sidebarType === 'PHONE' }  />
-      <div className="checkout-main">
+                hide={ sidebarType === 'PHONE' }  /> */}
+      {/* <div className="checkout-main">
         {
           sidebarType === 'PHONE' && <CheckoutAddPhone />
         }
@@ -41,7 +41,8 @@ const Checkout = ({
                                                           handleCheckout={ () => null }
                                                           token={ token }  />
         }
-      </div>
+      </div> */}
+      <CheckoutAddPhone />
     </div>
   )
 }

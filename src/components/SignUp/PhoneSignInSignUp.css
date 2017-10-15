@@ -7,8 +7,20 @@
 .sign-up-number {
   font-weight: bold;
   font-family: "Harmonia Bold";
+  margin-top: 10px;
 }
-
+.PhoneSignInSignUp-login-btn {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 5%;
+}
 .lFVgC ._34120 {
   color: dimgray;
+}
+.VerifyPhone-btn {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 5%;
 }
