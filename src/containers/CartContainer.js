@@ -55,6 +55,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     handleShowCheckout: () => {
       dispatch(sidebarActions.sidebar.show.checkoutPhone());
+      // dispatch(sidebarActions.sidebar.show.checkoutAddress());
     }
   }
 }
