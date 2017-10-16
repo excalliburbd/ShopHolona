@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 import Button from 'react-toolbox/lib/button/Button';
 
 import AddDeliveryAddress from './CheckoutDeliveryAddress';
-import CartTotal from './CartTotal'
+
+import express from '../../assets/images/express-delivery-icon.svg';
+import standard from '../../assets/images/standard-delivery-icon.svg';
 
 import './CheckoutDelivery.css'
 
@@ -57,12 +59,14 @@ class CheckoutDelivery extends Component {
             }
           </div>
         </div>
-        <div className="checkout-footer">
-          <div className="checkout-footer--info">
-            <p>Calculated Delivery Fee</p>
+        <div>
+          <div className="checkout--btn-title-container">
+            <p className="checkout--delivery-title">Choose Your Delivery Option</p>
+            <div className="checkout--btn-container">
+              <Button className="checkout--exprs-btn" ><img src={express} alt="" />Express</Button>
+              <Button className="checkout--std-btn sh-btn--yellow"><img src={standard} alt="" />Standard</Button>
+            </div>
           </div>
-          <CartTotal total={ this.props.total }
-                     cartItems={ this.props.cartItems }/>
         </div>
       </div>
     )
