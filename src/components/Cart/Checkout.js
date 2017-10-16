@@ -4,7 +4,8 @@ import Stepper from '../Stepper';
 import CheckoutDelivery from './CheckoutDelivery';
 import CheckoutAddPhone from './CheckoutAddPhone';
 import CartTotal from './CartTotal';
-
+import PaymentSelection from './CheckoutPaymentSelection';
+import FinalizeOrder from './CheckoutFinalizeOrder';
 
 import './Checkout.css';
 
@@ -39,6 +40,12 @@ const Checkout = ({
                                                           addresses={ addresses }
                                                           handleCheckout={ () => null }
                                                           token={ token }  />
+        }
+        {
+          sidebarType === 'PAYMENT_SELECTION' && <PaymentSelection />
+        }
+        {
+          sidebarType === 'FINALIZE_ORDER' && <FinalizeOrder />
         }
       </div>
       {
