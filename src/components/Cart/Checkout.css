@@ -63,13 +63,13 @@
   align-items: center;
   font-size: .7em;
   border-radius: .5em;
+  padding: 0 .5em;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
 }
 .checkout--exprs-btn {
   background: #e33939;
   font-weight: 600;
   font-family: var(--btn-font);
-  font-style: italic;
 }
 .checkout--exprs-btn::after {
   content: "(2-12Hours)";
@@ -92,8 +92,10 @@
   flex-direction: column;
 }
 .checkout--delivery-title {
-  font-size: 1em;
-  font-weight: bold;  
+  font-size: .9em;
+  font-weight: bold;
+  margin: .5em;
+  font-style: italic;  
 }
 .checkout-main {
   width: 100%;
