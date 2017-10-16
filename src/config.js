@@ -5,6 +5,7 @@ let config = {
   demopass: '123',
   home: 'localhost:3001',
   vendor: 'localhost:3000',
+  nodeAPI: 'http://202.4.96.117:3210',
 }
 
 if (process.env.REACT_APP_ENV === 'production') {
