@@ -48,8 +48,8 @@ const Checkout = ({
           <div className="checkout--btn-title-container">
             <p className="checkout--delivery-title">Choose Your Delivery Option</p>
             <div className="checkout--btn-container">
-              <Button className="checkout--exprs-btn" ><img src={express}/>Express</Button>             
-              <Button className="checkout--std-btn sh-btn--yellow"><img src={standard}/>Standard</Button>
+              <Button className="checkout--exprs-btn" ><img alt =""src={express}/>Express</Button>             
+              <Button className="checkout--std-btn sh-btn--yellow"><img alt="" src={standard}/>Standard</Button>
             </div>
           </div>
         </div>

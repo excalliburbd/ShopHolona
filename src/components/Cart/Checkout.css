@@ -26,7 +26,7 @@
   left: 0;
   right: 0;
   height: var(--footer-height);
-  /*background-color: red;*/
+  background: #fff;
 }
 
 .checkout-footer--info {
@@ -59,12 +59,35 @@
   height: 100%;
   width: 40%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   font-size: .7em;
 }
 .checkout--exprs-btn {
   background: #e33939;
+  font-weight: 600;
+  font-family: var(--btn-font);
+  font-style: italic;
+}
+.checkout--exprs-btn::after {
+  content: "(2-12Hours)";
+  position: absolute;
+  top: 50%;
+  right: 15%;
+  font-size: .9em;
+  font-weight: normal;
+}
+.checkout--std-btn::after {
+  content: "(2-3Days)";
+  position: absolute;
+  top: 50%;
+  right: 15%;
+  font-size: .9em;
+  font-weight: normal;
+}
+.btn-title-desc {
+  display: flex;
+  flex-direction: column;
 }
 .checkout--delivery-title {
   font-size: 1em;

@@ -8,6 +8,7 @@ const Stepper = ({
   hide,
 }) => {
   return <div className={ `Stepper ${ hide ? 'Stepper-hidden' : null }` }>
+  <hr/>
     {
       steps.map(
         ({ icon, text }) => <div className="checkout-body--step">
