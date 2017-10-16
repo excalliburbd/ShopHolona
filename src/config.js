@@ -5,7 +5,7 @@ let config = {
   demopass: '123',
   home: 'localhost:3001',
   vendor: 'localhost:3000',
-  nodeAPI: 'http://202.4.96.117:3210',
+  nodeAPI: 'http://202.4.96.117:3210/dev',
 }
 
 if (process.env.REACT_APP_ENV === 'production') {
@@ -14,6 +14,7 @@ if (process.env.REACT_APP_ENV === 'production') {
     demostore: 22,
     api: 'https://backend.shophobe.com/api',
     vendor: 'https://mystore.shophobe.com',
+    nodeAPI: 'http://202.4.96.117:3210/prod',
   }
 }
 
@@ -22,6 +23,7 @@ if (process.env.REACT_APP_ENV === 'development') {
     ...config,
     demostore: 21,
     api: 'https://backenddev.shophobe.com/api',
+    nodeAPI: 'http://202.4.96.117:3210/dev',
   }
 }
 
