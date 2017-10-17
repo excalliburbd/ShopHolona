@@ -1,0 +1,62 @@
+.payment-option-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.payment-option-container .payment-option--payment-method {
+    height: 5rem;
+    width: 95%;
+    border-radius: .3em;
+    margin: .3em 0;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+
+}
+.payment-option-container .payment-tittle {
+    font-size: .9em;
+    font-weight: bold;
+    font-family: "Harmonia Bold";
+    width: 100%;
+    text-align: center;
+}
+.payment-option-container div:first-of-type {
+    height: 2rem;
+    margin-top: .5em;
+}
+.payment-option--payment-method  {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.payment-option--payment-method  img {
+    height: 3.5rem;
+    width: 3.5rem;
+}
+.payment-option--payment-method:nth-child(4) img {
+    height: 2.2rem;
+    width: 4rem;
+}
+
+.payment-method-desc {
+    width: 50%;
+    height: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.payment-method-desc p:last-of-type {
+    font-size: .7em;
+    padding: 0;
+    margin: 0;
+}
+.payment-method-desc p:first-of-type {
+    font-size: .8em;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    margin-bottom: .5em;
+    color: #2e2e2e;
+    font-family: "Harmonia Bold";
+
+}
