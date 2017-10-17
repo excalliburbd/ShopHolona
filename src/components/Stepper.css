@@ -21,23 +21,20 @@
   align-items: center;
   text-align: center;
 }
-.checkout-body--step img {
-  height: 1rem;
-  width: 1rem;
+.stepperImageContainer {
+  height: 1.5rem;
+  width: 1.5rem;
   border-radius: 50%;
   z-index: 1;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  background: #fff;
+  padding: .3em 0;
+}
+.stepperImageContainer img {
+  height: 1rem;
+  width: 1rem;
 }
 
-.checkout-body--step .step-image::after {
-  content: "";
-  background: #2e2e2e;
-  height: 2px;
-  width: 25vw;
-  top: 50%;
-  left: 100%;
-  position: absolute;
-}
 
 .checkout-body--step p {
   font-size: 10px;

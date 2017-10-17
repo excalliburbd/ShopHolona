@@ -7,6 +7,11 @@ import CartTotal from './CartTotal';
 import PaymentSelection from './CheckoutPaymentSelection';
 import FinalizeOrder from './CheckoutFinalizeOrder';
 
+import stepOne from '../../assets/images/stepper-icon-1.svg';
+import stepTwo from '../../assets/images/stepper-icon-2.svg'
+import stepThree from '../../assets/images/stepper-icon-3.svg'
+import stepFour from '../../assets/images/stepper-icon-4.svg'
+
 import './Checkout.css';
 
 const Checkout = ({
@@ -18,18 +23,32 @@ const Checkout = ({
   }) => {
 
   return (
-    <div className={ `checkout-container ${ sidebarType === 'PHONE' ? 'checkout-background' : null}` }>
-      <Stepper  steps={[
-                  {
-                    icon: 'http://lorempixel.com/400/200/transport',
-                    text: 'le'
-                  },
-                  {
-                    icon: 'http://lorempixel.com/400/200/transport',
-                    text: 'lelelel'
-                  }
-                ]}
-                hide={ sidebarType === 'PHONE' }  />
+    <div className={ `checkout-container ${ sidebarType === 'PHONE' ? 'checkout-background' : ''}` }>
+      {
+        sidebarType !== 'FINALIZE_ORDER' ?
+        <Stepper  steps={[
+                    {
+                      icon: stepOne,
+                      text: 'le'
+                    },
+                    {
+                      icon: stepTwo,
+                      text: 'lelelel'
+                    },
+                    {
+                      icon: stepThree,
+                      text: 'le'
+                    },
+                    {
+                      icon: stepFour,
+                      text: 'lelelel'
+                    },
+
+                  ]}
+                  hide={ sidebarType === 'PHONE' }
+                  step={ 0 } /> 
+                  : null
+      }
       <div className="checkout-main">
         {
           sidebarType === 'PHONE' && <CheckoutAddPhone />
@@ -49,7 +68,7 @@ const Checkout = ({
         }
       </div>
       {
-        sidebarType !=='PHONE' && <div className="checkout-footer">
+        sidebarType !=='PHONE' && sidebarType !== 'FINALIZE_ORDER' && <div className="checkout-footer">
           <div className="checkout-footer--info">
             <p>Calculated Delivery Fee</p>
           </div>
