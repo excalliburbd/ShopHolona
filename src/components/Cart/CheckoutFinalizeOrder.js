@@ -12,7 +12,7 @@ const FinalizeOrder = ({title}) => {
       <div className="Checkout-final">
         <p className="checkout-final-title">Order Finalized </p>
         <div className="order-finalized-container">
-          <img className="user-profile-pic" src={UserPicExample}/>
+          <img className="user-profile-pic" src={UserPicExample} alt=""/>
           <div className="user-info-title-desc">
             <p className="user-name">Name: </p>
             <p className="user-name-value"> Saleka banu</p>
