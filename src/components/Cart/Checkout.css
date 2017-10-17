@@ -9,6 +9,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .checkout-background {
@@ -93,7 +94,7 @@
 }
 .checkout--delivery-title {
   font-size: 1em;
-  font-weight: bold;  
+  font-weight: bold;
 }
 .checkout-main {
   width: 100%;
