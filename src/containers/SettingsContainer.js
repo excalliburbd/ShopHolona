@@ -37,6 +37,20 @@ import {
   getThanas,
 } from '../thunks/paymentandaddressThunks';
 
+export const mapStateToAddressProps = state => {
+  return {
+    districts: getFusedDistricts(state),
+    districtUIValue: state.ui.paymentsAndAddresses.district,
+    districtUIID: state.ui.paymentsAndAddresses.districtID,
+    cities: getFusedCities(state),
+    cityUIValue: state.ui.paymentsAndAddresses.city,
+    cityUIID: state.ui.paymentsAndAddresses.cityID,
+    thanas: getFusedThanas(state),
+    thanaUIValue: state.ui.paymentsAndAddresses.thana,
+    thanaUIID: state.ui.paymentsAndAddresses.thanaID,
+  }
+}
+
 const mapStateToProps = state => {
   return {
     info: getShopInfo(state),
@@ -56,26 +70,12 @@ const mapStateToProps = state => {
     editing: state.shop.information.editing.length > 0,
     vendor: getVendor(state),
     physicalStore: getIsPhysicalStore(state),
-    districts: getFusedDistricts(state),
-    districtUIValue: state.ui.paymentsAndAddresses.district,
-    districtUIID: state.ui.paymentsAndAddresses.districtID,
-    cities: getFusedCities(state),
-    cityUIValue: state.ui.paymentsAndAddresses.city,
-    cityUIID: state.ui.paymentsAndAddresses.cityID,
-    thanas: getFusedThanas(state),
-    thanaUIValue: state.ui.paymentsAndAddresses.thana,
-    thanaUIID: state.ui.paymentsAndAddresses.thanaID,
+    ...mapStateToAddressProps(state),
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+export const mapDispatchToAddressProps = dispatch => {
   return {
-    updateValue: (value, type) => {
-      dispatch(shopActions.shop.edit[type](value));
-    },
-    postUpdates: (info, shop, token) => {
-      dispatch(runShopInfoUpdate(info, shop, token));
-    },
     handleSetValue: (type, value) => {
       switch (type) {
         case 'bank':
@@ -127,6 +127,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           break;
       }
     },
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    updateValue: (value, type) => {
+      dispatch(shopActions.shop.edit[type](value));
+    },
+    postUpdates: (info, shop, token) => {
+      dispatch(runShopInfoUpdate(info, shop, token));
+    },
     postBankInfo: (bank, branch, accountName, accountNumber, shop, token) => {
       dispatch(saveBankInfo(bank, branch, accountName, accountNumber, shop, token));
     },
@@ -135,7 +146,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     editSocial: (type, value) => {
       dispatch(shopActions.shop.edit.social({type, value}));
-    }
+    },
+    ...mapDispatchToAddressProps(dispatch),
   }
 }
 

@@ -14,6 +14,16 @@ const Checkout = ({
     sidebarType,
     token,
     addresses,
+    districts,
+    districtUIValue,
+    cities,
+    cityUIValue,
+    cityUIID,
+    thanas,
+    thanaUIValue,
+    thanaUIID,
+    handleSetValue,
+    handleSelect,
   }) => {
 
   return (
@@ -38,7 +48,17 @@ const Checkout = ({
                                                           cartItems={ cartItems }
                                                           addresses={ addresses }
                                                           handleCheckout={ () => null }
-                                                          token={ token }  />
+                                                          token={ token }
+                                                          districts={ districts }
+                                                          districtUIValue={ districtUIValue }
+                                                          cities={ cities }
+                                                          cityUIValue={ cityUIValue }
+                                                          cityUIID={ cityUIID }
+                                                          thanas={ thanas }
+                                                          thanaUIValue={ thanaUIValue }
+                                                          thanaUIID={thanaUIID }
+                                                          handleSetValue={ handleSetValue }
+                                                          handleSelect={ handleSelect } />
         }
       </div>
       {

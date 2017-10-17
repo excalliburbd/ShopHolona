@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Button from 'react-toolbox/lib/button/Button';
 
-import AddDeliveryAddress from './CheckoutDeliveryAddress';
+import CheckoutDeliveryAddress from './CheckoutDeliveryAddress';
 
 import express from '../../assets/images/express-delivery-icon.svg';
 import standard from '../../assets/images/standard-delivery-icon.svg';
@@ -32,6 +32,16 @@ class CheckoutDelivery extends Component {
       cartItems,
       handleCheckout,
       token,
+      districts,
+      districtUIValue,
+      cities,
+      cityUIValue,
+      cityUIID,
+      thanas,
+      thanaUIValue,
+      thanaUIID,
+      handleSetValue,
+      handleSelect,
     } = this.props;
 
     return (
@@ -41,7 +51,16 @@ class CheckoutDelivery extends Component {
           <Button className="checkout-delivery-address--btn-add" icon='add' label='Add Delivery Address' raised onClick={ ()=>this.handleAddNewAddress() } />
 
           {
-            this.state.add_new ? <AddDeliveryAddress /> : ''
+            this.state.add_new ? <CheckoutDeliveryAddress districts={ districts }
+                                                          districtUIValue={ districtUIValue }
+                                                          cities={ cities }
+                                                          cityUIValue={ cityUIValue }
+                                                          cityUIID={ cityUIID }
+                                                          thanas={ thanas }
+                                                          thanaUIValue={ thanaUIValue }
+                                                          thanaUIID={thanaUIID }
+                                                          handleSetValue={ handleSetValue }
+                                                          handleSelect={ handleSelect }  /> : ''
           }
 
           <div className="checkout-delivery-address--view">
