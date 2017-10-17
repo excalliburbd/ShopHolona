@@ -17,6 +17,7 @@ const Checkout = ({
   }) => {
 
   return (
+<<<<<<< Updated upstream
     <div className={ `checkout-container ${ sidebarType === 'PHONE' ? 'checkout-background' : null}` }>
       <Stepper  steps={[
                   {
@@ -29,6 +30,34 @@ const Checkout = ({
                   }
                 ]}
                 hide={ sidebarType === 'PHONE' }  />
+=======
+    <div className={ `checkout-container ${ sidebarType === 'PHONE' ? 'checkout-background' : ''}` }>
+      {
+        sidebarType !== 'FINALIZE_ORDER' ?
+        <Stepper  steps={[
+                    {
+                      icon: stepOne,
+                      text: 'Customer Verification'
+                    },
+                    {
+                      icon: stepTwo,
+                      text: 'Delivery Details'
+                    },
+                    {
+                      icon: stepThree,
+                      text: 'Payment Method'
+                    },
+                    {
+                      icon: stepFour,
+                      text: 'Finale'
+                    },
+
+                  ]}
+                  hide={ sidebarType === 'PHONE' }
+                  step={ 0 } /> 
+                  : null
+      }
+>>>>>>> Stashed changes
       <div className="checkout-main">
         {
           sidebarType === 'PHONE' && <CheckoutAddPhone />
