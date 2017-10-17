@@ -66,6 +66,7 @@ class CheckoutDelivery extends Component {
               <Button className="checkout--exprs-btn" ><img src={express} alt="" />Express</Button>
               <Button className="checkout--std-btn sh-btn--yellow"><img src={standard} alt="" />Standard</Button>
             </div>
+            <button className="add-special-feature-btn">+ Special Instructions</button>
           </div>
         </div>
       </div>
