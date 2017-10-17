@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Input from 'react-toolbox/lib/input/Input';
-import Button from 'react-toolbox/lib/button/Button';
+import CheckNumber from './CheckNumber';
+import VerificationComponent from './VerificationComponent';
 
 import './PhoneSignInSignUp.css';
 
@@ -23,11 +23,11 @@ class PhoneSignInSignUp extends React.Component {
   checkPhoneThunks = (phone) => {
     clearTimeout(this.typingTimeout);
     this.typingTimeout = setTimeout(() => {
+      this.isValidPhone(phone) && this.props.handleCheckPhoneNumber(phone);
       this.setState({
-        validPhone: this.isValidPhone(phone),
-        existingPhone: this.isExistingPhone(phone)
+        validPhone: this.isValidPhone(phone)
       });
-    }, 2000)
+    }, 1000)
   }
 
   isExistingPhone = (phone) => {
@@ -37,13 +37,7 @@ class PhoneSignInSignUp extends React.Component {
 
   isValidPhone = (phone) => {
     const phoneRegex = new RegExp(/^(?:\+88|88|1)?(?:\d{11}|\d{10})$/);
-    return phoneRegex.test(phone) ? true : false;
-  }
-
-  handlePhoneChange = (phone) => {
-    this.setState({
-      phone: phone
-    }, this.checkPhoneThunks(phone));
+    return phoneRegex.test(phone);
   }
 
   handlePasswordChange = (password) => {
@@ -63,66 +57,44 @@ class PhoneSignInSignUp extends React.Component {
     // @todo call login api with this.state.phone this.state.password
   }
 
-  verificationComponent = () => {
-    return (
-      <div className='verification-step'>
-        <Input label='Enter 4 Digit Code'
-          value={this.state.verification}
-          required />
-        <Input label='Enter Your Full Name'
-          value={this.state.phone}
-          required />
-        <Button label='Login'
-          className='verification-login-btn sh-btn--yellow'
-          onClick={this.handleVerify} />
-        <Button label='Resend Verification Code'
-          className='verification-resend-btn sh-btn--yellow'
-          onClick={this.handleVerify} />
-      </div>
-    )
-  }
-
-  mainComponent = () => {
-    return (
-      <div>
-        <Input label='Enter Your Phone Number'
-          value={this.state.phone}
-          required
-          onChange={this.handlePhoneChange} />
-        {
-          this.state.validPhone && this.state.existingPhone ?
-            <div>
-              <Input label='Enter Your Password'
-                type='password'
-                value={this.state.password}
-                required
-                onChange={this.handlePasswordChange} />
-              <Button label='Login'
-                raised
-                className='PhoneSignInSignUp-login-btn sh-btn--yellow'
-                onClick={this.handleSubmit} />
-            </div>
-            : this.state.validPhone ?
-              <Button label='Verify Phone'
-                className='VerifyPhone-btn sh-btn--yellow'
-                onClick={this.handleVerify} />
-              : null
-        }
-      </div>
-    )
-  }
-
   render() {
+    const {
+      title,
+      phone,
+      handleUpdatePhone,
+      hasNumber
+    } = this.props;
+
+    const {
+      validPhone,
+      password,
+    } = this.state;
+
     return (
-      this.state.verificationStep ?
         <div className='PhoneSignInSignUp'>
-          <div className='sign-up-number'> {this.props.title}</div>
-          {this.verificationComponent()}
-        </div>
-        :
-        <div className='PhoneSignInSignUp'>
-          <div className='sign-up-number'> {this.props.title}</div>
-          {this.mainComponent()}
+          <div className='PhoneSignInSignUp-title'> { title }</div>
+         {
+            this.state.verificationStep ?
+              <VerificationComponent phone={ phone }
+                                     updatePhone={ handleUpdatePhone }
+                                     verify={ this.handleVerify }
+                                     validPhone={ validPhone }
+                                     existingPhone={ hasNumber }
+                                     password={ password }
+                                     handlePasswordChange={ this.handlePasswordChange }
+                                     handleSubmit={ this.handleSubmit } /> :
+              <CheckNumber phone={ phone }
+                           updatePhone={ phone => {
+                             this.checkPhoneThunks(phone);
+                             handleUpdatePhone(phone);
+                           }}
+                           verify={ this.handleVerify }
+                           validPhone={ validPhone }
+                           existingPhone={ hasNumber }
+                           password={ password }
+                           handlePasswordChange={ this.handlePasswordChange }
+                           handleSubmit={ this.handleSubmit } />
+         }
         </div>
     )
   }
