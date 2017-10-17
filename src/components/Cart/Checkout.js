@@ -40,7 +40,6 @@ const Checkout = ({
                                                           handleCheckout={ () => null }
                                                           token={ token }  />
         }
-
       </div>
       {
         sidebarType !=='PHONE' && <div className="checkout-footer">

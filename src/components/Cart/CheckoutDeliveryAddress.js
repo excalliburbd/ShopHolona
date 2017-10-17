@@ -7,9 +7,9 @@ import './CheckoutDeliveryAddress.css'
 const AddDeliveryAddress = () => {
   return (
     <div className="add-delivery-address">      
-      <Input label="Address Details" />     
+      <Input className="address-details" label="Address Details" />     
       <div className="add-delivery-address--dual">
-      <Input label="Address Title" />
+      <Input className="address-title" label="Address Title" />
       <Input label="District" />
       </div>
       <div className="add-delivery-address--dual">

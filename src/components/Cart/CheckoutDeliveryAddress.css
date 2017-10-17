@@ -14,7 +14,21 @@
   padding: .8em 0;
 }
 .add-delivery-address .lFVgC ._34120 {
-    font-size: 13px;
+    font-size: 14px;
+}
+.add-delivery-address .address-title::after , .add-delivery-address .address-details::after {
+  position: absolute;
+  font-size: .6em;
+  left: 0;
+  bottom: -4%;
+  font-style: italic;
+  color: #2e2e2e;
+}
+.add-delivery-address .address-title::after {
+  content: "E.g. Home, Office";
+}
+.add-delivery-address .address-details::after { 
+  content: "E.g. House:40, Road: 5, Block: G";
 }
 @keyframes bounceInDown {
   from, 60%, 75%, 90%, to {
