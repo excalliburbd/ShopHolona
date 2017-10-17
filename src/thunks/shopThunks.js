@@ -1,11 +1,12 @@
 import { addNotification } from 'reapop';
 
-import { request, getConfig, fromState } from './helpers';
+import { request, getConfig, fromState, requestNode } from './helpers';
 
 import {
   shopActions,
   categoryActions,
   imageUploaderActions,
+  userActions,
 } from '../actions/';
 
 import {
@@ -638,4 +639,16 @@ export const runShopInfoUpdate = (info, shop, token) => (dispatch, getState) => 
     dispatch(shopActions.shop.set.editing(edited));
   }
   dispatch(getShop(shop));
+}
+
+export const checkPhoneNumber = phone => dispatch => {
+  requestNode(`?phone=${phone}`, { mode: 'no-cors' }).then(
+    res => {
+      dispatch(userActions.user.ui.setHasNumber(false));
+    }
+  ).catch(
+    err => {
+      dispatch(userActions.user.ui.setHasNumber(true));
+    }
+  )
 }

@@ -164,6 +164,20 @@ export const UserUIReducer = handleActions({
       error: false,
       address: '',
   }),
+  [userActions.user.ui.updatePhone]: (state, action) => ({
+    ...state,
+    phone: {
+      ...state.phone,
+      number: action.payload,
+    }
+  }),
+  [userActions.user.ui.setHasNumber]: (state, action) => ({
+    ...state,
+    phone: {
+      ...state.phone,
+      hasNumber: action.payload,
+    }
+  }),
 }, {
   email: '',
   emailPassword: '',
@@ -171,4 +185,9 @@ export const UserUIReducer = handleActions({
   phonePassword: '',
   error: false,
   address: '',
+  phone: {
+    validating: false,
+    hasNumber: null,
+    number: null,
+  }
 });
