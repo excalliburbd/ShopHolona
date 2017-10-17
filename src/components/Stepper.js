@@ -8,14 +8,22 @@ const Stepper = ({
   hide,
   step,
 }) => {
+  console.log(step)
   return <div className={ `Stepper ${ hide ? 'Stepper-hidden' : "" }` }>
   <hr/>
     {
       steps.map(
-        ({ icon, text }) => <div className="checkout-body--step">
-          <div className="stepperImageContainer">
-          <img className="step-image" src={icon} alt=""/>
-          </div>
+        ({ icon, text, stepNo }) => <div className="checkout-body--step">
+          {
+            step===stepNo?
+            <div className="stepperImageContainer maximized">
+              <img className="step-image" src={icon} alt=""/>
+            </div>
+            :
+            <div className="stepperImageContainer">
+              <img className="step-image" src={icon} alt=""/>
+            </div>
+          }
           <p>{ text }</p>
         </div>
       )

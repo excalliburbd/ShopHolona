@@ -10,7 +10,7 @@ import deliveryFour from '../../assets/images/Payment-4.png';
 const PaymentSelection = ({title}) => {
   return(
     <div className="payment-option-container">
-      <div>Choose Your Preferred Payment Method</div>
+      <div className="payment-tittle">Choose Your Preferred Payment Method</div>
       <div className="payment-option--payment-method">
         <img src={deliveryOne} alt=""/>
         <div className="payment-method-desc">

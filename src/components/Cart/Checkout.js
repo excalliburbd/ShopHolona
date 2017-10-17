@@ -29,19 +29,23 @@ const Checkout = ({
         <Stepper  steps={[
                     {
                       icon: stepOne,
-                      text: 'le'
+                      text: 'Customer Verification',
+                      stepNo:0
                     },
                     {
                       icon: stepTwo,
-                      text: 'lelelel'
+                      text: 'Delivery Details',
+                      stepNo:1
                     },
                     {
                       icon: stepThree,
-                      text: 'le'
+                      text: 'Payment Method',
+                      stepNo:2
                     },
                     {
                       icon: stepFour,
-                      text: 'lelelel'
+                      text: 'Finale',
+                      stepNo:3
                     },
 
                   ]}
