@@ -639,3 +639,4 @@ export const runShopInfoUpdate = (info, shop, token) => (dispatch, getState) => 
   }
   dispatch(getShop(shop));
 }
+

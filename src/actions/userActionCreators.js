@@ -6,6 +6,8 @@ export const userActionCreators = {
       PHONE: payload => payload,
       PHONE_PASSWORD: payload => payload,
       ADDRESS: payload => payload,
+      UPDATE_PHONE: payload => payload,
+      SET_HAS_NUMBER: payload => payload,
     },
     DONE: {
       GET: {

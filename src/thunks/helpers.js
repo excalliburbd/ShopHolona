@@ -3,7 +3,6 @@ import fetch from 'isomorphic-fetch';
 import config from '../config'
 
 export const baseURL = config.api;
-export const nodeURL = config.nodeAPI;
 
 export const getConfig = ( token = null, body = null, method = 'GET', mode = 'cors') => {
   let config =  {
@@ -124,7 +123,7 @@ export const baseRequest = api =>  (route, options) => {
 
 export const request = baseRequest(baseURL);
 
-export const requestNode = baseRequest(nodeURL);
+// export const requestNode = baseRequest(nodeURL);
 
 export const fromState = getState => {
   const state = getState();

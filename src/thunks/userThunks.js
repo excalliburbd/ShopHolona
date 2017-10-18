@@ -234,3 +234,21 @@ export const getUserAddress = token  => dispatch => {
               );
   }
 }
+
+export const checkPhoneNumber = phone => dispatch => {
+  request(`/users/?phone=${ encodeURIComponent(phone) }`, getConfig()).then(
+    res => {
+      console.log(res);
+      dispatch(userActions.user.ui.setHasNumber(res.length > 0));
+    }
+  ).catch(
+    err => {
+      dispatch(addNotification({
+        title: 'Error',
+        message: `Erro checking phone number`,
+        position: 'bl',
+        status: 'error',
+      }));
+    }
+  )
+}
