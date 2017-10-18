@@ -31,14 +31,18 @@
   width: 50%;
   box-shadow: var(--shadow-6p);
   border: 1px solid #cccccc;
+  border-radius: .15em;
 }
 .checkout-delivery-address--card-title {
   text-align: center;
   font-weight: 600;
+  color: #000;
 }
 .checkout-delivery-address--card-content {
   font-size: 0.8rem;
   padding-top: 0.5rem;
+  text-align: center;
+  font-family: "Harmonia Regular";
 }
 .checkout-delivery-address--card:active {
   box-shadow: var(--shadow-2p);

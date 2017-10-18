@@ -74,7 +74,7 @@ class CheckoutDelivery extends Component {
                   <div className="checkout-delivery-address--card"
                        key={address.id}
                        onClick={ () => handleCheckout(total, cartItems, address.id, token)}>
-                    <div className="checkout-delivery-address--card-title">{address.title}</div>
+                    <div className="checkout-delivery-address--card-title">{address.address_title}</div>
                     <div className="checkout-delivery-address--card-content">{address.details}</div>
                   </div>
                 )
@@ -86,7 +86,7 @@ class CheckoutDelivery extends Component {
           <div className="checkout--btn-title-container">
             <p className="checkout--delivery-title">Choose Your Delivery Option</p>
             <div className="checkout--btn-container">
-              <Button className="checkout--exprs-btn" ><img src={express} alt="" />Express</Button>
+              <Button className="checkout--exprs-btn" title="Coming Soon"><img src={express} alt="" />Express</Button>
               <Button className="checkout--std-btn sh-btn--yellow"><img src={standard} alt="" />Standard</Button>
             </div>
             <button className="add-special-feature-btn">+ Special Instructions</button>
