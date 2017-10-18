@@ -155,6 +155,18 @@ export const paymentandaddressUIReducer = handleActions({
       thanaID: action.payload,
     }
   },
+  [paymentandaddressActions.paymentsAndAddresses.ui.set.details]: (state, action) => {
+    return {
+      ...state,
+      details: action.payload,
+    }
+  },
+  [paymentandaddressActions.paymentsAndAddresses.ui.set.title]: (state, action) => {
+    return {
+      ...state,
+      title: action.payload,
+    }
+  },
   [shopActions.shop.set.address]: (state, action) => {
     if (action.payload[0] && action.payload[0].city && action.payload[0].thana && action.payload[0].district ) {
       const addressResponse = action.payload[0];
@@ -200,4 +212,6 @@ export const paymentandaddressUIReducer = handleActions({
   cityID: null,
   thana: '',
   thanaID: null,
+  details: '',
+  title: '',
 });

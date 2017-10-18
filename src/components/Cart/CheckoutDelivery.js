@@ -42,6 +42,8 @@ class CheckoutDelivery extends Component {
       thanaUIID,
       handleSetValue,
       handleSelect,
+      details,
+      title,
     } = this.props;
 
     return (
@@ -60,7 +62,9 @@ class CheckoutDelivery extends Component {
                                                           thanaUIValue={ thanaUIValue }
                                                           thanaUIID={thanaUIID }
                                                           handleSetValue={ handleSetValue }
-                                                          handleSelect={ handleSelect }  /> : ''
+                                                          handleSelect={ handleSelect }
+                                                          details={ details }
+                                                          title={ title }  /> : ''
           }
 
           <div className="checkout-delivery-address--view">

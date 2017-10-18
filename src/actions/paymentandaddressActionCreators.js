@@ -28,6 +28,8 @@ export const paymentandaddressActionCreators = {
         CITY_ID: payload => payload,
         THANA: payload => payload,
         THANA_ID: payload => payload,
+        DETAILS: payload => payload,
+        TITLE: payload => payload,
       }
     }
   }

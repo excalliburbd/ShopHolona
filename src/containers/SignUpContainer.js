@@ -21,7 +21,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     handleTrySignIn: (res, shop) => {
-      dispatch(trySignInAsyncAction(res, shop));
+      dispatch(trySignInAsyncAction(res, true, null));
     },
     handleEmailValue: val => {
       dispatch(userActions.user.ui.email(val));

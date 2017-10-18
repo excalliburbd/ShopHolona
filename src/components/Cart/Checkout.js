@@ -33,6 +33,9 @@ const Checkout = ({
     handleSetValue,
     handleSelect,
     handleShowCheckoutAddress,
+    handleAddressAndShowNext,
+    details,
+    title,
   }) => {
 
   return (
@@ -87,7 +90,10 @@ const Checkout = ({
                                                           thanaUIValue={ thanaUIValue }
                                                           thanaUIID={thanaUIID }
                                                           handleSetValue={ handleSetValue }
-                                                          handleSelect={ handleSelect } />
+                                                          handleSelect={ handleSelect }
+                                                          handleAddressAndShowNext={ handleAddressAndShowNext }
+                                                          details={ details }
+                                                          title={ title } />
         }
         {
           sidebarType === 'PAYMENT_SELECTION' && <PaymentSelection />

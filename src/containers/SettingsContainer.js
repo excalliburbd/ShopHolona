@@ -48,6 +48,8 @@ export const mapStateToAddressProps = state => {
     thanas: getFusedThanas(state),
     thanaUIValue: state.ui.paymentsAndAddresses.thana,
     thanaUIID: state.ui.paymentsAndAddresses.thanaID,
+    details: state.ui.paymentsAndAddresses.details,
+    title: state.ui.paymentsAndAddresses.title,
   }
 }
 
@@ -98,6 +100,12 @@ export const mapDispatchToAddressProps = dispatch => {
           break;
         case 'thana':
           dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.thana(value));
+          break;
+        case 'details':
+          dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.details(value));
+          break;
+        case 'title':
+          dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.title(value));
           break;
         default:
           break;
