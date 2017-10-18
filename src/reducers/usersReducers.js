@@ -157,12 +157,20 @@ export const UserUIReducer = handleActions({
         address: action.payload,
       }),
   [userActions.user.manualSignOut]: (state, action) => ({
-      email: '',
-      emailPassword: '',
-      password: '',
-      phonePassword: '',
-      error: false,
-      address: '',
+    email: '',
+    emailPassword: '',
+    password: '',
+    phonePassword: '',
+    error: false,
+    address: '',
+    phone: {
+      validating: false,
+      hasNumber: null,
+      number: null,
+    },
+    guestUser: {
+      id: null,
+    }
   }),
   [userActions.user.ui.updatePhone]: (state, action) => ({
     ...state,

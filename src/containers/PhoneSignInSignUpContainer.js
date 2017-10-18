@@ -43,7 +43,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       // dispatch(patchMe({ full_name: fullName })); TODO
     },
     handleSignIn: (phone, password, next) => {
-      dispatch(trySignInAsyncAction({ phone, password }, null, false, next));
+      dispatch(trySignInAsyncAction({ phone, password }, false, next));
     },
   }
 }

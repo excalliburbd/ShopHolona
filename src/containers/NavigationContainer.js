@@ -101,7 +101,7 @@ const mapDispatchToProps = dispatch => {
 
       if (demostore) {
         dispatch(
-          trySignInAsyncAction({ email: config.demouser, password: config.demopass}, shop)
+          trySignInAsyncAction({ email: config.demouser, password: config.demopass}, true, null)
         );
         dispatch(userActions.user.done.get.token(token));
         dispatch(getMe(token));

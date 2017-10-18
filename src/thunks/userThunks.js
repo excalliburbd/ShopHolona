@@ -61,15 +61,11 @@ export const getFollowingShop = (shop, token) => dispatch => {
   }
 }
 
-export const trySignInAsyncAction = (res, shop, hide, nextStep) =>  (dispatch, getState) => {
+export const trySignInAsyncAction = (res, hide, nextStep) =>  (dispatch, getState) => {
   const {
     demostore,
     shopID,
   } = fromState(getState);
-
-  if (!shop) {
-    shop = shopID;
-  }
 
   if (demostore) {
     dispatch(addNotification({
@@ -116,16 +112,20 @@ export const trySignInAsyncAction = (res, shop, hide, nextStep) =>  (dispatch, g
 
               if(res.token){
                 dispatch(userActions.user.done.get.token(res.token));
-                hide && dispatch(sidebarActions.sidebar.hide());
-                dispatch(getShopCategories(shop));
-                dispatch(tryGetVendor(shop, res.token));
-                dispatch(getFollowingShop(shop, res.token));
-                dispatch(getShopPayments(shop, res.token));
+                if (hide) {
+                  dispatch(sidebarActions.sidebar.hide());
+                }
+                dispatch(getShopCategories(shopID));
+                dispatch(tryGetVendor(shopID, res.token));
+                dispatch(getFollowingShop(shopID, res.token));
+                dispatch(getShopPayments(shopID, res.token));
                 dispatch(validateCart(res.token));
                 dispatch(getCart(res.token, false));
               }
 
-              nextStep && dispatch(nextStep);
+              if (nextStep) {
+                dispatch(nextStep);
+              }
             }
           ).catch(
             err => {
