@@ -53,7 +53,7 @@ const Cart = ({
                     if (cartItems.length < 1) {
                       handleNoItemsInCartNotification();
                     } else {
-                      handleShowCheckout();
+                      handleShowCheckout(token);
                     }
                   } } />
         </div>

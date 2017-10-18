@@ -53,11 +53,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         status: 'warning',
       }));
     },
-    handleShowCheckout: () => {
-      // dispatch(sidebarActions.sidebar.show.checkoutAddress());
+    handleShowCheckout: token => {
+
       // dispatch(sidebarActions.sidebar.show.checkoutPaymentSelection());
       // dispatch(sidebarActions.sidebar.show.checkoutFinalizeOrder());
-      dispatch(sidebarActions.sidebar.show.checkoutPhone());
+      if (token) {
+        dispatch(sidebarActions.sidebar.show.checkoutAddress());
+      } else {
+        dispatch(sidebarActions.sidebar.show.checkoutPhone());
+      }
     }
   }
 }
