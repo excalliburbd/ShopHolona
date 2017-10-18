@@ -1,0 +1,34 @@
+.spinner {
+    height: 1.2em;
+    width: 1.2em;
+    border: 2px solid #c33;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: spin .8s linear infinite;
+    position: absolute;
+    right: 1em;
+    bottom: 1.8em;
+  }
+  .spinner::after {
+    content: "";
+    background: #003366;
+    height: 4px;
+    width: 4px;
+    position: absolute;
+    left: 93%;
+    border-radius: 50%;
+    
+  }
+  .spinner-child {
+    height: .7em;
+    width: .7em;
+    background: #005dbb;
+    border-radius: 50%;
+   
+  }
+  @keyframes spin {
+      from {transform: rotate(0deg);}
+      to {transform: rotate(360deg);}
+  }
