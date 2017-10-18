@@ -25,7 +25,9 @@ const Stepper = ({
                 <img className="step-image" src={icon} alt=""/>
               </div>
             }
+            <p>{text}</p>
           </div>
+          
         )
       }
   </div>
