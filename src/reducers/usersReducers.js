@@ -178,6 +178,13 @@ export const UserUIReducer = handleActions({
       hasNumber: action.payload,
     }
   }),
+  [userActions.user.done.get.guestUser]: (state, action) => ({
+    ...state,
+    guestUser: {
+      ...state.guestUser,
+      ...action.payload,
+    }
+  })
 }, {
   email: '',
   emailPassword: '',
@@ -189,5 +196,8 @@ export const UserUIReducer = handleActions({
     validating: false,
     hasNumber: null,
     number: null,
+  },
+  guestUser: {
+    id: null,
   }
 });

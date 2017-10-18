@@ -15,6 +15,7 @@ export const userActionCreators = {
         PROFILE: payload => payload,
         AUTH_SHOP: payload => payload,
         FOLLOWING_SHOPS: payload => payload,
+        GUEST_USER: payload => payload,
       }
     },
     SET: {

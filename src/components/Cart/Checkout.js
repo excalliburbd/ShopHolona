@@ -30,6 +30,7 @@ const Checkout = ({
     thanaUIID,
     handleSetValue,
     handleSelect,
+    handleShowCheckoutAddress,
   }) => {
 
   return (
@@ -67,7 +68,7 @@ const Checkout = ({
 
       <div className="checkout-main">
         {
-          sidebarType === 'PHONE' && <CheckoutAddPhone />
+          sidebarType === 'PHONE' && <CheckoutAddPhone handleShowCheckoutAddress={ handleShowCheckoutAddress }/>
         }
         {
           sidebarType === 'ADDRESS' && <CheckoutDelivery  total={ total }

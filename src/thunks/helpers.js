@@ -141,12 +141,18 @@ export const fromState = getState => {
     list: state.cart.items,
     items: state.entities.cart,
   }
+  const token = state.user.token;
+  const guestToken = state.ui.user.guestUser;
+  const shopID = state.shop.id;
 
   return {
     demostore,
     payments,
     updatedAddress,
     bankName,
-    cart
+    cart,
+    token,
+    guestToken,
+    shopID,
   }
 }

@@ -9,11 +9,11 @@ class PhoneSignInSignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      phone: '',
+      fullName: '',
       password: '',
       validPhone: false,
       existingPhone: false,
-      verificationStep: false
+      code: '',
     }
   }
 
@@ -30,11 +30,6 @@ class PhoneSignInSignUp extends React.Component {
     }, 1000)
   }
 
-  isExistingPhone = (phone) => {
-    // @todo call phone validation api
-    return phone === '01670015725' ? true : false;
-  }
-
   isValidPhone = (phone) => {
     const phoneRegex = new RegExp(/^(?:\+88|88|1)?(?:\d{11}|\d{10})$/);
     return phoneRegex.test(phone);
@@ -46,44 +41,89 @@ class PhoneSignInSignUp extends React.Component {
     });
   }
 
-  handleVerify = () => {
-    // @todo phone verification , goto next step
+  handleVerify = (phone) => {
+    if (phone.length >= 10) {
+      if (phone.slice(0,1) === '+' && phone.length === 14) {
+        this.props.handleRegisterGuest(phone);
+      } else if(phone.slice(0,1) === '8' && phone.length === 13) {
+        this.props.handleRegisterGuest(`+${phone}`);
+      } else if(phone.slice(0,1) === '0' && phone.length === 11) {
+        this.props.handleRegisterGuest(`+88${phone}`);
+      } else if(phone.slice(0,1) === '1' && phone.length === 10) {
+        this.props.handleRegisterGuest(`+880${phone}`);
+      }
+    }
+  }
+
+  handleSubmit = phone => {
+    // @todo call login api with this.state.phone this.state.password
+    const {
+      nextStep
+    } = this.props;
+
+    if (phone.length >= 10) {
+      if (phone.slice(0,1) === '+' && phone.length === 14) {
+        this.props.handleSignIn(phone, this.state.password, nextStep);
+      } else if(phone.slice(0,1) === '8' && phone.length === 13) {
+        this.props.handleSignIn(`+${phone}`, this.state.password, nextStep);
+      } else if(phone.slice(0,1) === '0' && phone.length === 11) {
+        this.props.handleSignIn(`+88${phone}`, this.state.password, nextStep);
+      } else if(phone.slice(0,1) === '1' && phone.length === 10) {
+        this.props.handleSignIn(`+880${phone}`, this.state.password, nextStep);
+      }
+    }
+  }
+
+  handleChangeFullName = name => {
     this.setState({
-      verificationStep: true
+      fullName: name,
     })
   }
 
-  handleSubmit = () => {
-    // @todo call login api with this.state.phone this.state.password
+  handleUpdateVerificationCode = code => {
+    this.setState({
+      code,
+    })
   }
 
   render() {
     const {
       title,
-      phone,
+      number,
       handleUpdatePhone,
-      hasNumber
+      hasNumber,
+      guestID,
+      handleResendVerificationCode,
+      handlePostVerificationCode,
     } = this.props;
 
     const {
       validPhone,
       password,
+      fullName,
+      code,
     } = this.state;
 
     return (
         <div className='PhoneSignInSignUp'>
           <div className='PhoneSignInSignUp-title'> { title }</div>
          {
-            this.state.verificationStep ?
-              <VerificationComponent phone={ phone }
+            guestID ?
+              <VerificationComponent phone={ number }
                                      updatePhone={ handleUpdatePhone }
+                                     name={ fullName }
+                                     changeFullName={ this.handleChangeFullName }
                                      verify={ this.handleVerify }
                                      validPhone={ validPhone }
                                      existingPhone={ hasNumber }
                                      password={ password }
                                      handlePasswordChange={ this.handlePasswordChange }
-                                     handleSubmit={ this.handleSubmit } /> :
-              <CheckNumber phone={ phone }
+                                     handleSubmit={ this.handleSubmit }
+                                     verification={ code }
+                                     updateCode={ this.handleUpdateVerificationCode }
+                                     resendCode={ handleResendVerificationCode }
+                                     login={ (loginPhone, loginCode) => handlePostVerificationCode(loginPhone, loginCode, this.state.fullName) } /> :
+              <CheckNumber phone={ number }
                            updatePhone={ phone => {
                              this.checkPhoneThunks(phone);
                              handleUpdatePhone(phone);

@@ -61,10 +61,15 @@ export const getFollowingShop = (shop, token) => dispatch => {
   }
 }
 
-export const trySignInAsyncAction = (res, shop) =>  (dispatch, getState) => {
+export const trySignInAsyncAction = (res, shop, hide, nextStep) =>  (dispatch, getState) => {
   const {
     demostore,
+    shopID,
   } = fromState(getState);
+
+  if (!shop) {
+    shop = shopID;
+  }
 
   if (demostore) {
     dispatch(addNotification({
@@ -111,7 +116,7 @@ export const trySignInAsyncAction = (res, shop) =>  (dispatch, getState) => {
 
               if(res.token){
                 dispatch(userActions.user.done.get.token(res.token));
-                dispatch(sidebarActions.sidebar.hide());
+                hide && dispatch(sidebarActions.sidebar.hide());
                 dispatch(getShopCategories(shop));
                 dispatch(tryGetVendor(shop, res.token));
                 dispatch(getFollowingShop(shop, res.token));
@@ -119,6 +124,8 @@ export const trySignInAsyncAction = (res, shop) =>  (dispatch, getState) => {
                 dispatch(validateCart(res.token));
                 dispatch(getCart(res.token, false));
               }
+
+              nextStep && dispatch(nextStep);
             }
           ).catch(
             err => {
@@ -238,17 +245,88 @@ export const getUserAddress = token  => dispatch => {
 export const checkPhoneNumber = phone => dispatch => {
   request(`/users/?phone=${ encodeURIComponent(phone) }`, getConfig()).then(
     res => {
-      console.log(res);
       dispatch(userActions.user.ui.setHasNumber(res.length > 0));
     }
   ).catch(
     err => {
       dispatch(addNotification({
         title: 'Error',
-        message: `Erro checking phone number`,
+        message: `Error checking phone number`,
         position: 'bl',
         status: 'error',
       }));
+    }
+  )
+}
+
+export const registerUser = (phone, password) => dispatch => {
+  request('/auth/register/', getConfig(
+    null,
+    {
+      password,
+      phone,
+    },
+    'POST'
+  )).then(
+    res => {
+      if (res.id) {
+        dispatch(userActions.user.done.get.guestUser(res));
+      }
+    }
+  ).catch(
+    err => {
+      console.log(err);
+      dispatch(addNotification({
+         title: 'Error',
+         message: `Error fetching verification code`,
+         position: 'bl',
+         status: 'error',
+      }))
+    }
+  )
+}
+
+export const resendVerificationCode = phone => dispatch => {
+  request('/auth/confirm-code-resend/', getConfig(
+    null,
+    {
+      phone,
+    },
+    'POST',
+  )).then(
+    res => {
+      console.log(res)
+    }
+  )
+}
+
+export const postVerificationCode = (phone, code) => dispatch => {
+  request('/auth/activate/', getConfig(
+    null,
+    {
+      phone,
+      code
+    },
+    'POST'
+  )).then(
+    res => {
+      console.log(res);
+    }
+  )
+}
+
+export const patchMe = body => (dispatch, getState) => {
+  const {
+    userToken
+  } = fromState(getState);
+
+  request('/me/', getConfig(
+    userToken,
+    body,
+    'PATCH'
+  )).then(
+    res => {
+      console.log(res);
     }
   )
 }

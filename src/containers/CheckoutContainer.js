@@ -5,6 +5,10 @@ import { getToken, getUserAddresses } from '../selectors/userSelectors';
 
 import { mapStateToAddressProps, mapDispatchToAddressProps } from './SettingsContainer';
 
+import {
+  sidebarActions,
+} from '../actions/';
+
 import Checkout from '../components/Cart/Checkout';
 
 const mapStateToProps = state => {
@@ -21,6 +25,11 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     ...mapDispatchToAddressProps(dispatch),
+    handleShowCheckoutAddress: () => {
+      dispatch(sidebarActions.sidebar.show.checkoutAddress());
+      // dispatch(sidebarActions.sidebar.show.checkoutPaymentSelection());
+      // dispatch(sidebarActions.sidebar.show.checkoutFinalizeOrder());
+    },
   }
 }
 
