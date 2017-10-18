@@ -111,12 +111,18 @@ const Checkout = ({
           <CartTotal total={ total }
                      cartItems={ cartItems }/>
           <div className="footer-btn-container">
-            <Button className="footer-next-btn sh-btn--yellow" label="Next"/>
-            <div className="footer-back-confirm-container">
-              <Button className="footer-back-btn" label="Back"/> 
-              <Button className="footer-confirm-btn sh-btn--yellow" label="Confirm Order"/>              
-            </div>    
-          </div>           
+            {
+              sidebarType === 'ADDRESS' && <Button className="footer-next-btn sh-btn--yellow"
+                                                   label="Next"
+                                                   onClick={ () => handleAddressAndShowNext(cityUIID, thanaUIID, title, details, addresses.length === 0, token) } />
+            }
+            {
+              sidebarType === 'PAYMENT_SELECTION' && <div className="footer-back-confirm-container">
+                <Button className="footer-back-btn" label="Back"/>
+                <Button className="footer-confirm-btn sh-btn--yellow" label="Confirm Order"/>
+              </div>
+            }
+          </div>
         </div>
       }
     </div>

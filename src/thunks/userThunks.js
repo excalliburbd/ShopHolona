@@ -242,6 +242,39 @@ export const getUserAddress = token  => dispatch => {
   }
 }
 
+export const postUserAddress = (city, thana, title, details, primary, token, next)  => dispatch => {
+  if (token) {
+    request(`/me/address/`, getConfig(
+              token,
+              {
+                city,
+                thana,
+                address_title: title,
+                details,
+                primary,
+                postal_code: '1001',
+              },
+              'POST'
+            )).then(
+              res => {
+                if(res.id) {
+                  if (next) {
+                    dispatch(next);
+                    dispatch(getMe(token));
+                  }
+                }
+              }
+            );
+  } else {
+    dispatch(addNotification({
+      title: 'Error',
+      message: `You are not logged in`,
+      position: 'bl',
+      status: 'error',
+    }));
+  }
+}
+
 export const checkPhoneNumber = phone => dispatch => {
   request(`/users/?phone=${ encodeURIComponent(phone) }`, getConfig()).then(
     res => {

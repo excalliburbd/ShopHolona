@@ -9,6 +9,10 @@ import {
   sidebarActions,
 } from '../actions/';
 
+import {
+  postUserAddress,
+} from '../thunks/userThunks';
+
 import Checkout from '../components/Cart/Checkout';
 
 const mapStateToProps = state => {
@@ -27,11 +31,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     ...mapDispatchToAddressProps(dispatch),
     handleShowCheckoutAddress: () => {
       dispatch(sidebarActions.sidebar.show.checkoutAddress());
-      // dispatch(sidebarActions.sidebar.show.checkoutPaymentSelection());
+
       // dispatch(sidebarActions.sidebar.show.checkoutFinalizeOrder());
     },
-    handleAddressAndShowNext: () => {
-
+    handleAddressAndShowNext: (city, thana, title, details, primary, token) => {
+      console.log(city, thana, title, details, primary, token)
+      if (city && thana) {
+        dispatch(postUserAddress(city, thana, title, details, primary, token, sidebarActions.sidebar.show.checkoutPaymentSelection()));
+      }
     },
   }
 }
