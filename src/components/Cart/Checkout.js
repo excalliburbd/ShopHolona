@@ -23,6 +23,7 @@ const Checkout = ({
   }) => {
 
   return (
+
     <div className={ `checkout-container ${ sidebarType === 'PHONE' ? 'checkout-background' : ''}` }>
       {
         sidebarType !== 'FINALIZE_ORDER' ?
@@ -50,9 +51,10 @@ const Checkout = ({
 
                   ]}
                   hide={ sidebarType === 'PHONE' }
-                  step={ 0 } /> 
+                  step={ 0 } />
                   : null
       }
+
       <div className="checkout-main">
         {
           sidebarType === 'PHONE' && <CheckoutAddPhone />
