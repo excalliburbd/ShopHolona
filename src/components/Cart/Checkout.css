@@ -43,10 +43,13 @@
   justify-content: space-between;
 }
 .checkout-footer--info p {
-  font-size: 1.2rem;
+  font-size: 1.1em;
   margin: 0;
   padding: 0.5rem 1rem;
   font-weight: 600;
+}
+.checkout-footer--info p:last-of-type {
+  font-size: 1.2em;
 }
 .checkout-footer--btn {
   width: 100%;
@@ -120,11 +123,16 @@
 .footer-next-btn {
   width: 18rem;
   bottom: .6em;
+  box-shadow: var(--shadow-6p);
 }
 
 .footer-back-confirm-container {
   display: flex;
   justify-content: space-around;
+  margin-bottom: .5em;
+}
+.footer-back-confirm-container button {
+  margin-left: .5em;
 }
 .footer-back-btn {
   width: 25%;

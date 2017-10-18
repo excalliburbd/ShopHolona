@@ -28,6 +28,12 @@
     justify-content: space-around;
     align-items: center;
 }
+.toggled {
+    box-shadow: 0 0 5px rgba(255,204,51);
+    border: 1px solid rgba(81, 203, 238, 1);
+}
+
+
 .payment-option--payment-method  img {
     height: 3.5rem;
     width: 3.5rem;
