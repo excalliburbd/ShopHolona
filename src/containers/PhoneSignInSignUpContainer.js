@@ -6,7 +6,7 @@ import {
 
 import {
   checkPhoneNumber,
-} from '../thunks/shopThunks';
+} from '../thunks/userThunks';
 
 import PhoneSignInSignUp from '../components/SignUp/PhoneSignInSignUp';
 

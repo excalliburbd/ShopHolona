@@ -54,7 +54,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       }));
     },
     handleShowCheckout: () => {
-      dispatch(sidebarActions.sidebar.show.checkoutAddress());
+      dispatch(sidebarActions.sidebar.show.checkoutPhone());
     }
   }
 }
