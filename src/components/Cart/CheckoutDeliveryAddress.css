@@ -7,11 +7,9 @@
   display: flex;
   justify-content: space-between;
 }
-.add-delivery-address--dual [data-react-toolbox="input"] {
-  width: 48%;
-}
+
 .add-delivery-address .lFVgC , .add-delivery-address--dual .lFVgC {
-  padding: .8em 0;
+  padding: 1.1em .2em;
 }
 .add-delivery-address .lFVgC ._34120 {
     font-size: 14px;
@@ -29,6 +27,9 @@
 }
 .add-delivery-address .address-details::after { 
   content: "E.g. House:40, Road: 5, Block: G";
+}
+.add-delivery-address--dual .lFVgC ._2k5Jz {
+  font-size: .4em;
 }
 @keyframes bounceInDown {
   from, 60%, 75%, 90%, to {

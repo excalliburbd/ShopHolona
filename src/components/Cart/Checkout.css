@@ -9,7 +9,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 .checkout-background {
@@ -30,6 +29,7 @@
   right: 0;
   height: var(--footer-height);
   background: #fff;
+  box-shadow: 2px 2px 12px #000;
 }
 
 .checkout-footer--info {
