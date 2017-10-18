@@ -7,7 +7,6 @@ import CartTotal from './CartTotal';
 import PaymentSelection from './CheckoutPaymentSelection';
 import FinalizeOrder from './CheckoutFinalizeOrder';
 
-import stepOne from '../../assets/images/stepper-icon-1.svg';
 import stepTwo from '../../assets/images/stepper-icon-2.svg'
 import stepThree from '../../assets/images/stepper-icon-3.svg'
 import stepFour from '../../assets/images/stepper-icon-4.svg'
@@ -38,37 +37,48 @@ const Checkout = ({
     title,
   }) => {
 
+  const getStep = type => {
+    switch (type) {
+      case 'ADDRESS':
+        return 0;
+      case 'PAYMENT_SELECTION':
+        return 1;
+      case 'FINALIZE_ORDER':
+        return 2;
+      default:
+        return null;
+    }
+  }
+
   return (
 
     <div className={ `checkout-container ${ sidebarType === 'PHONE' ? 'checkout-background' : ''}` }>
       {
         sidebarType !== 'FINALIZE_ORDER' ?
-        <Stepper  steps={[
-                    {
-                      icon: stepOne,
-                      text: 'Customer Verification',
-                      stepNo:0
-                    },
-                    {
-                      icon: stepTwo,
-                      text: 'Delivery Details',
-                      stepNo:1
-                    },
-                    {
-                      icon: stepThree,
-                      text: 'Payment Method',
-                      stepNo:2
-                    },
-                    {
-                      icon: stepFour,
-                      text: 'Finale',
-                      stepNo:3
-                    },
+          <Stepper  steps={[
+                      {
+                        icon: stepTwo,
+                        text: 'Delivery Details',
+                        stepNo:0
+                      },
+                      {
+                        icon: stepThree,
+                        text: 'Payment Method',
+                        stepNo:1
+                      },
+                      {
+                        icon: stepFour,
+                        text: 'Finale',
+                        stepNo:2
+                      },
 
-                  ]}
-                  hide={ sidebarType === 'PHONE' }
-                  step={ 0 } />
-                  : null
+                    ]}
+                    hide={ sidebarType === 'PHONE' }
+                    step={
+                      getStep(sidebarType)
+                    }
+                    handleClick={ () => null }  />
+                    : null
       }
 
       <div className="checkout-main">
