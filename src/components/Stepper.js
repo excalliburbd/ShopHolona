@@ -16,10 +16,12 @@ const Stepper = ({
             {
               step===stepNo?
               <div className="stepperImageContainer maximized">
+                {step>=stepNo?null:<span></span>}
                 <img className="step-image" src={icon} alt=""/>
               </div>
               :
               <div className="stepperImageContainer">
+                {step>=stepNo?null:<span></span>}
                 <img className="step-image" src={icon} alt=""/>
               </div>
             }

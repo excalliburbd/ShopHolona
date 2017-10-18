@@ -9,7 +9,8 @@
   width: 70%;
   border: 1px solid #3b3b3b;
   left: 15%;
-  top: 7%;
+  top: 17%;
+  z-index: 0;
 }
 .Stepper-hidden {
   display: none;
@@ -21,48 +22,50 @@
   width: 25%;
   align-items: center;
   text-align: center;
+  margin-bottom: .4em;
 }
 
-.stepperImageContainer {
-  height: 1.5rem;
-  width: 1.5rem;
-}
 
-.checkout-body--step img {
-  height: 1rem;
-  width: 1rem;
-  border-radius: 50%;
-  z-index: 1;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
-  background: rgba(0, 0, 0, .8);
-  padding-top: .3em;
-}
 
 .stepperImageContainer {
   height: 1.7rem;
   width: 1.7rem;
   border-radius: 50%;
-  z-index: 1;
+  z-index: 10;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
-  background: rgba(0, 0, 0, .8);
   padding-top: .3em;
+  background: #fff;
+  position: relative;
+  top: .2em;
 }
 
 .stepperImageContainer img {
   height: 1rem;
-  width: 1rem;
 
 }
-
 .maximized {
-  height: 2rem;
-  width: 2rem;
-  padding-top: .5em;
+  height: 2.5rem;
+  width: 2.5rem;
+  padding-top: .6em;
   background: #fff;
   position: relative;
-  bottom: 4%;
+  top: -6%;
+}
+.maximized img {
+  height: 1.4rem;
+  width: 1.4rem;
 }
 
+.stepperImageContainer span {
+  height: 100%;
+  width: 100%;
+  background: #000;
+  opacity: .7;
+  position: absolute;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+}
 .checkout-body--step p {
   font-size: 10px;
   margin: 5px;
