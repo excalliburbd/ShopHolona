@@ -86,9 +86,11 @@ class CheckoutDelivery extends Component {
                     <div className="checkout-delivery-address--card-title">{address.address_title}</div>
                     <div className="checkout-delivery-address--card-content">{address.details}</div>
                   </div>
+                  
                 )
               })
             }
+            <Button className="address-card-more-btn" label="More"/>
           </div>
         </div>
         <div>

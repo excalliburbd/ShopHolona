@@ -20,6 +20,8 @@
 
 .checkout-delivery-address--view {
   display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .checkout-delivery-address--card {
@@ -32,6 +34,8 @@
   box-shadow: var(--shadow-6p);
   border: 1px solid #cccccc;
   border-radius: .15em;
+  width: 45%;
+  
 }
 .checkout-delivery-address--card-title {
   text-align: center;
@@ -39,10 +43,11 @@
   color: #000;
 }
 .checkout-delivery-address--card-content {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   padding-top: 0.5rem;
   text-align: center;
   font-family: "Harmonia Regular";
+  max-height: 80%;
 }
 .checkout-delivery-address--card:active {
   box-shadow: var(--shadow-2p);
@@ -67,4 +72,10 @@
 }
 .add-special-feature-btn:focus {
   outline: none;
+}
+
+.address-card-more-btn {
+  width: 85%;
+  box-shadow: var(--shadow-6p);
+  height: 2rem;
 }
