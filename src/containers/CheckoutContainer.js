@@ -7,6 +7,7 @@ import { mapStateToAddressProps, mapDispatchToAddressProps } from './SettingsCon
 
 import {
   sidebarActions,
+  paymentandaddressActions,
 } from '../actions/';
 
 import {
@@ -23,6 +24,7 @@ const mapStateToProps = state => {
     addresses: getUserAddresses(state),
     token: getToken(state),
     ...mapStateToAddressProps(state),
+    slectedAddress: state.ui.paymentsAndAddresses.selectedCheckoutAddress,
   }
 }
 
@@ -40,6 +42,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(postUserAddress(city, thana, title, details, primary, token, sidebarActions.sidebar.show.checkoutPaymentSelection()));
       }
     },
+    handleSetSelectedAddress: key => {
+      dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.selectedCheckoutAddress(key));
+    }
   }
 }
 

@@ -35,6 +35,8 @@ const Checkout = ({
     handleAddressAndShowNext,
     details,
     title,
+    selectedAddress,
+    handleSetSelectedAddress,
   }) => {
 
   const getStep = type => {
@@ -103,7 +105,9 @@ const Checkout = ({
                                                           handleSelect={ handleSelect }
                                                           handleAddressAndShowNext={ handleAddressAndShowNext }
                                                           details={ details }
-                                                          title={ title } />
+                                                          title={ title }
+                                                          selectedAddress={ selectedAddress }
+                                                          setSelectedAddress={ handleSetSelectedAddress }/>
         }
         {
           sidebarType === 'PAYMENT_SELECTION' && <PaymentSelection />

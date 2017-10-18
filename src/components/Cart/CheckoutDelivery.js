@@ -15,12 +15,19 @@ class CheckoutDelivery extends Component {
 
     this.state = {
       add_new: this.props.addresses.length < 1,
+      selected: null,
     }
   }
 
-  handleAddNewAddress () {
+  handleAddNewAddress() {
     this.setState((prevState) => {
       return { add_new: !prevState.add_new }
+    })
+  }
+
+  selectAddress(selected) {
+    this.setState({
+      selected: (selected === this.state.state) ? null : selected,
     })
   }
 
@@ -44,6 +51,8 @@ class CheckoutDelivery extends Component {
       handleSelect,
       details,
       title,
+      selectedAddress,
+      setSelectedAddress,
     } = this.props;
 
     return (
@@ -69,11 +78,11 @@ class CheckoutDelivery extends Component {
 
           <div className="checkout-delivery-address--view">
             {
-              Array.isArray(addresses) && addresses.map((address) => {
+              Array.isArray(addresses) && addresses.map((address, key) => {
                 return (
                   <div className="checkout-delivery-address--card"
                        key={address.id}
-                       onClick={ () => handleCheckout(total, cartItems, address.id, token)}>
+                       onClick={ () => setSelectedAddress(key) }>
                     <div className="checkout-delivery-address--card-title">{address.address_title}</div>
                     <div className="checkout-delivery-address--card-content">{address.details}</div>
                   </div>
@@ -86,8 +95,8 @@ class CheckoutDelivery extends Component {
           <div className="checkout--btn-title-container">
             <p className="checkout--delivery-title">Choose Your Delivery Option</p>
             <div className="checkout--btn-container">
-              <Button className="checkout--exprs-btn" title="Coming Soon"><img src={express} alt="" />Express</Button>
-              <Button className="checkout--std-btn sh-btn--yellow"><img src={standard} alt="" />Standard</Button>
+              <Button className="checkout--exprs-btn" title="Coming Soon" onClick={ () => this.selectAddress(0) }><img src={express} alt="" />Express</Button>
+              <Button className="checkout--std-btn sh-btn--yellow" onClick={ () => this.selectAddress(1) }><img src={standard} alt="" />Standard</Button>
             </div>
             <button className="add-special-feature-btn">+ Special Instructions</button>
           </div>
