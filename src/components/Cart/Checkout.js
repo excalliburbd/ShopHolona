@@ -92,6 +92,12 @@ const Checkout = ({
         {
           sidebarType === 'FINALIZE_ORDER' && <FinalizeOrder />
         }
+        {
+          sidebarType === 'PAYMENT_SELECTION' && <PaymentSelection />
+        }
+        {
+          sidebarType === 'FINALIZE_ORDER' && <FinalizeOrder />
+        }
       </div>
       {
         sidebarType !=='PHONE' && sidebarType !== 'FINALIZE_ORDER' && <div className="checkout-footer">
