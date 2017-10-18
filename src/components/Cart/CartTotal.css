@@ -6,6 +6,7 @@
 .cart-total {
   position: relative;
   padding: 0 1rem;
+  width: 100%;
 }
 
 .cart-total-text {

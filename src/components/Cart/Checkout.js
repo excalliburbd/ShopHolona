@@ -12,6 +12,8 @@ import stepTwo from '../../assets/images/stepper-icon-2.svg'
 import stepThree from '../../assets/images/stepper-icon-3.svg'
 import stepFour from '../../assets/images/stepper-icon-4.svg'
 
+import Button from 'react-toolbox/lib/button/Button';
+
 import './Checkout.css';
 
 const Checkout = ({
@@ -98,9 +100,17 @@ const Checkout = ({
         sidebarType !=='PHONE' && sidebarType !== 'FINALIZE_ORDER' && <div className="checkout-footer">
           <div className="checkout-footer--info">
             <p>Calculated Delivery Fee</p>
+            <p>৳</p>
           </div>
           <CartTotal total={ total }
                      cartItems={ cartItems }/>
+          <div className="footer-btn-container">
+            <Button className="footer-next-btn sh-btn--yellow" label="Next"/>
+            <div className="footer-back-confirm-container">
+              <Button className="footer-back-btn" label="Back"/> 
+              <Button className="footer-confirm-btn sh-btn--yellow" label="Confirm Order"/>              
+            </div>    
+          </div>           
         </div>
       }
     </div>
