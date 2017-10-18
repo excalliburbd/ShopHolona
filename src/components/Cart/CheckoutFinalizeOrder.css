@@ -1,0 +1,75 @@
+.order-finalized-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.order-finalized-container .user-profile-pic {
+    height: 6rem;
+    width: 6rem;
+}
+.checkout-final-title {
+    text-align: center;
+    padding: .5em 1em;
+    font-size: 1.3em;
+    font-weight: bold;
+    font-family: "Harmonia Bold";
+    margin: 0;
+}
+.user-info-title-desc {
+    display: flex;
+    justify-content: center;    
+}
+.user-info-title-desc p {
+    font-size: .8em;
+    text-align: center;
+    padding: 0 .1em;
+    margin: .5em 0;
+}
+.user-info-title-desc p:first-of-type {
+    font-weight: bold;
+}
+.order-details {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;;
+}
+.order-details p {
+    width: 40%;
+    font-size: .8em;
+    padding: 0 .2em;
+    margin: .7em 0;
+}
+.order-details p:first-of-type , .cart-details {
+    font-weight: bold;
+}
+.total-amount {
+    display: flex;
+    width: 40%;
+}
+.next-order-info  {
+    text-align: center;
+    font-size: .9em;
+    font-weight: bold;
+}
+.user-order-desc {
+    text-align: center;
+    font-size: .9em;
+}
+.secure-acc-btn {
+    padding-top: .2em;
+    margin-bottom: 1em;
+}
+.extra-details-icon {
+    position: relative;
+    right: 22%;
+    top: .3em;
+    font-size: 1.2em !important;
+    cursor: pointer;
+}
+.total-amount .total-value {
+    width: 80%;
+}

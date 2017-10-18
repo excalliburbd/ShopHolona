@@ -1,14 +1,15 @@
 .Stepper {
   display: flex;
   border-bottom: 1px solid var(--border-color);
-  margin-top: 5px;
   height: auto;
+  position: relative;
 }
 .Stepper hr {
   position: absolute;
   width: 70%;
   border: 1px solid #3b3b3b;
   left: 15%;
+  top: 7%;
 }
 .Stepper-hidden {
   display: none;
@@ -21,22 +22,45 @@
   align-items: center;
   text-align: center;
 }
+
+.stepperImageContainer {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
 .checkout-body--step img {
   height: 1rem;
   width: 1rem;
   border-radius: 50%;
   z-index: 1;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  background: rgba(0, 0, 0, .8);
+  padding-top: .3em;
 }
 
-.checkout-body--step .step-image::after {
-  content: "";
-  background: #2e2e2e;
-  height: 2px;
-  width: 25vw;
-  top: 50%;
-  left: 100%;
-  position: absolute;
+.stepperImageContainer {
+  height: 1.7rem;
+  width: 1.7rem;
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  background: rgba(0, 0, 0, .8);
+  padding-top: .3em;
+}
+
+.stepperImageContainer img {
+  height: 1rem;
+  width: 1rem;
+
+}
+
+.maximized {
+  height: 2rem;
+  width: 2rem;
+  padding-top: .5em;
+  background: #fff;
+  position: relative;
+  bottom: 4%;
 }
 
 .checkout-body--step p {

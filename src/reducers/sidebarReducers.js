@@ -83,6 +83,18 @@ export const SidebarUIReducer = handleActions({
     subType: 'VERIFY_PHONE',
     titleMsg: 'Checkout'
   }),
+  [sidebarActions.sidebar.show.checkoutPaymentSelection]: (state, action) => ({
+    ...state,
+    type: 'CHECKOUT',
+    subType: 'PAYMENT_SELECTION',
+    titleMsg: 'Checkout'
+  }),
+  [sidebarActions.sidebar.show.checkoutFinalizeOrder]: (state, action) => ({
+    ...state,
+    type: 'CHECKOUT',
+    subType: 'FINALIZE_ORDER',
+    titleMsg: 'Checkout'
+  }),
   [sidebarActions.sidebar.show.addProductUploading]: (state, action) => ({
     ...state,
     show: true,
