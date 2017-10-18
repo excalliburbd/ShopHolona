@@ -2,6 +2,7 @@ import React from 'react';
 
 import Input from 'react-toolbox/lib/input/Input';
 import Button from 'react-toolbox/lib/button/Button';
+import './VerificationComponent.css';
 
 const VerificationComponent = ({
   verification,

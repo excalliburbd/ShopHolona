@@ -3,6 +3,7 @@
   padding: .2em 1em;
   background: #fff;
   box-shadow: 0px -0.2px 6px 0px rgba(50, 50, 50, 0.6);
+  position: relative;
 }
 .PhoneSignInSignUp-title {
   font-weight: bold;
