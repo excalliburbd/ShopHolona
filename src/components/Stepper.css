@@ -3,6 +3,7 @@
   border-bottom: 1px solid var(--border-color);
   height: auto;
   position: relative;
+  justify-content: space-between;
 }
 .Stepper hr {
   position: absolute;
@@ -26,8 +27,6 @@
   height: 4rem;
 }
 
-
-
 .stepperImageContainer {
   height: 1.7rem;
   width: 1.7rem;
@@ -44,6 +43,7 @@
   height: 1rem;
 
 }
+
 .maximized {
   height: 2.5rem;
   width: 2.5rem;
@@ -52,6 +52,7 @@
   position: relative;
   top: -3%;
 }
+
 .maximized img {
   height: 1.4rem;
   width: 1.4rem;
@@ -67,6 +68,7 @@
   top: 0;
   left: 0;
 }
+
 .checkout-body--step p {
   font-size: 10px;
   margin: 5px;

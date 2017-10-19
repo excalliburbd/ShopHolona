@@ -30,6 +30,7 @@ export const paymentandaddressActionCreators = {
         THANA_ID: payload => payload,
         DETAILS: payload => payload,
         TITLE: payload => payload,
+        SELECTED_CHECKOUT_ADDRESS: payload => payload,
       }
     }
   }

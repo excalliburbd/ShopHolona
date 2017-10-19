@@ -37,6 +37,7 @@ const Checkout = ({
     title,
     selectedAddress,
     handleSetSelectedAddress,
+    handleShowPaymentMethods,
   }) => {
 
   const getStep = type => {
@@ -128,7 +129,13 @@ const Checkout = ({
             {
               sidebarType === 'ADDRESS' && <Button className="footer-next-btn sh-btn--yellow"
                                                    label="Next"
-                                                   onClick={ () => handleAddressAndShowNext(cityUIID, thanaUIID, title, details, addresses.length === 0, token) } />
+                                                   onClick={ () => {
+                                                     if (selectedAddress !== null) {
+                                                      handleShowPaymentMethods()
+                                                     } else {
+                                                      handleAddressAndShowNext(cityUIID, thanaUIID, title, details, addresses.length === 0, token)
+                                                     }
+                                                   }} />
             }
             {
               sidebarType === 'PAYMENT_SELECTION' && <div className="footer-back-confirm-container">

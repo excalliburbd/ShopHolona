@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { addNotification } from 'reapop';
 
 import { getTotal, getCartItems } from '../selectors/cartSelectors';
 import { getToken, getUserAddresses } from '../selectors/userSelectors';
@@ -23,8 +24,8 @@ const mapStateToProps = state => {
     sidebarType: state.ui.sidebar.subType,
     addresses: getUserAddresses(state),
     token: getToken(state),
+    selectedAddress: state.ui.paymentsAndAddresses.selectedCheckoutAddress,
     ...mapStateToAddressProps(state),
-    slectedAddress: state.ui.paymentsAndAddresses.selectedCheckoutAddress,
   }
 }
 
@@ -33,17 +34,25 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     ...mapDispatchToAddressProps(dispatch),
     handleShowCheckoutAddress: () => {
       dispatch(sidebarActions.sidebar.show.checkoutAddress());
-
       // dispatch(sidebarActions.sidebar.show.checkoutFinalizeOrder());
     },
     handleAddressAndShowNext: (city, thana, title, details, primary, token) => {
-      console.log(city, thana, title, details, primary, token)
       if (city && thana) {
         dispatch(postUserAddress(city, thana, title, details, primary, token, sidebarActions.sidebar.show.checkoutPaymentSelection()));
+      } else {
+        dispatch(addNotification({
+          title: 'Error with Checkout Address',
+          message: 'Either enter your address or choose and existing address',
+          position: 'bl',
+          status: 'error',
+        }));
       }
     },
-    handleSetSelectedAddress: key => {
-      dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.selectedCheckoutAddress(key));
+    handleSetSelectedAddress: (key, toggle) => {
+      dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.selectedCheckoutAddress( toggle ? null : key));
+    },
+    handleShowPaymentMethods: () => {
+      dispatch(sidebarActions.sidebar.show.checkoutPaymentSelection());
     }
   }
 }

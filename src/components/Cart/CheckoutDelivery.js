@@ -15,7 +15,7 @@ class CheckoutDelivery extends Component {
 
     this.state = {
       add_new: this.props.addresses.length < 1,
-      selected: null,
+      more: false,
     }
   }
 
@@ -25,16 +25,19 @@ class CheckoutDelivery extends Component {
     })
   }
 
-  selectAddress(selected) {
-    this.setState({
-      selected: (selected === this.state.state) ? null : selected,
-    })
+  toggleShowMore = () => {
+    this.setState(
+      (prevState, props) => {
+        return {
+          more: !prevState.more,
+        }
+      }
+    )
   }
 
 
   render () {
     const {
-      addresses,
       total,
       cartItems,
       handleCheckout,
@@ -54,6 +57,8 @@ class CheckoutDelivery extends Component {
       selectedAddress,
       setSelectedAddress,
     } = this.props;
+
+    let addresses = (this.state.more) ? this.props.addresses : this.props.addresses.slice(0, 2);
 
     return (
       <div className="checkout-delivery">
@@ -80,17 +85,17 @@ class CheckoutDelivery extends Component {
             {
               Array.isArray(addresses) && addresses.map((address, key) => {
                 return (
-                  <div className="checkout-delivery-address--card"
+                  <div className={ `checkout-delivery-address--card ${ selectedAddress === key ? 'Checkout-toggled' : '' }` }
                        key={address.id}
-                       onClick={ () => setSelectedAddress(key) }>
+                       onClick={ () => setSelectedAddress(key, selectedAddress === key) }>
                     <div className="checkout-delivery-address--card-title">{address.address_title}</div>
                     <div className="checkout-delivery-address--card-content">{address.details}</div>
                   </div>
-                  
+
                 )
               })
             }
-            <Button className="address-card-more-btn" label="More"/>
+            <Button className="address-card-more-btn" label="More" onClick={ () => this.toggleShowMore() }/>
           </div>
         </div>
         <div>
