@@ -1,0 +1,4 @@
+FROM nginx:alpine
+COPY ./shophobe-vendor/build /usr/share/nginx/html
+COPY ./shophobe-vendor/nginx/config /etc/nginx/conf.d/
+EXPOSE 81
