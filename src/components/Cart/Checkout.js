@@ -38,6 +38,9 @@ const Checkout = ({
     selectedAddress,
     handleSetSelectedAddress,
     handleShowPaymentMethods,
+    handleShowFinalizeOrder,
+    user,
+    guesUser,
   }) => {
 
   const getStep = type => {
@@ -50,6 +53,22 @@ const Checkout = ({
         return 2;
       default:
         return null;
+    }
+  }
+
+  let activeUser = {
+    name: 'loading',
+    phone: 'loading',
+    email: 'loading',
+    address: 'loading',
+  }
+
+  if (user.toke) {
+    activeUser = {
+      name: user.full_name,
+      phone: user.phone,
+      email: user.email,
+      address: user.address,
     }
   }
 
@@ -139,8 +158,8 @@ const Checkout = ({
             }
             {
               sidebarType === 'PAYMENT_SELECTION' && <div className="footer-back-confirm-container">
-                <Button className="footer-back-btn" label="Back"/>
-                <Button className="footer-confirm-btn sh-btn--yellow" label="Confirm Order"/>
+                <Button className="footer-back-btn" label="Back" onClick={ handleShowCheckoutAddress }/>
+                <Button className="footer-confirm-btn sh-btn--yellow" label="Confirm Order" onClick={ handleShowFinalizeOrder }/>
               </div>
             }
           </div>

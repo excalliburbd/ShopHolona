@@ -20,7 +20,8 @@ export const userActionCreators = {
     },
     SET: {
       FOLLOWING_SHOP: payload => payload,
-      ADDRESS: payload => payload,
+      ADDRESS: payload => payload, //todo address -rename-> addresses
+      GUEST_USER_ADDRESSES: payload => payload,
     },
     DELETE: {
       FOLLOWING_SHOP: payload => payload,

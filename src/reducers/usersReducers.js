@@ -192,7 +192,16 @@ export const UserUIReducer = handleActions({
       ...state.guestUser,
       ...action.payload,
     }
-  })
+  }),
+  [userActions.user.set.guestUserAddresses]: (state, action) => {
+    return {
+      ...state,
+      guestUser: {
+        ...state.guestUser,
+        addresses: action.payload,
+      }
+    }
+  },
 }, {
   email: '',
   emailPassword: '',
@@ -207,5 +216,7 @@ export const UserUIReducer = handleActions({
   },
   guestUser: {
     id: null,
+    token: null,
+    addresses: [],
   }
 });

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { addNotification } from 'reapop';
 
 import { getTotal, getCartItems } from '../selectors/cartSelectors';
-import { getToken, getUserAddresses } from '../selectors/userSelectors';
+import { getToken, getUserAddresses, getUserDetails, getGuestUserDetails } from '../selectors/userSelectors';
 
 import { mapStateToAddressProps, mapDispatchToAddressProps } from './SettingsContainer';
 
@@ -26,6 +26,8 @@ const mapStateToProps = state => {
     token: getToken(state),
     selectedAddress: state.ui.paymentsAndAddresses.selectedCheckoutAddress,
     ...mapStateToAddressProps(state),
+    user: getUserDetails(state),
+    guest: getGuestUserDetails(state),
   }
 }
 
@@ -34,7 +36,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     ...mapDispatchToAddressProps(dispatch),
     handleShowCheckoutAddress: () => {
       dispatch(sidebarActions.sidebar.show.checkoutAddress());
-      // dispatch(sidebarActions.sidebar.show.checkoutFinalizeOrder());
     },
     handleAddressAndShowNext: (city, thana, title, details, primary, token) => {
       if (city && thana) {
@@ -53,7 +54,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     handleShowPaymentMethods: () => {
       dispatch(sidebarActions.sidebar.show.checkoutPaymentSelection());
-    }
+    },
+    handleShowFinalizeOrder: () => {
+      dispatch(sidebarActions.sidebar.show.checkoutFinalizeOrder());
+    },
   }
 }
 

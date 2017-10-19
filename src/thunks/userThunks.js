@@ -242,6 +242,20 @@ export const getUserAddress = token  => dispatch => {
   }
 }
 
+export const getGuestUserAddress = token  => dispatch => {
+  if (token) {
+    request(`/me/address/`, getConfig(
+              token
+            )).then(
+                res => {
+                  if(res.length > 0) {
+                    dispatch(userActions.user.set.guestUserAddresses(res));
+                  }
+                }
+              );
+  }
+}
+
 export const postUserAddress = (city, thana, title, details, primary, token, next)  => dispatch => {
   if (token) {
     request(`/me/address/`, getConfig(
@@ -292,7 +306,7 @@ export const checkPhoneNumber = phone => dispatch => {
   )
 }
 
-export const registerUser = (phone, password) => dispatch => {
+export const registerUser = (phone, password) => dispatch => { //guest user for now
   request('/auth/register/', getConfig(
     null,
     {
@@ -304,6 +318,7 @@ export const registerUser = (phone, password) => dispatch => {
     res => {
       if (res.id) {
         dispatch(userActions.user.done.get.guestUser(res));
+        dispatch(getGuestUserAddress(res.token));
       }
     }
   ).catch(

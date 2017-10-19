@@ -8,6 +8,7 @@ export const getUserDetails = state => state.user;
 export const getShopVendor = state => state.user.shopvendor;
 export const followingShops = state => state.user.following;
 export const getUserAddresses = state => state.user.addresses;
+export const getGuestUserDetails = state => state.ui.user.guestUser;
 
 export const  getFollowing = createSelector(
   [getShopID, followingShops],

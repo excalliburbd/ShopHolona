@@ -11,7 +11,7 @@ const PaymentSelection = ({title}) => {
   return(
     <div className="payment-option-container">
       <div className="payment-tittle">Choose Your Preferred Payment Method</div>
-      <div className="payment-option--payment-method">
+      <div className="payment-option--payment-method Checkout-toggled">
         <img src={deliveryOne} alt=""/>
         <div className="payment-method-desc">
           <p>Cash on Delivery</p>
