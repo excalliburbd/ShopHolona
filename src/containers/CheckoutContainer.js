@@ -14,6 +14,9 @@ import {
 import {
   postUserAddress,
 } from '../thunks/userThunks';
+import {
+  checkout,
+} from '../thunks/checkoutThunks';
 
 import Checkout from '../components/Cart/Checkout';
 
@@ -59,6 +62,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleShowFinalizeOrder: () => {
       dispatch(sidebarActions.sidebar.show.checkoutFinalizeOrder());
     },
+    handleCheckout: (total, cart, address, token, next) => {
+      dispatch(checkout(total, cart, address, token, next));
+    }
   }
 }
 

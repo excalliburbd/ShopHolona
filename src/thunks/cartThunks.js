@@ -202,12 +202,6 @@ export const validateCart = token => (dispatch, getState) => {
                 id: item.id,
                 response: res,
               }));
-              dispatch(addNotification({
-                title: 'Success',
-                message: 'Successfully added to cart.',
-                position: 'bl',
-                status: 'success',
-              }));
             }
           );
         }

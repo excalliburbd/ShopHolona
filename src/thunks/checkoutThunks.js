@@ -4,7 +4,7 @@ import { request, getConfig } from './helpers';
 
 import { sidebarActions } from '../actions/';
 
-export const checkout = (total, cart, address, token) => dispatch => {
+export const checkout = (total, cart, address, token, next) => dispatch => {
   if (token) {
     const today = new Date();
 
@@ -28,7 +28,9 @@ export const checkout = (total, cart, address, token) => dispatch => {
             )).then(
               res => {
                 if (res.id) {
-                  dispatch(sidebarActions.sidebar.hide());
+                  !next && dispatch(sidebarActions.sidebar.hide());
+                  next && next();
+
                   dispatch(addNotification({
                     title: 'Successfully Checked Out',
                     message: 'Your order has been placed!',

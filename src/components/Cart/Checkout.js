@@ -42,6 +42,7 @@ const Checkout = ({
     handleShowFinalizeOrder,
     user,
     guestUser,
+    handleCheckout,
   }) => {
 
   const getStep = type => {
@@ -177,7 +178,7 @@ const Checkout = ({
             {
               sidebarType === 'PAYMENT_SELECTION' && <div className="footer-back-confirm-container">
                 <Button className="footer-back-btn" label="Back" onClick={ handleShowCheckoutAddress }/>
-                <Button className="footer-confirm-btn sh-btn--yellow" label="Confirm Order" onClick={ handleShowFinalizeOrder }/>
+                <Button className="footer-confirm-btn sh-btn--yellow" label="Confirm Order" onClick={ () => handleCheckout(total, cartItems, activeUser.address.id, token || guestUser.token, handleShowFinalizeOrder) }/>
               </div>
             }
             {

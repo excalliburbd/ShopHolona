@@ -390,6 +390,7 @@ export const postVerificationCode = (phone, code, fullName, next) => dispatch =>
   )).then(
     res => {
       if (res.token) {
+        dispatch(validateCart(res.token));
         dispatch(userActions.user.set.guestUserToken(res.token));
         dispatch(patchMe({ full_name: fullName }, res.token));
         next();
