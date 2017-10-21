@@ -34,9 +34,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     ...mapDispatchToAddressProps(dispatch),
-    handleShowCheckoutAddress: () => {
-      dispatch(sidebarActions.sidebar.show.checkoutAddress());
-    },
     handleAddressAndShowNext: (city, thana, title, details, primary, token) => {
       if (city && thana) {
         dispatch(postUserAddress(city, thana, title, details, primary, token, sidebarActions.sidebar.show.checkoutPaymentSelection()));
@@ -51,6 +48,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     handleSetSelectedAddress: (key, toggle) => {
       dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.selectedCheckoutAddress( toggle ? null : key));
+    },
+    handleShowCheckoutAddress: () => {
+      dispatch(sidebarActions.sidebar.show.checkoutAddress());
     },
     handleShowPaymentMethods: () => {
       dispatch(sidebarActions.sidebar.show.checkoutPaymentSelection());

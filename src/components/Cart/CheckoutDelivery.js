@@ -95,7 +95,9 @@ class CheckoutDelivery extends Component {
                 )
               })
             }
-            <Button className="address-card-more-btn" label="More" onClick={ () => this.toggleShowMore() }/>
+            {
+              addresses.length > 0 && <Button className="address-card-more-btn" label="More" onClick={ () => this.toggleShowMore() }/>
+            }
           </div>
         </div>
         <div>

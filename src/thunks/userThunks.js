@@ -141,26 +141,34 @@ export const trySignInAsyncAction = (res, hide, nextStep) =>  (dispatch, getStat
   }
 }
 
-export const getMe = token => dispatch => {
+export const getMe = (token, guest) => dispatch => {
     if (token) {
       request('/me/', getConfig(
           token
         )).then(
           res => {
             if (res.id) {
-              dispatch(userActions.user.done.get.profile(res));
+              if (guest) {
+                dispatch(userActions.user.done.get.guestUser(res));
+              } else {
+                dispatch(userActions.user.done.get.profile(res));
+              }
             }
           }
         ).catch(
           err => {
-            dispatch(userActions.user.done.get.profile(new Error(err)));
+            if (guest) {
+              dispatch(userActions.user.done.get.guestUser(new Error(err)));
+            } else {
+              dispatch(userActions.user.done.get.profile(new Error(err)));
+            }
             dispatch(addNotification({
               title: 'Error during fetching profile',
               message: err,
               position: 'bl',
               status: 'error',
             }));
-            dispatch(sidebarActions.sidebar.show.signIn());
+            !guest && dispatch(sidebarActions.sidebar.show.signIn());
           }
         );
     }
@@ -274,7 +282,7 @@ export const postUserAddress = (city, thana, title, details, primary, token, nex
                 if(res.id) {
                   if (next) {
                     dispatch(next);
-                    dispatch(getMe(token));
+                    dispatch(getMe(token, false));
                   }
                 }
               }
@@ -348,7 +356,25 @@ export const resendVerificationCode = phone => dispatch => {
   )
 }
 
-export const postVerificationCode = (phone, code) => dispatch => {
+export const patchMe = (body, token) => (dispatch, getState) => {
+  request('/me/', getConfig(
+    token,
+    body,
+    'PATCH'
+  )).then(
+    res => {
+      dispatch(userActions.user.done.get.guestUser(res));
+      dispatch(addNotification({
+        title: 'Successfully Verified',
+        message: `${ res.phone } is now verifed as ${ res.full_name }!`,
+        position: 'bl',
+        status: 'success',
+      }));
+    }
+  )
+}
+
+export const postVerificationCode = (phone, code, fullName, next) => dispatch => {
   request('/auth/activate/', getConfig(
     null,
     {
@@ -358,23 +384,11 @@ export const postVerificationCode = (phone, code) => dispatch => {
     'POST'
   )).then(
     res => {
-      console.log(res);
-    }
-  )
-}
-
-export const patchMe = body => (dispatch, getState) => {
-  const {
-    userToken
-  } = fromState(getState);
-
-  request('/me/', getConfig(
-    userToken,
-    body,
-    'PATCH'
-  )).then(
-    res => {
-      console.log(res);
+      if (res.token) {
+        dispatch(userActions.user.set.guestUserToken(res.token));
+        dispatch(patchMe({ full_name: fullName }, res.token));
+        next();
+      }
     }
   )
 }

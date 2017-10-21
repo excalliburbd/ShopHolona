@@ -92,7 +92,7 @@ const mapDispatchToProps = dispatch => {
 
       if (token && !demostore) {
         dispatch(userActions.user.done.get.token(token));
-        dispatch(getMe(token));
+        dispatch(getMe(token, false));
         dispatch(tryGetVendor(shop, token));
         dispatch(getFollowingShop(shop, token));
         dispatch(getShopPayments(shop, token));
@@ -104,7 +104,7 @@ const mapDispatchToProps = dispatch => {
           trySignInAsyncAction({ email: config.demouser, password: config.demopass}, true, null)
         );
         dispatch(userActions.user.done.get.token(token));
-        dispatch(getMe(token));
+        dispatch(getMe(token, false));
         dispatch(tryGetVendor(shop, token));
         dispatch(getFollowingShop(shop, token));
         dispatch(getShopPayments(shop, token));

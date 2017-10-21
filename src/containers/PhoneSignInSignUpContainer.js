@@ -10,7 +10,6 @@ import {
   registerUser,
   resendVerificationCode,
   postVerificationCode,
-  patchMe,
   trySignInAsyncAction,
 } from '../thunks/userThunks';
 
@@ -38,9 +37,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleResendVerificationCode: phone => {
       dispatch(resendVerificationCode(phone));
     },
-    handlePostVerificationCode: (phone, verification, fullName) => {
-      dispatch(postVerificationCode(phone, verification));
-      // dispatch(patchMe({ full_name: fullName })); TODO
+    handlePostVerificationCode: (phone, verification, fullName, next) => {
+      dispatch(postVerificationCode(phone, verification, fullName, next));
     },
     handleSignIn: (phone, password, next) => {
       dispatch(trySignInAsyncAction({ phone, password }, false, next));
