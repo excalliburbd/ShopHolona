@@ -27,7 +27,7 @@ const mapStateToProps = state => {
     selectedAddress: state.ui.paymentsAndAddresses.selectedCheckoutAddress,
     ...mapStateToAddressProps(state),
     user: getUserDetails(state),
-    guest: getGuestUserDetails(state),
+    guestUser: getGuestUserDetails(state),
   }
 }
 
@@ -37,6 +37,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleAddressAndShowNext: (city, thana, title, details, primary, token) => {
       if (city && thana) {
         dispatch(postUserAddress(city, thana, title, details, primary, token, sidebarActions.sidebar.show.checkoutPaymentSelection()));
+        dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.selectedCheckoutAddress(0));
       } else {
         dispatch(addNotification({
           title: 'Error with Checkout Address',

@@ -7,11 +7,12 @@ import CartTotal from './CartTotal';
 import PaymentSelection from './CheckoutPaymentSelection';
 import FinalizeOrder from './CheckoutFinalizeOrder';
 
-import stepTwo from '../../assets/images/stepper-icon-2.svg'
-import stepThree from '../../assets/images/stepper-icon-3.svg'
-import stepFour from '../../assets/images/stepper-icon-4.svg'
+import stepTwo from '../../assets/images/stepper-icon-2.svg';
+import stepThree from '../../assets/images/stepper-icon-3.svg';
+import stepFour from '../../assets/images/stepper-icon-4.svg';
 
-import Button from 'react-toolbox/lib/button/Button';
+import Input from "react-toolbox/lib/input/Input";
+import Button from "react-toolbox/lib/button/Button";
 
 import './Checkout.css';
 
@@ -40,7 +41,7 @@ const Checkout = ({
     handleShowPaymentMethods,
     handleShowFinalizeOrder,
     user,
-    guesUser,
+    guestUser,
   }) => {
 
   const getStep = type => {
@@ -63,14 +64,23 @@ const Checkout = ({
     address: 'loading',
   }
 
-  if (user.toke) {
+  if (user.token) {
     activeUser = {
       name: user.full_name,
       phone: user.phone,
       email: user.email,
-      address: user.address,
+      address: user.addresses[selectedAddress],
+    }
+  } else {
+    activeUser = {
+      name: guestUser.full_name,
+      phone: guestUser.phone,
+      email: guestUser.email,
+      address: guestUser.addresses[selectedAddress],
     }
   }
+
+  console.log(user, guestUser, activeUser)
 
   return (
 
@@ -133,26 +143,34 @@ const Checkout = ({
           sidebarType === 'PAYMENT_SELECTION' && <PaymentSelection />
         }
         {
-          sidebarType === 'FINALIZE_ORDER' && <FinalizeOrder />
+          sidebarType === 'FINALIZE_ORDER' && <FinalizeOrder name={ activeUser.name }
+                                                             email={ activeUser.email }
+                                                             phone={ activeUser.phone }
+                                                             address={ activeUser.address }
+                                                             cartTotal={ total } />
         }
       </div>
       {
-        sidebarType !=='PHONE' && sidebarType !== 'FINALIZE_ORDER' && <div className="checkout-footer">
-          <div className="checkout-footer--info">
-            <p>Calculated Delivery Fee</p>
-            <p>৳</p>
-          </div>
-          <CartTotal total={ total }
-                     cartItems={ cartItems }/>
+        sidebarType !=='PHONE' && <div className="checkout-footer">
+          {
+            sidebarType !== 'FINALIZE_ORDER' && <div>
+              <div className="checkout-footer--info">
+                <p>Calculated Delivery Fee</p>
+                <p>৳</p>
+              </div>
+              <CartTotal total={ total }
+                         cartItems={ cartItems }/>
+            </div>
+          }
           <div className="footer-btn-container">
             {
               sidebarType === 'ADDRESS' && <Button className="footer-next-btn sh-btn--yellow"
                                                    label="Next"
                                                    onClick={ () => {
                                                      if (selectedAddress !== null) {
-                                                      handleShowPaymentMethods()
+                                                      handleShowPaymentMethods();
                                                      } else {
-                                                      handleAddressAndShowNext(cityUIID, thanaUIID, title, details, addresses.length === 0, token)
+                                                      handleAddressAndShowNext(cityUIID, thanaUIID, title, details, addresses.length === 0, token || guestUser.token);
                                                      }
                                                    }} />
             }
@@ -160,6 +178,15 @@ const Checkout = ({
               sidebarType === 'PAYMENT_SELECTION' && <div className="footer-back-confirm-container">
                 <Button className="footer-back-btn" label="Back" onClick={ handleShowCheckoutAddress }/>
                 <Button className="footer-confirm-btn sh-btn--yellow" label="Confirm Order" onClick={ handleShowFinalizeOrder }/>
+              </div>
+            }
+            {
+              sidebarType === 'FINALIZE_ORDER' && <div>
+                <p className="next-order-info">Don't work this hard the next time you order.</p>
+                <p className="user-order-desc">Just add a password, secure your account details
+                and ensure a faster checkout from the next time</p>
+                <Input type='password' label='Enter Your Password' name='password' />
+                <Button className="sh-btn--yellow secure-acc-btn" label="Secure Account &amp; Shop More!"/>
               </div>
             }
           </div>

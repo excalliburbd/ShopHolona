@@ -1,34 +1,42 @@
 import React from "react";
-import Input from "react-toolbox/lib/input/Input";
-import Button from "react-toolbox/lib/button/Button";
 
 import UserPicExample from "../../assets/images/user-pic-example.svg";
 import './CheckoutFinalizeOrder.css';
 
-const FinalizeOrder = ({title}) => {
+const FinalizeOrder = ({
+  name,
+  email,
+  phone,
+  address,
+  cartTotal,
+}) => {
+  console.log(name,
+    email,
+    phone,
+    address,
+    cartTotal,)
   return(
     <div>
-      <div>{title}</div>
+      {/* <div>{title}</div> */}
       <div className="Checkout-final">
         <p className="checkout-final-title">Order Finalized </p>
         <div className="order-finalized-container">
           <img className="user-profile-pic" src={UserPicExample} alt=""/>
           <div className="user-info-title-desc">
             <p className="user-name">Name: </p>
-            <p className="user-name-value"> Saleka banu</p>
+            <p className="user-name-value"> { name }</p>
           </div>
           <div className="user-info-title-desc">
             <p className="user-phn-num">Phone: </p>
-            <p className="user-phn-num-value"> 01231231231</p>
+            <p className="user-phn-num-value"> { phone }</p>
           </div>
           <div className="user-info-title-desc">
             <p className="user-email">E-mail: </p>
-            <p className="user-email-value"> somethingsomething@something.com</p>
+            <p className="user-email-value"> { email }</p>
           </div>
           <div className="user-info-title-desc">
-            <p className="user-adress">Address: </p>
-            <p className="user-adress-value"> 119/1, CTA-9, Century Tower Complex, Bara
-            Maghbazar, Dhaka, Bangladesh</p>
+            {<p className="user-adress">Address: { address.details }</p>}
+            <p className="user-adress-value"> </p>
           </div>
           <div className="order-details">
             <p className="invoice-no">Invoice No:</p>
@@ -37,14 +45,9 @@ const FinalizeOrder = ({title}) => {
             <i className="material-icons extra-details-icon">error_outline</i>
             <div className="total-amount">
               <p className="Total">Total:</p>
-              <p className="total-value">31232TK</p>
+              <p className="total-value">{ cartTotal.price }</p>
             </div>
           </div>
-          <p className="next-order-info">Don't work this hard the next time you order.</p>
-          <p className="user-order-desc">Just add a password, secure your account details
-           and ensure a faster checkout from the next time</p>          
-          <Input type='password' label='Enter Your Password' name='password' />
-          <Button className="sh-btn--yellow secure-acc-btn" label="Secure Account &amp; Shop More!"/>
         </div>
       </div>
     </div>

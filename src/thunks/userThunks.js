@@ -282,7 +282,7 @@ export const postUserAddress = (city, thana, title, details, primary, token, nex
                 if(res.id) {
                   if (next) {
                     dispatch(next);
-                    dispatch(getMe(token, false));
+                    dispatch(getGuestUserAddress(token));
                   }
                 }
               }
@@ -351,7 +351,12 @@ export const resendVerificationCode = phone => dispatch => {
     'POST',
   )).then(
     res => {
-      console.log(res)
+      dispatch(addNotification({
+        title: 'Success',
+        message: 'Verification code sent',
+        position: 'bl',
+        status: 'success',
+      }));
     }
   )
 }
@@ -389,6 +394,15 @@ export const postVerificationCode = (phone, code, fullName, next) => dispatch =>
         dispatch(patchMe({ full_name: fullName }, res.token));
         next();
       }
+    }
+  ).catch(
+    err => {
+      dispatch(addNotification({
+        title: 'Error',
+        message: `Wrong confirmation code provided`,
+        position: 'bl',
+        status: 'error',
+      }));
     }
   )
 }
