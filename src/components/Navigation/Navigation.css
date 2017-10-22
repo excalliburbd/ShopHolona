@@ -120,7 +120,8 @@
     box-shadow: -3px 0px 14px 0px rgba(50, 50, 50, 0.80);
   }
   .Navigation-sidebar-content {
-    margin-top: 0em;
+    margin-top: 0em; 
+    overflow-y: hidden;
   }
 
 }

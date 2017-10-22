@@ -195,27 +195,29 @@ class Checkout extends Component {
               }
               {
                 sidebarType === 'FINALIZE_ORDER' && <div>
-                  <p className="next-order-info">Don't work this hard the next time you order.</p>
-                  <p className="user-order-desc">Just add a password, secure your account details
-                  and ensure a faster checkout from the next time</p>
-                  <Input type="password"
-                        label="Enter Your Password"
-                        name="password"
-                        value={ this.state.password }
-                        onChange={
-                          value => {
-                            this.setState({
-                              password: value,
-                            })
-                          }
-                        } />
-                  <Button className="sh-btn--yellow secure-acc-btn"
-                          label="Secure Account &amp; Shop More!"
-                          onClick={
-                            () => {
-                              handleResetPassword(guestUser.password, this.state.password, guestUser.token, guestUser.phone);
+                  <div className="last-step-footer">
+                    <p className="next-order-info">Don't work this hard the next time you order.</p>
+                    <p className="user-order-desc">Just add a password, secure your account details
+                    and ensure a faster checkout from the next time</p>
+                    <Input type="password"
+                          label="Enter Your Password"
+                          name="password"
+                          value={ this.state.password }
+                          onChange={
+                            value => {
+                              this.setState({
+                                password: value,
+                              })
                             }
-                          }/>
+                          } />
+                    <Button className="sh-btn--yellow secure-acc-btn"
+                            label="Secure Account &amp; Shop More!"
+                            onClick={
+                              () => {
+                                handleResetPassword(guestUser.password, this.state.password, guestUser.token, guestUser.phone);
+                              }
+                            }/>
+                  </div>
                 </div>
               }
             </div>
