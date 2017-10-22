@@ -90,4 +90,30 @@
     align-items: center;
     width: 100%;
   }
-  
+  .confirmation-icon-step {
+    height: 3rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .confirmation-icon-step p {
+    font-size: .7em;
+  }
+  .confirmation-icon-step .confirm-icon-div {
+    height: 1.2rem;
+    width: 1.2rem;
+    border: 1px solid gray;
+    border-radius: 50%;
+    position: relative;
+    right: .7em;
+    display: flex;
+    justify-content: center;
+    align-items: center;     
+  }
+  .confirmed-btn {
+    background: #1b7943;
+    color: #fff; 
+  }
+  .done-icon {
+    font-size: .8em !important;
+  }

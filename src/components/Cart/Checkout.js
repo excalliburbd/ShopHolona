@@ -168,7 +168,7 @@ class Checkout extends Component {
               sidebarType !== 'FINALIZE_ORDER' && <div className="cart-order-calculation">
                 <div className="checkout-footer--info">
                   <p>Calculated Delivery Fee</p>
-                  <p>৳</p>
+                  <p>&#2547;</p>
                 </div>
                 <CartTotal total={ total }
                           cartItems={ cartItems }/>
