@@ -111,7 +111,6 @@ export const trySignInAsyncAction = (res, hide, nextStep) =>  (dispatch, getStat
                 res.token
               )).then(
                 res => {
-                  console.log(res)
                   if (res.id) {
                     dispatch(userActions.user.done.get.profile(res));
                     demostore && dispatch(addNotification({
@@ -129,7 +128,7 @@ export const trySignInAsyncAction = (res, hide, nextStep) =>  (dispatch, getStat
                   dispatch(sidebarActions.sidebar.hide());
                 }
                 dispatch(userActions.user.done.get.token(res.token));
-                // dispatch(getUserAddress(res.token));
+                dispatch(getUserAddress(res.token));
                 dispatch(getShopCategories(shopID));
                 dispatch(tryGetVendor(shopID, res.token));
                 dispatch(getFollowingShop(shopID, res.token));

@@ -83,14 +83,14 @@ class Checkout extends Component {
         name: user.full_name,
         phone: user.phone,
         email: user.email,
-        address: user.addresses[selectedAddress],
+        address: (user && selectedAddress) ? user.addresses[selectedAddress] : { details: null },
       }
     } else {
       activeUser = {
         name: guestUser.full_name,
         phone: guestUser.phone,
         email: guestUser.email,
-        address: guestUser.addresses[selectedAddress],
+        address: (guestUser && selectedAddress) ? guestUser.addresses[selectedAddress] : { details: null },
       }
     }
 
