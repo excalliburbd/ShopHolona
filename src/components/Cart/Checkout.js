@@ -76,6 +76,7 @@ class Checkout extends Component {
       phone: 'loading',
       email: 'loading',
       address: 'loading',
+      profile: 'https://backenddev.shophobe.com/media/Images/none/no_images.jpg'
     }
 
     if (user.token) {
@@ -84,6 +85,7 @@ class Checkout extends Component {
         phone: user.phone,
         email: user.email,
         address: (user.addresses && `${selectedAddress}`) ? user.addresses[selectedAddress] : { details: null },
+        profile: user.profile_pic,
       }
     } else {
       activeUser = {
@@ -91,6 +93,7 @@ class Checkout extends Component {
         phone: guestUser.phone,
         email: guestUser.email,
         address: (guestUser.addresses && `${selectedAddress}`) ? guestUser.addresses[selectedAddress] : { details: null },
+        profile: guestUser.profile_pic,
       }
     }
 
@@ -159,7 +162,8 @@ class Checkout extends Component {
                                                                phone={ activeUser.phone }
                                                                address={ activeUser.address }
                                                                cartTotal={ total }
-                                                               invoiceNumber={ invoiceNumber }  />
+                                                               invoiceNumber={ invoiceNumber }
+                                                               profile={ activeUser.profile }  />
           }
         </div>
         {

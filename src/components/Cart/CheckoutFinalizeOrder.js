@@ -10,6 +10,7 @@ const FinalizeOrder = ({
   address,
   cartTotal,
   invoiceNumber,
+  profile,
 }) => {
   return(
     <div>
@@ -17,7 +18,9 @@ const FinalizeOrder = ({
       <div className="Checkout-final">
         <p className="checkout-final-title">Order Finalized </p>
         <div className="order-finalized-container">
-          <img className="user-profile-pic" src={UserPicExample} alt=""/>
+          <img className="user-profile-pic"
+               src={ (profile.split('/').slice(-1)[0] === 'no_images.jpg') ? UserPicExample : profile }
+               alt=""  />
           <div className="user-info-title-desc">
             <p className="user-name">Name: </p>
             <p className="user-name-value"> { name }</p>
