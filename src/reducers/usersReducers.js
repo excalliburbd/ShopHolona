@@ -166,7 +166,7 @@ export const UserUIReducer = handleActions({
     phone: {
       validating: false,
       hasNumber: null,
-      number: null,
+      number: '',
     },
     guestUser: {
       id: null,
@@ -200,7 +200,7 @@ export const UserUIReducer = handleActions({
     phone: {
       validating: false,
       hasNumber: null,
-      number: null,
+      number: '',
     },
     guestUser: {
       id: null,
@@ -236,7 +236,7 @@ export const UserUIReducer = handleActions({
   phone: {
     validating: false,
     hasNumber: null,
-    number: null,
+    number: '',
   },
   guestUser: {
     id: null,
