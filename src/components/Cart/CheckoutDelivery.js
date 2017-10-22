@@ -16,6 +16,7 @@ class CheckoutDelivery extends Component {
     this.state = {
       add_new: this.props.addresses.length < 1,
       more: false,
+      addressToggleer : "add"
     }
   }
 
@@ -35,6 +36,15 @@ class CheckoutDelivery extends Component {
     )
   }
 
+  toggleAddress = () => {
+    this.setState(
+      (prevState, props) => {
+        return {
+          addressToggleer: prevState.addressToggleer === "add" ? "remove":"add",
+        }
+      }
+    )
+  }
 
   render () {
     const {
@@ -60,8 +70,8 @@ class CheckoutDelivery extends Component {
       <div className="checkout-delivery">
         <div className="checkout-delivery-body">
           <h2 className="checkout-delivery-title">Delivery Address Details</h2>
-          <Button className="checkout-delivery-address--btn-add" icon='add' label='Add Delivery Address' raised onClick={ ()=>this.handleAddNewAddress() } />
-
+          <Button className="checkout-delivery-address--btn-add" icon={this.state.addressToggleer} label='Add Delivery Address' raised onClick={ ()=> {this.handleAddNewAddress(); this.toggleAddress(); }} />
+          
           {
             this.state.add_new ? <CheckoutDeliveryAddress districts={ districts }
                                                           districtUIValue={ districtUIValue }
@@ -92,7 +102,7 @@ class CheckoutDelivery extends Component {
               })
             }
             {
-              addresses.length > 0 && <Button className="address-card-more-btn" label="More" onClick={ () => this.toggleShowMore() }/>
+              addresses.length > 0 && <Button className="address-card-more-btn" label={this.state.more?"Less":"More"} onClick={ () => this.toggleShowMore() }/>
             }
           </div>
         </div>

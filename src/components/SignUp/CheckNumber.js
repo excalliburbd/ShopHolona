@@ -20,6 +20,7 @@ const CheckNumber = ({
       <Input label='Enter Your Phone Number'
              className="enter-number" 
              value={ phone }
+             onKeyPress={(event)=>{if (event.which === 13) {handleSubmit(phone)}}}
              onChange={ value => updatePhone(value) }
              required />
       {
@@ -28,12 +29,14 @@ const CheckNumber = ({
             <Input label='Enter Your Password'
                    type='password'
                    value={ password }
+                   onKeyPress={(event)=>{if (event.which === 13) {handleSubmit(phone)}}}
                    required
                    onChange={ handlePasswordChange } />
             <Button label='Login'
                     raised
                     className='PhoneSignInSignUp-login-btn sh-btn--yellow'
                     onClick={ () => handleSubmit(phone) } />
+            <button className='forgot-password' onClick={()=>{console.log("forgot password")}}>Forgot Your Password? Click here to reset</button>
           </div>
       }
       {
