@@ -165,7 +165,7 @@ class Checkout extends Component {
         {
           sidebarType !=='PHONE' && <div className="checkout-footer">
             {
-              sidebarType !== 'FINALIZE_ORDER' && <div>
+              sidebarType !== 'FINALIZE_ORDER' && <div className="cart-order-calculation">
                 <div className="checkout-footer--info">
                   <p>Calculated Delivery Fee</p>
                   <p>৳</p>
@@ -220,13 +220,16 @@ class Checkout extends Component {
                 </div>
               }
               {
-                ( sidebarType === 'FINALIZE_ORDER' && token) && <div>
+                ( sidebarType === 'FINALIZE_ORDER' && token) && 
+                <div className="non-reg-user-footer">
+                    <p>We are waiting for a confirmation from seller about stock availability. When the seller confirms
+                      we will send you a confirmation mail and text. So, while you wait, we suggest you...</p>
                     <Button className="sh-btn--yellow secure-acc-btn"
                           label="Shop More!"
                           onClick={
                             handleKeepShopping
                           }/>
-                  </div>
+                </div>
               }
             </div>
           </div>
