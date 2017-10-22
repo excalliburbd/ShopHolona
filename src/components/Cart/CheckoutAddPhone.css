@@ -3,9 +3,28 @@
   align-items: center;
   margin: 0 auto; 
   width: 90%;
+  position: relative;
 }
 .PhoneSignInSignUp {
   border: 3px solid #ffcc33;
   border-radius: 1em;
   width: 100%;
+}
+
+.plus-88 {
+  position: absolute;
+  z-index: 10;
+  font-weight: bold;
+  left: 1.2em;
+  bottom: 1em;
+}
+.PhoneSignInSignUp .enter-number::before {
+  content: "+88";
+  position: absolute;
+  left: -2em;
+  bottom: 1.7em;
+  font-weight: bold;
+}
+.PhoneSignInSignUp .enter-number ._34120 {
+  font-size: .6em;
 }

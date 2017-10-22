@@ -23,6 +23,9 @@
   justify-content: space-around;
   flex-wrap: wrap;
 }
+.checkout-delivery-address--view div {
+  cursor: pointer;
+}
 
 .checkout-delivery-address--card {
   display: flex;

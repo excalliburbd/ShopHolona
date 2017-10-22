@@ -154,7 +154,7 @@ const Checkout = ({
       {
         sidebarType !=='PHONE' && <div className="checkout-footer">
           {
-            sidebarType !== 'FINALIZE_ORDER' && <div>
+            sidebarType !== 'FINALIZE_ORDER' && <div className="finalize-order-container">
               <div className="checkout-footer--info">
                 <p>Calculated Delivery Fee</p>
                 <p>৳</p>
@@ -183,11 +183,13 @@ const Checkout = ({
             }
             {
               sidebarType === 'FINALIZE_ORDER' && <div>
-                <p className="next-order-info">Don't work this hard the next time you order.</p>
-                <p className="user-order-desc">Just add a password, secure your account details
-                and ensure a faster checkout from the next time</p>
-                <Input type='password' label='Enter Your Password' name='password' />
-                <Button className="sh-btn--yellow secure-acc-btn" label="Secure Account &amp; Shop More!"/>
+                <div className="last-step-footer">
+                  <p className="next-order-info">Don't work this hard the next time you order.</p>
+                  <p className="user-order-desc">Just add a password, secure your account details
+                  and ensure a faster checkout from the next time</p>
+                  <Input type='password' label='Enter Your Password' name='password' />
+                  <Button className="sh-btn--yellow secure-acc-btn" label="Secure Account &amp; Shop More!"/>
+                </div>
               </div>
             }
           </div>
