@@ -55,6 +55,7 @@ class Checkout extends Component {
       handleCheckout,
       invoiceNumber,
       handleResetPassword,
+      handleKeepShopping,
     } = this.props;
 
     const getStep = type => {
@@ -92,8 +93,6 @@ class Checkout extends Component {
         address: guestUser.addresses[selectedAddress],
       }
     }
-
-    let passwordInput = null;
 
     return (
 
@@ -194,7 +193,7 @@ class Checkout extends Component {
                 </div>
               }
               {
-                sidebarType === 'FINALIZE_ORDER' && <div>
+                ( sidebarType === 'FINALIZE_ORDER' && !token) && <div>
                   <div className="last-step-footer">
                     <p className="next-order-info">Don't work this hard the next time you order.</p>
                     <p className="user-order-desc">Just add a password, secure your account details
@@ -216,9 +215,18 @@ class Checkout extends Component {
                               () => {
                                 handleResetPassword(guestUser.password, this.state.password, guestUser.token, guestUser.phone);
                               }
-                            }/>
+                            } />
                   </div>
                 </div>
+              }
+              {
+                ( sidebarType === 'FINALIZE_ORDER' && token) && <div>
+                    <Button className="sh-btn--yellow secure-acc-btn"
+                          label="Shop More!"
+                          onClick={
+                            handleKeepShopping
+                          }/>
+                  </div>
               }
             </div>
           </div>

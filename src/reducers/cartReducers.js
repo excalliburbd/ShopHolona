@@ -95,7 +95,7 @@ export const cartReducer = handleActions({
   },
   [combineActions(
     userActions.user.manualSignOut,
-    // todo invoice number rmove
+    sidebarActions.sidebar.hide,
   )]: (state, action) => {
     return {
       loading: false,

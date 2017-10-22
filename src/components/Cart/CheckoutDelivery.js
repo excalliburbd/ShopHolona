@@ -38,10 +38,6 @@ class CheckoutDelivery extends Component {
 
   render () {
     const {
-      total,
-      cartItems,
-      handleCheckout,
-      token,
       districts,
       districtUIValue,
       cities,

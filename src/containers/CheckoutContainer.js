@@ -69,6 +69,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     handleResetPassword: (oldPass, pass, token, phone) => {
       dispatch(changePassword(oldPass, pass, token, phone));
+    },
+    handleKeepShopping: () => {
+      dispatch(sidebarActions.sidebar.hide());
     }
   }
 }
