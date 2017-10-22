@@ -11,28 +11,28 @@ const PaymentSelection = ({title}) => {
   return(
     <div className="payment-option-container">
       <div className="payment-tittle">Choose Your Preferred Payment Method</div>
-      <div className="payment-option--payment-method Checkout-toggled">
+      <div className="payment-option--payment-method Checkout-toggled enabled">
         <img src={deliveryOne} alt=""/>
         <div className="payment-method-desc">
           <p>Cash on Delivery</p>
           <p>Seceure, cash on delivery to our delivery partner.</p>
         </div>
       </div>
-      <div className="payment-option--payment-method">
+      <div className="payment-option--payment-method disabled">
         <img src={deliveryTwo} alt=""/>
         <div className="payment-method-desc">
         <p>Credit Card Payment</p>
         <p>All forms fof credit cards are accepted(VISA, MasterCard)</p>
       </div>
       </div>
-      <div className="payment-option--payment-method">
+      <div className="payment-option--payment-method disabled">
         <img src={deliveryThree} alt=""/>
         <div className="payment-method-desc">
         <p>bKash Payment</p>
         <p>bKash Payment is also accepted. Nominal fees will be charged.</p>
       </div>
       </div>
-      <div className="payment-option--payment-method">
+      <div className="payment-option--payment-method disabled">
         <img src={deliveryFour} alt=""/>
         <div className="payment-method-desc">
         <p>SH Coins</p>

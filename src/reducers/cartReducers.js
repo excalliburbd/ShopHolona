@@ -1,8 +1,9 @@
-import { handleActions } from 'redux-actions';
+import { handleActions, combineActions } from 'redux-actions';
 
 import {
   cartActions,
   userActions,
+  sidebarActions,
 } from '../actions/';
 
 export const cartReducer = handleActions({
@@ -67,14 +68,6 @@ export const cartReducer = handleActions({
       ]
     }
   },
-  [userActions.user.manualSignOut]: (state, action) => {
-    return {
-      ...state,
-      loading: false,
-      error: undefined,
-      items: [],
-    }
-  },
   [cartActions.cart.update.itemByVariant]: (state, action) => {
     const {
       id,
@@ -94,10 +87,28 @@ export const cartReducer = handleActions({
       )
       }
   },
+  [cartActions.cart.set.invoiceNumber]: (state, action) => {
+    return {
+      ...state,
+      invoiceNumber: action.payload,
+    }
+  },
+  [combineActions(
+    userActions.user.manualSignOut,
+    sidebarActions.sidebar.hide,
+  )]: (state, action) => {
+    return {
+      loading: false,
+      error: undefined,
+      items: [],
+      invoiceNumber: null,
+    }
+  },
 }, {
   loading: false,
   error: undefined,
   items: [],
+  invoiceNumber: null,
 });
 
 export const cartEntitiesReducer = handleActions({

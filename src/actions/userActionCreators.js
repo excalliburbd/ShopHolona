@@ -22,6 +22,8 @@ export const userActionCreators = {
       FOLLOWING_SHOP: payload => payload,
       ADDRESS: payload => payload, //todo address -rename-> addresses
       GUEST_USER_ADDRESSES: payload => payload,
+      GUEST_USER_TOKEN: payload => payload,
+      GUEST_USER_PASSWORD: payload => payload,
     },
     DELETE: {
       FOLLOWING_SHOP: payload => payload,

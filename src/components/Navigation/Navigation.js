@@ -34,6 +34,24 @@ class Nav extends Component {
     }
   }
 
+  handleKeyDown (event) {
+    switch( event.keyCode ) {
+      case 27:
+          this.props.handleHideSidebar();
+          break;
+      default: 
+          break;
+    }
+  }
+  
+  componentWillMount() {
+    document.addEventListener("keydown", this.handleKeyDown.bind(this));
+  }
+  
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeyDown.bind(this));
+  }
+
   componentWillReceiveProps(nextProps) {
 
     const {

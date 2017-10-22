@@ -95,6 +95,7 @@ class PhoneSignInSignUp extends React.Component {
       guestID,
       handleResendVerificationCode,
       handlePostVerificationCode,
+      nextStep,
     } = this.props;
 
     const {
@@ -122,7 +123,7 @@ class PhoneSignInSignUp extends React.Component {
                                      verification={ code }
                                      updateCode={ this.handleUpdateVerificationCode }
                                      resendCode={ handleResendVerificationCode }
-                                     login={ (loginPhone, loginCode) => handlePostVerificationCode(loginPhone, loginCode, this.state.fullName) } /> :
+                                     login={ (loginPhone, loginCode) => handlePostVerificationCode(loginPhone, loginCode, this.state.fullName, nextStep) }  /> :
               <CheckNumber phone={ number }
                            updatePhone={ phone => {
                              this.checkPhoneThunks(phone);

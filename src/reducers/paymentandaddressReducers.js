@@ -1,6 +1,10 @@
 import { handleActions } from 'redux-actions';
 
-import { paymentandaddressActions, shopActions } from '../actions';
+import {
+  paymentandaddressActions,
+  shopActions,
+  sidebarActions
+} from '../actions';
 
 export const banksReducer = handleActions({
   [paymentandaddressActions.paymentsAndAddresses.done.get.bank]: (state, action) => {
@@ -204,7 +208,24 @@ export const paymentandaddressUIReducer = handleActions({
       ...state,
       selectedCheckoutAddress: action.payload,
     }
-  }
+  },
+  [sidebarActions.sidebar.hide]: (state, action) => ({
+    bank: '',
+    bankID: null,
+    branch: '',
+    branchID: null,
+    accountName: '',
+    accountNumber: '',
+    district: '',
+    districtID: null,
+    city: '',
+    cityID: null,
+    thana: '',
+    thanaID: null,
+    details: '',
+    title: '',
+    selectedCheckoutAddress: null,
+  }),
 }, {
   bank: '',
   bankID: null,

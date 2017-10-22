@@ -58,14 +58,19 @@
     text-align: center;
     font-size: .9em;
     font-weight: bold;
+    margin: 0;
+    margin-top: 1em;
+    font-family: "Harmonia Bold";
 }
 .user-order-desc {
     text-align: center;
     font-size: .9em;
+    width: 85%;
+    margin: .5em 0;
+    
 }
 .secure-acc-btn {
     padding-top: .2em;
-    margin-bottom: 1em;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
 }
 .extra-details-icon {
@@ -78,3 +83,11 @@
 .total-amount .total-value {
     width: 80%;
 }
+.last-step-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+  }
+  

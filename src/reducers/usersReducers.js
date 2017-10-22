@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 
-import { userActions } from '../actions/';
+import { userActions, sidebarActions } from '../actions/';
 import { REHYDRATE } from 'redux-persist/constants';
 
 export const UserReducer = handleActions({
@@ -166,10 +166,13 @@ export const UserUIReducer = handleActions({
     phone: {
       validating: false,
       hasNumber: null,
-      number: null,
+      number: '',
     },
     guestUser: {
       id: null,
+      token: null,
+      addresses: [],
+      password: '',
     }
   }),
   [userActions.user.ui.updatePhone]: (state, action) => ({
@@ -193,12 +196,44 @@ export const UserUIReducer = handleActions({
       ...action.payload,
     }
   }),
+  [sidebarActions.sidebar.hide]: (state, action) => ({
+    ...state,
+    phone: {
+      validating: false,
+      hasNumber: null,
+      number: '',
+    },
+    guestUser: {
+      id: null,
+      token: null,
+      addresses: [],
+      password: '',
+    }
+  }),
   [userActions.user.set.guestUserAddresses]: (state, action) => {
     return {
       ...state,
       guestUser: {
         ...state.guestUser,
         addresses: action.payload,
+      }
+    }
+  },
+  [userActions.user.set.guestUserToken]: (state, action) => {
+    return {
+      ...state,
+      guestUser: {
+        ...state.guestUser,
+        token: action.payload,
+      }
+    }
+  },
+  [userActions.user.set.guestUserPassword]: (state, action) => {
+    return {
+      ...state,
+      guestUser: {
+        ...state.guestUser,
+        password: action.payload,
       }
     }
   },
@@ -212,11 +247,12 @@ export const UserUIReducer = handleActions({
   phone: {
     validating: false,
     hasNumber: null,
-    number: null,
+    number: '',
   },
   guestUser: {
     id: null,
     token: null,
     addresses: [],
+    password: '',
   }
 });

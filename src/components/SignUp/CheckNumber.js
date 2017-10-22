@@ -18,6 +18,7 @@ const CheckNumber = ({
   return (
     <div>
       <Input label='Enter Your Phone Number'
+             className="enter-number" 
              value={ phone }
              onChange={ value => updatePhone(value) }
              required />

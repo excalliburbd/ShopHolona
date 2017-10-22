@@ -13,7 +13,11 @@ import {
 
 import {
   postUserAddress,
+  changePassword,
 } from '../thunks/userThunks';
+import {
+  checkout,
+} from '../thunks/checkoutThunks';
 
 import Checkout from '../components/Cart/Checkout';
 
@@ -27,30 +31,32 @@ const mapStateToProps = state => {
     selectedAddress: state.ui.paymentsAndAddresses.selectedCheckoutAddress,
     ...mapStateToAddressProps(state),
     user: getUserDetails(state),
-    guest: getGuestUserDetails(state),
+    guestUser: getGuestUserDetails(state),
+    invoiceNumber: state.cart.invoiceNumber,
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     ...mapDispatchToAddressProps(dispatch),
-    handleShowCheckoutAddress: () => {
-      dispatch(sidebarActions.sidebar.show.checkoutAddress());
-    },
     handleAddressAndShowNext: (city, thana, title, details, primary, token) => {
       if (city && thana) {
         dispatch(postUserAddress(city, thana, title, details, primary, token, sidebarActions.sidebar.show.checkoutPaymentSelection()));
+        dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.selectedCheckoutAddress(0));
       } else {
         dispatch(addNotification({
           title: 'Error with Checkout Address',
           message: 'Either enter your address or choose and existing address',
           position: 'bl',
-          status: 'error',
+          status: 'warning',
         }));
       }
     },
     handleSetSelectedAddress: (key, toggle) => {
       dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.selectedCheckoutAddress( toggle ? null : key));
+    },
+    handleShowCheckoutAddress: () => {
+      dispatch(sidebarActions.sidebar.show.checkoutAddress());
     },
     handleShowPaymentMethods: () => {
       dispatch(sidebarActions.sidebar.show.checkoutPaymentSelection());
@@ -58,6 +64,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleShowFinalizeOrder: () => {
       dispatch(sidebarActions.sidebar.show.checkoutFinalizeOrder());
     },
+    handleCheckout: (total, cart, address, token, next) => {
+      dispatch(checkout(total, cart, address, token, next));
+    },
+    handleResetPassword: (oldPass, pass, token, phone) => {
+      dispatch(changePassword(oldPass, pass, token, phone));
+    },
+    handleKeepShopping: () => {
+      dispatch(sidebarActions.sidebar.hide());
+    }
   }
 }
 
