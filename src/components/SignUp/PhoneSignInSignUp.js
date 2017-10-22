@@ -21,6 +21,18 @@ class PhoneSignInSignUp extends React.Component {
   typingTimeout = null;
 
   checkPhoneThunks = (phone) => {
+    if (phone.length >= 10) {
+      if (phone.slice(0,1) === '+' && phone.length === 14) {
+
+      } else if(phone.slice(0,1) === '8' && phone.length === 13) {
+        phone = `+${phone}`;
+      } else if(phone.slice(0,1) === '0' && phone.length === 11) {
+        phone = `+88${phone}`;
+      } else if(phone.slice(0,1) === '1' && phone.length === 10) {
+        phone = `+880${phone}`;
+      }
+    }
+
     clearTimeout(this.typingTimeout);
     this.typingTimeout = setTimeout(() => {
       this.isValidPhone(phone) && this.props.handleCheckPhoneNumber(phone);
