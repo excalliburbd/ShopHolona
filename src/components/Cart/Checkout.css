@@ -153,7 +153,47 @@
 .footer-btn-container {
   position: relative;
   bottom: .5em;
+  width: 95%;
 }
 .finalize-order-container {
   width: 100%;
+}
+.non-reg-user-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.non-reg-user-footer p {
+  font-size: .7em;
+  width: 95%;
+  text-align: center;
+}
+.non-reg-user-footer button {
+  width: 80%;
+  font-weight: bold;
+}
+
+.cart-order-calculation {
+  width: 90%;
+}
+
+
+/* For 1080p */
+
+@media screen and (min-width: 1800px) {
+  .cart-order-calculation {
+    width: 90%;
+    margin-right: 1em;
+  }
+  .footer-next-btn {
+    width: 24rem;
+  }
+  .footer-btn-container {
+    width: 90%;
+  }
+  .footer-confirm-btn {
+    width: 65%;
+  }
+
 }
