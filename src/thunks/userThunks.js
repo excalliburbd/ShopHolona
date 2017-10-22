@@ -62,7 +62,7 @@ export const getFollowingShop = (shop, token) => dispatch => {
         }
       }
 
-export const getUserAddress = token  => dispatch => {
+export const getUserAddress = (token, nextStep)  => dispatch => {
   if (token) {
     request(`/me/address/`, getConfig(
               token
@@ -70,6 +70,9 @@ export const getUserAddress = token  => dispatch => {
                 res => {
                   if(res.length > 0) {
                     dispatch(userActions.user.set.address(res));
+                    if (nextStep) {
+                      dispatch(nextStep);
+                    }
                   }
                 }
               );
@@ -143,17 +146,13 @@ export const trySignInAsyncAction = (res, hide, nextStep) =>  (dispatch, getStat
                   dispatch(sidebarActions.sidebar.hide());
                 }
                 dispatch(userActions.user.done.get.token(res.token));
-                dispatch(getUserAddress(res.token));
+                dispatch(getUserAddress(res.token, nextStep));
                 dispatch(getShopCategories(shopID));
                 dispatch(tryGetVendor(shopID, res.token));
                 dispatch(getFollowingShop(shopID, res.token));
                 dispatch(getShopPayments(shopID, res.token));
                 dispatch(validateCart(res.token));
                 dispatch(getCart(res.token, false));
-              }
-
-              if (nextStep) {
-                dispatch(nextStep);
               }
             }
           ).catch(
