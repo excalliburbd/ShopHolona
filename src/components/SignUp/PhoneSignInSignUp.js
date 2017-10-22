@@ -21,18 +21,6 @@ class PhoneSignInSignUp extends React.Component {
   typingTimeout = null;
 
   checkPhoneThunks = (phone) => {
-    if (phone.length >= 10) {
-      if (phone.slice(0,1) === '+' && phone.length === 14) {
-
-      } else if(phone.slice(0,1) === '8' && phone.length === 13) {
-        phone = `+${phone}`;
-      } else if(phone.slice(0,1) === '0' && phone.length === 11) {
-        phone = `+88${phone}`;
-      } else if(phone.slice(0,1) === '1' && phone.length === 10) {
-        phone = `+880${phone}`;
-      }
-    }
-
     clearTimeout(this.typingTimeout);
     this.typingTimeout = setTimeout(() => {
       this.isValidPhone(phone) && this.props.handleCheckPhoneNumber(phone);
@@ -54,17 +42,7 @@ class PhoneSignInSignUp extends React.Component {
   }
 
   handleVerify = (phone) => {
-    if (phone.length >= 10) {
-      if (phone.slice(0,1) === '+' && phone.length === 14) {
-        this.props.handleRegisterGuest(phone);
-      } else if(phone.slice(0,1) === '8' && phone.length === 13) {
-        this.props.handleRegisterGuest(`+${phone}`);
-      } else if(phone.slice(0,1) === '0' && phone.length === 11) {
-        this.props.handleRegisterGuest(`+88${phone}`);
-      } else if(phone.slice(0,1) === '1' && phone.length === 10) {
-        this.props.handleRegisterGuest(`+880${phone}`);
-      }
-    }
+    this.props.handleRegisterGuest(phone);
   }
 
   handleSubmit = phone => {
@@ -73,17 +51,7 @@ class PhoneSignInSignUp extends React.Component {
       nextStep
     } = this.props;
 
-    if (phone.length >= 10) {
-      if (phone.slice(0,1) === '+' && phone.length === 14) {
-        this.props.handleSignIn(phone, this.state.password, nextStep);
-      } else if(phone.slice(0,1) === '8' && phone.length === 13) {
-        this.props.handleSignIn(`+${phone}`, this.state.password, nextStep);
-      } else if(phone.slice(0,1) === '0' && phone.length === 11) {
-        this.props.handleSignIn(`+88${phone}`, this.state.password, nextStep);
-      } else if(phone.slice(0,1) === '1' && phone.length === 10) {
-        this.props.handleSignIn(`+880${phone}`, this.state.password, nextStep);
-      }
-    }
+    this.props.handleSignIn(phone, this.state.password, nextStep);
   }
 
   handleChangeFullName = name => {

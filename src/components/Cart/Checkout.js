@@ -83,14 +83,14 @@ class Checkout extends Component {
         name: user.full_name,
         phone: user.phone,
         email: user.email,
-        address: (user && selectedAddress) ? user.addresses[selectedAddress] : { details: null },
+        address: (user.addresses && `${selectedAddress}`) ? user.addresses[selectedAddress] : { details: null },
       }
     } else {
       activeUser = {
         name: guestUser.full_name,
         phone: guestUser.phone,
         email: guestUser.email,
-        address: (guestUser && selectedAddress) ? guestUser.addresses[selectedAddress] : { details: null },
+        address: (guestUser.addresses && `${selectedAddress}`) ? guestUser.addresses[selectedAddress] : { details: null },
       }
     }
 
@@ -155,11 +155,11 @@ class Checkout extends Component {
           }
           {
             sidebarType === 'FINALIZE_ORDER' && <FinalizeOrder name={ activeUser.name }
-                                                              email={ activeUser.email }
-                                                              phone={ activeUser.phone }
-                                                              address={ activeUser.address }
-                                                              cartTotal={ total }
-                                                              invoiceNumber={ invoiceNumber }  />
+                                                               email={ activeUser.email }
+                                                               phone={ activeUser.phone }
+                                                               address={ activeUser.address }
+                                                               cartTotal={ total }
+                                                               invoiceNumber={ invoiceNumber }  />
           }
         </div>
         {
@@ -220,7 +220,7 @@ class Checkout extends Component {
                 </div>
               }
               {
-                ( sidebarType === 'FINALIZE_ORDER' && token) && 
+                ( sidebarType === 'FINALIZE_ORDER' && token) &&
                 <div className="non-reg-user-footer">
                     <p>We are waiting for a confirmation from seller about stock availability. When the seller confirms
                       we will send you a confirmation mail and text. So, while you wait, we suggest you...</p>

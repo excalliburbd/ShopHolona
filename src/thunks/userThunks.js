@@ -98,7 +98,21 @@ export const trySignInAsyncAction = (res, hide, nextStep) =>  (dispatch, getStat
     }
 
     if(res.phone && res.password) {
-      credentials.phone = res.phone;
+      let phone = res.phone;
+
+      if (phone.length >= 10) {
+        if (phone.slice(0,1) === '+' && phone.length === 14) {
+
+        } else if(phone.slice(0,1) === '8' && phone.length === 13) {
+          phone = `+${phone}`;
+        } else if(phone.slice(0,1) === '0' && phone.length === 11) {
+          phone = `+88${phone}`;
+        } else if(phone.slice(0,1) === '1' && phone.length === 10) {
+          phone = `+880${phone}`;
+        }
+      }
+
+      credentials.phone = phone;
       credentials.password = res.password;
     }
 
@@ -301,6 +315,18 @@ export const postUserAddress = (city, thana, title, details, primary, token, nex
 }
 
 export const checkPhoneNumber = phone => dispatch => {
+  if (phone.length >= 10) {
+    if (phone.slice(0,1) === '+' && phone.length === 14) {
+
+    } else if(phone.slice(0,1) === '8' && phone.length === 13) {
+      phone = `+${phone}`;
+    } else if(phone.slice(0,1) === '0' && phone.length === 11) {
+      phone = `+88${phone}`;
+    } else if(phone.slice(0,1) === '1' && phone.length === 10) {
+      phone = `+880${phone}`;
+    }
+  }
+
   request(`/users/?phone=${ encodeURIComponent(phone) }`, getConfig()).then(
     res => {
       dispatch(userActions.user.ui.setHasNumber(res.length > 0));
@@ -317,7 +343,19 @@ export const checkPhoneNumber = phone => dispatch => {
   )
 }
 
-export const registerUser = (phone, password) => dispatch => { //guest user for now
+export const registerUser = (phone, password) => dispatch => { //guest user for now'
+  if (phone.length >= 10) {
+    if (phone.slice(0,1) === '+' && phone.length === 14) {
+
+    } else if(phone.slice(0,1) === '8' && phone.length === 13) {
+      phone = `+${phone}`;
+    } else if(phone.slice(0,1) === '0' && phone.length === 11) {
+      phone = `+88${phone}`;
+    } else if(phone.slice(0,1) === '1' && phone.length === 10) {
+      phone = `+880${phone}`;
+    }
+  }
+
   request('/auth/register/', getConfig(
     null,
     {
@@ -349,6 +387,18 @@ export const registerUser = (phone, password) => dispatch => { //guest user for 
 }
 
 export const resendVerificationCode = phone => dispatch => {
+  if (phone.length >= 10) {
+    if (phone.slice(0,1) === '+' && phone.length === 14) {
+
+    } else if(phone.slice(0,1) === '8' && phone.length === 13) {
+      phone = `+${phone}`;
+    } else if(phone.slice(0,1) === '0' && phone.length === 11) {
+      phone = `+88${phone}`;
+    } else if(phone.slice(0,1) === '1' && phone.length === 10) {
+      phone = `+880${phone}`;
+    }
+  }
+
   request('/auth/confirm-code-resend/', getConfig(
     null,
     {
@@ -386,6 +436,18 @@ export const patchMe = (body, token) => (dispatch, getState) => {
 }
 
 export const postVerificationCode = (phone, code, fullName, next) => dispatch => {
+  if (phone.length >= 10) {
+    if (phone.slice(0,1) === '+' && phone.length === 14) {
+
+    } else if(phone.slice(0,1) === '8' && phone.length === 13) {
+      phone = `+${phone}`;
+    } else if(phone.slice(0,1) === '0' && phone.length === 11) {
+      phone = `+88${phone}`;
+    } else if(phone.slice(0,1) === '1' && phone.length === 10) {
+      phone = `+880${phone}`;
+    }
+  }
+
   request('/auth/activate/', getConfig(
     null,
     {
@@ -395,7 +457,6 @@ export const postVerificationCode = (phone, code, fullName, next) => dispatch =>
     'POST'
   )).then(
     res => {
-      console.log(phone, code, fullName, next);
       if (res.token) {
         next();
         dispatch(validateCart(res.token));
