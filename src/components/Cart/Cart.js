@@ -30,8 +30,6 @@ const Cart = ({
       <Loader />
       :
       <div>
-        <CartTotal total={ total }
-                   cartItems={ cartItems }/>
         <ul className="cart-product-list">
           {
             cartItems.map(
@@ -46,6 +44,8 @@ const Cart = ({
           }
         </ul>
         <div className="cart-actions">
+          <CartTotal total={ total }
+                   cartItems={ cartItems }/>
           <Button label="Checkout"
                   raised
                   className="cart-action-checkout--btn sh-btn--yellow"

@@ -37,17 +37,17 @@ class Nav extends Component {
   handleKeyDown (event) {
     switch( event.keyCode ) {
       case 27:
-          this.props.handleHideSidebar();
+          this.props.handleHideSidebar(this.props.sidebarSubType);
           break;
-      default: 
+      default:
           break;
     }
   }
-  
+
   componentWillMount() {
     document.addEventListener("keydown", this.handleKeyDown.bind(this));
   }
-  
+
   componentWillUnmount() {
     document.removeEventListener("keydown", this.handleKeyDown.bind(this));
   }
