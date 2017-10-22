@@ -3,7 +3,6 @@ import { handleActions, combineActions } from 'redux-actions';
 import {
   cartActions,
   userActions,
-  sidebarActions,
 } from '../actions/';
 
 export const cartReducer = handleActions({
@@ -95,7 +94,7 @@ export const cartReducer = handleActions({
   },
   [combineActions(
     userActions.user.manualSignOut,
-    sidebarActions.sidebar.hide,
+    cartActions.cart.reset,
   )]: (state, action) => {
     return {
       loading: false,

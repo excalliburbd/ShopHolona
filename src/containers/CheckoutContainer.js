@@ -9,6 +9,7 @@ import { mapStateToAddressProps, mapDispatchToAddressProps } from './SettingsCon
 import {
   sidebarActions,
   paymentandaddressActions,
+  cartActions,
 } from '../actions/';
 
 import {
@@ -68,10 +69,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(checkout(total, cart, address, token, next));
     },
     handleResetPassword: (oldPass, pass, token, phone) => {
-      dispatch(changePassword(oldPass, pass, token, phone));
+      dispatch(changePassword(oldPass, pass, token, phone, true));
     },
     handleKeepShopping: () => {
       dispatch(sidebarActions.sidebar.hide());
+      dispatch(cartActions.cart.reset());
     }
   }
 }

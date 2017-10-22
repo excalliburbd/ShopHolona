@@ -16,6 +16,7 @@ import {
 import {
    userActions,
    sidebarActions,
+   cartActions,
 } from '../actions/';
 
 export const tryGetVendor = (shop, token) => dispatch => {
@@ -423,7 +424,7 @@ export const postVerificationCode = (phone, code, fullName, next) => dispatch =>
   )
 }
 
-export const changePassword = (oldPass, pass, token, phone) => dispatch => {
+export const changePassword = (oldPass, pass, token, phone, resetCart) => dispatch => {
   request('/auth/password/change/', getConfig(
     token,
     {
@@ -440,6 +441,9 @@ export const changePassword = (oldPass, pass, token, phone) => dispatch => {
         status: 'success',
       }));
 
+      if (resetCart) {
+        dispatch(cartActions.cart.reset());
+      }
       dispatch(trySignInAsyncAction({phone, password: pass}, true, null));
     }
   ).catch(
