@@ -2,7 +2,7 @@ import { addNotification } from 'reapop';
 
 import { request, getConfig } from './helpers';
 
-import { sidebarActions } from '../actions/';
+import { sidebarActions, cartActions } from '../actions/';
 
 export const checkout = (total, cart, address, token, next) => dispatch => {
   if (token) {
@@ -31,6 +31,8 @@ export const checkout = (total, cart, address, token, next) => dispatch => {
                   !next && dispatch(sidebarActions.sidebar.hide());
                   next && next();
 
+                  dispatch(cartActions.cart.set.invoiceNumber(res.id));
+                  dispatch(sidebarActions.sidebar.show.checkoutFinalizeOrder());
                   dispatch(addNotification({
                     title: 'Successfully Checked Out',
                     message: 'Your order has been placed!',

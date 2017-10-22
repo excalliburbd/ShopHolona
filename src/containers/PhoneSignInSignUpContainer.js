@@ -32,7 +32,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(checkPhoneNumber(phone));
     },
     handleRegisterGuest: phone => {
-      dispatch(registerUser(phone, uuid.v1()));
+      const pass = uuid.v1();
+
+      dispatch(registerUser(phone, pass));
+      dispatch(userActions.user.set.guestUserPassword(pass));
     },
     handleResendVerificationCode: phone => {
       dispatch(resendVerificationCode(phone));

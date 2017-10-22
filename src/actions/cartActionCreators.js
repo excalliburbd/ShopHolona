@@ -14,6 +14,7 @@ export const cartActionCreators = {
     },
     SET:{
       LOADING: payload => payload,
+      INVOICE_NUMBER: payload => payload,
     },
     UNDO: {
       DELETE: payload => payload,

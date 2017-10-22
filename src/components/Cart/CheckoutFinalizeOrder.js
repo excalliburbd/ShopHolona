@@ -9,12 +9,8 @@ const FinalizeOrder = ({
   phone,
   address,
   cartTotal,
+  invoiceNumber,
 }) => {
-  console.log(name,
-    email,
-    phone,
-    address,
-    cartTotal,)
   return(
     <div>
       {/* <div>{title}</div> */}
@@ -40,7 +36,7 @@ const FinalizeOrder = ({
           </div>
           <div className="order-details">
             <p className="invoice-no">Invoice No:</p>
-            <p className="invoice-no--value">2321312312321JK</p>
+            <p className="invoice-no--value">{ invoiceNumber }</p>
             <p className="cart-details">Cart Details</p>
             <i className="material-icons extra-details-icon">error_outline</i>
             <div className="total-amount">

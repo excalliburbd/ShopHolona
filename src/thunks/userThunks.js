@@ -58,6 +58,20 @@ export const getFollowingShop = (shop, token) => dispatch => {
               // }));
             }
           );
+        }
+      }
+
+export const getUserAddress = token  => dispatch => {
+  if (token) {
+    request(`/me/address/`, getConfig(
+              token
+            )).then(
+                res => {
+                  if(res.length > 0) {
+                    dispatch(userActions.user.set.address(res));
+                  }
+                }
+              );
   }
 }
 
@@ -88,7 +102,6 @@ export const trySignInAsyncAction = (res, hide, nextStep) =>  (dispatch, getStat
     }
 
     request('/auth/login/', getConfig(
-
             null,
             credentials,
             'POST'
@@ -98,6 +111,7 @@ export const trySignInAsyncAction = (res, hide, nextStep) =>  (dispatch, getStat
                 res.token
               )).then(
                 res => {
+                  console.log(res)
                   if (res.id) {
                     dispatch(userActions.user.done.get.profile(res));
                     demostore && dispatch(addNotification({
@@ -111,10 +125,11 @@ export const trySignInAsyncAction = (res, hide, nextStep) =>  (dispatch, getStat
               )
 
               if(res.token){
-                dispatch(userActions.user.done.get.token(res.token));
                 if (hide) {
                   dispatch(sidebarActions.sidebar.hide());
                 }
+                dispatch(userActions.user.done.get.token(res.token));
+                // dispatch(getUserAddress(res.token));
                 dispatch(getShopCategories(shopID));
                 dispatch(tryGetVendor(shopID, res.token));
                 dispatch(getFollowingShop(shopID, res.token));
@@ -130,9 +145,10 @@ export const trySignInAsyncAction = (res, hide, nextStep) =>  (dispatch, getStat
           ).catch(
             err => {
               dispatch(userActions.user.ui.email(new Error(err)))
+              console.log(err);
               dispatch(addNotification({
                 title: 'Error during shop update',
-                message: err,
+                message: `${err}`,
                 position: 'bl',
                 status: 'error',
               }));
@@ -236,19 +252,6 @@ export const unfollowShop = (shop, token, name, id) => dispatch => {
   }
 }
 
-export const getUserAddress = token  => dispatch => {
-  if (token) {
-    request(`/me/address/`, getConfig(
-              token
-            )).then(
-                res => {
-                  if(res.length > 0) {
-                    dispatch(userActions.user.set.address(res));
-                  }
-                }
-              );
-  }
-}
 
 export const getGuestUserAddress = token  => dispatch => {
   if (token) {
@@ -320,6 +323,9 @@ export const registerUser = (phone, password) => dispatch => { //guest user for 
     {
       password,
       phone,
+      'is_staff': false,
+      'registered_as': '0',
+      'vendor_status': '1',
     },
     'POST'
   )).then(
@@ -389,21 +395,57 @@ export const postVerificationCode = (phone, code, fullName, next) => dispatch =>
     'POST'
   )).then(
     res => {
+      console.log(phone, code, fullName, next);
       if (res.token) {
+        next();
         dispatch(validateCart(res.token));
         dispatch(userActions.user.set.guestUserToken(res.token));
         dispatch(patchMe({ full_name: fullName }, res.token));
-        next();
       }
     }
   ).catch(
     err => {
+      // const error = JSON.parse(err);
+
+      // if (error) {
+        // Object.keys(error).forEach(
+          // field => {
+            dispatch(addNotification({
+              title: 'Error',
+              message: `${err}`,
+              position: 'bl',
+              status: 'error',
+            }));
+          // }
+        // )
+      // }
+
+    }
+  )
+}
+
+export const changePassword = (oldPass, pass, token, phone) => dispatch => {
+  request('/auth/password/change/', getConfig(
+    token,
+    {
+      'old_password': oldPass,
+      'new_password': pass,
+    },
+    'POST',
+  )).then(
+    res => {
       dispatch(addNotification({
-        title: 'Error',
-        message: `Wrong confirmation code provided`,
+        title: 'Successfully Signed Up!',
+        message: 'Welcome to ShopHobe!',
         position: 'bl',
-        status: 'error',
+        status: 'success',
       }));
+
+      dispatch(trySignInAsyncAction({phone, password: pass}, true, null));
+    }
+  ).catch(
+    err => {
+      console.log(err)
     }
   )
 }

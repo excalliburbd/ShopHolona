@@ -13,6 +13,7 @@ import {
 
 import {
   postUserAddress,
+  changePassword,
 } from '../thunks/userThunks';
 import {
   checkout,
@@ -31,6 +32,7 @@ const mapStateToProps = state => {
     ...mapStateToAddressProps(state),
     user: getUserDetails(state),
     guestUser: getGuestUserDetails(state),
+    invoiceNumber: state.cart.invoiceNumber,
   }
 }
 
@@ -46,7 +48,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           title: 'Error with Checkout Address',
           message: 'Either enter your address or choose and existing address',
           position: 'bl',
-          status: 'error',
+          status: 'warning',
         }));
       }
     },
@@ -64,6 +66,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     handleCheckout: (total, cart, address, token, next) => {
       dispatch(checkout(total, cart, address, token, next));
+    },
+    handleResetPassword: (oldPass, pass, token, phone) => {
+      dispatch(changePassword(oldPass, pass, token, phone));
     }
   }
 }

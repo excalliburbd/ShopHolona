@@ -172,6 +172,7 @@ export const UserUIReducer = handleActions({
       id: null,
       token: null,
       addresses: [],
+      password: '',
     }
   }),
   [userActions.user.ui.updatePhone]: (state, action) => ({
@@ -206,6 +207,7 @@ export const UserUIReducer = handleActions({
       id: null,
       token: null,
       addresses: [],
+      password: '',
     }
   }),
   [userActions.user.set.guestUserAddresses]: (state, action) => {
@@ -226,6 +228,15 @@ export const UserUIReducer = handleActions({
       }
     }
   },
+  [userActions.user.set.guestUserPassword]: (state, action) => {
+    return {
+      ...state,
+      guestUser: {
+        ...state.guestUser,
+        password: action.payload,
+      }
+    }
+  },
 }, {
   email: '',
   emailPassword: '',
@@ -242,5 +253,6 @@ export const UserUIReducer = handleActions({
     id: null,
     token: null,
     addresses: [],
+    password: '',
   }
 });
