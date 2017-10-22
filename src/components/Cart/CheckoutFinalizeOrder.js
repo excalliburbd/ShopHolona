@@ -15,6 +15,12 @@ const FinalizeOrder = ({
   return(
     <div>
       {/* <div>{title}</div> */}
+      <div className="confirmation-icon-step">
+        <p>Awaiting Confirmation From "Vendor Name"</p>
+        <div className="confirm-icon-div">
+          <i className="material-icons done-icon">done</i>
+        </div>
+      </div>
       <div className="Checkout-final">
         <p className="checkout-final-title">Order Finalized </p>
         <div className="order-finalized-container">
