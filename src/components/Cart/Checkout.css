@@ -161,9 +161,10 @@
   font-size: .7em;
   width: 95%;
   text-align: center;
+  margin-bottom: .3em;
 }
 .non-reg-user-footer button {
-  width: 80%;
+  width: 97%;
   font-weight: bold;
 }
 

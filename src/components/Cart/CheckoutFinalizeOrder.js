@@ -40,8 +40,8 @@ const FinalizeOrder = ({
             <p className="user-email-value"> { email }</p>
           </div>
           <div className="user-info-title-desc">
-            {<p className="user-adress">Address: { address.details }</p>}
-            <p className="user-adress-value"> </p>
+            {<p className="user-adress">Address:</p>}
+            <p className="user-adress-value"> { address.details }</p>
           </div>
           <div className="order-details">
             <p className="invoice-no">Invoice No:</p>
