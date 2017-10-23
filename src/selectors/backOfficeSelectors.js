@@ -179,7 +179,7 @@ export const getTablistData = createSelector(
                                   case 'User':
                                     return {
                                       field,
-                                      value: order.user
+                                      value: order.user.full_name,
                                     }
                                   case 'No.':
                                     return {
@@ -204,7 +204,7 @@ export const getTablistData = createSelector(
                                   case 'Address':
                                     return {
                                       field,
-                                      value: order.to_address
+                                      value: order.to_address.details
                                     }
                                   case 'Status':
                                     return {
