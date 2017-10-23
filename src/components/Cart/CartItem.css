@@ -3,6 +3,7 @@
   flex-direction: row;
   margin-bottom: 0.8em; 
   height: 115px;
+  width: 98%;
 }
 
 .cart-product-list-item-card {

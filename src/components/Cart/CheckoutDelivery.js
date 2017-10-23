@@ -96,6 +96,7 @@ class CheckoutDelivery extends Component {
                        onClick={ () => setSelectedAddress(key, selectedAddress === key) }>
                     <div className="checkout-delivery-address--card-title">{address.address_title}</div>
                     <div className="checkout-delivery-address--card-content">{address.details}</div>
+                    <div className="cross-btn"><i className="material-icons cross-btn-icon">clear</i></div>
                   </div>
 
                 )
