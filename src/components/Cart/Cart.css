@@ -1,12 +1,16 @@
 .cart-container {
   padding: .5em;
   padding-top: 0px;
-  position: relative;
+  /* position: relative; */
   min-height: calc(100vh - 5em);
 }
 
 .cart-container * {
   color: dimgray;
+}
+
+.cart-content {
+  /* height: */
 }
 
 .cart-product-list {
@@ -17,8 +21,8 @@
 }
 
 .cart-actions {
-  position: absolute;
-  bottom: 0;
+  /* position: absolute; */
+  /* bottom: 0; */
   width: calc(100% - 1em);
   display: flex;
   flex-direction: column;
