@@ -89,6 +89,7 @@ class CheckoutDelivery extends Component {
 
           <div className="checkout-delivery-address--view">
             {
+              addresses.length > 2?
               Array.isArray(addresses) && addresses.map((address, key) => {
                 return (
                   <div className={ `checkout-delivery-address--card ${ selectedAddress === key ? 'Checkout-toggled' : '' }` }
@@ -98,7 +99,17 @@ class CheckoutDelivery extends Component {
                     <div className="checkout-delivery-address--card-content">{address.details}</div>
                     <div className="cross-btn"><i className="material-icons cross-btn-icon">clear</i></div>
                   </div>
-
+                )
+              })
+              :
+              Array.isArray(addresses) && addresses.map((address, key) => {
+                return (
+                  <div className={ `checkout-delivery-address--card ${ selectedAddress === key ? 'Checkout-toggled' : '' }` }
+                       key={address.id}
+                       onClick={ () => setSelectedAddress(key, selectedAddress === key) }>
+                    <div className="checkout-delivery-address--card-title">{address.address_title}</div>
+                    <div className="checkout-delivery-address--card-content">{address.details}</div>
+                  </div>
                 )
               })
             }
