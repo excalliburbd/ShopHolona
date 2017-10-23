@@ -103,7 +103,7 @@ class CheckoutDelivery extends Component {
               })
             }
             {
-              addresses.length > 0 && <Button className="address-card-more-btn" label={this.state.more?"Less":"More"} onClick={ () => this.toggleShowMore() }/>
+              this.props.addresses.length > 2 && <Button className="address-card-more-btn" label={this.state.more?"Less":"More"} onClick={ () => this.toggleShowMore() }/>
             }
           </div>
         </div>
