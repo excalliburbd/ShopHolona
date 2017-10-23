@@ -38,7 +38,7 @@
   border: 1px solid #cccccc;
   border-radius: .15em;
   width: 45%;
-  
+
 }
 .checkout-delivery-address--card-title {
   text-align: center;
@@ -81,4 +81,21 @@
   width: 85%;
   box-shadow: var(--shadow-6p);
   height: 2rem;
+}
+
+.checkout--exprs-btn::after {
+  content: "(3-12Hours)";
+  position: absolute;
+  top: 50%;
+  right: 15%;
+  font-size: .9em;
+  font-weight: normal;
+}
+.checkout--std-btn::after {
+  content: "(2-3Days)";
+  position: absolute;
+  top: 50%;
+  right: 15%;
+  font-size: .9em;
+  font-weight: normal;
 }
