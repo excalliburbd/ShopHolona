@@ -98,36 +98,36 @@ class Checkout extends Component {
     }
 
     return (
-
       <div className={ `checkout-container ${ sidebarType === 'PHONE' ? 'checkout-background' : ''}` }>
-        {
-          sidebarType !== 'FINALIZE_ORDER' ?
-            <Stepper  steps={[
-                        {
-                          icon: stepTwo,
-                          text: 'Delivery Details',
-                          stepNo:0
-                        },
-                        {
-                          icon: stepThree,
-                          text: 'Payment Method',
-                          stepNo:1
-                        },
-                        {
-                          icon: stepFour,
-                          text: 'Finale',
-                          stepNo:2
-                        },
+        <div className="checkout-stepper">
+          {
+           sidebarType !== 'FINALIZE_ORDER' ?
+             <Stepper  steps={[
+                         {
+                           icon: stepTwo,
+                           text: 'Delivery Details',
+                           stepNo:0
+                         },
+                         {
+                           icon: stepThree,
+                           text: 'Payment Method',
+                           stepNo:1
+                         },
+                         {
+                           icon: stepFour,
+                           text: 'Finale',
+                           stepNo:2
+                         },
 
-                      ]}
-                      hide={ sidebarType === 'PHONE' }
-                      step={
-                        getStep(sidebarType)
-                      }
-                      handleClick={ () => null }  />
-                      : null
-        }
-
+                       ]}
+                       hide={ sidebarType === 'PHONE' }
+                       step={
+                         getStep(sidebarType)
+                       }
+                       handleClick={ () => null }  />
+                       : null
+         }
+        </div>
         <div className="checkout-main">
           {
             sidebarType === 'PHONE' && <CheckoutAddPhone handleShowCheckoutAddress={ handleShowCheckoutAddress }/>
@@ -166,7 +166,7 @@ class Checkout extends Component {
                                                                profile={ activeUser.profile }  />
           }
         </div>
-        {
+        {// footer
           sidebarType !=='PHONE' && <div className="checkout-footer">
             {
               sidebarType !== 'FINALIZE_ORDER' && <div className="cart-order-calculation">
