@@ -31,6 +31,7 @@ export const paymentandaddressActionCreators = {
         DETAILS: payload => payload,
         TITLE: payload => payload,
         SELECTED_CHECKOUT_ADDRESS: payload => payload,
+        ADDITIONAL_COMMENTS: payload => payload,
       }
     }
   }

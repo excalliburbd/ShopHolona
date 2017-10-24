@@ -226,6 +226,10 @@ export const paymentandaddressUIReducer = handleActions({
     title: '',
     selectedCheckoutAddress: null,
   }),
+  [paymentandaddressActions.paymentsAndAddresses.ui.set.additionalComments]: (state, action) => ({
+    ...state,
+    additionalComments: action.payload,
+  }),
 }, {
   bank: '',
   bankID: null,
@@ -242,4 +246,5 @@ export const paymentandaddressUIReducer = handleActions({
   details: '',
   title: '',
   selectedCheckoutAddress: null,
+  additionalComments: '',
 });

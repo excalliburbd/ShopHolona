@@ -4,7 +4,7 @@ import { request, getConfig } from './helpers';
 
 import { sidebarActions, cartActions } from '../actions/';
 
-export const checkout = (total, cart, address, token, next) => dispatch => {
+export const checkout = (total, cart, address, comment, token, next) => dispatch => {
   if (token) {
     const today = new Date();
 
@@ -15,7 +15,7 @@ export const checkout = (total, cart, address, token, next) => dispatch => {
                 order_status: 1,
                 total_price: total.price,
                 total_weight: total.weight,
-                additional_comments: 'no comment',
+                additional_comments: comment,
                 order_payment: {
                   amount_paid: 0,
                   date_paid: `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`,

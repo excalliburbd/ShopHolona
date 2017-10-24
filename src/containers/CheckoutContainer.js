@@ -34,6 +34,7 @@ const mapStateToProps = state => {
     user: getUserDetails(state),
     guestUser: getGuestUserDetails(state),
     invoiceNumber: state.cart.invoiceNumber,
+    additionalComments: state.ui.paymentsAndAddresses.additionalComments,
   }
 }
 
@@ -65,8 +66,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleShowFinalizeOrder: () => {
       dispatch(sidebarActions.sidebar.show.checkoutFinalizeOrder());
     },
-    handleCheckout: (total, cart, address, token, next) => {
-      dispatch(checkout(total, cart, address, token, next));
+    handleCheckout: (total, cart, address, comment, token, next) => {
+      dispatch(checkout(total, cart, address, comment, token, next));
     },
     handleResetPassword: (oldPass, pass, token, phone) => {
       dispatch(changePassword(oldPass, pass, token, phone, true));
@@ -74,7 +75,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleKeepShopping: () => {
       dispatch(sidebarActions.sidebar.hide());
       dispatch(cartActions.cart.reset());
-    }
+    },
+    updateAdditionalComments: text => {
+      dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.additionalComments(text));
+    },
   }
 }
 

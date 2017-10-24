@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Button from 'react-toolbox/lib/button/Button';
+import Input from 'react-toolbox/lib/input/Input';
 
 import CheckoutDeliveryAddress from './CheckoutDeliveryAddress';
 
@@ -16,7 +17,8 @@ class CheckoutDelivery extends Component {
     this.state = {
       add_new: this.props.addresses.length < 1,
       more: false,
-      addressToggleer : "add"
+      addressToggleer : "add",
+      comment: false,
     }
   }
 
@@ -46,6 +48,16 @@ class CheckoutDelivery extends Component {
     )
   }
 
+  toggleCommentBox = () => {
+    this.setState(
+      (prevState, props) => {
+        return {
+          comment: !prevState.comment,
+        }
+      }
+    )
+  }
+
   render () {
     const {
       districts,
@@ -62,6 +74,8 @@ class CheckoutDelivery extends Component {
       title,
       selectedAddress,
       setSelectedAddress,
+      additionalComments,
+      updateAdditionalComments,
     } = this.props;
 
     let addresses = (this.state.more) ? this.props.addresses : this.props.addresses.slice(0, 2);
@@ -71,7 +85,7 @@ class CheckoutDelivery extends Component {
         <div className="checkout-delivery-body">
           <h2 className="checkout-delivery-title">Delivery Address Details</h2>
           <Button className="checkout-delivery-address--btn-add" icon={this.state.addressToggleer} label='Add Delivery Address' raised onClick={ ()=> {this.handleAddNewAddress(); this.toggleAddress(); }} />
-          
+
           {
             this.state.add_new ? <CheckoutDeliveryAddress districts={ districts }
                                                           districtUIValue={ districtUIValue }
@@ -125,7 +139,14 @@ class CheckoutDelivery extends Component {
               <Button className="checkout--exprs-btn" title="Coming Soon"><img src={express} alt="" />Express</Button>
               <Button className="checkout--std-btn sh-btn--yellow"><img src={standard} alt="" />Standard</Button>
             </div>
-            <button className="add-special-feature-btn">+ Special Instructions</button>
+            <button className="add-special-feature-btn" onClick={ this.toggleCommentBox }>+ Special Instructions</button>
+            {
+              this.state.comment && <Input multiline
+                   value={ additionalComments }
+                   onChange={
+                     value => updateAdditionalComments(value)
+                   }  />
+            }
           </div>
         </div>
       </div>

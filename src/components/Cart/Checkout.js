@@ -56,6 +56,8 @@ class Checkout extends Component {
       invoiceNumber,
       handleResetPassword,
       handleKeepShopping,
+      additionalComments,
+      updateAdditionalComments,
     } = this.props;
 
     const getStep = type => {
@@ -149,7 +151,9 @@ class Checkout extends Component {
                                                             details={ details }
                                                             title={ title }
                                                             selectedAddress={ selectedAddress }
-                                                            setSelectedAddress={ handleSetSelectedAddress }/>
+                                                            setSelectedAddress={ handleSetSelectedAddress }
+                                                            additionalComments={ additionalComments }
+                                                            updateAdditionalComments={ updateAdditionalComments }  />
           }
           {
             sidebarType === 'PAYMENT_SELECTION' && <PaymentSelection />
@@ -191,7 +195,11 @@ class Checkout extends Component {
               {
                 sidebarType === 'PAYMENT_SELECTION' && <div className="footer-back-confirm-container">
                   <Button className="footer-back-btn" label="Back" onClick={ handleShowCheckoutAddress }/>
-                  <Button className="footer-confirm-btn sh-btn--yellow" label="Confirm Order" onClick={ () => handleCheckout(total, cartItems, activeUser.address.id, token || guestUser.token, handleShowFinalizeOrder) }/>
+                  <Button className="footer-confirm-btn sh-btn--yellow"
+                          label="Confirm Order"
+                          onClick={
+                            () => handleCheckout(total, cartItems, activeUser.address.id, additionalComments, token || guestUser.token, handleShowFinalizeOrder)
+                          } />
                 </div>
               }
               {
