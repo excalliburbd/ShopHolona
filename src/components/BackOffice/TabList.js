@@ -37,7 +37,8 @@ const TabList = ({
                           {
                               data[tabIndex].maping.map(
                                 ( field, key) => (
-                                  <span key={ key } style={ getListStyle(data[tabIndex].maping.length) }
+                                  <span key={ key }
+                                        style={ getListStyle(data[tabIndex].maping.length) }
                                         className="TabList-data--row TabList-data--row--title">
                                     <span>{ field }</span>
                                   </span>
@@ -63,8 +64,8 @@ const TabList = ({
                                     ({field, value}, key) => {
                                         switch(field){
                                           case 'Image':
-                                           return <span key={ key } style={getListStyle(data[tabIndex].maping.length)} className="TabList-data--row">
-                                                    <span>{ field }</span>
+                                            return <span key={ key } style={getListStyle(data[tabIndex].maping.length)} className="TabList-data--row">
+                                                    {<span>{ field }</span>}
                                                     <span>
                                                       <div style={{
                                                               backgroundImage: `url(${value})`,
@@ -73,20 +74,21 @@ const TabList = ({
                                                   </span>
                                           case 'Status':
                                             return <span key={ key } style={getListStyle(data[tabIndex].maping.length)} className="TabList-data--row">
-                                                      <span>{ field }</span>
-                                                      <span>{ value }</span>
+                                                      {<span>{ field }</span>}
+                                                      {<span>{ value }</span>}
                                                     </span>
                                           default:
+                                            console.log(field, value)
                                             return <span key={ key } style={getListStyle(data[tabIndex].maping.length)} className="TabList-data--row">
-                                                      <span>{ field }</span>
-                                                      <span>{ value }</span>
+                                                      {<span>{ field }</span>}
+                                                      {<span>{ value }</span>}
                                                     </span>
                                         }
                                     }
                                   )
                             }
-                            </CardText>
-                          </Card>
+                          </CardText>
+                        </Card>
                       )
                     )
                   }

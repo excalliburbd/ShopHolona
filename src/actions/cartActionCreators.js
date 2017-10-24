@@ -21,5 +21,6 @@ export const cartActionCreators = {
     },
     ERROR: payload => payload,
     HIDE: payload => payload,
+    RESET: payload => payload,
   }
 }

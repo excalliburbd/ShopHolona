@@ -7,7 +7,9 @@
 .order-finalized-container .user-profile-pic {
     height: 6rem;
     width: 6rem;
+    border-radius: 50%;
 }
+
 .checkout-final-title {
     text-align: center;
     padding: .5em 1em;
@@ -90,4 +92,33 @@
     align-items: center;
     width: 100%;
   }
-  
+  .confirmation-icon-step {
+    height: 2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    border-bottom: 1px solid gray;
+  }
+  .confirmation-icon-step p {
+    font-size: .7em;
+    margin: 0;
+  }
+  .confirmation-icon-step .confirm-icon-div {
+    height: 1.2rem;
+    width: 1.2rem;
+    border: 1px solid gray;
+    border-radius: 50%;
+    position: relative;
+    right: .7em;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    bottom: .1em;    
+  }
+  .confirmed-btn {
+    background: #1b7943;
+    color: #fff; 
+  }
+  .done-icon {
+    font-size: .8em !important;
+  }

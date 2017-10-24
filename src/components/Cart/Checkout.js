@@ -56,6 +56,8 @@ class Checkout extends Component {
       invoiceNumber,
       handleResetPassword,
       handleKeepShopping,
+      additionalComments,
+      updateAdditionalComments,
     } = this.props;
 
     const getStep = type => {
@@ -76,6 +78,7 @@ class Checkout extends Component {
       phone: 'loading',
       email: 'loading',
       address: 'loading',
+      profile: 'https://backenddev.shophobe.com/media/Images/none/no_images.jpg'
     }
 
     if (user.token) {
@@ -83,48 +86,48 @@ class Checkout extends Component {
         name: user.full_name,
         phone: user.phone,
         email: user.email,
-        address: user.addresses[selectedAddress],
+        address: (user.addresses && `${selectedAddress}`) ? user.addresses[selectedAddress] : { details: null },
+        profile: user.profile_pic,
       }
     } else {
       activeUser = {
         name: guestUser.full_name,
         phone: guestUser.phone,
         email: guestUser.email,
-        address: guestUser.addresses[selectedAddress],
+        address: (guestUser.addresses && `${selectedAddress}`) ? guestUser.addresses[selectedAddress] : { details: null },
+        profile: guestUser.profile_pic,
       }
     }
 
     return (
-
       <div className={ `checkout-container ${ sidebarType === 'PHONE' ? 'checkout-background' : ''}` }>
-        {
-          sidebarType !== 'FINALIZE_ORDER' ?
-            <Stepper  steps={[
-                        {
-                          icon: stepTwo,
-                          text: 'Delivery Details',
-                          stepNo:0
-                        },
-                        {
-                          icon: stepThree,
-                          text: 'Payment Method',
-                          stepNo:1
-                        },
-                        {
-                          icon: stepFour,
-                          text: 'Finale',
-                          stepNo:2
-                        },
-
-                      ]}
-                      hide={ sidebarType === 'PHONE' }
-                      step={
-                        getStep(sidebarType)
-                      }
-                      handleClick={ () => null }  />
-                      : null
-        }
-
+          {
+            sidebarType !== 'FINALIZE_ORDER' && <div className="checkout-stepper">
+              <Stepper  steps={[
+                          {
+                            icon: stepTwo,
+                            text: 'Delivery Details',
+                            stepNo:0
+                          },
+                          {
+                            icon: stepThree,
+                            text: 'Payment Method',
+                            stepNo:1
+                          },
+                          {
+                            icon: stepFour,
+                            text: 'Finale',
+                            stepNo:2
+                          },
+                        ]}
+                        hide={ sidebarType === 'PHONE' }
+                        step={
+                          getStep(sidebarType)
+                        }
+                        handleClick={ () => null }  />
+          
+            </div>
+         }
         <div className="checkout-main">
           {
             sidebarType === 'PHONE' && <CheckoutAddPhone handleShowCheckoutAddress={ handleShowCheckoutAddress }/>
@@ -148,27 +151,30 @@ class Checkout extends Component {
                                                             details={ details }
                                                             title={ title }
                                                             selectedAddress={ selectedAddress }
-                                                            setSelectedAddress={ handleSetSelectedAddress }/>
+                                                            setSelectedAddress={ handleSetSelectedAddress }
+                                                            additionalComments={ additionalComments }
+                                                            updateAdditionalComments={ updateAdditionalComments }  />
           }
           {
             sidebarType === 'PAYMENT_SELECTION' && <PaymentSelection />
           }
           {
             sidebarType === 'FINALIZE_ORDER' && <FinalizeOrder name={ activeUser.name }
-                                                              email={ activeUser.email }
-                                                              phone={ activeUser.phone }
-                                                              address={ activeUser.address }
-                                                              cartTotal={ total }
-                                                              invoiceNumber={ invoiceNumber }  />
+                                                               email={ activeUser.email }
+                                                               phone={ activeUser.phone }
+                                                               address={ activeUser.address }
+                                                               cartTotal={ total }
+                                                               invoiceNumber={ invoiceNumber }
+                                                               profile={ activeUser.profile }  />
           }
         </div>
-        {
+        {// footer
           sidebarType !=='PHONE' && <div className="checkout-footer">
             {
-              sidebarType !== 'FINALIZE_ORDER' && <div>
+              sidebarType !== 'FINALIZE_ORDER' && <div className="cart-order-calculation">
                 <div className="checkout-footer--info">
                   <p>Calculated Delivery Fee</p>
-                  <p>৳</p>
+                  <p>&#2547;</p>
                 </div>
                 <CartTotal total={ total }
                           cartItems={ cartItems }/>
@@ -189,7 +195,11 @@ class Checkout extends Component {
               {
                 sidebarType === 'PAYMENT_SELECTION' && <div className="footer-back-confirm-container">
                   <Button className="footer-back-btn" label="Back" onClick={ handleShowCheckoutAddress }/>
-                  <Button className="footer-confirm-btn sh-btn--yellow" label="Confirm Order" onClick={ () => handleCheckout(total, cartItems, activeUser.address.id, token || guestUser.token, handleShowFinalizeOrder) }/>
+                  <Button className="footer-confirm-btn sh-btn--yellow"
+                          label="Confirm Order"
+                          onClick={
+                            () => handleCheckout(total, cartItems, activeUser.address.id, additionalComments, token || guestUser.token, handleShowFinalizeOrder)
+                          } />
                 </div>
               }
               {
@@ -220,13 +230,16 @@ class Checkout extends Component {
                 </div>
               }
               {
-                ( sidebarType === 'FINALIZE_ORDER' && token) && <div>
+                ( sidebarType === 'FINALIZE_ORDER' && token) &&
+                <div className="non-reg-user-footer">
+                    <p>We are waiting for a confirmation from seller about stock availability. When the seller confirms
+                      we will send you a confirmation mail and text. So, while you wait, we suggest you...</p>
                     <Button className="sh-btn--yellow secure-acc-btn"
                           label="Shop More!"
                           onClick={
                             handleKeepShopping
                           }/>
-                  </div>
+                </div>
               }
             </div>
           </div>

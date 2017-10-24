@@ -18,10 +18,12 @@ const VerificationComponent = ({
       <Input label='Enter 4 Digit Code'
              value={ verification }
              onChange={ val => updateCode(val) }
+             onKeyUp={(event)=>{if (event.which === 13) {login(phone, verification)}}}
              required />
       <Input label='Enter Your Full Name'
              value={ name }
              onChange={ value => changeFullName(value) }
+             onKeyUp={(event)=>{if (event.which === 13) {login(phone, verification)}}}
              required />
       <Button label='Login'
               className='verification-login-btn sh-btn--yellow'

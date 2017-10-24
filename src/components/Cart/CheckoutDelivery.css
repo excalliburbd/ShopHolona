@@ -30,7 +30,6 @@
 .checkout-delivery-address--card {
   display: flex;
   flex-direction: column;
-  /*background-color: yellow;*/
   margin: 0.8rem 0;
   padding: 0.8rem;
   width: 50%;
@@ -38,7 +37,8 @@
   border: 1px solid #cccccc;
   border-radius: .15em;
   width: 45%;
-  
+  position: relative;
+
 }
 .checkout-delivery-address--card-title {
   text-align: center;
@@ -81,4 +81,38 @@
   width: 85%;
   box-shadow: var(--shadow-6p);
   height: 2rem;
+}
+
+.checkout--exprs-btn::after {
+  content: "(3-12Hours)";
+  position: absolute;
+  top: 50%;
+  right: 15%;
+  font-size: .9em;
+  font-weight: normal;
+}
+.checkout--std-btn::after {
+  content: "(2-3Days)";
+  position: absolute;
+  top: 50%;
+  right: 15%;
+  font-size: .9em;
+  font-weight: normal;
+}
+.cross-btn {
+  height: .8em;
+  width: .8em;
+  border-radius: 50%;
+  background: #ee1432;
+  cursor: pointer;
+  position: absolute;
+  right: -.4em;
+  top: -.25em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cross-btn-icon {
+  font-size: .7em !important;
+  color: #fff;
 }

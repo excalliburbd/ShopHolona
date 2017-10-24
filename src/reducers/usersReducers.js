@@ -18,6 +18,7 @@ export const UserReducer = handleActions({
     email_verified: false,
     shopvendor: false,
     following: [],
+    addresses: [],
   }),
   [userActions.user.done.get.token]: (state, action) => ({
     ...state,
@@ -46,6 +47,7 @@ export const UserReducer = handleActions({
         email_verified: false,
         shopvendor: false,
         following: [],
+        addresses: [],
       }
     }
   },
@@ -103,7 +105,7 @@ export const UserReducer = handleActions({
         ...state,
         ...incoming,
         shopvendor: false,
-     }
+      }
   },
 }, {
   isLoggedIn: false,

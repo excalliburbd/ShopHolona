@@ -10,14 +10,23 @@ const FinalizeOrder = ({
   address,
   cartTotal,
   invoiceNumber,
+  profile,
 }) => {
   return(
     <div>
       {/* <div>{title}</div> */}
+      <div className="confirmation-icon-step">
+        <p>Awaiting Confirmation From "Vendor Name"</p>
+        <div className="confirm-icon-div">
+          <i className="material-icons done-icon">done</i>
+        </div>
+      </div>
       <div className="Checkout-final">
         <p className="checkout-final-title">Order Finalized </p>
         <div className="order-finalized-container">
-          <img className="user-profile-pic" src={UserPicExample} alt=""/>
+          <img className="user-profile-pic"
+               src={ (profile.split('/').slice(-1)[0] === 'no_images.jpg') ? UserPicExample : profile }
+               alt=""  />
           <div className="user-info-title-desc">
             <p className="user-name">Name: </p>
             <p className="user-name-value"> { name }</p>
@@ -31,8 +40,8 @@ const FinalizeOrder = ({
             <p className="user-email-value"> { email }</p>
           </div>
           <div className="user-info-title-desc">
-            {<p className="user-adress">Address: { address.details }</p>}
-            <p className="user-adress-value"> </p>
+            {<p className="user-adress">Address:</p>}
+            <p className="user-adress-value"> { address.details }</p>
           </div>
           <div className="order-details">
             <p className="invoice-no">Invoice No:</p>

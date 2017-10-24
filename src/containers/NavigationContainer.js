@@ -26,6 +26,7 @@ import {
   userActions,
   sidebarActions,
   shopActions,
+  cartActions,
 } from '../actions/';
 
 import { getVendor, getToken } from '../selectors/userSelectors';
@@ -56,6 +57,7 @@ const mapStateToProps = state => {
     titleMsg: getTitleMsg(state),
     demostore: getDemostore(state),
     isDemostore: getIsDemostore(state),
+    sidebarSubType: state.ui.sidebar.subType,
   }
 }
 
@@ -74,8 +76,11 @@ const mapDispatchToProps = dispatch => {
     handleSignIn: () => {
       dispatch(sidebarActions.sidebar.show.signIn());
     },
-    handleHideSidebar: () => {
+    handleHideSidebar: sidebarSubType => {
       dispatch(sidebarActions.sidebar.hide());
+      if (sidebarSubType === 'FINALIZE_ORDER') {
+        dispatch(cartActions.cart.reset());
+      }
     },
     handleSignOut: () => {
       dispatch(userActions.user.manualSignOut());

@@ -3,6 +3,7 @@
   flex-direction: row;
   margin-bottom: 0.8em; 
   height: 115px;
+  width: 98%;
 }
 
 .cart-product-list-item-card {
@@ -83,7 +84,7 @@
 .cart-product-quantity-body {
   display: flex;
   flex-direction: row;
-  margin-top: 0.5em;
+  margin-top: 0.3em;
   position: relative;
   left: 6px;
   bottom: .4rem;

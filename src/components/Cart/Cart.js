@@ -24,14 +24,12 @@ const Cart = ({
 
   return (
     <div className="cart-container">
-    {
-      loading
-      ?
-      <Loader />
-      :
-      <div>
-        <CartTotal total={ total }
-                   cartItems={ cartItems }/>
+      <div className="cart-content">
+      {
+        loading
+        ?
+        <Loader />
+        :
         <ul className="cart-product-list">
           {
             cartItems.map(
@@ -45,20 +43,23 @@ const Cart = ({
             )
           }
         </ul>
-        <div className="cart-actions">
-          <Button label="Checkout"
-                  raised
-                  className="cart-action-checkout--btn sh-btn--yellow"
-                  onClick={ () => {
-                    if (cartItems.length < 1) {
-                      handleNoItemsInCartNotification();
-                    } else {
-                      handleShowCheckout(token);
-                    }
-                  } } />
-        </div>
+      }
       </div>
-    }
+      <div className="cart-actions">
+        <CartTotal total={ total }
+                   cartItems={ cartItems }/>
+        <br />
+        <Button label="Checkout"
+                raised
+                className="cart-action-checkout--btn sh-btn--yellow"
+                onClick={ () => {
+                  if (cartItems.length < 1) {
+                    handleNoItemsInCartNotification();
+                  } else {
+                    handleShowCheckout(token);
+                  }
+                }} />
+      </div>
     </div>
   )
 }
