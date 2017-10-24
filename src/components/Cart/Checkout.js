@@ -125,7 +125,7 @@ class Checkout extends Component {
                           getStep(sidebarType)
                         }
                         handleClick={ () => null }  />
-          
+
             </div>
          }
         <div className="checkout-main">
@@ -173,8 +173,11 @@ class Checkout extends Component {
             {
               sidebarType !== 'FINALIZE_ORDER' && <div className="cart-order-calculation">
                 <div className="checkout-footer--info">
-                  <p>Calculated Delivery Fee</p>
-                  <p>&#2547;</p>
+                  <div className="fee-info-and-icon">
+                    <p>Calculated Delivery Fee </p>
+                    <i className="material-icons deliv-fee-info-btn">info_outline</i>
+                  </div>
+                  <p className="calc-money-amount">&#2547;</p>
                 </div>
                 <CartTotal total={ total }
                           cartItems={ cartItems }/>

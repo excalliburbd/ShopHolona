@@ -62,17 +62,20 @@
   margin-left: 0.5rem;
 }
 .add-special-feature-btn {
-  height: 1.3rem;
+  height: 1.8rem;
   cursor: pointer;
-  border: 1px solid dimgray;
+  border: none;
   font-weight: bold;
   font-size: .8em;
   padding: .2em;
   text-align: center;
   background: #fff;
-  border-radius: .5em;
+  border-radius: .1em;
   margin-top: 1em;
+  width: 83%;
+  box-shadow: var(--shadow-6p);
 }
+
 .add-special-feature-btn:focus {
   outline: none;
 }
@@ -81,6 +84,7 @@
   width: 85%;
   box-shadow: var(--shadow-6p);
   height: 2rem;
+  padding-bottom: .5em;
 }
 
 .checkout--exprs-btn::after {
@@ -90,6 +94,7 @@
   right: 15%;
   font-size: .9em;
   font-weight: normal;
+  top: 45%;
 }
 .checkout--std-btn::after {
   content: "(2-3Days)";
@@ -98,6 +103,7 @@
   right: 15%;
   font-size: .9em;
   font-weight: normal;
+  top: 42%;
 }
 .cross-btn {
   height: .8em;
@@ -115,4 +121,21 @@
 .cross-btn-icon {
   font-size: .7em !important;
   color: #fff;
+}
+
+.spec-inst-input-box {
+  bottom: .5em;
+}
+
+.spec-inst-input-box ._4bZUj {
+  height: 7em !important;
+  border: 1px solid gray;
+  border-radius: .4em;
+  width: 17.5em;
+  position: relative;
+}
+
+.spec-inst-input-box ._3FySS {
+  width: 95%;
+  left: 2.5%;
 }

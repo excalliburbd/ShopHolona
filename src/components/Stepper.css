@@ -41,7 +41,6 @@
 
 .stepperImageContainer img {
   height: 1rem;
-
 }
 
 .maximized {
@@ -72,4 +71,5 @@
 .checkout-body--step p {
   font-size: 10px;
   margin: 5px;
+  width: 80%;
 }
