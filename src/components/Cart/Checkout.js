@@ -128,7 +128,7 @@ class Checkout extends Component {
 
             </div>
          }
-        <div className="checkout-main">
+        <div className={"checkout-main "+(sidebarType === 'PHONE'?'heightAuto':'overFlow')}>
           {
             sidebarType === 'PHONE' && <CheckoutAddPhone handleShowCheckoutAddress={ handleShowCheckoutAddress }/>
           }

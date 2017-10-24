@@ -4,6 +4,8 @@ import Input from 'react-toolbox/lib/input/Input';
 import Button from 'react-toolbox/lib/button/Button';
 import Link from 'react-toolbox/lib/link/Link';
 
+import './ForgotPassword.css';
+
 class ForgorPassword extends Component {
   constructor(props) {
     super(props);
@@ -49,7 +51,7 @@ class ForgorPassword extends Component {
 
     return (
       <div className="ForgotPassword">
-        <div>
+        <div className="verify-access-acc">
           <Input  label='Enter Verification Code'
                   value={ code }
                   onChange={ value => this.setState({
@@ -58,7 +60,7 @@ class ForgorPassword extends Component {
                   onBlur={
                     () => {
                       this.setState({
-                        codeError
+                        codeError: code.length === 0
                       });
                     }
                   }
@@ -90,10 +92,10 @@ class ForgorPassword extends Component {
                   type="password"
                   required />
           <Button  label="Resend Verification Code"
-                   className="SendVerification-btn"
+                   className="Re-SendVerification-btn"
                    onClick={ sendCode } />
           <Button label="Log Back In!"
-                  className="SendVerification-btn"
+                  className="sh-btn--yellow log-back-in"
                   onClick={
                     () => {
                       this.setState({

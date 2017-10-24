@@ -1,6 +1,6 @@
 .PhoneSignInSignUp {
   border: var(sh-yellow);
-  padding: .2em 1em;
+  padding: .2em .7em;
   background: #fff;
   box-shadow: 0px -0.2px 6px 0px rgba(50, 50, 50, 0.6);
   position: relative;
@@ -11,6 +11,13 @@
   font-family: "Harmonia Bold";
   margin-top: 10px;
   text-align: center;
+  font-size: .95em;
+}
+
+.PhoneSignInSignUp-subTitle {
+  font-size: .7em;
+  position: relative;
+  top: .2em;
 }
 
 .PhoneSignInSignUp-login-btn {
@@ -27,7 +34,7 @@
   border-radius: 5%;
 }
 
-.PhoneSignInSignUp .lFVgC {
+.PhoneSignInSignUp .CheckNumber .lFVgC {
   width: 85%;
   position: relative;
   left: 2em;

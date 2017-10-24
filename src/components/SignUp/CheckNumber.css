@@ -40,4 +40,12 @@
   background: none;
   border: none;
   font-weight: bold;
+  margin: .5em 0;
+  text-decoration: none;
+  width: 90%;
+}
+
+
+.forgot-password abbr {
+  font-size: .7em;
 }

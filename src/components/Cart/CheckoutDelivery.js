@@ -54,9 +54,6 @@ class CheckoutDelivery extends Component {
         return {
           comment: !prevState.comment,
         }
-      },
-      () => {
-        this.specialFeatureInput.focus();
       }
     )
   }
@@ -147,7 +144,6 @@ class CheckoutDelivery extends Component {
               this.state.comment && <Input multiline
                    value={ additionalComments }
                    className="spec-inst-input-box"
-                   innerRef={ input => { this.specialFeatureInput = input } }
                    onChange={
                      value => updateAdditionalComments(value)
                    }  />
