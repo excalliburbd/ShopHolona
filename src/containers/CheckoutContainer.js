@@ -78,7 +78,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     updateAdditionalComments: text => {
       dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.additionalComments(text));
-    },
+    }
   }
 }
 

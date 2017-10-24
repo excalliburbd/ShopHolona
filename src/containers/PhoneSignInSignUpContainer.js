@@ -11,6 +11,8 @@ import {
   resendVerificationCode,
   postVerificationCode,
   trySignInAsyncAction,
+  sendForgotPassword,
+  resetPassword,
 } from '../thunks/userThunks';
 
 import PhoneSignInSignUp from '../components/SignUp/PhoneSignInSignUp';
@@ -45,6 +47,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     handleSignIn: (phone, password, next) => {
       dispatch(trySignInAsyncAction({ phone, password }, false, next));
+    },
+    handleSendForgotPassword: (phone, next) => {
+      dispatch(sendForgotPassword(phone, next));
+    },
+    handleResetPassword: (phone, code, password, next) => {
+      dispatch(resetPassword(phone, code, password, next));
     },
   }
 }

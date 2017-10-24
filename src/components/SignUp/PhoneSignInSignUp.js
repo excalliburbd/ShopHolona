@@ -68,12 +68,6 @@ class PhoneSignInSignUp extends React.Component {
     })
   }
 
-  handleSetForgotPassword = state => {
-    this.setState({
-      forgotPassword: state,
-    });
-  }
-
   render() {
     const {
       title,
@@ -84,6 +78,8 @@ class PhoneSignInSignUp extends React.Component {
       handleResendVerificationCode,
       handlePostVerificationCode,
       nextStep,
+      handleSendForgotPassword,
+      handleResetPassword,
     } = this.props;
 
     const {
@@ -115,26 +111,35 @@ class PhoneSignInSignUp extends React.Component {
                                      login={ (loginPhone, loginCode) => handlePostVerificationCode(loginPhone, loginCode, this.state.fullName, nextStep) }  />
           }
           {
-            (!guestID && !forgotPassword) && <CheckNumber  phone={ number }
-                                                                      updatePhone={ phone => {
-                                                                        this.checkPhoneThunks(phone);
-                                                                        handleUpdatePhone(phone);
-                                                                      }}
-                                                                      verify={ this.handleVerify }
-                                                                      validPhone={ validPhone }
-                                                                      existingPhone={ hasNumber }
-                                                                      password={ password }
-                                                                      handlePasswordChange={ this.handlePasswordChange }
-                                                                      handleSubmit={ this.handleSubmit }
-                                                                      setForgotPassword={ this.handleSetForgotPassword } />
-         }
+            (!guestID && !forgotPassword) && <CheckNumber phone={ number }
+                                                          updatePhone={ phone => {
+                                                            this.checkPhoneThunks(phone);
+                                                            handleUpdatePhone(phone);
+                                                          }}
+                                                          verify={ this.handleVerify }
+                                                          validPhone={ validPhone }
+                                                          existingPhone={ hasNumber }
+                                                          password={ password }
+                                                          handlePasswordChange={ this.handlePasswordChange }
+                                                          handleSubmit={ this.handleSubmit }
+                                                          setForgotPassword={ () => handleSendForgotPassword(number, () => {
+                                                            this.setState({
+                                                              forgotPassword: true,
+                                                            });
+                                                          }) } />
+}
          {
            (!guestID && forgotPassword) &&
-              <ForgotPassword phone={ number }
-                              updatePhone={ phone => {
-                                this.checkPhoneThunks(phone);
-                                handleUpdatePhone(phone);
-                              }}/>
+              <ForgotPassword sendCode={ () => handleSendForgotPassword(number, () =>  null) }
+                              handleSubmit={
+                                (code, password) => {
+                                  handleResetPassword(number, code, password, () => {
+                                    this.setState({
+                                      forgotPassword: false,
+                                    });
+                                  })
+                                }
+                              } />
          }
         </div>
     )

@@ -512,3 +512,82 @@ export const changePassword = (oldPass, pass, token, phone, resetCart) => dispat
     }
   )
 }
+
+export const sendForgotPassword = (phone, next) => dispatch => {
+  if (phone.length >= 10) {
+    if (phone.slice(0,1) === '+' && phone.length === 14) {
+
+    } else if(phone.slice(0,1) === '8' && phone.length === 13) {
+      phone = `+${phone}`;
+    } else if(phone.slice(0,1) === '0' && phone.length === 11) {
+      phone = `+88${phone}`;
+    } else if(phone.slice(0,1) === '1' && phone.length === 10) {
+      phone = `+880${phone}`;
+    }
+  }
+
+  request('/auth/send-sms-reset-password/', getConfig(
+    null,
+    {
+      phone,
+    },
+    'POST'
+  )).then(
+    res => {
+      next();
+    }
+  ).catch(
+    err => {
+      dispatch(addNotification({
+        title: 'Error',
+        message: 'Something went wrong!',
+        position: 'bl',
+        status: 'error',
+      }));
+    }
+  )
+}
+
+export const resetPassword = (phone, code, password, next) => dispatch => {
+  if (phone.length >= 10) {
+    if (phone.slice(0,1) === '+' && phone.length === 14) {
+
+    } else if(phone.slice(0,1) === '8' && phone.length === 13) {
+      phone = `+${phone}`;
+    } else if(phone.slice(0,1) === '0' && phone.length === 11) {
+      phone = `+88${phone}`;
+    } else if(phone.slice(0,1) === '1' && phone.length === 10) {
+      phone = `+880${phone}`;
+    }
+  }
+
+  request('/auth/reset-password-sms/', getConfig(
+    null,
+    {
+      phone,
+      password,
+      code,
+    },
+    'POST'
+  )).then(
+    res => {
+      next();
+
+      dispatch(addNotification({
+        title: 'Success',
+        message: 'Successfully reset password!',
+        position: 'bl',
+        status: 'success',
+      }));
+    }
+  ).catch(
+    err => {
+      dispatch(addNotification({
+        title: 'Error',
+        message: 'Something went wrong!',
+        position: 'bl',
+        status: 'error',
+      }));
+    }
+  )
+}
