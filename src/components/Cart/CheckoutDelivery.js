@@ -54,6 +54,9 @@ class CheckoutDelivery extends Component {
         return {
           comment: !prevState.comment,
         }
+      },
+      () => {
+        this.specialFeatureInput.focus();
       }
     )
   }
@@ -139,10 +142,12 @@ class CheckoutDelivery extends Component {
               <Button className="checkout--exprs-btn" title="Coming Soon"><img src={express} alt="" />Express</Button>
               <Button className="checkout--std-btn sh-btn--yellow"><img src={standard} alt="" />Standard</Button>
             </div>
-            <button className="add-special-feature-btn" onClick={ this.toggleCommentBox }>+ Special Instructions</button>
+            <button className="add-special-feature-btn" onClick={ this.toggleCommentBox }>+ SPECIAL INSRUCTIONS</button>
             {
               this.state.comment && <Input multiline
                    value={ additionalComments }
+                   className="spec-inst-input-box"
+                   innerRef={ input => { this.specialFeatureInput = input } }
                    onChange={
                      value => updateAdditionalComments(value)
                    }  />

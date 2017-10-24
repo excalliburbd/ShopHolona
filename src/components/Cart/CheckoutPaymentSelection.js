@@ -18,21 +18,21 @@ const PaymentSelection = ({title}) => {
           <p>Seceure, cash on delivery to our delivery partner.</p>
         </div>
       </div>
-      <div className="payment-option--payment-method disabled">
+      <div className="payment-option--payment-method disabled" title="Coming Soon">
         <img src={deliveryTwo} alt=""/>
         <div className="payment-method-desc">
         <p>Credit Card Payment</p>
         <p>All forms fof credit cards are accepted(VISA, MasterCard)</p>
       </div>
       </div>
-      <div className="payment-option--payment-method disabled">
+      <div className="payment-option--payment-method disabled" title="Coming Soon">
         <img src={deliveryThree} alt=""/>
         <div className="payment-method-desc">
         <p>bKash Payment</p>
         <p>bKash Payment is also accepted. Nominal fees will be charged.</p>
       </div>
       </div>
-      <div className="payment-option--payment-method disabled">
+      <div className="payment-option--payment-method disabled" title="Coming Soon">
         <img src={deliveryFour} alt=""/>
         <div className="payment-method-desc">
         <p>SH Coins</p>
