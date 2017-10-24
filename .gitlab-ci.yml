@@ -1,6 +1,6 @@
 variables:
   DOCKER_REPO: registry.gitlab.com
-  MAIN_IMAGE_NAME: shophobe/shophobe-vendor/image
+  MAIN_IMAGE_NAME: shophobe/shophobe-vendor
 
 stages:
   - build
