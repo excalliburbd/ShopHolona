@@ -2,6 +2,7 @@ import React from 'react';
 
 import CheckNumber from './CheckNumber';
 import VerificationComponent from './VerificationComponent';
+import ForgotPassword from './ForgotPassword';
 
 import './PhoneSignInSignUp.css';
 
@@ -14,6 +15,7 @@ class PhoneSignInSignUp extends React.Component {
       validPhone: false,
       existingPhone: false,
       code: '',
+      forgotPassword: false,
     }
   }
 
@@ -66,6 +68,12 @@ class PhoneSignInSignUp extends React.Component {
     })
   }
 
+  handleSetForgotPassword = state => {
+    this.setState({
+      forgotPassword: state,
+    });
+  }
+
   render() {
     const {
       title,
@@ -83,14 +91,15 @@ class PhoneSignInSignUp extends React.Component {
       password,
       fullName,
       code,
+      forgotPassword
     } = this.state;
 
     return (
-        <div className='PhoneSignInSignUp'>
-          <div className='PhoneSignInSignUp-title'> { title }</div>
+        <div className="PhoneSignInSignUp">
+          <div className="PhoneSignInSignUp-title">{ (!guestID && forgotPassword) ? 'Verify And Access Your Account' : title }</div>
+          { (!guestID && forgotPassword) && <div className="PhoneSignInSignUp-subTitle">Please check your phone for a verification code</div> }
          {
-            guestID ?
-              <VerificationComponent phone={ number }
+            guestID && <VerificationComponent phone={ number }
                                      updatePhone={ handleUpdatePhone }
                                      name={ fullName }
                                      changeFullName={ this.handleChangeFullName }
@@ -103,18 +112,29 @@ class PhoneSignInSignUp extends React.Component {
                                      verification={ code }
                                      updateCode={ this.handleUpdateVerificationCode }
                                      resendCode={ handleResendVerificationCode }
-                                     login={ (loginPhone, loginCode) => handlePostVerificationCode(loginPhone, loginCode, this.state.fullName, nextStep) }  /> :
-              <CheckNumber phone={ number }
-                           updatePhone={ phone => {
-                             this.checkPhoneThunks(phone);
-                             handleUpdatePhone(phone);
-                           }}
-                           verify={ this.handleVerify }
-                           validPhone={ validPhone }
-                           existingPhone={ hasNumber }
-                           password={ password }
-                           handlePasswordChange={ this.handlePasswordChange }
-                           handleSubmit={ this.handleSubmit } />
+                                     login={ (loginPhone, loginCode) => handlePostVerificationCode(loginPhone, loginCode, this.state.fullName, nextStep) }  />
+          }
+          {
+            (!guestID && !forgotPassword) && <CheckNumber  phone={ number }
+                                                                      updatePhone={ phone => {
+                                                                        this.checkPhoneThunks(phone);
+                                                                        handleUpdatePhone(phone);
+                                                                      }}
+                                                                      verify={ this.handleVerify }
+                                                                      validPhone={ validPhone }
+                                                                      existingPhone={ hasNumber }
+                                                                      password={ password }
+                                                                      handlePasswordChange={ this.handlePasswordChange }
+                                                                      handleSubmit={ this.handleSubmit }
+                                                                      setForgotPassword={ this.handleSetForgotPassword } />
+         }
+         {
+           (!guestID && forgotPassword) &&
+              <ForgotPassword phone={ number }
+                              updatePhone={ phone => {
+                                this.checkPhoneThunks(phone);
+                                handleUpdatePhone(phone);
+                              }}/>
          }
         </div>
     )
@@ -122,3 +142,4 @@ class PhoneSignInSignUp extends React.Component {
 }
 
 export default PhoneSignInSignUp;
+
