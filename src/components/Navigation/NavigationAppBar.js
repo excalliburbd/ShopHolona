@@ -99,7 +99,7 @@ const NavigationAppBar = ({
                                     onClick={ () => history.push('/dashboard') }
                                     data-tour="click-dashboard" /> :
                         // <IconButton className="NavigationAppBar-icon" icon='shopping_cart' onClick={showCartSidebar}/>
-                        <img className="NavigationAppBar-cart-icon" src={cartIcon} onClick={showCartSidebar}/>
+                        <img className="NavigationAppBar-cart-icon" src={cartIcon} onClick={showCartSidebar} alt="" />
                     }
                     </span> :
                 <IconButton className="NavigationAppBar-icon"
