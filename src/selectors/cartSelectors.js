@@ -8,7 +8,7 @@ export const getTotal = createSelector(
   [getCartArray, getCartObjects],
   (cartArr, cartObj) => cartArr.reduce(
     (acc, item) => ({
-      price: (acc.price + (cartObj[item].quantity * cartObj[item].product.price)),
+      price: (acc.price + (cartObj[item].quantity * cartObj[item].product.sh_price)),
       weight: (acc.weight + (cartObj[item].quantity * cartObj[item].product.weight)),
     })
   , {
