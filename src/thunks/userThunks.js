@@ -145,8 +145,11 @@ export const trySignInAsyncAction = (res, hide, nextStep) =>  (dispatch, getStat
                 if (hide) {
                   dispatch(sidebarActions.sidebar.hide());
                 }
+                if (nextStep) {
+                  dispatch(nextStep);
+                }
                 dispatch(userActions.user.done.get.token(res.token));
-                dispatch(getUserAddress(res.token, nextStep));
+                dispatch(getUserAddress(res.token));
                 dispatch(getShopCategories(shopID));
                 dispatch(tryGetVendor(shopID, res.token));
                 dispatch(getFollowingShop(shopID, res.token));
@@ -280,7 +283,7 @@ export const getGuestUserAddress = token  => dispatch => {
   }
 }
 
-export const postUserAddress = (city, thana, title, details, primary, token, next)  => dispatch => {
+export const postUserAddress = (city, thana, title, details, primary, token, guest, next)  => dispatch => {
   if (token) {
     request(`/me/address/`, getConfig(
               token,
@@ -296,9 +299,14 @@ export const postUserAddress = (city, thana, title, details, primary, token, nex
             )).then(
               res => {
                 if(res.id) {
+                  if (guest) {
+                    dispatch(getGuestUserAddress(token));
+                  } else {
+                    dispatch(getUserAddress(token, null));
+                  }
+
                   if (next) {
                     dispatch(next);
-                    dispatch(getGuestUserAddress(token));
                   }
                 }
               }

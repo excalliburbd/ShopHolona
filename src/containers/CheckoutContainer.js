@@ -42,10 +42,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     ...mapDispatchToAddressProps(dispatch),
-    handleAddressAndShowNext: (city, thana, title, details, primary, token) => {
+    handleAddressAndShowNext: (city, thana, title, details, addresses, token, guest) => {
       if (city && thana) {
-        dispatch(postUserAddress(city, thana, title, details, primary, token, sidebarActions.sidebar.show.checkoutPaymentSelection()));
-        dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.selectedCheckoutAddress(0));
+        dispatch(postUserAddress(city, thana, title, details, addresses.length === 0, token, guest, sidebarActions.sidebar.show.checkoutPaymentSelection()));
+        dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.selectedCheckoutAddress(addresses.length));
       } else {
         dispatch(addNotification({
           title: 'Error with Checkout Address',

@@ -22,6 +22,14 @@ class CheckoutDelivery extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.addresses.lenght !== nextProps.addresses.lenght) {
+      this.setState({
+        add_new: nextProps.addresses.lenght < 1,
+      })
+    }
+  }
+
   handleAddNewAddress() {
     this.setState((prevState) => {
       return { add_new: !prevState.add_new }

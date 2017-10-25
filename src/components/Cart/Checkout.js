@@ -194,7 +194,7 @@ class Checkout extends Component {
                                                       if (selectedAddress !== null) {
                                                         handleShowPaymentMethods();
                                                       } else {
-                                                        handleAddressAndShowNext(cityUIID, thanaUIID, title, details, addresses.length === 0, token || guestUser.token);
+                                                        handleAddressAndShowNext(cityUIID, thanaUIID, title, details, addresses, token || guestUser.token, !user.token);
                                                       }
                                                     }} />
               }
