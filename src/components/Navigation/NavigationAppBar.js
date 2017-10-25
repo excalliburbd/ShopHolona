@@ -14,6 +14,7 @@ import Searchbar from './Searchbar';
 import logo from '../../assets/images/logo/logo.png';
 import DashboardIcon from '../../assets/svg/dashboard.svg';
 import user1 from '../../assets/images/demo_user1_male.png';
+import cartIcon from '../../assets/images/shopping-cart.svg';
 
 import './NavigationAppBar.css';
 
@@ -97,7 +98,8 @@ const NavigationAppBar = ({
                                     }
                                     onClick={ () => history.push('/dashboard') }
                                     data-tour="click-dashboard" /> :
-                        <IconButton className="NavigationAppBar-icon" icon='shopping_cart' onClick={showCartSidebar}/>
+                        // <IconButton className="NavigationAppBar-icon" icon='shopping_cart' onClick={showCartSidebar}/>
+                        <img className="NavigationAppBar-cart-icon" src={cartIcon} onClick={showCartSidebar}/>
                     }
                     </span> :
                 <IconButton className="NavigationAppBar-icon"

@@ -48,7 +48,6 @@ const Cart = ({
       <div className="cart-actions">
         <CartTotal total={ total }
                    cartItems={ cartItems }/>
-        <br />
         <Button label="Checkout"
                 raised
                 className="cart-action-checkout--btn sh-btn--yellow"
