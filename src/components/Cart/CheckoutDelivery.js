@@ -76,6 +76,7 @@ class CheckoutDelivery extends Component {
       setSelectedAddress,
       additionalComments,
       updateAdditionalComments,
+      deleteAddress,
     } = this.props;
 
     let addresses = (this.state.more) ? this.props.addresses : this.props.addresses.slice(0, 2);
@@ -84,7 +85,14 @@ class CheckoutDelivery extends Component {
       <div className="checkout-delivery">
         <div className="checkout-delivery-body">
           <h2 className="checkout-delivery-title">Delivery Address Details</h2>
-          <Button className="checkout-delivery-address--btn-add" icon={this.state.addressToggleer} label='Add Delivery Address' raised onClick={ ()=> {this.handleAddNewAddress(); this.toggleAddress(); }} />
+          <Button className="checkout-delivery-address--btn-add"
+                  icon={this.state.addressToggleer}
+                  label='Add Delivery Address'
+                  raised
+                  onClick={ ()=> {
+                    this.handleAddNewAddress();
+                    this.toggleAddress();
+                  }} />
 
           {
             this.state.add_new ? <CheckoutDeliveryAddress districts={ districts }
@@ -111,7 +119,7 @@ class CheckoutDelivery extends Component {
                        onClick={ () => setSelectedAddress(key, selectedAddress === key) }>
                     <div className="checkout-delivery-address--card-title">{address.address_title}</div>
                     <div className="checkout-delivery-address--card-content">{address.details}</div>
-                    <div className="cross-btn"><i className="material-icons cross-btn-icon">clear</i></div>
+                    <div className="cross-btn" onClick={ () => deleteAddress(address.id) }><i className="material-icons cross-btn-icon">clear</i></div>
                   </div>
                 )
               })

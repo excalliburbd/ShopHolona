@@ -15,6 +15,7 @@ import {
 import {
   postUserAddress,
   changePassword,
+  deleteUserAddress,
 } from '../thunks/userThunks';
 import {
   checkout,
@@ -24,13 +25,13 @@ import Checkout from '../components/Cart/Checkout';
 
 const mapStateToProps = state => {
   return {
+    ...mapStateToAddressProps(state),
     cartItems: getCartItems(state),
     total: getTotal(state),
     sidebarType: state.ui.sidebar.subType,
     addresses: getUserAddresses(state),
     token: getToken(state),
     selectedAddress: state.ui.paymentsAndAddresses.selectedCheckoutAddress,
-    ...mapStateToAddressProps(state),
     user: getUserDetails(state),
     guestUser: getGuestUserDetails(state),
     invoiceNumber: state.cart.invoiceNumber,
@@ -78,7 +79,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     updateAdditionalComments: text => {
       dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.additionalComments(text));
-    }
+    },
+    handleDeleteAddress: (id, token, guest) => {
+      dispatch(deleteUserAddress(id, token, guest));
+    },
   }
 }
 

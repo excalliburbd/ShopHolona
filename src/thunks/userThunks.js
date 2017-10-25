@@ -313,6 +313,31 @@ export const postUserAddress = (city, thana, title, details, primary, token, nex
   }
 }
 
+export const deleteUserAddress = (id, token, guest)  => dispatch => {
+  if (token) {
+    request(`/me/address/${id}`, getConfig(
+              token,
+              null,
+              'DELETE'
+            )).then(
+              res => {
+                if (guest) {
+                  dispatch(getGuestUserAddress(token));
+                } else {
+                  dispatch(getUserAddress(token, null))
+                }
+              }
+            );
+  } else {
+    dispatch(addNotification({
+      title: 'Error',
+      message: `You are not logged in`,
+      position: 'bl',
+      status: 'error',
+    }));
+  }
+}
+
 export const checkPhoneNumber = phone => dispatch => {
   if (phone.length >= 10) {
     if (phone.slice(0,1) === '+' && phone.length === 14) {
@@ -457,7 +482,7 @@ export const postVerificationCode = (phone, code, fullName, next) => dispatch =>
   )).then(
     res => {
       if (res.token) {
-        next();
+        next && next();
         dispatch(validateCart(res.token));
         dispatch(userActions.user.set.guestUserToken(res.token));
         dispatch(patchMe({ full_name: fullName }, res.token));
@@ -571,7 +596,7 @@ export const resetPassword = (phone, code, password, next) => dispatch => {
     'POST'
   )).then(
     res => {
-      next();
+      next && next();
 
       dispatch(addNotification({
         title: 'Success',
