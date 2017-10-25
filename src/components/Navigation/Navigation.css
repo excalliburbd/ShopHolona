@@ -79,6 +79,7 @@
 
 .Navigation-sidebar-content {
   height: calc(100% - 4rem);
+  overflow-y: scroll;
 }
 
 /*for phone*/
@@ -122,8 +123,7 @@
     box-shadow: -3px 0px 14px 0px rgba(50, 50, 50, 0.80);
   }
   .Navigation-sidebar-content {
-    margin-top: 0em; 
-    overflow-y: hidden;
+    margin-top: 0em;
   }
 
 }
@@ -132,7 +132,7 @@
 @media screen and (min-width: 800px) {
   ._1sAOY.Navigation-sidebar {
     width: 22.5vw;
-  } 
+  }
   .Navigation-sidebar-content {
     height: calc(100% - 4rem);
   }
