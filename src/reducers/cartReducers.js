@@ -129,6 +129,7 @@ export const cartEntitiesReducer = handleActions({
 
           const {
             price,
+            sh_price,
             weight,
             stock,
           } = productSpecs;
@@ -138,6 +139,7 @@ export const cartEntitiesReducer = handleActions({
             product: {
               ...item.product,
               price,
+              sh_price,
               weight,
               stock
             }
@@ -167,6 +169,7 @@ export const cartEntitiesReducer = handleActions({
 
     const {
       price,
+      sh_price,
       weight,
       stock,
     } = productSpecs;
@@ -178,6 +181,7 @@ export const cartEntitiesReducer = handleActions({
         product: {
           ...action.payload.product,
           price,
+          sh_price,
           weight,
           stock
         }
@@ -222,6 +226,7 @@ export const cartEntitiesReducer = handleActions({
 
     const {
       price,
+      sh_price,
       weight,
       stock,
     } = productSpecs;
@@ -233,6 +238,7 @@ export const cartEntitiesReducer = handleActions({
         product: {
           ...response.product,
           price,
+          sh_price,
           weight,
           stock,
         }
