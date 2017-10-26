@@ -172,11 +172,10 @@
 }
 
 .NavigationAppBar-cart-icon {
-  height: 1.8em;
-  width: 1.8em;
+  height: 2em;
+  width: 2em;
   margin-right: .7em;
   cursor: pointer;
-  margin-top: .1em;
 }
 
 @media screen and (max-width: 480px) {

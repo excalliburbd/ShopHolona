@@ -105,7 +105,7 @@ class Checkout extends Component {
     return (
       <div className={ `checkout-container ${ sidebarType === 'PHONE' ? 'checkout-background' : ''}` }>
           {
-            sidebarType !== 'FINALIZE_ORDER' && <div className="checkout-stepper">
+            (sidebarType !== 'FINALIZE_ORDER' && sidebarType !== 'PHONE') && <div className="checkout-stepper">
               <Stepper  steps={[
                           {
                             icon: stepTwo,
@@ -180,7 +180,7 @@ class Checkout extends Component {
                     <p>Calculated Delivery Fee </p>
                     <i className="material-icons deliv-fee-info-btn">info_outline</i>
                   </div>
-                  <p className="calc-money-amount">&#2547;{45 + Math.round(total.weight / 1000) * 15}</p>
+                  <p className="calc-money-amount">&#2547; {45 + Math.round(total.weight / 1000) * 15}</p>
                 </div>
                 <CartTotal total={ total }
                           cartItems={ cartItems }/>

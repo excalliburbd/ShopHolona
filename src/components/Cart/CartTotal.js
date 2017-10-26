@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CartIcon from '../../assets/images/cart-icon.svg'
+import CartIcon from '../../assets/images/SH-Cart-logo.svg'
 
 import './CartTotal.css';
 

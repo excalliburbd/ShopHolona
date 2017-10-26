@@ -13,9 +13,10 @@
   width: 100%;
   border: 1px solid #cccccc;
 }
-.checkout-delivery-address--btn-add > span{
-  position: absolute;
-  left: 1rem;
+
+.checkout-delivery-address--btn-add    ._2GH_L ._3aBSX {
+  position: relative;
+  right: 1em;
 }
 
 .checkout-delivery-address--view {
@@ -34,7 +35,6 @@
   padding: 0.8rem;
   width: 50%;
   box-shadow: var(--shadow-6p);
-  border: 1px solid #cccccc;
   border-radius: .15em;
   width: 45%;
   position: relative;
@@ -90,7 +90,7 @@
   height: 2rem;
   padding-bottom: .5em;
 }
-
+/*
 .checkout--exprs-btn::after {
   content: "(3-12Hours)";
   position: absolute;
@@ -109,6 +109,26 @@
   font-size: .9em;
   font-weight: normal;
   top: 42%;
+} */
+
+.btn-desc p {
+  margin: 0;
+  position: relative;
+}
+
+.btn-desc p:first-of-type {
+  top: .6em;
+}
+
+.btn-desc p:last-of-type {
+  bottom: 1.6em;
+  font-size: .8em;
+}
+
+.checkout--btn-container Button img {
+  height: 1.8rem;
+  width: 1.8rem;
+  margin-bottom: .8em;
 }
 
 .cross-btn {

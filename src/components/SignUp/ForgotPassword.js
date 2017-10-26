@@ -91,25 +91,24 @@ class ForgorPassword extends Component {
                   error={ confirmPasswordMatchError ? 'Passwords do not match' : confirmPasswordEmptyError ? 'Plesae confirm your password' : null }
                   type="password"
                   required />
-          <Button  label="Resend Verification Code"
-                   className="Re-SendVerification-btn"
-                   onClick={ sendCode } />
           <Button label="Log Back In!"
-                  className="sh-btn--yellow log-back-in"
-                  onClick={
-                    () => {
-                      this.setState({
-                        codeError: code.length === 0,
-                        passwordError: password.length === 0,
-                        confirmPasswordMatchError: password !== confirmPassword,
-                        confirmPasswordEmptyError: confirmPassword.length === 0,
-                      })
-
+            className="sh-btn--yellow log-back-in"
+              onClick={
+                () => {
+                  this.setState({
+                    codeError: code.length === 0,
+                    passwordError: password.length === 0,
+                    confirmPasswordMatchError: password !== confirmPassword,
+                    confirmPasswordEmptyError: confirmPassword.length === 0,
+                  })
                       if (code.length !== 0 && password.length !== 0 && password === confirmPassword && confirmPassword.length !== 0) {
                         handleSubmit(code, password);
                       }
                     }
-                  } />
+          } />
+          <Button  label="Resend Verification Code"
+                   className="Re-SendVerification-btn"
+                   onClick={ sendCode } />
           <Link className='forgot-password'
                 href="https://www.messenger.com/t/Shophobe"
                 label="Don't have access to your phone? Contact us for Support"

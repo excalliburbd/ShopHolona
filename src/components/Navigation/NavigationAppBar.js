@@ -14,7 +14,7 @@ import Searchbar from './Searchbar';
 import logo from '../../assets/images/logo/logo.png';
 import DashboardIcon from '../../assets/svg/dashboard.svg';
 import user1 from '../../assets/images/demo_user1_male.png';
-import cartIcon from '../../assets/images/shopping-cart.svg';
+import cartIcon from '../../assets/images/SH-Cart-logo.svg';
 
 import './NavigationAppBar.css';
 

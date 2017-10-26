@@ -113,7 +113,6 @@
   font-size: .7em;
   border-radius: .5em;
   padding: 0 .5em;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
 }
 
 .checkout--exprs-btn {
@@ -129,6 +128,10 @@
   background: gray !important;
 }
 
+.checkout--std-btn {
+  box-shadow: 0 0 10px 1px rgba(255,204,51, 1);
+}
+
 .btn-title-desc {
   display: flex;
   flex-direction: column;
@@ -139,11 +142,6 @@
   font-weight: bold;
   margin: .5em;
   font-style: italic;
-}
-
-.checkout--btn-container Button img {
-  height: 1.8rem;
-  width: 1.8rem;
 }
 
 .footer-next-btn {
@@ -172,7 +170,7 @@
 }
 
 .Checkout-toggled {
-  box-shadow: 0 0 10px 1px rgba(0,51,102, 1);
+  box-shadow: 0 0 10px 1px rgba(255,204,51, 1) !important;
 }
 .footer-btn-container {
   position: relative;
