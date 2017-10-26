@@ -20,7 +20,7 @@ import {
 } from '../actions/';
 
 export const tryGetVendor = (shop, token) => dispatch => {
-  if (token) {
+  if (token && shop) {
     request(`/vendors/shops/${shop}/`, getConfig(
               token
             )).then(
@@ -81,18 +81,9 @@ export const getUserAddress = (token, nextStep)  => dispatch => {
 
 export const trySignInAsyncAction = (res, hide, nextStep) =>  (dispatch, getState) => {
   const {
-    demostore,
     shopID,
   } = fromState(getState);
 
-  if (demostore) {
-    dispatch(addNotification({
-        title: 'Sorry for the confusion',
-        message: 'You shouldn\'t login to the demostore',
-        position: 'bl',
-        status: 'warning',
-    }));
-  } else {
     const credentials = {};
 
     if(res.email && res.password) {
@@ -131,7 +122,7 @@ export const trySignInAsyncAction = (res, hide, nextStep) =>  (dispatch, getStat
                 res => {
                   if (res.id) {
                     dispatch(userActions.user.done.get.profile(res));
-                    demostore && dispatch(addNotification({
+                    dispatch(addNotification({
                         title: 'Success',
                         message: 'Successfully signed in',
                         position: 'bl',
@@ -170,7 +161,6 @@ export const trySignInAsyncAction = (res, hide, nextStep) =>  (dispatch, getStat
               }));
             }
           );
-  }
 }
 
 export const getMe = (token, guest) => dispatch => {
