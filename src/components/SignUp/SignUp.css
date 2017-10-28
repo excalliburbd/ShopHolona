@@ -13,6 +13,7 @@
 .SignUp ._2Agdx._1jWAQ._2Agdx._2GH_L._2CPs4 {
   margin-left: auto;
 }
+
 .SignUp--btn {
   font-weight: 600;
   color: #2e2e2e;
@@ -21,10 +22,12 @@
 .signup-account {
   text-align: center;
 }
+
 .signup-account--text {
   color: #757575;
   font-size: 12px;
 }
+
 .signup-account--btn {
   /*width: 100%;*/
   font-weight: 600;

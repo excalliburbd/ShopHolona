@@ -4,6 +4,7 @@
     justify-content: space-around;
     align-items: center;
 }
+
 .order-finalized-container .user-profile-pic {
     height: 6rem;
     width: 6rem;
@@ -18,23 +19,28 @@
     font-family: "Harmonia Bold";
     margin: 0;
 }
+
 .user-info-title-desc {
     display: flex;
-    justify-content: center;    
+    justify-content: center;
 }
+
 .user-info-title-desc:first-of-type {
     position: relative;
     top: .5em;
 }
+
 .user-info-title-desc p {
     font-size: .8em;
     text-align: center;
     padding: 0 .1em;
     margin: .5em 0;
 }
+
 .user-info-title-desc p:first-of-type {
     font-weight: bold;
 }
+
 .order-details {
     display: flex;
     width: 100%;
@@ -43,6 +49,7 @@
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;;
 }
+
 .order-details p {
     width: 40%;
     font-size: .8em;
@@ -52,10 +59,12 @@
 .order-details p:first-of-type , .cart-details {
     font-weight: bold;
 }
+
 .total-amount {
     display: flex;
     width: 40%;
 }
+
 .next-order-info  {
     text-align: center;
     font-size: .9em;
@@ -64,17 +73,20 @@
     margin-top: 1em;
     font-family: "Harmonia Bold";
 }
+
 .user-order-desc {
     text-align: center;
     font-size: .9em;
     width: 85%;
     margin: .5em 0;
-    
+
 }
+
 .secure-acc-btn {
     padding-top: .2em;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
 }
+
 .extra-details-icon {
     position: relative;
     right: 22%;
@@ -82,9 +94,11 @@
     font-size: 1.2em !important;
     cursor: pointer;
 }
+
 .total-amount .total-value {
     width: 80%;
 }
+
 .last-step-footer {
     display: flex;
     flex-direction: column;
@@ -92,6 +106,7 @@
     align-items: center;
     width: 100%;
   }
+
   .confirmation-icon-step {
     height: 2rem;
     display: flex;
@@ -99,10 +114,12 @@
     align-items: flex-start;
     border-bottom: 1px solid gray;
   }
+
   .confirmation-icon-step p {
     font-size: .7em;
     margin: 0;
   }
+
   .confirmation-icon-step .confirm-icon-div {
     height: 1.2rem;
     width: 1.2rem;
@@ -112,13 +129,15 @@
     right: .7em;
     display: flex;
     justify-content: center;
-    align-items: center; 
-    bottom: .1em;    
+    align-items: center;
+    bottom: .1em;
   }
+
   .confirmed-btn {
     background: #1b7943;
-    color: #fff; 
+    color: #fff;
   }
+
   .done-icon {
     font-size: .8em !important;
   }

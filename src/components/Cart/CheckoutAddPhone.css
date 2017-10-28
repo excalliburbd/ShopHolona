@@ -1,10 +1,11 @@
 .CheckoutAddPhone {
   display: flex;
   align-items: center;
-  margin: 0 auto; 
+  margin: 0 auto;
   width: 90%;
   position: relative;
 }
+
 .PhoneSignInSignUp {
   border: 3px solid #ffcc33;
   border-radius: 1em;
@@ -18,12 +19,14 @@
   left: 1.2em;
   bottom: 1em;
 }
+
 .PhoneSignInSignUp .enter-number::before {
   content: "+88";
   position: absolute;
   left: -2em;
   bottom: 1.8em;
 }
+
 .PhoneSignInSignUp .enter-number ._34120 {
   font-size: .8em;
 }

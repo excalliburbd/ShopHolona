@@ -14,7 +14,7 @@
   border: 1px solid #cccccc;
 }
 
-.checkout-delivery-address--btn-add    ._2GH_L ._3aBSX {
+.checkout-delivery-address--btn-add._2GH_L ._3aBSX {
   position: relative;
   right: 1em;
 }
@@ -24,6 +24,7 @@
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
 .checkout-delivery-address--view div {
   cursor: pointer;
 }
@@ -45,6 +46,7 @@
   font-weight: 600;
   color: #000;
 }
+
 .checkout-delivery-address--card-content {
   font-size: 0.7rem;
   padding-top: 0.5rem;
@@ -152,13 +154,13 @@
 
 .spec-inst-input-box {
   bottom: .5em;
+  width: 95%;
 }
 
 .spec-inst-input-box ._4bZUj {
   height: 7em !important;
   border: 1px solid gray;
   border-radius: .4em;
-  width: 17.5em;
   position: relative;
 }
 

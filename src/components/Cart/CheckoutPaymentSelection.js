@@ -15,28 +15,29 @@ const PaymentSelection = ({title}) => {
         <img src={deliveryOne} alt=""/>
         <div className="payment-method-desc">
           <p>Cash on Delivery</p>
-          <p>Secure, cash on delivery to our delivery partner.</p>
+          <p>Pay with cash for ultimate convenience when the product is delivered to you.</p>
         </div>
       </div>
       <div className="payment-option--payment-method disabled" title="Coming Soon">
         <img src={deliveryTwo} alt=""/>
         <div className="payment-method-desc">
         <p>Credit Card Payment</p>
-        <p>All forms fof credit cards are accepted(VISA, MasterCard)</p>
+        <p>Pay online through your credit card (VISA, MasterCard) for a safe and secure transaction. </p>
       </div>
       </div>
       <div className="payment-option--payment-method disabled" title="Coming Soon">
         <img src={deliveryThree} alt=""/>
         <div className="payment-method-desc">
-        <p>bKash Payment</p>
-        <p>bKash Payment is also accepted. Nominal fees will be charged.</p>
+        <p>Mobile Banking</p>
+        <p>Pay from all across Bangladesh with all options of mobile banking available for you
+        (nominal fees will be charged).</p>
       </div>
       </div>
       <div className="payment-option--payment-method disabled" title="Coming Soon">
         <img src={deliveryFour} alt=""/>
         <div className="payment-method-desc">
         <p>SH Coins</p>
-        <p>No hidden fee charged. Do it the SH way</p>
+        <p>Pay with your own exclusive SH Coins (coming soon).</p>
       </div>
       </div>
     </div>

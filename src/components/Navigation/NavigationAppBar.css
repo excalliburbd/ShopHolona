@@ -18,6 +18,7 @@
   align-items: center;
   justify-content: flex-end;
 }
+
 .NavigationAppBar-mini button {
   position: relative;
   right: 2.5rem;
@@ -39,6 +40,7 @@
   background-color: rgba(180, 22, 22, 0.9);
   cursor: pointer;
 }
+
 .NavigationAppBar-mini button:focus {
   outline-width: 0;
 }
@@ -63,6 +65,7 @@
   height: 100%;
   width: auto;
 }
+
 .NavigationAppBar-logo {
   height: 3rem;
   width: 3rem;
@@ -141,10 +144,12 @@
   margin-top: -0.15em;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
+
 .NavigationAppBar-user-profile-icon._3OjJz>img {
   height: 100%;
   object-fit: cover;
 }
+
 .NavigationAppBar-title--shopname {
   font-family: "Gotham Narrow Black";
   position: relative;
@@ -172,24 +177,18 @@
 }
 
 .NavigationAppBar-cart-icon {
-<<<<<<< HEAD
   height: 3em;
   width: 2.3em;
   margin-right: .5em;
   cursor: pointer;
   margin-top: .2em;
-=======
-  height: 2em;
-  width: 2em;
-  margin-right: .7em;
-  cursor: pointer;
->>>>>>> origin/tg-198-cart-ui-update
 }
 
 @media screen and (max-width: 480px) {
   .NavigationAppBar-title {
     display: none;
   }
+
   .NavigationAppBar-mini button {
     right: 0.5rem;
   }

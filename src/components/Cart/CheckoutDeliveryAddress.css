@@ -11,9 +11,11 @@
 .add-delivery-address .lFVgC , .add-delivery-address--dual .lFVgC {
   padding: 1.1em .2em;
 }
+
 .add-delivery-address .lFVgC ._34120 {
     font-size: 14px;
 }
+
 .add-delivery-address .address-title::after , .add-delivery-address .address-details::after {
   position: absolute;
   font-size: .6em;
@@ -22,15 +24,19 @@
   font-style: italic;
   color: #2e2e2e;
 }
+
 .add-delivery-address .address-title::after {
   content: "E.g. Home, Office";
 }
-.add-delivery-address .address-details::after { 
+
+.add-delivery-address .address-details::after {
   content: "E.g. House:40, Road: 5, Block: G";
 }
+
 .add-delivery-address--dual .lFVgC ._2k5Jz {
   font-size: .4em;
 }
+
 @keyframes bounceInDown {
   from, 60%, 75%, 90%, to {
     animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
