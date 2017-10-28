@@ -23,7 +23,7 @@ class CheckoutDelivery extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.addresses.lenght !== nextProps.addresses.lenght) {
+    if (this.props.addresses.length !== nextProps.addresses.length) {
       this.setState({
         add_new: nextProps.addresses.lenght < 1,
       })
