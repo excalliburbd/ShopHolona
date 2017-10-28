@@ -15,7 +15,7 @@ const PaymentSelection = ({title}) => {
         <img src={deliveryOne} alt=""/>
         <div className="payment-method-desc">
           <p>Cash on Delivery</p>
-          <p>Seceure, cash on delivery to our delivery partner.</p>
+          <p>Secure, cash on delivery to our delivery partner.</p>
         </div>
       </div>
       <div className="payment-option--payment-method disabled" title="Coming Soon">

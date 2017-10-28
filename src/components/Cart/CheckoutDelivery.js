@@ -101,7 +101,6 @@ class CheckoutDelivery extends Component {
                     this.handleAddNewAddress();
                     this.toggleAddress();
                   }} />
-
           {
             this.state.add_new ? <CheckoutDeliveryAddress districts={ districts }
                                                           districtUIValue={ districtUIValue }
@@ -152,8 +151,18 @@ class CheckoutDelivery extends Component {
           <div className="checkout--btn-title-container">
             <p className="checkout--delivery-title">Choose Your Delivery Option</p>
             <div className="checkout--btn-container">
-              <Button className="checkout--exprs-btn" title="Coming Soon"><img src={express} alt="" />Express</Button>
-              <Button className="checkout--std-btn sh-btn--yellow"><img src={standard} alt="" />Standard</Button>
+              <Button className="checkout--exprs-btn" title="Coming Soon"><img src={express} alt="" />
+                <div className="btn-desc">
+                  <p>Standard</p>
+                  <p>(2-3Days)</p>
+                </div>
+              </Button>
+              <Button className="checkout--std-btn sh-btn--yellow"><img src={standard} alt="" />
+                <div className="btn-desc">
+                  <p>Standard</p>
+                  <p>(2-3Days)</p>
+                </div>
+              </Button>
             </div>
             <button className="add-special-feature-btn" onClick={ this.toggleCommentBox }>+ SPECIAL INSRUCTIONS</button>
             {

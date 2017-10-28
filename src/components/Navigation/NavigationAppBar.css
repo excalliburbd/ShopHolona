@@ -172,11 +172,18 @@
 }
 
 .NavigationAppBar-cart-icon {
+<<<<<<< HEAD
   height: 3em;
   width: 2.3em;
   margin-right: .5em;
   cursor: pointer;
   margin-top: .2em;
+=======
+  height: 2em;
+  width: 2em;
+  margin-right: .7em;
+  cursor: pointer;
+>>>>>>> origin/tg-198-cart-ui-update
 }
 
 @media screen and (max-width: 480px) {

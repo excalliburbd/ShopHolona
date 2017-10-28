@@ -27,12 +27,16 @@
 }
 .payment-option-container div:first-of-type {
     height: 1.2rem;
-    margin-top: .5em;
+    margin: .25em 0;
 }
 .payment-option--payment-method  {
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.payment-option--payment-method:first-of-type {
+  box-shadow: 0 0 10px 1px rgba(255,204,51, 1);
 }
 
 .payment-option--payment-method  img {

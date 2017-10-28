@@ -13,24 +13,26 @@ import {
 } from '../thunks/paymentandaddressThunks';
 
 export const getShopCategories = shop  => dispatch => {
-  request(`/shops/${shop}/categories/`, getConfig()
-            ).then(
-              res => {
-                if(res.length > 0) {
-                  dispatch(categoryActions.categories.done.get.shopCategory(res));
+  if (shop) {
+    request(`/shops/${shop}/categories/`, getConfig()
+              ).then(
+                res => {
+                  if(res.length > 0) {
+                    dispatch(categoryActions.categories.done.get.shopCategory(res));
+                  }
                 }
-              }
-            ).catch(
-              err => {
-                console.log(err);
-                dispatch(addNotification({
-                  title: 'Something went wrong!',
-                  message: 'Sorry for your inconvenicence. We are looking into it.',
-                  position: 'bl',
-                  status: 'error',
-                }));
-              }
-            );
+              ).catch(
+                err => {
+                  console.log(err);
+                  dispatch(addNotification({
+                    title: 'Something went wrong!',
+                    message: 'Sorry for your inconvenicence. We are looking into it.',
+                    position: 'bl',
+                    status: 'error',
+                  }));
+                }
+              );
+  }
 }
 
 export const getShopAddress = shop  => dispatch => {
@@ -219,20 +221,22 @@ export const getShopHours = (shop, token) => dispatch => {
 }
 
 export const getShopPayments = (shop, token) => (dispatch, getState) => {
-  request(`/vendors/shops/${shop}/payments/`, getConfig(
-                      token
-                    )).then(
-                      res => {
-                        if (res.length > 0) {
-                          dispatch(shopActions.shop.set.payments(res));
-                          const {
-                            bankName,
-                          } = fromState(getState);
-                          dispatch(shopActions.shop.set.payments([{ ...res[0], bank: { ...res[0].bank, bankName }}]));
-                          res[0].bank.id && getBranch(res[0].bank.id);
-                        }
-                      }
-                    )
+  if (token && shop) {
+    request(`/vendors/shops/${shop}/payments/`, getConfig(
+                          token
+                        )).then(
+                          res => {
+                            if (res.length > 0) {
+                              dispatch(shopActions.shop.set.payments(res));
+                              const {
+                                bankName,
+                              } = fromState(getState);
+                              dispatch(shopActions.shop.set.payments([{ ...res[0], bank: { ...res[0].bank, bankName }}]));
+                              res[0].bank.id && getBranch(res[0].bank.id);
+                            }
+                          }
+                        )
+  }
 }
 
 export const runShopInfoUpdate = (info, shop, token) => (dispatch, getState) => {

@@ -203,7 +203,7 @@ export const ShopPageReducer = handleActions({
     },
     [shopActions.shop.set.id]: (state, action) => ({
         ...state,
-        id: action.payload,
+        id: parseInt(action.payload, 10),
       }),
     [shopActions.shop.set.contactNumber]: (state, action) => ({
         ...state,
