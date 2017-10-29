@@ -13,7 +13,7 @@ import NotFound from '../NotFound';
 import CartIcon from '../Cart/CartIcon';
 
 import FilterBarContainer from '../../containers/FilterBarContainer';
-import SignUpContainer from '../../containers/SignUpContainer';
+import SigninSignup from '../SignUp/SignInSignUp';
 import AddButtonContainer from '../../containers/AddButtonContainer';
 import ProductsSidebarContainer from '../../containers/ProductsSidebarContainer';
 import ImageUploaderContainer from '../../containers/ImageUploaderContainer';
@@ -139,7 +139,7 @@ class Nav extends Component {
     const SidebarContent = () => {
       switch(sidebarType){
         case 'SIGNIN':
-          return <SignUpContainer />
+          return <SigninSignup hideSideBar={handleHideSidebar}/>
         case 'PRODUCT':
           return <ProductsSidebarContainer />
         case 'CART':
