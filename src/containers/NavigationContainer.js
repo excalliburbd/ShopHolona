@@ -85,11 +85,11 @@ const mapDispatchToProps = dispatch => {
     handleSignOut: () => {
       dispatch(userActions.user.manualSignOut());
     },
-    handleSetCredentials: (shop, token, demostore) => {
+    handleSetCredentials: (shop, token, demostore, product) => {
       dispatch(shopActions.shop.set.id(shop));
       dispatch(getShop(shop));
       dispatch(getShopCategories(shop));
-      dispatch(getAllProducts(shop, null, null));
+      dispatch(getAllProducts(shop, null, null, product));
       dispatch(getShopAddress(shop));
       dispatch(getFeaturedProduct(shop));
       dispatch(getBanks());
@@ -108,17 +108,17 @@ const mapDispatchToProps = dispatch => {
         dispatch(
           trySignInAsyncAction({ email: config.demouser, password: config.demopass}, true, null)
         );
-        dispatch(userActions.user.done.get.token(token));
-        dispatch(getMe(token, false));
-        dispatch(tryGetVendor(shop, token));
-        dispatch(getFollowingShop(shop, token));
-        dispatch(getShopPayments(shop, token));
+        // dispatch(userActions.user.done.get.token(token));
+        // dispatch(getMe(token, false));
+        // dispatch(tryGetVendor(shop, token));
+        // dispatch(getFollowingShop(shop, token));
+        // dispatch(getShopPayments(shop, token));
       }
     },
     hadleLoadData: (shop, token, vendor) => {
       dispatch(getShop(shop));
       dispatch(getShopCategories(shop));
-      dispatch(getAllProducts(shop, null, null));
+      dispatch(getAllProducts(shop, null, null, null));
       dispatch(getShopAddress(shop));
       dispatch(getFeaturedProduct(shop));
       dispatch(getBanks());

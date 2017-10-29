@@ -79,32 +79,25 @@ class Nav extends Component {
 
     handleGetMedia();
 
-    const id = window.shopID;
-
     if(location.search !== '') {
-      const searchParts = location.search.split('&');
+      const search = location.search.substring(1);
+      const queryParams = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
 
-      if (searchParts.length === 2) {
-          const idPart = searchParts[0].split('=');
-          const tokenPart = searchParts[1].split('=');
+      const {
+        accessToken,
+        productID,
+        variantID,
+      } = queryParams;
 
-          if (idPart[0] === '?shopId' && tokenPart[0] === 'accessToken') {
-            handleSetCredentials(idPart[1], tokenPart[1], parseInt(idPart[1], 10) === demostore);
-          }
+      const shopID = queryParams.shopId || window.shopID;
 
-          history.replace('/');
-      } else if (searchParts.length === 1) {
-        const idPart = searchParts[0].split('=');
+      handleSetCredentials(shopID, accessToken, parseInt(shopID, 10) === demostore, { productID, variantID });
 
-        if (idPart[0] === '?shopId') {
-          handleSetCredentials(idPart[1], null, parseInt(idPart[1], 10) === demostore);
-        }
-
+      if (accessToken) {
         history.replace('/');
-      } else {
-        id && handleSetCredentials(id, null, id === demostore);
       }
     } else {
+      const id = window.shopID;
       id && handleSetCredentials(id, null, id === demostore);
     }
   }
