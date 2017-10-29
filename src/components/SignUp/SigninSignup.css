@@ -1,0 +1,9 @@
+.SigninSignup {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-image: url('../../assets/images/checkout-background.png');
+  background-size: cover;
+  padding: 0 1em;
+}
