@@ -125,7 +125,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(getDistricts());
 
       if (token) {
-        dispatch(getCart(token, false));
+        dispatch(getCart(token, false, true));
         dispatch(tryGetVendor(shop, token));
         dispatch(getFollowingShop(shop, token));
         dispatch(getUserAddress(token));
