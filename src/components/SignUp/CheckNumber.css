@@ -6,10 +6,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: spin .8s linear infinite;
+    animation: spin .5s linear infinite;
     position: absolute;
-    right: 1em;
-    bottom: 1.8em;
+    right: 1.5em;
+    bottom: 1.9em;
 }
 
 .spinner::after {

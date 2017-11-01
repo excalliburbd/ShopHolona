@@ -50,8 +50,9 @@
   top: 0em;
   height: 4rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 100%;
+  align-items: center;
   background-color: #FFC400;
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14),
               0 1px 10px 0 rgba(0, 0, 0, .12),
@@ -64,24 +65,25 @@
   font-weight: 900;
 }
 
-.Navigation-sidebar-action button {
-  margin-top: 1.10em;
-  margin-left: 0.2em;
-}
-
 .Navigation-sidebar-action h1 {
   font-size: 1.3em;
-  width: 100%;
-  padding-top: 0.2em;
-  padding-left: 0.4em;
   color: #2e2e2e;
-  font-family: "Gotham Narrow Book";
+  font-family: "Gotham Narrow Black";
   font-weight: 900;
+  letter-spacing: .07em;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
 }
 
 .Navigation-sidebar-content {
   height: calc(100% - 4rem);
   overflow-y: scroll;
+}
+
+.checkout-header-icon {
+  height: 2em;
+  width: 2em;
 }
 
 /*for phone*/

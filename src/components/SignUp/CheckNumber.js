@@ -19,6 +19,9 @@ const CheckNumber = ({
 }) => {
   return (
     <div className="CheckNumber">
+      <div className="spinner">
+        <div className="spinner-child"></div>
+      </div>
       <Input label='Enter Your Phone Number'
              className="enter-number"
              value={ phone }
