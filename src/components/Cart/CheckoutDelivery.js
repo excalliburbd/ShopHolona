@@ -164,7 +164,7 @@ class CheckoutDelivery extends Component {
                 </div>
               </Button>
             </div>
-            <button className="add-special-feature-btn" onClick={ this.toggleCommentBox }>+ SPECIAL INSRUCTIONS</button>
+            <button className="add-special-feature-btn" onClick={ this.toggleCommentBox }>{ this.state.comment ? '- SPECIAL INSRUCTIONS' : '+ SPECIAL INSRUCTIONS'}</button>
             {
               this.state.comment && <Input multiline
                    value={ additionalComments }

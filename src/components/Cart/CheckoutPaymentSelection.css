@@ -5,7 +5,7 @@
 }
 
 .payment-option-container .payment-option--payment-method {
-    height: 6.5rem;
+    height: 7em;
     width: 95%;
     border-radius: .3em;
     margin: .3em 0;
@@ -30,8 +30,7 @@
 }
 
 .payment-option-container div:first-of-type {
-    height: 1.2rem;
-    margin: .5em 0;
+    margin: 1em 0;
 }
 
 .payment-option--payment-method  {
@@ -64,14 +63,14 @@
 }
 
 .payment-method-desc p:last-of-type {
-    font-size: .7em;
+    font-size: .65em;
     padding: 0;
     margin: 0;
     line-height: 1.4em;
 }
 
 .payment-method-desc p:first-of-type {
-    font-size: .8em;
+    font-size: .7em;
     font-weight: bold;
     padding: 0;
     margin: 0;
