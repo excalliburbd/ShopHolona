@@ -130,6 +130,9 @@
     margin-top: 0em;
   }
 
+  .background-blur {
+    filter: blur(2px) grayscale(50%) brightness(.3);
+  }
 }
 
 /*for desktop*/

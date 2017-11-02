@@ -115,6 +115,7 @@ class Nav extends Component {
       handleSignIn,
       handleSignOut,
       sidebarType,
+      sidebarSubType,
       shopName,
       refCode,
       pinned,
@@ -165,7 +166,7 @@ class Nav extends Component {
           <Confirm />
           <AddButtonContainer vendor={ vendor } />
           <NavigationDrawer pinned={ pinned } history={ history } location={ location }/>
-          <Panel className={ panelClass }>
+          <Panel className={ panelClass + (sidebarSubType === 'FINALIZE_ORDER' ? ' background-blur' : '') }>
             <NavigationAppBar searchbar={ searchbar }
                               history={ history }
                               location={ location }
@@ -195,7 +196,7 @@ class Nav extends Component {
           </Panel>
           <Sidebar pinned={ showSidebar } className="Navigation-sidebar" >
             <div className="Navigation-sidebar-action">
-              <IconButton icon='close' onClick={ handleHideSidebar }/>
+              {sidebarSubType !== 'FINALIZE_ORDER' && <IconButton icon='close' onClick={ handleHideSidebar }/>}
               <h1>
                 { titleMsg }
               </h1>

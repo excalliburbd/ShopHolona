@@ -69,6 +69,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     handleCheckout: (total, cart, address, comment, token, next) => {
       dispatch(checkout(total, cart, address, comment, token, next));
+      dispatch(cartActions.cart.reset());
     },
     handleResetPassword: (oldPass, pass, token, phone) => {
       dispatch(changePassword(oldPass, pass, token, phone, true));
