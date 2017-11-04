@@ -11,7 +11,7 @@ import NavigationDrawer from './NavigationDrawer';
 import NavigationAppBar from './NavigationAppBar';
 import NotFound from '../NotFound';
 import CheckoutIcon from '../../assets/images/header-checkout.svg';
-import CartIcon from '../../assets/images/cart-header-icon.svg';
+// import CartIcon from '../../assets/images/cart-header-icon.svg';
 
 import FilterBarContainer from '../../containers/FilterBarContainer';
 import SignUpContainer from '../../containers/SignUpContainer';

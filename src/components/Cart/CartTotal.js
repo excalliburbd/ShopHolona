@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CartIcon from '../../assets/images/SH-Cart-logo.svg'
+// import CartIcon from '../../assets/images/shopping-cart.svg'
 
 import './CartTotal.css';
 
@@ -12,7 +12,7 @@ const CartTotal = ({
     <div className="cart-total">
       <div className="cart-total-text">
         <h4>{ cartItems.length } items</h4>
-        <div className="cart-icon-container">  <img src={CartIcon} alt=""/>  </div>
+        {/* <div className="cart-icon-container">  <img src={CartIcon} alt=""/>  </div> */}
       </div>
       <div className="cart-total-amount">
         <h4>Total</h4>

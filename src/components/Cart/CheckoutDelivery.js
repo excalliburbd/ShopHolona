@@ -5,8 +5,8 @@ import Input from 'react-toolbox/lib/input/Input';
 
 import CheckoutDeliveryAddress from './CheckoutDeliveryAddress';
 
-import express from '../../assets/images/express-delivery-icon.svg';
-import standard from '../../assets/images/standard-delivery-icon.svg';
+// import express from '../../assets/images/express-delivery-icon.svg';
+// import standard from '../../assets/images/standard-delivery-icon.svg';
 
 import './CheckoutDelivery.css'
 
@@ -95,7 +95,7 @@ class CheckoutDelivery extends Component {
           <h2 className="checkout-delivery-title">Delivery Address Details</h2>
           <Button className="checkout-delivery-address--btn-add"
                   icon={this.state.addressToggleer}
-                  label='Add Delivery Address'
+                  label='Add New Delivery Address'
                   raised
                   onClick={ ()=> {
                     this.handleAddNewAddress();
@@ -149,8 +149,8 @@ class CheckoutDelivery extends Component {
         </div>
         <div>
           <div className="checkout--btn-title-container">
-            <p className="checkout--delivery-title">Choose Your Delivery Option</p>
-            <div className="checkout--btn-container">
+            <p className="checkout--delivery-title">Estimated delivery time : 2-3 days</p>
+            {/* <div className="checkout--btn-container">
               <Button className="checkout--exprs-btn" title="Coming Soon"><img src={express} alt="" />
                 <div className="btn-desc">
                   <p>Standard</p>
@@ -163,8 +163,8 @@ class CheckoutDelivery extends Component {
                   <p>(2-3Days)</p>
                 </div>
               </Button>
-            </div>
-            <button className="add-special-feature-btn" onClick={ this.toggleCommentBox }>{ this.state.comment ? '- SPECIAL INSRUCTIONS' : '+ SPECIAL INSRUCTIONS'}</button>
+            </div> */}
+            <button className="add-special-feature-btn" onClick={ this.toggleCommentBox }>{ this.state.comment ? '- ADDITIONAL REQUESTS' : '+ ADDITIONAL REQUESTS'}</button>
             {
               this.state.comment && <Input multiline
                    value={ additionalComments }

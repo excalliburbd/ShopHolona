@@ -1,134 +1,211 @@
 .order-finalized-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.order-finalized-container .user-profile-pic {
-    height: 6rem;
-    width: 6rem;
-    border-radius: 50%;
-}
-
-.checkout-final-title {
-    text-align: center;
-    padding: .5em 1em;
-    font-size: 1.3em;
-    font-weight: bold;
-    font-family: "Harmonia Bold";
-    margin: 0;
-}
-
-.user-info-title-desc {
-    display: flex;
-    justify-content: center;
-}
-
-.user-info-title-desc:first-of-type {
-    position: relative;
-    top: .5em;
-}
-
-.user-info-title-desc p {
-    font-size: .8em;
-    text-align: center;
-    padding: 0 .1em;
-    margin: .5em 0;
-}
-
-.user-info-title-desc p:first-of-type {
-    font-weight: bold;
-}
-
-.order-details {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    border-top: 1px solid gray;
-    border-bottom: 1px solid gray;;
-}
-
-.order-details p {
-    width: 40%;
-    font-size: .8em;
-    padding: 0 .2em;
-
-    margin: .7em 0;
-}
-.order-details p:first-of-type , .cart-details {
-    font-weight: bold;
-}
-
-.total-amount {
-    display: flex;
-    width: 40%;
-}
-
-.next-order-info  {
-    text-align: center;
-    font-size: .9em;
-    font-weight: bold;
-    margin: 0;
-    margin-top: 1em;
-    font-family: "Harmonia Bold";
-}
-
-.user-order-desc {
-    text-align: center;
-    font-size: .9em;
-    width: 85%;
-    margin: .5em 0;
-
-}
-
-.secure-acc-btn {
-    padding-top: .2em;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
-}
-
-.cart-details-icon-container {
-  width: 40%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
 }
 
+.order-finalized-container .user-profile-pic {
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+}
+
+.checkout-final-title {
+  text-align: center;
+  padding: 0.5em 1em;
+  font-size: 1.3em;
+  font-weight: bold;
+  font-family: "Harmonia Bold";
+  margin: 0;
+}
+
+.user-info-title-desc {
+  display: flex;
+  justify-content: center;
+}
+
+.user-info-title-desc:first-of-type {
+  position: relative;
+  top: 0.5em;
+}
+
+.user-info-title-desc p {
+  font-size: 0.8em;
+  text-align: center;
+  padding: 0 0.1em;
+  margin: 0.5em 0;
+}
+
+.user-info-title-desc p:first-of-type {
+  font-weight: bold;
+}
+
+.order-details {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+
+.order-details p {
+  width: 40%;
+  font-size: 0.8em;
+  padding: 0 0.2em;
+
+  margin: 0.7em 0;
+}
+.order-details p:first-of-type,
+.cart-details {
+  font-weight: bold;
+}
+
+.total-amount {
+  display: flex;
+  width: 40%;
+}
+
+.next-order-info {
+  text-align: center;
+  font-size: 0.9em;
+  font-weight: bold;
+  margin: 0;
+  margin-top: 1em;
+  font-family: "Harmonia Bold";
+}
+
+.user-order-desc {
+  text-align: center;
+  font-size: 0.9em;
+  width: 85%;
+  margin: 0.5em 0;
+}
+
+.secure-acc-btn {
+  padding-top: 0.2em;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
 .cart-details-icon-container p {
-  width: 70%;
+  width: auto;
   margin: 0;
   padding: 0;
 }
 
+.cart-details-icon-container {
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.cart-details-tooltip {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 0.3em;
+  bottom: 0.1em;
+  position: absolute;
+  left: 55%;
+  bottom: 2.2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  opacity: 1;
+  transition: all 0.3s;
+  width: 15em;
+  padding: .2em;
+}
+
+.cart-details-tooltip::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 0.5em solid transparent;
+  border-right: 0.5em solid transparent;
+  border-top: 0.5em solid rgba(0, 0, 0, 0.8);
+  position: absolute;
+  bottom: -0.5em;
+  left: 15%;
+  z-index: -1;
+}
+
+.cart-details-tooltip p {
+  color: #eee;
+}
+
+
+
+.extra-details-icon:hover ~ .cart-details-tooltip {
+  opacity: 1;
+}
+
+.cart-details-table-title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cart-details-table-title p {
+  font-size: .8em;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.cart-details-table-title p:nth-child(1) {
+  width: 55%;
+  border-right: 1px solid #eee;
+  text-align: center;
+}
+
+.cart-details-table-title p:nth-child(2) {
+  width: 17%;
+  border-right: 1px solid #eee;
+  text-align: center;
+}
+
+.cart-details-table-title p:nth-child(3) {
+  width: 17%;
+  border-right: 1px solid #eee;
+  text-align: center;
+}
+
+.cart-details-table-info {
+  height: auto;
+}
+
 .extra-details-icon {
-    font-size: 1.2em !important;
-    cursor: pointer;
-    margin-right: 1em;
+  font-size: 1.2em !important;
+  cursor: pointer;
+  margin-bottom: 0.1em;
+  margin-left: 0.5em;
 }
 
 .total-amount .total-value {
-    width: 80%;
+  width: 80%;
 }
 
 .last-step-footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
 }
 
 .confirmation-icon-step {
-    height: 2rem;
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    border-bottom: 1px solid gray;
+  height: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  border-bottom: 1px solid gray;
 }
 
 .confirmation-icon-step p {
-  font-size: .7em;
+  font-size: 0.7em;
   margin: 0;
 }
 
@@ -138,11 +215,11 @@
   border: 1px solid gray;
   border-radius: 50%;
   position: relative;
-  right: .7em;
+  right: 0.7em;
   display: flex;
   justify-content: center;
   align-items: center;
-  bottom: .1em;
+  bottom: 0.1em;
 }
 
 .confirmed-btn {
@@ -151,7 +228,5 @@
 }
 
 .done-icon {
-  font-size: .8em !important;
+  font-size: 0.8em !important;
 }
-
-
