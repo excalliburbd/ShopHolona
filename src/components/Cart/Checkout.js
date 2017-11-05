@@ -170,6 +170,7 @@ class Checkout extends Component {
                                                                address={ activeUser.address }
                                                                cartTotal={ total }
                                                                invoiceNumber={ invoiceNumber }
+                                                               cartItems={ cartItems }
                                                                profile={ activeUser.profile }
                                                                shopName={ shopName }  />
           }

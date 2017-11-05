@@ -23,17 +23,17 @@ class AddDeliveryAddress extends Component {
 
     return (
       <div className="add-delivery-address">
+        <Input className="address-title" label="Address Title"
+                value={ title }
+                        onChange={
+                          text => handleSetValue('title', text)
+                        } />
         <Input  className="address-details" label="Address Details"
                         value={ details }
                         onChange={
                           text => handleSetValue('details', text)
                         } />
         <div className="add-delivery-address--dual">
-        <Input className="address-title" label="Address Title"
-                value={ title }
-                        onChange={
-                          text => handleSetValue('title', text)
-                        } />
         {
           districts && districts.list[0] ?
             <CustomAutocomplete label="District"
@@ -48,40 +48,40 @@ class AddDeliveryAddress extends Component {
             /> :
             <Input label="District" />
         }
-        </div>
-        <div className="add-delivery-address--dual">
         {
                     cities && cities.list[0] ?
-                      <CustomAutocomplete label="City"
-                                          source={ cities }
-                                          value={ cityUIValue }
-                                          selectionOnly
-                                          keyname="name"
-                                          handleSetValue={ text => {
-                                            handleSetValue('city', text);
-                                          }}
-                                          onSelected={ id => {
-                                            handleSelect('city', id);
-                                          }}
-                      /> :
-                      <Input label="City"/>
-                  }
-           {
-                    thanas && thanas.list[0] ?
-                      <CustomAutocomplete label="Thana"
-                                          source={ thanas }
-                                          value={ thanaUIValue }
-                                          selectionOnly
-                                          keyname="name"
-                                          handleSetValue={ text => handleSetValue('thana', text) }
-                                          onSelected={ id => {
-                                            handleSelect('thana', id);
-                                          }}
-                      /> :
-                      <Input label="Thana" />
+            <CustomAutocomplete label="City"
+                                source={ cities }
+                                value={ cityUIValue }
+                                selectionOnly
+                                keyname="name"
+                                handleSetValue={ text => {
+                                  handleSetValue('city', text);
+                                }}
+                                onSelected={ id => {
+                                  handleSelect('city', id);
+                                }}
+            /> :
+              <Input label="City"/>
                   }
         </div>
-      </div>
+          <div className="thana-input-box">
+           {
+            thanas && thanas.list[0] ?
+              <CustomAutocomplete label="Thana"
+                                  source={ thanas }
+                                  value={ thanaUIValue }
+                                  selectionOnly
+                                  keyname="name"
+                                  handleSetValue={ text => handleSetValue('thana', text) }
+                                  onSelected={ id => {
+                                    handleSelect('thana', id);
+                                  }}
+              /> :
+              <Input label="Thana" className="thana"/>
+    }
+          </div>
+        </div>
     )
   }
 }

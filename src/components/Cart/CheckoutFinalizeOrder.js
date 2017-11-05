@@ -11,7 +11,8 @@ const FinalizeOrder = ({
   cartTotal,
   invoiceNumber,
   profile,
-  shopName
+  shopName,
+  cartItems
 }) => {
   return(
     <div>
@@ -55,12 +56,16 @@ const FinalizeOrder = ({
                   <p>Product Name</p>
                   <p>Qty</p>
                   <p>Price</p>
-                  </div>
-                <div className="cart-details-table-desc">
-                  <p>Product title one zeerooo</p>
-                  <p>10</p>
-                  <p>20000tk</p>
                 </div>
+                {
+                  cartItems.map((item, index)=>{
+                    return <div key={index} className="cart-details-table-desc">
+                      <p>{item.product.name}</p>
+                      <p>{item.quantity}</p>
+                      <p>{item.product.sh_price}</p>
+                    </div>
+                  })
+                }
               </div>
             </div>
             <div className="total-amount">
