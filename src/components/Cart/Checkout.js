@@ -13,6 +13,7 @@ import stepFour from '../../assets/images/stepper-icon-4.svg';
 
 import Input from "react-toolbox/lib/input/Input";
 import Button from "react-toolbox/lib/button/Button";
+import CartIcon from "../../assets/images/shopping-cart.svg";
 
 import './Checkout.css';
 
@@ -201,7 +202,9 @@ class Checkout extends Component {
             <div className="footer-btn-container">
               {
                 sidebarType === 'ADDRESS' && <div className="footer-back-confirm-container">
-                  <Button className="footer-back-btn" label="Back" onClick={ handleShowCart }/>
+                  <button className="cart-back-btn"  onClick={ handleShowCart }>
+                  <p>CART</p>
+                  <img src={CartIcon} alt=""/></button>
                   <Button className="footer-next-btn sh-btn--yellow"
                                                       label="Next"
                                                       onClick={ () => {
