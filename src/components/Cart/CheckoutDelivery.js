@@ -24,6 +24,7 @@ class CheckoutDelivery extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.addresses.length !== nextProps.addresses.length) {
+      this.handleAddNewAddress();
       this.setState({
         add_new: nextProps.addresses.lenght < 1,
       })
@@ -32,7 +33,10 @@ class CheckoutDelivery extends Component {
 
   handleAddNewAddress() {
     this.setState((prevState) => {
-      return { add_new: !prevState.add_new }
+      return {
+        addressToggleer: prevState.addressToggleer === "add" ? "remove":"add",
+        add_new: !prevState.add_new
+      }
     })
   }
 
@@ -41,16 +45,6 @@ class CheckoutDelivery extends Component {
       (prevState, props) => {
         return {
           more: !prevState.more,
-        }
-      }
-    )
-  }
-
-  toggleAddress = () => {
-    this.setState(
-      (prevState, props) => {
-        return {
-          addressToggleer: prevState.addressToggleer === "add" ? "remove":"add",
         }
       }
     )
@@ -85,6 +79,11 @@ class CheckoutDelivery extends Component {
       additionalComments,
       updateAdditionalComments,
       deleteAddress,
+      addressTitle,
+      addressDescription,
+      addressThana,
+      addressDistrict,
+      addressCity
     } = this.props;
 
     let addresses = (this.state.more) ? this.props.addresses : this.props.addresses.slice(0, 2);
@@ -93,14 +92,16 @@ class CheckoutDelivery extends Component {
       <div className="checkout-delivery">
         <div className="checkout-delivery-body">
           <h2 className="checkout-delivery-title">Delivery Address Details</h2>
-          <Button className="checkout-delivery-address--btn-add"
-                  icon={this.state.addressToggleer}
-                  label='Add New Delivery Address'
-                  raised
-                  onClick={ ()=> {
-                    this.handleAddNewAddress();
-                    this.toggleAddress();
-                  }} />
+          {
+            addresses.length > 0 &&
+            <Button className="checkout-delivery-address--btn-add"
+                    icon={this.state.addressToggleer}
+                    label='Add Delivery Address'
+                    raised
+                    onClick={ ()=> {
+                      this.handleAddNewAddress();
+                    }} />
+          }
           {
             this.state.add_new ? <CheckoutDeliveryAddress districts={ districts }
                                                           districtUIValue={ districtUIValue }
@@ -147,34 +148,35 @@ class CheckoutDelivery extends Component {
             }
           </div>
         </div>
-        <div>
-          <div className="checkout--btn-title-container">
-            <p className="checkout--delivery-title">Estimated delivery time : 2-3 days</p>
-            {/* <div className="checkout--btn-container">
-              <Button className="checkout--exprs-btn" title="Coming Soon"><img src={express} alt="" />
-                <div className="btn-desc">
-                  <p>Standard</p>
-                  <p>(2-3Days)</p>
-                </div>
-              </Button>
-              <Button className="checkout--std-btn sh-btn--yellow"><img src={standard} alt="" />
-                <div className="btn-desc">
-                  <p>Standard</p>
-                  <p>(2-3Days)</p>
-                </div>
-              </Button>
-            </div> */}
-            <button className="add-special-feature-btn" onClick={ this.toggleCommentBox }>{ this.state.comment ? '- ADDITIONAL REQUESTS' : '+ ADDITIONAL REQUESTS'}</button>
-            {
-              this.state.comment && <Input multiline
-                   value={ additionalComments }
-                   className="spec-inst-input-box"
-                   onChange={
-                     value => updateAdditionalComments(value)
-                   }  />
-            }
-          </div>
-        </div>
+        {
+          ((addressTitle && addressDescription && addressThana && addressDistrict && addressCity) || selectedAddress !== null) &&
+            <div className="checkout--btn-title-container">
+              <p className="checkout--delivery-title">Estimated delivery time : 2-3 days</p>
+              {/* <div className="checkout--btn-container">
+                <Button className="checkout--exprs-btn" title="Coming Soon"><img src={express} alt="" />
+                  <div className="btn-desc">
+                    <p>Standard</p>
+                    <p>(2-3Days)</p>
+                  </div>
+                </Button>
+                <Button className="checkout--std-btn sh-btn--yellow"><img src={standard} alt="" />
+                  <div className="btn-desc">
+                    <p>Standard</p>
+                    <p>(2-3Days)</p>
+                  </div>
+                </Button>
+              </div> */}
+              <button className="add-special-feature-btn" onClick={ this.toggleCommentBox }>{ this.state.comment ? '- ADDITIONAL REQUESTS' : '+ ADDITIONAL REQUESTS'}</button>
+              {
+                this.state.comment && <Input multiline
+                    value={ additionalComments }
+                    className="spec-inst-input-box"
+                    onChange={
+                      value => updateAdditionalComments(value)
+                    }  />
+              }
+            </div>
+        }
       </div>
     )
   }

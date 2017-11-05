@@ -4,6 +4,7 @@ import { addNotification } from 'reapop';
 import { getTotal, getCartItems } from '../selectors/cartSelectors';
 import { getToken, getUserAddresses, getUserDetails, getGuestUserDetails } from '../selectors/userSelectors';
 import { getShopName } from '../selectors/shopSelectors';
+import { getAddressTitle , getAddressDetails , getAddressThana , getAddressDistrict , getAddressCity } from '../selectors/uiSelectors';
 
 import { mapStateToAddressProps, mapDispatchToAddressProps } from './SettingsContainer';
 
@@ -38,6 +39,11 @@ const mapStateToProps = state => {
     invoiceNumber: state.cart.invoiceNumber,
     additionalComments: state.ui.paymentsAndAddresses.additionalComments,
     shopName: getShopName(state),
+    addressTitle: getAddressTitle(state),
+    addressDescription: getAddressDetails(state),
+    addressCity: getAddressCity(state),
+    addressThana: getAddressThana(state),
+    addressDistrict: getAddressDistrict(state)
   }
 }
 
