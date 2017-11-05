@@ -54,9 +54,9 @@
   width: 40%;
   font-size: 0.8em;
   padding: 0 0.2em;
-
   margin: 0.7em 0;
 }
+
 .order-details p:first-of-type,
 .cart-details {
   font-weight: bold;
@@ -85,8 +85,7 @@
 
 .secure-acc-btn {
   padding-top: 0.2em;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
 .cart-details-icon-container p {
@@ -108,15 +107,15 @@
   border-radius: 0.3em;
   bottom: 0.1em;
   position: absolute;
-  left: 55%;
+  left: 2%;
   bottom: 2.2em;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  opacity: 1;
-  transition: all 0.3s;
-  width: 15em;
+  opacity: 0;
+  transition: all 0.2s;
+  width: 17.5em;
   padding: .2em;
 }
 
@@ -129,7 +128,7 @@
   border-top: 0.5em solid rgba(0, 0, 0, 0.8);
   position: absolute;
   bottom: -0.5em;
-  left: 15%;
+  left: 26%;
   z-index: -1;
 }
 
@@ -137,9 +136,7 @@
   color: #eee;
 }
 
-
-
-.extra-details-icon:hover ~ .cart-details-tooltip {
+.extra-details-icon:hover~.cart-details-tooltip {
   opacity: 1;
 }
 
@@ -147,34 +144,60 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  margin: .5em 0;
 }
 
 .cart-details-table-title p {
-  font-size: .8em;
+  font-size: .9em;
   font-weight: bold;
   white-space: nowrap;
 }
 
 .cart-details-table-title p:nth-child(1) {
-  width: 55%;
+  width: 60%;
   border-right: 1px solid #eee;
   text-align: center;
 }
 
 .cart-details-table-title p:nth-child(2) {
-  width: 17%;
+  width: 20%;
   border-right: 1px solid #eee;
   text-align: center;
 }
 
 .cart-details-table-title p:nth-child(3) {
-  width: 17%;
-  border-right: 1px solid #eee;
+  width: 20%;
   text-align: center;
 }
 
-.cart-details-table-info {
+.cart-details-table-desc {
   height: auto;
+  display: flex;
+  width: 100%;
+}
+
+.cart-details-table-desc p {
+  font-weight: normal !important;
+  font-size: .6em;
+  margin: .25em 0;
+}
+
+.cart-details-table-desc p:nth-child(1) {
+  width: 60%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cart-details-table-desc p:nth-child(2) {
+  width: 20%;
+  text-align: center;
+}
+
+.cart-details-table-desc p:nth-child(3) {
+  width: 20%;
+  text-align: center;
 }
 
 .extra-details-icon {

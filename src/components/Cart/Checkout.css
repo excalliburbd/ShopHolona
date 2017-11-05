@@ -89,7 +89,7 @@
   align-items: center;
   opacity: 0;
   z-index: 2;
-  transition: all .3s;
+  transition: all .2s;
 }
 
 .fee-info-tooltip::after {
@@ -107,6 +107,8 @@
 
 .fee-info-tooltip p {
   color: #eee;
+  margin: 0;
+  padding: 0;
 }
 
 .fee-info-tooltip p:nth-child(odd) {
@@ -121,7 +123,7 @@
 
 .deliv-fee-info-btn:hover ~ .fee-info-tooltip {
   opacity: 1;
-  height: 12em;
+  height: 10em;
 }
 
 .checkout-footer--info .calc-money-amount {

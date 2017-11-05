@@ -52,10 +52,14 @@ const FinalizeOrder = ({
               <div className="cart-details-tooltip">
                 <div className="cart-details-table-title">
                   <p>Product Name</p>
-                  <p>Weight</p>
+                  <p>Qty</p>
                   <p>Price</p>
                   </div>
-                <div className="cart-details-table-info"></div>
+                <div className="cart-details-table-desc">
+                  <p>Product title one zeerooo</p>
+                  <p>10</p>
+                  <p>20000tk</p>
+                </div>
               </div>
             </div>
             <div className="total-amount">
