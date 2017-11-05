@@ -11,12 +11,13 @@ const FinalizeOrder = ({
   cartTotal,
   invoiceNumber,
   profile,
+  shopName
 }) => {
   return(
     <div>
       {/* <div>{title}</div> */}
       <div className="confirmation-icon-step">
-        <p>Awaiting Confirmation From "Vendor Name"</p>
+        <p>Awaiting Confirmation From { shopName }</p>
         <div className="confirm-icon-div">
           <i className="material-icons done-icon">done</i>
         </div>

@@ -133,7 +133,8 @@
   }
 
   .background-blur {
-    filter: blur(2px) grayscale(50%) brightness(.3);
+    pointer-events: none;
+    filter: brightness(.1);
   }
 }
 

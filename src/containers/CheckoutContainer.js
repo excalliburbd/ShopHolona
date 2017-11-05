@@ -3,6 +3,7 @@ import { addNotification } from 'reapop';
 
 import { getTotal, getCartItems } from '../selectors/cartSelectors';
 import { getToken, getUserAddresses, getUserDetails, getGuestUserDetails } from '../selectors/userSelectors';
+import { getShopName } from '../selectors/shopSelectors';
 
 import { mapStateToAddressProps, mapDispatchToAddressProps } from './SettingsContainer';
 
@@ -36,6 +37,7 @@ const mapStateToProps = state => {
     guestUser: getGuestUserDetails(state),
     invoiceNumber: state.cart.invoiceNumber,
     additionalComments: state.ui.paymentsAndAddresses.additionalComments,
+    shopName: getShopName(state),
   }
 }
 
@@ -43,7 +45,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     ...mapDispatchToAddressProps(dispatch),
     handleAddressAndShowNext: (city, thana, title, details, addresses, token, guest) => {
-      if (city && thana) {
+      if (city && thana && title && details && addresses) {
         dispatch(postUserAddress(city, thana, title, details, addresses.length === 0, token, guest, sidebarActions.sidebar.show.checkoutPaymentSelection()));
         dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.selectedCheckoutAddress(addresses.length));
       } else {
@@ -58,6 +60,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleSetSelectedAddress: (key, toggle) => {
       dispatch(paymentandaddressActions.paymentsAndAddresses.ui.set.selectedCheckoutAddress( toggle ? null : key));
     },
+    handleShowCart: () => {
+      dispatch(sidebarActions.sidebar.show.addToCart());
+    },
     handleShowCheckoutAddress: () => {
       dispatch(sidebarActions.sidebar.show.checkoutAddress());
     },
@@ -69,7 +74,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     handleCheckout: (total, cart, address, comment, token, next) => {
       dispatch(checkout(total, cart, address, comment, token, next));
-      dispatch(cartActions.cart.reset());
     },
     handleResetPassword: (oldPass, pass, token, phone) => {
       dispatch(changePassword(oldPass, pass, token, phone, true));
