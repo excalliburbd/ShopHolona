@@ -167,34 +167,35 @@ class Nav extends Component {
           <Confirm />
           <AddButtonContainer vendor={ vendor } />
           <NavigationDrawer pinned={ pinned } history={ history } location={ location }/>
-          <Panel className={ panelClass + (sidebarSubType === 'FINALIZE_ORDER' ? ' background-blur' : '') }>
-            <NavigationAppBar searchbar={ searchbar }
-                              history={ history }
-                              location={ location }
-                              shopName={ shopName }
-                              refCode={ refCode }
-                              hideSearchbar={ hideSearchbar }
-                              userLoggedIn={ userLoggedIn }
-                              handleSignOut={ handleSignOut }
-                              showSearchbar={ showSearchbar }
-                              handleSignIn={ handleSignIn }
-                              vendor={ vendor }
-                              profilePic={ profilePic }
-                              showCartSidebar={ showCartSidebar } />
-            <div className={
-                  (location.pathname === '/') ?
-                    'Navigation-content-main' :
-                    'Navigation-content'
-                } >
-              <FilterBarContainer
-                show={ ('/' !== location.pathname) }
-                flat={ ('/dashboard' !== location.pathname)}
-                route={ location.pathname } />
-                <div data-tour="navigation-content" >
-                  { children }
-                </div>
-            </div>
-          </Panel>
+            <Panel className={ panelClass + (sidebarType !== 'CART' && sidebarType ? ' background-blur' : '') }>
+              <NavigationAppBar searchbar={ searchbar }
+                                history={ history }
+                                location={ location }
+                                shopName={ shopName }
+                                refCode={ refCode }
+                                hideSearchbar={ hideSearchbar }
+                                userLoggedIn={ userLoggedIn }
+                                handleSignOut={ handleSignOut }
+                                showSearchbar={ showSearchbar }
+                                handleSignIn={ handleSignIn }
+                                vendor={ vendor }
+                                profilePic={ profilePic }
+                                showCartSidebar={ showCartSidebar } />
+              <div className={
+                    (location.pathname === '/') ?
+                      'Navigation-content-main' :
+                      'Navigation-content'
+                  } >
+                <FilterBarContainer
+                  show={ ('/' !== location.pathname) }
+                  flat={ ('/dashboard' !== location.pathname)}
+                  route={ location.pathname } />
+                  <div data-tour="navigation-content" >
+                    { children }
+                  </div>
+              </div>
+            </Panel>
+          }
           <Sidebar pinned={ showSidebar } className="Navigation-sidebar" >
             <div className="Navigation-sidebar-action">
               {sidebarSubType !== 'FINALIZE_ORDER' && <IconButton icon='close' onClick={ handleHideSidebar }/>}

@@ -48,6 +48,7 @@ class Checkout extends Component {
       title,
       selectedAddress,
       handleSetSelectedAddress,
+      handleShowCart,
       handleShowPaymentMethods,
       handleShowFinalizeOrder,
       user,
@@ -59,6 +60,7 @@ class Checkout extends Component {
       additionalComments,
       updateAdditionalComments,
       handleDeleteAddress,
+      shopName,
     } = this.props;
 
     const getStep = type => {
@@ -168,7 +170,8 @@ class Checkout extends Component {
                                                                address={ activeUser.address }
                                                                cartTotal={ total }
                                                                invoiceNumber={ invoiceNumber }
-                                                               profile={ activeUser.profile }  />
+                                                               profile={ activeUser.profile }
+                                                               shopName={ shopName }  />
           }
         </div>
         {// footer
@@ -188,15 +191,18 @@ class Checkout extends Component {
             }
             <div className="footer-btn-container">
               {
-                sidebarType === 'ADDRESS' && <Button className="footer-next-btn sh-btn--yellow"
-                                                    label="Next"
-                                                    onClick={ () => {
-                                                      if (selectedAddress !== null) {
-                                                        handleShowPaymentMethods();
-                                                      } else {
-                                                        handleAddressAndShowNext(cityUIID, thanaUIID, title, details, addresses, token || guestUser.token, !user.token);
-                                                      }
-                                                    }} />
+                sidebarType === 'ADDRESS' && <div className="footer-back-confirm-container">
+                  <Button className="footer-back-btn" label="Back" onClick={ handleShowCart }/>
+                  <Button className="footer-next-btn sh-btn--yellow"
+                                                      label="Next"
+                                                      onClick={ () => {
+                                                        if (selectedAddress !== null) {
+                                                          handleShowPaymentMethods();
+                                                        } else {
+                                                          handleAddressAndShowNext(cityUIID, thanaUIID, title, details, addresses, token || guestUser.token, !user.token);
+                                                        }
+                                                      }} />
+                </div>
               }
               {
                 sidebarType === 'PAYMENT_SELECTION' && <div className="footer-back-confirm-container">
