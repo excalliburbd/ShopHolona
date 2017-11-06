@@ -3,6 +3,8 @@ import React from "react";
 import UserPicExample from "../../assets/images/user-pic-example.svg";
 import './CheckoutFinalizeOrder.css';
 
+import CartInfoIcon from '../../assets/images/sh-shopping-cart-tooltip.svg';
+
 const FinalizeOrder = ({
   name,
   email,
@@ -50,7 +52,7 @@ const FinalizeOrder = ({
             <p className="invoice-no--value">{ invoiceNumber }</p>
             <div className="cart-details-icon-container">
               <p className="cart-details">Cart Details</p>
-              <i className="material-icons extra-details-icon">error_outline</i>
+              <img className="extra-details-icon" src={ CartInfoIcon }/>
               <div className="cart-details-tooltip">
                 <div className="cart-details-table-title">
                   <p>Product Name</p>

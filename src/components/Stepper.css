@@ -59,8 +59,8 @@
 }
 
 .stepperImageContainer span {
-  height: 100%;
-  width: 100%;
+  height: 1.7rem;
+  width: 1.7rem;
   background: #000;
   opacity: .7;
   position: absolute;

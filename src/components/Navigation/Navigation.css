@@ -78,7 +78,6 @@
 
 .Navigation-sidebar-content {
   height: calc(100% - 4rem);
-  overflow-y: scroll;
 }
 
 .checkout-header-icon {
