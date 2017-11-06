@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
 }
 
 .checkout-background {
@@ -48,6 +49,7 @@
   justify-content: space-between;
   height: 2.3em;
   padding: 0 0.5rem;
+  align-items: center;
 }
 
 .fee-info-and-icon {
@@ -60,9 +62,8 @@
   font-size: 0.8em;
   margin: 0;
   padding: 0.5rem 0rem;
-  font-weight: 600;
   color: dimgray;
-  font-family: "Harmonia Bold";
+  font-family: "Harmonia Regular";
 }
 
 .deliv-fee-info-btn {
@@ -81,7 +82,7 @@
   border-radius: 0.3em;
   bottom: 0.1em;
   position: absolute;
-  left: 75%;
+  left: 50%;
   bottom: 2.3em;
   display: flex;
   flex-direction: column;
@@ -101,7 +102,7 @@
   border-top: 0.5em solid rgba(0, 0, 0, 0.8);
   position: absolute;
   bottom: -0.5em;
-  left: 15%;
+  left: 40%;
   z-index: -1;
 }
 
@@ -131,10 +132,22 @@
   font-family: "Harmonia Bold";
   font-size: 0.8em;
   margin: 0;
-  padding: 0.5rem 1rem;
   font-weight: 600;
-  font-size: 1.2em;
-  padding: 0.2rem 1rem;
+  font-size: .9em;
+  padding: 0 .2rem;
+  position: relative;
+  margin-bottom: .3em;
+  line-height: 1.2em;
+}
+
+.calc-money-amount::before {
+  content: "+";
+  position: absolute;
+  left: -1.5em;
+  font-family: "Harmonia Regular";
+  font-weight: 100;
+  line-height: 1.2em;
+  font-size: 1em;
 }
 
 .checkout-footer--btn {
@@ -205,6 +218,7 @@
   display: flex;
   justify-content: space-around;
   margin-bottom: 0.5em;
+  width: 100%;
   justify-content: space-between;
 }
 
@@ -214,7 +228,7 @@
 }
 
 .footer-back-btn {
-  width: 30%;
+  width: 7em;
   background: dimgray;
   font-weight: bold;
   color: #fff !important;
@@ -273,4 +287,31 @@
 
 .heightAuto {
   height: auto;
+}
+
+.cart-back-btn {
+  height: 36px;
+  border: none;
+  border-radius: 2px;
+  font-size: 14px;
+  text-transform: uppercase;
+  background-color: dimgray;
+  width: 7em;
+  background: dimgray;
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.cart-back-btn p {
+  margin: 0;
+}
+
+.cart-back-btn img {
+  margin-bottom: .25em;
+  height: 1.7em;
+  width: 1.7em;
 }
