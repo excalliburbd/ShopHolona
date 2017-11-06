@@ -11,7 +11,7 @@ import NavigationDrawer from './NavigationDrawer';
 import NavigationAppBar from './NavigationAppBar';
 import NotFound from '../NotFound';
 import CheckoutIcon from '../../assets/images/header-checkout.svg';
-// import CartIcon from '../../assets/images/cart-header-icon.svg';
+import CartIcon from '../../assets/images/cart-header-icon.svg';
 
 import FilterBarContainer from '../../containers/FilterBarContainer';
 import SignUpContainer from '../../containers/SignUpContainer';
@@ -202,7 +202,7 @@ class Nav extends Component {
               <h1>
                 { titleMsg }
               </h1>
-              <img src={CheckoutIcon} alt="" className="checkout-header-icon"/>
+              <img src={ sidebarType === 'CART'? CartIcon : CheckoutIcon } alt="" className="checkout-header-icon"/>
             </div>
             <div className="Navigation-sidebar-content">
               <SidebarContent />
