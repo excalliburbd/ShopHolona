@@ -171,6 +171,7 @@ class CheckoutDelivery extends Component {
                 this.state.comment && <Input multiline
                     value={ additionalComments }
                     className="spec-inst-input-box"
+                    hint="Call me when nearby, handle with care &amp; love, etc."
                     onChange={
                       value => updateAdditionalComments(value)
                     }  />
