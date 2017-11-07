@@ -24,6 +24,7 @@ const ProductDetailsMain = ({
   makeFeaturedProduct,
   featuredID,
   selectVariance,
+  shopDomain,
 }) => {
   if ( shortDesc === '' ) {
     shortDesc = 'No description available';
@@ -93,6 +94,12 @@ const ProductDetailsMain = ({
       <div className="details-main-desc">
         <h4 className="details-main-subtitle">Description</h4>
         <p>{ shortDesc }</p>
+      </div>
+
+      <div className="details-main-desc">
+        <h4 className="details-main-subtitle">URL</h4>
+        <p>Product URL: { `${shopDomain}.shophobe.tk?productID=${id}` }</p>
+        <p>Add To Cart: { `${shopDomain}.shophobe.tk?productID=${id}&variantID=${variances[selectedVariant].attributes[selectedAttribute].id}` }</p>
       </div>
 
     </div>

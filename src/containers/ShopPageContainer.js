@@ -71,6 +71,7 @@ const mapStateToProps = state => {
     following: getFollowing(state),
     tourIsOpen: getTourIsOpen(state),
     tourCurrentStep: getCurrentStep(state),
+    shopDomain: state.shop.subdomain,
   }
 }
 

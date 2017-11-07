@@ -10,7 +10,8 @@ import IconButton from 'react-toolbox/lib/button/IconButton';
 import NavigationDrawer from './NavigationDrawer';
 import NavigationAppBar from './NavigationAppBar';
 import NotFound from '../NotFound';
-import CartIcon from '../Cart/CartIcon';
+import CheckoutIcon from '../../assets/images/header-checkout.svg';
+import CartIcon from '../../assets/images/cart-header-icon.svg';
 
 import FilterBarContainer from '../../containers/FilterBarContainer';
 import SigninSignup from '../SignUp/SignInSignUp';
@@ -79,32 +80,25 @@ class Nav extends Component {
 
     handleGetMedia();
 
-    const id = window.shopID;
-
     if(location.search !== '') {
-      const searchParts = location.search.split('&');
+      const search = location.search.substring(1);
+      const queryParams = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
 
-      if (searchParts.length === 2) {
-          const idPart = searchParts[0].split('=');
-          const tokenPart = searchParts[1].split('=');
+      const {
+        accessToken,
+        productID,
+        variantID,
+      } = queryParams;
 
-          if (idPart[0] === '?shopId' && tokenPart[0] === 'accessToken') {
-            handleSetCredentials(idPart[1], tokenPart[1], parseInt(idPart[1], 10) === demostore);
-          }
+      const shopID = queryParams.shopId || window.shopID;
 
-          history.replace('/');
-      } else if (searchParts.length === 1) {
-        const idPart = searchParts[0].split('=');
+      handleSetCredentials(shopID, accessToken, parseInt(shopID, 10) === demostore, { productID, variantID });
 
-        if (idPart[0] === '?shopId') {
-          handleSetCredentials(idPart[1], null, parseInt(idPart[1], 10) === demostore);
-        }
-
+      if (accessToken) {
         history.replace('/');
-      } else {
-        id && handleSetCredentials(id, null, id === demostore);
       }
     } else {
+      const id = window.shopID;
       id && handleSetCredentials(id, null, id === demostore);
     }
   }
@@ -122,6 +116,7 @@ class Nav extends Component {
       handleSignIn,
       handleSignOut,
       sidebarType,
+      sidebarSubType,
       shopName,
       refCode,
       pinned,
@@ -172,42 +167,43 @@ class Nav extends Component {
           <Confirm />
           <AddButtonContainer vendor={ vendor } />
           <NavigationDrawer pinned={ pinned } history={ history } location={ location }/>
-          <Panel className={ panelClass }>
-            <NavigationAppBar searchbar={ searchbar }
-                              history={ history }
-                              location={ location }
-                              shopName={ shopName }
-                              refCode={ refCode }
-                              hideSearchbar={ hideSearchbar }
-                              userLoggedIn={ userLoggedIn }
-                              handleSignOut={ handleSignOut }
-                              showSearchbar={ showSearchbar }
-                              handleSignIn={ handleSignIn }
-                              vendor={ vendor }
-                              profilePic={ profilePic }
-                              showCartSidebar={ showCartSidebar } />
-            <div className={
-                  (location.pathname === '/') ?
-                    'Navigation-content-main' :
-                    'Navigation-content'
-                } >
-              <FilterBarContainer
-                show={ ('/' !== location.pathname) }
-                flat={ ('/dashboard' !== location.pathname)}
-                route={ location.pathname } />
-                <div data-tour="navigation-content" >
-                  { children }
-                </div>
-            </div>
-          </Panel>
+            <Panel className={ panelClass + (sidebarType !== 'CART' && sidebarType ? ' background-blur' : '') }>
+              <NavigationAppBar searchbar={ searchbar }
+                                history={ history }
+                                location={ location }
+                                shopName={ shopName }
+                                refCode={ refCode }
+                                hideSearchbar={ hideSearchbar }
+                                userLoggedIn={ userLoggedIn }
+                                handleSignOut={ handleSignOut }
+                                showSearchbar={ showSearchbar }
+                                handleSignIn={ handleSignIn }
+                                vendor={ vendor }
+                                profilePic={ profilePic }
+                                showCartSidebar={ showCartSidebar } />
+              <div className={
+                    (location.pathname === '/') ?
+                      'Navigation-content-main' :
+                      'Navigation-content'
+                  } >
+                <FilterBarContainer
+                  show={ ('/' !== location.pathname) }
+                  flat={ ('/dashboard' !== location.pathname)}
+                  route={ location.pathname } />
+                  <div data-tour="navigation-content" >
+                    { children }
+                  </div>
+              </div>
+            </Panel>
+          }
           <Sidebar pinned={ showSidebar } className="Navigation-sidebar" >
             <div className="Navigation-sidebar-action">
-              <IconButton icon='close' onClick={ handleHideSidebar }/>
+              {sidebarSubType !== 'FINALIZE_ORDER' && <IconButton icon='close' onClick={ handleHideSidebar }/>}
               <h1>
                 { titleMsg }
               </h1>
+              <img src={CheckoutIcon} alt="" className="checkout-header-icon"/>
             </div>
-            <CartIcon />
             <div className="Navigation-sidebar-content">
               <SidebarContent />
             </div>

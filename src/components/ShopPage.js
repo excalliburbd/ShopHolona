@@ -67,6 +67,7 @@ const ShopPage = ({
   tourCurrentStep,
   handleTourInterrupt,
   selectVariance,
+  shopDomain,
 }) => {
 
   const detailsClass = classNames({
@@ -260,7 +261,8 @@ const ShopPage = ({
                               shop={ shop }
                               makeFeaturedProduct={ makeFeaturedProduct }
                               deleteFromFeaturedProduct={ deleteFromFeaturedProduct }
-                              selectVariance={ selectVariance } />:
+                              selectVariance={ selectVariance }
+                              shopDomain={ shopDomain } />:
               [
                 <div className="ShopPage-featured" key="arr-layout-1">
                   <FeaturedSlider vendor={ vendor }
@@ -272,7 +274,8 @@ const ShopPage = ({
                                                                                   handleShowCustomerDetails={ () => handleShowProductDetails(false, product) }
                                                                                   key={ key }
                                                                                   addToCart={ handleAddToCart }
-                                                                                  setVariant={ handleSetVariant } />
+                                                                                  setVariant={ handleSetVariant }
+                                                                                  shopDomain={ shopDomain } />
                                                 ) }/>
                 </div>,
                 <div className="ShopPage-products--container" key="arr-layout-2">
@@ -310,7 +313,8 @@ const ShopPage = ({
                                                   key="AddProductKey"
                                                   addToCart={ handleAddToCart }
                                                   setVariant={ handleSetVariant }
-                                                  data-tour="add-product" />
+                                                  data-tour="add-product"
+                                                  shopDomain={ shopDomain } />
                       }
                       {
                         products[selectedChip].products.map(
@@ -321,7 +325,8 @@ const ShopPage = ({
                                                           handleShowCustomerDetails={ () => handleShowProductDetails(false, product) }
                                                           key={ key }
                                                           addToCart={ handleAddToCart }
-                                                          setVariant={ handleSetVariant } />
+                                                          setVariant={ handleSetVariant }
+                                                          shopDomain={ shopDomain } />
                         )
                       }
                     </div>

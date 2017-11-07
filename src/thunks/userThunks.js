@@ -136,9 +136,11 @@ export const trySignInAsyncAction = (res, hide, nextStep) =>  (dispatch, getStat
                 if (hide) {
                   dispatch(sidebarActions.sidebar.hide());
                 }
+
                 if (nextStep) {
                   dispatch(nextStep);
                 }
+
                 dispatch(userActions.user.done.get.token(res.token));
                 dispatch(getUserAddress(res.token));
                 dispatch(getShopCategories(shopID));
@@ -146,7 +148,7 @@ export const trySignInAsyncAction = (res, hide, nextStep) =>  (dispatch, getStat
                 dispatch(getFollowingShop(shopID, res.token));
                 dispatch(getShopPayments(shopID, res.token));
                 dispatch(validateCart(res.token));
-                dispatch(getCart(res.token, false));
+                dispatch(getCart(res.token, false, false));
               }
             }
           ).catch(

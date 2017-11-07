@@ -7,6 +7,7 @@ import Link from 'react-toolbox/lib/link/Link';
 import './CheckNumber.css';
 
 const CheckNumber = ({
+  loading,
   phone,
   updatePhone,
   verify,
@@ -24,7 +25,14 @@ const CheckNumber = ({
              value={ phone }
              onKeyPress={(event)=>{if (event.which === 13) {handleSubmit(phone)}}}
              onChange={ value => updatePhone(value) }
-             required />
+             required>
+             {
+               loading &&
+                <div className="spinner">
+                  <div className="spinner-child"></div>
+                </div>
+              }
+      </Input>
       {
         (validPhone && existingPhone) && [
             <Input label='Enter Your Password'

@@ -16,6 +16,7 @@ class PhoneSignInSignUp extends React.Component {
       existingPhone: false,
       code: '',
       forgotPassword: false,
+      loading: false,
     }
   }
 
@@ -24,10 +25,14 @@ class PhoneSignInSignUp extends React.Component {
 
   checkPhoneThunks = (phone) => {
     clearTimeout(this.typingTimeout);
+    this.setState({
+      loading: true
+    })
     this.typingTimeout = setTimeout(() => {
       this.isValidPhone(phone) && this.props.handleCheckPhoneNumber(phone);
       this.setState({
-        validPhone: this.isValidPhone(phone)
+        validPhone: this.isValidPhone(phone),
+        loading: false
       });
     }, 1000)
   }
@@ -87,7 +92,8 @@ class PhoneSignInSignUp extends React.Component {
       password,
       fullName,
       code,
-      forgotPassword
+      forgotPassword,
+      loading
     } = this.state;
 
     return (
@@ -95,7 +101,7 @@ class PhoneSignInSignUp extends React.Component {
           <div className="PhoneSignInSignUp-title">{ (!guestID && forgotPassword) ? 'Verify And Access Your Account' : title }</div>
           { (!guestID && forgotPassword) && <div className="PhoneSignInSignUp-subTitle">Please check your phone for a verification code</div> }
          {
-            guestID && <VerificationComponent phone={ number }
+            (guestID && !loading) && <VerificationComponent phone={ number }
                                      updatePhone={ handleUpdatePhone }
                                      name={ fullName }
                                      changeFullName={ this.handleChangeFullName }
@@ -112,6 +118,7 @@ class PhoneSignInSignUp extends React.Component {
           }
           {
             (!guestID && !forgotPassword) && <CheckNumber phone={ number }
+                                                          loading={loading}
                                                           updatePhone={ phone => {
                                                             this.checkPhoneThunks(phone);
                                                             handleUpdatePhone(phone);

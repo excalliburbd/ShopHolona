@@ -11,12 +11,13 @@ const FinalizeOrder = ({
   cartTotal,
   invoiceNumber,
   profile,
+  shopName
 }) => {
   return(
     <div>
       {/* <div>{title}</div> */}
       <div className="confirmation-icon-step">
-        <p>Awaiting Confirmation From "Vendor Name"</p>
+        <p>Awaiting Confirmation From { shopName }</p>
         <div className="confirm-icon-div">
           <i className="material-icons done-icon">done</i>
         </div>
@@ -46,8 +47,10 @@ const FinalizeOrder = ({
           <div className="order-details">
             <p className="invoice-no">Invoice No:</p>
             <p className="invoice-no--value">{ invoiceNumber }</p>
-            <p className="cart-details">Cart Details</p>
-            <i className="material-icons extra-details-icon">error_outline</i>
+            <div className="cart-details-icon-container">
+              <p className="cart-details">Cart Details</p>
+              <i className="material-icons extra-details-icon">error_outline</i>
+            </div>
             <div className="total-amount">
               <p className="Total">Total:</p>
               <p className="total-value">{ cartTotal.price }</p>

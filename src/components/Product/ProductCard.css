@@ -10,7 +10,7 @@
 
 .ProductCard--addProduct {
   position: relative;
-  top: -1em;
+  top: -1.25em;
 }
 .ProductCard--addProduct:hover {
   background-color: #ededed;
@@ -42,7 +42,6 @@
   padding: 0px 0.6em;
   text-align: center;
   color: #666666;
-
 }
 
 .ProductCard--addProduct-rating, .ProductCard--addProduct-button, .ProductCard--addProduct-details-name {
@@ -98,6 +97,7 @@
   justify-content: space-between;
   margin-bottom: 0.4em;
 }
+
 .ProductCard-details-stars .Stars{
   font-size: 1.7em;
 }

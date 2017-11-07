@@ -37,6 +37,7 @@ const ProductDetails = ({
                           makeFeaturedProduct,
                           featuredID,
                           selectVariance,
+                          shopDomain
                         }) => {
 
   const images = product.variances[product.selectedVariant].images.map(
@@ -146,7 +147,8 @@ const ProductDetails = ({
                                   shop={ shop }
                                   makeFeaturedProduct={ makeFeaturedProduct }
                                   deleteFromFeaturedProduct={ deleteFromFeaturedProduct }
-                                  selectVariance={ selectVariance } />
+                                  selectVariance={ selectVariance }
+                                  shopDomain={ shopDomain } />
             </small>
           </Tab>
           {/*<Tab label='Specifications'><small>Product Specifications Not Available</small></Tab>*/}

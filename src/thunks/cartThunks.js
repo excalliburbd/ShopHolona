@@ -5,7 +5,7 @@ import { request, getConfig, fromState } from './helpers';
 
 import { cartActions, sidebarActions } from '../actions/';
 
-export const getCart = (token, show) => dispatch => {
+export const getCart = (token, show, initial) => dispatch => {
   dispatch(cartActions.cart.set.loading(true));
 
   if (token) {
@@ -15,7 +15,11 @@ export const getCart = (token, show) => dispatch => {
             res => {
               // Cart fetching successful
               dispatch(cartActions.cart.done.get(res));
-              show && dispatch(sidebarActions.sidebar.show.addToCart());
+
+              if ((show || res.length > 0) && !initial) {
+                dispatch(sidebarActions.sidebar.show.addToCart());
+              }
+
               dispatch(cartActions.cart.set.loading(false));
             }
           ).catch(
