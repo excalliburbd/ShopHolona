@@ -291,6 +291,7 @@
 }
 
 .cart-back-btn {
+  padding: 0;
   height: 36px;
   border: none;
   border-radius: 2px;
