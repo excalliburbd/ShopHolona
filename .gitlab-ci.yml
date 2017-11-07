@@ -1,15 +1,25 @@
+image: fahim74/nodejs-yarn-docker
+
+before_script:
+  - 'which ssh-agent || ( apk --update add openssh-client )'
+  # Run ssh-agent (inside the build environment)
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY" | ssh-add -
+  - mkdir -p ~/.ssh
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
 variables:
   DOCKER_REPO: registry.gitlab.com
   MAIN_IMAGE_NAME: shophobe/shophobe-vendor
+
+services:
+  - docker:dind
 
 stages:
   - build
 
 build:
-  image: fahim74/nodejs-yarn-docker
   stage: build
-  services:
-    - docker:dind
   script:
     - yarn
     - yarn build:dev
@@ -18,3 +28,5 @@ build:
     - docker build -t $DOCKER_REPO/$MAIN_IMAGE_NAME:$CI_COMMIT_REF_NAME .
     - docker push $DOCKER_REPO/$MAIN_IMAGE_NAME:latest
     - docker push $DOCKER_REPO/$MAIN_IMAGE_NAME:$CI_COMMIT_REF_NAME
+    - rm build/*.map && rm build/static/css/*.map && rm build/static/js/*.map
+    - scp -r build root@45.32.124.232:/root/app/vendor/
