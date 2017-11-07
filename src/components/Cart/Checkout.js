@@ -62,6 +62,11 @@ class Checkout extends Component {
       updateAdditionalComments,
       handleDeleteAddress,
       shopName,
+      addressTitle,
+      addressDescription,
+      addressCity,
+      addressThana,
+      addressDistrict,
     } = this.props;
 
     const getStep = type => {
@@ -155,6 +160,11 @@ class Checkout extends Component {
                                                             handleAddressAndShowNext={ handleAddressAndShowNext }
                                                             details={ details }
                                                             title={ title }
+                                                            addressTitle={ addressTitle }
+                                                            addressDescription={ addressDescription }
+                                                            addressThana={ addressThana }
+                                                            addressDistrict={ addressDistrict }
+                                                            addressCity={ addressCity }
                                                             selectedAddress={ selectedAddress }
                                                             setSelectedAddress={ handleSetSelectedAddress }
                                                             additionalComments={ additionalComments }

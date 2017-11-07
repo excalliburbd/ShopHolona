@@ -205,8 +205,9 @@
 .checkout--delivery-title {
   font-size: 0.9em;
   font-weight: bold;
-  margin: 0.5em;
+  margin: 0em;
   font-style: italic;
+  margin-top: 1em;
 }
 
 .footer-next-btn {

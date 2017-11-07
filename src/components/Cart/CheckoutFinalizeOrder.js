@@ -52,7 +52,7 @@ const FinalizeOrder = ({
             <p className="invoice-no--value">{ invoiceNumber }</p>
             <div className="cart-details-icon-container">
               <p className="cart-details">Cart Details</p>
-              <img className="extra-details-icon" src={ CartInfoIcon }/>
+              <img className="extra-details-icon" src={ CartInfoIcon } alt='cart-details-icon'/>
               <div className="cart-details-tooltip">
                 <div className="cart-details-table-title">
                   <p>Product Name</p>
