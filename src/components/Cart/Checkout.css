@@ -1,6 +1,6 @@
 :root {
   --footer-height: 10rem;
-  --border-color: rgba(0,0,0,0.12);
+  --border-color: rgba(0, 0, 0, 0.12);
 }
 
 .checkout-container {
@@ -10,10 +10,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
 }
 
 .checkout-background {
-  background: url('../../assets/images/checkout-background.png');
+  background: url("../../assets/images/checkout-background.png");
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -47,40 +48,106 @@
   display: flex;
   justify-content: space-between;
   height: 2.3em;
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
+  align-items: center;
 }
 
 .fee-info-and-icon {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .fee-info-and-icon p {
-  font-size: .8em;
+  font-size: 0.8em;
   margin: 0;
   padding: 0.5rem 0rem;
-  font-weight: 600;
   color: dimgray;
-  font-family: "Harmonia Bold";
+  font-family: "Harmonia Regular";
 }
 
 .deliv-fee-info-btn {
   font-size: 1.3em !important;
-  bottom: .08em;
+  bottom: 0.08em;
   cursor: pointer;
   position: relative;
-  margin-left: .25em;
+  margin-left: 0.25em;
+  z-index: 5;
+}
+
+.fee-info-tooltip {
+  height: 0em;
+  width: 10em;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 0.3em;
+  bottom: 0.1em;
+  position: absolute;
+  left: 50%;
+  bottom: 2.3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  opacity: 0;
+  z-index: 2;
+  transition: all .2s;
+}
+
+.fee-info-tooltip::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 0.5em solid transparent;
+  border-right: 0.5em solid transparent;
+  border-top: 0.5em solid rgba(0, 0, 0, 0.8);
+  position: absolute;
+  bottom: -0.5em;
+  left: 40%;
+  z-index: -1;
+}
+
+.fee-info-tooltip p {
+  color: #eee;
+  margin: 0;
+  padding: 0;
+}
+
+.fee-info-tooltip p:nth-child(odd) {
+  font-weight: bold;
+  font-size: 0.8em;
+}
+
+.fee-info-tooltip p:nth-child(even) {
+  font-size: 0.6em;
+  font-weight: normal;
+}
+
+.deliv-fee-info-btn:hover ~ .fee-info-tooltip {
+  opacity: 1;
+  height: 10em;
 }
 
 .checkout-footer--info .calc-money-amount {
   color: dimgray;
   font-family: "Harmonia Bold";
-  font-size: .8em;
+  font-size: 0.8em;
   margin: 0;
-  padding: 0.5rem 1rem;
   font-weight: 600;
-  font-size: 1.2em;
-  padding: 0.2rem 1rem;
+  font-size: .9em;
+  padding: 0 .2rem;
+  position: relative;
+  margin-bottom: .3em;
+  line-height: 1.2em;
+}
+
+.calc-money-amount::before {
+  content: "+";
+  position: absolute;
+  left: -1.5em;
+  font-family: "Harmonia Regular";
+  font-weight: 100;
+  line-height: 1.2em;
+  font-size: 1em;
 }
 
 .checkout-footer--btn {
@@ -102,15 +169,15 @@
   align-items: center;
 }
 
-.checkout--btn-container Button {
+.checkout--btn-container button {
   height: 100%;
   width: 40%;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  font-size: .7em;
-  border-radius: .5em;
-  padding: 0 .5em;
+  font-size: 0.7em;
+  border-radius: 0.5em;
+  padding: 0 0.5em;
 }
 
 .checkout--exprs-btn {
@@ -119,7 +186,7 @@
   font-family: var(--btn-font);
   cursor: default;
   box-shadow: none !important;
-  opacity: .4;
+  opacity: 0.4;
 }
 
 .checkout--exprs-btn:hover {
@@ -127,7 +194,7 @@
 }
 
 .checkout--std-btn {
-  box-shadow: 0 0 10px 1px rgba(255,204,51, 1);
+  box-shadow: 0 0 10px 1px rgba(255, 204, 51, 1);
 }
 
 .btn-title-desc {
@@ -136,9 +203,9 @@
 }
 
 .checkout--delivery-title {
-  font-size: .9em;
+  font-size: 0.9em;
   font-weight: bold;
-  margin: .5em;
+  margin: 0.5em;
   font-style: italic;
 }
 
@@ -150,16 +217,18 @@
 .footer-back-confirm-container {
   display: flex;
   justify-content: space-around;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
+  width: 100%;
   justify-content: space-between;
 }
 
 .footer-back-confirm-container button {
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
 .footer-back-btn {
-  width: 30%;
+  width: 7em;
   background: dimgray;
   font-weight: bold;
   color: #fff !important;
@@ -170,12 +239,12 @@
 }
 
 .Checkout-toggled {
-  box-shadow: 0 0 10px 1px rgba(255,204,51, 1) !important;
+  box-shadow: 0 0 10px 1px rgba(255, 204, 51, 1) !important;
 }
 
 .footer-btn-container {
   position: relative;
-  bottom: .5em;
+  bottom: 0.5em;
   width: 95%;
 }
 
@@ -191,10 +260,10 @@
 }
 
 .non-reg-user-footer p {
-  font-size: .7em;
+  font-size: 0.7em;
   width: 95%;
   text-align: center;
-  margin-bottom: .3em;
+  margin-bottom: 0.3em;
 }
 
 .non-reg-user-footer button {
@@ -209,7 +278,7 @@
 .payment-info-btn {
   position: relative;
   right: 3em;
-  top: .2em;
+  top: 0.2em;
 }
 
 .overFlow {
@@ -218,4 +287,31 @@
 
 .heightAuto {
   height: auto;
+}
+
+.cart-back-btn {
+  height: 36px;
+  border: none;
+  border-radius: 2px;
+  font-size: 14px;
+  text-transform: uppercase;
+  background-color: dimgray;
+  width: 7em;
+  background: dimgray;
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.cart-back-btn p {
+  margin: 0;
+}
+
+.cart-back-btn img {
+  margin-bottom: .25em;
+  height: 1.7em;
+  width: 1.7em;
 }

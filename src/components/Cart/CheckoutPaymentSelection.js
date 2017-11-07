@@ -15,29 +15,29 @@ const PaymentSelection = ({title}) => {
         <img src={deliveryOne} alt=""/>
         <div className="payment-method-desc">
           <p>Cash on Delivery</p>
-          <p>Pay with cash for ultimate convenience when the product is delivered to you.</p>
+          {/* <p>Pay with cash for ultimate convenience when the product is delivered to you.</p> */}
         </div>
       </div>
       <div className="payment-option--payment-method disabled" title="Coming Soon">
         <img src={deliveryTwo} alt=""/>
         <div className="payment-method-desc">
         <p>Credit Card Payment</p>
-        <p>Pay online through your credit card (VISA, MasterCard) for a safe and secure transaction. </p>
+        {/* <p>Pay online through your credit card (VISA, MasterCard) for a safe and secure transaction. </p> */}
       </div>
       </div>
       <div className="payment-option--payment-method disabled" title="Coming Soon">
         <img src={deliveryThree} alt=""/>
         <div className="payment-method-desc">
         <p>Mobile Banking</p>
-        <p>Pay from all across Bangladesh with all options of mobile banking available for you
-        (nominal fees will be charged).</p>
+        {/* <p>Pay from all across Bangladesh with all options of mobile banking available for you
+        (nominal fees will be charged).</p> */}
       </div>
       </div>
       <div className="payment-option--payment-method disabled" title="Coming Soon">
         <img src={deliveryFour} alt=""/>
         <div className="payment-method-desc">
         <p>SH Coins</p>
-        <p>Pay with your own exclusive SH Coins (coming soon).</p>
+        {/* <p>Pay with your own exclusive SH Coins (coming soon).</p> */}
       </div>
       </div>
     </div>

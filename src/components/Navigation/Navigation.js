@@ -202,7 +202,7 @@ class Nav extends Component {
               <h1>
                 { titleMsg }
               </h1>
-              <img src={CheckoutIcon} alt="" className="checkout-header-icon"/>
+              <img src={ sidebarType === 'CART'? CartIcon : CheckoutIcon } alt="" className="checkout-header-icon"/>
             </div>
             <div className="Navigation-sidebar-content">
               <SidebarContent />

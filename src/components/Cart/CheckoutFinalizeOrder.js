@@ -3,6 +3,8 @@ import React from "react";
 import UserPicExample from "../../assets/images/user-pic-example.svg";
 import './CheckoutFinalizeOrder.css';
 
+import CartInfoIcon from '../../assets/images/sh-shopping-cart-tooltip.svg';
+
 const FinalizeOrder = ({
   name,
   email,
@@ -11,7 +13,8 @@ const FinalizeOrder = ({
   cartTotal,
   invoiceNumber,
   profile,
-  shopName
+  shopName,
+  cartItems
 }) => {
   return(
     <div>
@@ -49,7 +52,23 @@ const FinalizeOrder = ({
             <p className="invoice-no--value">{ invoiceNumber }</p>
             <div className="cart-details-icon-container">
               <p className="cart-details">Cart Details</p>
-              <i className="material-icons extra-details-icon">error_outline</i>
+              <img className="extra-details-icon" src={ CartInfoIcon } alt='cart-details-icon'/>
+              <div className="cart-details-tooltip">
+                <div className="cart-details-table-title">
+                  <p>Product Name</p>
+                  <p>Qty</p>
+                  <p>Price</p>
+                </div>
+                {
+                  cartItems.map((item, index)=>{
+                    return <div key={index} className="cart-details-table-desc">
+                      <p>{item.product.name}</p>
+                      <p>{item.quantity}</p>
+                      <p>{item.product.sh_price}</p>
+                    </div>
+                  })
+                }
+              </div>
             </div>
             <div className="total-amount">
               <p className="Total">Total:</p>

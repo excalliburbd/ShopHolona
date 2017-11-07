@@ -37,6 +37,11 @@
   font-size: .4em;
 }
 
+.thana-input-box{
+  position: relative;
+  bottom: 1em;
+}
+
 @keyframes bounceInDown {
   from, 60%, 75%, 90%, to {
     animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);

@@ -32,15 +32,15 @@
   width: 1.7rem;
   border-radius: 50%;
   z-index: 10;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
-  padding-top: .3em;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  padding-top: .4em;
   background: #fff;
   position: relative;
   top: .2em;
 }
 
 .stepperImageContainer img {
-  height: 1rem;
+  height: .9rem;
 }
 
 .maximized {
@@ -50,6 +50,7 @@
   background: #fff;
   position: relative;
   top: -3%;
+  box-shadow: 0 0 10px 1px rgba(255,204,51, 1);
 }
 
 .maximized img {
@@ -58,8 +59,8 @@
 }
 
 .stepperImageContainer span {
-  height: 100%;
-  width: 100%;
+  height: 1.7rem;
+  width: 1.7rem;
   background: #000;
   opacity: .7;
   position: absolute;

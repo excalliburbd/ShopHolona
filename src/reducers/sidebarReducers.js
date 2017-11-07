@@ -67,7 +67,7 @@ export const SidebarUIReducer = handleActions({
     show: true,
     type: 'CHECKOUT',
     subType: 'ADDRESS',
-    titleMsg: 'Delivery Address'
+    titleMsg: 'Checkout'
   }),
   [sidebarActions.sidebar.show.checkoutPhone]: (state, action) => ({
     ...state,
