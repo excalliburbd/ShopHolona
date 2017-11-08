@@ -7,7 +7,7 @@ export const getTitleMsg = state => state.ui.sidebar.titleMsg;
 export const getPinState = createSelector(
   [getLocation],
   location => {
-    if (location.pathname === '/') {
+    if (location.pathname === '/' || location.pathname.split('/')[1] === 'product') {
       return false;
     } else {
       return true;

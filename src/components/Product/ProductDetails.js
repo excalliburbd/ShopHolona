@@ -37,7 +37,10 @@ const ProductDetails = ({
                           makeFeaturedProduct,
                           featuredID,
                           selectVariance,
-                          shopDomain
+                          shopDomain,
+                          history,
+                          location,
+                          match,
                         }) => {
 
   const images = product.variances[product.selectedVariant].images.map(
@@ -54,7 +57,11 @@ const ProductDetails = ({
     img: `${images[0].original}`
   };
 
-
+  if (location.search === '') {
+    history.push(`${match.url}?${variances[selectedVariant].type.value}+${variances[selectedVariant].attributes[selectedAttribute].type.value}`);
+  } else if (location.search !== `?${variances[selectedVariant].type.value}+${variances[selectedVariant].attributes[selectedAttribute].type.value}`) {
+    history.push(`${match.url}?${variances[selectedVariant].type.value}+${variances[selectedVariant].attributes[selectedAttribute].type.value}`);
+  }
 
   return (
     <div className="product-details-container">

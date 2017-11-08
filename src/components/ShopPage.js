@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { Switch, Route } from 'react-router';
 
 import Button from 'react-toolbox/lib/button/Button';
 import IconButton from 'react-toolbox/lib/button/IconButton';
@@ -68,6 +69,7 @@ const ShopPage = ({
   handleTourInterrupt,
   selectVariance,
   shopDomain,
+  location,
 }) => {
 
   const detailsClass = classNames({
@@ -150,6 +152,8 @@ const ShopPage = ({
                     }
                     label="Follow"/>
   }
+
+  console.log('hi', location)
 
   return (
     <div className={ productDetailsClass } >
@@ -244,100 +248,104 @@ const ShopPage = ({
           }
         </div>
       </div>
-        <div className="ShopPage-products">
-          {
-            (productDetails) ?
-              <ProductDetails toggleDetails={ handleToggleProductDetails }
-                              { ...selectedProductDetails }
-                              product={ selectedProductDetails }
-                              token={ token }
-                              addToCart={ handleAddToCart }
-                              setVariant={ handleSetVariant }
-                              tabIndex={ productDetailstabIndex }
-                              tabChange={ handleProductDetailsTab }
-                              setAttribute={ handleSetAttribute }
-                              vendor={vendor}
-                              featured={ featured }
-                              shop={ shop }
-                              makeFeaturedProduct={ makeFeaturedProduct }
-                              deleteFromFeaturedProduct={ deleteFromFeaturedProduct }
-                              selectVariance={ selectVariance }
-                              shopDomain={ shopDomain } />:
-              [
-                <div className="ShopPage-featured" key="arr-layout-1">
-                  <FeaturedSlider vendor={ vendor }
-                                  products = { featuredProducts.map(
-                                                  (product, key) => <ProductCard  { ...product }
-                                                                                  vendor={ vendor }
-                                                                                  token={ token }
-                                                                                  handleShowVendorDetails={ () => handleShowProductDetails(vendor, product) }
-                                                                                  handleShowCustomerDetails={ () => handleShowProductDetails(false, product) }
-                                                                                  key={ key }
-                                                                                  addToCart={ handleAddToCart }
-                                                                                  setVariant={ handleSetVariant }
-                                                                                  shopDomain={ shopDomain } />
-                                                ) }/>
-                </div>,
-                <div className="ShopPage-products--container" key="arr-layout-2">
-                  <div className="ShopPage-products--container-scroll-div" data-tour="shop-banner" >
-                    {
-                      vendor && <IconButton className="ShopPage-banner--icon"
-                                icon="add_a_photo"
-                                onClick={ () => handleShowImageUploader('COVER', tourIsOpen, tourCurrentStep) } />
-                    }
-                 </div>
-                  <div className="ShopPage-products--categories">
-                    {
-                      products.map(
-                        (obj, key) => <Chip onClick={ () => selectChip(key) }
-                                            className={
-                                              (selectedChip === key) ?
-                                              'ShopPage-products--category ShopPage-products--categories-selected' :
-                                              'ShopPage-products--category'
-                                            }
-                                            key={key}>
-                                        {/*{ obj.first_parent.icon && <Avatar icon={ obj.first_parent.icon } /> }*/}
-                                        { `${obj.name} (${obj.products.length})` }
-                                      </Chip>
-                      )
-                    }
-                  </div>
-                  <div className="ShopPage-products--content">
-                    <div className={ `ShopPage-products--list ${ products[selectedChip].products.length === 0 ? 'ShopPage-products--list--empty': null }` } >
-                      {
-                        (vendor) && <ProductCard  addProductCard
-                                                  vendor={ vendor }
-                                                  token={ token }
-                                                  handleShowVendorDetails={ handleAddProduct }
-                                                  handleShowCustomerDetails={ handleAddProduct }
-                                                  key="AddProductKey"
-                                                  addToCart={ handleAddToCart }
-                                                  setVariant={ handleSetVariant }
-                                                  data-tour="add-product"
-                                                  shopDomain={ shopDomain } />
-                      }
-                      {
-                        products[selectedChip].products.map(
-                          (product, key) => <ProductCard  { ...product }
-                                                          vendor={ vendor }
-                                                          token={ token }
-                                                          handleShowVendorDetails={ () => handleShowProductDetails(vendor, product) }
-                                                          handleShowCustomerDetails={ () => handleShowProductDetails(false, product) }
-                                                          key={ key }
-                                                          addToCart={ handleAddToCart }
-                                                          setVariant={ handleSetVariant }
-                                                          shopDomain={ shopDomain } />
-                        )
-                      }
-                    </div>
-                    <div className="emptydiv-phone"></div>
-                  </div>
-                  <div className="ShopPage-banner" >
-                    <div style={{ backgroundImage: `url(${coverPhoto})`}} className="ShopPage-banner" />
-                  </div>
-                </div>
-              ]
-          }
+      <div className="ShopPage-products">
+        <Switch>
+          <Route path="/product/:id" children={ props => <ProductDetails  toggleDetails={ handleToggleProductDetails }
+                                                                          { ...selectedProductDetails }
+                                                                          product={ selectedProductDetails }
+                                                                          token={ token }
+                                                                          addToCart={ handleAddToCart }
+                                                                          setVariant={ handleSetVariant }
+                                                                          tabIndex={ productDetailstabIndex }
+                                                                          tabChange={ handleProductDetailsTab }
+                                                                          setAttribute={ handleSetAttribute }
+                                                                          vendor={vendor}
+                                                                          featured={ featured }
+                                                                          shop={ shop }
+                                                                          makeFeaturedProduct={ makeFeaturedProduct }
+                                                                          deleteFromFeaturedProduct={ deleteFromFeaturedProduct }
+                                                                          selectVariance={ selectVariance }
+                                                                          shopDomain={ shopDomain }
+                                                                          { ...props } />
+                                              } />
+          <Route children={ () =>  null} />
+        </Switch>
+        {
+          location.pathname.split('/')[1] !== 'product' && <div className="ShopPage-featured" key="arr-layout-1">
+            <FeaturedSlider vendor={ vendor }
+                            products = { featuredProducts.map(
+                                            (product, key) => <ProductCard  { ...product }
+                                                                            vendor={ vendor }
+                                                                            token={ token }
+                                                                            handleShowVendorDetails={ () => handleShowProductDetails(vendor, product) }
+                                                                            handleShowCustomerDetails={ () => handleShowProductDetails(false, product) }
+                                                                            key={ key }
+                                                                            addToCart={ handleAddToCart }
+                                                                            setVariant={ handleSetVariant }
+                                                                            shopDomain={ shopDomain } />
+                                          ) }/>
+          </div>
+        }
+        {
+          location.pathname.split('/')[1] !== 'product' && <div className="ShopPage-products--container" key="arr-layout-2">
+            <div className="ShopPage-products--container-scroll-div" data-tour="shop-banner" >
+              {
+                vendor && <IconButton className="ShopPage-banner--icon"
+                          icon="add_a_photo"
+                          onClick={ () => handleShowImageUploader('COVER', tourIsOpen, tourCurrentStep) } />
+              }
+            </div>
+            <div className="ShopPage-products--categories">
+              {
+                products.map(
+                  (obj, key) => <Chip onClick={ () => selectChip(key) }
+                                      className={
+                                        (selectedChip === key) ?
+                                        'ShopPage-products--category ShopPage-products--categories-selected' :
+                                        'ShopPage-products--category'
+                                      }
+                                      key={key}>
+                                  {/*{ obj.first_parent.icon && <Avatar icon={ obj.first_parent.icon } /> }*/}
+                                  { `${obj.name} (${obj.products.length})` }
+                                </Chip>
+                )
+              }
+            </div>
+            <div className="ShopPage-products--content">
+              <div className={ `ShopPage-products--list ${ products[selectedChip].products.length === 0 ? 'ShopPage-products--list--empty': null }` } >
+                {
+                  (vendor) && <ProductCard  addProductCard
+                                            vendor={ vendor }
+                                            token={ token }
+                                            handleShowVendorDetails={ handleAddProduct }
+                                            handleShowCustomerDetails={ handleAddProduct }
+                                            key="AddProductKey"
+                                            addToCart={ handleAddToCart }
+                                            setVariant={ handleSetVariant }
+                                            data-tour="add-product"
+                                            shopDomain={ shopDomain } />
+                }
+                {
+                  products[selectedChip].products.map(
+                    (product, key) => <ProductCard  { ...product }
+                                                    vendor={ vendor }
+                                                    token={ token }
+                                                    handleShowVendorDetails={ () => handleShowProductDetails(vendor, product) }
+                                                    handleShowCustomerDetails={ () => handleShowProductDetails(false, product) }
+                                                    key={ key }
+                                                    addToCart={ handleAddToCart }
+                                                    setVariant={ handleSetVariant }
+                                                    shopDomain={ shopDomain } />
+                  )
+                }
+              </div>
+              <div className="emptydiv-phone"></div>
+            </div>
+            <div className="ShopPage-banner" >
+              <div style={{ backgroundImage: `url(${coverPhoto})`}} className="ShopPage-banner" />
+            </div>
+          </div>
+        }
       </div>
     </div>
   );

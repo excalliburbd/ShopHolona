@@ -46,7 +46,7 @@ import {
   getCurrentStep,
 } from '../selectors/tourSelectors';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
     details: state.ui.shopPage.details,
     shopName: state.shop.shop_name,
@@ -88,6 +88,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(sidebarActions.sidebar.show.addProductDetails(product));
       } else {
         dispatch(shopActions.shop.toggle.productDetails(product.id));
+        ownProps.history.push(`/product/${product.id}`);
       }
     },
     handleAddProduct: () => {
@@ -110,8 +111,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(addToCart(id, token, productID));
     },
     handleToggleProductDetails: payload => {
-      dispatch(shopActions.shop.toggle.productDetails(payload));
-      dispatch(shopActions.shop.set.detailsTab(0));
+      // dispatch(shopActions.shop.toggle.productDetails(payload));
+      // dispatch(shopActions.shop.set.detailsTab(0));
+      ownProps.history.push('/');
     },
     handleSetVariant: (id, key) => {
       dispatch(productActions.products.ui.set.productVariance({ id, key }));
@@ -158,6 +160,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-const FilterBarContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(ShopPage));
+const FilterBarContainer = connect(mapStateToProps, mapDispatchToProps)(ShopPage);
 
 export default FilterBarContainer;

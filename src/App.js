@@ -25,7 +25,7 @@ const App = () => (
     <ThemeProvider theme={theme}>
       <NavigationContainer>
         <Switch>
-          <Route exact path="/" component={ShopPageContainer} />
+          <Route path="/" component={ShopPageContainer} />
           <Route exact path="/dashboard" component={DashboardContainer} />
           <Route exact path="/admin/:backOffice" component={BackOfficeContainer} />
           <Route exact path="/settings" component={SettingsContainer} />

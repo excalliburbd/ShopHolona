@@ -82,7 +82,19 @@ class Nav extends Component {
 
     if(location.search !== '') {
       const search = location.search.substring(1);
-      const queryParams = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
+
+      let queryParams = {
+        shopId: null,
+        accessToken: null,
+        productID: null,
+        variantID: null,
+      }
+
+      try {
+        queryParams = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
+      } catch (e) {
+
+      }
 
       const {
         accessToken,
@@ -182,12 +194,12 @@ class Nav extends Component {
                                 profilePic={ profilePic }
                                 showCartSidebar={ showCartSidebar } />
               <div className={
-                    (location.pathname === '/') ?
+                    (location.pathname === '/' || location.pathname.split('/')[1] === 'product') ?
                       'Navigation-content-main' :
                       'Navigation-content'
                   } >
                 <FilterBarContainer
-                  show={ ('/' !== location.pathname) }
+                  show={ (location.pathname === '/' && location.pathname.split('/')[1] === 'product') }
                   flat={ ('/dashboard' !== location.pathname)}
                   route={ location.pathname } />
                   <div data-tour="navigation-content" >
