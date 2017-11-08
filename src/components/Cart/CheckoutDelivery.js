@@ -15,7 +15,7 @@ class CheckoutDelivery extends Component {
     super (props);
 
     this.state = {
-      add_new: this.props.addresses.length < 1,
+      addNewAddress: this.props.addresses.length < 1,
       more: false,
       addressToggleer : "add",
       comment: false,
@@ -26,7 +26,7 @@ class CheckoutDelivery extends Component {
     if (this.props.addresses.length !== nextProps.addresses.length) {
       this.handleAddNewAddress();
       this.setState({
-        add_new: nextProps.addresses.lenght < 1,
+        addNewAddress: nextProps.addresses.lenght < 1,
       })
     }
   }
@@ -35,7 +35,7 @@ class CheckoutDelivery extends Component {
     this.setState((prevState) => {
       return {
         addressToggleer: prevState.addressToggleer === "add" ? "remove":"add",
-        add_new: !prevState.add_new
+        addNewAddress: !prevState.addNewAddress
       }
     })
   }
@@ -103,7 +103,7 @@ class CheckoutDelivery extends Component {
                     }} />
           }
           {
-            this.state.add_new ? <CheckoutDeliveryAddress districts={ districts }
+            this.state.addNewAddress ? <CheckoutDeliveryAddress districts={ districts }
                                                           districtUIValue={ districtUIValue }
                                                           cities={ cities }
                                                           cityUIValue={ cityUIValue }
@@ -119,32 +119,33 @@ class CheckoutDelivery extends Component {
 
           <div className="checkout-delivery-address--view">
             {
-              addresses.length > 2?
-              Array.isArray(addresses) && addresses.map((address, key) => {
-                return (
-                  <div className={ `checkout-delivery-address--card ${ selectedAddress === key ? 'Checkout-toggled' : '' }` }
-                       key={address.id}
-                       onClick={ () => setSelectedAddress(key, selectedAddress === key) }>
-                    <div className="checkout-delivery-address--card-title">{address.address_title}</div>
-                    <div className="checkout-delivery-address--card-content">{address.details}</div>
-                    <div className="cross-btn" onClick={ () => deleteAddress(address.id) }><i className="material-icons cross-btn-icon">clear</i></div>
-                  </div>
-                )
-              })
-              :
-              Array.isArray(addresses) && addresses.map((address, key) => {
-                return (
-                  <div className={ `checkout-delivery-address--card ${ selectedAddress === key ? 'Checkout-toggled' : '' }` }
-                       key={address.id}
-                       onClick={ () => setSelectedAddress(key, selectedAddress === key) }>
-                    <div className="checkout-delivery-address--card-title">{address.address_title}</div>
-                    <div className="checkout-delivery-address--card-content">{address.details}</div>
-                  </div>
-                )
-              })
+              this.state.addressToggleer === 'add'?
+                addresses.length > 2?
+                Array.isArray(addresses) && addresses.map((address, key) => {
+                  return (
+                    <div className={ `checkout-delivery-address--card ${ selectedAddress === key ? 'Checkout-toggled' : '' }` }
+                        key={address.id}
+                        onClick={ () => setSelectedAddress(key, selectedAddress === key) }>
+                      <div className="checkout-delivery-address--card-title">{address.address_title}</div>
+                      <div className="checkout-delivery-address--card-content">{address.details}</div>
+                      <div className="cross-btn" onClick={ () => {deleteAddress(address.id);this.handleAddNewAddress();} }><i className="material-icons cross-btn-icon">clear</i></div>
+                    </div>
+                  )
+                })
+                :
+                Array.isArray(addresses) && addresses.map((address, key) => {
+                  return (
+                    <div className={ `checkout-delivery-address--card ${ selectedAddress === key ? 'Checkout-toggled' : '' }` }
+                        key={address.id}
+                        onClick={ () => setSelectedAddress(key, selectedAddress === key) }>
+                      <div className="checkout-delivery-address--card-title">{address.address_title}</div>
+                      <div className="checkout-delivery-address--card-content">{address.details}</div>
+                    </div>
+                  )
+                }) : null
             }
             {
-              this.props.addresses.length > 2 && <Button className="address-card-more-btn" label={this.state.more?"Less":"More"} onClick={ () => this.toggleShowMore() }/>
+              (this.props.addresses.length > 2 && !this.state.addNewAddress) && <Button className="address-card-more-btn" label={this.state.more?"Less":"More"} onClick={ () => this.toggleShowMore() }/>
             }
           </div>
         </div>

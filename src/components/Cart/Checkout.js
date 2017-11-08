@@ -180,6 +180,7 @@ class Checkout extends Component {
                                                                phone={ activeUser.phone }
                                                                address={ activeUser.address }
                                                                cartTotal={ total }
+                                                               additionalComments={ additionalComments }
                                                                invoiceNumber={ invoiceNumber }
                                                                cartItems={ cartItems }
                                                                profile={ activeUser.profile }

@@ -14,7 +14,8 @@ const FinalizeOrder = ({
   invoiceNumber,
   profile,
   shopName,
-  cartItems
+  cartItems,
+  additionalComments
 }) => {
   return(
     <div>
@@ -74,6 +75,11 @@ const FinalizeOrder = ({
               <p className="Total">Total:</p>
               <p className="total-value">{ cartTotal.price }</p>
             </div>
+            <div className="delivery-amount">
+              <p className="Delivery">Delivery Cost:</p>
+              <p className="delivery-value">{45 + Math.round(cartTotal.weight / 1000) * 15}</p>
+            </div>
+            <div><p>{additionalComments}</p></div>
           </div>
         </div>
       </div>
