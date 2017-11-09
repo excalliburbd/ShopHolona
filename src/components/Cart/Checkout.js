@@ -193,7 +193,7 @@ class Checkout extends Component {
             {
               sidebarType !== 'FINALIZE_ORDER' && <div className="cart-order-calculation">
                 {
-                  selectedAddress !== null || (addressCity && addressDistrict && addressThana) ?
+                  (selectedAddress !== null || (addressCity && addressDistrict && addressThana)) && sidebarType !== 'PAYMENT_SELECTION' ?
                     <DeliveryFee total={total}/>
                     :null
                 }
