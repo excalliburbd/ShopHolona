@@ -310,3 +310,46 @@
 .est-deliv-date p:last-of-type {
   width: 40%;
 }
+
+.cart-details-tooltip hr {
+  width: 95%;
+  margin: .2em 0;
+}
+
+.cart-details-extra-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.price-title-value, .deliv-fee-title-value {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  padding-left: .5em;
+}
+
+
+.cart-details-extra-info p  {
+  font-size: .6em;
+  font-weight: normal !important;
+}
+
+.total-price-value {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-left: .5em;
+}
+
+.total-price-value p {
+  font-size: .6em;
+  padding-right: .7em;
+  font-weight: normal !important;
+}
+
+.total-price-value p:last-of-type {
+  font-weight: bold !important;
+
+}

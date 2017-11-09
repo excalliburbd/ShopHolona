@@ -69,8 +69,22 @@ const FinalizeOrder = ({
                     </div>
                   })
                 }
-                <div><p>Delivery Fee : { 45 + Math.round(cartTotal.weight / 1000) * 15 }</p></div>
-                <div><p>Cart Price : { cartTotal.price }</p></div>
+                <hr/>
+                <div className="cart-details-extra-info">
+                  <div className="price-title-value">
+                    <p>Cart Price  </p>
+                    <p> { cartTotal.price }</p>
+                  </div>
+                  <div className="deliv-fee-title-value">
+                    <p>Delivery Fee  </p>
+                    <p> + { 45 + Math.round(cartTotal.weight / 1000) * 15 }</p>
+                  </div>
+                </div>
+                <hr/>
+                <div className="total-price-value">
+                  <p>Total Price  </p>
+                  <p> { cartTotal.price + (45 + Math.round(cartTotal.weight / 1000) * 15) } TK </p>
+                </div>
               </div>
             </div>
             <div className="total-amount">
