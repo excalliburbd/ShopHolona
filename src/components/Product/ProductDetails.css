@@ -167,6 +167,16 @@
   font-weight: 600;
 }
 
+
+.product-page-loader {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+
+
+
 /*for mobile*/
 @media screen and (max-width: 750px) {
   .ShopPage-product-details .ShopPage-details {
@@ -240,5 +250,9 @@
     width: 18rem;
     height: 18rem;
 
+  }
+
+  .product-page-loader {
+    height: 100vh;
   }
 }

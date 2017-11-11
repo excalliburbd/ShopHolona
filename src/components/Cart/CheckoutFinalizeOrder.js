@@ -5,6 +5,25 @@ import './CheckoutFinalizeOrder.css';
 
 import CartInfoIcon from '../../assets/images/sh-shopping-cart-tooltip.svg';
 
+function showDeliveryDate () {
+  let toDay = new Date();
+  let day = toDay.getDate();
+
+  let monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
+  "July", "Aug", "Sep", "Oct", "Nov", "Dec"
+  ];
+
+  let currentMonth = monthNames[toDay.getMonth()];
+
+  if(day<10){
+      day='0'+day;
+  }
+
+  toDay = (day+ 2) + 'th to ' + (day+ 3) + 'th ' + currentMonth;
+
+  return toDay;
+}
+
 const FinalizeOrder = ({
   name,
   email,
@@ -93,7 +112,7 @@ const FinalizeOrder = ({
             </div>
             <div className="est-deliv-date">
               <p>Estimated Delivery Date: </p>
-              <p> 2-3Days </p>
+              <p className="deliv-date">{ showDeliveryDate() }</p>
             </div>
             {/* <div className="amount-and-comment">
               <div className="delivery-amount">

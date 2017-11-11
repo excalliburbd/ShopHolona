@@ -9,6 +9,8 @@ import IconButton from 'react-toolbox/lib/button/IconButton';
 import Sticky from 'react-sticky-el';
 import ReactImageZoom from 'react-image-zoom';
 
+import Loader from '../Loader';
+
 // import ReactZoomify from './ImageZoom';
 
 import ProductDetailsMain from './ProductDetailsMain';
@@ -45,9 +47,9 @@ const ProductDetails = ({
                         }) => {
 
   if ((loading.initial || loading.started) && !loading.ended) {
-    return <div>
-      loading
-    </div>
+    return <div className="product-page-loader">
+              <Loader className="product-detials-loader" />
+          </div>
   }
 
   const images = product.variances[product.selectedVariant].images.map(
