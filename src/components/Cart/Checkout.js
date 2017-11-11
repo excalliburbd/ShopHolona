@@ -6,6 +6,7 @@ import CheckoutAddPhone from './CheckoutAddPhone';
 import CartTotal from './CartTotal';
 import PaymentSelection from './CheckoutPaymentSelection';
 import FinalizeOrder from './CheckoutFinalizeOrder';
+import DeliveryFee from './DeliveryFee';
 
 import stepTwo from '../../assets/images/stepper-icon-2.svg';
 import stepThree from '../../assets/images/stepper-icon-3.svg';
@@ -180,6 +181,7 @@ class Checkout extends Component {
                                                                phone={ activeUser.phone }
                                                                address={ activeUser.address }
                                                                cartTotal={ total }
+                                                               additionalComments={ additionalComments }
                                                                invoiceNumber={ invoiceNumber }
                                                                cartItems={ cartItems }
                                                                profile={ activeUser.profile }
@@ -190,21 +192,11 @@ class Checkout extends Component {
           sidebarType !=='PHONE' && <div className="checkout-footer">
             {
               sidebarType !== 'FINALIZE_ORDER' && <div className="cart-order-calculation">
-                <div className="checkout-footer--info">
-                  <div className="fee-info-and-icon">
-                    <p>Calculated Delivery Fee </p>
-                    <i className="material-icons deliv-fee-info-btn">&#xE001;</i>
-                    <div className="fee-info-tooltip">
-                      <p>Inside Dhaka :</p>
-                      <p>Upto 1Kg: 45 Tk; Each +KG: 15TK</p>
-                      <p>Dhaka Suburbs :</p>
-                      <p>Upto 1Kg: 80 TK; Each +KG: 20 TK</p>
-                      <p>Outside Dhaka :</p>
-                      <p>Upto 1Kg: 140 TK; Each +KG: 30 TK</p>
-                    </div>
-                  </div>
-                  <p className="calc-money-amount">&#2547; {45 + Math.round(total.weight / 1000) * 15}</p>
-                </div>
+                {
+                  (selectedAddress !== null || (addressCity && addressDistrict && addressThana)) && sidebarType !== 'PAYMENT_SELECTION' ?
+                    <DeliveryFee total={total}/>
+                    :null
+                }
                 <CartTotal total={ total }
                           cartItems={ cartItems }/>
               </div>

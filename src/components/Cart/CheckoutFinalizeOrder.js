@@ -14,7 +14,8 @@ const FinalizeOrder = ({
   invoiceNumber,
   profile,
   shopName,
-  cartItems
+  cartItems,
+  additionalComments
 }) => {
   return(
     <div>
@@ -68,12 +69,39 @@ const FinalizeOrder = ({
                     </div>
                   })
                 }
+                <hr/>
+                <div className="cart-details-extra-info">
+                  <div className="price-title-value">
+                    <p>Cart Price  </p>
+                    <p> { cartTotal.price }</p>
+                  </div>
+                  <div className="deliv-fee-title-value">
+                    <p>Delivery Fee  </p>
+                    <p> + { 45 + Math.round(cartTotal.weight / 1000) * 15 }</p>
+                  </div>
+                </div>
+                <hr/>
+                <div className="total-price-value">
+                  <p>Total Price  </p>
+                  <p> { cartTotal.price + (45 + Math.round(cartTotal.weight / 1000) * 15) } TK </p>
+                </div>
               </div>
             </div>
             <div className="total-amount">
               <p className="Total">Total:</p>
-              <p className="total-value">{ cartTotal.price }</p>
+              <p className="total-value"> { cartTotal.price + (45 + Math.round(cartTotal.weight / 1000) * 15) } TK</p>
             </div>
+            <div className="est-deliv-date">
+              <p>Estimated Delivery Date: </p>
+              <p> 2-3Days </p>
+            </div>
+            {/* <div className="amount-and-comment">
+              <div className="delivery-amount">
+                <p className="Delivery">Delivery Cost:</p>
+                <p className="delivery-value">{45 + Math.round(cartTotal.weight / 1000) * 15}TK</p>
+              </div>
+              <p className="add-comment">{additionalComments}</p>
+            </div> */}
           </div>
         </div>
       </div>

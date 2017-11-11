@@ -19,3 +19,9 @@
 ._2Agdx._3IRMZ._1ZxqC._2CPs4.addbutton.addbutton-social {
   background-color: rgba(0, 132, 255, 1)
 }
+
+.addbutton-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

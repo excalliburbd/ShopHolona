@@ -36,12 +36,15 @@ class Nav extends Component {
   }
 
   handleKeyDown (event) {
+    let sidebarSubType = this.props.sidebarSubType;
     switch( event.keyCode ) {
       case 27:
-          this.props.handleHideSidebar(this.props.sidebarSubType);
-          break;
+        if (sidebarSubType !== 'FINALIZE_ORDER') {
+          this.props.handleHideSidebar(sidebarSubType);
+        }
+        break;
       default:
-          break;
+        break;
     }
   }
 
@@ -167,6 +170,14 @@ class Nav extends Component {
       return <NotFound />
     }
 
+    const hideBlur = {
+      display: 'none'
+    }
+
+    const showBlur = {
+      display: 'block'
+    }
+
     return (
       <div>
         <TourContainer />
@@ -179,7 +190,9 @@ class Nav extends Component {
           <Confirm />
           <AddButtonContainer vendor={ vendor } />
           <NavigationDrawer pinned={ pinned } history={ history } location={ location }/>
-            <Panel className={ panelClass + (sidebarType !== 'CART' && sidebarType ? ' background-blur' : '') }>
+            <Panel className={ panelClass }>
+              {/* ADDED A CLASS AFTER SHIFTING TO CHECKOUT WHICH WILL MAKE THE BACKGROUND RGBA BLACK */}
+            <div className="background-blurzy" style={ (sidebarType !== 'CART' && sidebarType && sidebarType !== 'PRODUCT'? showBlur : hideBlur) }></div>
               <NavigationAppBar searchbar={ searchbar }
                                 history={ history }
                                 location={ location }

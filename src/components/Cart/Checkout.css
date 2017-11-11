@@ -291,13 +291,14 @@
 }
 
 .cart-back-btn {
+  padding: 0;
   height: 36px;
   border: none;
   border-radius: 2px;
   font-size: 14px;
   text-transform: uppercase;
   background-color: dimgray;
-  width: 7em;
+  width: 30%;
   background: dimgray;
   font-weight: bold;
   color: #fff;

@@ -36,52 +36,52 @@ class AddDeliveryAddress extends Component {
         <div className="add-delivery-address--dual">
         {
           districts && districts.list[0] ?
-            <CustomAutocomplete label="District"
-                                source={ districts }
-                                value={ districtUIValue }
-                                selectionOnly
-                                keyname="name"
-                                handleSetValue={ text => handleSetValue('district', text) }
-                                onSelected={ id => {
-                                  handleSelect('district', id);
-                                }}
-            /> :
-            <Input label="District" />
+          <CustomAutocomplete label="District"
+                              source={ districts }
+                              value={ districtUIValue }
+                              selectionOnly
+                              keyname="name"
+                              handleSetValue={ text => handleSetValue('district', text) }
+                              onSelected={ id => {
+                                handleSelect('district', id);
+                              }}
+          /> :
+          <Input label="District" />
         }
         {
-                    cities && cities.list[0] ?
-            <CustomAutocomplete label="City"
-                                source={ cities }
-                                value={ cityUIValue }
+          cities && cities.list[0] ?
+          <CustomAutocomplete label="City"
+                              source={ cities }
+                              value={ cityUIValue }
+                              selectionOnly
+                              keyname="name"
+                              handleSetValue={ text => {
+                                handleSetValue('city', text);
+                              }}
+                              onSelected={ id => {
+                                handleSelect('city', id);
+                              }}
+          /> :
+          <Input label="City"/>
+        }
+        </div>
+        <div className="thana-input-box">
+        {
+          thanas && thanas.list[0] ?
+            <CustomAutocomplete label="Thana"
+                                source={ thanas }
+                                value={ thanaUIValue }
                                 selectionOnly
                                 keyname="name"
-                                handleSetValue={ text => {
-                                  handleSetValue('city', text);
-                                }}
+                                handleSetValue={ text => handleSetValue('thana', text) }
                                 onSelected={ id => {
-                                  handleSelect('city', id);
+                                  handleSelect('thana', id);
                                 }}
             /> :
-              <Input label="City"/>
-                  }
+            <Input label="Thana" className="thana"/>
+        }
         </div>
-          <div className="thana-input-box">
-           {
-            thanas && thanas.list[0] ?
-              <CustomAutocomplete label="Thana"
-                                  source={ thanas }
-                                  value={ thanaUIValue }
-                                  selectionOnly
-                                  keyname="name"
-                                  handleSetValue={ text => handleSetValue('thana', text) }
-                                  onSelected={ id => {
-                                    handleSelect('thana', id);
-                                  }}
-              /> :
-              <Input label="Thana" className="thana"/>
-    }
-          </div>
-        </div>
+      </div>
     )
   }
 }

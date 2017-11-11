@@ -48,6 +48,7 @@
   flex-wrap: wrap;
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
+  flex-wrap: wrap;
 }
 
 .order-details p {
@@ -109,7 +110,7 @@
   bottom: 0.1em;
   position: absolute;
   left: 2%;
-  bottom: 2.2em;
+  bottom: 2.5em;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -130,7 +131,7 @@
   border-top: 0.5em solid rgba(0, 0, 0, 0.8);
   position: absolute;
   bottom: -.5em ;
-  left: 29%;
+  left: 31%;
   z-index: -1;
   opacity: 1;
 }
@@ -211,8 +212,8 @@
   cursor: pointer;
   margin-bottom: 0.1em;
   margin-left: 0.5em;
-  height: 1.2em;
-  width: 1.2em;
+  height: 2em;
+  width: 2em;
 }
 
 .extra-details-icon::after {
@@ -265,4 +266,90 @@
 
 .done-icon {
   font-size: 0.8em !important;
+}
+
+
+.amount-and-comment {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.delivery-amount {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Delivery {
+  white-space: nowrap;
+}
+
+.add-comment {
+  width: 40%;
+  white-space: nowrap;
+  overflow: hidden;
+  font-weight: normal !important;
+  text-overflow: ellipsis;
+}
+
+.Total {
+  white-space: nowrap;
+}
+.est-deliv-date {
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+}
+
+.est-deliv-date p:first-of-type {
+  white-space: nowrap;
+  width: 40%;
+}
+
+.est-deliv-date p:last-of-type {
+  width: 40%;
+}
+
+.cart-details-tooltip hr {
+  width: 95%;
+  margin: .2em 0;
+}
+
+.cart-details-extra-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.price-title-value, .deliv-fee-title-value {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  padding-left: .5em;
+}
+
+
+.cart-details-extra-info p  {
+  font-size: .6em;
+  font-weight: normal !important;
+}
+
+.total-price-value {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-left: .5em;
+}
+
+.total-price-value p {
+  font-size: .6em;
+  padding-right: .7em;
+  font-weight: normal !important;
+}
+
+.total-price-value p:last-of-type {
+  font-weight: bold !important;
+
 }
