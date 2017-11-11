@@ -15,7 +15,7 @@ const CartTotal = ({
         {/* <div className="cart-icon-container">  <img src={CartIcon} alt=""/>  </div> */}
       </div>
       <div className="cart-total-tk">
-        <p>Total Price</p>
+        <p>Cart Price</p>
         <p>৳ { total.price }</p>
       </div>
     </div>

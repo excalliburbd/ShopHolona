@@ -136,8 +136,6 @@
   opacity: 1;
 }
 
-
-
 .cart-details-tooltip p {
   color: #eee;
 }
@@ -195,6 +193,7 @@
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
+  padding-left: .75em;
   text-overflow: ellipsis;
 }
 
@@ -212,8 +211,8 @@
   cursor: pointer;
   margin-bottom: 0.1em;
   margin-left: 0.5em;
-  height: 2em;
-  width: 2em;
+  height: 1.8em;
+  width: 1.8em;
 }
 
 .extra-details-icon::after {
@@ -268,7 +267,6 @@
   font-size: 0.8em !important;
 }
 
-
 .amount-and-comment {
   width: 100%;
   display: flex;
@@ -321,6 +319,7 @@
   display: flex;
   justify-content: space-around;
   flex-direction: column;
+  padding-right: .3em;
 }
 
 .price-title-value, .deliv-fee-title-value {
