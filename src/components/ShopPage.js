@@ -71,6 +71,7 @@ const ShopPage = ({
   shopDomain,
   location,
   productLoading,
+  handleSetProductDetails,
 }) => {
 
   const detailsClass = classNames({
@@ -266,7 +267,8 @@ const ShopPage = ({
                                                                           selectVariance={ selectVariance }
                                                                           shopDomain={ shopDomain }
                                                                           { ...props }
-                                                                          loading={ productLoading } />
+                                                                          loading={ productLoading }
+                                                                          handleSetProductDetails={ handleSetProductDetails } />
                                               } />
           <Route children={ () =>  null} />
         </Switch>

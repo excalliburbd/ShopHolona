@@ -90,8 +90,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(sidebarActions.sidebar.show.addProductDetails(product));
       } else {
         dispatch(shopActions.shop.toggle.productDetails(product.id));
-        ownProps.history.push(`/product/${product.id}`);
+        ownProps.history.push(`/product/${product.id}.${product.selectedVariant}.${product.selectedAttribute}`);
       }
+    },
+    handleSetProductDetails: productIDString => {
+      const [
+        product,
+        variant,
+        attribute,
+      ] = productIDString.split('.');
+
+      dispatch(shopActions.shop.toggle.productDetails(product));
     },
     handleAddProduct: () => {
       dispatch(sidebarActions.sidebar.show.addProduct());
