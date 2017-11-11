@@ -96,8 +96,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleSetProductDetails: productIDString => {
       const [
         product,
-        variant,
-        attribute,
       ] = productIDString.split('.');
 
       dispatch(shopActions.shop.toggle.productDetails(product));
