@@ -154,8 +154,6 @@ const ShopPage = ({
                     label="Follow"/>
   }
 
-  console.log('hi', location)
-
   return (
     <div className={ productDetailsClass } >
       <div className="ShopPage-banner" style={{ backgroundImage: `url(${coverPhoto})`}}/>
