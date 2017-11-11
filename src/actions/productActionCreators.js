@@ -57,5 +57,8 @@ export const productActionCreators = {
         ATTRIBUTES: payload => payload,
       }
     },
+    START: {
+      GET: payload => payload,
+    }
   }
 }

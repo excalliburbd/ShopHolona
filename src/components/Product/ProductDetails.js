@@ -41,7 +41,14 @@ const ProductDetails = ({
                           history,
                           location,
                           match,
+                          loading,
                         }) => {
+
+  if ((loading.initial || loading.started) && !loading.ended) {
+    return <div>
+      loading
+    </div>
+  }
 
   const images = product.variances[product.selectedVariant].images.map(
     ({ image }) => ({

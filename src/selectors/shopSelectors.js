@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 export const getShopID = state => state.shop.id;
-export const getProcutsArray = state => state.products;
+export const getProcutsArray = state => state.products.list;
 export const getFeaturedProcutsArray = state => state.featuredProducts;
 export const getProcutEntities = state => state.entities.products;
 export const getCategoriesArray = state => state.categories;

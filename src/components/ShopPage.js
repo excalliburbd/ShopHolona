@@ -70,6 +70,7 @@ const ShopPage = ({
   selectVariance,
   shopDomain,
   location,
+  productLoading,
 }) => {
 
   const detailsClass = classNames({
@@ -266,7 +267,8 @@ const ShopPage = ({
                                                                           deleteFromFeaturedProduct={ deleteFromFeaturedProduct }
                                                                           selectVariance={ selectVariance }
                                                                           shopDomain={ shopDomain }
-                                                                          { ...props } />
+                                                                          { ...props }
+                                                                          loading={ productLoading } />
                                               } />
           <Route children={ () =>  null} />
         </Switch>

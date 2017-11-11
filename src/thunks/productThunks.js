@@ -46,6 +46,7 @@ export const getAllProducts = (shop, token, id, product) => (dispatch, getState)
     token,
   } = fromState(getState);
 
+  dispatch(productActions.products.start.get);
 
   request(`/shops/${shop}/products/`, getConfig() ).then(
             res => {

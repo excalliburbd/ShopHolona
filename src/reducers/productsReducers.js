@@ -11,24 +11,50 @@ import {
 
 export const productsReducer = handleActions({
   [productActions.products.done.get.products]: (state, action) => {
-      const products = state;
+    const products = state.list;
 
-      action.payload.forEach(
-        product => {
-          if(products.indexOf(product.id) === -1) {
-            products.unshift(product.id)
-          }
+    action.payload.forEach(
+      product => {
+        if(products.indexOf(product.id) === -1) {
+          products.unshift(product.id)
         }
-      )
+      }
+    )
 
-      return products;
+    return {
+      ...state,
+      list: products,
+      loading: {
+        initial: false,
+        started: false,
+        ended: true,
+      }
+    }
   },
   [productActions.products.done.delete.product]: (state, action) => {
-      return state.filter( id => (id !== action.payload));
+    return {
+      ...state,
+      list: state.list.filter( id => (id !== action.payload)),
+    }
+  },
+  [productActions.products.start.get]: (state, action) => {
+    return {
+      ...state,
+      loading: {
+        initial: false,
+        started: true,
+        ended: false,
+      }
+    }
+  },
+}, {
+  list: [],
+  loading: {
+    initial: true,
+    started: false,
+    ended: false,
   }
-}, [
-
-]);
+});
 
 export const featuredProductsReducer = handleActions({
   [productActions.products.done.get.featuredProducts]: (state, action) => {
