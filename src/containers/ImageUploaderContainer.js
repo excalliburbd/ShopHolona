@@ -22,6 +22,10 @@ import {
   getCurrentStep,
   getTourInterruptStep,
 } from '../selectors/tourSelectors';
+import {
+  getShopID,
+} from '../selectors/shopSelectors';
+import { getToken } from '../selectors/userSelectors';
 
 const getShop = state => state.shop;
 
@@ -58,8 +62,8 @@ const mapStateToProps = state => {
     dropped: state.ui.uploader.dropped,
     droppedImage: state.ui.uploader.image,//[0].preview
     sliderValue: state.ui.uploader.slider,
-    token: state.user.token,
-    shop: state.shop.id,
+    token: getToken(state),
+    shop: getShopID(state),
     formData: makeFormData(state),
     type: state.ui.uploader.type,
     productID: state.ui.uploader.productID,

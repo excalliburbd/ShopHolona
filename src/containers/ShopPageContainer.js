@@ -12,7 +12,6 @@ import {
   tourActions,
 } from '../actions/';
 
-
 import {
   makeFeaturedProduct,
   removeFromFeaturedProduct,
@@ -36,10 +35,12 @@ import {
   getAddress,
   getProductDetailsID,
   getProductDetailsIsFeaturedProduct,
+  getShopID,
 } from '../selectors/shopSelectors';
 import {
   getVendor,
   getFollowing,
+  getToken,
 } from '../selectors/userSelectors';
 import {
   getTourIsOpen,
@@ -53,8 +54,8 @@ const mapStateToProps = (state, ownProps) => {
     shopName: state.shop.shop_name,
     shortDesc: state.shop.information.description,
     info: state.shop.information,
-    token: state.user.token,
-    shop: state.shop.id,
+    token: getToken(state),
+    shop: getShopID(state),
     shopCategories: getCategories(state),
     products: getProducts(state),
     featuredProducts: getFeaturedProducts(state),

@@ -34,6 +34,7 @@ import { getPinState, getTitleMsg } from '../selectors/navigationSelectors';
 import {
   getDemostore,
   getIsDemostore,
+  getShopID,
 } from '../selectors/shopSelectors';
 
 import Nav from '../components/Navigation/Navigation';
@@ -46,7 +47,7 @@ const mapStateToProps = state => {
     showSidebar: state.ui.sidebar.show,
     userLoggedIn: state.user.isLoggedIn,
     sidebarType: state.ui.sidebar.type,
-    shopID: state.shop.id,
+    shopID: getShopID(state),
     shopName: state.shop.shop_name,
     refCode: state.shop.referral.code,
     pinned: getPinState(state),
@@ -85,11 +86,11 @@ const mapDispatchToProps = dispatch => {
     handleSignOut: () => {
       dispatch(userActions.user.manualSignOut());
     },
-    handleSetCredentials: (shop, token, demostore, product) => {
+    handleSetCredentials: (shop, token, demostore) => {
       dispatch(shopActions.shop.set.id(shop));
       dispatch(getShop(shop));
       dispatch(getShopCategories(shop));
-      dispatch(getAllProducts(shop, null, null, product));
+      dispatch(getAllProducts(shop, null, null));
       dispatch(getShopAddress(shop));
       dispatch(getFeaturedProduct(shop));
       dispatch(getBanks());
@@ -118,7 +119,7 @@ const mapDispatchToProps = dispatch => {
     hadleLoadData: (shop, token, vendor) => {
       dispatch(getShop(shop));
       dispatch(getShopCategories(shop));
-      dispatch(getAllProducts(shop, null, null, null));
+      dispatch(getAllProducts(shop, null, null));
       dispatch(getShopAddress(shop));
       dispatch(getFeaturedProduct(shop));
       dispatch(getBanks());

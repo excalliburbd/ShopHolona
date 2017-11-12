@@ -26,7 +26,7 @@ export const getFacebook = state => state.shop.fb_link;
 export const getProductDetailsID = state => state.ui.shopPage.product;
 export const getProductDetailsIsFeaturedProduct = state => (getFeaturedProcutsArray(state).indexOf(getProductDetailsID(state)) !== -1)
 export const getDemostore = state => state.shop.demostore;
-export const getIsDemostore = state => state.shop.demostore === state.shop.id;
+export const getIsDemostore = state => state.shop.demostore === getShopID(state);
 
 export const getCategories = createSelector(
   [getCategoriesArray, getCategoriesEntities],

@@ -4,6 +4,9 @@ import { trySignInAsyncAction } from '../thunks/userThunks';
 
 import { userActions } from '../actions/';
 
+import { getShopID } from '../selectors/shopSelectors';
+import { getToken } from '../selectors/userSelectors';
+
 import SignUp from '../components/SignUp/SignUp';
 
 const mapStateToProps = state => {
@@ -13,8 +16,8 @@ const mapStateToProps = state => {
     phone: state.ui.user.phone,
     phonePassword: state.ui.user.phonePassword,
     error: state.ui.user.error,
-    token: state.user.token,
-    shop: state.shop.id,
+    token: getToken(state),
+    shop: getShopID(state),
   }
 }
 

@@ -56,7 +56,9 @@ import {
   getIsFcom,
   getIsPhysicalStore,
   getIsDemostore,
+  getShopID,
 } from '../selectors/shopSelectors';
+import { getToken } from '../selectors/userSelectors';
 
 const mapStateToProps = state => {
   return {
@@ -81,8 +83,8 @@ const mapStateToProps = state => {
     sh_price: getSHPrice(state),
     productDescription: getProductDescription(state),
     finishedProduct: getFinishedProduct(state),
-    token: state.user.token,
-    shop: state.shop.id,
+    token: getToken(state),
+    shop: getShopID(state),
     productVariances: state.ui.product.selectedProduct.variances,
     selectedVariance: state.ui.product.selectedVariance,
     productDetailName: state.ui.product.selectedProduct.name,
