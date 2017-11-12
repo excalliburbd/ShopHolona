@@ -6,7 +6,6 @@ import {
 import { addNotification } from 'reapop';
 
 import { getShopCategories } from './shopThunks';
-import { addToCart } from './cartThunks';
 
 import {
   sidebarActions,
@@ -40,7 +39,7 @@ export const getSubSubCategory = (id, subID )=> dispatch => {
           );
 }
 
-export const getAllProducts = (shop, token, id, product) => (dispatch, getState) => {
+export const getAllProducts = (shop, token, id) => (dispatch, getState) => {
   const {
     demostore,
     token,
@@ -63,19 +62,6 @@ export const getAllProducts = (shop, token, id, product) => (dispatch, getState)
                           null,
                           'DELETE'
                         ));
-              }
-
-              if (product && product.productID) {
-                const {
-                  productID,
-                  variantID,
-                } = product;
-
-                if (variantID) {
-                  dispatch(addToCart(variantID, token, productID));
-                } else {
-                  dispatch(shopActions.shop.toggle.productDetails(productID));
-                }
               }
             }
           );
@@ -694,7 +680,7 @@ export const saveProduct = (obj, shop, token, editing) => (dispatch, getState) =
                                     if (demostore) {
                                       if (res.id) {
                                         dispatch(sidebarActions.sidebar.hide());
-                                        dispatch(getAllProducts(shop, token, res.id, null));
+                                        dispatch(getAllProducts(shop, token, res.id));
                                         dispatch(getShopCategories(shop));
                                         dispatch(addNotification({
                                           title: 'Success',
@@ -705,7 +691,7 @@ export const saveProduct = (obj, shop, token, editing) => (dispatch, getState) =
                                       }
                                     } else {
                                       dispatch(sidebarActions.sidebar.hide());
-                                      dispatch(getAllProducts(shop, null, null, null));
+                                      dispatch(getAllProducts(shop, null, null));
                                       dispatch(getShopCategories(shop));
                                       dispatch(addNotification({
                                         title: 'Success',
@@ -747,7 +733,7 @@ export const saveProduct = (obj, shop, token, editing) => (dispatch, getState) =
                   if (demostore) {
                     if (res.id) {
                       dispatch(sidebarActions.sidebar.hide());
-                      dispatch(getAllProducts(shop, token, res.id, null));
+                      dispatch(getAllProducts(shop, token, res.id));
                       dispatch(getShopCategories(shop));
                       dispatch(addNotification({
                         title: 'Success',
@@ -758,7 +744,7 @@ export const saveProduct = (obj, shop, token, editing) => (dispatch, getState) =
                     }
                   } else {
                     dispatch(sidebarActions.sidebar.hide());
-                    dispatch(getAllProducts(shop, null, null, null));
+                    dispatch(getAllProducts(shop, null, null));
                     dispatch(getShopCategories(shop));
                     dispatch(addNotification({
                       title: 'Success',

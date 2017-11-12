@@ -89,11 +89,9 @@ class Nav extends Component {
       let queryParams = {
         shopId: null,
         accessToken: null,
-        productID: null,
-        variantID: null,
       }
 
-      try {
+      try {// this code is unstable
         queryParams = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
       } catch (e) {
 
@@ -101,13 +99,11 @@ class Nav extends Component {
 
       const {
         accessToken,
-        productID,
-        variantID,
       } = queryParams;
 
       const shopID = queryParams.shopId || window.shopID;
 
-      handleSetCredentials(shopID, accessToken, parseInt(shopID, 10) === demostore, { productID, variantID });
+      handleSetCredentials(shopID, accessToken, parseInt(shopID, 10) === demostore);
 
       if (accessToken) {
         history.replace('/');
