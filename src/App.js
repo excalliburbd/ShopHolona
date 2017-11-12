@@ -25,10 +25,10 @@ const App = () => (
     <ThemeProvider theme={theme}>
       <NavigationContainer>
         <Switch>
-          <Route path="/" component={ShopPageContainer} />
           <Route exact path="/dashboard" component={DashboardContainer} />
           <Route exact path="/admin/:backOffice" component={BackOfficeContainer} />
           <Route exact path="/settings" component={SettingsContainer} />
+          <Route path="/" component={ShopPageContainer} />
           <Redirect to="/not-found" />
         </Switch>
       </NavigationContainer>
