@@ -20,6 +20,8 @@ stages:
 
 build:
   stage: build
+  only:
+    - develop
   script:
     - yarn
     - yarn build:dev
