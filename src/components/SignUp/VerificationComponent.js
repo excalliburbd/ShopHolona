@@ -12,6 +12,8 @@ const VerificationComponent = ({
   updateCode,
   resendCode,
   phone,
+  password,
+  handlePasswordChange
 }) => {
   return (
     <div className='verification-step'>
@@ -23,6 +25,12 @@ const VerificationComponent = ({
       <Input label='Enter Your Full Name'
              value={ name }
              onChange={ value => changeFullName(value) }
+             onKeyUp={(event)=>{if (event.which === 13) {login(phone, verification)}}}
+             required />
+      <Input label='Password'
+             type='password'
+             value={ password }
+             onChange={ value => handlePasswordChange(value) }
              onKeyUp={(event)=>{if (event.which === 13) {login(phone, verification)}}}
              required />
       <Button label='Login'
