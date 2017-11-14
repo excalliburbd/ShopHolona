@@ -151,6 +151,19 @@
     background: rgba(0, 0 ,0 , 0.8);
     position: absolute;
     z-index: 225;
+    opacity: 0;
+    animation-name: blur-delay;
+    animation-duration: .35s;
+    animation-delay: .35s;
+    animation-iteration-count: 1;
+    animation-timing-function:linear;
+    animation-fill-mode:forwards;
+  }
+
+
+  @keyframes blur-delay {
+    from {opacity: 0}
+    to {opacity: 1}
   }
 }
 

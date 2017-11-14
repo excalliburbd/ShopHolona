@@ -47,7 +47,7 @@
 }
 
 #Searchbar-input {
-  border-radius: 2px;
+  border-radius: 5px;
 }
 
 .Searchbar-input--label {
@@ -60,7 +60,6 @@
 }
 
 .Searchbar-input--button {
-  background: #FFC400;
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
   display: inline;
@@ -106,7 +105,7 @@
 
 @media screen and (min-width: 1024px) {
   ._07g5.Searchbar {
-    left: 34em;
+    left: 22em;
     width: calc(100% - 40em);
   }
   .Searchbar--search .material-icons {
