@@ -68,8 +68,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "toolbox": "react-toolbox-themr",
-    "deploy-dev": "yarn build:dev && rm build/static/css/*.map && rm build/static/js/*.map && chmod -R 777 build/ && scp -r build/. imtiaz@45.118.132.85:/usr/src/app/vendor/ && rm -rf build/",
-    "deploy-prod": "yarn build:prod && rm build/static/css/*.map && rm build/static/js/*.map && chmod -R 777 build/ && scp -r build/. imtiaz@172.104.61.239:/usr/src/app/vendor/ && rm -rf build/",
+    "deploy-dev": "yarn build:dev && rm build/static/css/*.map && rm build/static/js/*.map && chmod -R 777 build/ && scp -r build/. root@45.118.132.85:/usr/src/app/vendor/ && rm -rf build/",
+    "deploy-prod": "yarn build:prod && rm build/static/css/*.map && rm build/static/js/*.map && chmod -R 777 build/ && scp -r build/. root@172.104.61.239:/usr/src/app/vendor/ && rm -rf build/",
     "stage": "yarn build:dev && cp -a build/. /var/www/html/ && rm -rf build/",
     "build-reapop": "node-sass-chokidar reapop-theme-shophobe/src/styles/ -o reapop-theme-shophobe/lib/"
   },

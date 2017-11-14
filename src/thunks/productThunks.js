@@ -6,7 +6,6 @@ import {
 import { addNotification } from 'reapop';
 
 import { getShopCategories } from './shopThunks';
-import { addToCart } from './cartThunks';
 
 import {
   sidebarActions,
