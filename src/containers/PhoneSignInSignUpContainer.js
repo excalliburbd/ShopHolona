@@ -7,6 +7,7 @@ import {
 
 import {
   checkPhoneNumber,
+  changePassword,
   registerUser,
   resendVerificationCode,
   postVerificationCode,
@@ -22,6 +23,8 @@ const mapStateToProps = state => {
     number: state.ui.user.phone.number,
     hasNumber: state.ui.user.phone.hasNumber,
     guestID: state.ui.user.guestUser.id,
+    guestPassword: state.ui.user.guestUser.password,
+    guestToken: state.ui.user.guestUser.token
   }
 }
 
@@ -39,11 +42,18 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(registerUser(phone, pass));
       dispatch(userActions.user.set.guestUserPassword(pass));
     },
+    changePassword: (oldPass, pass, token, phone, resetCart) => {
+      dispatch(changePassword(oldPass, pass, token, phone, resetCart));
+    },
     handleResendVerificationCode: phone => {
       dispatch(resendVerificationCode(phone));
     },
-    handlePostVerificationCode: (phone, verification, fullName, next) => {
-      dispatch(postVerificationCode(phone, verification, fullName, next));
+    handlePostVerificationCode: (phone, verification, fullName, next, changePassword, isLogin, password) => {
+      if (isLogin) {
+        dispatch(postVerificationCode(phone, verification, fullName, next, changePassword, password));
+      } else {
+        dispatch(postVerificationCode(phone, verification, fullName, next, changePassword, null));
+      }
     },
     handleSignIn: (phone, password, next) => {
       dispatch(trySignInAsyncAction({ phone, password }, false, next));

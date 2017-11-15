@@ -143,6 +143,7 @@ export const fromState = getState => {
   }
   const token = state.user.token;
   const guestToken = state.ui.user.guestUser;
+  const guestPassword = state.ui.user.guestUser.password;
   const shopID = state.shop.id;
 
   return {
@@ -153,6 +154,7 @@ export const fromState = getState => {
     cart,
     token,
     guestToken,
+    guestPassword,
     shopID,
   }
 }

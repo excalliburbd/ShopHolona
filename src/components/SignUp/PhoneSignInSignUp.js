@@ -82,9 +82,11 @@ class PhoneSignInSignUp extends React.Component {
       guestID,
       handleResendVerificationCode,
       handlePostVerificationCode,
+      isLogin,
       nextStep,
       handleSendForgotPassword,
       handleResetPassword,
+      changePassword
     } = this.props;
 
     const {
@@ -114,7 +116,14 @@ class PhoneSignInSignUp extends React.Component {
                                      verification={ code }
                                      updateCode={ this.handleUpdateVerificationCode }
                                      resendCode={ handleResendVerificationCode }
-                                     login={ (loginPhone, loginCode) => handlePostVerificationCode(loginPhone, loginCode, this.state.fullName, nextStep) }  />
+                                     isLogin={isLogin}
+                                     login={
+                                        (loginPhone, loginCode) => {
+                                            handlePostVerificationCode(
+                                              loginPhone, loginCode, this.state.fullName, nextStep, changePassword, isLogin, password
+                                            )
+                                          }
+                                      } />
           }
           {
             (!guestID && !forgotPassword) && <CheckNumber phone={ number }
