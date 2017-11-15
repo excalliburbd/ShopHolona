@@ -126,8 +126,8 @@ class CheckoutDelivery extends Component {
                     <div className={ `checkout-delivery-address--card ${ selectedAddress === key ? 'Checkout-toggled' : '' }` }
                         key={address.id}
                         onClick={ () => setSelectedAddress(key, selectedAddress === key) }>
-                      <div className="checkout-delivery-address--card-title">{address.address_title}</div>
-                      <div className="checkout-delivery-address--card-content">{address.details}</div>
+                      <p className="checkout-delivery-address--card-title">{address.address_title}</p>
+                      <p className="checkout-delivery-address--card-content">{address.details}</p>
                       <div className="cross-btn" onClick={ () => {deleteAddress(address.id);this.handleAddNewAddress();} }><i className="material-icons cross-btn-icon">clear</i></div>
                     </div>
                   )
@@ -138,8 +138,8 @@ class CheckoutDelivery extends Component {
                     <div className={ `checkout-delivery-address--card ${ selectedAddress === key ? 'Checkout-toggled' : '' }` }
                         key={address.id}
                         onClick={ () => setSelectedAddress(key, selectedAddress === key) }>
-                      <div className="checkout-delivery-address--card-title">{address.address_title}</div>
-                      <div className="checkout-delivery-address--card-content">{address.details}</div>
+                      <p className="checkout-delivery-address--card-title">{address.address_title}</p>
+                      <p className="checkout-delivery-address--card-content">{address.details}</p>
                     </div>
                   )
                 }) : null
@@ -167,12 +167,12 @@ class CheckoutDelivery extends Component {
                   </div>
                 </Button>
               </div> */}
-              <button className="add-special-feature-btn" onClick={ this.toggleCommentBox }>{ this.state.comment ? '- ADDITIONAL REQUESTS' : '+ ADDITIONAL REQUESTS'}</button>
+              <button className="add-special-feature-btn" onClick={ this.toggleCommentBox }>{ this.state.comment ? '-  ADDITIONAL REQUESTS' : '+  ADDITIONAL REQUESTS'}</button>
               {
                 this.state.comment && <Input multiline
                     value={ additionalComments }
                     className="spec-inst-input-box"
-                    hint="Call me when nearby, handle with care &amp; love, etc."
+                    hint="e.g Call me when nearby, handle with care &amp; love, etc."
                     onChange={
                       value => updateAdditionalComments(value)
                     }  />

@@ -11,7 +11,6 @@
 
 .checkout-delivery-address--btn-add {
   width: 100%;
-  border: 1px solid #cccccc;
 }
 
 .checkout-delivery-address--btn-add._2GH_L ._3aBSX {
@@ -45,6 +44,12 @@
   text-align: center;
   font-weight: 600;
   color: #000;
+  margin: 0;
+  width: 100%;
+  height: 20%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .checkout-delivery-address--card-content {
@@ -52,6 +57,7 @@
   padding-top: 0.5rem;
   text-align: center;
   font-family: "Harmonia Regular";
+  margin: 0;
   max-height: 80%;
 }
 
@@ -79,11 +85,16 @@
   border-radius: .1em;
   margin-top: 1em;
   width: 83%;
-  box-shadow: var(--shadow-6p);
+  transition: all .3s;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
 }
 
 .add-special-feature-btn:focus {
   outline: none;
+}
+
+.add-special-feature-btn:active {
+  background: #BEBEBE;
 }
 
 .address-card-more-btn {
@@ -166,4 +177,10 @@
 .spec-inst-input-box ._3FySS {
   width: 95%;
   left: 2.5%;
+}
+
+.spec-inst-input-box .bMyi_ {
+  width: 90%;
+  left: 5%;
+  font-size: .8em;
 }

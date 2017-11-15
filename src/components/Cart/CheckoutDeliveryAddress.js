@@ -23,7 +23,7 @@ class AddDeliveryAddress extends Component {
 
     return (
       <div className="add-delivery-address">
-        <Input className="address-title" label="Address Title"
+        <Input  className="address-title" label="Address Title"
                 value={ title }
                         onChange={
                           text => handleSetValue('title', text)

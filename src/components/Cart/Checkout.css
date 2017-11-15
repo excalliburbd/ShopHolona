@@ -110,6 +110,7 @@
   color: #eee;
   margin: 0;
   padding: 0;
+  display: none;
 }
 
 .fee-info-tooltip p:nth-child(odd) {
@@ -125,6 +126,10 @@
 .deliv-fee-info-btn:hover ~ .fee-info-tooltip {
   opacity: 1;
   height: 10em;
+}
+
+.deliv-fee-info-btn:hover ~ .fee-info-tooltip p {
+  display: block;
 }
 
 .checkout-footer--info .calc-money-amount {
