@@ -9,6 +9,7 @@ const VerificationComponent = ({
   name,
   login,
   changeFullName,
+  isLogin,
   updateCode,
   resendCode,
   phone,
@@ -27,12 +28,15 @@ const VerificationComponent = ({
              onChange={ value => changeFullName(value) }
              onKeyUp={(event)=>{if (event.which === 13) {login(phone, verification)}}}
              required />
-      <Input label='Password'
-             type='password'
-             value={ password }
-             onChange={ value => handlePasswordChange(value) }
-             onKeyUp={(event)=>{if (event.which === 13) {login(phone, verification)}}}
-             required />
+      {
+        isLogin &&
+        <Input label='Password'
+                type='password'
+                value={ password }
+                onChange={ value => handlePasswordChange(value) }
+                onKeyUp={(event)=>{if (event.which === 13) {login(phone, verification)}}}
+                required />
+      }
       <Button label='Login'
               className='verification-login-btn sh-btn--yellow'
               onClick={ () => login(phone, verification) } />

@@ -6,10 +6,12 @@ import PhoneSignInSignUpContainer from '../../containers/PhoneSignInSignUpContai
 
 const SigninSignup = ({
   hideSideBar,
+  isLogin
 }) => {
   return <div className="SigninSignup">
     <PhoneSignInSignUpContainer title="Sign In/Sign up"
-                                nextStep={ hideSideBar } />
+                                nextStep={ hideSideBar }
+                                isLogin={isLogin}/>
   </div>
 }
 

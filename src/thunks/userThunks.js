@@ -459,7 +459,9 @@ export const patchMe = (body, token) => (dispatch, getState) => {
   )
 }
 
-export const postVerificationCode = (phone, code, fullName, next) => dispatch => {
+export const postVerificationCode = (phone, code, fullName, next, changePassword, password) => (dispatch, getState) => {
+  const { guestPassword } = fromState(getState);
+
   if (phone.length >= 10) {
     if (phone.slice(0,1) === '+' && phone.length === 14) {
 
@@ -471,7 +473,6 @@ export const postVerificationCode = (phone, code, fullName, next) => dispatch =>
       phone = `+880${phone}`;
     }
   }
-
   request('/auth/activate/', getConfig(
     null,
     {
@@ -482,10 +483,11 @@ export const postVerificationCode = (phone, code, fullName, next) => dispatch =>
   )).then(
     res => {
       if (res.token) {
-        next && next();
         dispatch(validateCart(res.token));
         dispatch(userActions.user.set.guestUserToken(res.token));
         dispatch(patchMe({ full_name: fullName }, res.token));
+        changePassword && changePassword(guestPassword, password, res.token, phone, false);
+        next && next();
       }
     }
   ).catch(

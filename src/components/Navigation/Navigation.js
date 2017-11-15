@@ -145,7 +145,7 @@ class Nav extends Component {
     const SidebarContent = () => {
       switch(sidebarType){
         case 'SIGNIN':
-          return <SigninSignup hideSideBar={handleHideSidebar}/>
+          return <SigninSignup hideSideBar={ handleHideSidebar } isLogin={ true }/>
         case 'PRODUCT':
           return <ProductsSidebarContainer />
         case 'CART':

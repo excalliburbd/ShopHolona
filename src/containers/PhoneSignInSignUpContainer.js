@@ -48,8 +48,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleResendVerificationCode: phone => {
       dispatch(resendVerificationCode(phone));
     },
-    handlePostVerificationCode: (phone, verification, fullName, next) => {
-      dispatch(postVerificationCode(phone, verification, fullName, next));
+    handlePostVerificationCode: (phone, verification, fullName, next, changePassword, isLogin, password) => {
+      if (isLogin) {
+        dispatch(postVerificationCode(phone, verification, fullName, next, changePassword, password));
+      } else {
+        dispatch(postVerificationCode(phone, verification, fullName, next, changePassword, null));
+      }
     },
     handleSignIn: (phone, password, next) => {
       dispatch(trySignInAsyncAction({ phone, password }, false, next));
