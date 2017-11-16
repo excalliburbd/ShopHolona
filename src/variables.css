@@ -6,6 +6,6 @@
 }
 
 .sh-btn--yellow:hover {
-  background-color: rgba(255, 204, 51, 0.9) !important;
+  background-color: rgba(255, 204, 51, 0.9);
 }
 
