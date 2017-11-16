@@ -23,7 +23,7 @@ const CheckNumber = ({
       <Input label='Enter Your Phone Number'
              className="enter-number"
              value={ phone }
-             onKeyPress={(event)=>{if (event.which === 13) {handleSubmit(phone)}}}
+             onKeyPress={(event)=>{if (event.which === 13) {verify(phone)}}}
              onChange={ value => updatePhone(value) }
              required>
              {
