@@ -1,5 +1,6 @@
 import {connect} from 'react-redux';
 import uuid from 'uuid';
+import { addNotification } from 'reapop';
 
 import {
   userActions,
@@ -47,6 +48,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     handleResendVerificationCode: phone => {
       dispatch(resendVerificationCode(phone));
+    },
+    handleWrongPhone: phone => {
+      dispatch(addNotification({
+        title: 'Enter a valid phone number',
+        message: `${phone} is not a valid phone number`,
+        position: 'bl',
+        status: 'warning',
+      }));
     },
     handlePostVerificationCode: (phone, verification, fullName, next, changePassword, isLogin, password) => {
       if (isLogin) {

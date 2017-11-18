@@ -49,11 +49,14 @@ class PhoneSignInSignUp extends React.Component {
   }
 
   handleVerify = (phone) => {
-    this.props.handleRegisterGuest(phone);
+    if(this.isValidPhone(phone)) {
+      this.props.handleRegisterGuest(phone);
+    } else {
+      this.props.handleWrongPhone(phone);
+    }
   }
 
   handleSubmit = phone => {
-    // @todo call login api with this.state.phone this.state.password
     const {
       nextStep
     } = this.props;
