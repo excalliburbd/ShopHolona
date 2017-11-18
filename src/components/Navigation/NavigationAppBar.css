@@ -13,7 +13,7 @@
   right: 0;
   height: 20px;
   width: 100vw;
-  background-color: #e33939;
+  background-color: #962E37;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -46,7 +46,7 @@
 }
 
 .NavigationAppBar {
-  background-color: #CC3333;
+  background-color: #D4414E;
   margin-top: 20px;
 }
 

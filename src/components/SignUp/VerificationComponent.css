@@ -16,3 +16,7 @@
     font-weight: bold;
     font-family: "Harmonia Bold";
 }
+
+.verification-resend-btn:hover {
+  background-color: rgb(183, 28, 28) !important;
+}

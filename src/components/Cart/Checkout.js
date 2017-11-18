@@ -140,7 +140,7 @@ class Checkout extends Component {
 
             </div>
          }
-        <div className={"checkout-main "+(sidebarType === 'PHONE'?'heightAuto':sidebarType === 'FINALIZE_ORDER'?'heightAuto':'overFlow')}>
+        <div className={"checkout-main "+(sidebarType === 'PHONE'?'heightAuto':sidebarType === 'FINALIZE_ORDER'?token?'heightAuto':'checkout-scrollable':'overFlow')}>
           {
             sidebarType === 'PHONE' && <CheckoutAddPhone handleShowCheckoutAddress={ handleShowCheckoutAddress }/>
           }
@@ -232,9 +232,8 @@ class Checkout extends Component {
                 ( sidebarType === 'FINALIZE_ORDER' && !token) && <div>
                   <div className="last-step-footer">
                     <p className="next-order-info">Don't work this hard the next time you order.</p>
-                    <p className="user-order-desc">Just add a password, secure your account details
-                    and ensure a faster checkout from the next time</p>
-                    <Input type="password"
+                    <Input className="secure-acc-password"
+                          type="password"
                           label="Enter Your Password"
                           name="password"
                           value={ this.state.password }
@@ -258,8 +257,7 @@ class Checkout extends Component {
               {
                 ( sidebarType === 'FINALIZE_ORDER' && token) &&
                 <div className="non-reg-user-footer">
-                    <p>We are waiting for a confirmation from seller about stock availability. When the seller confirms
-                      we will send you a confirmation mail and text. So, while you wait, we suggest you...</p>
+                    <p>We will notify you when the order confirms. In the meantime..</p>
                     <Button className="sh-btn--yellow secure-acc-btn"
                           label="Shop More!"
                           onClick={

@@ -51,7 +51,7 @@
 .cart-product-attributes {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 65%;
 }
 .cart-variant-name {
   margin-top: 0.9rem;
@@ -126,10 +126,11 @@
 }
 
 .cart-product-price h3 {
-  font-size: 1.8em;
+  font-size: 1.7em;
   margin-bottom: 0;
   font-family: "Gotham Narrow Black";
   font-weight: 600;
+  margin-right: .1em;
 }
 
 .cart-product-price h5 {
