@@ -33,6 +33,8 @@ const NavigationAppBar = ({
   vendor,
   profilePic,
   showCartSidebar,
+  searchString,
+  handleSetSearchString,
 }) => {
 
   const navTitleClass = classNames({
@@ -72,7 +74,9 @@ const NavigationAppBar = ({
               }
               fixed >
         <Searchbar searchbar={ searchbar }
-                   hideSearchbar={ hideSearchbar }/>
+                   hideSearchbar={ hideSearchbar }
+                   searchString={ searchString }
+                   setSearchString={ handleSetSearchString } />
 
         {
           !searchbar && <Navigation type="horizontal" className="NavigationAppBar-right-comp">

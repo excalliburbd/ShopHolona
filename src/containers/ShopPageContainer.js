@@ -46,7 +46,8 @@ import {
   getTourIsOpen,
   getCurrentStep,
 } from '../selectors/tourSelectors';
-import { getProductLoadingState } from '../selectors/productSelectors';
+import { getProductLoadingState, getSearchedProductList } from '../selectors/productSelectors';
+import { getSearchString } from '../selectors/navigationSelectors';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -75,6 +76,8 @@ const mapStateToProps = (state, ownProps) => {
     tourCurrentStep: getCurrentStep(state),
     shopDomain: state.shop.subdomain,
     productLoading: getProductLoadingState(state),
+    searchResults: getSearchedProductList(state),
+    searchString: getSearchString(state),
   }
 }
 

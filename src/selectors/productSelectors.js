@@ -2,8 +2,11 @@ import { createSelector } from 'reselect';
 import Fuse from 'fuse.js';
 
 import {
-  getIsFcom
+  getIsFcom,
 } from './shopSelectors';
+import {
+  getSearchString,
+} from './navigationSelectors';
 
 export const getCategoriesObj = state => state.ui.categories.categories;
 export const getSubCategoriesObj = state => state.ui.categories.subCategories;
@@ -292,6 +295,21 @@ export const getAllProducts = createSelector(
     )
   }
 );
+
+const getFusedProductList = createSelector(
+  [getAllProducts],
+  products => {
+    return new Fuse(products, { keys: ['name'] });
+  }
+)
+
+export const getSearchedProductList = createSelector(
+  [getFusedProductList, getSearchString],
+  (products, string) => {
+    console.log(string)
+    return products.search(string);
+  }
+)
 
 export const getPrimaryAttributes = createSelector(
   [getProductPrimaryAttributes, getSelectedProductID, getSelectedProduct],

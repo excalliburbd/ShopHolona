@@ -89,6 +89,7 @@ class Nav extends Component {
       let queryParams = {
         shopId: null,
         accessToken: null,
+        searchString: '',
       }
 
       try {// this code is unstable
@@ -99,18 +100,19 @@ class Nav extends Component {
 
       const {
         accessToken,
+        searchString,
       } = queryParams;
 
       const shopID = queryParams.shopId || window.shopID;
 
-      handleSetCredentials(shopID, accessToken, parseInt(shopID, 10) === demostore);
+      handleSetCredentials(shopID, accessToken, parseInt(shopID, 10) === demostore, searchString);
 
       if (accessToken) {
         history.replace('/');
       }
     } else {
       const id = window.shopID;
-      id && handleSetCredentials(id, null, id === demostore);
+      id && handleSetCredentials(id, null, id === demostore, '');
     }
   }
 
@@ -135,6 +137,8 @@ class Nav extends Component {
       profilePic,
       showCartSidebar,
       titleMsg,
+      searchString,
+      handleSetSearchString,
       children,
     } = this.props;
 
@@ -201,7 +205,9 @@ class Nav extends Component {
                                 handleSignIn={ handleSignIn }
                                 vendor={ vendor }
                                 profilePic={ profilePic }
-                                showCartSidebar={ showCartSidebar } />
+                                showCartSidebar={ showCartSidebar }
+                                searchString={ searchString }
+                                handleSetSearchString={ handleSetSearchString } />
               <div className={
                     (location.pathname === '/' || location.pathname.split('/')[1] === 'product') ?
                       'Navigation-content-main' :
