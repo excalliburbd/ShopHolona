@@ -3,7 +3,7 @@ import React from "react";
 import UserPicExample from "../../assets/images/user-pic-example.svg";
 import './CheckoutFinalizeOrder.css';
 
-import CartInfoIcon from '../../assets/images/sh-shopping-cart-tooltip.svg';
+import CartInfoIcon from '../../assets/images/shopping-cart.svg';
 
 function showDeliveryDate () {
   let toDay = new Date();

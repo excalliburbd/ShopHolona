@@ -1,5 +1,5 @@
 .NavigationAppBar-container {
-  height: calc(4rem + 20px);
+  height: calc(4rem + 24px);
   width: 100vw;
   position: fixed;
   top: 0;
@@ -11,7 +11,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 20px;
+  height: 24px;
   width: 100vw;
   background-color: #962E37;
   display: flex;
@@ -25,12 +25,12 @@
   color: ghostwhite;
   vertical-align: text-top;
   background-color: #b41616;
-  font-size: 11.5px;
+  font-size: 12.5px;
   padding: 0px 1rem;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  font-family: Century_Gothic;
+  font-family: "Gotham Narrow Book";
   text-decoration: none;
   border: 0px;
 }
@@ -43,6 +43,10 @@
 
 .NavigationAppBar-mini button:focus {
   outline-width: 0;
+}
+
+.NavigationAppBar-mini button span {
+  font-weight: bold;
 }
 
 .NavigationAppBar {
@@ -81,6 +85,7 @@
 ._3Py1Z._2dwFx.NavigationAppBar {
   z-index: 200;
   height: 4rem;
+  top: 4px;
 }
 
 .NavigationAppBar-rewards {
@@ -134,11 +139,14 @@
   font-size: 2rem;
 }
 
-.NavigationAppBar-dashboard-icon {
-  margin-top: -0.1em;
-  width: 85%;
-  height: 100%;
+.NavigationAppBar-dashboard-icon , .store-icon {
+  width: 3.5em;
+  height: 3.5em;
+  position: relative;
+  bottom: .3em;
+  right: .45em;
 }
+
 
 .NavigationAppBar-user-profile-icon {
   margin-top: -0.15em;
@@ -172,8 +180,8 @@
 
 .hC5Z2._2Agdx._2CPs4.NavigationAppBar-icon {
   border-radius: initial;
-  margin-top: .2em;
-  margin-right: .5em;
+  margin-bottom: .3em;
+  right: .5em;
 }
 
 .NavigationAppBar-cart-icon {
@@ -181,8 +189,10 @@
   width: 2.3em;
   margin-right: .5em;
   cursor: pointer;
-  margin-top: .2em;
+  margin-top: .25em;
 }
+
+
 
 @media screen and (max-width: 480px) {
   .NavigationAppBar-title {
@@ -218,8 +228,11 @@
 /*for desktop*/
 @media screen and (min-width: 800px) {
   ._2CPs4.NavigationAppBar-icon {
-    margin: 0em 2em;
+    margin: 0em 1em;
     color: white;
+  }
+  .hC5Z2._2Agdx._2CPs4.NavigationAppBar-icon {
+    right: 0;
   }
 
 
