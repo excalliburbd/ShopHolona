@@ -15,6 +15,9 @@ import ProductDetails from './Product/ProductDetails';
 import Stars from './Stars';
 import FeaturedSlider from './FeaturedSlider';
 
+import addressIcon from '../../src/assets/images/address-icon.svg';
+import callIcon from '../../src/assets/images/phone-icon.svg';
+
 import { female } from 'react-icons-kit/ionicons/female';
 import { male } from 'react-icons-kit/ionicons/male';
 
@@ -186,7 +189,7 @@ const ShopPage = ({
           {
             shopAddress &&
             <p className="ShopPage-details--address">
-              <FontIcon value="store"/><label>{ shopAddress.details }</label>
+              <img src={ addressIcon } alt=""/><label>{ shopAddress.details }</label>
             </p>
           }
           <ul className="ShopPage-details-contacts">
@@ -210,7 +213,7 @@ const ShopPage = ({
                    }}*/
                   return (
                     <li className="ShopPage-details--contact-number" key={key}>
-                      <FontIcon value="local_phone"/> <label>{ contact.number }</label>
+                      <img src={ callIcon } alt=""/> <label>{ contact.number }</label>
                     </li>
                   )
                 }
@@ -224,6 +227,13 @@ const ShopPage = ({
                               handlePromptSignIn={ handlePromptSignIn }/>
         </div>
         <div className="ShopPage-details--text" data-tour="shop-description">
+          <div className="ShopPage-details-header">
+            <p>About</p>
+            {
+                  vendor && <IconButton icon="edit"
+                                        onClick={ () => handleShowEditDescription() }/>
+                }
+          </div>
           {
               (editDesc) ? <div className="ShopPage-details--text-desc--update">
                 <Input  label="Edit Shop Description"
@@ -240,10 +250,6 @@ const ShopPage = ({
                 <p className="ShopPage-details--text-desc">
                   { shortDesc }
                 </p>
-                {
-                  vendor && <IconButton icon="edit"
-                                        onClick={ () => handleShowEditDescription() }/>
-                }
               </div>
           }
         </div>

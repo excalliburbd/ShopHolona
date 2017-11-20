@@ -3,7 +3,8 @@
   justify-content: space-between;
   align-items: center;
   height: 20em;
-  background: url('../assets/images/side-banner.png');
+  background: url('../assets/images/sh-website-bg.svg');
+  background-size: 100%;
 }
 
 .FeaturedSlider-products {

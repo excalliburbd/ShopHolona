@@ -12,9 +12,10 @@ import MenuDivider from 'react-toolbox/lib/menu/MenuDivider';
 import Searchbar from './Searchbar';
 
 import logo from '../../assets/images/logo/logo.png';
-import DashboardIcon from '../../assets/svg/dashboard.svg';
 import user1 from '../../assets/images/demo_user1_male.png';
 import cartIcon from '../../assets/images/shopping-cart.svg';
+import dashboardIcon from '../../assets/images/dashboard-icon.svg';
+import storeIcon from '../../assets/images/store-icon.svg';
 
 import './NavigationAppBar.css';
 
@@ -53,7 +54,7 @@ const NavigationAppBar = ({
           () => {
             window.open(`https://www.messenger.com/t/Shophobe`)
           }
-        }>Contact ShopHobe: +8801847275780
+        }>Contact ShopHobe: <span>+8801847275780 </span>
         </button>
       </div>
       <AppBar className="NavigationAppBar"
@@ -93,7 +94,7 @@ const NavigationAppBar = ({
                         <IconButton className="NavigationAppBar-icon"
                                     icon={
                                       <img  className="NavigationAppBar-dashboard-icon"
-                                            src={ DashboardIcon }
+                                            src={ dashboardIcon }
                                             alt="Dashboard Icon"/>
                                     }
                                     onClick={ () => history.push('/dashboard') }
@@ -103,7 +104,12 @@ const NavigationAppBar = ({
                     }
                     </span> :
                 <IconButton className="NavigationAppBar-icon"
-                            icon='store'
+                            icon={
+                              <img className="NavigationAppBar-icon store-icon"
+                                   src={storeIcon}
+                                   alt="store icon"
+                              />
+                            }
                             onClick={ () => history.push('/') }/>
             }
             <IconMenu icon={

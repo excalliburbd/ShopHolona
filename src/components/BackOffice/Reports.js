@@ -67,7 +67,7 @@ const Reports = () => (
       </div>
 
     </Card>
-    <Card>
+    <Card  className="report-cards">
       <CardTitle avatar={
         <MdInsertChart height="1.5em" width="1.5em"  style={{marginRight: '.5em'}} /> }
                  title="Revenue" />

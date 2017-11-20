@@ -118,10 +118,7 @@
 }
 
 .ShopPage-details--text-desc {
-  /*margin-top: 0.4em;
-  margin-bottom: 1em;
-  padding: 0em 1.1em;*/
-  padding: 1em 0.51em;
+  padding: .5em 0.51em;
   font-size: 13px;
   margin-left: 0.2em;
   font-family: "Gotham Narrow Book";
@@ -222,6 +219,10 @@
   font-size: 12px;
 }
 
+.ShopPage-details--address img {
+  margin-right: .5em;
+}
+
 .ShopPage-details--address .material-icons {
   color: #FFC400;
   margin-right: .25em;
@@ -235,6 +236,18 @@
 .ShopPage-details--contact-number label {
   vertical-align: super;
 }
+
+.ShopPage-details--contact-number {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ShopPage-details--contact-number img {
+  margin-bottom: .1em;
+  margin-right: .3em;
+}
+
 
 .ShopPage-details-contacts--contact {
   display: flex;
@@ -271,6 +284,40 @@
   padding-bottom: 0;
 }
 
+.ShopPage-details-header {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 2.5em;
+}
+
+.ShopPage-details-header p , .ShopPage-details-header button {
+  margin: 0;
+  height: 1.8em;
+  width: 1.8em;
+}
+
+.ShopPage-details-header button ._3aBSX {
+  font-size: 16px;
+  position: relative;
+  bottom: .35em;
+}
+
+.ShopPage-details-header button {
+  position: absolute;
+  right: .5em;
+  top: .5em;
+  box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.75);
+
+}
+
+.ShopPage-details-header p {
+  width: 100%;
+  text-align: center;
+  height: 1em;
+  font-weight: bold;
+}
+
 /*for tablet*/
 
 @media screen and (min-width: 600px) {
@@ -283,8 +330,9 @@
   }
 
   .ShopPage-details > .ShopPage-banner {
-    background: url('../assets/images/side-banner.png') no-repeat center center;
+    background: url('../assets/images/sh-website-bg.svg');
     display: flex;
+    background-size: 100%;
   }
 
   .ShopPage-details {

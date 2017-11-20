@@ -10,6 +10,9 @@
   width: calc(100vw - 4em);
   padding-top: 5rem;
   padding-bottom: 5.8em;
+  background: url(/static/media/sh-website-bg.15e7af6b.svg);
+  background-size: 250px;
+  min-height: 100vh;
 }
 
 .Navigation-content-main {
