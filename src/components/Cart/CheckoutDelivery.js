@@ -171,6 +171,7 @@ class CheckoutDelivery extends Component {
               {
                 this.state.comment && <Input multiline
                     value={ additionalComments }
+                    autoFocus
                     className="spec-inst-input-box"
                     hint="e.g Call me when nearby, handle with care &amp; love, etc."
                     onChange={
