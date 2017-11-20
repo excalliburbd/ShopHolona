@@ -32,18 +32,17 @@ class Searchbar  extends Component {
 
     return (
       <div className={ searchbarClass }>
-        <Input type='text'
+        <Input  type='text'
                 id="Searchbar-input"
                 className="Searchbar-input"
                 innerRef={ input => {
-                         /*{this.props.setWrappedInstance(input.getWrappedInstance());}*/
-                         this.searchInput = input;
-                    }}
+                  /*{this.props.setWrappedInstance(input.getWrappedInstance());}*/
+                  this.searchInput = input;
+                }}
                 onChange={
-                  input => {
-                  }
+                  input => this.props.setSearchString(input)
                 }
-                value={ this.props.value }
+                value={ this.props.searchString }
                 onBlur={ () => {
                   this.setState({
                     suggestions: false,
@@ -56,7 +55,7 @@ class Searchbar  extends Component {
                     placeholder: false,
                   })
                 }} >
-          { this.state.placeholder && <label className="Searchbar-input--label"
+          { (this.state.placeholder && !this.props.searchString) && <label className="Searchbar-input--label"
                                              onClick={ this.handleSearchbarFocus }>Search Products</label> }
           <div className="Searchbar-input--button">
             <IconButton icon='search'

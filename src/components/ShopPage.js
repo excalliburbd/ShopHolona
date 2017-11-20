@@ -75,6 +75,8 @@ const ShopPage = ({
   location,
   productLoading,
   handleSetProductDetails,
+  searchResults,
+  searchString,
 }) => {
 
   const detailsClass = classNames({
@@ -156,6 +158,12 @@ const ShopPage = ({
                       }
                     }
                     label="Follow"/>
+  }
+
+  let activeProducts = products[selectedChip].products;
+
+  if (searchString) {
+    activeProducts = searchResults;
   }
 
   return (
@@ -299,13 +307,15 @@ const ShopPage = ({
             <div className="ShopPage-products--container-scroll-div" data-tour="shop-banner" >
               {
                 vendor && <IconButton className="ShopPage-banner--icon"
-                          icon="add_a_photo"
-                          onClick={ () => handleShowImageUploader('COVER', tourIsOpen, tourCurrentStep) } />
+                                      icon="add_a_photo"
+                                      onClick={ () => handleShowImageUploader('COVER', tourIsOpen, tourCurrentStep) } />
               }
             </div>
             <div className="ShopPage-products--categories">
               {
-                products.map(
+                (searchString) ?
+                  <h2>Results: </h2>
+                : products.map(
                   (obj, key) => <Chip onClick={ () => selectChip(key) }
                                       className={
                                         (selectedChip === key) ?
@@ -322,7 +332,7 @@ const ShopPage = ({
             <div className="ShopPage-products--content">
               <div className={ `ShopPage-products--list ${ products[selectedChip].products.length === 0 ? 'ShopPage-products--list--empty': null }` } >
                 {
-                  (vendor) && <ProductCard  addProductCard
+                  (vendor && !searchString) && <ProductCard  addProductCard
                                             vendor={ vendor }
                                             token={ token }
                                             handleShowVendorDetails={ handleAddProduct }
@@ -334,7 +344,21 @@ const ShopPage = ({
                                             shopDomain={ shopDomain } />
                 }
                 {
-                  products[selectedChip].products.map(
+                  (searchString) ?
+                    (searchResults.length > 0) ?
+                      activeProducts.map(
+                        (product, key) => <ProductCard  { ...product }
+                                                        vendor={ vendor }
+                                                        token={ token }
+                                                        handleShowVendorDetails={ () => handleShowProductDetails(vendor, product) }
+                                                        handleShowCustomerDetails={ () => handleShowProductDetails(false, product) }
+                                                        key={ key }
+                                                        addToCart={ handleAddToCart }
+                                                        setVariant={ handleSetVariant }
+                                                        shopDomain={ shopDomain } />
+                      )
+                    : <h2> Not Found </h2>
+                  : activeProducts.map(
                     (product, key) => <ProductCard  { ...product }
                                                     vendor={ vendor }
                                                     token={ token }

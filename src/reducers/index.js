@@ -34,27 +34,7 @@ import { servicesUIReducer } from './serviceReducers';
 import { cartReducer, cartEntitiesReducer } from './cartReducers';
 import { tourUIReducer } from './tourReducers';
 import { confirmDialougReducers } from './confirmDialougReducers';
-
-const NavigationUIReducer = (
-  state = {
-    searchbar: false,
-  }, action
-) => {
-  switch (action.type) {
-    case 'SHOW_NAVIGATION_SEARCHBAR':
-     return {
-       ...state,
-       searchbar: true,
-     }
-    case 'HIDE_NAVIGATION_SEARCHBAR':
-     return {
-       ...state,
-       searchbar: false,
-     }
-    default:
-      return state;
-  }
-}
+import { navigationUIReducer } from './navigationReducers';
 
 const RootReducer = combineReducers({
   user: UserReducer,
@@ -76,7 +56,7 @@ const RootReducer = combineReducers({
   }),
   ui: combineReducers({
     filter: FilterUIReducer,
-    nav: NavigationUIReducer,
+    nav: navigationUIReducer,
     backOffice: BackOfficeUIReducer,
     sidebar: SidebarUIReducer,
     user: UserUIReducer,

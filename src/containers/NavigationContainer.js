@@ -27,6 +27,7 @@ import {
   sidebarActions,
   shopActions,
   cartActions,
+  navigationActions,
 } from '../actions/';
 
 import { getVendor, getToken } from '../selectors/userSelectors';
@@ -59,20 +60,17 @@ const mapStateToProps = state => {
     demostore: getDemostore(state),
     isDemostore: getIsDemostore(state),
     sidebarSubType: state.ui.sidebar.subType,
+    searchString: state.ui.nav.searchString,
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     showSearchbar: () => {
-      dispatch({
-        type: 'SHOW_NAVIGATION_SEARCHBAR',
-      })
+      dispatch(navigationActions.navigation.show.searchbar());
     },
     hideSearchbar: () => {
-      dispatch({
-        type: 'HIDE_NAVIGATION_SEARCHBAR',
-      })
+      dispatch(navigationActions.navigation.hide.searchbar());
     },
     handleSignIn: () => {
       dispatch(sidebarActions.sidebar.show.signIn());
@@ -86,11 +84,12 @@ const mapDispatchToProps = dispatch => {
     handleSignOut: () => {
       dispatch(userActions.user.manualSignOut());
     },
-    handleSetCredentials: (shop, token, demostore) => {
+    handleSetCredentials: (shop, token, demostore, searchString) => {
       dispatch(shopActions.shop.set.id(shop));
       dispatch(getShop(shop));
       dispatch(getShopCategories(shop));
       dispatch(getAllProducts(shop, null, null));
+      dispatch(navigationActions.navigation.set.searchString(searchString));
       dispatch(getShopAddress(shop));
       dispatch(getFeaturedProduct(shop));
       dispatch(getBanks());
@@ -148,6 +147,14 @@ const mapDispatchToProps = dispatch => {
     },
     showCartSidebar: () => {
       dispatch(sidebarActions.sidebar.show.addToCart());
+    },
+    handleSetSearchString: string => {
+      dispatch(navigationActions.navigation.set.searchString(string));
+      if (string) {
+        ownProps.history.replace(`/?searchString=${string}`);
+      } else {
+        ownProps.history.replace('/');
+      }
     },
   }
 }
