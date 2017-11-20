@@ -28,7 +28,6 @@ import { getCategory } from '../thunks/productThunks';
 import { addToCart } from '../thunks/cartThunks';
 
 import {
-  getCategories,
   getProducts,
   getFeaturedProducts,
   getPhones,
@@ -57,7 +56,6 @@ const mapStateToProps = (state, ownProps) => {
     info: state.shop.information,
     token: getToken(state),
     shop: getShopID(state),
-    shopCategories: getCategories(state),
     products: getProducts(state),
     featuredProducts: getFeaturedProducts(state),
     selectedChip: state.ui.shopPage.chip,
