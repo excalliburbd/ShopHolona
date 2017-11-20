@@ -109,7 +109,6 @@ const ShopPage = ({
       }
     }
   );
-
   if (!profilePic || profilePic.split('/').slice(-1)[0] === 'no_images.jpg') {
     profilePic = store1
   }
