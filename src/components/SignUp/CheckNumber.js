@@ -38,7 +38,7 @@ const CheckNumber = ({
             <Input label='Enter Your Password'
                    type='password'
                    value={ password }
-                   onKeyPress={(event)=>{if (event.which === 13) {handleSubmit(phone)}}}
+                   onKeyPress={(event)=>{if (validPhone && existingPhone && event.which === 13) {handleSubmit(phone)}}}
                    required
                    onChange={ handlePasswordChange }
                    key="password"  />,

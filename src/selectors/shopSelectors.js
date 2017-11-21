@@ -40,7 +40,7 @@ export const getCategories = createSelector(
           name: 'All'
         }
       },
-      ...categoriesArr.map( id => categoriesObj[id])
+      ...categoriesArr.map( id => categoriesObj[id]).sort((prev, next)=>{return prev.name > next.name})
     ]
   }
 );
