@@ -5,6 +5,7 @@ import './CheckoutFinalizeOrder.css';
 
 import CartInfoIcon from '../../assets/images/shopping-cart.svg';
 
+
 function showDeliveryDate () {
   let toDay = new Date();
   let day = toDay.getDate();
@@ -40,9 +41,9 @@ const FinalizeOrder = ({
     <div>
       {/* <div>{title}</div> */}
       <div className="confirmation-icon-step">
-        <p>Awaiting Confirmation From { shopName }</p>
-        <div className="confirm-icon-div">
-          <i className="material-icons done-icon">done</i>
+        <p>Awaiting Confirmation From <span> { shopName }  </span></p>
+        <div className="finalizeOrder-spinner">
+          <div className="finalizeOrder-spinner-child"></div>
         </div>
       </div>
       <div className="Checkout-final">

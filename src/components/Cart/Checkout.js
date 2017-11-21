@@ -257,7 +257,7 @@ class Checkout extends Component {
               {
                 ( sidebarType === 'FINALIZE_ORDER' && token) &&
                 <div className="non-reg-user-footer">
-                    <p>We will notify you when the order confirms. In the meantime..</p>
+                    <p>We will notify you when '{ shopName }' confirms the order. In the meantime...</p>
                     <Button className="sh-btn--yellow secure-acc-btn"
                           label="Shop More!"
                           onClick={

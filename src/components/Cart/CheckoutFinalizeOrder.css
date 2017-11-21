@@ -284,6 +284,14 @@
 .confirmation-icon-step p {
   font-size: 0.7em;
   margin: 0;
+  width: 78%;
+  text-align: center;
+}
+
+.confirmation-icon-step span {
+  font-weight: bold;
+  width: 5em;
+  overflow: hidden;
 }
 
 .confirmation-icon-step .confirm-icon-div {
@@ -296,7 +304,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  bottom: 0.1em;
+  bottom: 0.2em;
 }
 
 .confirmed-btn {
@@ -392,4 +400,43 @@
 .total-price-value p:last-of-type {
   font-weight: bold !important;
 
+}
+
+
+.finalizeOrder-spinner {
+    height: 1.3em;
+    width: 1.3em;
+    border: 2px solid #c33;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: spin 1s linear infinite;
+    position: relative;
+    right: 1em;
+    bottom: .3em;
+}
+
+.finalizeOrder-spinner::after {
+  content: "";
+  background: #003366;
+  height: 4px;
+  width: 4px;
+  position: absolute;
+  left: 95%;
+  border-radius: 50%;
+
+}
+
+.finalizeOrder-spinner-child {
+  height: .7em;
+  width: .7em;
+  background: #005dbb;
+  border-radius: 50%;
+
+}
+
+@keyframes spin {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
 }
