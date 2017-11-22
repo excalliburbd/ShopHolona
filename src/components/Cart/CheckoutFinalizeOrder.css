@@ -58,6 +58,10 @@
   margin: 0.7em 0;
 }
 
+.invoice-no--value {
+  width: 50% !important;
+}
+
 .order-details p:first-of-type,
 .cart-details {
   font-weight: bold;
@@ -65,7 +69,7 @@
 
 .total-amount {
   display: flex;
-  width: 40%;
+  width: 50%;
 }
 
 .next-order-info {
@@ -242,6 +246,7 @@
 
 .total-amount .total-value {
   width: 80%;
+  margin-left: .2em;
 }
 
 .last-step-footer {
@@ -351,11 +356,11 @@
 
 .est-deliv-date p:first-of-type {
   white-space: nowrap;
-  width: 40%;
+  width: 45%;
 }
 
 .est-deliv-date p:last-of-type {
-  width: 40%;
+  width: 50%;
 }
 
 .cart-details-tooltip hr {
