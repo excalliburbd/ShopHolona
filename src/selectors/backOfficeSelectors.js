@@ -39,11 +39,11 @@ export const getMenu = createSelector(
           name: 'All',
           items: orders,
         },
-        ...['Completed', 'Pending', 'Processing', 'Cancelled','Refund', 'On Hold']
+        ...['Completed', 'Pending', 'Processing', 'Cancelled by Vendor','Refund', 'On Hold', 'Cancelled by User', 'Assigned to shipping', 'Error', 'Picked up for delivery', 'Awaiting payment']
           .map(
             (name, key) => ({
               name,
-              items: orders.filter( ({ status }) => ((status === key)))
+              items: orders.filter( ({ order_status }) => ((order_status === key)))
             })
           )
       ]
@@ -60,11 +60,21 @@ const getOrderStatus = id => {
     case 2:
       return 'Processing';
     case 3:
-      return 'Cancelled';
+      return 'Cancelled by Vendor';
     case 4:
       return 'Refund';
     case 5:
       return 'On Hold';
+    case 6:
+      return 'Cancelled by User';
+    case 7:
+      return 'Assigned to shipping';
+    case 8:
+      return 'Error';
+    case 9:
+      return 'Picked up for delivery';
+    case 10:
+      return 'Awaiting payment';
     default:
       return 'Pending';
   }
@@ -209,7 +219,7 @@ export const getTablistData = createSelector(
                                   case 'Status':
                                     return {
                                       field,
-                                      value: getOrderStatus(order.status)
+                                      value: getOrderStatus(order.order_status)
                                     }
                                   default:
                                     return {

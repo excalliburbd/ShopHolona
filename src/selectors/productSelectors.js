@@ -306,7 +306,6 @@ const getFusedProductList = createSelector(
 export const getSearchedProductList = createSelector(
   [getFusedProductList, getSearchString],
   (products, string) => {
-    console.log(string)
     return products.search(string);
   }
 )

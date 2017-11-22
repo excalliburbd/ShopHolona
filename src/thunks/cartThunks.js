@@ -54,7 +54,6 @@ export const updateCartItem = (cartID, id, quantity, token) => dispatch => {
             }
           ).catch(
             err => {
-              console.log(err)
               dispatch(cartActions.cart.update.item(cartID, quantity-1))
               dispatch(addNotification({
                 title: 'Error Updating Cart Item',

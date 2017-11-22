@@ -78,7 +78,6 @@ const TabList = ({
                                                       {<span>{ value }</span>}
                                                     </span>
                                           default:
-                                            console.log(field, value)
                                             return <span key={ key } style={getListStyle(data[tabIndex].maping.length)} className="TabList-data--row">
                                                       {<span>{ field }</span>}
                                                       {<span>{ value }</span>}
