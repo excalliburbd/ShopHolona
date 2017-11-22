@@ -1,0 +1,40 @@
+
+.sidebar-order-details-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.sidebar-order-details-container .order-details-header {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.sidebar-order-details {
+  width: 100%;
+  font-size: 14px;
+  padding: .5em;
+  border-top: 1px solid #2e2e2e;
+  border-bottom: 1px solid #2e2e2e;
+}
+
+.sidebar-order-details ul li:nth-child(2) p {
+  padding: 0;
+  text-align: end;
+  margin: 0;
+}
+
+.sidebar-order-details ul {
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-order-details ul li {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 1em 0;
+}
