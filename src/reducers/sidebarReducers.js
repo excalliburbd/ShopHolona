@@ -102,6 +102,13 @@ export const SidebarUIReducer = handleActions({
     subType: 'UPLOADING',
     titleMsg: 'Uploading Product'
   }),
+  [sidebarActions.sidebar.show.orderDetails]: (state, action) => ({
+    ...state,
+    show: true,
+    type: 'ORDER_DETAILS',
+    subType: 'ORDER_DETAILS',
+    titleMsg: 'Order Details',
+  }),
   [sidebarActions.sidebar.hide]: (state, action) => ({
     ...state,
     show: false,

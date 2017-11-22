@@ -17,6 +17,7 @@ const TabList = ({
   handleDropdownChange,
   data,
   handleShowProductDetails,
+  handleShowOrderDetails,
   vendor,
 }) => {
 
@@ -55,7 +56,13 @@ const TabList = ({
                         <Card  className="TabList-card" key={ key }
                                onClick={
                                  () => {
-                                   handleShowProductDetails(vendor, items[key]);
+                                   if (route === 'products') {
+                                    handleShowProductDetails(vendor, items[key]);
+                                   }
+
+                                   if (route === 'orders') {
+                                    handleShowOrderDetails(items[key].id);
+                                   }
                                  }
                                }>
                           <CardText  className="TabList-data">

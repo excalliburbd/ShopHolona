@@ -13,6 +13,7 @@ import { paymentandaddressActionCreators } from './paymentandaddressActionCreato
 import { tourActionCreators } from './tourActionCreators';
 import { confirmActionCreators } from './confirmActionCreators';
 import { navigationActionCreators } from './navigationActionCreators';
+import { backOfficeActionCreators } from './backOfficeActionCreators';
 
 export const userActions = createActions(userActionCreators);
 export const sidebarActions = createActions(sidebarActionCreators);
@@ -27,3 +28,4 @@ export const paymentandaddressActions = createActions(paymentandaddressActionCre
 export const tourActions = createActions(tourActionCreators);
 export const confirmActions = createActions(confirmActionCreators);
 export const navigationActions = createActions(navigationActionCreators);
+export const backOfficeActions = createActions(backOfficeActionCreators);

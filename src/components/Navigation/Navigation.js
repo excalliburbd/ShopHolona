@@ -23,6 +23,7 @@ import NotificationContainer from '../../containers/NotificationContainer';
 import TourContainer from '../../containers/TourContainer';
 import Confirm from '../../containers/ConfirmContainer';
 import CheckoutContainer from '../../containers/CheckoutContainer';
+import OrderDetails from '../../containers/OrderDetails';
 
 import './Navigation.css';
 
@@ -156,6 +157,8 @@ class Nav extends Component {
           return <CartContainer />
         case 'CHECKOUT':
           return <CheckoutContainer />
+        case 'ORDER_DETAILS':
+          return <OrderDetails />
         default:
           return null;
       }
