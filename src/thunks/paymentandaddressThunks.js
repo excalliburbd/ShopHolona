@@ -87,7 +87,6 @@ export const saveBankInfo = (bank, branch, accountName, accountNumber, shop, tok
               'POST'
             )).then(
               response => {
-                console.log(response)
                 dispatch(addNotification({
                   title: 'Success',
                   message: 'Successfully saved bank information',
