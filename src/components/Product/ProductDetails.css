@@ -103,19 +103,24 @@
   margin-top: 1.8em;
   width: 20rem;
 }
+
 .ProductDetails-action-cart._3tTAW:not([disabled]) {
   background-color: rgba(244, 67, 54,1);
 }
+
 .ProductDetails-action-cart {
   font-weight: 600;
   margin: 0em 1em;
 }
+
 .ProductDetails-action-cart._3tTAW:not([disabled]):hover {
   background-color: rgba(244, 67, 54, 0.9);
 }
+
 .ProductDetails-action-buy._3tTAW:not([disabled]) {
   background-color: rgba(239, 108, 0, 1);
 }
+
 .ProductDetails-action-buy {
   font-weight: 600;
   margin: 0em 1em;
@@ -140,19 +145,25 @@
   outline: none;
 }
 
-.ProductDetails--toggle {
-  position: relative;
-  top: 10px;
-  left: -12px;
+.back-to-store {
+  margin-top: 1em;
+  background: #4A4A4A;
+  color: #eee !important;
+  font-weight: bold;
+  width: 320px;
+  border-radius: 4px;
+  padding-top: .1em;
+  text-transform: none;
+  font-size: 1.2em;
+  font-family: "Harmonia Bold";
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
 }
 
-.ProductDetails--toggle .material-icons {
-  color:grey;
-  font-size: 2em;
-  box-shadow: 2px 2px 8px grey;
-  border-radius: 50%;
-  height: 2.3rem;
-  width: 2.3rem;
+.back-to-store ._3aBSX {
+  position: absolute;
+  left: 1em;
+  bottom: .04em;
+  font-size: 1.5em;
 }
 
 .details-action {
@@ -175,8 +186,19 @@
   display: none;
 }
 
+/* FOR IPAD AND IPAD PRO */
+@media screen and (min-width: 760px) and (max-width: 1100px) {
+
+  .product-details-left {
+    width: 45%;
+  }
+
+  .product-details-right {
+    width: 55%;
+  }
 
 
+}
 
 /*for mobile*/
 @media screen and (max-width: 750px) {
@@ -210,7 +232,6 @@
   .product-details-left {
     width: 100%;
     padding: 0em 1em;
-    margin-top: 2rem;
   }
   .product-details-title {
     width: 100%;
@@ -255,5 +276,10 @@
 
   .product-page-loader {
     height: 100vh;
+  }
+
+  .back-to-store {
+    width: 100%;
+    margin-top: 1em;
   }
 }

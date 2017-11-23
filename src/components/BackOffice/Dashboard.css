@@ -65,6 +65,11 @@
 }
 
 @media screen and (min-width: 800px) {
+  .Dashboard {
+    position: relative;
+    top: 2.9em;
+  }
+
   .Dashboard ._8pay8 {
     width: calc((100% / 3) - (1em / 3));
     margin: 0;
