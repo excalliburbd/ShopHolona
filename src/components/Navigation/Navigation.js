@@ -227,7 +227,7 @@ class Nav extends Component {
           }
           <Sidebar pinned={ showSidebar } className="Navigation-sidebar" >
             <div className="Navigation-sidebar-action">
-              {sidebarSubType !== 'FINALIZE_ORDER' && <IconButton icon='close' onClick={ handleHideSidebar }/>}
+              {sidebarSubType !== 'FINALIZE_ORDER' ? <IconButton icon='close' onClick={ handleHideSidebar }/> : <div></div>}
               <h1>
                 { titleMsg }
               </h1>
