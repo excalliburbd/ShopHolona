@@ -48,7 +48,7 @@
 }
 
 .Navigation-sidebar-action {
-  position: sticky;
+  position: static;
   z-index: 300;
   top: 0em;
   height: 4rem;

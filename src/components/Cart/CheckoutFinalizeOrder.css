@@ -58,8 +58,8 @@
   margin: 0.7em 0;
 }
 
-.invoice-no--value {
-  width: 50% !important;
+.order-details .invoice-no--value {
+  width: 50%;
 }
 
 .order-details p:first-of-type,

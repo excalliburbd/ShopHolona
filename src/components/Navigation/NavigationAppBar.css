@@ -101,6 +101,10 @@
   margin-top: 42px;
 }
 
+.NavigationAppBar .NavigationAppBar-profile-menu ._3aBSX {
+  font-size: 2.8rem;
+}
+
 .NavigationAppBar-searchbar--close {
   position: absolute;
   top: 0;
@@ -136,7 +140,7 @@
 }
 
 .NavigationAppBar .material-icons {
-  font-size: 2.7rem;
+  font-size: 2rem;
 }
 
 .NavigationAppBar-dashboard-icon , .store-icon {
