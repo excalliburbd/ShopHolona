@@ -122,6 +122,11 @@
   width: 100%;
 }
 
+.ProductCard  .ProductCard-button {
+  border-radius: 0px;
+}
+
+
 ._2Agdx._221ic._2Agdx._2GH_L._1ZxqC._2CPs4.ProductCard-button-vendor {
   background-color: #EBEBEB;
   color: #4A4A4A;
