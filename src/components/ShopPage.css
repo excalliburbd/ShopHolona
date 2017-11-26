@@ -118,7 +118,8 @@
 }
 
 .ShopPage-details--text-desc {
-  padding: .5em 0.51em;
+  padding: 0em 0.51em;
+  padding-bottom: .5em;
   font-size: 13px;
   margin-left: 0.2em;
   font-family: "Gotham Narrow Book";
@@ -300,14 +301,16 @@
 .ShopPage-details-header button ._3aBSX {
   font-size: 16px;
   position: relative;
-  bottom: .35em;
+  bottom: .45em;
 }
 
 .ShopPage-details-header button {
   position: absolute;
   right: .5em;
-  top: .5em;
+  top: .65em;
   box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.75);
+  height: 1.5em;
+  width: 1.5em;
 
 }
 

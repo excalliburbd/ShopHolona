@@ -238,7 +238,7 @@ const ShopPage = ({
             <p>About</p>
             {
                   vendor && <IconButton icon="edit"
-                                        onClick={ () => handleShowEditDescription() }/>
+                                        onClick={ () => handleShowEditDescription(editDesc) }/>
                 }
           </div>
           {
