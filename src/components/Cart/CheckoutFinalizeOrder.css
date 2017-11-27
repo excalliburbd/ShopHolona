@@ -59,7 +59,7 @@
 }
 
 .order-details .invoice-no--value {
-  width: 50%;
+  width: 47%;
 }
 
 .order-details p:first-of-type,
@@ -69,7 +69,7 @@
 
 .total-amount {
   display: flex;
-  width: 50%;
+  width: 47%;
 }
 
 .next-order-info {
@@ -246,7 +246,7 @@
 
 .total-amount .total-value {
   width: 80%;
-  margin-left: .2em;
+  margin-left: 1em;
 }
 
 .last-step-footer {
@@ -356,11 +356,11 @@
 
 .est-deliv-date p:first-of-type {
   white-space: nowrap;
-  width: 45%;
+  width: 50%;
 }
 
 .est-deliv-date p:last-of-type {
-  width: 50%;
+  width: 47%;
 }
 
 .cart-details-tooltip hr {

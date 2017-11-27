@@ -95,6 +95,7 @@ class ProductDetails extends Component {
 
     const zoomImg = {
       width: 320,
+      height: 320,
       offset: {vertical: 0, horizontal: 10},
       zoomWidth: 320,
       img: `${images[0].original}`
