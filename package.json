@@ -62,6 +62,7 @@
   },
   "scripts": {
     "start": "REACT_APP_ENV=development react-scripts start",
+    "start:prod": "REACT_APP_ENV=production react-scripts start",
     "start:win": "set REACT_APP_ENV=development&&react-scripts start",
     "build": "react-scripts build",
     "build:dev": "REACT_APP_ENV=development react-scripts build",
