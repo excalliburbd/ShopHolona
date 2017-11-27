@@ -472,27 +472,32 @@ export const productsEntityReducer = handleActions({
 
       return products;
     },
-    [cartActions.cart.done.get]: (state, action) => {
-      const products = {
-        ...state,
-      }
+    [cartActions.cart.done.get]: {
+      next (state, action) {
+        const products = {
+          ...state,
+        }
 
-      action.payload.forEach(
-        item => {
-          if (!state[item.product.id]) {
-            products[item.product.id] = {
-              ...item.product,
-              weight: item.product.variances[0].attributes[0].weight,
-              price: item.product.variances[0].attributes[0].price,
-              sh_price: item.product.variances[0].attributes[0].sh_price,
-              selectedVariant: 0,
-              selectedAttribute: 0,
+        action.payload.forEach(
+          item => {
+            if (!state[item.product.id]) {
+              products[item.product.id] = {
+                ...item.product,
+                weight: item.product.variances[0].attributes[0].weight,
+                price: item.product.variances[0].attributes[0].price,
+                sh_price: item.product.variances[0].attributes[0].sh_price,
+                selectedVariant: 0,
+                selectedAttribute: 0,
+              }
             }
           }
-        }
-      );
+        );
 
-      return products;
+        return products;
+      },
+      throw (state, action) {
+        return state;
+      }
     },
     [productActions.products.done.delete.product]: (state, action) => {
       const productsEntity = { ...state };
