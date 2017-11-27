@@ -101,6 +101,10 @@
   margin-top: 42px;
 }
 
+.NavigationAppBar .NavigationAppBar-profile-menu ._3aBSX {
+  font-size: 2.8rem;
+}
+
 .NavigationAppBar-searchbar--close {
   position: absolute;
   top: 0;
@@ -186,7 +190,6 @@
 
 .NavigationAppBar-cart-icon {
   height: 3em;
-  width: 2.3em;
   margin-right: .5em;
   cursor: pointer;
   margin-top: .25em;

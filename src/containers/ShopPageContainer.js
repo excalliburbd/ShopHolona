@@ -147,8 +147,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleEditDescription: value => {
       dispatch(shopActions.shop.edit.description(value));
     },
-    handleShowEditDescription: () => {
-      dispatch(shopActions.shop.set.editDesc(true));
+    handleShowEditDescription: (value) => {
+      dispatch(shopActions.shop.set.editDesc(!value));
     },
     handleFollowShop: (shop, token, name) => {
       dispatch(followShop(shop, token, name));

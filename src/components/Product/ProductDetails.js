@@ -5,7 +5,6 @@ import ImageGallery from 'react-image-gallery';
 import Tab from 'react-toolbox/lib/tabs/Tab';
 import Tabs from 'react-toolbox/lib/tabs/Tabs';
 import Button from 'react-toolbox/lib/button/Button';
-import IconButton from 'react-toolbox/lib/button/IconButton';
 import Sticky from 'react-sticky-el';
 import ReactImageZoom from 'react-image-zoom';
 
@@ -96,6 +95,7 @@ class ProductDetails extends Component {
 
     const zoomImg = {
       width: 320,
+      height: 320,
       offset: {vertical: 0, horizontal: 10},
       zoomWidth: 320,
       img: `${images[0].original}`
@@ -103,14 +103,13 @@ class ProductDetails extends Component {
 
     return (
       <div className="product-details-container">
-        <IconButton
-          title="Back to Store"
-          icon="arrow_back"
-          className="ProductDetails--toggle"
-          onClick={ () => toggleDetails(null) }
-        />
-
         <div className="product-details-left">
+          <Button icon="keyboard_backspace"
+                  className="back-to-store"
+                  label="Back To Store"
+                  onClick={ () => toggleDetails(null) }
+          />
+
           <Sticky stickyClassName="product-details-info-sticky">
             <h1 className="product-details-title">{ product.name }</h1>
             <div className="product-details-price-title">

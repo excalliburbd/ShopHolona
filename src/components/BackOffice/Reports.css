@@ -61,6 +61,8 @@
 
   .report {
     align-items: center;
+    position: relative;
+    top: 2.9em;
   }
 
   .report-cards {

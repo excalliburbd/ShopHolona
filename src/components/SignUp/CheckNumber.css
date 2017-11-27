@@ -1,6 +1,6 @@
 .spinner {
-    height: 1.2em;
-    width: 1.2em;
+    height: 1.3em;
+    width: 1.3em;
     border: 2px solid #c33;
     border-radius: 50%;
     display: flex;
@@ -18,7 +18,7 @@
   height: 4px;
   width: 4px;
   position: absolute;
-  left: 93%;
+  left: 95%;
   border-radius: 50%;
 
 }
