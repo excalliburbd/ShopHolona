@@ -17,34 +17,25 @@ class CheckoutDelivery extends Component {
     this.state = {
       addNewAddress: this.props.addresses.length < 1,
       more: false,
-      addressToggleer : "add",
       comment: false,
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.addresses.length !== nextProps.addresses.length) {
-      this.handleAddNewAddress();
-      this.setState({
-        addNewAddress: nextProps.addresses.lenght < 1,
-      })
-    }
-  }
-
-  handleAddNewAddress() {
-    this.setState((prevState) => {
-      return {
-        addressToggleer: prevState.addressToggleer === "add" ? "remove":"add",
-        addNewAddress: !prevState.addNewAddress
+  handleAddNewAddress = () => {
+    this.setState(
+      (prevState) => {
+        return {
+          addNewAddress: !prevState.addNewAddress
+        }
       }
-    })
+    )
   }
 
   toggleShowMore = () => {
     this.setState(
-      (prevState, props) => {
+      (prevState) => {
         return {
-          more: !prevState.more,
+          more: !prevState.more
         }
       }
     )
@@ -52,9 +43,9 @@ class CheckoutDelivery extends Component {
 
   toggleCommentBox = () => {
     this.setState(
-      (prevState, props) => {
+      (prevState) => {
         return {
-          comment: !prevState.comment,
+          comment: !prevState.comment
         }
       }
     )
@@ -95,7 +86,7 @@ class CheckoutDelivery extends Component {
           {
             addresses.length > 0 &&
             <Button className="checkout-delivery-address--btn-add"
-                    icon={this.state.addressToggleer}
+                    icon={this.state.addNewAddress?'remove':'add'}
                     label='Add Delivery Address'
                     raised
                     onClick={ ()=> {
@@ -119,7 +110,7 @@ class CheckoutDelivery extends Component {
 
           <div className="checkout-delivery-address--view">
             {
-              this.state.addressToggleer === 'add'?
+              !this.state.addNewAddress?
                 addresses.length > 2?
                 Array.isArray(addresses) && addresses.map((address, key) => {
                   return (
@@ -128,7 +119,7 @@ class CheckoutDelivery extends Component {
                         onClick={ () => setSelectedAddress(key, selectedAddress === key) }>
                       <p className="checkout-delivery-address--card-title">{address.address_title}</p>
                       <p className="checkout-delivery-address--card-content">{address.details}</p>
-                      <div className="cross-btn" onClick={ () => {deleteAddress(address.id);this.handleAddNewAddress();} }><i className="material-icons cross-btn-icon">clear</i></div>
+                      <div className="cross-btn" onClick={ () => {deleteAddress(address.id);} }><i className="material-icons cross-btn-icon">clear</i></div>
                     </div>
                   )
                 })
