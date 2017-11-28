@@ -17,7 +17,7 @@ export const getallOrders = createSelector(
   }
 );
 
-const getOrderStatus = id => {
+export const getOrderStatus = id => {
   switch(id) {
     case 0:
       return 'Completed';
