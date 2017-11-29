@@ -23,6 +23,7 @@ import NotificationContainer from '../../containers/NotificationContainer';
 import TourContainer from '../../containers/TourContainer';
 import Confirm from '../../containers/ConfirmContainer';
 import CheckoutContainer from '../../containers/CheckoutContainer';
+import OrderDetails from '../../containers/OrderDetails';
 
 import './Navigation.css';
 
@@ -156,6 +157,8 @@ class Nav extends Component {
           return <CartContainer />
         case 'CHECKOUT':
           return <CheckoutContainer />
+        case 'ORDER_DETAILS':
+          return <OrderDetails />
         default:
           return null;
       }
@@ -177,7 +180,6 @@ class Nav extends Component {
     const showBlur = {
       display: 'block'
     }
-
     return (
       <div>
         <TourContainer />
@@ -192,7 +194,7 @@ class Nav extends Component {
           <NavigationDrawer pinned={ pinned } history={ history } location={ location }/>
             <Panel className={ panelClass }>
               {/* ADDED A CLASS AFTER SHIFTING TO CHECKOUT WHICH WILL MAKE THE BACKGROUND RGBA BLACK */}
-            <div className="background-blurzy" style={ (sidebarType !== 'CART' && sidebarType && sidebarType !== 'PRODUCT'? showBlur : hideBlur) }></div>
+            <div className={sidebarType!=='ORDER_DETAILS' ? "background-blurzy" : ''} style={ (sidebarType !== 'CART' && sidebarType && sidebarType !== 'PRODUCT'? showBlur : hideBlur) }></div>
               <NavigationAppBar searchbar={ searchbar }
                                 history={ history }
                                 location={ location }
@@ -225,7 +227,7 @@ class Nav extends Component {
           }
           <Sidebar pinned={ showSidebar } className="Navigation-sidebar" >
             <div className="Navigation-sidebar-action">
-              {sidebarSubType !== 'FINALIZE_ORDER' && <IconButton icon='close' onClick={ handleHideSidebar }/>}
+              {sidebarSubType !== 'FINALIZE_ORDER' ? <IconButton icon='close' onClick={ handleHideSidebar }/> : <div></div>}
               <h1>
                 { titleMsg }
               </h1>

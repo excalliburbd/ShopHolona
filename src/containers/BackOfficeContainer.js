@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import BackOffice from '../components/BackOffice/BackOffice';
 
-import { sidebarActions } from '../actions/';
+import { sidebarActions, backOfficeActions } from '../actions/';
 
 import { getVendor } from '../selectors/userSelectors';
 import {
@@ -27,24 +27,26 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     handleTabChange: (index, route) => {
-      dispatch({
-        type: 'CHANGE_UI_TAB',
+      dispatch(backOfficeActions.backOffice.set.tab({
         index,
         route: route,
-      })
+      }));
     },
     setOrderStatus: (value, id) => {
-      dispatch({
-        type: 'UPDATE_ORDERS_DATA_STATUS',
-        value,
-        id
-      })
+      // dispatch({
+      //   type: 'UPDATE_ORDERS_DATA_STATUS',
+      //   value,
+      //   id
+      // }) dun work brah
     },
     handleShowProductDetails: (vendor, product) => {
       if (vendor) {
         dispatch(sidebarActions.sidebar.show.addProductDetails(product));
       }
     },
+    handleShowOrderDetails: id => {
+      dispatch(sidebarActions.sidebar.show.orderDetails(id));
+    }
   }
 }
 

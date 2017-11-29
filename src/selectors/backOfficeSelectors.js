@@ -17,41 +17,7 @@ export const getallOrders = createSelector(
   }
 );
 
-export const getMenu = createSelector(
-  [getAllProducts, getallOrders],
-  (products, orders) => {
-    return {
-      products: [
-        {
-          name: 'All',
-          items: products,
-        },
-        ...['Available', 'Out Of Stock', 'Deleted', "Pending", "Denied", "Archived"]
-          .map(
-            (name, key) => ({
-              name,
-              items: products.filter( ({ status }) => ((status === key)))
-            })
-          )
-      ],
-      orders: [
-        {
-          name: 'All',
-          items: orders,
-        },
-        ...['Completed', 'Pending', 'Processing', 'Cancelled by Vendor','Refund', 'On Hold', 'Cancelled by User', 'Assigned to shipping', 'Error', 'Picked up for delivery', 'Awaiting payment']
-          .map(
-            (name, key) => ({
-              name,
-              items: orders.filter( ({ order_status }) => ((order_status === key)))
-            })
-          )
-      ]
-    }
-  }
-);
-
-const getOrderStatus = id => {
+export const getOrderStatus = id => {
   switch(id) {
     case 0:
       return 'Completed';
@@ -79,6 +45,48 @@ const getOrderStatus = id => {
       return 'Pending';
   }
 }
+
+export const getMenu = createSelector(
+  [getAllProducts, getallOrders],
+  (products, orders) => {
+    return {
+      products: [
+        {
+          name: 'All',
+          items: products,
+        },
+        ...['Available', 'Out Of Stock', 'Deleted', "Pending", "Denied", "Archived"]
+          .map(
+            (name, key) => ({
+              name,
+              items: products.filter( ({ status }) => ((status === key)))
+            })
+          )
+      ],
+      orders: [
+        {
+          name: 'All',
+          items: orders,
+        },
+        ...['Completed', 'Pending', 'Processing', 'Cancelled', 'Refund', 'On Hold' ]
+          .map(
+            (name, key) => ({
+              name,
+              items: orders.filter( ({ order_status }) => {
+                const statusString = getOrderStatus(order_status);
+
+                if (order_status === 3 || order_status === 6) {
+                  return true;
+                }
+
+                return name === statusString;
+              })
+            })
+          )
+      ]
+    }
+  }
+);
 
 const getProductStatus = id => {
   switch(id) {

@@ -1,21 +1,27 @@
-export const BackOfficeUIReducer = (
-  state = {
-    selectedIndexs: {
-      products: 0,
-      orders: 0,
-    },
-  }, action
-) => {
-  switch (action.type) {
-    case 'CHANGE_UI_TAB':
-      return {
-        ...state,
-        selectedIndexs: {
-          ...state.selectedIndexs,
-          [action.route]: action.index
-        }
+import { handleActions } from 'redux-actions';
+
+import { backOfficeActions, sidebarActions } from '../actions';
+
+export const BackOfficeUIReducer = handleActions({
+  [backOfficeActions.backOffice.set.tab]: (state, action) => {
+    return {
+      ...state,
+      selectedIndexs: {
+        ...state.selectedIndexs,
+        [action.payload.route]: action.payload.index
       }
-    default:
-      return state;
-  }
-}
+    }
+  },
+  [sidebarActions.sidebar.show.orderDetails]: (state, action) => {
+    return {
+      ...state,
+      selectedOrder: action.payload,
+    }
+  },
+}, {
+  selectedIndexs: {
+    products: 0,
+    orders: 0,
+  },
+  selectedOrder: null,
+});

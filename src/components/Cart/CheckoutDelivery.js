@@ -78,7 +78,11 @@ class CheckoutDelivery extends Component {
     } = this.props;
 
     let addresses = (this.state.more) ? this.props.addresses : this.props.addresses.slice(0, 2);
-
+    console.log(this.props.addresses,
+      this.state.addNewAddress,
+      addresses.length,
+      addresses,
+      this.state.addressToggleer)
     return (
       <div className="checkout-delivery">
         <div className="checkout-delivery-body">

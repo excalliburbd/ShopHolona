@@ -5,7 +5,7 @@ import { request, getConfig, fromState } from './helpers';
 
 import { cartActions, sidebarActions } from '../actions/';
 
-export const getCart = (token, show, initial) => dispatch => {
+export const getCart = (token, show, initial) => (dispatch, getState) => {
   dispatch(cartActions.cart.set.loading(true));
 
   if (token) {
@@ -14,7 +14,18 @@ export const getCart = (token, show, initial) => dispatch => {
           )).then(
             res => {
               // Cart fetching successful
-              dispatch(cartActions.cart.done.get(res));
+              const products = getState().entities.products;
+
+              dispatch(cartActions.cart.done.get(res.filter(
+                item => !!products[item.product.id]
+              ).map(
+                item => ({
+                  ...item,
+                  product: {
+                    ...products[item.product.id]
+                  }
+                })
+              )));
 
               if ((show || res.length > 0) && !initial) {
                 dispatch(sidebarActions.sidebar.show.addToCart());
@@ -107,9 +118,9 @@ export const addToCart = (id, token, productID) => (dispatch, getState) => {
       user: null,
       product_variance_attribute: {
         id: id,
-        variance: {
-          id: variantID
-        }
+      },
+      variance: {
+        id: variantID
       },
       product,
       quantity: 1
@@ -129,9 +140,16 @@ export const addToCart = (id, token, productID) => (dispatch, getState) => {
             )).then(
               res => {
                 // success
+                const products = getState().entities.products;
+
                 dispatch(cartActions.cart.update.itemByVariant({
                   id: newCartItem.id,
-                  response: res,
+                  response: {
+                    ...res,
+                    product: {
+                      ...products[res.product.id]
+                    }
+                  },
                 }));
                 dispatch(addNotification({
                   title: 'Success',

@@ -16,6 +16,7 @@ export const sidebarActionCreators = {
       CHECKOUT_VERIFY_PHONE: payload => payload,
       CHECKOUT_PAYMENT_SELECTION: payload => payload,
       CHECKOUT_FINALIZE_ORDER: payload => payload,
+      ORDER_DETAILS: payload => payload,
     },
     UI: {
       SET: {
