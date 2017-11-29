@@ -75,7 +75,7 @@ export const getMenu = createSelector(
               items: orders.filter( ({ order_status }) => {
                 const statusString = getOrderStatus(order_status);
 
-                if (order_status === 3 || order_status === 6) {
+                if ((order_status === 3 || order_status === 6) && name === 'Cancelled') {
                   return true;
                 }
 
