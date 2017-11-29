@@ -5,13 +5,15 @@ import BackOffice from '../components/BackOffice/BackOffice';
 
 import { sidebarActions, backOfficeActions } from '../actions/';
 
-import { getVendor } from '../selectors/userSelectors';
+import { getVendor, getToken } from '../selectors/userSelectors';
 import {
   getMenu,
   getTabIndex,
   getTablistData,
   getallOrders,
 } from '../selectors/backOfficeSelectors';
+import { getOrderDetails } from '../thunks/ordersThunks';
+import { getShopID } from '../selectors/shopSelectors';
 
 
 const mapStateToProps = state => {
@@ -21,6 +23,8 @@ const mapStateToProps = state => {
     data: getTablistData(state),
     vendor: getVendor(state),
     orders: getallOrders(state),
+    shop: getShopID(state),
+    token: getToken(state),
   }
 }
 
@@ -44,7 +48,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(sidebarActions.sidebar.show.addProductDetails(product));
       }
     },
-    handleShowOrderDetails: id => {
+    handleShowOrderDetails: (id, shop, token) => {
+      dispatch(getOrderDetails(shop, token, id));
       dispatch(sidebarActions.sidebar.show.orderDetails(id));
     }
   }

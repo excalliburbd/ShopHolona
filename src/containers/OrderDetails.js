@@ -20,6 +20,7 @@ const mapStateToProps = state => {
     price: orderDetails.total_price,
     shop: getShopID(state),
     token: getToken(state),
+    productList: orderDetails.details || [],
   }
 }
 
@@ -27,6 +28,9 @@ const mapDispatchToProps = dispatch => {
   return {
     handleChangeOrderStatus: (shop, token, order, status) => {
       dispatch(changeOrderStatus(shop, token, order, status));
+    },
+    getOrderStatus: id => {
+      return getOrderStatus(id);
     }
   }
 }

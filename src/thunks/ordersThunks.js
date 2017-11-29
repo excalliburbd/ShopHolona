@@ -42,3 +42,18 @@ export const changeOrderStatus = (shop, token, order, status) => dispatch => {
           );
   }
 }
+
+export const getOrderDetails = (shop, token, order) => dispatch => {
+  if (token) {
+    request(`/vendors/shops/${shop}/orders/${order}/details`, getConfig(
+      token,
+    )).then(
+      res => {
+        dispatch(orderActions.orders.set.details({
+          id: order,
+          data: res,
+        }));
+      }
+    )
+  }
+}

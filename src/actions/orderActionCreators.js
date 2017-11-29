@@ -5,6 +5,9 @@ export const orderActionCreators = {
       GET: {
         ALL: payload => payload,
       }
+    },
+    SET: {
+      DETAILS: payload => payload,
     }
   }
 }

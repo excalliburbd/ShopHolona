@@ -42,6 +42,15 @@ export const ordersEntityReducer = handleActions({
       )
 
     return orders;
+  },
+  [orderActions.orders.set.details]: (state, action) => {
+    return {
+      ...state,
+      [action.payload.id]: {
+        ...state[action.payload.id],
+        details: action.payload.data
+      }
+    }
   }
 }, {
 

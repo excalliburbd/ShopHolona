@@ -19,6 +19,8 @@ const TabList = ({
   handleShowProductDetails,
   handleShowOrderDetails,
   vendor,
+  token,
+  shop,
 }) => {
 
   const getListStyle = length => ({ flex: 1 / length });
@@ -61,7 +63,7 @@ const TabList = ({
                                    }
 
                                    if (route === 'orders') {
-                                    handleShowOrderDetails(items[key].id);
+                                    handleShowOrderDetails(items[key].id, shop, token);
                                    }
                                  }
                                }>

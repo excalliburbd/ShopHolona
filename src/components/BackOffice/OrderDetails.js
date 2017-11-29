@@ -13,6 +13,8 @@ const OrderDetails = ({
   handleChangeOrderStatus,
   shop,
   token,
+  productList,
+  getOrderStatus,
 }) => {
   const newDate = new Date(date);
 
@@ -60,6 +62,21 @@ const OrderDetails = ({
             {price} &#2547;
           </li>
         </ul>
+      </div>
+      <div>
+        {
+          productList.map(
+            ({ product, variance, product_variance_attribute, price, weight, quantitiy, order_status}) => <div>
+              <p>Proudct Name: { product.name }</p>
+              <p>{ variance.type.name }: { variance.type.value }</p>
+              <p>{ product_variance_attribute.type.name }: { product_variance_attribute.type.value }</p>
+              <p>Price: { price }</p>
+              <p>Weight: { weight }</p>
+              <p>Quantity: { quantitiy }</p>
+              <p>Status: { getOrderStatus(order_status) }</p>
+            </div>
+          )
+        }
       </div>
     </div>
   )

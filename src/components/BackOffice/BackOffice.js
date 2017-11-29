@@ -17,6 +17,8 @@ const BackOffice = ({
   handleShowProductDetails,
   vendor,
   handleShowOrderDetails,
+  shop,
+  token
 }) => {
   return (
     <div className="Backoffice">
@@ -29,7 +31,7 @@ const BackOffice = ({
                                     handleTabChange={ handleTabChange }
                                     handleShowProductDetails={ handleShowProductDetails }
                                     vendor={ vendor }
-                                    handleShowOrderDetails={ handleShowOrderDetails }  />
+                                    handleShowOrderDetails={ id => handleShowOrderDetails(id, shop, token) }  />
                                     } />
         <Route exact path="/admin/products" render={
                     () => <TabList  menu={ menu.products }
@@ -38,7 +40,9 @@ const BackOffice = ({
                                     tabIndex={ tabIndex.products }
                                     handleTabChange={ handleTabChange }
                                     handleShowProductDetails={ handleShowProductDetails }
-                                    vendor={ vendor }/>
+                                    vendor={ vendor }
+                                    shop={ shop }
+                                    token={ token }/>
                                     } />
         <Route exact path="/admin/reports" component={ Reports } />
         <Redirect to="/not-found" />
