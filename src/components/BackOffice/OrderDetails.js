@@ -1,7 +1,7 @@
 import React from 'react';
 import './OrderDetails.css';
 
-import Dropdown from 'react-toolbox/lib/dropdown';
+import Dropdown from 'react-toolbox/lib/dropdown/Dropdown';
 
 const OrderDetails = ({
   id,
