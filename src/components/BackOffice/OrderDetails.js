@@ -33,7 +33,10 @@ const OrderDetails = ({
             <strong>Status: </strong>
             {
               status === 'Pending' ?
-                <Button label="Accept" raised onClick={ () => handleChangeOrderStatus(shop, token, id.substr(2), 2) } />
+                <div>
+                  <Button label="Accept" raised onClick={ () => handleChangeOrderStatus(shop, token, id.substr(2), 2) } />
+                  <Button label="Cancel" accent onClick={ () => handleChangeOrderStatus(shop, token, id.substr(2), 3) } />
+                </div>
                 :
                 <span>
                   <p>{ status }</p>
