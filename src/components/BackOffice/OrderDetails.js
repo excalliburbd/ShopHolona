@@ -1,20 +1,21 @@
 import React from 'react';
+
 import './OrderDetails.css';
 
-import Dropdown from 'react-toolbox/lib/dropdown/Dropdown';
+import Button from 'react-toolbox/lib/button/Button';
 
 const OrderDetails = ({
   id,
   date,
   status,
   shPrice,
-  price
+  price,
+  handleChangeOrderStatus,
+  shop,
+  token,
 }) => {
   const newDate = new Date(date);
-  const statusList = [
-    { value: 'Pending', label: 'Pending' },
-    { value: 'Processing', label: 'Processing' },
-  ];
+
   return (
     <div className="sidebar-order-details-container">
       <p className="order-details-header">Order Details</p>
@@ -32,13 +33,15 @@ const OrderDetails = ({
             <strong>Status: </strong>
             {
               status === 'Pending' ?
-                <Dropdown
-                  auto={false}
-                  source={statusList}
-                  onChange={(val)=>{console.log(val)}}
-                  value={status.replace(/ /g,'')} />
+                <Button label="Accept" raised onClick={ () => handleChangeOrderStatus(shop, token, id.substr(2), 2) } />
                 :
-                status
+                <span>
+                  <p>{ status }</p>
+                  {
+                    status === 'Cancelled by Vendor' ? '' :
+                    <Button label="Cancel" accent onClick={ () => handleChangeOrderStatus(shop, token, id.substr(2), 3) } />
+                  }
+                </span>
             }
           </li>
           <li>
@@ -54,11 +57,6 @@ const OrderDetails = ({
             {price} &#2547;
           </li>
         </ul>
-        {/* <Dropdown
-              auto={false}
-              source={statusList}
-              onChange={(val)=>{console.log(val)}}
-              value={status.replace(/ /g,'')} /> */}
       </div>
     </div>
   )

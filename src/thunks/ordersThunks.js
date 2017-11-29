@@ -16,3 +16,29 @@ export const getOrderList = (shop, token) => dispatch => {
           );
   }
 }
+
+export const changeOrderStatus = (shop, token, order, status) => dispatch => {
+
+  if (token) {
+    request(`/vendors/shops/${shop}/orders/${order}/details`, getConfig(
+            token,
+          )).then(
+            res => {
+              request(`/vendors/shops/${shop}/orders/${order}/`, getConfig(
+                token,
+                {
+                  orderdetails: res.map( ({ id }) => id ),
+                  order_status: status
+                },
+                'PUT'
+              )).then(
+                res => {
+                  if (res.order_status) {
+                    dispatch(getOrderList(shop, token));
+                  }
+                }
+              )
+            }
+          );
+  }
+}
