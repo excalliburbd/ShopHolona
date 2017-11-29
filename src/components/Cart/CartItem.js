@@ -29,7 +29,7 @@ const CartItem = ({
 }) => {
 
   const variant = product.variances.find(
-    item => (item.id === cartItem.product_variance_attribute.variance.id)
+    item => (item.id === cartItem.variance.id)
   );
 
   const attribute = variant.attributes.find(
@@ -92,7 +92,7 @@ const CartItem = ({
                          type='text'
                          name='name'
                          value={ cartItem.quantity } />
-                  
+
                   <span className="plus" onClick={
                   () => updateCartItem(
                     cartItem.id,

@@ -157,7 +157,7 @@ export const cartEntitiesReducer = handleActions({
     }
   },
   [cartActions.cart.add.item]: (state, action) => {
-    const variantID = action.payload.product_variance_attribute.variance.id;
+    const variantID = action.payload.variance.id;
     const attributeID = action.payload.product_variance_attribute.id;
 
     const productSpecs = action.payload.product.variances
@@ -214,7 +214,7 @@ export const cartEntitiesReducer = handleActions({
       response,
     } = action.payload;
 
-    const variantID = response.product_variance_attribute.variance.id;
+    const variantID = response.variance.id;
     const attributeID = response.product_variance_attribute.id;
 
     const productSpecs = response.product.variances
