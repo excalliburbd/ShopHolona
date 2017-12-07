@@ -145,6 +145,7 @@ export const fromState = getState => {
   const guestToken = state.ui.user.guestUser;
   const guestPassword = state.ui.user.guestUser.password;
   const shopID = state.shop.id;
+  const featuredProducts = state.featuredProducts;
 
   return {
     demostore,
@@ -156,5 +157,6 @@ export const fromState = getState => {
     guestToken,
     guestPassword,
     shopID,
+    featuredProducts
   }
 }

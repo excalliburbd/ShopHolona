@@ -895,37 +895,58 @@ export const getFeaturedProduct = shop => dispatch => {
 export const makeFeaturedProduct = (id, shop, token) => (dispatch, getState) => {
   const {
     demostore,
+    featuredProducts
   } = fromState(getState);
 
   if (demostore) {
-    dispatch(productActions.products.ui.set.featuredProduct({ remove: false, id }));
-    dispatch(sidebarActions.sidebar.hide());
-    dispatch(addNotification({
-      title: 'Success',
-      message: 'Successfully featured product',
-      position: 'bl',
-      status: 'success',
-    }));
+    if(featuredProducts.length >= 3) {
+      dispatch(addNotification({
+        title: 'Warning',
+        message: 'You may not add more than three featured products',
+        position: 'bl',
+        status: 'warning',
+      }));
+    }
+    else {
+      dispatch(productActions.products.ui.set.featuredProduct({ remove: false, id }));
+      dispatch(sidebarActions.sidebar.hide());
+      dispatch(addNotification({
+        title: 'Success',
+        message: 'Successfully featured product',
+        position: 'bl',
+        status: 'success',
+      }));
+    }
   } else {
     if (token) {
-      request(`/vendors/shops/${shop}/featured-products/`, getConfig(
-              token,
-              {
-                product: `${id}`,
-              },
-              'POST'
-            )).then(
-              res => {
-                dispatch(getFeaturedProduct(shop));
-                dispatch(sidebarActions.sidebar.hide());
-                dispatch(addNotification({
-                  title: 'Success',
-                  message: 'Successfully featured product',
-                  position: 'bl',
-                  status: 'success',
-                }));
-              }
-            );
+      if(featuredProducts.length >= 3) {
+        dispatch(addNotification({
+          title: 'Warning',
+          message: 'You may not add more than three featured products',
+          position: 'bl',
+          status: 'warning',
+        }));
+      }
+      else {
+        request(`/vendors/shops/${shop}/featured-products/`, getConfig(
+          token,
+          {
+            product: `${id}`,
+          },
+          'POST'
+        )).then(
+          res => {
+            dispatch(getFeaturedProduct(shop));
+            dispatch(sidebarActions.sidebar.hide());
+            dispatch(addNotification({
+              title: 'Success',
+              message: 'Successfully featured product',
+              position: 'bl',
+              status: 'success',
+            }));
+          }
+        );
+      }
     }
   }
 }
