@@ -172,6 +172,7 @@
   border: 1px solid gray;
   border-radius: .4em;
   position: relative;
+  text-indent: 1em;
 }
 
 .spec-inst-input-box ._3FySS {
@@ -180,7 +181,7 @@
 }
 
 .spec-inst-input-box .bMyi_ {
-  width: 90%;
-  left: 5%;
+  width: calc(100% - 2em);
+  left: 1.24em;
   font-size: .8em;
 }

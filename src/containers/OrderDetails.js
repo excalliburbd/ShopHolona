@@ -10,17 +10,15 @@ import { getShopID } from '../selectors/shopSelectors';
 import { getToken } from '../selectors/userSelectors';
 
 const mapStateToProps = state => {
-  const orderDetails = getSelectedOrder(state);
-
   return {
-    id: `IN${orderDetails.id}`,
-    date: `${ moment(orderDetails.created_at).toDate() }`,
-    status: getOrderStatus(orderDetails.order_status),
-    shPrice: orderDetails.total_sh_price,
-    price: orderDetails.total_price,
+    id: `IN${getSelectedOrder(state).id}`,
+    date: `${ moment(getSelectedOrder(state).created_at).toDate() }`,
+    status: getOrderStatus(getSelectedOrder(state).order_status),
+    shPrice: getSelectedOrder(state).total_sh_price,
+    price: getSelectedOrder(state).total_price,
     shop: getShopID(state),
     token: getToken(state),
-    productList: orderDetails.details || [],
+    productList: getSelectedOrder(state).details || [],
   }
 }
 
