@@ -32,11 +32,11 @@ class ProductDetails extends Component {
     } = this.props;
 
     if (location.search === '') {
-      history.push(`${match.url}?${variances[selectedVariant].type.value}+${variances[selectedVariant].attributes[selectedAttribute].type.value}`);
+      history.replace(`${match.url}?${variances[selectedVariant].type.value}+${variances[selectedVariant].attributes[selectedAttribute].type.value}`);
     } else if (location.search !== '' && !variances) {
       handleSetProductDetails(match.params.id);
     } else if (location.search !== `?${variances[selectedVariant].type.value}+${variances[selectedVariant].attributes[selectedAttribute].type.value}`) {
-      history.push(`${match.url}?${variances[selectedVariant].type.value}+${variances[selectedVariant].attributes[selectedAttribute].type.value}`);
+      history.replace(`${match.url}?${variances[selectedVariant].type.value}+${variances[selectedVariant].attributes[selectedAttribute].type.value}`);
     }
   }
 
@@ -51,7 +51,7 @@ class ProductDetails extends Component {
     } = nextProps;
 
     if (variances &&  location.search !== `?${variances[selectedVariant].type.value}+${variances[selectedVariant].attributes[selectedAttribute].type.value}`) {
-      history.push(`/product/${ id }.${ selectedVariant }.${ selectedAttribute }?${variances[selectedVariant].type.value}+${variances[selectedVariant].attributes[selectedAttribute].type.value}`);
+      history.replace(`/product/${ id }.${ selectedVariant }.${ selectedAttribute }?${variances[selectedVariant].type.value}+${variances[selectedVariant].attributes[selectedAttribute].type.value}`);
     }
   }
 

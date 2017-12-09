@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import Card from 'react-toolbox/lib/card/Card';
 import CardMedia from 'react-toolbox/lib/card/CardMedia';
@@ -57,102 +58,106 @@ class ProductCard extends Component {
 
     if (vendor && addProductCard) {
       return (
-        <Card className="ProductCard ProductCard--addProduct" onClick={ () => handleShowVendorDetails(id) }>
-          <CardMedia aspectRatio="square"/>
-          <div className="ProductCard-details ProductCard--addProduct-details">
-            <div className="ProductCard--addProduct-details-icon">
-              <img className="addicon" src={ addProductIcon } alt="Add icon"/>
+        <Link to={`/product/${id}.${selectedVariant}.${selectedAttribute}/?slug`} replace>
+          <Card className="ProductCard ProductCard--addProduct" onClick={ () => handleShowVendorDetails(id) }>
+            <CardMedia aspectRatio="square"/>
+            <div className="ProductCard-details ProductCard--addProduct-details">
+              <div className="ProductCard--addProduct-details-icon">
+                <img className="addicon" src={ addProductIcon } alt="Add icon"/>
+              </div>
+              <h3 className="ProductCard-details-name ProductCard--addProduct-details-content">
+                Add A New Product
+              </h3>
+              <h3 className="ProductCard-details-name ProductCard--addProduct-details-name">
+                Add Products
+              </h3>
+              <div className="ProductCard--addProduct-rating">
+                <Stars rating={ 0 } />
+              </div>
             </div>
-            <h3 className="ProductCard-details-name ProductCard--addProduct-details-content">
-              Add A New Product
-            </h3>
-            <h3 className="ProductCard-details-name ProductCard--addProduct-details-name">
-              Add Products
-            </h3>
-            <div className="ProductCard--addProduct-rating">
-              <Stars rating={ 0 } />
-            </div>
-          </div>
-          <Button className="ProductCard--addProduct-button" raised label="Add Products" />
-        </Card>
+            <Button className="ProductCard--addProduct-button" raised label="Add Products" />
+          </Card>
+        </Link>
       );
     }
 
     return (
-      <Card className="ProductCard">
-        <div onClick={ () => handleShowCustomerDetails(id) }>
-          <div className="ProductCard-images">
-            <CardMedia aspectRatio="square"
-                     image={ productImages[this.state.selectedImage].image } />
-            <div className="ProductCard-images--select">
-              {/*
-              variances.forEach(
-                (variant, key) => {
-                  let style = {};
+      <Link to={`/product/${id}.${selectedVariant}.${selectedAttribute}/?slug`} replace>
+        <Card className="ProductCard">
+          <div onClick={ () => handleShowCustomerDetails(id) }>
+            <div className="ProductCard-images">
+              <CardMedia aspectRatio="square"
+                      image={ productImages[this.state.selectedImage].image } />
+              <div className="ProductCard-images--select">
+                {/*
+                variances.forEach(
+                  (variant, key) => {
+                    let style = {};
 
-                  if (variant.type.name === 'Color') {
-                    style = {
-                      background: variant.type.value.toLowerCase()
-                    }
-                  } else {
-                    if ( variant.images[0] ) {
+                    if (variant.type.name === 'Color') {
                       style = {
-                        backgroundImage: variant.images[0].image
+                        background: variant.type.value.toLowerCase()
                       }
                     } else {
-                      style = {
-                        backgroundImage: '#ccc'
+                      if ( variant.images[0] ) {
+                        style = {
+                          backgroundImage: variant.images[0].image
+                        }
+                      } else {
+                        style = {
+                          backgroundImage: '#ccc'
+                        }
                       }
                     }
+
+                    return <div className="ProductCard-images--select--circle"
+                                onClick={ event => {
+                                  event.stopPropagation();
+                                  setVariant(id, key);
+                                }}
+                                style={ style }
+                                key={ key } />
                   }
-
-                  return <div className="ProductCard-images--select--circle"
-                              onClick={ event => {
-                                event.stopPropagation();
-                                setVariant(id, key);
-                              }}
-                              style={ style }
-                              key={ key } />
-                }
-              )
-            */}
+                )
+              */}
+              </div>
             </div>
-          </div>
-          <div className="ProductCard-price">
-            {/*<img className="price-tag" src={PriceTag} alt="Price Tag" width="50" height="50"/>*/}
-            <div className="price-tag"  >
-              <h2 className="product-price">
-                &#2547; { sh_price }
-              </h2>
+            <div className="ProductCard-price">
+              {/*<img className="price-tag" src={PriceTag} alt="Price Tag" width="50" height="50"/>*/}
+              <div className="price-tag"  >
+                <h2 className="product-price">
+                  &#2547; { sh_price }
+                </h2>
+              </div>
             </div>
-          </div>
-          <div className="ProductCard-details">
-            <h3 className="ProductCard-details-name" title={name}>{ name }</h3>
-            <div className="ProductCard-details-stars">
-              <Stars rating={ rating } />
+            <div className="ProductCard-details">
+              <h3 className="ProductCard-details-name" title={name}>{ name }</h3>
+              <div className="ProductCard-details-stars">
+                <Stars rating={ rating } />
+              </div>
             </div>
-          </div>
 
 
-        </div>
-        {
-          vendor ?
-            <Button className='ProductCard-button-vendor'
-                    raised
-                    label='Edit Product'
-                    onClick={ () => handleShowVendorDetails(id) } /> :
-            <Button className='ProductCard-button'
-                    raised
-                    label='Add to Cart'
-                    onClick={
-                      () => addToCart(
-                        variances[selectedVariant].attributes[selectedAttribute].id,
-                        token,
-                        id
-                      )
-                    }/>
-        }
-      </Card>
+          </div>
+          {
+            vendor ?
+              <Button className='ProductCard-button-vendor'
+                      raised
+                      label='Edit Product'
+                      onClick={ () => handleShowVendorDetails(id) } /> :
+              <Button className='ProductCard-button'
+                      raised
+                      label='Add to Cart'
+                      onClick={
+                        () => addToCart(
+                          variances[selectedVariant].attributes[selectedAttribute].id,
+                          token,
+                          id
+                        )
+                      }/>
+          }
+        </Card>
+      </Link>
     );
   }
 }
