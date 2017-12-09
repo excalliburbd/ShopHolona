@@ -38,9 +38,8 @@
   margin: 1em 0;
 }
 
-.status {
-  display: flex;
-  align-items: center;
+.pay-status {
+  text-align: end;
 }
 
 .pay-status {
@@ -48,12 +47,13 @@
 }
 
 .order-details-btn button {
-  margin: 0 0.5em;
+  margin:  0.5em;
 }
 
 .sidebar-order-details .order-details-btn .order-cancel {
   background: #d4414e;
   color: #fff;
+  margin-right: 0;
 }
 
 .sidebar-order-details .order-details-btn .order-accept {

@@ -81,7 +81,7 @@ class ProductCard extends Component {
 
     return (
       <Card className="ProductCard">
-        <Link to={`/product/${id}.${selectedVariant}.${selectedAttribute}/?slug`} replace>
+        <Link style={{ textDecoration: 'none' }}  to={`/product/${id}.${selectedVariant}.${selectedAttribute}/?slug`} replace>
           <div onClick={() => handleShowCustomerDetails(id)}>
             <div className="ProductCard-images">
               <CardMedia aspectRatio="square"
