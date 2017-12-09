@@ -20,7 +20,7 @@ function showDeliveryDate () {
       day='0'+day;
   }
 
-  toDay = (day+ 2) + 'th to ' + (day+ 3) + 'th ' + currentMonth;
+  toDay = (parseInt(day, 10)+ 2) + 'th to ' + (parseInt(day, 10)+ 3) + 'th ' + currentMonth;
 
   return toDay;
 }
