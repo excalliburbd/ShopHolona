@@ -122,7 +122,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(addToCart(id, token, productID));
     },
     handleToggleProductDetails: payload => {
-      // dispatch(shopActions.shop.toggle.productDetails(payload));
+      dispatch(shopActions.shop.toggle.productDetails(payload));
       // dispatch(shopActions.shop.set.detailsTab(0));
       ownProps.history.push('/');
     },
