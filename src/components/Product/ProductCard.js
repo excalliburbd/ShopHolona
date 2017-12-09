@@ -58,36 +58,34 @@ class ProductCard extends Component {
 
     if (vendor && addProductCard) {
       return (
-        <Link to={`/product/${id}.${selectedVariant}.${selectedAttribute}/?slug`} replace>
-          <Card className="ProductCard ProductCard--addProduct" onClick={ () => handleShowVendorDetails(id) }>
-            <CardMedia aspectRatio="square"/>
-            <div className="ProductCard-details ProductCard--addProduct-details">
-              <div className="ProductCard--addProduct-details-icon">
-                <img className="addicon" src={ addProductIcon } alt="Add icon"/>
-              </div>
-              <h3 className="ProductCard-details-name ProductCard--addProduct-details-content">
-                Add A New Product
-              </h3>
-              <h3 className="ProductCard-details-name ProductCard--addProduct-details-name">
-                Add Products
-              </h3>
-              <div className="ProductCard--addProduct-rating">
-                <Stars rating={ 0 } />
-              </div>
+        <Card className="ProductCard ProductCard--addProduct" onClick={() => handleShowVendorDetails(id)}>
+          <CardMedia aspectRatio="square" />
+          <div className="ProductCard-details ProductCard--addProduct-details">
+            <div className="ProductCard--addProduct-details-icon">
+              <img className="addicon" src={addProductIcon} alt="Add icon" />
             </div>
-            <Button className="ProductCard--addProduct-button" raised label="Add Products" />
-          </Card>
-        </Link>
+            <h3 className="ProductCard-details-name ProductCard--addProduct-details-content">
+              Add A New Product
+            </h3>
+            <h3 className="ProductCard-details-name ProductCard--addProduct-details-name">
+              Add Products
+            </h3>
+            <div className="ProductCard--addProduct-rating">
+              <Stars rating={0} />
+            </div>
+          </div>
+          <Button className="ProductCard--addProduct-button" raised label="Add Products" />
+        </Card>
       );
     }
 
     return (
-      <Link to={`/product/${id}.${selectedVariant}.${selectedAttribute}/?slug`} replace>
-        <Card className="ProductCard">
-          <div onClick={ () => handleShowCustomerDetails(id) }>
+      <Card className="ProductCard">
+        <Link to={`/product/${id}.${selectedVariant}.${selectedAttribute}/?slug`} replace>
+          <div onClick={() => handleShowCustomerDetails(id)}>
             <div className="ProductCard-images">
               <CardMedia aspectRatio="square"
-                      image={ productImages[this.state.selectedImage].image } />
+                image={productImages[this.state.selectedImage].image} />
               <div className="ProductCard-images--select">
                 {/*
                 variances.forEach(
@@ -126,38 +124,38 @@ class ProductCard extends Component {
               {/*<img className="price-tag" src={PriceTag} alt="Price Tag" width="50" height="50"/>*/}
               <div className="price-tag"  >
                 <h2 className="product-price">
-                  &#2547; { sh_price }
+                  &#2547; {sh_price}
                 </h2>
               </div>
             </div>
             <div className="ProductCard-details">
-              <h3 className="ProductCard-details-name" title={name}>{ name }</h3>
+              <h3 className="ProductCard-details-name" title={name}>{name}</h3>
               <div className="ProductCard-details-stars">
-                <Stars rating={ rating } />
+                <Stars rating={rating} />
               </div>
             </div>
 
 
           </div>
-          {
-            vendor ?
-              <Button className='ProductCard-button-vendor'
-                      raised
-                      label='Edit Product'
-                      onClick={ () => handleShowVendorDetails(id) } /> :
-              <Button className='ProductCard-button'
-                      raised
-                      label='Add to Cart'
-                      onClick={
-                        () => addToCart(
-                          variances[selectedVariant].attributes[selectedAttribute].id,
-                          token,
-                          id
-                        )
-                      }/>
-          }
-        </Card>
-      </Link>
+        </Link>
+        {
+          vendor ?
+            <Button className='ProductCard-button-vendor'
+              raised
+              label='Edit Product'
+              onClick={() => handleShowVendorDetails(id)} /> :
+            <Button className='ProductCard-button'
+              raised
+              label='Add to Cart'
+              onClick={
+                () => addToCart(
+                  variances[selectedVariant].attributes[selectedAttribute].id,
+                  token,
+                  id
+                )
+              } />
+        }
+      </Card>
     );
   }
 }
