@@ -46,20 +46,20 @@ const OrderDetails = ({
           <li>
             <strong className="status">Status: </strong>
             {
-              status === 'pending' ?
+              status === 'Pending' ?
 
                 <div className="order-details-btn">
                   <Button className="order-accept" label="Accept" raised onClick={ () => handleChangeOrderStatus(shop, token, id.substr(2), 2) } />
                   <Button className="order-cancel" label="Cancel" accent onClick={ () => handleChangeOrderStatus(shop, token, id.substr(2), 3) } />
                 </div>
                 :
-                <span>
+                <div className="order-details-btn">
                   <p className="pay-status">{ status }</p>
                   {
                     status === 'Cancelled by Vendor' ? '' :
                     <Button className="order-cancel" label="Cancel" accent onClick={ () => handleChangeOrderStatus(shop, token, id.substr(2), 3) } />
                   }
-                </span>
+                </div>
             }
           </li>
         </ul>
