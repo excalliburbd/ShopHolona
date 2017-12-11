@@ -8,6 +8,10 @@
   justify-content: space-between;
 }
 
+._8pay8.ProductCard a {
+  text-decoration: none;
+}
+
 .ProductCard--addProduct {
   position: relative;
   top: -1.25em;

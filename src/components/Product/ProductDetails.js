@@ -32,7 +32,7 @@ class ProductDetails extends Component {
     } = this.props;
 
     if (location.search === '') {
-      history.replace(`${match.url}?${variances[selectedVariant].type.value}+${variances[selectedVariant].attributes[selectedAttribute].type.value}`);
+      history.push(`${match.url}?${variances[selectedVariant].type.value}+${variances[selectedVariant].attributes[selectedAttribute].type.value}`);
     } else if (location.search !== '' && !variances) {
       handleSetProductDetails(match.params.id);
     } else if (location.search !== `?${variances[selectedVariant].type.value}+${variances[selectedVariant].attributes[selectedAttribute].type.value}`) {
