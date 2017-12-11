@@ -33,7 +33,7 @@ const TabList = ({
         {
           menu.map(
             ({ name, items }, key) => (
-                <Tab label={ `${ name } (${ items.length })` } key={ key } >
+                <Tab className="dashboardTabs" label={ `${ name } (${ items.length })` } key={ key } >
                   {
                     <Card  className="TabList-card TabList-card--titles" key={ key }>
                         <CardText  className="TabList-data">

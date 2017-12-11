@@ -75,6 +75,20 @@
   z-index: 1;
 }
 
+.dashboardTabs::after {
+  content: "";
+  height: 65%;
+  width: 2px;
+  top: 25%;
+  position: absolute;
+  right: 0;
+  background: #bdc3c7;
+}
+
+._2EaQV ._3oZmF .i_TGW {
+  background: #fff;
+}
+
 @media screen and (min-width: 600px) {
   .K_kzH.TabList-data {
     flex-direction: row;
