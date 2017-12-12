@@ -75,7 +75,7 @@
   z-index: 1;
 }
 
-.dashboardTabs::after {
+/* .dashboardTabs::after {
   content: "";
   height: 65%;
   width: 2px;
@@ -83,10 +83,36 @@
   position: absolute;
   right: 0;
   background: #bdc3c7;
-}
+} */
 
 ._2EaQV ._3oZmF .i_TGW {
   background: #fff;
+}
+
+._3e55Z  ._1xgdB {
+  top: 0 !important;
+  background-color: rgba(250, 235, 175, .6);
+  height: 100%;
+}
+
+._3oZmF > ._3e55Z > ._1yb8L {
+  font-weight: bold;
+}
+
+@media screen and (min-width: 1260px) {
+
+  ._2EaQV > ._3oZmF {
+    width: 70%;
+    margin-left: 15%;
+    border-radius: 1em;
+  }
+  ._2EaQV > ._3oZmF > ._3e55Z {
+    border-radius: 1em;
+    margin-top: 1em;
+  }
+
+
+
 }
 
 @media screen and (min-width: 600px) {
