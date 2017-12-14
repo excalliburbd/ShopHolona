@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import classnames from 'classnames';
 
 import Card from 'react-toolbox/lib/card/Card';
 import CardMedia from 'react-toolbox/lib/card/CardMedia';
@@ -8,6 +9,8 @@ import Button from 'react-toolbox/lib/button/Button';
 import addProductIcon from '../../assets/images/upload-new-product-icon.svg';
 
 import Stars from '../Stars';
+import VendorProductCard from './VendorProductCard';
+import ProductCardOverlay from './ProductCardOverlay';
 
 import './ProductCard.css';
 
@@ -17,20 +20,17 @@ class ProductCard extends Component {
 
     this.state = {
       selectedImage: 0,
+      selectedVariant: null,
+      slectedAttribute: null,
+      selectVariant: false,
+      selectAttribute: false,
+      height: 300,
+      width: 200,
     }
-
-    this.getRandomInt = this.getRandomInt.bind(this);
-  }
-
-  getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min;
   }
 
   render() {
     const {
-      // rating = this.getRandomInt(3, 5),
       rating = '0',
       name = 'Product Name',
       handleShowVendorDetails,
@@ -58,67 +58,28 @@ class ProductCard extends Component {
 
     if (vendor && addProductCard) {
       return (
-        <Card className="ProductCard ProductCard--addProduct" onClick={() => handleShowVendorDetails(id)}>
-          <CardMedia aspectRatio="square" />
-          <div className="ProductCard-details ProductCard--addProduct-details">
-            <div className="ProductCard--addProduct-details-icon">
-              <img className="addicon" src={addProductIcon} alt="Add icon" />
-            </div>
-            <h3 className="ProductCard-details-name ProductCard--addProduct-details-content">
-              Add A New Product
-            </h3>
-            <h3 className="ProductCard-details-name ProductCard--addProduct-details-name">
-              Add Products
-            </h3>
-            <div className="ProductCard--addProduct-rating">
-              <Stars rating={0} />
-            </div>
-          </div>
-          <Button className="ProductCard--addProduct-button" raised label="Add Products" />
-        </Card>
+       <VendorProductCard id={ id }
+                          handleShowVendorDetails={ handleShowVendorDetails }
+                          addProductIcon={ addProductIcon } />
       );
     }
 
+    const buttonClass = classnames('ProductCard-button--base', {
+      'ProductCard-button': !this.state.selectAttribute && !this.state.selectVariant,
+      'ProductCard-button--diabled': this.state.selectAttribute || this.state.selectVariant
+    });
+
     return (
-      <Card className="ProductCard">
+      <Card className="ProductCard"
+        ref={ card => {
+          /*{this.props.setWrappedInstance(input.getWrappedInstance());}*/
+          this.cardInstance = card;
+        }}>
         <Link to={`/product/${id}.${selectedVariant}.${selectedAttribute}/?slug`} replace>
           <div onClick={() => handleShowCustomerDetails(id)}>
             <div className="ProductCard-images">
               <CardMedia aspectRatio="square"
                 image={productImages[this.state.selectedImage].image} />
-              <div className="ProductCard-images--select">
-                {/*
-                variances.forEach(
-                  (variant, key) => {
-                    let style = {};
-
-                    if (variant.type.name === 'Color') {
-                      style = {
-                        background: variant.type.value.toLowerCase()
-                      }
-                    } else {
-                      if ( variant.images[0] ) {
-                        style = {
-                          backgroundImage: variant.images[0].image
-                        }
-                      } else {
-                        style = {
-                          backgroundImage: '#ccc'
-                        }
-                      }
-                    }
-
-                    return <div className="ProductCard-images--select--circle"
-                                onClick={ event => {
-                                  event.stopPropagation();
-                                  setVariant(id, key);
-                                }}
-                                style={ style }
-                                key={ key } />
-                  }
-                )
-              */}
-              </div>
             </div>
             <div className="ProductCard-price">
               {/*<img className="price-tag" src={PriceTag} alt="Price Tag" width="50" height="50"/>*/}
@@ -134,25 +95,92 @@ class ProductCard extends Component {
                 <Stars rating={rating} />
               </div>
             </div>
-
-
           </div>
         </Link>
         {
           vendor ?
             <Button className='ProductCard-button-vendor'
+              disable
               raised
               label='Edit Product'
               onClick={() => handleShowVendorDetails(id)} /> :
-            <Button className='ProductCard-button'
+            <Button className={ buttonClass }
+              disabled={ this.state.selectAttribute || this.state.selectVariant }
               raised
               label='Add to Cart'
               onClick={
-                () => addToCart(
-                  variances[selectedVariant].attributes[selectedAttribute].id,
-                  token,
-                  id
+                () => {
+                  if (!this.state.selectedVariant && !this.state.selectedAttribute) {
+                    this.setState({
+                      selectVariant: true,
+                    });
+                  }
+                  // addToCart(
+                  //   variances[selectedVariant].attributes[selectedAttribute].id,
+                  //   token,
+                  //   id
+                  // );
+                }
+              } />
+        }
+        {
+          this.state.selectVariant &&
+            <ProductCardOverlay items={
+                variances.map(
+                    (variant, id) => ({
+                      id,
+                      color: (variant.type.name === 'Color') ? variant.type.value.toLowerCase() : null,
+                      img: (variant.type.name === 'Color') ? null : variant.images[0].image
+                    })
                 )
+              }
+              handleSelected={
+                id => {
+                  if (!this.state.selectedVariant && !this.state.selectedAttribute) {
+                    this.setState({
+                      selectedVariant: id,
+                      selectVariant: false,
+                      selectAttribute: true,
+                    });
+                  }
+
+                  if (this.state.selectedVariant && !this.state.selectedAttribute) {
+                    this.setState({
+                      selectedAttribute: id,
+                    });
+                  }
+                }
+              } />
+        }
+        {
+          this.state.selectVariant &&
+            <ProductCardOverlay title="Choose Color/Variant" type="variant"
+              items={
+                variances.map(
+                    (variant, id) => ({
+                      id,
+                      color: (variant.type.name === 'Color') ? variant.type.value.toLowerCase() : null,
+                      img: (variant.type.name === 'Color') ? null : variant.images[0].image,
+                      name: variant.type.value
+                    })
+                )
+              }
+              handleSelected={
+                id => {
+                  if (!this.state.selectedVariant && !this.state.selectedAttribute) {
+                    this.setState({
+                      selectedVariant: id,
+                      selectVariant: false,
+                      selectAttribute: true,
+                    });
+                  }
+
+                  if (this.state.selectedVariant && !this.state.selectedAttribute) {
+                    this.setState({
+                      selectedAttribute: id,
+                    });
+                  }
+                }
               } />
         }
       </Card>

@@ -115,15 +115,23 @@
   font-size: 15px;
 }
 
-._2Agdx._221ic._2Agdx._2GH_L._1ZxqC._2CPs4.ProductCard-button {
-  background-color: #FFC400;
-  color: #403E29;
+._2Agdx._221ic._2Agdx._2GH_L._1ZxqC._2CPs4.ProductCard-button--base {
   font-family: "Harmonia Bold";
   font-weight: 600;
   box-shadow: 0px -0.2px 6px 0px rgba(50, 50, 50, 0.6);
   font-size: 1.2em;
   padding-top: 0.2em;
   width: 100%;
+}
+
+._2Agdx._221ic._2Agdx._2GH_L._1ZxqC._2CPs4.ProductCard-button {
+  background-color: #FFC400;
+  color: #403E29;
+}
+
+._2Agdx._221ic._2Agdx._2GH_L._1ZxqC._2CPs4.ProductCard-button--disabled {
+  background-color: #9A9A9A;
+  color: #fff;
 }
 
 .ProductCard  .ProductCard-button {
