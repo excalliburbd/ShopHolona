@@ -8,22 +8,38 @@
 
 .ProductCardOverlay-circle {
   border-radius: 50%;
-  height: 4em;
-  width: 4em;
-  margin: .5em;
+  height: 2.5em;
+  width: 2.5em;
+  margin: 0 auto;
   background-size: contain;
 }
 
 .ProductCardOverlay-item {
   display: inline-block;
+  width: 33%;
+  height: 40%;
 }
 
 .ProductCardOverlay h2,
 .ProductCardOverlay p {
   text-align: center;
   color: #fff;
+  font-size: .9em;
+  text-align: center;
+}
+
+.ProductCardOverlay p {
+  font-size: .7em;
 }
 
 .ProductCardOverlay-container {
-  padding: 1em;
+  padding: .5em;
+  height: calc(100% - 2.5em - .2em);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
 }
+
+
+

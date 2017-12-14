@@ -4,26 +4,65 @@
   width: 100%;
   background: #393434;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
-.ProductCardOverlayAttribute-circle {
-  border-radius: 50%;
-  height: 4em;
-  width: 4em;
-  margin: .5em;
-  background-size: contain;
-}
+
 
 .ProductCardOverlayAttribute-item {
-  display: inline-block;
+  display: flex;
+  height: 17%;
+  justify-content: center;
+  align-items: center;
+  margin: .5em;
+  width: 40%;
 }
 
 .ProductCardOverlayAttribute h2,
 .ProductCardOverlayAttribute p {
   text-align: center;
   color: #fff;
+  font-size: 1em;
+}
+
+.ProductCardOverlayAttribute-circle {
+  border-radius: 50%;
+  height: 100%;
+  background-size: contain;
+  width: 100%;
+  font-weight: bold;
 }
 
 .ProductCardOverlayAttribute-container {
-  padding: 1em;
+  height: calc(100% - 2.5em - 34px - 1.5em) ;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.ProductCardOverlayAttributeButtonContainer ._3IRMZ._2DCN- {
+  height: 1.5em;
+  width: 1.5em;
+  position: relative;
+  margin: .5em;
+
+}
+
+.ProductCardOverlayAttributeButtonContainer ._3IRMZ._2DCN- ._3aBSX {
+  line-height: 28px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+
+.ProductCardOverlayAttribute-circle {
+  border-radius: .5em;
+  background: #eeee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius:
 }

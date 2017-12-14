@@ -11,7 +11,7 @@ const ProductCardOverlayAttribute = ({
 
 }) => (
   <div className="ProductCardOverlayAttribute">
-    <div>
+    <div className="ProductCardOverlayAttributeButtonContainer">
       <Button icon="keyboard_arrow_left"
               floating
               mini
