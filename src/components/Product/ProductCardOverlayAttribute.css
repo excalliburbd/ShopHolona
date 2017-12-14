@@ -1,0 +1,29 @@
+.ProductCardOverlayAttribute {
+  position: absolute;
+  height: calc(100% - 2.5em);
+  width: 100%;
+  background: #393434;
+  overflow-y: auto;
+}
+
+.ProductCardOverlayAttribute-circle {
+  border-radius: 50%;
+  height: 4em;
+  width: 4em;
+  margin: .5em;
+  background-size: contain;
+}
+
+.ProductCardOverlayAttribute-item {
+  display: inline-block;
+}
+
+.ProductCardOverlayAttribute h2,
+.ProductCardOverlayAttribute p {
+  text-align: center;
+  color: #fff;
+}
+
+.ProductCardOverlayAttribute-container {
+  padding: 1em;
+}

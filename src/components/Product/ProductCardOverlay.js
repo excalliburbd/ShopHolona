@@ -4,12 +4,10 @@ import './ProductCardOverlay.css';
 
 const ProductCardOverlay = ({
   items,
-  handleSelected,
-  title,
-  type,
+  handleSelected
 }) => (
   <div className="ProductCardOverlay">
-    <h2>{ title }</h2>
+    <h2>Choose Color/Variant</h2>
     <div className="ProductCardOverlay-container">
       {
         items.map(
@@ -26,7 +24,7 @@ const ProductCardOverlay = ({
                             backgroundImage: `url(${img})`,
                           }}
                           onClick={
-                            () => handleSelected(id)
+                            () => handleSelected(id+1)
                           } />
                 <p>{ name }</p>
               </div>

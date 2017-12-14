@@ -11,6 +11,7 @@ import addProductIcon from '../../assets/images/upload-new-product-icon.svg';
 import Stars from '../Stars';
 import VendorProductCard from './VendorProductCard';
 import ProductCardOverlay from './ProductCardOverlay';
+import ProductCardOverlayAttribute from './ProductCardOverlayAttribute';
 
 import './ProductCard.css';
 
@@ -125,36 +126,7 @@ class ProductCard extends Component {
         }
         {
           this.state.selectVariant &&
-            <ProductCardOverlay items={
-                variances.map(
-                    (variant, id) => ({
-                      id,
-                      color: (variant.type.name === 'Color') ? variant.type.value.toLowerCase() : null,
-                      img: (variant.type.name === 'Color') ? null : variant.images[0].image
-                    })
-                )
-              }
-              handleSelected={
-                id => {
-                  if (!this.state.selectedVariant && !this.state.selectedAttribute) {
-                    this.setState({
-                      selectedVariant: id,
-                      selectVariant: false,
-                      selectAttribute: true,
-                    });
-                  }
-
-                  if (this.state.selectedVariant && !this.state.selectedAttribute) {
-                    this.setState({
-                      selectedAttribute: id,
-                    });
-                  }
-                }
-              } />
-        }
-        {
-          this.state.selectVariant &&
-            <ProductCardOverlay title="Choose Color/Variant" type="variant"
+            <ProductCardOverlay
               items={
                 variances.map(
                     (variant, id) => ({
@@ -167,19 +139,32 @@ class ProductCard extends Component {
               }
               handleSelected={
                 id => {
-                  if (!this.state.selectedVariant && !this.state.selectedAttribute) {
-                    this.setState({
-                      selectedVariant: id,
-                      selectVariant: false,
-                      selectAttribute: true,
-                    });
-                  }
-
-                  if (this.state.selectedVariant && !this.state.selectedAttribute) {
-                    this.setState({
-                      selectedAttribute: id,
-                    });
-                  }
+                  this.setState({
+                    selectedVariant: id,
+                    selectVariant: false,
+                    selectAttribute: true,
+                  });
+                }
+              } />
+        }
+        {
+          this.state.selectAttribute &&
+            <ProductCardOverlayAttribute
+              items={
+                variances[this.state.selectedVariant -1].attributes.map(
+                    (attribute, id) => ({
+                      id,
+                      value: attribute.type.value
+                    })
+                )
+              }
+              handleSelected={
+                (id, type) => {
+                  this.setState({
+                    selectedVariant: id,
+                    selectVariant: false,
+                    selectAttribute: true,
+                  });
                 }
               } />
         }
