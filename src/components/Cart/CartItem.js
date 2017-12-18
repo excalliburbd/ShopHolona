@@ -1,23 +1,10 @@
 import React from 'react';
 
 import Input from 'react-toolbox/lib/input/Input';
-// import Dropdown from 'react-toolbox/lib/dropdown/Dropdown';
 import Card from 'react-toolbox/lib/card/Card';
-// import IconButton from 'react-toolbox/lib/button/IconButton';
 import FontIcon from 'react-toolbox/lib/font_icon/FontIcon';
 
-// import MdClose from 'react-icons/lib/md/close';
-
-import './CartItem.css'
-
-// const customItem  = item => (
-//   <div className="cart-attributes-color" style={{
-//     backgroundColor: item.color,
-//     width: "1.4em",
-//     height: "1.4em",
-//     borderRadius: "50%"
-//   }}></div>
-// );
+import './CartItem.css';
 
 const CartItem = ({
   cartItem,
@@ -36,20 +23,6 @@ const CartItem = ({
     item => (item.id === cartItem.product_variance_attribute.id)
   );
 
-  const primary = product.variances.map(
-    variant => ({
-      value: variant.id,
-      label: variant.type.value
-    })
-  );
-
-  const secondary = variant.attributes.map(
-    attribute => ({
-      value: attribute.id,
-      label: attribute.type.value
-    })
-  );
-
   return (
     <li className="cart-product-list-item-container">
       <Card className="cart-product-list-item-card">
@@ -64,9 +37,9 @@ const CartItem = ({
           </div>
           <div className="cart-item-info">
             <div className="cart-product-attributes">
-              <div className="cart-variant-name">Color : { primary[product.selectedVariant].label }</div>
+              <div className="cart-variant-name">Color : { variant.type.value }</div>
 
-              <div className="cart-variant-size">Size : { secondary[product.selectedVariant].label }</div>
+              <div className="cart-variant-size">Size : { attribute.type.value }</div>
 
               <div className="cart-product-quantity">
                 <span className="cart-attributes-title">Quantity</span>
