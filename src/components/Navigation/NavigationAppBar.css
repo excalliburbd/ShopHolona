@@ -154,7 +154,7 @@
 
 .NavigationAppBar-user-profile-icon {
   margin-top: -0.15em;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 }
 
 .NavigationAppBar-user-profile-icon._3OjJz>img {
@@ -184,7 +184,7 @@
 
 .hC5Z2._2Agdx._2CPs4.NavigationAppBar-icon {
   border-radius: initial;
-  margin-bottom: .3em;
+  margin-bottom: .35em;
   right: .5em;
 }
 

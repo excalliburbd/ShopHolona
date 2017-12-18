@@ -35,8 +35,12 @@
 }
 
 .product-details-price-title .Stars {
-  align-items: center;
+  align-items: flex-start;
   height: 2em;
+}
+
+.product-details-price-title .Stars svg {
+  margin-top: .1em;
 }
 
 .product-details-slider {
