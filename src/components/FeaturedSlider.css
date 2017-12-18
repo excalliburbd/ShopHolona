@@ -66,7 +66,7 @@
 
   .FeaturedSlider-products .ProductCard {
     margin: 1em auto;
-    flex: auto;
+    width: 98%;
   }
 
   .FeaturedSlider-products > .ProductCard{

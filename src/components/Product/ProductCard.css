@@ -1,5 +1,5 @@
 .ProductCard {
-  display: inline-flex;
+  display: inline-block;
   position: relative;
   width: 11em;
   margin: 1em 0.5em;
@@ -12,10 +12,6 @@
   text-decoration: none;
 }
 
-.ProductCard--addProduct {
-  position: relative;
-  top: -1.25em;
-}
 .ProductCard--addProduct:hover {
   background-color: #ededed;
 }
@@ -38,6 +34,7 @@
   font-size: 3em;
   color: #666;
 }
+
 .ProductCard-details-name.ProductCard--addProduct-details-content {
   position: absolute;
   bottom: 15%;
@@ -166,6 +163,7 @@
   top: 0.5em;
   box-shadow: 2px 3px 7px 0px rgba(50, 50, 50, 0.8);
 }
+
 .price-tag {
   background-color: #FFC400;
   display: flex;
@@ -239,6 +237,7 @@
   .card-title._1dU3o._2iwOK ._3qCP3 {
     font-size: 20px;
   }
+
   .ShopPage-products--list .ProductCard {
     width: calc((100% / 3) - 15px);
   }
