@@ -77,7 +77,7 @@ export const updateCartItem = (cartID, id, quantity, token) => dispatch => {
   }
 }
 
-export const addToCart = (id, token, productID) => (dispatch, getState) => {
+export const addToCart = (id, token, productID, action) => (dispatch, getState) => {
 
   const cart = getState().entities.cart;
   const cartItems = getState().cart.items;
@@ -97,6 +97,7 @@ export const addToCart = (id, token, productID) => (dispatch, getState) => {
       quantity: (cart[cartItem].quantity + 1)
     }));
     dispatch(sidebarActions.sidebar.show.addToCart());
+    action && action();
 
     if (token) {
       dispatch(updateCartItem(
@@ -151,6 +152,7 @@ export const addToCart = (id, token, productID) => (dispatch, getState) => {
                     }
                   },
                 }));
+                action && action();
                 dispatch(addNotification({
                   title: 'Success',
                   message: 'Successfully added to cart.',

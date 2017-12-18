@@ -115,12 +115,21 @@ class ProductCard extends Component {
                     this.setState({
                       selectVariant: true,
                     });
+                  } else {
+                    addToCart(
+                      variances[this.state.selectedVariant - 1].attributes[this.state.selectedAttribute - 1].id,
+                      token,
+                      id,
+                      this.setState({
+                        selectedImage: 0,
+                        selectedVariant: null,
+                        slectedAttribute: null,
+                        selectVariant: false,
+                        selectAttribute: false,
+                        disableButton: false,
+                      })//TODO first? the chicken or the egg ;)
+                    );
                   }
-                  // addToCart(
-                  //   variances[selectedVariant].attributes[selectedAttribute].id,
-                  //   token,
-                  //   id
-                  // );
                 }
               } />
         }

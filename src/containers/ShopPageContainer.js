@@ -118,8 +118,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleEditContactNumber: (id, value) => {
       dispatch(shopActions.shop.set.contactNumber({ id, value }));
     },
-    handleAddToCart: (id, token, productID) => {
-      dispatch(addToCart(id, token, productID));
+    handleAddToCart: (id, token, productID, action) => {
+      dispatch(addToCart(id, token, productID, action));
     },
     handleToggleProductDetails: payload => {
       dispatch(shopActions.shop.toggle.productDetails(payload));
