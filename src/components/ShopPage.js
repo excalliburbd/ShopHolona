@@ -339,6 +339,7 @@ const ShopPage = ({
                                             key="AddProductKey"
                                             addToCart={ handleAddToCart }
                                             setVariant={ handleSetVariant }
+                                            setAttribute={ handleSetAttribute }
                                             data-tour="add-product"
                                             shopDomain={ shopDomain } />
                 }
@@ -354,6 +355,7 @@ const ShopPage = ({
                                                         key={ key }
                                                         addToCart={ handleAddToCart }
                                                         setVariant={ handleSetVariant }
+                                                        setAttribute={ handleSetAttribute }
                                                         shopDomain={ shopDomain } />
                       )
                     : <h2> Not Found </h2>
@@ -366,6 +368,7 @@ const ShopPage = ({
                                                     key={ key }
                                                     addToCart={ handleAddToCart }
                                                     setVariant={ handleSetVariant }
+                                                    setAttribute={ handleSetAttribute }
                                                     shopDomain={ shopDomain } />
                   )
                 }

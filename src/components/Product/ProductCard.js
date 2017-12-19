@@ -45,6 +45,8 @@ class ProductCard extends Component {
       selectedVariant,
       selectedAttribute,
       token,
+      setVariant,
+      setAttribute,
     } = this.props;
 
     let {
@@ -151,9 +153,10 @@ class ProductCard extends Component {
                 }
               }
               handleSelected={
-                id => {
+                variantKey => {
+                  setVariant(id, variantKey);
                   this.setState({
-                    selectedVariant: id,
+                    selectedVariant: variantKey,
                     selectVariant: false,
                     selectAttribute: true,
                   });
@@ -183,9 +186,10 @@ class ProductCard extends Component {
                 }
               }
               handleSelected={
-                id => {
+                attributeKey => {
+                  setAttribute(id, attributeKey);
                   this.setState({
-                    selectedAttribute: id,
+                    selectedAttribute: attributeKey,
                     showAddToCart: true,
                   });
                 }
