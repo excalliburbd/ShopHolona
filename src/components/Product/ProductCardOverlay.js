@@ -1,13 +1,22 @@
 import React from 'react';
 
+import Button from 'react-toolbox/lib/button/Button';
+
 import './ProductCardOverlay.css';
 
 const ProductCardOverlay = ({
   items,
-  handleSelected
+  handleSelected,
+  handleGoBack
 }) => (
   <div className="ProductCardOverlay">
-    <h2>Choose Color/Variant</h2>
+    <div className="ProductCardOverlayAttributeButtonContainer">
+      <Button icon="keyboard_arrow_left"
+              floating
+              mini
+              onClick={ handleGoBack } />
+      <h2>Choose Color/Variant</h2>
+    </div>
     <div className="ProductCardOverlay-container">
       {
         items.map(
@@ -24,7 +33,7 @@ const ProductCardOverlay = ({
                             backgroundImage: `url(${img})`,
                           }}
                           onClick={
-                            () => handleSelected(id+1)
+                            () => handleSelected(id)
                           } />
                 <p>{ name }</p>
               </div>
@@ -36,7 +45,7 @@ const ProductCardOverlay = ({
                       background: color,
                     }}
                     onClick={
-                      () => handleSelected(id+1)
+                      () => handleSelected(id)
                     } />
               <p>{ name }</p>
             </div>

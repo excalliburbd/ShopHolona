@@ -4,6 +4,7 @@
   width: 100%;
   background: #393434;
   overflow-y: auto;
+  top: 0;
 }
 
 .ProductCardOverlay-circle {

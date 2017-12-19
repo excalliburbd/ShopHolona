@@ -8,7 +8,7 @@ const ProductCardOverlayAttribute = ({
   items,
   handleSelected,
   handleGoBack,
-
+  selectedAttribute,
 }) => (
   <div className="ProductCardOverlayAttribute">
     <div className="ProductCardOverlayAttributeButtonContainer">
@@ -26,11 +26,11 @@ const ProductCardOverlayAttribute = ({
             id,
           }) => {
             return <div className="ProductCardOverlayAttribute-item">
-              <div  className="ProductCardOverlayAttribute-circle"
+              <div  className={`ProductCardOverlayAttribute-circle ${ selectedAttribute === id ? 'ProductOverlayAttribute--selected' : '' }`}
                     onClick={
-                      () => handleSelected(id+1)
+                      () => handleSelected(id)
                     } >{ value }</div>
-            </div>
+              </div>
           }
         )
       }

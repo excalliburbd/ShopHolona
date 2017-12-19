@@ -22,9 +22,10 @@ class ProductCard extends Component {
     this.state = {
       selectedImage: 0,
       selectedVariant: null,
-      slectedAttribute: null,
+      selectedAttribute: null,
       selectVariant: false,
       selectAttribute: false,
+      showAddToCart: false,
       height: 300,
       width: 200,
     }
@@ -65,10 +66,7 @@ class ProductCard extends Component {
       );
     }
 
-    const buttonClass = classnames('ProductCard-button--base', {
-      'ProductCard-button': !this.state.selectAttribute && !this.state.selectVariant,
-      'ProductCard-button--diabled': this.state.selectAttribute || this.state.selectVariant
-    });
+    const buttonClass = `ProductCard-button ${ (this.state.selectVariant || this.state.selectAttribute ) ? this.state.showAddToCart ? '' : 'ProductCard-button--disabled' : '' }`;
 
     return (
       <Card className="ProductCard"
@@ -106,9 +104,9 @@ class ProductCard extends Component {
               label='Edit Product'
               onClick={() => handleShowVendorDetails(id)} /> :
             <Button className={ buttonClass }
-              disabled={ this.state.selectAttribute || this.state.selectVariant }
               raised
               label='Add to Cart'
+              disabled={(this.state.selectVariant || this.state.selectAttribute) && (!this.state.showAddToCart)}
               onClick={
                 () => {
                   if (!this.state.selectedVariant && !this.state.selectedAttribute) {
@@ -117,13 +115,13 @@ class ProductCard extends Component {
                     });
                   } else {
                     addToCart(
-                      variances[this.state.selectedVariant - 1].attributes[this.state.selectedAttribute - 1].id,
+                      variances[parseInt(this.state.selectedVariant, 10)].attributes[parseInt(this.state.selectedAttribute, 10)].id,
                       token,
                       id,
                       this.setState({
                         selectedImage: 0,
                         selectedVariant: null,
-                        slectedAttribute: null,
+                        selectedAttribute: null,
                         selectVariant: false,
                         selectAttribute: false,
                         disableButton: false,
@@ -139,12 +137,19 @@ class ProductCard extends Component {
               items={
                 variances.map(
                     (variant, id) => ({
-                      id,
+                      id: `${id}`,
                       color: (variant.type.name === 'Color') ? variant.type.value.toLowerCase() : null,
                       img: (variant.type.name === 'Color') ? null : variant.images[0].image,
                       name: variant.type.value
                     })
                 )
+              }
+              handleGoBack={
+                () => {
+                  this.setState({
+                    selectVariant: false,
+                  });
+                }
               }
               handleSelected={
                 id => {
@@ -160,19 +165,29 @@ class ProductCard extends Component {
           this.state.selectAttribute &&
             <ProductCardOverlayAttribute
               items={
-                variances[this.state.selectedVariant -1].attributes.map(
+                variances[this.state.selectedVariant || selectedVariant].attributes.map(
                     (attribute, id) => ({
-                      id,
+                      id: `${id}`,
                       value: attribute.type.value
                     })
                 )
               }
-              handleSelected={
-                (id, type) => {
+              selectedAttribute={this.state.selectedAttribute}
+              handleGoBack={
+                () => {
                   this.setState({
-                    selectedVariant: id,
-                    selectVariant: false,
-                    selectAttribute: true,
+                    selectedVariant: null,
+                    selectVariant: true,
+                    selectAttribute: false,
+                    showAddToCart: false,
+                  })
+                }
+              }
+              handleSelected={
+                id => {
+                  this.setState({
+                    selectedAttribute: id,
+                    showAddToCart: true,
                   });
                 }
               } />

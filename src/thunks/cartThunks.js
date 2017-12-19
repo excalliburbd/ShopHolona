@@ -5,9 +5,12 @@ import { request, getConfig, fromState } from './helpers';
 
 import { cartActions, sidebarActions } from '../actions/';
 
+import { getVendor } from '../selectors/userSelectors';
+
 export const getCart = (token, show, initial) => (dispatch, getState) => {
   dispatch(cartActions.cart.set.loading(true));
-
+  const isVendor = getVendor(getState());
+  console.log(isVendor)
   if (token) {
     request(`/me/carts/`, getConfig(
             token
@@ -27,7 +30,7 @@ export const getCart = (token, show, initial) => (dispatch, getState) => {
                 })
               )));
 
-              if ((show || res.length > 0) && !initial) {
+              if ((show || res.length > 0) && !initial && isVendor) {
                 dispatch(sidebarActions.sidebar.show.addToCart());
               }
 

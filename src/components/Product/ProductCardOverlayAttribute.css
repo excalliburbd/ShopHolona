@@ -6,9 +6,8 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  top: 0;
 }
-
-
 
 .ProductCardOverlayAttribute-item {
   display: flex;
@@ -57,6 +56,9 @@
   height: 100%;
 }
 
+.ProductCardOverlayAttribute-circle.ProductOverlayAttribute--selected {
+  background: #FFC400;
+}
 
 .ProductCardOverlayAttribute-circle {
   border-radius: .5em;
