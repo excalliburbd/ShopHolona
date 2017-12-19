@@ -21,28 +21,14 @@ const ProductCardOverlay = ({
       {
         items.map(
           ({
-            color,
             img,
             id,
             name,
           }) => {
-            if (!color && img) {
-              return <div className="ProductCardOverlay-item">
-                <div className="ProductCardOverlay-circle"
-                          style={{
-                            backgroundImage: `url(${img})`,
-                          }}
-                          onClick={
-                            () => handleSelected(id)
-                          } />
-                <p>{ name }</p>
-              </div>
-            }
-
             return <div className="ProductCardOverlay-item">
               <div  className="ProductCardOverlay-circle"
                     style={{
-                      background: color,
+                      background: `url(${img})`,
                     }}
                     onClick={
                       () => handleSelected(id)

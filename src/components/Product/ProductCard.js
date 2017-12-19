@@ -138,8 +138,7 @@ class ProductCard extends Component {
                 variances.map(
                     (variant, id) => ({
                       id: `${id}`,
-                      color: (variant.type.name === 'Color') ? variant.type.value.toLowerCase() : null,
-                      img: (variant.type.name === 'Color') ? null : variant.images[0].image,
+                      img: variant.images[0].image,
                       name: variant.type.value
                     })
                 )
