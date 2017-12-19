@@ -15,7 +15,7 @@ class CheckoutDelivery extends Component {
     super (props);
 
     this.state = {
-      addNewAddress: this.props.addresses.length < 1,
+      addNewAddress: false,
       more: false,
       comment: false,
     }
@@ -49,6 +49,14 @@ class CheckoutDelivery extends Component {
         }
       }
     )
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.addresses.length !== nextProps.addresses.length) {
+      this.setState({
+        addNewAddress: nextProps.addresses.length < 1,
+      })
+    }
   }
 
   render () {

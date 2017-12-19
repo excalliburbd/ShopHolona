@@ -29,6 +29,7 @@ const ProductCardOverlay = ({
               <div  className="ProductCardOverlay-circle"
                     style={{
                       background: `url(${img})`,
+                      backgroundSize: 'contain',
                     }}
                     onClick={
                       () => handleSelected(id)
