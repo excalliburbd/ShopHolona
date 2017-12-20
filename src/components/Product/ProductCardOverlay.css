@@ -9,8 +9,8 @@
 
 .ProductCardOverlay-circle {
   border-radius: 50%;
-  height: 2.5em;
-  width: 2.5em;
+  height: 2.7em;
+  width: 2.7em;
   margin: 0 auto;
   background-size: contain;
 }
@@ -35,7 +35,6 @@
 
 .ProductCardOverlay-container {
   padding: .5em;
-  height: calc(100% - 2.5em - .2em);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -44,8 +43,8 @@
 
 @media only screen and (min-width: 800px) {
   .ProductCardOverlay-circle {
-    height: 3.5em;
-    width: 3.5em;
+    height: 4em;
+    width: 4em;
   }
 
   .ProductCardOverlay p {
