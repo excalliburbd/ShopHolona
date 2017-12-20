@@ -41,6 +41,8 @@
 
 .product-details-price-title .Stars svg {
   margin-top: .1em;
+  height: 1em;
+  width: 1em;
 }
 
 .product-details-slider {
@@ -247,6 +249,11 @@
   .product-details-price-title .Stars {
     height: 1.8em;
   }
+
+  ..product-details-price-title .Stars svg {
+    margin-top: 0;
+  }
+
   .product-details-slider {
     width: 100%;
   }
