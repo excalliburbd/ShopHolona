@@ -111,9 +111,17 @@ class ProductCard extends Component {
               onClick={
                 () => {
                   if (!this.state.selectedVariant && !this.state.selectedAttribute) {
-                    this.setState({
-                      selectVariant: true,
-                    });
+                    if (variances.length === 1 && variances[0].attributes.length === 1) {
+                      addToCart(
+                        variances[0].attributes[0].id,
+                        token,
+                        id
+                      );
+                    } else {
+                      this.setState({
+                        selectVariant: true,
+                      });
+                    }
                   } else {
                     addToCart(
                       variances[parseInt(this.state.selectedVariant, 10)].attributes[parseInt(this.state.selectedAttribute, 10)].id,
