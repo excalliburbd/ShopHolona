@@ -10,7 +10,7 @@ import { getVendor } from '../selectors/userSelectors';
 export const getCart = (token, show, initial) => (dispatch, getState) => {
   dispatch(cartActions.cart.set.loading(true));
   const isVendor = getVendor(getState());
-  console.log(isVendor)
+
   if (token) {
     request(`/me/carts/`, getConfig(
             token
@@ -18,8 +18,7 @@ export const getCart = (token, show, initial) => (dispatch, getState) => {
             res => {
               // Cart fetching successful
               const products = getState().entities.products;
-
-              dispatch(cartActions.cart.done.get(res.filter(
+              const filterMappedResponse = res.filter(
                 item => !!products[item.product.id]
               ).map(
                 item => ({
@@ -28,7 +27,9 @@ export const getCart = (token, show, initial) => (dispatch, getState) => {
                     ...products[item.product.id]
                   }
                 })
-              )));
+              );
+
+              dispatch(cartActions.cart.done.get(filterMappedResponse));
 
               if ((show || res.length > 0) && !initial && isVendor) {
                 dispatch(sidebarActions.sidebar.show.addToCart());
@@ -38,7 +39,7 @@ export const getCart = (token, show, initial) => (dispatch, getState) => {
             }
           ).catch(
             err => {
-              // Fetching error details
+              // Fetching error details'
               dispatch(cartActions.cart.done.get(new Error(err)));
               dispatch(cartActions.cart.set.loading(false));
             }
@@ -119,7 +120,7 @@ export const addToCart = (id, token, productID, action) => (dispatch, getState) 
   } else {
     const newCartItem = {
       id: uuid.v4(),
-      user: null,
+      guest: true,
       product_variance_attribute: {
         id: id,
       },
@@ -213,7 +214,7 @@ export const validateCart = token => (dispatch, getState) => {
       id => {
         const item = cart.items[id];
 
-        if (!item.user) {
+        if (item.guest) {
           request('/me/carts/', getConfig(
             token,
             {
@@ -226,7 +227,13 @@ export const validateCart = token => (dispatch, getState) => {
               // success
               dispatch(cartActions.cart.update.itemByVariant({
                 id: item.id,
-                response: res,
+                response: {
+                  ...res,
+                  product: {
+                    ...res.product,
+                    ...getState().entities.products[res.product.id]
+                  }
+                },
               }));
             }
           );

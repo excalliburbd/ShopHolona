@@ -117,7 +117,7 @@ export const cartEntitiesReducer = handleActions({
 
       action.payload.forEach(
         item => {
-          const variantID = item.product_variance_attribute.variance.id;
+          const variantID = item.variance.id;
           const attributeID = item.product_variance_attribute.id;
 
           const productSpecs = item.product.variances

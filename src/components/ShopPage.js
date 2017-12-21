@@ -297,6 +297,7 @@ const ShopPage = ({
                                                                             key={ key }
                                                                             addToCart={ handleAddToCart }
                                                                             setVariant={ handleSetVariant }
+                                                                            setAttribute={ handleSetAttribute }
                                                                             shopDomain={ shopDomain } />
                                           ) }/>
           </div>

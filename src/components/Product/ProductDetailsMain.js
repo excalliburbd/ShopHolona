@@ -45,7 +45,7 @@ const ProductDetailsMain = ({
         />
       </div>
 
-      <div className="details-main-secondary">
+      {/* <div className="details-main-secondary">
         <h4 className="details-main-subtitle">Stock</h4>
         <div className="details-main-stock">
           <div className="details-main-stock--value">
@@ -57,7 +57,7 @@ const ProductDetailsMain = ({
             }, 0) }
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="details-main-secondary">
         <h4 className="details-main-subtitle">
