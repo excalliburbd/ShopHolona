@@ -196,7 +196,8 @@ const ShopPage = ({
           {
             shopAddress &&
             <p className="ShopPage-details--address">
-              <img src={ addressIcon } alt=""/><label>{ shopAddress.details }</label>
+              <img src={ addressIcon } alt=""/>
+              <label>{ shopAddress.details }</label>
             </p>
           }
           <ul className="ShopPage-details-contacts">
