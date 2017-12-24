@@ -9,7 +9,6 @@ import {
 } from '../thunks/shopThunks';
 import { getOrderList } from '../thunks/ordersThunks';
 import {
-  getCart,
   validateCart,
 } from '../thunks/cartThunks';
 
@@ -148,7 +147,6 @@ export const trySignInAsyncAction = (res, hide, nextStep) =>  (dispatch, getStat
                 dispatch(getFollowingShop(shopID, res.token));
                 dispatch(getShopPayments(shopID, res.token));
                 dispatch(validateCart(res.token));
-                dispatch(getCart(res.token, false, false));
               }
             }
           ).catch(

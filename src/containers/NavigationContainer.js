@@ -16,7 +16,6 @@ import {
   getFollowingShop,
   getUserAddress,
 } from '../thunks/userThunks';
-import { getCart } from '../thunks/cartThunks';
 import {
   getBanks,
   getDistricts,
@@ -108,11 +107,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(
           trySignInAsyncAction({ email: config.demouser, password: config.demopass}, true, null)
         );
-        // dispatch(userActions.user.done.get.token(token));
-        // dispatch(getMe(token, false));
-        // dispatch(tryGetVendor(shop, token));
-        // dispatch(getFollowingShop(shop, token));
-        // dispatch(getShopPayments(shop, token));
       }
     },
     hadleLoadData: (shop, token, vendor) => {
@@ -125,7 +119,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(getDistricts());
 
       if (token) {
-        dispatch(getCart(token, false, true));
         dispatch(tryGetVendor(shop, token));
         dispatch(getFollowingShop(shop, token));
         dispatch(getUserAddress(token));

@@ -6,6 +6,7 @@ import {
 import { addNotification } from 'reapop';
 
 import { getShopCategories } from './shopThunks';
+import { getCart } from '../thunks/cartThunks';
 
 import {
   sidebarActions,
@@ -55,6 +56,7 @@ export const getAllProducts = (shop, token, id) => (dispatch, getState) => {
                   product => product.variances.length > 0 && product.variances[0].attributes.length > 0
                 )
               ));
+              dispatch(getCart(token, false, false));
 
               if (demostore && id) {
                 request(`/vendors/shops/${shop}/products/${id}/`, getConfig(

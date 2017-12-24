@@ -8,10 +8,11 @@ import { cartActions, sidebarActions } from '../actions/';
 import { getVendor } from '../selectors/userSelectors';
 
 export const getCart = (token, show, initial) => (dispatch, getState) => {
-  dispatch(cartActions.cart.set.loading(true));
   const isVendor = getVendor(getState());
 
   if (token) {
+    dispatch(cartActions.cart.set.loading(true));
+
     request(`/me/carts/`, getConfig(
             token
           )).then(
@@ -40,6 +41,7 @@ export const getCart = (token, show, initial) => (dispatch, getState) => {
           ).catch(
             err => {
               // Fetching error details'
+              console.log(err)
               dispatch(cartActions.cart.done.get(new Error(err)));
               dispatch(cartActions.cart.set.loading(false));
             }
@@ -210,12 +212,35 @@ export const validateCart = token => (dispatch, getState) => {
   } = fromState(getState);
 
   if (token) {
-    cart.list.forEach(
-      id => {
+    const validationArray = cart.list.map(
+      (id, key) => {
         const item = cart.items[id];
+        let initial = true;
 
         if (item.guest) {
-          request('/me/carts/', getConfig(
+          initial && request(`/me/carts/`, getConfig(
+            token
+          )).then(
+            res => {
+              const deletedItemsMap = res.map(
+                item => {
+                  return request(`/me/carts/${item.id}/`, getConfig(
+                    token,
+                    null,
+                    'DELETE'
+                  ));
+                }
+              );
+
+              Promise.all(deletedItemsMap).then(
+                all => {
+                  initial = false;
+                }
+              );
+            }
+          );
+
+          return request('/me/carts/', getConfig(
             token,
             {
               product_variance_attribute: item.product_variance_attribute.id,
@@ -223,22 +248,36 @@ export const validateCart = token => (dispatch, getState) => {
             },
             'POST'
           )).then(
-            res => {
-              // success
-              dispatch(cartActions.cart.update.itemByVariant({
-                id: item.id,
-                response: {
-                  ...res,
-                  product: {
-                    ...res.product,
-                    ...getState().entities.products[res.product.id]
-                  }
-                },
-              }));
-            }
-          );
+            res => ({
+              oldItemID: item.id,
+              ...res,
+            })
+          )
         }
+
+        return Promise.resolve();
       }
-    )
+    );
+
+    Promise.all(validationArray).then(
+      responseArray => {
+        responseArray.forEach(
+          res => {
+            dispatch(cartActions.cart.update.itemByVariant({
+              id: res.oldItemID,
+              response: {
+                ...res,
+                product: {
+                  ...res.product,
+                  ...getState().entities.products[res.product.id]
+                }
+              },
+            }));
+          }
+        )
+      }
+    );
+
+    dispatch(getCart(token, null, null));
   }
 }
