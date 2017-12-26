@@ -218,41 +218,58 @@ export const validateCart = token => (dispatch, getState) => {
         let initial = true;
 
         if (item.guest) {
-          initial && request(`/me/carts/`, getConfig(
-            token
-          )).then(
-            res => {
-              const deletedItemsMap = res.map(
-                item => {
-                  return request(`/me/carts/${item.id}/`, getConfig(
-                    token,
-                    null,
-                    'DELETE'
-                  ));
-                }
-              );
-
-              Promise.all(deletedItemsMap).then(
-                all => {
-                  initial = false;
-                }
-              );
-            }
-          );
-
-          return request('/me/carts/', getConfig(
-            token,
-            {
-              product_variance_attribute: item.product_variance_attribute.id,
-              quantity: item.quantity,
-            },
-            'POST'
-          )).then(
-            res => ({
-              oldItemID: item.id,
-              ...res,
-            })
-          )
+          if (initial) {
+            return request(`/me/carts/`, getConfig(
+              token
+            )).then(
+              res => {
+                return res.map(
+                  item => {
+                    return request(`/me/carts/${item.id}/`, getConfig(
+                      token,
+                      null,
+                      'DELETE'
+                    ));
+                  }
+                );
+              }
+            ).then(
+              deletedItemsMap => {
+                return Promise.all(deletedItemsMap).then(
+                  all => {
+                    initial = false;
+                    return request('/me/carts/', getConfig(
+                      token,
+                      {
+                        product_variance_attribute: item.product_variance_attribute.id,
+                        quantity: item.quantity,
+                      },
+                      'POST'
+                    )).then(
+                      res => ({
+                        oldItemID: item.id,
+                        ...res,
+                      })
+                    );
+                  }
+                );
+              }
+            )
+          } else {
+            return request('/me/carts/', getConfig(
+              token,
+              {
+                product_variance_attribute: item.product_variance_attribute.id,
+                quantity: item.quantity,
+              },
+              'POST'
+            )).then(
+              res => ({
+                oldItemID: item.id,
+                ...res,
+              })
+            );
+          }
         }
 
         return Promise.resolve();
@@ -274,10 +291,11 @@ export const validateCart = token => (dispatch, getState) => {
               },
             }));
           }
-        )
+        );
+
+        dispatch(getCart(token, null, null));
       }
     );
 
-    dispatch(getCart(token, null, null));
   }
 }
