@@ -243,8 +243,8 @@ export const validateCart = token => (dispatch, getState) => {
             )).then(
               res => {
                 return res.map(
-                  item => {
-                    return request(`/me/carts/${item.id}/`, getConfig(
+                  toDeleteItems => {
+                    return request(`/me/carts/${toDeleteItems.id}/`, getConfig(
                       token,
                       null,
                       'DELETE'
@@ -273,6 +273,11 @@ export const validateCart = token => (dispatch, getState) => {
                   }
                 );
               }
+            ).catch(
+              err => {
+                console.log(err);
+                return err;
+              }
             )
           } else {
             return request('/me/carts/', getConfig(
@@ -287,6 +292,11 @@ export const validateCart = token => (dispatch, getState) => {
                 oldItemID: item.id,
                 ...res,
               })
+            ).catch(
+              err => {
+                console.log(err);
+                return err;
+              }
             );
           }
         }
@@ -297,6 +307,7 @@ export const validateCart = token => (dispatch, getState) => {
 
     Promise.all(validationArray).then(
       responseArray => {
+        console.log(responseArray)
         responseArray.forEach(
           res => {
             dispatch(cartActions.cart.update.itemByVariant({
@@ -311,8 +322,12 @@ export const validateCart = token => (dispatch, getState) => {
             }));
           }
         );
-
         dispatch(getCart(token, null, null));
+      }
+    ).catch(
+      err => {
+        console.log(err);
+        return err;
       }
     );
 
