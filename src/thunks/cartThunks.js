@@ -97,29 +97,41 @@ export const addToCart = (id, token, productID, action) => (dispatch, getState) 
     product.variances[product.selectedVariant].id
     : productID;
 
-  if (cartItem) {
-    dispatch(cartActions.cart.update.item({
-      id: cart[cartItem].id,
-      quantity: (cart[cartItem].quantity + 1)
-    }));
-    dispatch(sidebarActions.sidebar.show.addToCart());
-    action && action();
+  const stock = product.variances && product.variances[product.selectedVariant].attributes[product.selectedAttribute].stock;
 
-    if (token) {
-      dispatch(updateCartItem(
-        cart[cartItem].id,
-        id,
-        (cart[cartItem].quantity + 1),
-        token
-      ));
+  if (cartItem) {
+    if (cart[cartItem].quantity + 1 > stock) {
       dispatch(addNotification({
-        title: 'Success',
-        message: 'Successfully added to cart',
+        title: 'Stock Unavailable',
+        message: 'Sorry we are all out of stock',
         position: 'bl',
-        status: 'success',
+        status: 'warning',
       }));
+    } else {
+      dispatch(cartActions.cart.update.item({
+        id: cart[cartItem].id,
+        quantity: (cart[cartItem].quantity + 1)
+      }));
+      dispatch(sidebarActions.sidebar.show.addToCart());
+      action && action();
+
+      if (token) {
+        dispatch(updateCartItem(
+          cart[cartItem].id,
+          id,
+          (cart[cartItem].quantity + 1),
+          token
+        ));
+        dispatch(addNotification({
+          title: 'Success',
+          message: 'Successfully added to cart',
+          position: 'bl',
+          status: 'success',
+        }));
+      }
     }
-  } else {
+
+  } else if (stock > 0) {
     const newCartItem = {
       id: uuid.v4(),
       guest: true,
@@ -168,6 +180,13 @@ export const addToCart = (id, token, productID, action) => (dispatch, getState) 
               }
             );
     }
+  } else {
+    dispatch(addNotification({
+      title: 'Stock Unavailable',
+      message: 'Sorry we are all out of stock',
+      position: 'bl',
+      status: 'warning',
+    }));
   }
 }
 
