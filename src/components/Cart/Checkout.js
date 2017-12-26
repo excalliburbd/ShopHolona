@@ -205,7 +205,7 @@ class Checkout extends Component {
               {
                 sidebarType === 'ADDRESS' && <div className="footer-back-confirm-container">
                   <button className="cart-back-btn"  onClick={ handleShowCart }>
-                  <p>CART</p>
+                  <p>Back</p>
                   <img src={CartIcon} alt=""/></button>
                   <Button className="footer-next-btn sh-btn--yellow"
                                                       label="Next"
