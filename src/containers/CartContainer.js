@@ -27,11 +27,20 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    updateCartItem: (cartID, id, quantity, token) =>  {
-      if (token) {
-        dispatch(updateCartItem(cartID, id, quantity, token));
+    updateCartItem: (cartID, id, quantity, token, stock) =>  {
+      if (stock < quantity) {
+        dispatch(addNotification({
+          title: 'Stock Unavailable',
+          message: 'Sorry we are all out of stock',
+          position: 'bl',
+          status: 'warning',
+        }));
       } else {
-        dispatch(cartActions.cart.update.item({id: cartID, quantity}))
+        if (token) {
+          dispatch(updateCartItem(cartID, id, quantity, token));
+        } else {
+          dispatch(cartActions.cart.update.item({id: cartID, quantity}))
+        }
       }
     },
     deleteCartItem: (id, token) => {

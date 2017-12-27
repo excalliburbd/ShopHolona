@@ -51,7 +51,7 @@ const CartItem = ({
                           cartItem.id,
                           attribute.id,
                           cartItem.quantity - 1,
-                          token
+                          token,
                         )
                       }
 
@@ -71,7 +71,8 @@ const CartItem = ({
                     cartItem.id,
                     attribute.id,
                     cartItem.quantity + 1,
-                    token
+                    token,
+                    attribute.stock
                   )
                 }>+</span>
                 </div>
