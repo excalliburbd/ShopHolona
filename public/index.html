@@ -12,6 +12,7 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/logo.png">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="%PUBLIC_URL%/outdatedbrowser/outdatedbrowser.min.css">
     <!--
       Notice the use of %PUBLIC_URL% in the tag above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -28,6 +29,33 @@
   </head>
   <body>
     <div id="root"></div>
+    <div id="outdated"></div>
+    <script type="text/javascript" src="%PUBLIC_URL%/outdatedbrowser/outdatedbrowser.min.js"></script>
+    <script>
+      //event listener: DOM ready
+      function addLoadEvent(func) {
+          var oldonload = window.onload;
+          if (typeof window.onload != 'function') {
+              window.onload = func;
+          } else {
+              window.onload = function() {
+                  if (oldonload) {
+                      oldonload();
+                  }
+                  func();
+              }
+          }
+      }
+      //call plugin function after DOM ready
+      addLoadEvent(function(){
+          outdatedBrowser({
+              bgColor: '#f25648',
+              color: '#ffffff',
+              lowerThan: 'transform',
+              languagePath: '%PUBLIC_URL%/outdatedbrowser/lang/en.html'
+          })
+      });
+    </script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
