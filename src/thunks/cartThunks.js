@@ -248,7 +248,11 @@ export const validateCart = token => (dispatch, getState) => {
                       token,
                       null,
                       'DELETE'
-                    ));
+                    )).catch(
+                      err => {
+                        return Promise.resolve();
+                      }
+                    );
                   }
                 );
               }
@@ -275,7 +279,6 @@ export const validateCart = token => (dispatch, getState) => {
               }
             ).catch(
               err => {
-                console.log(err);
                 return err;
               }
             )
@@ -294,7 +297,6 @@ export const validateCart = token => (dispatch, getState) => {
               })
             ).catch(
               err => {
-                console.log(err);
                 return err;
               }
             );
@@ -307,7 +309,6 @@ export const validateCart = token => (dispatch, getState) => {
 
     Promise.all(validationArray).then(
       responseArray => {
-        console.log(responseArray)
         responseArray.forEach(
           res => {
             dispatch(cartActions.cart.update.itemByVariant({
@@ -326,7 +327,6 @@ export const validateCart = token => (dispatch, getState) => {
       }
     ).catch(
       err => {
-        console.log(err);
         return err;
       }
     );
