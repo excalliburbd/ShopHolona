@@ -25,11 +25,11 @@ build:
   script:
     - yarn
     - yarn build:dev
-    - docker login -u thebdcoder -p $ULALA $DOCKER_REPO
-    - docker build -t $DOCKER_REPO/$MAIN_IMAGE_NAME:latest .
-    - docker build -t $DOCKER_REPO/$MAIN_IMAGE_NAME:$CI_COMMIT_REF_NAME .
-    - docker push $DOCKER_REPO/$MAIN_IMAGE_NAME:latest
-    - docker push $DOCKER_REPO/$MAIN_IMAGE_NAME:$CI_COMMIT_REF_NAME
+    #- docker login -u thebdcoder -p $ULALA $DOCKER_REPO
+    #- docker build -t $DOCKER_REPO/$MAIN_IMAGE_NAME:latest .
+    #- docker build -t $DOCKER_REPO/$MAIN_IMAGE_NAME:$CI_COMMIT_REF_NAME .
+    #- docker push $DOCKER_REPO/$MAIN_IMAGE_NAME:latest
+    #- docker push $DOCKER_REPO/$MAIN_IMAGE_NAME:$CI_COMMIT_REF_NAME
     - rm build/*.map && rm build/static/css/*.map && rm build/static/js/*.map
     - chmod -R 777 build/
     - scp -r build/. root@45.32.124.232:/root/app/vendor/
