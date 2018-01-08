@@ -226,13 +226,14 @@ export const getShopPayments = (shop, token) => (dispatch, getState) => {
                           token
                         )).then(
                           res => {
+                            console.log(res)
                             if (res.length > 0) {
                               dispatch(shopActions.shop.set.payments(res));
                               const {
                                 bankName,
                               } = fromState(getState);
-                              dispatch(shopActions.shop.set.payments([{ ...res[0], bank: { ...res[0].bank, bankName }}]));
-                              res[0].bank.id && getBranch(res[0].bank.id);
+                              bankName && dispatch(shopActions.shop.set.payments([{ ...res[0], bank: { ...res[0].bank, bankName }}]));
+                              res[0] && res[0].bank.id && getBranch(res[0].bank.id);
                             }
                           }
                         )

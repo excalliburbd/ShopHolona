@@ -136,7 +136,7 @@ export const fromState = getState => {
     thana: state.ui.paymentsAndAddresses.thanakID,
     district: state.ui.paymentsAndAddresses.districtID,
   };
-  const bankName = payments && state.cachedEntities.banks[payments.bank.bank_name] && state.cachedEntities.banks[payments.bank.bank_name].name;
+  const bankName = payments && payments.bank && state.cachedEntities.banks[payments.bank.bank_name] && state.cachedEntities.banks[payments.bank.bank_name].name;
   const cart = {
     list: state.cart.items,
     items: state.entities.cart,
