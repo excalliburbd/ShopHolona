@@ -170,7 +170,8 @@ class Checkout extends Component {
                                                             setSelectedAddress={ handleSetSelectedAddress }
                                                             additionalComments={ additionalComments }
                                                             updateAdditionalComments={ updateAdditionalComments }
-                                                            deleteAddress={ id => handleDeleteAddress(id, activeUser.token, !user.token) }  />
+                                                            deleteAddress={ id => handleDeleteAddress(id, activeUser.token, !user.token) }
+                                                            isGuestUser={token} />
           }
           {
             sidebarType === 'PAYMENT_SELECTION' && <PaymentSelection />
